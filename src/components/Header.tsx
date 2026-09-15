@@ -112,37 +112,37 @@ export default function Header() {
       </div>
 
       {/* Main Desktop Header — Production-Grade Balanced Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4 lg:gap-8 w-full">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 h-18 sm:h-20 flex items-center justify-between gap-2 lg:gap-3 xl:gap-4 w-full overflow-visible">
         {/* Left: Brand Logo & Lineage */}
-        <div className="flex items-center gap-4 flex-shrink-0">
-          <Link href="/" onClick={handleNavClick} className="flex items-center gap-3 group flex-shrink-0">
-            <div className="h-11 w-auto px-2.5 py-1 rounded-xl bg-white border border-[#16382B]/10 shadow-xs group-hover:scale-105 transition-transform flex-shrink-0 flex items-center justify-center">
+        <div className="flex items-center gap-2 xl:gap-3 flex-shrink-0">
+          <Link href="/" onClick={handleNavClick} className="flex items-center gap-2 xl:gap-2.5 group flex-shrink-0">
+            <div className="h-9 sm:h-10 xl:h-11 w-auto px-2 py-1 rounded-xl bg-white border border-[#16382B]/10 shadow-xs group-hover:scale-105 transition-transform flex-shrink-0 flex items-center justify-center">
               <Image
                 src="/images/ruthra-logo.png"
                 alt="Ruthra Siddha Medicines Logo"
                 width={70}
                 height={40}
-                className="h-8 w-auto object-contain"
+                className="h-6 sm:h-7 xl:h-8 w-auto object-contain"
                 priority
                 unoptimized
               />
             </div>
             <div className="flex flex-col justify-center">
-              <span className="font-serif-brand text-2xl font-bold text-[#16382B] tracking-wider leading-none">
+              <span className="font-serif-brand text-lg sm:text-xl xl:text-2xl font-bold text-[#16382B] tracking-wider leading-none">
                 RUTHRA
               </span>
-              <span className={`text-[9.5px] text-[#C29043] font-semibold mt-1 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.22em]'}`}>
+              <span className={`text-[8px] sm:text-[9px] xl:text-[9.5px] text-[#C29043] font-semibold mt-0.5 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.18em]'}`}>
                 {t('Siddha Medicines • Tirunelveli', 'சித்த மருத்துவ இல்லம்')}
               </span>
             </div>
           </Link>
 
           {/* Subtle Vertical Heritage Divider */}
-          <div className="hidden 2xl:block h-7 w-px bg-[#16382B]/15" />
+          <div className="hidden 2xl:block h-6 w-px bg-[#16382B]/15" />
         </div>
 
         {/* Center: Primary Navigation Links */}
-        <nav className="flex items-center justify-center gap-1.5 lg:gap-3 text-sm font-medium flex-1 mx-2 lg:mx-6">
+        <nav className="flex items-center justify-center gap-1 xl:gap-2 font-medium flex-shrink-0">
           {/* 1. SHOP & CATEGORIES DROPDOWN */}
           <div
             className="relative flex items-center"
@@ -152,7 +152,7 @@ export default function Header() {
             <Link
               href="/shop"
               onClick={handleNavClick}
-              className={`h-10 flex items-center gap-1.5 px-3.5 rounded-xl text-xs sm:text-[13.5px] font-semibold transition-all whitespace-nowrap ${
+              className={`h-9 xl:h-10 flex items-center gap-1 px-2 xl:px-3 rounded-xl text-xs xl:text-[13px] font-semibold transition-all whitespace-nowrap ${
                 isShopActive
                   ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                   : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
@@ -280,7 +280,7 @@ export default function Header() {
           <Link
             href="/offers"
             onClick={handleNavClick}
-            className={`h-10 flex items-center gap-1.5 px-3.5 rounded-xl text-xs sm:text-[13.5px] font-semibold transition-all whitespace-nowrap ${
+            className={`h-9 xl:h-10 flex items-center gap-1.5 px-2 xl:px-3 rounded-xl text-xs xl:text-[13px] font-semibold transition-all whitespace-nowrap ${
               isOffersActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                 : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
@@ -294,7 +294,7 @@ export default function Header() {
           <Link
             href="/about"
             onClick={handleNavClick}
-            className={`h-10 flex items-center gap-1.5 px-3.5 rounded-xl text-xs sm:text-[13.5px] font-semibold transition-all whitespace-nowrap ${
+            className={`h-9 xl:h-10 flex items-center gap-1.5 px-2 xl:px-3 rounded-xl text-xs xl:text-[13px] font-semibold transition-all whitespace-nowrap ${
               isAboutActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                 : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
@@ -307,7 +307,7 @@ export default function Header() {
           <Link
             href="/contact"
             onClick={handleNavClick}
-            className={`h-9 px-3.5 rounded-full border border-[#16382B]/15 flex items-center gap-1.5 whitespace-nowrap transition-all text-xs font-semibold ${
+            className={`h-8.5 xl:h-9 px-2.5 xl:px-3.5 rounded-full border border-[#16382B]/15 flex items-center gap-1.5 whitespace-nowrap transition-all text-xs font-semibold ${
               isContactActive
                 ? 'bg-[#16382B] text-white shadow-xs'
                 : 'bg-[#E8F1EB] hover:bg-[#16382B] hover:text-white text-[#16382B]'
@@ -319,35 +319,35 @@ export default function Header() {
         </nav>
 
         {/* Right Action Controls: Search, Language Switcher, Cart */}
-        <div className="flex items-center justify-end gap-2.5 lg:gap-3 flex-shrink-0 justify-self-end">
+        <div className="flex items-center justify-end gap-1.5 sm:gap-2 xl:gap-2.5 flex-shrink-0">
           {/* Compact Predictive Search Button */}
           <button
             onClick={openSearch}
-            className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#E8F1EB] hover:bg-white border border-[#16382B]/15 text-xs text-[#264653] transition-all hover:border-[#C29043] cursor-pointer whitespace-nowrap"
+            className="flex items-center gap-1.5 xl:gap-2 px-2.5 xl:px-3 py-1.5 xl:py-2 rounded-full bg-[#E8F1EB] hover:bg-white border border-[#16382B]/15 text-xs text-[#264653] transition-all hover:border-[#C29043] cursor-pointer whitespace-nowrap flex-shrink-0"
             title="Search formulations, concerns, ingredients (Press / or Cmd+K)"
           >
             <Search className="w-3.5 h-3.5 text-[#16382B]" />
-            <span className="text-[#8C9E96] hidden xl:inline">
+            <span className="text-[#8C9E96] hidden 2xl:inline text-xs">
               {language === 'ta' ? 'தேடுங்கள்...' : 'Search products...'}
             </span>
-            <span className="text-[#8C9E96] xl:hidden">
+            <span className="text-[#8C9E96] hidden md:inline 2xl:hidden text-xs">
               {language === 'ta' ? 'தேடல்' : 'Search'}
             </span>
-            <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[9px] bg-white rounded border border-[#16382B]/20 text-[#8C9E96]">
+            <kbd className="hidden xl:inline-block px-1.5 py-0.5 text-[9px] bg-white rounded border border-[#16382B]/20 text-[#8C9E96]">
               /
             </kbd>
           </button>
 
           {/* Bilingual Language Switcher */}
-          <LanguageSwitcher />
+          <LanguageSwitcher className="flex-shrink-0" />
 
           {/* Cart Icon & Badge */}
           <button
             onClick={openDrawer}
-            className="relative p-2.5 rounded-xl bg-[#16382B] text-white hover:bg-[#204C3B] transition-all active:scale-95 shadow-xs flex items-center justify-center cursor-pointer flex-shrink-0"
+            className="relative h-9 w-9 xl:h-10 xl:w-10 rounded-xl bg-[#16382B] text-white hover:bg-[#204C3B] transition-all active:scale-95 shadow-xs flex items-center justify-center cursor-pointer flex-shrink-0"
             aria-label={`Open Cart with ${itemCount} items`}
           >
-            <ShoppingBag className="w-5 h-5 text-[#FAF8F5]" />
+            <ShoppingBag className="w-4.5 h-4.5 xl:w-5 xl:h-5 text-[#FAF8F5]" />
             {itemCount > 0 && (
               <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-[#C29043] text-white text-[10px] font-bold flex items-center justify-center shadow-xs border-2 border-[#FAF8F5]">
                 {itemCount}
