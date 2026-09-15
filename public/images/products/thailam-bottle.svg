@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="oilBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5" />
+      <stop offset="100%" stop-color="#E8F1EB" />
+    </linearGradient>
+    <linearGradient id="amberGlass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4E2E10" />
+      <stop offset="25%" stop-color="#804B18" />
+      <stop offset="60%" stop-color="#9A5C22" />
+      <stop offset="85%" stop-color="#6F3F12" />
+      <stop offset="100%" stop-color="#3B220B" />
+    </linearGradient>
+    <linearGradient id="glassGloss" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0" />
+    </linearGradient>
+    <linearGradient id="goldCap" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#996E2E" />
+      <stop offset="35%" stop-color="#E1B873" />
+      <stop offset="70%" stop-color="#C29043" />
+      <stop offset="100%" stop-color="#825C21" />
+    </linearGradient>
+    <filter id="bottleShadow" x="-15%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#16382B" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#oilBg)" rx="16" />
+  <circle cx="200" cy="200" r="135" fill="#16382B" fill-opacity="0.03" />
+
+  <!-- Bottle shadow base ellipse -->
+  <ellipse cx="200" cy="340" rx="65" ry="14" fill="#16382B" fill-opacity="0.08" />
+
+  <g transform="translate(145, 60)" filter="url(#bottleShadow)">
+    <!-- Gold/Brass Cap -->
+    <rect x="37" y="10" width="36" height="26" rx="3" fill="url(#goldCap)" stroke="#7C551C" stroke-width="0.8" />
+    <!-- Cap Ridges -->
+    <line x1="43" y1="12" x2="43" y2="34" stroke="#FFE7BA" stroke-width="0.7" stroke-opacity="0.6" />
+    <line x1="49" y1="12" x2="49" y2="34" stroke="#FFE7BA" stroke-width="0.7" stroke-opacity="0.6" />
+    <line x1="55" y1="12" x2="55" y2="34" stroke="#FFE7BA" stroke-width="0.7" stroke-opacity="0.6" />
+    <line x1="61" y1="12" x2="61" y2="34" stroke="#FFE7BA" stroke-width="0.7" stroke-opacity="0.6" />
+    <line x1="67" y1="12" x2="67" y2="34" stroke="#FFE7BA" stroke-width="0.7" stroke-opacity="0.6" />
+
+    <!-- Bottle Neck -->
+    <rect x="42" y="36" width="26" height="20" fill="url(#amberGlass)" />
+    
+    <!-- Bottle Shoulder & Main Body -->
+    <path d="M42 56 C28 65, 8 80, 8 105 L8 240 C8 255, 20 262, 55 262 C90 262, 102 255, 102 240 L102 105 C102 80, 82 65, 68 56 Z" fill="url(#amberGlass)" />
+
+    <!-- Glass Specular Highlight Curve -->
+    <path d="M16 108 L16 238 C16 244, 22 248, 28 248 L28 102 C28 94, 22 98, 16 108 Z" fill="url(#glassGloss)" />
+
+    <!-- Paper Label with Gold Borders -->
+    <g transform="translate(18, 100)">
+      <rect width="74" height="135" rx="4" fill="#FCFAF7" stroke="#E2D9CB" stroke-width="0.8" />
+      <rect x="2" y="2" width="70" height="131" rx="3" fill="none" stroke="#C29043" stroke-width="0.8" stroke-dasharray="3 3" />
+      
+      <!-- Label Header -->
+      <text x="37" y="22" font-family="'Fraunces', serif" font-size="9" font-weight="700" fill="#16382B" text-anchor="middle" letter-spacing="1">RUTHRA</text>
+      <text x="37" y="31" font-family="'Inter', sans-serif" font-size="5" font-weight="600" fill="#C29043" text-anchor="middle" letter-spacing="1.5">THAILAM</text>
+      
+      <!-- Oil Droplet Emblem -->
+      <circle cx="37" cy="46" r="10" fill="#E8F1EB" />
+      <path d="M37 40 C34 44, 32 47, 37 51 C42 47, 40 44, 37 40 Z" fill="#C29043" />
+
+      <text x="37" y="68" font-family="'Fraunces', serif" font-size="7.5" font-weight="600" fill="#264653" text-anchor="middle">HERBAL OIL</text>
+      <text x="37" y="78" font-family="'Noto Sans Tamil', 'Inter', sans-serif" font-size="7" fill="#16382B" text-anchor="middle">தைலம்</text>
+      
+      <rect x="15" y="86" width="44" height="0.8" fill="#C29043" fill-opacity="0.4" />
+
+      <rect x="14" y="93" width="46" height="14" rx="2" fill="#E8F1EB" />
+      <text x="37" y="103" font-family="'Inter', sans-serif" font-size="6" font-weight="700" fill="#16382B" text-anchor="middle">NET 100ml</text>
+      <text x="37" y="119" font-family="'Inter', sans-serif" font-size="4.5" fill="#889886" text-anchor="middle">COLD PRESSED OILS</text>
+    </g>
+  </g>
+</svg>

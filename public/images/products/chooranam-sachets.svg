@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sachetBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5" />
+      <stop offset="100%" stop-color="#E8F1EB" />
+    </linearGradient>
+    <linearGradient id="sachetMat" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2EFE9" />
+      <stop offset="100%" stop-color="#E2DCD2" />
+    </linearGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C29043" />
+      <stop offset="100%" stop-color="#DFB36C" />
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#16382B" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="400" height="400" fill="url(#sachetBg)" rx="16" />
+  
+  <!-- Subtle botanical circle decorative background -->
+  <circle cx="200" cy="200" r="140" fill="#16382B" fill-opacity="0.03" />
+  <circle cx="200" cy="200" r="110" fill="none" stroke="#C29043" stroke-width="1" stroke-dasharray="4 6" stroke-opacity="0.3" />
+
+  <!-- Back Sachet 1 (rotated slightly) -->
+  <g transform="translate(130, 90) rotate(-10)" filter="url(#softShadow)">
+    <rect width="120" height="170" rx="8" fill="url(#sachetMat)" stroke="#D4CABE" stroke-width="1" />
+    <!-- Seal crimp edges -->
+    <line x1="0" y1="12" x2="120" y2="12" stroke="#B8AFA2" stroke-width="2" stroke-dasharray="2 2" />
+    <line x1="0" y1="158" x2="120" y2="158" stroke="#B8AFA2" stroke-width="2" stroke-dasharray="2 2" />
+  </g>
+
+  <!-- Main Front Sachet Box / Packet -->
+  <g transform="translate(140, 110)" filter="url(#softShadow)">
+    <rect width="130" height="180" rx="10" fill="#FFFFFF" stroke="#E2DCD2" stroke-width="1.5" />
+    
+    <!-- Top & Bottom Crimp Pattern -->
+    <rect x="0" y="0" width="130" height="16" fill="#F4EFEA" rx="10" />
+    <line x1="0" y1="14" x2="130" y2="14" stroke="#C29043" stroke-width="1" stroke-opacity="0.5" />
+    <line x1="0" y1="166" x2="130" y2="166" stroke="#C29043" stroke-width="1" stroke-opacity="0.5" />
+    <rect x="0" y="166" width="130" height="14" fill="#F4EFEA" rx="0 0 10 10" />
+
+    <!-- Brand Header -->
+    <text x="65" y="45" font-family="'Fraunces', serif" font-size="11" font-weight="700" fill="#16382B" text-anchor="middle" letter-spacing="1.5">RUTHRA</text>
+    <text x="65" y="56" font-family="'Inter', sans-serif" font-size="6.5" font-weight="500" fill="#C29043" text-anchor="middle" letter-spacing="2">SIDDHA MEDICINE</text>
+    
+    <!-- Gold Heritage Emblem Line -->
+    <circle cx="65" cy="74" r="14" fill="#FAF8F5" stroke="#C29043" stroke-width="1" />
+    <!-- Leaf Icon inside emblem -->
+    <path d="M65 65 C60 69, 58 75, 65 82 C72 75, 70 69, 65 65 Z" fill="#16382B" />
+    <path d="M65 67 L65 80" stroke="#C29043" stroke-width="0.8" />
+
+    <!-- Formulation Details -->
+    <text x="65" y="106" font-family="'Fraunces', serif" font-size="10" font-weight="600" fill="#264653" text-anchor="middle">CHOORANAM</text>
+    <text x="65" y="117" font-family="'Noto Sans Tamil', 'Inter', sans-serif" font-size="8" fill="#16382B" text-anchor="middle">சூரணம்</text>
+    <rect x="25" y="124" width="80" height="1" fill="#C29043" fill-opacity="0.3" />
+
+    <!-- Sachet Specification -->
+    <rect x="30" y="132" width="70" height="18" rx="4" fill="#E8F1EB" />
+    <text x="65" y="144" font-family="'Inter', sans-serif" font-size="7.5" font-weight="600" fill="#16382B" text-anchor="middle">30 SACHETS</text>
+    <text x="65" y="159" font-family="'Inter', sans-serif" font-size="6" fill="#8A9A86" text-anchor="middle">TIRUNELVELI • TAMIL NADU</text>
+  </g>
+
+  <!-- Small scattered botanical seed/leaf elements -->
+  <g opacity="0.6">
+    <ellipse cx="90" cy="310" rx="6" ry="12" transform="rotate(25, 90, 310)" fill="#16382B" fill-opacity="0.2" />
+    <ellipse cx="320" cy="280" rx="5" ry="10" transform="rotate(-35, 320, 280)" fill="#C29043" fill-opacity="0.4" />
+    <circle cx="105" cy="130" r="3" fill="#C29043" fill-opacity="0.5" />
+    <circle cx="310" cy="120" r="4" fill="#16382B" fill-opacity="0.2" />
+  </g>
+</svg>
