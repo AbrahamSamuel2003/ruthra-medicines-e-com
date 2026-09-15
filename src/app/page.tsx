@@ -1,8 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Leaf, Trees, Award, Droplets, Activity, Wind, Heart, ShieldCheck, Flame, Layers, Sparkles, CheckCircle2, MessageCircle, Truck, CreditCard, ShoppingBag, Star, Zap } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Leaf, 
+  Trees, 
+  Award, 
+  Droplets, 
+  Activity, 
+  Wind, 
+  Heart, 
+  ShieldCheck, 
+  Flame, 
+  Layers, 
+  Sparkles, 
+  CheckCircle2, 
+  MessageCircle, 
+  Truck, 
+  CreditCard, 
+  ShoppingBag, 
+  Star, 
+  Zap,
+  Filter
+} from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
 import StoreHeroCarousel from '@/components/StoreHeroCarousel';
@@ -12,10 +33,7 @@ import { PRODUCTS, CONCERN_CATEGORIES, FORMULATION_CATEGORIES, BUNDLES } from '@
 export default function HomePage() {
   const { language, t } = useLanguage();
   const { addItem } = useCart();
-
-  // Signature formulations for store shelves
-  const bestSellerProducts = PRODUCTS.slice(0, 8);
-  const wellnessEssentials = PRODUCTS.slice(8, 16);
+  const [activeTab, setActiveTab] = useState<string>('all');
 
   // Helper to get category icons with vibrant accents
   const getConcernIcon = (slug: string) => {
@@ -30,13 +48,33 @@ export default function HomePage() {
     }
   };
 
+  // Category Filtered Products for the Interactive Explorer
+  const filteredTabProducts = activeTab === 'all'
+    ? PRODUCTS.slice(0, 8)
+    : PRODUCTS.filter(p => p.concerns.includes(activeTab as any) || p.formulation.toLowerCase().includes(activeTab)).slice(0, 8);
+
+  // Dedicated Category Aisles
+  const jointCareProducts = PRODUCTS.filter(p => p.concerns.includes('joint-mobility')).slice(0, 4);
+  const respiratoryProducts = PRODUCTS.filter(p => p.concerns.includes('respiratory')).slice(0, 4);
+  const digestiveProducts = PRODUCTS.filter(p => p.concerns.includes('digestive-wellness')).slice(0, 4);
+  const skinHairProducts = PRODUCTS.filter(p => p.concerns.includes('skin-hair') || p.concerns.includes('womens-wellness')).slice(0, 4);
+
+  const TABS = [
+    { id: 'all', nameEn: '⭐ All Bestsellers', nameTa: '⭐ பிரபல தயாரிப்புகள்' },
+    { id: 'joint-mobility', nameEn: '🪵 Joint & Pain Care', nameTa: '🪵 மூட்டு & வலி நிவாரணம்' },
+    { id: 'respiratory', nameEn: '🫁 Breathing & Immunity', nameTa: '🫁 சுவாச பாதுகாப்பு' },
+    { id: 'digestive-wellness', nameEn: '🍯 Digestion & Gut', nameTa: '🍯 செரிமான ஆரோக்கியம்' },
+    { id: 'skin-hair', nameEn: '🌸 Hair & Skin Care', nameTa: '🌸 கூந்தல் & தோல் நலம்' },
+    { id: 'metabolic-wellness', nameEn: '⚡ Vitality & Sugar', nameTa: '⚡ சர்க்கரை & தாதுபலம்' },
+  ];
+
   return (
     <div className="w-full max-w-full overflow-x-hidden flex flex-col bg-[#FDFBF7]">
-      {/* 1. STORE HERO DYNAMIC PROMOTIONAL CAROUSEL */}
+      {/* 1. STORE HERO FULL-BLEED DYNAMIC PROMOTIONAL CAROUSEL */}
       <StoreHeroCarousel />
 
-      {/* 2. CRITICAL STORE TRUST STRIP (UPI, COD, WHATSAPP, TN DISPATCH) */}
-      <section className="w-full bg-[#16382B] text-white py-3.5 sm:py-4 px-4 sm:px-6 lg:px-8 shadow-sm border-b border-[#C29043]/30">
+      {/* 2. CRITICAL STORE TRUST STRIP (UPI, COD, WHATSAPP, TN DISPATCH) — Hidden on mobile */}
+      <section className="hidden md:block w-full bg-[#16382B] text-white py-3.5 sm:py-4 px-4 sm:px-6 lg:px-8 shadow-sm border-b border-[#C29043]/30">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 items-center text-center sm:text-left">
           {/* Trust 1: Payment Options */}
           <div className="flex items-center gap-2.5 p-2 rounded-xl bg-white/5 sm:bg-transparent">
@@ -105,9 +143,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. VISUAL CATEGORY EXPLORATION TILES (Shop by Health Need) */}
-      <section className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex items-center justify-between mb-6">
+      {/* 3. VISUAL CATEGORY EXPLORATION TILES (Shop by Health Need) — Hidden on mobile */}
+      <section className="hidden md:block py-8 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between mb-5">
           <div>
             <span className="text-xs uppercase tracking-wider font-extrabold text-[#C29043] flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5" />
@@ -134,7 +172,7 @@ export default function HomePage() {
               href={`/shop/concerns/${category.slug}`}
               className="group p-4 rounded-2xl bg-white border border-[#16382B]/10 hover:border-[#C29043] hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center justify-between"
             >
-              <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#E8F1EB] group-hover:bg-[#16382B] group-hover:text-white flex items-center justify-center mb-3 shadow-xs transition-colors">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#E8F1EB] group-hover:bg-[#16382B] group-hover:text-white flex items-center justify-center mb-3 shadow-xs transition-colors">
                 {getConcernIcon(category.slug)}
               </div>
               <h3 className="font-serif-brand font-bold text-xs sm:text-sm text-[#16382B] group-hover:text-[#C29043] transition-colors line-clamp-2">
@@ -148,24 +186,170 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. CATCHY COMBO DEALS SPOTLIGHT (Patanjali / AyushBuy Store Style) */}
-      <section className="py-8 sm:py-12 bg-gradient-to-br from-[#16382B] to-[#0E251C] text-white border-y border-[#C29043]/30">
+      {/* 4. INTERACTIVE MULTI-CATEGORY STORE EXPLORER WITH TABS */}
+      <section className="py-8 sm:py-12 bg-white border-y border-[#16382B]/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
+            <div>
+              <span className="text-xs uppercase tracking-wider font-extrabold text-[#C29043] flex items-center gap-1">
+                <Filter className="w-3.5 h-3.5" />
+                <span>{t('Category-Wise Storefront', 'பிரிவுகள் வாரியாக')}</span>
+              </span>
+              <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B] mt-0.5">
+                {t('Featured Products by Category', 'முக்கிய மருந்து தயாரிப்புகள்')}
+              </h2>
+            </div>
+            
+            {/* Category Filter Tabs */}
+            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1 max-w-full">
+              {TABS.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                    activeTab === tab.id
+                      ? 'bg-[#16382B] text-white shadow-sm scale-102'
+                      : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] hover:text-[#16382B] border border-[#16382B]/10'
+                  }`}
+                >
+                  {language === 'ta' ? tab.nameTa : tab.nameEn}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Product Grid: 2 col mobile, 3 col sm, 4 col desktop */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            {filteredTabProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href={activeTab === 'all' ? '/shop' : `/shop/concerns/${activeTab}`}
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[#FAF8F5] hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all"
+            >
+              <span>{t('View All in this Category', 'இப்பிரிவின் அனைத்து மருந்துகள்')}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. DEDICATED THEMATIC AISLE 1: JOINT MOBILITY & PAIN CARE */}
+      <section className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3 pb-3 border-b border-[#16382B]/10">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+              <Activity className="w-3.5 h-3.5 text-[#C29043]" />
+              <span>{t('Vata Balance & Pain Relief', 'வாத நலம் & வலி நிவாரணம்')}</span>
+            </div>
+            <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B]">
+              {t('Joint & Musculoskeletal Care', 'மூட்டு & எலும்பு நல மருந்துகள்')}
+            </h2>
+            <p className="text-xs text-[#3D5A68] mt-0.5">
+              {t('Deep tissue penetration formulas for arthritic stiffness, knee mobility, and backache.', 'மூட்டு வலி, இடுப்பு வலி மற்றும் தசை பிடிப்புகளுக்கு பாரம்பரிய மருந்துகள்.')}
+            </p>
+          </div>
+          <Link
+            href="/shop/concerns/joint-mobility"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#C29043] hover:text-[#16382B] transition-colors"
+          >
+            <span>{t('Explore Joint Care Store', 'மூட்டு நலம் பார்க்க')}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+          {jointCareProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* 6. DEDICATED THEMATIC AISLE 2: RESPIRATORY & IMMUNITY SHIELD */}
+      <section className="py-10 sm:py-14 bg-[#FAF8F5] border-t border-[#16382B]/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3 pb-3 border-b border-[#16382B]/10">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+                <Wind className="w-3.5 h-3.5 text-[#2A9D8F]" />
+                <span>{t('Kapha Care & Viral Defense', 'கப சமநிலை & நோய் எதிர்ப்பு')}</span>
+              </div>
+              <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B]">
+                {t('Respiratory Health & Flu Defense', 'சுவாச நலம் & சளி இருமல் மருந்துகள்')}
+              </h2>
+              <p className="text-xs text-[#3D5A68] mt-0.5">
+                {t('Classical Kudineer decoctions, non-drowsy syrups, and throat soothing formulations.', 'கபசுர குடிநீர், நொச்சி குடிநீர், சினோகாஃப் சிரப் மற்றும் தாளிசாதி சூரணம்.')}
+              </p>
+            </div>
+            <Link
+              href="/shop/concerns/respiratory"
+              className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#2A9D8F] hover:text-[#16382B] transition-colors"
+            >
+              <span>{t('Explore Respiratory Store', 'சுவாச நலம் பார்க்க')}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            {respiratoryProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. DEDICATED THEMATIC AISLE 3: DIGESTIVE WELLNESS & GUT HEALTH */}
+      <section className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3 pb-3 border-b border-[#16382B]/10">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+              <Flame className="w-3.5 h-3.5 text-[#E63946]" />
+              <span>{t('Pitta & Agni Balance', 'பித்த & செரிமான தீ சீராக்கம்')}</span>
+            </div>
+            <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B]">
+              {t('Digestive Care & Gut Harmony', 'செரிமான & பித்த சமநிலை மருந்துகள்')}
+            </h2>
+            <p className="text-xs text-[#3D5A68] mt-0.5">
+              {t('Traditional Lehyams, electuaries, and carminative chooranams for acidity, gas, and bowel regularity.', 'இஞ்சி லேகியம், வில்வாதி லேகியம், ஏலாதி மற்றும் நிலாவரை சூரணம்.')}
+            </p>
+          </div>
+          <Link
+            href="/shop/concerns/digestive-wellness"
+            className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#E63946] hover:text-[#16382B] transition-colors"
+          >
+            <span>{t('Explore Gut Care Store', 'செரிமான நலம் பார்க்க')}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+          {digestiveProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* 8. CATCHY VALUE COMBOS SPOTLIGHT (Save 20%) */}
+      <section className="py-10 sm:py-14 bg-gradient-to-br from-[#16382B] to-[#0E251C] text-white border-y border-[#C29043]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D9534F] text-white text-xs font-black uppercase tracking-wider mb-2 shadow-sm">
                 <Zap className="w-3.5 h-3.5 fill-white" />
-                <span>{t('Limited Period Value Deals', 'சிறப்பு காம்போ தள்ளுபடி')}</span>
+                <span>{t('Special Apothecary Bundles', 'சிறப்பு காம்போ தள்ளுபடி')}</span>
               </div>
               <h2 className="font-serif-brand text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                {t('Featured Wellness Combos (Save Up to 20%)', 'சிறப்பு மூலிகை தொகுப்புகள் (20% சேமிப்பு)')}
+                {t('Curated Wellness Regimens (Save 20%)', 'ஒருங்கிணைந்த மூலிகை தொகுப்புகள்')}
               </h2>
             </div>
             <Link
               href="/shop#combos"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#DFB36C] hover:text-white transition-colors"
             >
-              <span>{t('View All Combo Packs', 'அனைத்து தொகுப்புகள்')}</span>
+              <span>{t('View All Combo Regimens', 'அனைத்து தொகுப்புகள்')}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -243,46 +427,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. STORE BESTSELLERS SHELF (Primary Product Showcase) */}
-      <section className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
-          <div>
-            <span className="text-xs uppercase tracking-wider font-extrabold text-[#C29043] flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{t('Top Rated by Vaidyars', 'பிரபலமான மருந்துகள்')}</span>
-            </span>
-            <h2 className="font-serif-brand text-2xl sm:text-3xl md:text-4xl font-bold text-[#16382B] mt-0.5">
-              {t('Bestselling Classical Formulations', 'அதிகம் விற்கப்படும் பாரம்பரிய மருந்துகள்')}
-            </h2>
-          </div>
-          <Link
-            href="/shop"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#16382B] hover:text-[#C29043] transition-colors"
-          >
-            <span>{t('Browse Full Store Catalog', 'அனைத்து மருந்துகள்')}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        {/* Product Grid: 2 col mobile, 3 col sm, 4 col desktop */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-          {bestSellerProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-
-        <div className="text-center mt-10">
-          <Link
-            href="/shop"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
-          >
-            <span>{t('Explore All Classical Medicines', 'முழு பட்டியல் பார்க்க')}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* 6. SHOP BY TRADITIONAL FORMULATION (Chooranam, Kudineer, Thailam, Lehyam) */}
+      {/* 9. SHOP BY TRADITIONAL FORMULATION (Chooranam, Kudineer, Thailam, Lehyam) */}
       <section className="py-10 sm:py-14 bg-[#E8F1EB]/50 border-t border-[#16382B]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center max-w-2xl mx-auto mb-10">
@@ -325,99 +470,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. VERIFIED STORE REVIEWS & REPUTATION (AyushBuy / E-Commerce Style) */}
-      <section className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-1">
-          <span className="text-xs uppercase tracking-wider font-extrabold text-[#C29043]">
-            {t('Real Customer Reviews', 'வாடிக்கையாளர் நன்மதிப்பு')}
-          </span>
-          <h2 className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B]">
-            {t('Trusted Across Tamil Nadu', 'தமிழக குடும்பங்களின் நம்பிக்கை')}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {/* Review 1 */}
-          <div className="bg-white p-5 rounded-2xl border border-[#16382B]/10 shadow-xs flex flex-col justify-between space-y-3">
-            <div className="space-y-2.5">
-              <div className="flex items-center gap-1 text-[#C29043]">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#C29043]" />
-                ))}
-              </div>
-              <p className="text-xs sm:text-sm text-[#264653] leading-relaxed italic">
-                &ldquo;{t(
-                  'The Rej-Viyan Pain Oil gave significant relief for my mother’s chronic knee stiffness within a week. Delivered to Madurai in just 2 days. 100% genuine formulation!',
-                  'ரெஜ்-வியான் தைலம் என் தாயாரின் மூட்டு வலிக்கு ஒரு வாரத்திலேயே நல்ல பலன் தந்தது. 2 நாட்களில் மதுரைக்கு டெலிவரி செய்யப்பட்டது. மிகவும் அருமை!'
-                )}&rdquo;
-              </p>
-            </div>
-            <div className="pt-3 border-t border-[#16382B]/10 flex items-center justify-between">
-              <div>
-                <h4 className="font-bold text-xs text-[#16382B]">S. Meenakshi Sundaram</h4>
-                <p className="text-[10.5px] text-[#8A9B93]">Madurai • {t('Verified Buyer', 'சரிபார்க்கப்பட்ட வாடிக்கையாளர்')}</p>
-              </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] font-bold">
-                Rej-Viyan Oil
-              </span>
-            </div>
-          </div>
-
-          {/* Review 2 */}
-          <div className="bg-white p-5 rounded-2xl border border-[#16382B]/10 shadow-xs flex flex-col justify-between space-y-3">
-            <div className="space-y-2.5">
-              <div className="flex items-center gap-1 text-[#C29043]">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#C29043]" />
-                ))}
-              </div>
-              <p className="text-xs sm:text-sm text-[#264653] leading-relaxed italic">
-                &ldquo;{t(
-                  'Ruthra Madhuradhi Chooranam and Pirandai sachets have become a daily staple at our home. Pure botanicals without unnecessary sugars. Prompt WhatsApp tracking.',
-                  'மதுராதி சூரணம் மற்றும் பிரண்டை சூரணம் எங்கள் வீட்டில் தினமும் பயன்படுத்துகிறோம். தூய மூலிகைகள். வாட்ஸ்அப் ஆர்டர் சேவை மிக விரைவாக இருந்தது.'
-                )}&rdquo;
-              </p>
-            </div>
-            <div className="pt-3 border-t border-[#16382B]/10 flex items-center justify-between">
-              <div>
-                <h4 className="font-bold text-xs text-[#16382B]">K. Revathi</h4>
-                <p className="text-[10.5px] text-[#8A9B93]">Chennai • {t('Verified Buyer', 'சரிபார்க்கப்பட்ட வாடிக்கையாளர்')}</p>
-              </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] font-bold">
-                Madhuradhi Chooranam
-              </span>
-            </div>
-          </div>
-
-          {/* Review 3 */}
-          <div className="bg-white p-5 rounded-2xl border border-[#16382B]/10 shadow-xs flex flex-col justify-between space-y-3">
-            <div className="space-y-2.5">
-              <div className="flex items-center gap-1 text-[#C29043]">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#C29043]" />
-                ))}
-              </div>
-              <p className="text-xs sm:text-sm text-[#264653] leading-relaxed italic">
-                &ldquo;{t(
-                  'Authentic Tirunelveli Siddha pharmacopeia standard. The Nochi Kudineer works wonders for seasonal cough and cold. The combo pack saved us 20% too!',
-                  'திருநெல்வேலி பாரம்பரிய சித்த மருத்துவ தரம். நொச்சி குடிநீர் சளி மற்றும் இருமலுக்கு அருமையான நிவாரணம். சிறப்பு காம்போ பேக்கில் சேமிப்பும் கிடைத்தது!'
-                )}&rdquo;
-              </p>
-            </div>
-            <div className="pt-3 border-t border-[#16382B]/10 flex items-center justify-between">
-              <div>
-                <h4 className="font-bold text-xs text-[#16382B]">T. Arumugam</h4>
-                <p className="text-[10.5px] text-[#8A9B93]">Coimbatore • {t('Verified Buyer', 'சரிபார்க்கப்பட்ட வாடிக்கையாளர்')}</p>
-              </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] font-bold">
-                Nochi Kudineer
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. FAST CONVERSION CTA BANNER */}
+      {/* 10. FAST CONVERSION CTA BANNER */}
       <section className="bg-[#16382B] text-white py-10 sm:py-12 border-t border-[#C29043]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -438,7 +491,7 @@ export default function HomePage() {
                 href="/shop"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#DFB36C] hover:bg-[#C29043] text-[#16382B] font-extrabold text-xs sm:text-sm shadow-md transition-all text-center"
               >
-                <span>{t('Browse Full Store', 'கடைக்கு செல்ல')}</span>
+                <span>{t('Browse Full Store (All Formulations)', 'முழு கடைக்கு செல்ல')}</span>
               </Link>
               <a
                 href="https://wa.me/919171508042?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20to%20place%20an%20order."
