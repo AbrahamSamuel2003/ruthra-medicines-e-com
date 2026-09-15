@@ -111,51 +111,56 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Desktop Header — True Centered 3-Column Architecture */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 grid grid-cols-[auto_1fr_auto] items-center gap-4 lg:gap-6 w-full">
-        {/* Col 1 (Left): Brand Logo */}
-        <Link href="/" onClick={handleNavClick} className="flex items-center gap-3 group flex-shrink-0 justify-self-start">
-          <div className="h-12 w-auto px-2.5 py-1 rounded-xl bg-white border border-[#16382B]/10 shadow-xs group-hover:scale-105 transition-transform flex-shrink-0 flex items-center justify-center">
-            <Image
-              src="/images/ruthra-logo.png"
-              alt="Ruthra Siddha Medicines Logo"
-              width={70}
-              height={40}
-              className="h-9 w-auto object-contain"
-              priority
-              unoptimized
-            />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-serif-brand text-2xl font-bold text-[#16382B] tracking-wider leading-none">
-              RUTHRA
-            </span>
-            <span className={`text-[9.5px] text-[#C29043] font-semibold mt-0.5 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.22em]'}`}>
-              {t('Siddha Medicines • Tirunelveli', 'சித்த மருத்துவ இல்லம்')}
-            </span>
-          </div>
-        </Link>
+      {/* Main Desktop Header — Production-Grade Balanced Layout */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4 lg:gap-8 w-full">
+        {/* Left: Brand Logo & Lineage */}
+        <div className="flex items-center gap-4 flex-shrink-0">
+          <Link href="/" onClick={handleNavClick} className="flex items-center gap-3 group flex-shrink-0">
+            <div className="h-11 w-auto px-2.5 py-1 rounded-xl bg-white border border-[#16382B]/10 shadow-xs group-hover:scale-105 transition-transform flex-shrink-0 flex items-center justify-center">
+              <Image
+                src="/images/ruthra-logo.png"
+                alt="Ruthra Siddha Medicines Logo"
+                width={70}
+                height={40}
+                className="h-8 w-auto object-contain"
+                priority
+                unoptimized
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <span className="font-serif-brand text-2xl font-bold text-[#16382B] tracking-wider leading-none">
+                RUTHRA
+              </span>
+              <span className={`text-[9.5px] text-[#C29043] font-semibold mt-1 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.22em]'}`}>
+                {t('Siddha Medicines • Tirunelveli', 'சித்த மருத்துவ இல்லம்')}
+              </span>
+            </div>
+          </Link>
 
-        {/* Col 2 (Center): Mathematically Centralized Primary Navigation */}
-        <nav className="flex items-center justify-center gap-1.5 lg:gap-3 text-sm font-medium justify-self-center">
+          {/* Subtle Vertical Heritage Divider */}
+          <div className="hidden 2xl:block h-7 w-px bg-[#16382B]/15" />
+        </div>
+
+        {/* Center: Primary Navigation Links */}
+        <nav className="flex items-center justify-center gap-1.5 lg:gap-3 text-sm font-medium flex-1 mx-2 lg:mx-6">
           {/* 1. SHOP & CATEGORIES DROPDOWN */}
           <div
-            className="relative"
+            className="relative flex items-center"
             onMouseEnter={handleShopEnter}
             onMouseLeave={handleShopLeave}
           >
             <Link
               href="/shop"
               onClick={handleNavClick}
-              className={`flex items-center gap-1.5 py-2 px-3.5 rounded-xl transition-all whitespace-nowrap ${
+              className={`h-10 flex items-center gap-1.5 px-3.5 rounded-xl text-xs sm:text-[13.5px] font-semibold transition-all whitespace-nowrap ${
                 isShopActive
                   ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
-                  : 'text-[#264653] hover:text-[#16382B] hover:bg-white'
+                  : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
               }`}
             >
               <span>{t('Shop Formulations', 'சித்த மருந்துகள்')}</span>
               <ChevronDown
-                className={`w-4 h-4 text-[#8C9E96] transition-transform duration-200 ${
+                className={`w-3.5 h-3.5 text-[#8C9E96] transition-transform duration-200 ${
                   shopDropdownOpen ? 'rotate-180 text-[#C29043]' : ''
                 }`}
               />
@@ -164,7 +169,7 @@ export default function Header() {
             {/* Mega Dropdown Menu for Categories — Centered below trigger */}
             {shopDropdownOpen && (
               <div
-                className="absolute top-full left-1/2 -translate-x-1/2 w-[620px] bg-white rounded-2xl shadow-2xl border border-[#16382B]/10 p-6 z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150"
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[620px] bg-white rounded-2xl shadow-2xl border border-[#16382B]/10 p-6 z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150"
                 onMouseEnter={handleShopEnter}
                 onMouseLeave={handleShopLeave}
               >
@@ -275,10 +280,10 @@ export default function Header() {
           <Link
             href="/offers"
             onClick={handleNavClick}
-            className={`flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap ${
+            className={`h-10 flex items-center gap-1.5 px-3.5 rounded-xl text-xs sm:text-[13.5px] font-semibold transition-all whitespace-nowrap ${
               isOffersActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
-                : 'text-[#264653] hover:text-[#16382B] hover:bg-white'
+                : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
             }`}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#C29043]" />
@@ -289,10 +294,10 @@ export default function Header() {
           <Link
             href="/about"
             onClick={handleNavClick}
-            className={`flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap ${
+            className={`h-10 flex items-center gap-1.5 px-3.5 rounded-xl text-xs sm:text-[13.5px] font-semibold transition-all whitespace-nowrap ${
               isAboutActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
-                : 'text-[#264653] hover:text-[#16382B] hover:bg-white'
+                : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
             }`}
           >
             <span>{t('About Heritage', 'பாரம்பரியம்')}</span>
@@ -302,9 +307,9 @@ export default function Header() {
           <Link
             href="/contact"
             onClick={handleNavClick}
-            className={`py-1.5 px-3.5 rounded-full border border-[#16382B]/15 flex items-center gap-1.5 whitespace-nowrap transition-all text-xs font-semibold ${
+            className={`h-9 px-3.5 rounded-full border border-[#16382B]/15 flex items-center gap-1.5 whitespace-nowrap transition-all text-xs font-semibold ${
               isContactActive
-                ? 'bg-[#16382B] text-white'
+                ? 'bg-[#16382B] text-white shadow-xs'
                 : 'bg-[#E8F1EB] hover:bg-[#16382B] hover:text-white text-[#16382B]'
             }`}
           >
