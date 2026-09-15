@@ -1,9 +1,12 @@
 export type FormulationType = 
   | 'Chooranam'
   | 'Kudineer'
+  | 'Capsules'
   | 'Thailam'
   | 'Syrups'
-  | 'Drops';
+  | 'Drops'
+  | 'Syrup & Kashayam'
+  | 'Personal Care';
 
 export type ConcernSlug = 
   | 'joint-mobility'

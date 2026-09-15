@@ -22,7 +22,9 @@ import {
   ShoppingBag, 
   Star, 
   Zap,
-  Filter
+  Filter,
+  PhoneCall,
+  Calendar
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
@@ -48,22 +50,36 @@ export default function HomePage() {
     }
   };
 
-  // Category Filtered Products for the Interactive Explorer
+  // Category Filtered Products for the Interactive Explorer (shows top 8)
   const filteredTabProducts = activeTab === 'all'
-    ? PRODUCTS.slice(0, 8)
+    ? PRODUCTS.filter(p => p.featured).slice(0, 8)
     : PRODUCTS.filter(p => p.concerns.includes(activeTab as any) || p.formulation.toLowerCase().includes(activeTab)).slice(0, 8);
 
-  // Dedicated Category Aisles
+  // Dedicated Category Aisles (Top 4 products per category shelf)
   const jointCareProducts = PRODUCTS.filter(p => p.concerns.includes('joint-mobility')).slice(0, 4);
+  const totalJointCare = PRODUCTS.filter(p => p.concerns.includes('joint-mobility')).length;
+
   const respiratoryProducts = PRODUCTS.filter(p => p.concerns.includes('respiratory')).slice(0, 4);
+  const totalRespiratory = PRODUCTS.filter(p => p.concerns.includes('respiratory')).length;
+
   const digestiveProducts = PRODUCTS.filter(p => p.concerns.includes('digestive-wellness')).slice(0, 4);
-  const skinHairProducts = PRODUCTS.filter(p => p.concerns.includes('skin-hair') || p.concerns.includes('womens-wellness')).slice(0, 4);
+  const totalDigestive = PRODUCTS.filter(p => p.concerns.includes('digestive-wellness')).length;
+
+  const womensCareProducts = PRODUCTS.filter(p => p.concerns.includes('womens-wellness')).slice(0, 4);
+  const totalWomensCare = PRODUCTS.filter(p => p.concerns.includes('womens-wellness')).length;
+
+  const skinHairProducts = PRODUCTS.filter(p => p.concerns.includes('skin-hair')).slice(0, 4);
+  const totalSkinHair = PRODUCTS.filter(p => p.concerns.includes('skin-hair')).length;
+
+  const metabolicProducts = PRODUCTS.filter(p => p.concerns.includes('metabolic-wellness')).slice(0, 4);
+  const totalMetabolic = PRODUCTS.filter(p => p.concerns.includes('metabolic-wellness')).length;
 
   const TABS = [
     { id: 'all', nameEn: '⭐ All Bestsellers', nameTa: '⭐ பிரபல தயாரிப்புகள்' },
     { id: 'joint-mobility', nameEn: '🪵 Joint & Pain Care', nameTa: '🪵 மூட்டு & வலி நிவாரணம்' },
     { id: 'respiratory', nameEn: '🫁 Breathing & Immunity', nameTa: '🫁 சுவாச பாதுகாப்பு' },
     { id: 'digestive-wellness', nameEn: '🍯 Digestion & Gut', nameTa: '🍯 செரிமான ஆரோக்கியம்' },
+    { id: 'womens-wellness', nameEn: '🌺 Women’s Health', nameTa: '🌺 பெண்கள் நலம்' },
     { id: 'skin-hair', nameEn: '🌸 Hair & Skin Care', nameTa: '🌸 கூந்தல் & தோல் நலம்' },
     { id: 'metabolic-wellness', nameEn: '⚡ Vitality & Sugar', nameTa: '⚡ சர்க்கரை & தாதுபலம்' },
   ];
@@ -106,7 +122,7 @@ export default function HomePage() {
                 {t('WhatsApp Order Desk', 'வாட்ஸ்அப் ஆர்டர் உதவி')}
               </p>
               <p className="text-[10.5px] text-[#25D366] font-semibold leading-tight truncate">
-                +91 91715 08042
+                +91 91715 08042 / 9043434226
               </p>
             </div>
           </a>
@@ -159,7 +175,7 @@ export default function HomePage() {
             href="/shop/concerns"
             className="text-xs sm:text-sm font-bold text-[#16382B] hover:text-[#C29043] flex items-center gap-1 transition-colors"
           >
-            <span>{t('View All', 'அனைத்தும்')}</span>
+            <span>{t('View All Categories', 'அனைத்து பிரிவுகள்')}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -196,7 +212,7 @@ export default function HomePage() {
                 <span>{t('Category-Wise Storefront', 'பிரிவுகள் வாரியாக')}</span>
               </span>
               <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B] mt-0.5">
-                {t('Featured Products by Category', 'முக்கிய மருந்து தயாரிப்புகள்')}
+                {t('Featured Formulations by Concern', 'முக்கிய பரிந்துரைக்கப்பட்ட மருந்துகள்')}
               </h2>
             </div>
             
@@ -227,10 +243,14 @@ export default function HomePage() {
 
           <div className="text-center mt-8">
             <Link
-              href={activeTab === 'all' ? '/shop' : `/shop/concerns/${activeTab}`}
+              href={activeTab === 'all' ? '/shop' : `/shop?concern=${activeTab}`}
               className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[#FAF8F5] hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all"
             >
-              <span>{t('View All in this Category', 'இப்பிரிவின் அனைத்து மருந்துகள்')}</span>
+              <span>
+                {activeTab === 'all'
+                  ? t(`View Complete Pharmacopeia (${PRODUCTS.length} Formulations)`, `முழு மருந்துகள் பட்டியல் (${PRODUCTS.length})`)
+                  : t('View More in this Category →', 'இப்பிரிவின் அனைத்து மருந்துகள் →')}
+              </span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -249,14 +269,14 @@ export default function HomePage() {
               {t('Joint & Musculoskeletal Care', 'மூட்டு & எலும்பு நல மருந்துகள்')}
             </h2>
             <p className="text-xs text-[#3D5A68] mt-0.5">
-              {t('Deep tissue penetration formulas for arthritic stiffness, knee mobility, and backache.', 'மூட்டு வலி, இடுப்பு வலி மற்றும் தசை பிடிப்புகளுக்கு பாரம்பரிய மருந்துகள்.')}
+              {t('Deep tissue penetration formulas for arthritic stiffness, knee mobility, sciatica, and backache.', 'மூட்டு வலி, இடுப்பு வலி, சியாட்டிகா மற்றும் தசை பிடிப்புகளுக்கு பாரம்பரிய மருந்துகள்.')}
             </p>
           </div>
           <Link
             href="/shop/concerns/joint-mobility"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#C29043] hover:text-[#16382B] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C29043] hover:text-[#16382B] transition-colors"
           >
-            <span>{t('Explore Joint Care Store', 'மூட்டு நலம் பார்க்க')}</span>
+            <span>{t(`View All Joint Care (${totalJointCare})`, `அனைத்து மூட்டு மருந்துகள் (${totalJointCare})`)}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -281,14 +301,14 @@ export default function HomePage() {
                 {t('Respiratory Health & Flu Defense', 'சுவாச நலம் & சளி இருமல் மருந்துகள்')}
               </h2>
               <p className="text-xs text-[#3D5A68] mt-0.5">
-                {t('Classical Kudineer decoctions, non-drowsy syrups, and throat soothing formulations.', 'கபசுர குடிநீர், நொச்சி குடிநீர், சினோகாஃப் சிரப் மற்றும் தாளிசாதி சூரணம்.')}
+                {t('Classical Kudineer decoctions, non-drowsy syrups, platelet boosters, and throat soothing formulations.', 'நிலவேம்பு குடிநீர், நொச்சி குடிநீர், சினோகாஃப் சிரப் மற்றும் ராமபாண கஷாயம்.')}
               </p>
             </div>
             <Link
               href="/shop/concerns/respiratory"
-              className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#2A9D8F] hover:text-[#16382B] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#2A9D8F] hover:text-[#16382B] transition-colors"
             >
-              <span>{t('Explore Respiratory Store', 'சுவாச நலம் பார்க்க')}</span>
+              <span>{t(`View All Respiratory (${totalRespiratory})`, `அனைத்து சுவாச மருந்துகள் (${totalRespiratory})`)}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -313,14 +333,14 @@ export default function HomePage() {
               {t('Digestive Care & Gut Harmony', 'செரிமான & பித்த சமநிலை மருந்துகள்')}
             </h2>
             <p className="text-xs text-[#3D5A68] mt-0.5">
-              {t('Traditional Lehyams, electuaries, and carminative chooranams for acidity, gas, and bowel regularity.', 'இஞ்சி லேகியம், வில்வாதி லேகியம், ஏலாதி மற்றும் நிலாவரை சூரணம்.')}
+              {t('Processed Haritaki, gentle painless laxatives, and liver decongestants for GERD, gas, and bowel regularity.', 'மதுராதி சூரணம், பாவனாக்கடுக்காய், சுகபேதி மற்றும் மஞ்சள் நோய் குடிநீர்.')}
             </p>
           </div>
           <Link
             href="/shop/concerns/digestive-wellness"
-            className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#E63946] hover:text-[#16382B] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E63946] hover:text-[#16382B] transition-colors"
           >
-            <span>{t('Explore Gut Care Store', 'செரிமான நலம் பார்க்க')}</span>
+            <span>{t(`View All Digestive Care (${totalDigestive})`, `அனைத்து செரிமான மருந்துகள் (${totalDigestive})`)}</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -332,7 +352,104 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. CATCHY VALUE COMBOS SPOTLIGHT (Save 20%) */}
+      {/* 8. DEDICATED THEMATIC AISLE 4: WOMEN'S WELLNESS & HORMONAL CARE */}
+      <section className="py-10 sm:py-14 bg-[#FAF8F5] border-t border-[#16382B]/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3 pb-3 border-b border-[#16382B]/10">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+                <Heart className="w-3.5 h-3.5 text-[#E76F51]" />
+                <span>{t('Hormonal & Uterine Tone', 'கர்ப்பப்பை & மாதவிடாய் நலம்')}</span>
+              </div>
+              <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B]">
+                {t('Women’s Wellness & Hormonal Care', 'பெண்கள் நலம் & கர்ப்பப்பை பராமரிப்பு')}
+              </h2>
+              <p className="text-xs text-[#3D5A68] mt-0.5">
+                {t('Specialized Siddha remedies for PCOS/PCOD, irregular periods, fertility, and postpartum rejuvenation.', 'சூதகத்தை உடைக்கும் குடிநீர், மலட்டு கர்ப்ப குடிநீர், சந்திரகாந்தி மற்றும் தன்வந்தரம் 101.')}
+              </p>
+            </div>
+            <Link
+              href="/shop/concerns/womens-wellness"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E76F51] hover:text-[#16382B] transition-colors"
+            >
+              <span>{t(`View All Women’s Health (${totalWomensCare})`, `அனைத்து பெண்கள் நல மருந்துகள் (${totalWomensCare})`)}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            {womensCareProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. DEDICATED THEMATIC AISLE 5: SKIN, HAIR & WOUND HEALING */}
+      <section className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3 pb-3 border-b border-[#16382B]/10">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+              <Droplets className="w-3.5 h-3.5 text-[#457B9D]" />
+              <span>{t('Radiance & Healing', 'சரும பொலிவு & புண் ஆற்றுதல்')}</span>
+            </div>
+            <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B]">
+              {t('Skin, Hair & Wound Care', 'சருமம், கூந்தல் & புண் ஆற்றுதல்')}
+            </h2>
+            <p className="text-xs text-[#3D5A68] mt-0.5">
+              {t('Pure herbal thailams, diabetic wound oils, anti-dandruff hair elixirs, and 100% soap-free bath scrubs.', 'நார்ஷிகா கூந்தல் தைலம், அல்சரா புண் தைலம், நால்பாமராதி மற்றும் நலங்கு மாவு.')}
+            </p>
+          </div>
+          <Link
+            href="/shop/concerns/skin-hair"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#457B9D] hover:text-[#16382B] transition-colors"
+          >
+            <span>{t(`View All Skin & Hair (${totalSkinHair})`, `அனைத்து சரும & கூந்தல் (${totalSkinHair})`)}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+          {skinHairProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* 10. DEDICATED THEMATIC AISLE 6: METABOLIC, SUGAR & VITALITY */}
+      <section className="py-10 sm:py-14 bg-[#FAF8F5] border-t border-[#16382B]/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-3 pb-3 border-b border-[#16382B]/10">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#264653]" />
+                <span>{t('Glycemic Balance & Lithiasis', 'சர்க்கரை கட்டுப்பாடு & சிறுநீரகம்')}</span>
+              </div>
+              <h2 className="font-serif-brand text-xl sm:text-2xl md:text-3xl font-bold text-[#16382B]">
+                {t('Metabolic, Diabetes & Kidney Care', 'சர்க்கரை, சிறுநீரக கல் & தாது பலம்')}
+              </h2>
+              <p className="text-xs text-[#3D5A68] mt-0.5">
+                {t('Classical bitter botanicals for Type-II Diabetes, kidney stone dissolution, and anemia recovery.', 'மதுரா சூரணம், கல்லடைப்பு குடிநீர், மேகசாந்தி மற்றும் மண்டூராதி குடிநீர்.')}
+              </p>
+            </div>
+            <Link
+              href="/shop/concerns/metabolic-wellness"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#264653] hover:text-[#16382B] transition-colors"
+            >
+              <span>{t(`View All Metabolic Care (${totalMetabolic})`, `அனைத்து சர்க்கரை & சிறுநீரக (${totalMetabolic})`)}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            {metabolicProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 11. CATCHY VALUE COMBOS SPOTLIGHT (Save up to 20%) */}
       <section className="py-10 sm:py-14 bg-gradient-to-br from-[#16382B] to-[#0E251C] text-white border-y border-[#C29043]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
@@ -427,7 +544,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. SHOP BY TRADITIONAL FORMULATION (Chooranam, Kudineer, Thailam, Lehyam) */}
+      {/* 12. SHOP BY TRADITIONAL FORMULATION (Chooranam, Kudineer, Capsules, Thailam, Syrups, Personal Care) */}
       <section className="py-10 sm:py-14 bg-[#E8F1EB]/50 border-t border-[#16382B]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center max-w-2xl mx-auto mb-10">
@@ -439,7 +556,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {FORMULATION_CATEGORIES.map(form => (
               <Link
                 key={form.slug}
@@ -448,21 +565,20 @@ export default function HomePage() {
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center mx-auto mb-3 group-hover:bg-[#16382B] group-hover:text-white transition-colors">
-                    <span className="font-serif-brand text-lg font-bold">
-                      {form.title[0]}
-                    </span>
+                    <Layers className="w-6 h-6 text-[#C29043] group-hover:text-white transition-colors" />
                   </div>
-                  <h3 className="font-serif-brand font-bold text-sm sm:text-base text-[#16382B] group-hover:text-[#C29043] transition-colors">
+                  <h3 className="font-serif-brand font-bold text-sm text-[#16382B] group-hover:text-[#C29043] transition-colors">
                     {language === 'ta' ? form.titleTa : form.title}
                   </h3>
-                  <p className="text-[11px] text-[#8A9B93] font-medium mt-1">
+                  <p className="text-[11px] text-[#3D5A68] mt-1 line-clamp-2">
                     {language === 'ta' ? form.taglineTa : form.tagline}
                   </p>
                 </div>
-
-                <div className="pt-3 mt-3 border-t border-[#16382B]/5 text-xs font-bold text-[#16382B] flex items-center justify-center gap-1 group-hover:text-[#C29043]">
-                  <span>{t('Browse', 'பார்')}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                <div className="mt-4 pt-3 border-t border-[#16382B]/5">
+                  <span className="text-[11px] font-bold text-[#C29043] group-hover:text-[#16382B] flex items-center justify-center gap-1">
+                    <span>{t('Browse', 'பார்')}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </div>
               </Link>
             ))}
@@ -470,39 +586,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. FAST CONVERSION CTA BANNER */}
-      <section className="bg-[#16382B] text-white py-10 sm:py-12 border-t border-[#C29043]/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left space-y-1.5">
-              <span className="text-xs font-bold text-[#DFB36C] uppercase tracking-wider">
-                {t('Direct Apothecary Dispatch', 'திருநெல்வேலி நேரடி அஞ்சல்')}
-              </span>
-              <h3 className="font-serif-brand text-xl sm:text-2xl font-bold text-white">
-                {t('Need Assistance or Ready to Place an Order?', 'மருந்து தேர்வு அல்லது நேரடி ஆர்டருக்கு')}
-              </h3>
-              <p className="text-xs sm:text-sm text-white/80">
-                {t('Free shipping across Tamil Nadu on ₹500+ • Direct UPI, COD & WhatsApp support', '₹500க்கு மேல் இலவச டெலிவரி • நேரடி UPI, COD மற்றும் வாட்ஸ்அப் உதவி')}
-              </p>
-            </div>
+      {/* 13. POLYCLINIC & VAIDYA CONSULTATION BANNER */}
+      <section className="py-12 sm:py-16 bg-[#16382B] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-2xl text-center md:text-left">
+            <span className="text-xs uppercase tracking-wider font-extrabold text-[#DFB36C] flex items-center justify-center md:justify-start gap-1 mb-2">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{t('Free Vaidya Consultation', 'இலவச சித்த மருத்துவ ஆலோசனை')}</span>
+            </span>
+            <h2 className="font-serif-brand text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+              {t(
+                'Need Expert Guidance on Your Health Concern?',
+                'உங்கள் உடல் நலம் குறித்து சித்த மருத்துவரிடம் ஆலோசனை பெற வேண்டுமா?'
+              )}
+            </h2>
+            <p className="text-sm text-white/80 mt-3 leading-relaxed">
+              {t(
+                'Consult directly with our experienced Siddha and Ayurvedic physicians for customized dosage recommendations, pulse diagnosis, and holistic dietary guidance.',
+                'எங்கள் அனுபவம் வாய்ந்த சித்த மருத்துவர்களிடம் உங்கள் உபாதைகளுக்கு தகுந்த மருந்து பரிந்துரைகள் மற்றும் உணவு முறைகளை இலவசமாக பெற்றுக்கொள்ளுங்கள்.'
+              )}
+            </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-              <Link
-                href="/shop"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#DFB36C] hover:bg-[#C29043] text-[#16382B] font-extrabold text-xs sm:text-sm shadow-md transition-all text-center"
-              >
-                <span>{t('Browse Full Store (All Formulations)', 'முழு கடைக்கு செல்ல')}</span>
-              </Link>
-              <a
-                href="https://wa.me/919171508042?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20to%20place%20an%20order."
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-4 h-4 fill-white" />
-                <span>{t('WhatsApp: +91 91715 08042', 'வாட்ஸ்அப்: +91 91715 08042')}</span>
-              </a>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center gap-3.5 w-full md:w-auto">
+            <a
+              href="https://wa.me/919043434226?text=Vanakkam%20Ruthra%20Medicines,%20I%20need%20a%20doctor%20consultation%20regarding%20my%20health."
+              target="_blank"
+              rel="noreferrer"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all"
+            >
+              <MessageCircle className="w-4 h-4 fill-white" />
+              <span>{t('WhatsApp Doctor Desk', 'வாட்ஸ்அப் ஆலோசனை')}</span>
+            </a>
+            <a
+              href="tel:+919043434226"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all"
+            >
+              <PhoneCall className="w-4 h-4 text-[#DFB36C]" />
+              <span>+91 9043434226</span>
+            </a>
           </div>
         </div>
       </section>
