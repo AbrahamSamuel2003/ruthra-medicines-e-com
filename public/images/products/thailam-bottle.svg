@@ -26,7 +26,7 @@
     </filter>
   </defs>
 
-  <rect width="400" height="400" fill="url(#oilBg)" rx="16" />
+  <rect width="400" height="400" fill="url(#oilBg)" rx="0" />
   <circle cx="200" cy="200" r="135" fill="#16382B" fill-opacity="0.03" />
 
   <!-- Bottle shadow base ellipse -->

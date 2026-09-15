@@ -28,7 +28,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Product Image Area — Balanced mobile square / desktop 4:3 */}
       <Link
         href={`/product/${product.slug}`}
-        className="relative block w-full aspect-square sm:aspect-[4/3] bg-[#FAF8F5] p-2.5 sm:p-4 overflow-hidden border-b border-[#16382B]/5 group-hover:bg-[#F4EFEA] transition-colors"
+        className="relative block w-full aspect-square sm:aspect-[4/3] bg-[#FAF8F5] overflow-hidden border-b border-[#16382B]/5 group-hover:bg-[#F4EFEA] transition-colors"
       >
         {/* Top-Left: High-Contrast Discount Badge (Never collides with right pill) */}
         {discountPercent > 0 && (
@@ -42,14 +42,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           {formulationText}
         </span>
 
-        {/* Product SVG Graphic */}
-        <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+        {/* Product SVG Graphic — Full Fill */}
+        <div className="relative w-full h-full overflow-hidden">
           <Image
             src={product.image}
             alt={product.name}
-            width={130}
-            height={130}
-            className="object-contain max-h-24 sm:max-h-28 w-auto drop-shadow-xs"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
         </div>

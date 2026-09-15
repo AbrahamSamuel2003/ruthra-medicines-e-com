@@ -18,7 +18,7 @@
   </defs>
 
   <!-- Background Base -->
-  <rect width="400" height="400" fill="url(#sachetBg)" rx="16" />
+  <rect width="400" height="400" fill="url(#sachetBg)" rx="0" />
   
   <!-- Subtle botanical circle decorative background -->
   <circle cx="200" cy="200" r="140" fill="#16382B" fill-opacity="0.03" />

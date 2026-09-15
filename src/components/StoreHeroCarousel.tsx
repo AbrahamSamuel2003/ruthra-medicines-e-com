@@ -15,21 +15,21 @@ interface BannerSlide {
 
 const BANNER_SLIDES: BannerSlide[] = [
   {
-    id: 'banner-siddha-medicines-v2',
-    imageSrc: '/images/banners/ruthra_hero_siddha_v2.jpg',
-    altText: 'Ruthra Siddha Medicines - Classical Siddha Pharmacopeia - Natural Care, Healthy Life',
+    id: 'banner-family-health-hair-v3',
+    imageSrc: '/images/banners/ruthra_hero_family_wellness_v3.jpg',
+    altText: 'Daily Family Health & Hair Care - Pure Tirunelveli Formulations',
     link: '/shop'
   },
   {
-    id: 'banner-rej-viyan-pain-oil-v2',
-    imageSrc: '/images/banners/ruthra_hero_pain_relief_v2.jpg',
+    id: 'banner-rej-viyan-pain-oil-v3',
+    imageSrc: '/images/banners/ruthra_hero_pain_relief_v3.jpg',
     altText: 'Rej-Viyan Pain Relief Oil - Instant Knee, Back & Joint Care',
     link: '/shop/concerns/joint-mobility'
   },
   {
-    id: 'banner-family-hair-cough-v2',
-    imageSrc: '/images/banners/ruthra_hero_family_wellness_v2.jpg',
-    altText: 'Daily Family Health & Hair Care - Harshika Hair Oil & Sinocof Cough Syrup',
+    id: 'banner-classical-siddha-v3',
+    imageSrc: '/images/banners/ruthra_hero_siddha_v3.jpg',
+    altText: 'Classical Siddha Pharmacopeia - Natural Care, Healthy Life',
     link: '/shop'
   }
 ];
@@ -109,7 +109,7 @@ export default function StoreHeroCarousel() {
           );
         })}
 
-        {/* 🌟 LUXURIOUS BOTTOM GRADIENT FADE OVERLAY */}
+        {/*  LUXURIOUS BOTTOM GRADIENT FADE OVERLAY */}
         <div 
           className="pointer-events-none absolute bottom-0 inset-x-0 h-10 sm:h-16 md:h-20 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/40 to-transparent z-15" 
           aria-hidden="true"

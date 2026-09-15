@@ -75,13 +75,13 @@ export default function HomePage() {
   const totalMetabolic = PRODUCTS.filter(p => p.concerns.includes('metabolic-wellness')).length;
 
   const TABS = [
-    { id: 'all', nameEn: '⭐ All Bestsellers', nameTa: '⭐ பிரபல தயாரிப்புகள்' },
-    { id: 'joint-mobility', nameEn: '🪵 Joint & Pain Care', nameTa: '🪵 மூட்டு & வலி நிவாரணம்' },
-    { id: 'respiratory', nameEn: '🫁 Breathing & Immunity', nameTa: '🫁 சுவாச பாதுகாப்பு' },
-    { id: 'digestive-wellness', nameEn: '🍯 Digestion & Gut', nameTa: '🍯 செரிமான ஆரோக்கியம்' },
-    { id: 'womens-wellness', nameEn: '🌺 Women’s Health', nameTa: '🌺 பெண்கள் நலம்' },
-    { id: 'skin-hair', nameEn: '🌸 Hair & Skin Care', nameTa: '🌸 கூந்தல் & தோல் நலம்' },
-    { id: 'metabolic-wellness', nameEn: '⚡ Vitality & Sugar', nameTa: '⚡ சர்க்கரை & தாதுபலம்' },
+    { id: 'all', nameEn: 'All Bestsellers', nameTa: 'பிரபல தயாரிப்புகள்' },
+    { id: 'joint-mobility', nameEn: 'Joint & Pain Care', nameTa: 'மூட்டு & வலி நிவாரணம்' },
+    { id: 'respiratory', nameEn: 'Breathing & Immunity', nameTa: 'சுவாச பாதுகாப்பு' },
+    { id: 'digestive-wellness', nameEn: 'Digestion & Gut', nameTa: 'செரிமான ஆரோக்கியம்' },
+    { id: 'womens-wellness', nameEn: 'Women’s Health', nameTa: 'பெண்கள் நலம்' },
+    { id: 'skin-hair', nameEn: 'Hair & Skin Care', nameTa: 'கூந்தல் & தோல் நலம்' },
+    { id: 'metabolic-wellness', nameEn: 'Vitality & Sugar', nameTa: 'சர்க்கரை & தாதுபலம்' },
   ];
 
   return (

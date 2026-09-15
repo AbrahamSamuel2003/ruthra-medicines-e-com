@@ -25,7 +25,7 @@
     </filter>
   </defs>
 
-  <rect width="400" height="400" fill="url(#capBg)" rx="16" />
+  <rect width="400" height="400" fill="url(#capBg)" rx="0" />
   <circle cx="200" cy="200" r="140" fill="#16382B" fill-opacity="0.03" />
   <circle cx="200" cy="200" r="110" fill="none" stroke="#C29043" stroke-width="1" stroke-dasharray="4 6" stroke-opacity="0.3" />
 

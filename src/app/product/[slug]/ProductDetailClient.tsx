@@ -539,7 +539,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
           
           {/* Left Column: Image Showcase */}
           <div className="lg:col-span-5 xl:col-span-5 space-y-2.5 sm:space-y-3">
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] max-h-[340px] sm:max-h-[360px] w-full rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 p-4 sm:p-6 flex items-center justify-center overflow-hidden">
+            <div className="relative aspect-square sm:aspect-[4/3] max-h-[380px] w-full rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 flex items-center justify-center overflow-hidden">
               {/* Badges */}
               <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
                 <span className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/95 border border-[#C29043]/50 text-[#16382B] shadow-2xs">
@@ -551,14 +551,14 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 {language === 'ta' ? product.formulationTa : product.formulation}
               </span>
 
-              {/* Product Artwork */}
-              <div className="w-full h-full flex items-center justify-center transition-transform duration-300 hover:scale-105">
+              {/* Product Artwork — Fills showcase container */}
+              <div className="relative w-full h-full transition-transform duration-500 hover:scale-105">
                 <Image
                   src={product.image}
                   alt={product.name}
-                  width={280}
-                  height={280}
-                  className="object-contain max-h-48 sm:max-h-60 w-auto"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                  className="object-cover"
                   priority
                 />
               </div>

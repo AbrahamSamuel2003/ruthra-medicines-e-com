@@ -198,7 +198,7 @@ export default function OffersPage() {
                             : 'bg-[#16382B] text-[#DFB36C] hover:bg-[#204C3B]'
                         }`}
                       >
-                        {isApplied ? t('Applied ✓', 'சேர்க்கப்பட்டது ✓') : t('Apply Code', 'பயன்படுத்து')}
+                        {isApplied ? t('Applied ', 'சேர்க்கப்பட்டது ') : t('Apply Code', 'பயன்படுத்து')}
                       </button>
                     </div>
 

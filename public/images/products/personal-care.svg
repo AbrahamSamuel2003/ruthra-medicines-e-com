@@ -6,7 +6,7 @@
     </linearGradient>
     <linearGradient id="kraftPouch" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#D9C7B2" />
-      <stop offset="30%" stop-color="#E8DC CE" />
+      <stop offset="30%" stop-color="#E8DCCE" />
       <stop offset="70%" stop-color="#DECBB6" />
       <stop offset="100%" stop-color="#C7B299" />
     </linearGradient>
@@ -15,7 +15,7 @@
     </filter>
   </defs>
 
-  <rect width="400" height="400" fill="url(#pcBg)" rx="16" />
+  <rect width="400" height="400" fill="url(#pcBg)" rx="0" />
   <circle cx="200" cy="200" r="140" fill="#16382B" fill-opacity="0.03" />
   <circle cx="200" cy="200" r="110" fill="none" stroke="#C29043" stroke-width="1" stroke-dasharray="4 6" stroke-opacity="0.3" />
 
