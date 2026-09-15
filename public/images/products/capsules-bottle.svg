@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="capBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF8F5" />
+      <stop offset="100%" stop-color="#E8F1EB" />
+    </linearGradient>
+    <linearGradient id="amberGlass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8C4A15" />
+      <stop offset="35%" stop-color="#BA6F24" />
+      <stop offset="70%" stop-color="#70360D" />
+      <stop offset="100%" stop-color="#4A2208" />
+    </linearGradient>
+    <linearGradient id="goldCap" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#DFB36C" />
+      <stop offset="50%" stop-color="#F7DF9B" />
+      <stop offset="100%" stop-color="#B88230" />
+    </linearGradient>
+    <linearGradient id="softGel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="50%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#92400E" />
+    </linearGradient>
+    <filter id="shadowCap" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#16382B" flood-opacity="0.16" />
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#capBg)" rx="16" />
+  <circle cx="200" cy="200" r="140" fill="#16382B" fill-opacity="0.03" />
+  <circle cx="200" cy="200" r="110" fill="none" stroke="#C29043" stroke-width="1" stroke-dasharray="4 6" stroke-opacity="0.3" />
+
+  <!-- Shadow below bottle -->
+  <ellipse cx="200" cy="325" rx="75" ry="12" fill="#16382B" fill-opacity="0.15" filter="blur(4px)" />
+
+  <!-- Main Bottle Body -->
+  <g transform="translate(135, 75)" filter="url(#shadowCap)">
+    <!-- Cap -->
+    <rect x="35" y="10" width="60" height="24" rx="4" fill="url(#goldCap)" stroke="#926218" stroke-width="1" />
+    <!-- Cap Ridges -->
+    <line x1="45" y1="10" x2="45" y2="34" stroke="#7A4E0B" stroke-width="1" opacity="0.4" />
+    <line x1="55" y1="10" x2="55" y2="34" stroke="#7A4E0B" stroke-width="1" opacity="0.4" />
+    <line x1="65" y1="10" x2="65" y2="34" stroke="#7A4E0B" stroke-width="1" opacity="0.4" />
+    <line x1="75" y1="10" x2="75" y2="34" stroke="#7A4E0B" stroke-width="1" opacity="0.4" />
+    <line x1="85" y1="10" x2="85" y2="34" stroke="#7A4E0B" stroke-width="1" opacity="0.4" />
+
+    <!-- Neck -->
+    <rect x="42" y="34" width="46" height="12" fill="#5C2D0A" />
+
+    <!-- Bottle Amber Body -->
+    <path d="M20 56 C20 46, 35 44, 42 44 L88 44 C95 44, 110 46, 110 56 L118 200 C118 215, 108 225, 95 225 L35 225 C22 225, 12 215, 12 200 Z" fill="url(#amberGlass)" />
+    
+    <!-- Glass Highlight Reflection -->
+    <path d="M22 65 L20 195 C20 205, 26 215, 36 217" stroke="#FFF" stroke-width="3" stroke-linecap="round" opacity="0.25" fill="none" />
+
+    <!-- Label -->
+    <rect x="18" y="75" width="94" height="115" rx="6" fill="#FFFDF9" stroke="#DFB36C" stroke-width="1" />
+    
+    <!-- Label Header -->
+    <text x="65" y="93" font-family="'Fraunces', serif" font-size="9" font-weight="700" fill="#16382B" text-anchor="middle" letter-spacing="1.5">RUTHRA</text>
+    <text x="65" y="103" font-family="'Inter', sans-serif" font-size="5.5" font-weight="600" fill="#C29043" text-anchor="middle" letter-spacing="1.2">SIDDHA &amp; AYURVEDA</text>
+    
+    <!-- Gold Leaf Seal -->
+    <circle cx="65" cy="116" r="10" fill="#E8F1EB" stroke="#C29043" stroke-width="0.8" />
+    <path d="M65 109 C61 113, 60 117, 65 122 C70 117, 69 113, 65 109 Z" fill="#16382B" />
+
+    <text x="65" y="137" font-family="'Fraunces', serif" font-size="8" font-weight="700" fill="#16382B" text-anchor="middle">SOFT GEL CAPSULES</text>
+    <text x="65" y="146" font-family="'Noto Sans Tamil', 'Inter', sans-serif" font-size="6.5" fill="#4B6358" text-anchor="middle">சாப்ட் ஜெல் கேப்சூல்</text>
+    <line x1="30" y1="151" x2="100" y2="151" stroke="#DFB36C" stroke-width="0.8" opacity="0.6" />
+
+    <!-- Spec Badge -->
+    <rect x="32" y="156" width="66" height="14" rx="3" fill="#16382B" />
+    <text x="65" y="166" font-family="'Inter', sans-serif" font-size="6.5" font-weight="700" fill="#DFB36C" text-anchor="middle">600mg • 60 CAPS</text>
+    <text x="65" y="179" font-family="'Inter', sans-serif" font-size="5" fill="#8A9A86" text-anchor="middle">CLASSICAL AAVARTI</text>
+  </g>
+
+  <!-- Foreground Golden Soft Gel Capsules -->
+  <g transform="translate(240, 260) rotate(25)" filter="url(#shadowCap)">
+    <rect width="36" height="18" rx="9" fill="url(#softGel)" stroke="#FDE68A" stroke-width="1.5" />
+    <ellipse cx="18" cy="6" rx="10" ry="2" fill="#FFF" opacity="0.6" />
+  </g>
+  <g transform="translate(100, 275) rotate(-35)" filter="url(#shadowCap)">
+    <rect width="34" height="16" rx="8" fill="url(#softGel)" stroke="#FDE68A" stroke-width="1.5" />
+    <ellipse cx="17" cy="5" rx="8" ry="2" fill="#FFF" opacity="0.6" />
+  </g>
+</svg>

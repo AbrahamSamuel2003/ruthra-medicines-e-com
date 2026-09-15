@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="jointBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5EE" />
+      <stop offset="100%" stop-color="#E8DFD0" />
+    </linearGradient>
+    <linearGradient id="goldJoint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DFB36C" />
+      <stop offset="100%" stop-color="#B88230" />
+    </linearGradient>
+    <linearGradient id="greenJoint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D5A46" />
+      <stop offset="100%" stop-color="#16382B" />
+    </linearGradient>
+    <filter id="shadowJoint" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#16382B" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#jointBg)" rx="24" />
+  
+  <!-- Outer Decorative Ring -->
+  <circle cx="200" cy="180" r="120" fill="#FFF" fill-opacity="0.6" stroke="#DFB36C" stroke-width="1.5" stroke-dasharray="6 6" />
+  <circle cx="200" cy="180" r="95" fill="url(#greenJoint)" filter="url(#shadowJoint)" />
+
+  <!-- Joint / Bone / Mobility Graphic -->
+  <g transform="translate(200, 180)" stroke="#DFB36C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Femur / Bone Head -->
+    <path d="M-25 -50 C-40 -40, -40 -15, -15 -10 L-10 20 C-25 25, -25 50, 0 50 C25 50, 25 25, 10 20 L15 -10 C40 -15, 40 -40, 25 -50 Z" fill="#FAF8F5" fill-opacity="0.9" stroke="url(#goldJoint)" stroke-width="3.5" />
+    <!-- Pulse Sparkles / Mobility Wave -->
+    <circle cx="0" cy="5" r="14" fill="#DFB36C" fill-opacity="0.4" stroke="#FFF" stroke-width="2" />
+    <path d="M-45 0 Q-30 -25 0 -25 Q30 -25 45 0" stroke="#FFF" stroke-width="2.5" stroke-dasharray="3 3" />
+  </g>
+
+  <!-- Title Pill -->
+  <g transform="translate(50, 310)">
+    <rect width="300" height="60" rx="16" fill="#16382B" />
+    <text x="150" y="27" font-family="'Fraunces', serif" font-size="14" font-weight="700" fill="#DFB36C" text-anchor="middle">JOINT MOBILITY &amp; PAIN CARE</text>
+    <text x="150" y="46" font-family="'Noto Sans Tamil', 'Inter', sans-serif" font-size="11" fill="#FAF8F5" text-anchor="middle">மூட்டு &amp; வாத வலி நிவாரணம்</text>
+  </g>
+</svg>

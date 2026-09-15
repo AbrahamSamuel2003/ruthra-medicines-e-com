@@ -1586,7 +1586,7 @@ export const PRODUCTS: Product[] = [
     traditionalRoleTa: 'பக்கவாதம், நரம்பு மண்டல பலவீனம், மூட்டு தேய்மானம் மற்றும் பிரசவ நலம்.',
     badge: '101x Processed Care',
     badgeTa: '101 முறை பக்குவம்',
-    image: '/images/products/herbal_powder_pouch.png',
+    image: '/images/products/capsules-bottle.svg',
     ingredients: [
       { name: 'Balamoola (Sida cordifolia)', tamilName: 'சிற்றாமுட்டி வேர்', botanicalName: 'Sida cordifolia', role: 'Supreme neuromuscular strengthening tonic', roleTa: 'நரம்பு மற்றும் தசை பலம் தரும் முதன்மை மூலிகை', amount: '45%' },
       { name: 'Ksheeram (Cow Milk)', tamilName: 'பசும்பால்', botanicalName: 'Cow Milk', role: 'Provides lipid nourishment for myelin sheaths', roleTa: 'நரம்புகளுக்கு ஊட்டச்சத்து தரும்', amount: '30%' },
@@ -1656,7 +1656,7 @@ export const PRODUCTS: Product[] = [
     traditionalRoleTa: 'எலும்பு அடர்த்தி பெருக்கம், முறிவு குணம், தசைநார் காயம் ஆற்றுதல் மற்றும் முதுகு வலி.',
     badge: 'BMD & Bone Matrix',
     badgeTa: 'எலும்பு அடர்த்தி & உறுதி',
-    image: '/images/products/herbal_powder_pouch.png',
+    image: '/images/products/capsules-bottle.svg',
     ingredients: [
       { name: 'Tila (Pure Black Sesame Seed)', tamilName: 'கருப்பு எள்', botanicalName: 'Sesamum indicum', role: 'Richest natural source of bio-available calcium and minerals', roleTa: 'இயற்கை கால்சியம் மற்றும் தாது சத்துக்கள் நிறைந்தது', amount: '40%' },
       { name: 'Ksheeram (Cow Milk)', tamilName: 'பசும்பால்', botanicalName: 'Cow Milk', role: 'Deep nourishment for Asthi (bone) and Majja (marrow)', roleTa: 'எலும்பு மற்றும் மஜ்ஜைக்கு ஊட்டச்சத்து', amount: '30%' },
@@ -1726,7 +1726,7 @@ export const PRODUCTS: Product[] = [
     traditionalRoleTa: 'சியாட்டிகா வலி, இடுப்பு வாதம், வெரிகோஸ் வெயின் மற்றும் நரம்பு மரத்துப்போதல் நிவாரணம்.',
     badge: 'Sciatica & Vein Care',
     badgeTa: 'சியாட்டிகா & நரம்பு நலம்',
-    image: '/images/products/herbal_powder_pouch.png',
+    image: '/images/products/capsules-bottle.svg',
     ingredients: [
       { name: 'Sahachara (Strobilanthes)', tamilName: 'சகசரா / குறிஞ்சி', botanicalName: 'Strobilanthes ciliatus', role: 'Specific vascular and neural tonic for lower limbs', roleTa: 'கால் நரம்புகள் மற்றும் ரத்த நாளங்களை வலுப்படுத்தும்', amount: '45%' },
       { name: 'Dashamoola Complex', tamilName: 'தசமூலம்', botanicalName: 'Dashamoola Blend', role: 'Pacifies severe lower spinal Vatha aggravation', roleTa: 'இடுப்பு வாதம் மற்றும் வலிகளை நீக்கும்', amount: '30%' },
@@ -2307,7 +2307,7 @@ export const PRODUCTS: Product[] = [
     traditionalRoleTa: 'மூலிகை குளியல் பொடி, முக பொலிவு பேக், கரும்புள்ளிகள் மற்றும் வெயில் கருமை நீக்கம்.',
     badge: '100% Herbal Bath',
     badgeTa: 'தூய மூலிகை குளியல்',
-    image: '/images/products/herbal_powder_pouch.png',
+    image: '/images/products/personal-care.svg',
     ingredients: [
       { name: 'Kasthuri Manjal (Wild Turmeric)', tamilName: 'கஸ்தூரி மஞ்சள்', botanicalName: 'Curcuma aromatica', role: 'Complexion enhancer and antiseptic', roleTa: 'மேனி பளபளப்பு மற்றும் கிருமி நாசினி', amount: '25%' },
       { name: 'Poolankizhangu (White Turmeric)', tamilName: 'பூலாங்கிழங்கு', botanicalName: 'Curcuma zedoaria', role: 'Deep fragrance and skin brightening', roleTa: 'சரும பொலிவு மற்றும் நறுமணம்', amount: '20%' },
@@ -2379,7 +2379,7 @@ export const PRODUCTS: Product[] = [
     traditionalRoleTa: 'பொடுகு நீக்கம், கூந்தல் வளர்ச்சி, தலைச்சூடு தணிப்பு மற்றும் ஆரோக்கியமான கூந்தல்.',
     badge: 'Pure Hair Cleanser',
     badgeTa: 'இயற்கை கூந்தல் சுத்திகரிப்பு',
-    image: '/images/products/herbal_powder_pouch.png',
+    image: '/images/products/personal-care.svg',
     ingredients: [
       { name: 'Shigakai (Acacia concinna)', tamilName: 'சிகைக்காய்', botanicalName: 'Acacia concinna', role: 'Natural gentle surfactant with low pH', roleTa: 'இயற்கை நுரை தந்து அழுக்கை நீக்கும்', amount: '35%' },
       { name: 'Poovanthikottai (Reetha / Soapnut)', tamilName: 'பூவந்திக்கொட்டை', botanicalName: 'Sapindus mukorossi', role: 'Rich natural saponin cleanser', roleTa: 'கூந்தலுக்கு பளபளப்பு தரும்', amount: '20%' },
