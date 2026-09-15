@@ -56,23 +56,23 @@ export default function FloatingWhatsApp() {
 
   const quickTopics = [
     {
-      en: '👋 Need help selecting the right Siddha medicine',
-      ta: '👋 எனக்கு ஏற்ற சித்த மருந்தை தேர்வு செய்ய உதவி தேவை',
+      en: 'Need help selecting the right Siddha medicine',
+      ta: 'எனக்கு ஏற்ற சித்த மருந்தை தேர்வு செய்ய உதவி தேவை',
       msg: 'Vanakkam Ruthra Medicines, I need guidance selecting the right Siddha medicine for my condition.'
     },
     {
-      en: '📦 Track my order & courier status',
-      ta: '📦 எனது ஆர்டர் மற்றும் பார்சல் நிலையை அறிய',
+      en: 'Track my order & courier status',
+      ta: 'எனது ஆர்டர் மற்றும் பார்சல் நிலையை அறிய',
       msg: 'Vanakkam Ruthra Medicines, I would like to track my order delivery status.'
     },
     {
-      en: '💼 Bulk & Practitioner Order Inquiries',
-      ta: '💼 மருத்துவர் & மொத்த கொள்முதல் விபரம்',
+      en: 'Bulk & Practitioner Order Inquiries',
+      ta: 'மருத்துவர் & மொத்த கொள்முதல் விபரம்',
       msg: 'Vanakkam Ruthra Medicines, I am a practitioner / customer interested in bulk formulation orders and availability.'
     },
     {
-      en: '🌿 Dosage & Anupanam instructions',
-      ta: '🌿 மருந்து உண்ணும் முறை மற்றும் துணைப்பொருள் விபரம்',
+      en: 'Dosage & Anupanam instructions',
+      ta: 'மருந்து உண்ணும் முறை மற்றும் துணைப்பொருள் விபரம்',
       msg: 'Vanakkam Ruthra Medicines, I need clarification regarding medicine dosage and anupanam vehicle.'
     }
   ];
