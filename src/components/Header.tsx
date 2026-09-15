@@ -85,7 +85,7 @@ export default function Header() {
       <div className="bg-[#16382B] text-[#FAF8F5] py-1.5 px-4 text-xs tracking-wider border-b border-[#C29043]/30">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between px-0 sm:px-2 lg:px-4">
           <div className="flex items-center gap-2 text-[11px] sm:text-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C29043] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C29043]" />
             <span className="font-medium whitespace-nowrap">
               {t(
                 'Authentic Siddha Formulations | Delivery Across Tamil Nadu',

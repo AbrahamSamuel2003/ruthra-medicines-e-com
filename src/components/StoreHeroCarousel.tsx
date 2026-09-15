@@ -165,7 +165,7 @@ export default function StoreHeroCarousel() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[#DFB36C] text-xs font-bold border border-white/20 shadow-xs">
                 <span>{language === 'ta' ? slide.taglineTa : slide.taglineEn}</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#D9534F] text-white text-xs font-black tracking-wider uppercase shadow-sm animate-pulse">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#D9534F] text-white text-xs font-black tracking-wider uppercase shadow-sm">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>{slide.discountBadge}</span>
               </span>
@@ -222,7 +222,7 @@ export default function StoreHeroCarousel() {
                 <span className="text-xs font-black uppercase tracking-wider text-[#DFB36C] bg-black/30 px-3 py-1 rounded-full border border-[#DFB36C]/30">
                   {language === 'ta' ? slide.badgeTa : slide.badgeEn}
                 </span>
-                <span className="w-3 h-3 rounded-full bg-[#25D366] animate-ping" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#25D366]" />
               </div>
 
               <div className="space-y-2 border-b border-white/10 pb-4">
