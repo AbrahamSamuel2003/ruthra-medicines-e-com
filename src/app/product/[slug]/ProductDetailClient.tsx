@@ -28,6 +28,7 @@ import { Product } from '@/types/product';
 import { useCart, getProductMRP } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import WhatsAppAssistance from '@/components/WhatsAppAssistance';
+import PincodeDeliveryEstimator from '@/components/PincodeDeliveryEstimator';
 import ProductCard from '@/components/ProductCard';
 
 interface ProductDetailClientProps {
@@ -775,6 +776,9 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 </button>
               </div>
             </div>
+
+            {/* Pincode & Delivery Estimator Component (All 38 TN Districts) */}
+            <PincodeDeliveryEstimator />
 
             {/* WhatsApp & Consultation row */}
             <div className="pt-2 border-t border-[#16382B]/10 flex items-center justify-between text-xs">
