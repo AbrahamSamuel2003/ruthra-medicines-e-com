@@ -116,7 +116,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full w-full max-w-full overflow-x-hidden flex flex-col bg-[#FAF8F5] text-[#264653] selection:bg-[#E8F1EB] selection:text-[#16382B] relative">
+      <body className="min-h-full w-full max-w-full flex flex-col bg-[#FAF8F5] text-[#264653] selection:bg-[#E8F1EB] selection:text-[#16382B] relative">
         <LanguageProvider>
           <CartProvider>
             {/* Desktop Header */}
@@ -126,7 +126,7 @@ export default function RootLayout({
             <MobileHeader />
 
             {/* Page Content */}
-            <main className="flex-1 w-full max-w-full overflow-x-hidden pb-16 md:pb-0">
+            <main className="flex-1 w-full max-w-full pb-16 md:pb-0">
               {children}
             </main>
 
