@@ -10,7 +10,7 @@ import { useLanguage } from '@/context/LanguageContext';
 export default function MobileBottomNav() {
   const rawPathname = usePathname();
   const pathname = rawPathname || '';
-  const { itemCount, openDrawer, openSearch } = useCart();
+  const { itemCount, openDrawer, openSearch, isDrawerOpen, closeDrawer, isSearchOpen, closeSearch } = useCart();
   const { t } = useLanguage();
 
   // On product detail and checkout pages, yield bottom space to primary action buttons
@@ -20,19 +20,26 @@ export default function MobileBottomNav() {
 
   const isHome = pathname === '/';
   const isShop = pathname.startsWith('/shop');
+  const isOffers = pathname === '/offers';
+
+  const handleNavOptionClick = () => {
+    if (isDrawerOpen) closeDrawer();
+    if (isSearchOpen) closeSearch();
+  };
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-[#16382B]/10 shadow-[0_-4px_24px_rgba(22,56,43,0.06)] pb-[max(env(safe-area-inset-bottom,0px),8px)] pt-1.5 w-full max-w-full overflow-hidden transition-all select-none"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-[#16382B]/10 shadow-[0_-4px_24px_rgba(22,56,43,0.06)] pb-[max(env(safe-area-inset-bottom,0px),8px)] pt-1 w-full max-w-full overflow-hidden select-none touch-manipulation"
       aria-label="Mobile Bottom Navigation"
     >
-      <div className="grid grid-cols-5 h-[52px] px-1.5 items-center">
+      <div className="grid grid-cols-5 h-[52px] px-1 items-stretch">
         {/* 1. Home */}
         <Link
           href="/"
-          className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 active:scale-95 ${
+          onClick={handleNavOptionClick}
+          className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 touch-manipulation ${
             isHome
-              ? 'text-[#16382B] font-bold bg-[#E8F1EB]/80'
+              ? 'text-[#16382B] font-bold bg-[#E8F1EB]/90'
               : 'text-[#8A9B93] hover:text-[#16382B]'
           }`}
         >
@@ -50,9 +57,10 @@ export default function MobileBottomNav() {
         {/* 2. Shop (Active highlight when on /shop) */}
         <Link
           href="/shop"
-          className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 active:scale-95 ${
+          onClick={handleNavOptionClick}
+          className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 touch-manipulation ${
             isShop
-              ? 'text-[#16382B] font-bold bg-[#E8F1EB]/80'
+              ? 'text-[#16382B] font-bold bg-[#E8F1EB]/90'
               : 'text-[#8A9B93] hover:text-[#16382B]'
           }`}
         >
@@ -70,8 +78,11 @@ export default function MobileBottomNav() {
         {/* 3. Search */}
         <button
           type="button"
-          onClick={openSearch}
-          className="flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#8A9B93] hover:text-[#16382B] transition-all duration-200 active:scale-95 cursor-pointer"
+          onClick={() => {
+            if (isDrawerOpen) closeDrawer();
+            openSearch();
+          }}
+          className="flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#8A9B93] hover:text-[#16382B] transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation"
           aria-label="Search formulations"
         >
           <Search className="w-5 h-5 stroke-[1.8]" />
@@ -82,11 +93,19 @@ export default function MobileBottomNav() {
 
         {/* 4. Combos & Offers */}
         <Link
-          href="/shop#combos"
-          className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 active:scale-95 text-[#8A9B93] hover:text-[#16382B]`}
+          href="/offers"
+          onClick={handleNavOptionClick}
+          className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 touch-manipulation ${
+            isOffers
+              ? 'text-[#16382B] font-bold bg-[#E8F1EB]/90'
+              : 'text-[#8A9B93] hover:text-[#16382B]'
+          }`}
         >
           <div className="relative">
-            <Tag className="w-5 h-5 stroke-[1.8]" />
+            <Tag className={`w-5 h-5 transition-transform ${isOffers ? 'scale-105 stroke-[2.4]' : 'stroke-[1.8]'}`} />
+            {isOffers && (
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#16382B]" />
+            )}
           </div>
           <span className="text-[9.5px] font-medium leading-tight truncate max-w-full mt-0.5">
             {t('Offers', 'சலுகைகள்')}
@@ -96,8 +115,11 @@ export default function MobileBottomNav() {
         {/* 5. Cart */}
         <button
           type="button"
-          onClick={openDrawer}
-          className="relative flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#8A9B93] hover:text-[#16382B] transition-all duration-200 active:scale-95 cursor-pointer"
+          onClick={() => {
+            if (isSearchOpen) closeSearch();
+            openDrawer();
+          }}
+          className="relative flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#8A9B93] hover:text-[#16382B] transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation"
           aria-label="Open cart"
         >
           <div className="relative">

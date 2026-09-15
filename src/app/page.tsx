@@ -617,12 +617,16 @@ export default function HomePage() {
           </div>
 
           {/* E-Commerce Trust Banner */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#16382B]/10 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1 text-center md:text-left">
-              <h3 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B]">
+          <div className="bg-gradient-to-br from-white to-[#FAF8F5] rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#16382B]/12 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1.5 text-center md:text-left max-w-xl">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F1EB] text-[#16382B] text-[11px] font-bold mb-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C29043] animate-pulse" />
+                <span>{t('Tirunelveli Direct Pharmacopeia', 'திருநெல்வேலி நேரடி அஞ்சல்')}</span>
+              </div>
+              <h3 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B] leading-tight">
                 {t('Ready to Experience Authentic Siddha Healing?', 'பாரம்பரிய சித்த நலம் பெற தயாரா?')}
               </h3>
-              <p className="text-xs sm:text-sm text-[#3D5A68]">
+              <p className="text-xs sm:text-sm text-[#3D5A68] leading-relaxed">
                 {t(
                   'Free delivery across Tamil Nadu on ₹500+ • Direct Tirunelveli dispatch • Easy WhatsApp assistance',
                   '₹500க்கு மேல் தமிழகம் முழுவதும் இலவச டெலிவரி • திருநெல்வேலி நேரடி அஞ்சல் • வாட்ஸ்அப் உதவி'
@@ -630,21 +634,22 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
+            {/* Production-Grade Responsive Action Buttons */}
+            <div className="w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-shrink-0">
               <Link
                 href="/shop"
-                className="px-6 py-3 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs sm:text-sm font-bold shadow-md transition-all flex items-center gap-2"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] active:scale-[0.98] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-center"
               >
                 <span>{t('Shop All Formulations', 'அனைத்து மருந்துகள் வாங்க')}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </Link>
               <a
-                href="https://wa.me/919171508042"
+                href="https://wa.me/919171508042?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20to%20inquire%20and%20order%20formulations."
                 target="_blank"
                 rel="noreferrer"
-                className="px-5 py-3 rounded-xl bg-[#E8F1EB] hover:bg-white text-[#16382B] text-xs sm:text-sm font-semibold border border-[#16382B]/15 transition-all flex items-center gap-2"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:scale-[0.98] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-center"
               >
-                <MessageCircle className="w-4 h-4 text-[#16382B]" />
+                <MessageCircle className="w-4 h-4 fill-white flex-shrink-0" />
                 <span>{t('Order on WhatsApp', 'வாட்ஸ்அப்பில் ஆர்டர்')}</span>
               </a>
             </div>

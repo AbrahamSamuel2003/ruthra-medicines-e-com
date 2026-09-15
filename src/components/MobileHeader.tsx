@@ -3,16 +3,25 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, ShoppingBag, Menu, X, ChevronRight, Stethoscope, MessageCircle } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Search, ShoppingBag, Menu, X, ChevronRight, MessageCircle, Tag, Grid, Layers, Sparkles } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import { CONCERN_CATEGORIES, FORMULATION_CATEGORIES } from '@/data/products';
 
 export default function MobileHeader() {
-  const { itemCount, openDrawer, openSearch } = useCart();
+  const rawPathname = usePathname();
+  const pathname = rawPathname || '';
+  const { itemCount, openDrawer, openSearch, closeDrawer, closeSearch } = useCart();
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMobileNavClick = () => {
+    setIsMenuOpen(false);
+    closeDrawer();
+    closeSearch();
+  };
 
   return (
     <div className="md:hidden sticky top-0 z-40 bg-[#FAF8F5] border-b border-[#16382B]/10 w-full max-w-full overflow-hidden">
@@ -147,29 +156,73 @@ export default function MobileHeader() {
               <div className="space-y-1">
                 <Link
                   href="/shop"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-between p-2.5 rounded-lg text-sm font-semibold text-[#16382B] hover:bg-[#E8F1EB]"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                    pathname === '/shop'
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
+                  }`}
                 >
                   <span>{t('All Products (20 Formulations)', 'அனைத்து மருந்துகள் (20)')}</span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
                 <Link
-                  href="/shop#combos"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-between p-2.5 rounded-lg text-sm font-semibold text-[#16382B] bg-[#E8F1EB]/60 hover:bg-[#E8F1EB]"
+                  href="/offers"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                    pathname === '/offers'
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
+                  }`}
                 >
                   <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C29043]" />
-                    {t('Special Value Combos (Save 20%)', 'சிறப்பு தொகுப்புகள் (20% சேமிப்பு)')}
+                    <Sparkles className="w-4 h-4 text-[#C29043]" />
+                    {t('Special Offers & Value Combos', 'சிறப்பு சலுகைகள் & தொகுப்புகள்')}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
+                </Link>
+
+                <Link
+                  href="/shop/formulations"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                    pathname.startsWith('/shop/formulations')
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-[#C29043]" />
+                    {t('Traditional Forms (Chooranam, Thailam)', 'பாரம்பரிய மருந்து வகைகள்')}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
+                </Link>
+
+                <Link
+                  href="/shop/concerns"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                    pathname.startsWith('/shop/concerns')
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <Grid className="w-4 h-4 text-[#C29043]" />
+                    {t('Wellness Concerns Directory', 'உபாதைகள் வாரியான பட்டியல்')}
                   </span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
                 <Link
                   href="/about"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-between p-2.5 rounded-lg text-sm font-medium text-[#264653] hover:bg-[#E8F1EB]"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                    pathname === '/about'
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
+                  }`}
                 >
                   <span>{t('About Ruthra Heritage', 'ருத்ரா பாரம்பரியம்')}</span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
@@ -177,8 +230,12 @@ export default function MobileHeader() {
 
                 <Link
                   href="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-between p-2.5 rounded-lg text-sm font-medium text-[#264653] hover:bg-[#E8F1EB]"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                    pathname === '/contact'
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
+                  }`}
                 >
                   <span>{t('Track Order & Support', 'ஆர்டர் நிலை & உதவி')}</span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
@@ -191,16 +248,23 @@ export default function MobileHeader() {
                   {t('Shop by Concern', 'உபாதைகள் வாரியாக')}
                 </p>
                 <div className="space-y-0.5">
-                  {CONCERN_CATEGORIES.map(cat => (
-                    <Link
-                      key={cat.slug}
-                      href={`/shop/concerns/${cat.slug}`}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block px-2 py-1.5 rounded-md text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB]"
-                    >
-                      {language === 'ta' ? cat.titleTa : cat.title}
-                    </Link>
-                  ))}
+                  {CONCERN_CATEGORIES.map(cat => {
+                    const isConcernActive = pathname === `/shop/concerns/${cat.slug}`;
+                    return (
+                      <Link
+                        key={cat.slug}
+                        href={`/shop/concerns/${cat.slug}`}
+                        onClick={handleMobileNavClick}
+                        className={`block px-2 py-1.5 rounded-md text-xs transition-colors ${
+                          isConcernActive
+                            ? 'bg-[#E8F1EB] text-[#16382B] font-bold'
+                            : 'text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB]'
+                        }`}
+                      >
+                        {language === 'ta' ? cat.titleTa : cat.title}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -210,16 +274,23 @@ export default function MobileHeader() {
                   {t('Traditional Forms', 'மருந்து வடிவங்கள்')}
                 </p>
                 <div className="space-y-0.5">
-                  {FORMULATION_CATEGORIES.map(form => (
-                    <Link
-                      key={form.slug}
-                      href={`/shop/formulations/${form.slug}`}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block px-2 py-1.5 rounded-md text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB]"
-                    >
-                      {language === 'ta' ? form.titleTa : form.title}
-                    </Link>
-                  ))}
+                  {FORMULATION_CATEGORIES.map(form => {
+                    const isFormActive = pathname === `/shop/formulations/${form.slug}`;
+                    return (
+                      <Link
+                        key={form.slug}
+                        href={`/shop/formulations/${form.slug}`}
+                        onClick={handleMobileNavClick}
+                        className={`block px-2 py-1.5 rounded-md text-xs transition-colors ${
+                          isFormActive
+                            ? 'bg-[#E8F1EB] text-[#16382B] font-bold'
+                            : 'text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB]'
+                        }`}
+                      >
+                        {language === 'ta' ? form.titleTa : form.title}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>

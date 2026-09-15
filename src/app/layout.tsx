@@ -8,6 +8,8 @@ import MobileHeader from '@/components/MobileHeader';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import CartDrawer from '@/components/CartDrawer';
 import SearchModal from '@/components/SearchModal';
+import CartToast from '@/components/CartToast';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import Footer from '@/components/Footer';
 
 const fraunces = Fraunces({
@@ -128,12 +130,16 @@ export default function RootLayout({
               {children}
             </main>
 
-            {/* Global Modals & Drawers */}
+            {/* Global Modals, Toast & Drawers */}
             <CartDrawer />
             <SearchModal />
+            <CartToast />
 
             {/* Mobile Bottom Thumb Navigation */}
             <MobileBottomNav />
+
+            {/* Global Floating WhatsApp Assistant */}
+            <FloatingWhatsApp />
 
             {/* Comprehensive Footer */}
             <Footer />

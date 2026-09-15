@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import {
   X,
   Plus,
@@ -21,6 +22,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Product } from '@/types/product';
 
 export default function CartDrawer() {
+  const pathname = usePathname();
   const {
     items,
     isDrawerOpen,
@@ -46,6 +48,13 @@ export default function CartDrawer() {
   const { language, t } = useLanguage();
   const [couponInput, setCouponInput] = useState('');
   const [couponFeedback, setCouponFeedback] = useState<{ success: boolean; message: string } | null>(null);
+
+  // Automatically close cart overlay whenever pathname/route changes
+  useEffect(() => {
+    if (isDrawerOpen) {
+      closeDrawer();
+    }
+  }, [pathname]);
 
   if (!isDrawerOpen) return null;
 
@@ -81,7 +90,7 @@ export default function CartDrawer() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-xs transition-opacity"
+      className="fixed inset-0 z-[70] flex justify-end bg-black/60 backdrop-blur-xs transition-opacity"
       role="dialog"
       aria-modal="true"
       aria-label="Shopping Cart Drawer"
@@ -461,12 +470,12 @@ export default function CartDrawer() {
 
         {/* 4. COMPACT STICKY BOTTOM CHECKOUT ACTION BAR */}
         {items.length > 0 && (
-          <div className="p-3 sm:p-4 bg-white border-t border-[#16382B]/10 space-y-2 flex-shrink-0 shadow-lg">
+          <div className="p-3 sm:p-4 pb-[max(env(safe-area-inset-bottom,0px),16px)] bg-white border-t border-[#16382B]/10 space-y-2.5 flex-shrink-0 shadow-lg relative z-10">
             {/* Price & Checkout Row */}
             <div className="flex items-center justify-between gap-3">
-              <div>
+              <div className="flex-shrink-0">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-[9px] uppercase font-bold text-[#8A9B93] block leading-none">
+                  <span className="text-[9.5px] uppercase font-bold text-[#8A9B93] block leading-none">
                     {t('Payable', 'தொகை')}:
                   </span>
                   <span className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B]">
@@ -474,7 +483,7 @@ export default function CartDrawer() {
                   </span>
                 </div>
                 {totalSavings > 0 && (
-                  <span className="text-[10px] text-green-700 font-semibold block leading-tight">
+                  <span className="text-[10.5px] text-green-700 font-semibold block leading-tight mt-0.5">
                     {t(`Save ₹${totalSavings}`, `₹${totalSavings} சேமிப்பு`)}
                   </span>
                 )}
@@ -484,10 +493,10 @@ export default function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={closeDrawer}
-                className="flex-1 py-2.5 px-4 rounded-xl bg-[#16382B] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#204C3B] shadow-sm transition-all active:scale-[0.99] cursor-pointer"
+                className="flex-1 py-3 px-4 sm:px-5 rounded-xl bg-[#16382B] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#204C3B] active:bg-[#112d22] shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
               >
                 <span>{t('Proceed to Checkout', 'செக்அவுட் செல்லவும்')}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 flex-shrink-0" />
               </Link>
             </div>
 

@@ -25,11 +25,17 @@ import { CONCERN_CATEGORIES, FORMULATION_CATEGORIES } from '@/data/products';
 
 export default function Header() {
   const pathname = usePathname();
-  const { itemCount, openDrawer, openSearch } = useCart();
+  const { itemCount, openDrawer, openSearch, isDrawerOpen, closeDrawer, isSearchOpen, closeSearch } = useCart();
   const { language, t } = useLanguage();
 
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const shopTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNavClick = () => {
+    if (isDrawerOpen) closeDrawer();
+    if (isSearchOpen) closeSearch();
+    setShopDropdownOpen(false);
+  };
 
   // Smooth hover open/close with small tolerance delay
   const handleShopEnter = () => {
@@ -56,7 +62,9 @@ export default function Header() {
   }, [openSearch]);
 
   const isShopActive = pathname === '/shop' || pathname.startsWith('/shop/');
+  const isOffersActive = pathname === '/offers';
   const isAboutActive = pathname === '/about';
+  const isContactActive = pathname === '/contact';
 
   // Helper for concern icon
   const getConcernIcon = (slug: string) => {
@@ -102,10 +110,10 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Desktop Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 lg:gap-8">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
+      {/* Main Desktop Header — True Centered 3-Column Architecture */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 grid grid-cols-[auto_1fr_auto] items-center gap-4 lg:gap-6 w-full">
+        {/* Col 1 (Left): Brand Logo */}
+        <Link href="/" onClick={handleNavClick} className="flex items-center gap-3 group flex-shrink-0 justify-self-start">
           <div className="h-12 w-auto px-2.5 py-1 rounded-xl bg-white border border-[#16382B]/10 shadow-xs group-hover:scale-105 transition-transform flex-shrink-0 flex items-center justify-center">
             <Image
               src="/images/ruthra-logo.png"
@@ -127,8 +135,8 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Compact Primary Desktop Navigation with Category Dropdowns */}
-        <nav className="flex items-center gap-2 lg:gap-4 text-sm font-medium">
+        {/* Col 2 (Center): Mathematically Centralized Primary Navigation */}
+        <nav className="flex items-center justify-center gap-1.5 lg:gap-3 text-sm font-medium justify-self-center">
           {/* 1. SHOP & CATEGORIES DROPDOWN */}
           <div
             className="relative"
@@ -137,7 +145,8 @@ export default function Header() {
           >
             <Link
               href="/shop"
-              className={`flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap ${
+              onClick={handleNavClick}
+              className={`flex items-center gap-1.5 py-2 px-3.5 rounded-xl transition-all whitespace-nowrap ${
                 isShopActive
                   ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                   : 'text-[#264653] hover:text-[#16382B] hover:bg-white'
@@ -151,10 +160,10 @@ export default function Header() {
               />
             </Link>
 
-            {/* Mega Dropdown Menu for Categories */}
+            {/* Mega Dropdown Menu for Categories — Centered below trigger */}
             {shopDropdownOpen && (
               <div
-                className="absolute top-full left-0 w-[620px] bg-white rounded-2xl shadow-2xl border border-[#16382B]/10 p-6 z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150"
+                className="absolute top-full left-1/2 -translate-x-1/2 w-[620px] bg-white rounded-2xl shadow-2xl border border-[#16382B]/10 p-6 z-50 animate-in fade-in-50 slide-in-from-top-2 duration-150"
                 onMouseEnter={handleShopEnter}
                 onMouseLeave={handleShopLeave}
               >
@@ -167,7 +176,7 @@ export default function Header() {
                       </span>
                       <Link
                         href="/shop/concerns"
-                        onClick={() => setShopDropdownOpen(false)}
+                        onClick={handleNavClick}
                         className="text-[11px] font-semibold text-[#16382B] hover:text-[#C29043] flex items-center gap-0.5"
                       >
                         <span>{t('View All', 'அனைத்தும்')}</span>
@@ -180,7 +189,7 @@ export default function Header() {
                         <Link
                           key={cat.slug}
                           href={`/shop/concerns/${cat.slug}`}
-                          onClick={() => setShopDropdownOpen(false)}
+                          onClick={handleNavClick}
                           className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-[#FAF8F5] transition-colors group/item"
                         >
                           <div className="w-7 h-7 rounded-lg bg-[#E8F1EB] group-hover/item:bg-[#16382B] group-hover/item:text-[#C29043] flex items-center justify-center text-[#16382B] transition-colors flex-shrink-0">
@@ -207,7 +216,7 @@ export default function Header() {
                       </span>
                       <Link
                         href="/shop/formulations"
-                        onClick={() => setShopDropdownOpen(false)}
+                        onClick={handleNavClick}
                         className="text-[11px] font-semibold text-[#16382B] hover:text-[#C29043] flex items-center gap-0.5"
                       >
                         <span>{t('View All', 'அனைத்தும்')}</span>
@@ -220,7 +229,7 @@ export default function Header() {
                         <Link
                           key={form.slug}
                           href={`/shop/formulations/${form.slug}`}
-                          onClick={() => setShopDropdownOpen(false)}
+                          onClick={handleNavClick}
                           className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-[#FAF8F5] transition-colors group/item"
                         >
                           <div className="w-7 h-7 rounded-lg bg-[#E8F1EB] group-hover/item:bg-[#16382B] group-hover/item:text-[#C29043] flex items-center justify-center text-[#16382B] font-serif-brand font-bold text-xs transition-colors flex-shrink-0">
@@ -250,7 +259,7 @@ export default function Header() {
                   </div>
                   <Link
                     href="/shop"
-                    onClick={() => setShopDropdownOpen(false)}
+                    onClick={handleNavClick}
                     className="text-xs font-bold text-[#16382B] hover:text-[#C29043] flex items-center gap-1"
                   >
                     <span>{t('Browse Entire Catalog', 'முழு பட்டியல் பார்க்க')}</span>
@@ -263,16 +272,22 @@ export default function Header() {
 
           {/* 2. VALUE COMBOS & OFFERS */}
           <Link
-            href="/shop#combos"
-            className="flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap text-[#264653] hover:text-[#16382B] hover:bg-white"
+            href="/offers"
+            onClick={handleNavClick}
+            className={`flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap ${
+              isOffersActive
+                ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
+                : 'text-[#264653] hover:text-[#16382B] hover:bg-white'
+            }`}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#C29043]" />
-            <span>{t('Value Combos', 'சிறப்பு தொகுப்புகள்')}</span>
+            <span>{t('Offers & Combos', 'சிறப்பு சலுகைகள்')}</span>
           </Link>
 
           {/* 3. ABOUT HERITAGE */}
           <Link
             href="/about"
+            onClick={handleNavClick}
             className={`flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap ${
               isAboutActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
@@ -285,7 +300,12 @@ export default function Header() {
           {/* 4. CUSTOMER SUPPORT & ORDER DESK */}
           <Link
             href="/contact"
-            className="py-1.5 px-3.5 rounded-full border border-[#16382B]/15 bg-[#E8F1EB] hover:bg-[#16382B] hover:text-white text-[#16382B] flex items-center gap-1.5 whitespace-nowrap transition-all text-xs font-semibold"
+            onClick={handleNavClick}
+            className={`py-1.5 px-3.5 rounded-full border border-[#16382B]/15 flex items-center gap-1.5 whitespace-nowrap transition-all text-xs font-semibold ${
+              isContactActive
+                ? 'bg-[#16382B] text-white'
+                : 'bg-[#E8F1EB] hover:bg-[#16382B] hover:text-white text-[#16382B]'
+            }`}
           >
             <PhoneCall className="w-3 h-3 text-[#C29043]" />
             <span>{t('Help & Support', 'உதவி மையம்')}</span>
@@ -293,7 +313,7 @@ export default function Header() {
         </nav>
 
         {/* Right Action Controls: Search, Language Switcher, Cart */}
-        <div className="flex items-center gap-2.5 lg:gap-3 flex-shrink-0">
+        <div className="flex items-center justify-end gap-2.5 lg:gap-3 flex-shrink-0 justify-self-end">
           {/* Compact Predictive Search Button */}
           <button
             onClick={openSearch}

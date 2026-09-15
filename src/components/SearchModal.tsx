@@ -3,12 +3,14 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Search, X, ArrowRight, ShoppingBag, Tag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { PRODUCTS } from '@/data/products';
 
 export default function SearchModal() {
+  const pathname = usePathname();
   const { isSearchOpen, closeSearch, addItem } = useCart();
   const { language, t } = useLanguage();
   const [query, setQuery] = useState('');
@@ -25,6 +27,13 @@ export default function SearchModal() {
       document.body.style.overflow = '';
     };
   }, [isSearchOpen]);
+
+  // Automatically close search modal whenever pathname changes
+  useEffect(() => {
+    if (isSearchOpen) {
+      closeSearch();
+    }
+  }, [pathname]);
 
   // Derive results cleanly using useMemo without effect setState
   const results = useMemo(() => {
@@ -62,7 +71,7 @@ export default function SearchModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-4 sm:pt-20 px-3 bg-black/60 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-[70] flex items-start justify-center pt-4 sm:pt-20 px-3 bg-black/60 backdrop-blur-sm transition-opacity"
       role="dialog"
       aria-modal="true"
       aria-label="Product Search"

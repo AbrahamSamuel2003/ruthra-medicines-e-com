@@ -33,7 +33,12 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
     if (customMsg) text += `Query: ${customMsg}\n`;
 
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/${supportPhone}?text=${encoded}`, '_blank');
+    const cleanPhone = supportPhone.replace(/[^0-9]/g, '');
+    const mobileUrl = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encoded}`;
+    
+    if (typeof window !== 'undefined') {
+      window.location.href = mobileUrl;
+    }
     setIsOpen(false);
   };
 

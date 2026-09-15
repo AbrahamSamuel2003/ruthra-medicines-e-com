@@ -16,6 +16,12 @@ export const getProductMRP = (product: Product): number => {
   return Math.max(product.price + 20, Math.round((product.price * 1.15) / 5) * 5);
 };
 
+export interface CartToastData {
+  product: Product;
+  quantity: number;
+  id: number;
+}
+
 interface CartContextType {
   items: CartItem[];
   addItem: (product: Product, quantity?: number) => void;
@@ -42,6 +48,8 @@ interface CartContextType {
   isSearchOpen: boolean;
   openSearch: () => void;
   closeSearch: () => void;
+  toastNotification: CartToastData | null;
+  dismissToast: () => void;
   toastMessage: string | null;
   showToast: (msg: string) => void;
 }
@@ -58,6 +66,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [toastNotification, setToastNotification] = useState<CartToastData | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Load cart and coupon from localStorage strictly after hydration
@@ -101,11 +110,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [couponCode, isLoaded]);
 
+  const dismissToast = () => {
+    setToastNotification(null);
+    setToastMessage(null);
+  };
+
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => {
       setToastMessage(null);
-    }, 2800);
+    }, 3200);
   };
 
   const addItem = (product: Product, quantity = 1) => {
@@ -120,7 +134,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { product, quantity }];
     });
-    showToast(`Added ${product.name} to cart`);
+
+    // Trigger instant top-right toast notification
+    setToastNotification({
+      product,
+      quantity,
+      id: Date.now()
+    });
   };
 
   const removeItem = (productId: string) => {
@@ -241,6 +261,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         isSearchOpen,
         openSearch: () => setIsSearchOpen(true),
         closeSearch: () => setIsSearchOpen(false),
+        toastNotification,
+        dismissToast,
         toastMessage,
         showToast
       }}
