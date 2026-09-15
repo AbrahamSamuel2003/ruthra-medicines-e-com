@@ -286,6 +286,16 @@ export default function HomePage() {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+
+        <div className="text-center mt-6 sm:mt-8">
+          <Link
+            href="/shop/concerns/joint-mobility"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all group"
+          >
+            <span>{t(`View More Joint Care Products (${totalJointCare})`, `மேலும் மூட்டு நல மருந்துகள் பார்க்க (${totalJointCare})`)}</span>
+            <ArrowRight className="w-4 h-4 text-[#C29043] group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
       </section>
 
       {/* 6. DEDICATED THEMATIC AISLE 2: RESPIRATORY & IMMUNITY SHIELD */}
@@ -317,6 +327,16 @@ export default function HomePage() {
             {respiratoryProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+
+          <div className="text-center mt-6 sm:mt-8">
+            <Link
+              href="/shop/concerns/respiratory"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all group"
+            >
+              <span>{t(`View More Respiratory Products (${totalRespiratory})`, `மேலும் சுவாச பாதுகாப்பு மருந்துகள் (${totalRespiratory})`)}</span>
+              <ArrowRight className="w-4 h-4 text-[#2A9D8F] group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
@@ -350,6 +370,16 @@ export default function HomePage() {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+
+        <div className="text-center mt-6 sm:mt-8">
+          <Link
+            href="/shop/concerns/digestive-wellness"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all group"
+          >
+            <span>{t(`View More Digestive Products (${totalDigestive})`, `மேலும் செரிமான & கல்லீரல் மருந்துகள் (${totalDigestive})`)}</span>
+            <ArrowRight className="w-4 h-4 text-[#E63946] group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
       </section>
 
       {/* 8. DEDICATED THEMATIC AISLE 4: WOMEN'S WELLNESS & HORMONAL CARE */}
@@ -381,6 +411,16 @@ export default function HomePage() {
             {womensCareProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+
+          <div className="text-center mt-6 sm:mt-8">
+            <Link
+              href="/shop/concerns/womens-wellness"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all group"
+            >
+              <span>{t(`View More Women’s Health Products (${totalWomensCare})`, `மேலும் பெண்கள் நல மருந்துகள் (${totalWomensCare})`)}</span>
+              <ArrowRight className="w-4 h-4 text-[#E76F51] group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
@@ -414,6 +454,16 @@ export default function HomePage() {
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+
+        <div className="text-center mt-6 sm:mt-8">
+          <Link
+            href="/shop/concerns/skin-hair"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all group"
+          >
+            <span>{t(`View More Skin & Hair Products (${totalSkinHair})`, `மேலும் சரும & கூந்தல் மருந்துகள் (${totalSkinHair})`)}</span>
+            <ArrowRight className="w-4 h-4 text-[#457B9D] group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
       </section>
 
       {/* 10. DEDICATED THEMATIC AISLE 6: METABOLIC, SUGAR & VITALITY */}
@@ -445,6 +495,16 @@ export default function HomePage() {
             {metabolicProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+
+          <div className="text-center mt-6 sm:mt-8">
+            <Link
+              href="/shop/concerns/metabolic-wellness"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] text-[#16382B] font-bold text-xs sm:text-sm border border-[#16382B]/15 shadow-2xs hover:shadow-xs transition-all group"
+            >
+              <span>{t(`View More Metabolic Care Products (${totalMetabolic})`, `மேலும் சர்க்கரை & சிறுநீரக மருந்துகள் (${totalMetabolic})`)}</span>
+              <ArrowRight className="w-4 h-4 text-[#264653] group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
