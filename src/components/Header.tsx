@@ -137,20 +137,7 @@ export default function Header() {
         </Link>
 
         {/* Col 2 (Center): Mathematically Centralized Primary Navigation */}
-        <nav className="flex items-center justify-center gap-1 lg:gap-2.5 text-sm font-medium justify-self-center">
-          {/* 0. HOME */}
-          <Link
-            href="/"
-            onClick={handleNavClick}
-            className={`flex items-center gap-1.5 py-2 px-3 rounded-xl transition-all whitespace-nowrap ${
-              isHomeActive
-                ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
-                : 'text-[#264653] hover:text-[#16382B] hover:bg-white'
-            }`}
-          >
-            <span>{t('Home', 'முகப்பு')}</span>
-          </Link>
-
+        <nav className="flex items-center justify-center gap-1.5 lg:gap-3 text-sm font-medium justify-self-center">
           {/* 1. SHOP & CATEGORIES DROPDOWN */}
           <div
             className="relative"
