@@ -7,8 +7,8 @@ import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, CheckCircle2 } from '
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin1234@gmail.com');
-  const [password, setPassword] = useState('admin1234');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -48,10 +48,16 @@ export default function AdminLoginPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center space-y-3">
         {/* Brand Header */}
-        <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-white border border-[#16382B]/10 shadow-sm mx-auto">
-          <div className="w-10 h-10 rounded-xl bg-[#16382B] text-[#C29043] flex items-center justify-center font-serif-brand font-bold text-xl">
-            R
-          </div>
+        <div className="inline-flex items-center justify-center px-4 py-2.5 rounded-2xl bg-white border border-[#16382B]/15 shadow-md mx-auto">
+          <Image
+            src="/images/ruthra-logo.png"
+            alt="Ruthra Logo"
+            width={90}
+            height={52}
+            className="h-11 sm:h-12 w-auto object-contain"
+            priority
+            unoptimized
+          />
         </div>
 
         <h1 className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B] tracking-tight">
@@ -135,16 +141,6 @@ export default function AdminLoginPage() {
               )}
             </button>
           </form>
-
-          {/* Quick Notice */}
-          <div className="p-3 bg-[#FAF8F5] rounded-xl border border-[#16382B]/10 text-center">
-            <span className="text-[11px] text-[#8A9B93] block">
-              Default Configured Credentials:
-            </span>
-            <span className="font-mono text-xs font-bold text-[#16382B] block mt-0.5">
-              admin1234@gmail.com / admin1234
-            </span>
-          </div>
         </div>
 
         <div className="mt-6 text-center">

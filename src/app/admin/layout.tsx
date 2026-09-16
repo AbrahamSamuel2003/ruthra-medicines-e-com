@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -32,7 +33,6 @@ const NAV_ITEMS: NavItem[] = [
   { name: 'Orders', href: '/admin/orders', icon: ShoppingBag },
   { name: 'Customers', href: '/admin/customers', icon: Users },
   { name: 'Invoices', href: '/admin/invoices', icon: FileText },
-  { name: 'Products', href: '/admin/products', icon: Package },
   { name: 'Reports', href: '/admin/reports', icon: BarChart3 },
 ];
 
@@ -101,8 +101,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* MOBILE TOP BAR */}
       <div className="md:hidden bg-[#16382B] text-white px-3.5 py-2.5 flex items-center justify-between shadow-md sticky top-0 z-40">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#DFB36C] to-[#C29043] text-[#16382B] flex items-center justify-center font-serif-brand font-bold text-base shadow-xs">
-            R
+          <div className="h-8.5 w-auto px-1.5 py-0.5 rounded-lg bg-white border border-[#C29043]/30 shadow-xs flex items-center justify-center">
+            <Image
+              src="/images/ruthra-logo.png"
+              alt="Ruthra Logo"
+              width={52}
+              height={30}
+              className="h-6 w-auto object-contain"
+              priority
+              unoptimized
+            />
           </div>
           <div>
             <span className="font-serif-brand font-bold text-sm tracking-tight block">Ruthra Admin</span>
@@ -159,10 +167,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }`}
       >
         {/* Sidebar Brand Header */}
-        <div className="p-5 border-b border-white/10">
+        <div className="p-4.5 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#DFB36C] to-[#C29043] text-[#16382B] flex items-center justify-center font-serif-brand font-bold text-xl shadow-md">
-              R
+            <div className="h-10 w-auto px-2 py-1 rounded-xl bg-white border border-[#C29043]/30 shadow-md flex items-center justify-center flex-shrink-0">
+              <Image
+                src="/images/ruthra-logo.png"
+                alt="Ruthra Logo"
+                width={65}
+                height={38}
+                className="h-7.5 w-auto object-contain"
+                priority
+                unoptimized
+              />
             </div>
             <div className="min-w-0">
               <h1 className="font-serif-brand font-bold text-base tracking-tight text-white truncate">
