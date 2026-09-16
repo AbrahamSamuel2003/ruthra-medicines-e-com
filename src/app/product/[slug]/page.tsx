@@ -79,6 +79,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
       <ProductDetailClient
+        key={product.slug}
         product={product}
         relatedProducts={relatedProducts}
       />

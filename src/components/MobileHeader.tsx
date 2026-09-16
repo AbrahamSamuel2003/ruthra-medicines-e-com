@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Search, ShoppingBag, Menu, X, ChevronRight, MessageCircle, Tag, Grid, Layers, Sparkles } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, ChevronRight, MessageCircle, Tag, Grid, Layers, Sparkles, Leaf, Droplets } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -154,23 +154,62 @@ export default function MobileHeader() {
             {/* Nav links */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               <div className="space-y-1">
+                {/* Siddha Medicines Section */}
                 <Link
-                  href="/shop"
+                  href="/siddha"
                   onClick={handleMobileNavClick}
-                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
-                    pathname === '/shop'
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
+                    pathname.startsWith('/siddha')
                       ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
                       : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
                   }`}
                 >
-                  <span>{t('All Products (20 Formulations)', 'அனைத்து மருந்துகள் (20)')}</span>
+                  <span className="flex items-center gap-2">
+                    <Leaf className="w-4 h-4 text-[#16382B]" />
+                    <span>{t('Siddha Medicines (111)', 'சித்த மருந்துகள் (111)')}</span>
+                  </span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
+                {/* Ayurveda Medicines Section */}
+                <Link
+                  href="/ayurveda"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
+                    pathname.startsWith('/ayurveda')
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <Droplets className="w-4 h-4 text-[#C29043]" />
+                    <span>{t('Ayurveda Medicines (64)', 'ஆயுர்வேத மருந்துகள் (64)')}</span>
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
+                </Link>
+
+                {/* Proprietary Range */}
+                <Link
+                  href="/proprietary"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
+                    pathname.startsWith('/proprietary')
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-[#C29043]" />
+                    <span>{t('Proprietary Formulations', 'பிரத்தியேக மருந்துகள்')}</span>
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
+                </Link>
+
+                {/* Offers & Combos */}
                 <Link
                   href="/offers"
                   onClick={handleMobileNavClick}
-                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
                     pathname === '/offers'
                       ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
                       : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
@@ -183,42 +222,11 @@ export default function MobileHeader() {
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
-                <Link
-                  href="/shop/formulations"
-                  onClick={handleMobileNavClick}
-                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
-                    pathname.startsWith('/shop/formulations')
-                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
-                      : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-[#C29043]" />
-                    {t('Traditional Forms (Chooranam, Thailam)', 'பாரம்பரிய மருந்து வகைகள்')}
-                  </span>
-                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
-                </Link>
-
-                <Link
-                  href="/shop/concerns"
-                  onClick={handleMobileNavClick}
-                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
-                    pathname.startsWith('/shop/concerns')
-                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
-                      : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <Grid className="w-4 h-4 text-[#C29043]" />
-                    {t('Wellness Concerns Directory', 'உபாதைகள் வாரியான பட்டியல்')}
-                  </span>
-                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
-                </Link>
-
+                {/* Heritage */}
                 <Link
                   href="/about"
                   onClick={handleMobileNavClick}
-                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
                     pathname === '/about'
                       ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
                       : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
@@ -228,10 +236,11 @@ export default function MobileHeader() {
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
+                {/* Contact & Support */}
                 <Link
                   href="/contact"
                   onClick={handleMobileNavClick}
-                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm transition-colors ${
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
                     pathname === '/contact'
                       ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
                       : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
@@ -242,55 +251,65 @@ export default function MobileHeader() {
                 </Link>
               </div>
 
-              {/* Shop by Concern list */}
+              {/* Siddha Dosage Forms Quick Links */}
               <div className="border-t border-[#16382B]/10 pt-3">
-                <p className="text-[10px] uppercase font-bold tracking-wider text-[#8A9B93] mb-2 px-2">
-                  {t('Shop by Concern', 'உபாதைகள் வாரியாக')}
-                </p>
-                <div className="space-y-0.5">
-                  {CONCERN_CATEGORIES.map(cat => {
-                    const isConcernActive = pathname === `/shop/concerns/${cat.slug}`;
-                    return (
-                      <Link
-                        key={cat.slug}
-                        href={`/shop/concerns/${cat.slug}`}
-                        onClick={handleMobileNavClick}
-                        className={`block px-2 py-1.5 rounded-md text-xs transition-colors ${
-                          isConcernActive
-                            ? 'bg-[#E8F1EB] text-[#16382B] font-bold'
-                            : 'text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB]'
-                        }`}
-                      >
-                        {language === 'ta' ? cat.titleTa : cat.title}
-                      </Link>
-                    );
-                  })}
+                <div className="flex items-center justify-between px-2 mb-2">
+                  <p className="text-[10px] uppercase font-bold tracking-wider text-[#16382B]">
+                    {t('Siddha Forms (14)', 'சித்த மருந்து வடிவங்கள்')}
+                  </p>
+                  <Link href="/siddha" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#C29043]">
+                    {t('View All', 'அனைத்தும்')}
+                  </Link>
+                </div>
+                <div className="grid grid-cols-2 gap-1">
+                  {[
+                    { slug: 'chooranam', title: 'Chooranam (41)', titleTa: 'சூரணம் (41)' },
+                    { slug: 'kudineer-chooranam', title: 'Kudineer (16)', titleTa: 'குடிநீர் (16)' },
+                    { slug: 'legiyam', title: 'Legiyam (11)', titleTa: 'லேகியம் (11)' },
+                    { slug: 'thailam-ennai', title: 'Thailam (9)', titleTa: 'தைலம் (9)' },
+                    { slug: 'nei-ghritham', title: 'Nei (8)', titleTa: 'நெய் (8)' },
+                    { slug: 'parpam', title: 'Parpam (5)', titleTa: 'பற்பம் (5)' }
+                  ].map(form => (
+                    <Link
+                      key={form.slug}
+                      href={`/siddha/${form.slug}`}
+                      onClick={handleMobileNavClick}
+                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate"
+                    >
+                      {language === 'ta' ? form.titleTa : form.title}
+                    </Link>
+                  ))}
                 </div>
               </div>
 
-              {/* Traditional Formulations list */}
+              {/* Ayurveda Dosage Forms Quick Links */}
               <div className="border-t border-[#16382B]/10 pt-3">
-                <p className="text-[10px] uppercase font-bold tracking-wider text-[#8A9B93] mb-2 px-2">
-                  {t('Traditional Forms', 'மருந்து வடிவங்கள்')}
-                </p>
-                <div className="space-y-0.5">
-                  {FORMULATION_CATEGORIES.map(form => {
-                    const isFormActive = pathname === `/shop/formulations/${form.slug}`;
-                    return (
-                      <Link
-                        key={form.slug}
-                        href={`/shop/formulations/${form.slug}`}
-                        onClick={handleMobileNavClick}
-                        className={`block px-2 py-1.5 rounded-md text-xs transition-colors ${
-                          isFormActive
-                            ? 'bg-[#E8F1EB] text-[#16382B] font-bold'
-                            : 'text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB]'
-                        }`}
-                      >
-                        {language === 'ta' ? form.titleTa : form.title}
-                      </Link>
-                    );
-                  })}
+                <div className="flex items-center justify-between px-2 mb-2">
+                  <p className="text-[10px] uppercase font-bold tracking-wider text-[#C29043]">
+                    {t('Ayurveda Forms (8)', 'ஆயுர்வேத மருந்து வடிவங்கள்')}
+                  </p>
+                  <Link href="/ayurveda" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#16382B]">
+                    {t('View All', 'அனைத்தும்')}
+                  </Link>
+                </div>
+                <div className="grid grid-cols-2 gap-1">
+                  {[
+                    { slug: 'churna', title: 'Churna (28)', titleTa: 'சூர்ணம் (28)' },
+                    { slug: 'single-herbs', title: 'Single Herbs (13)', titleTa: 'தனி மூலிகைகள் (13)' },
+                    { slug: 'tailam', title: 'Tailam (6)', titleTa: 'தைலம் (6)' },
+                    { slug: 'asavam-arishta', title: 'Asavam (5)', titleTa: 'ஆஸவம் (5)' },
+                    { slug: 'lehyam', title: 'Lehyam (4)', titleTa: 'லேஹ்யம் (4)' },
+                    { slug: 'ghritam', title: 'Ghritam (3)', titleTa: 'கிருதம் (3)' }
+                  ].map(form => (
+                    <Link
+                      key={form.slug}
+                      href={`/ayurveda/${form.slug}`}
+                      onClick={handleMobileNavClick}
+                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate"
+                    >
+                      {language === 'ta' ? form.titleTa : form.title}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

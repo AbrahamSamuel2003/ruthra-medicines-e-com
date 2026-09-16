@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  DISPATCHED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+enum PaymentMethod {
+  UPI
+  CARDS
+  COD
+}
+
+enum AddressType {
+  HOME
+  WORK
+  OTHER
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String   @default("Ruthra Master Admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Customer {
+  id          String            @id @default(uuid())
+  fullName    String
+  phone       String            @unique
+  email       String?
+  addresses   CustomerAddress[]
+  orders      Order[]
+  totalOrders Int               @default(0)
+  totalSpend  Float             @default(0.0)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([phone])
+  @@index([email])
+  @@map("customers")
+}
+
+model CustomerAddress {
+  id          String      @id @default(uuid())
+  customerId  String
+  customer    Customer    @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  fullAddress String
+  landmark    String?
+  city        String
+  state       String      @default("Tamil Nadu")
+  pincode     String
+  addressType AddressType @default(HOME)
+  orders      Order[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([customerId])
+  @@index([pincode])
+  @@map("customer_addresses")
+}
+
+model Order {
+  id             String          @id @default(uuid())
+  orderNumber    String          @unique // e.g. RM-2026-1001
+  customerId     String
+  customer       Customer        @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  addressId      String?
+  address        CustomerAddress? @relation(fields: [addressId], references: [id], onDelete: SetNull)
+  
+  items          OrderItem[]
+  payment        Payment?
+  invoice        Invoice?
+
+  status         OrderStatus     @default(PENDING)
+  subtotal       Float
+  discount       Float           @default(0.0)
+  deliveryCharge Float           @default(0.0)
+  tax            Float           @default(0.0)
+  finalTotal     Float
+  
+  deliveryMethod String          @default("Tamil Nadu Express Courier")
+  shippingSnapshot Json          // Full address snapshot at time of order
+  notes          String?
+  
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@index([customerId])
+  @@index([orderNumber])
+  @@index([status])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id             String   @id @default(uuid())
+  orderId        String
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId      String   // Reference to hardcoded catalog SKU
+  productName    String   // Immutable snapshot at time of purchase
+  tamilName      String?
+  formulation    String
+  packSize       String
+  quantity       Int
+  unitPrice      Float    // Price snapshot at time of purchase
+  discount       Float    @default(0.0)
+  lineTotal      Float
+  createdAt      DateTime @default(now())
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  orderId        String        @unique
+  order          Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  method         PaymentMethod
+  amount         Float
+  status         PaymentStatus @default(PENDING)
+  transactionRef String?
+  gatewayDetails Json?
+  paidAt         DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([orderId])
+  @@index([status])
+  @@map("payments")
+}
+
+model Invoice {
+  id             String   @id @default(uuid())
+  invoiceNumber  String   @unique // e.g. INV-2026-1001
+  orderId        String   @unique
+  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  issueDate      DateTime @default(now())
+  subtotal       Float
+  discount       Float    @default(0.0)
+  deliveryCharge Float    @default(0.0)
+  tax            Float    @default(0.0)
+  finalTotal     Float
+  customerName   String
+  customerPhone  String
+  customerAddress String
+  paymentMethod  String
+  paymentStatus  String
+  createdAt      DateTime @default(now())
+
+  @@index([orderId])
+  @@index([invoiceNumber])
+  @@index([issueDate])
+  @@map("invoices")
+}

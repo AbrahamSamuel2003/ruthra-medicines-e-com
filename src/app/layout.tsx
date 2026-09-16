@@ -3,14 +3,7 @@ import { Fraunces, Inter, Noto_Sans_Tamil } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { CartProvider } from '@/context/CartContext';
-import Header from '@/components/Header';
-import MobileHeader from '@/components/MobileHeader';
-import MobileBottomNav from '@/components/MobileBottomNav';
-import CartDrawer from '@/components/CartDrawer';
-import SearchModal from '@/components/SearchModal';
-import CartToast from '@/components/CartToast';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
-import Footer from '@/components/Footer';
+import StorefrontShell from '@/components/StorefrontShell';
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -119,30 +112,9 @@ export default function RootLayout({
       <body className="min-h-full w-full max-w-full flex flex-col bg-[#FAF8F5] text-[#264653] selection:bg-[#E8F1EB] selection:text-[#16382B] relative">
         <LanguageProvider>
           <CartProvider>
-            {/* Desktop Header */}
-            <Header />
-
-            {/* Mobile Header */}
-            <MobileHeader />
-
-            {/* Page Content */}
-            <main className="flex-1 w-full max-w-full pb-16 md:pb-0">
+            <StorefrontShell>
               {children}
-            </main>
-
-            {/* Global Modals, Toast & Drawers */}
-            <CartDrawer />
-            <SearchModal />
-            <CartToast />
-
-            {/* Mobile Bottom Thumb Navigation */}
-            <MobileBottomNav />
-
-            {/* Global Floating WhatsApp Assistant */}
-            <FloatingWhatsApp />
-
-            {/* Comprehensive Footer */}
-            <Footer />
+            </StorefrontShell>
           </CartProvider>
         </LanguageProvider>
       </body>

@@ -22,7 +22,11 @@ import {
   Droplets,
   Layers,
   ChevronRight,
-  ChevronDown
+  ChevronLeft,
+  ChevronDown,
+  Maximize2,
+  MessageCircle,
+  X
 } from 'lucide-react';
 import { Product } from '@/types/product';
 import { useCart, getProductMRP } from '@/context/CartContext';
@@ -42,9 +46,60 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const { language, t } = useLanguage();
 
   const [quantity, setQuantity] = useState(1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'ingredients' | 'howToUse' | 'dosage' | 'safety' | 'storage' | 'faq'>('overview');
   const [copiedLink, setCopiedLink] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
+
+  // Cache-busting version so new AI packaging graphics are never superseded by stale Next.js cache
+  const CACHE_VERSION = 'v=ruthra-20260916-2';
+  const getBustedUrl = (url: string) => {
+    if (!url) return url;
+    return url.includes('?') ? `${url}&${CACHE_VERSION}` : `${url}?${CACHE_VERSION}`;
+  };
+
+  // Gallery resolution (ensuring exactly 3 angles matching reference)
+  const rawList = (product.images && product.images.length > 0
+    ? product.images
+    : product.gallery && product.gallery.length > 0
+    ? product.gallery
+    : [product.image]).map(getBustedUrl);
+
+  const galleryImages = rawList.length >= 3
+    ? rawList.slice(0, 3)
+    : [rawList[0], rawList[1] || rawList[0], rawList[2] || rawList[0]];
+
+  const activeImage = galleryImages[selectedImageIndex] || galleryImages[0];
+
+  useEffect(() => {
+    setSelectedImageIndex(0);
+  }, [product.id, product.slug]);
+
+  const handlePrevImage = () => {
+    setSelectedImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 45) {
+      handleNextImage();
+    } else if (diff < -45) {
+      handlePrevImage();
+    }
+    setTouchStart(null);
+  };
 
   // Mobile Expandable Accordions state
   const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
@@ -447,10 +502,11 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             <div className="flex items-center gap-2.5 min-w-0">
               <div className="w-9 h-9 rounded-lg bg-[#FAF8F5] p-1 border border-[#16382B]/10 flex items-center justify-center flex-shrink-0">
                 <Image
-                  src={product.image}
+                  src={getBustedUrl(product.image)}
                   alt={product.name}
                   width={32}
                   height={32}
+                  unoptimized
                   className="object-contain max-h-7"
                 />
               </div>
@@ -537,42 +593,204 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
         {/* PRIMARY SHOWCASE CARD (NATIVE MOBILE TOUCH FEEL) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-7 items-start bg-white p-3.5 sm:p-6 lg:p-7 rounded-2xl border border-[#16382B]/10 shadow-xs">
           
-          {/* Left Column: Image Showcase */}
-          <div className="lg:col-span-5 xl:col-span-5 space-y-2.5 sm:space-y-3">
-            <div className="relative aspect-square sm:aspect-[4/3] max-h-[380px] w-full rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 flex items-center justify-center overflow-hidden">
-              {/* Badges */}
-              <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
-                <span className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/95 border border-[#C29043]/50 text-[#16382B] shadow-2xs">
+          {/* Left Column: Image Showcase with Reference 3-Image Gallery */}
+          <div className="lg:col-span-5 xl:col-span-5 space-y-3">
+            <div
+              className="relative aspect-square sm:aspect-[4/3] max-h-[390px] w-full rounded-2xl bg-white border border-[#16382B]/10 flex items-center justify-center overflow-hidden group select-none"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              {/* Badges (Top Left) */}
+              <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
+                <span className="text-[9px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/95 border border-[#C29043]/50 text-[#16382B] shadow-2xs">
                   {language === 'ta' && product.badgeTa ? product.badgeTa : product.badge || 'Classical Siddha'}
                 </span>
               </div>
 
-              <span className="absolute top-2.5 right-2.5 text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] z-10">
-                {language === 'ta' ? product.formulationTa : product.formulation}
-              </span>
-
-              {/* Product Artwork — Fills showcase container */}
-              <div className="relative w-full h-full transition-transform duration-500 hover:scale-105">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 500px"
-                  className="object-cover"
-                  priority
-                />
+              {/* Counter & Fullscreen Controls (Top Right) */}
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+                <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-black/60 text-white backdrop-blur-xs shadow-2xs">
+                  {selectedImageIndex + 1}/{galleryImages.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsFullscreenOpen(true)}
+                  className="p-1.5 rounded-full bg-white/95 backdrop-blur-xs border border-[#16382B]/15 text-[#16382B] hover:text-[#C29043] transition-colors shadow-2xs cursor-pointer active:scale-95"
+                  title="Expand image"
+                  aria-label="View fullscreen image"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </button>
               </div>
 
-              {/* Share button */}
+              {/* Main Active Product Artwork with Soft Ground Shadow */}
+              <div className="relative w-full h-full flex items-center justify-center p-3">
+                <div className="relative w-full h-full max-h-[340px] transition-transform duration-300">
+                  <Image
+                    key={activeImage}
+                    src={activeImage}
+                    alt={`${product.name} - View ${selectedImageIndex + 1}`}
+                    fill
+                    unoptimized
+                    className="object-contain drop-shadow-md"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Navigation Arrows (< and >) */}
+              {galleryImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={handlePrevImage}
+                    className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#16382B] border border-[#16382B]/15 flex items-center justify-center shadow-md transition-all opacity-80 group-hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer z-10"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNextImage}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#16382B] border border-[#16382B]/15 flex items-center justify-center shadow-md transition-all opacity-80 group-hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer z-10"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </>
+              )}
+
+              {/* Pagination Dots (Bottom Left) */}
+              {galleryImages.length > 1 && (
+                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 z-10 bg-white/80 backdrop-blur-xs px-2 py-1 rounded-full border border-[#16382B]/10">
+                  {galleryImages.map((_, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedImageIndex(idx)}
+                      className={`transition-all rounded-full cursor-pointer ${
+                        idx === selectedImageIndex
+                          ? 'w-4 h-1.5 bg-[#C29043]'
+                          : 'w-1.5 h-1.5 bg-[#16382B]/30 hover:bg-[#16382B]/60'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Share button (Bottom Right) */}
               <button
                 type="button"
                 onClick={handleShare}
-                className="absolute bottom-2.5 right-2.5 p-2 rounded-full bg-white/95 backdrop-blur-xs border border-[#16382B]/15 text-[#16382B] hover:text-[#C29043] transition-colors shadow-2xs cursor-pointer active:scale-95"
+                className="absolute bottom-3 right-3 p-1.5 rounded-full bg-white/95 backdrop-blur-xs border border-[#16382B]/15 text-[#16382B] hover:text-[#C29043] transition-colors shadow-2xs cursor-pointer active:scale-95 z-10"
                 title="Share link"
               >
                 {copiedLink ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Share2 className="w-3.5 h-3.5" />}
               </button>
             </div>
+
+            {/* 3 THUMBNAILS ROW */}
+            <div className="grid grid-cols-3 gap-2.5 pt-0.5">
+              {galleryImages.slice(0, 3).map((imgUrl, idx) => {
+                const isSelected = idx === selectedImageIndex;
+                const angleLabels = [
+                  { en: 'Front View', ta: 'முன்புற தோற்றம்' },
+                  { en: 'Angle View', ta: 'பக்கவாட்டு தோற்றம்' },
+                  { en: 'Info & Back', ta: 'தகவல் / பின்புறம்' }
+                ];
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setSelectedImageIndex(idx)}
+                    className={`relative aspect-square rounded-2xl overflow-hidden bg-white border transition-all cursor-pointer p-1.5 flex flex-col items-center justify-between ${
+                      isSelected
+                        ? 'border-[#C29043] ring-2 ring-[#C29043] shadow-xs'
+                        : 'border-[#16382B]/15 hover:border-[#16382B]/40 opacity-80 hover:opacity-100'
+                    }`}
+                    aria-label={`View ${angleLabels[idx]?.en || `view ${idx + 1}`}`}
+                  >
+                    <div className="relative w-full flex-1 max-h-[80%]">
+                      <Image
+                        src={imgUrl}
+                        alt={`${product.name} view ${idx + 1}`}
+                        fill
+                        unoptimized
+                        className="object-contain"
+                      />
+                    </div>
+                    <span className={`text-[8.5px] font-semibold block truncate w-full text-center mt-1 ${
+                      isSelected ? 'text-[#C29043] font-bold' : 'text-[#8A9B93]'
+                    }`}>
+                      {language === 'ta' ? angleLabels[idx]?.ta : angleLabels[idx]?.en}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* FULLSCREEN LIGHTBOX MODAL */}
+            {isFullscreenOpen && (
+              <div
+                className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in"
+                onClick={() => setIsFullscreenOpen(false)}
+              >
+                <div
+                  className="relative max-w-2xl w-full max-h-[90vh] bg-white rounded-3xl p-6 flex flex-col items-center justify-center overflow-hidden shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="w-full flex items-center justify-between pb-3 border-b border-[#16382B]/10">
+                    <div>
+                      <h3 className="font-serif-brand font-bold text-base text-[#16382B]">
+                        {language === 'ta' ? product.tamilName : product.name}
+                      </h3>
+                      <span className="text-xs text-[#8A9B93]">
+                        {t(`Image ${selectedImageIndex + 1} of ${galleryImages.length}`, `படம் ${selectedImageIndex + 1} / ${galleryImages.length}`)}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsFullscreenOpen(false)}
+                      className="p-2 rounded-full hover:bg-gray-100 text-gray-700 cursor-pointer"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  <div className="relative w-full h-[60vh] my-4 flex items-center justify-center">
+                    <Image
+                      src={activeImage}
+                      alt={product.name}
+                      fill
+                      unoptimized
+                      className="object-contain"
+                    />
+                  </div>
+
+                  {galleryImages.length > 1 && (
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={handlePrevImage}
+                        className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-sm font-semibold flex items-center gap-1 cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>{t('Previous', 'முந்தைய')}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleNextImage}
+                        className="px-4 py-2 rounded-xl bg-[#16382B] text-white hover:bg-[#204C3B] text-sm font-semibold flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>{t('Next', 'அடுத்தது')}</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Compact Horizontal Trust Micro-Strip */}
             <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center text-[9.5px] sm:text-[10px] text-[#3D5A68]">
@@ -646,136 +864,182 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </div>
             </div>
 
-            {/* Price Box with Strikethrough MRP, Discount Badge, and Multi-Pack Savings */}
-            <div className="p-3 sm:p-4 bg-[#FAF8F5] rounded-xl border border-[#16382B]/10 space-y-2.5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[9px] uppercase font-bold text-[#8A9B93] tracking-wider block leading-none">
-                    {t('Price (Inclusive of all taxes)', 'விலை (வரிகள் உட்பட)')}
-                  </span>
-                  <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 mt-0.5">
-                    <span className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B]">
-                      ₹{product.price}
+            {/* Price Box with Strikethrough MRP, Discount Badge, and Multi-Pack Savings or Coming Soon */}
+            {product.isComingSoon ? (
+              <div className="p-4 sm:p-5 bg-[#FFFDF9] rounded-2xl border border-[#C29043]/40 shadow-xs space-y-3.5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300/60">
+                      <Clock className="w-3.5 h-3.5 text-amber-800" />
+                      <span>{t('Artisanal Preparation In Progress', 'பாரம்பரிய தயாரிப்பு முறையில் உள்ளது')}</span>
                     </span>
-                    <span className="text-xs sm:text-sm text-[#8A9B93] line-through">
-                      ₹{mrp}
-                    </span>
-                    <span className="text-[9.5px] sm:text-[10px] font-bold text-green-700 bg-green-50 border border-green-200 px-1.5 py-0.5 rounded">
-                      {discountPercent}% OFF • {t(`Save ₹${unitSavings}`, `₹${unitSavings} சேமிப்பு`)}
-                    </span>
+                    <div className="mt-2">
+                      <span className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B]">
+                        {product.price > 0 ? `Est. ₹${product.price}` : t('Price on Request', 'விலை விபரம் கோரலாம்')}
+                      </span>
+                      <p className="text-xs text-[#8A9B93] mt-0.5">
+                        {t('Classical formulation crafted in seasonal artisanal batches per Shodhana.', 'சுத்தி முறைப்படி குறிப்பிட்ட பருவத்தில் தயாரிக்கப்படும் உன்னத மருந்து.')}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="text-right">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] text-[10.5px] sm:text-[11px] font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#16382B]" />
-                    {t('In Stock', 'இருப்பில் உள்ளது')}
-                  </span>
-                  <p className="text-[10px] text-[#8A9B93] mt-1 flex items-center justify-end gap-1">
-                    <Truck className="w-3 h-3 text-[#C29043]" />
-                    {t('Dispatched in 24-48h', '24-48 மணிநேரத்தில் அஞ்சல்')}
+                <div className="p-3 bg-[#FAF8F5] rounded-xl border border-[#16382B]/10 text-xs text-[#264653] space-y-1">
+                  <p className="font-semibold text-[#16382B]">
+                    {t('Direct WhatsApp Order & Availability Desk:', 'நேரடி வாட்ஸ்அப் பதிவு & இருப்பு தகவல்:')}
+                  </p>
+                  <p className="text-[#3D5A68]">
+                    {t(
+                      'You can enquire about batch readiness, reserve stock, or consult our Siddha desk for clinical guidance.',
+                      'மருந்து தயாராகும் தேதி அறிய அல்லது முன்பதிவு செய்ய எங்கள் மருத்துவ உதவியாளரை தொடர்பு கொள்ளவும்.'
+                    )}
                   </p>
                 </div>
-              </div>
 
-              {/* Duo Pack Volume Incentive */}
-              <div className="flex items-center justify-between text-[10.5px] bg-[#FFF9F0] border border-[#C29043]/30 px-2.5 py-1.5 rounded-lg text-[#8B5E14]">
-                <span className="flex items-center gap-1.5 truncate">
-                  <Tag className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-                  <span className="truncate">
-                    {t(`Select 2+ boxes for extra 5% Duo Savings (Save ₹${duoSavings})`, `2 பெட்டிகள் எடுத்தால் 5% கூடுதல் தள்ளுபடி (₹${duoSavings} சேமிப்பு)`)}
-                  </span>
-                </span>
-                {quantity === 1 && (
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(2)}
-                    className="font-bold text-[#16382B] hover:text-[#C29043] underline cursor-pointer text-[10px] whitespace-nowrap ml-1.5"
-                  >
-                    {t('+ Make it 2', '+2 ஆக்கு')}
-                  </button>
-                )}
-              </div>
-
-              {/* Free Tamil Nadu Shipping Meter */}
-              <div className="pt-2 border-t border-[#16382B]/10">
-                <div className="flex items-center justify-between text-[10.5px] sm:text-[11px] mb-1">
-                  <span className="text-[#3D5A68] font-medium flex items-center gap-1.5 truncate">
-                    <Truck className={`w-3.5 h-3.5 flex-shrink-0 ${qualifiesForFreeShipping ? 'text-green-600' : 'text-[#C29043]'}`} />
-                    {qualifiesForFreeShipping ? (
-                      <span className="text-green-700 font-bold flex items-center gap-1 truncate">
-                        <Check className="w-3 h-3 flex-shrink-0" />
-                        {t('FREE Delivery across Tamil Nadu Unlocked! (Saved ₹40)', 'தமிழ்நாடு முழுவதும் இலவச அஞ்சல் தகுதி! (₹40 சேமிப்பு)')}
-                      </span>
-                    ) : (
-                      <span className="truncate">
-                        {t(`Add ₹${amountToFreeShipping} more for FREE Delivery`, `இலவச அஞ்சலுக்கு இன்னும் ₹${amountToFreeShipping} சேர்க்கவும்`)}
-                      </span>
-                    )}
-                  </span>
-                  <span className={`font-bold ml-1.5 ${qualifiesForFreeShipping ? 'text-green-700' : 'text-[#16382B]'}`}>
-                    {freeShippingProgress}%
-                  </span>
-                </div>
-
-                <div className="w-full h-1.5 rounded-full bg-[#16382B]/10 overflow-hidden">
-                  <div
-                    className={`h-full rounded-full transition-all duration-300 ${
-                      qualifiesForFreeShipping ? 'bg-green-600' : 'bg-[#16382B]'
-                    }`}
-                    style={{ width: `${freeShippingProgress}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Quantity Selector & Primary Actions */}
-            <div className="space-y-2.5 pt-0.5">
-              <div className="flex items-center gap-2 sm:gap-3">
-                {/* Quantity Stepper */}
-                <div className="h-11 flex items-center border border-[#16382B]/20 rounded-xl bg-[#FAF8F5] overflow-hidden flex-shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-2.5 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex items-center justify-center"
-                    aria-label="Decrease quantity"
-                  >
-                    <Minus className="w-3.5 h-3.5" />
-                  </button>
-                  <span className="px-2.5 text-xs font-bold text-[#16382B]">
-                    {quantity}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="px-2.5 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex items-center justify-center"
-                    aria-label="Increase quantity"
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {/* Add to Cart */}
-                <button
-                  type="button"
-                  onClick={handleAddToCart}
-                  className="h-11 flex-1 px-3 sm:px-4 rounded-xl bg-[#16382B] hover:bg-[#204C3B] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 shadow-xs transition-all cursor-pointer"
+                <a
+                  href={`https://wa.me/919171508042?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, I want to enquire/reserve: ${product.name} (${product.tamilName}).`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full h-12 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
                 >
-                  <ShoppingBag className="w-4 h-4" />
-                  <span>{t('Add to Cart', 'கூடையில் சேர்க்க')}</span>
-                </button>
-
-                {/* Buy Now */}
-                <button
-                  type="button"
-                  onClick={handleBuyNow}
-                  className="h-11 flex-1 px-3 sm:px-4 rounded-xl bg-[#C29043] hover:bg-[#DFB36C] active:scale-[0.98] text-[#16382B] text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 shadow-xs transition-all cursor-pointer"
-                >
-                  <Zap className="w-4 h-4" />
-                  <span>{t('Buy Now', 'உடனடியாக வாங்க')}</span>
-                </button>
+                  <MessageCircle className="w-5 h-5" />
+                  <span>{t('Enquire / Reserve on WhatsApp', 'வாட்ஸ்அப்பில் முன்பதிவு செய்ய / விசாரிக்க')}</span>
+                </a>
               </div>
-            </div>
+            ) : (
+              <div className="p-3 sm:p-4 bg-[#FAF8F5] rounded-xl border border-[#16382B]/10 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-[9px] uppercase font-bold text-[#8A9B93] tracking-wider block leading-none">
+                      {t('Price (Inclusive of all taxes)', 'விலை (வரிகள் உட்பட)')}
+                    </span>
+                    <div className="flex flex-wrap items-baseline gap-1.5 sm:gap-2 mt-0.5">
+                      <span className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B]">
+                        ₹{product.price}
+                      </span>
+                      <span className="text-xs sm:text-sm text-[#8A9B93] line-through">
+                        ₹{mrp}
+                      </span>
+                      <span className="text-[9.5px] sm:text-[10px] font-bold text-green-700 bg-green-50 border border-green-200 px-1.5 py-0.5 rounded">
+                        {discountPercent}% OFF • {t(`Save ₹${unitSavings}`, `₹${unitSavings} சேமிப்பு`)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="text-right">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] text-[10.5px] sm:text-[11px] font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#16382B]" />
+                      {t('In Stock', 'இருப்பில் உள்ளது')}
+                    </span>
+                    <p className="text-[10px] text-[#8A9B93] mt-1 flex items-center justify-end gap-1">
+                      <Truck className="w-3 h-3 text-[#C29043]" />
+                      {t('Dispatched in 24-48h', '24-48 மணிநேரத்தில் அஞ்சல்')}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Duo Pack Volume Incentive */}
+                <div className="flex items-center justify-between text-[10.5px] bg-[#FFF9F0] border border-[#C29043]/30 px-2.5 py-1.5 rounded-lg text-[#8B5E14]">
+                  <span className="flex items-center gap-1.5 truncate">
+                    <Tag className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
+                    <span className="truncate">
+                      {t(`Select 2+ boxes for extra 5% Duo Savings (Save ₹${duoSavings})`, `2 பெட்டிகள் எடுத்தால் 5% கூடுதல் தள்ளுபடி (₹${duoSavings} சேமிப்பு)`)}
+                    </span>
+                  </span>
+                  {quantity === 1 && (
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(2)}
+                      className="font-bold text-[#16382B] hover:text-[#C29043] underline cursor-pointer text-[10px] whitespace-nowrap ml-1.5"
+                    >
+                      {t('+ Make it 2', '+2 ஆக்கு')}
+                    </button>
+                  )}
+                </div>
+
+                {/* Free Tamil Nadu Shipping Meter */}
+                <div className="pt-2 border-t border-[#16382B]/10">
+                  <div className="flex items-center justify-between text-[10.5px] sm:text-[11px] mb-1">
+                    <span className="text-[#3D5A68] font-medium flex items-center gap-1.5 truncate">
+                      <Truck className={`w-3.5 h-3.5 flex-shrink-0 ${qualifiesForFreeShipping ? 'text-green-600' : 'text-[#C29043]'}`} />
+                      {qualifiesForFreeShipping ? (
+                        <span className="text-green-700 font-bold flex items-center gap-1 truncate">
+                          <Check className="w-3 h-3 flex-shrink-0" />
+                          {t('FREE Delivery across Tamil Nadu Unlocked! (Saved ₹40)', 'தமிழ்நாடு முழுவதும் இலவச அஞ்சல் தகுதி! (₹40 சேமிப்பு)')}
+                        </span>
+                      ) : (
+                        <span className="truncate">
+                          {t(`Add ₹${amountToFreeShipping} more for FREE Delivery`, `இலவச அஞ்சலுக்கு இன்னும் ₹${amountToFreeShipping} சேர்க்கவும்`)}
+                        </span>
+                      )}
+                    </span>
+                    <span className={`font-bold ml-1.5 ${qualifiesForFreeShipping ? 'text-green-700' : 'text-[#16382B]'}`}>
+                      {freeShippingProgress}%
+                    </span>
+                  </div>
+
+                  <div className="w-full h-1.5 rounded-full bg-[#16382B]/10 overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all duration-300 ${
+                        qualifiesForFreeShipping ? 'bg-green-600' : 'bg-[#16382B]'
+                      }`}
+                      style={{ width: `${freeShippingProgress}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Quantity Selector & Primary Actions for Available Stock */}
+            {!product.isComingSoon && (
+              <div className="space-y-2.5 pt-0.5">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  {/* Quantity Stepper */}
+                  <div className="h-11 flex items-center border border-[#16382B]/20 rounded-xl bg-[#FAF8F5] overflow-hidden flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="px-2.5 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex items-center justify-center"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="px-2.5 text-xs font-bold text-[#16382B]">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="px-2.5 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex items-center justify-center"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Add to Cart */}
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="h-11 flex-1 px-3 sm:px-4 rounded-xl bg-[#16382B] hover:bg-[#204C3B] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 shadow-xs transition-all cursor-pointer"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>{t('Add to Cart', 'கூடையில் சேர்க்க')}</span>
+                  </button>
+
+                  {/* Buy Now */}
+                  <button
+                    type="button"
+                    onClick={handleBuyNow}
+                    className="h-11 flex-1 px-3 sm:px-4 rounded-xl bg-[#C29043] hover:bg-[#DFB36C] active:scale-[0.98] text-[#16382B] text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 shadow-xs transition-all cursor-pointer"
+                  >
+                    <Zap className="w-4 h-4" />
+                    <span>{t('Buy Now', 'உடனடியாக வாங்க')}</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
 
             {/* Pincode & Delivery Estimator Component (All 38 TN Districts) */}
             <PincodeDeliveryEstimator />
@@ -904,37 +1168,58 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             {language === 'ta' ? product.packSizeTa : product.packSize}
           </span>
           <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="font-serif-brand font-bold text-base text-[#16382B]">
-              ₹{product.price * quantity}
-            </span>
-            <span className="text-[10px] text-[#8A9B93] line-through">
-              ₹{mrp * quantity}
-            </span>
-            <span className="text-[8.5px] font-bold text-green-700 bg-green-50 px-1 rounded">
-              {discountPercent}% OFF
-            </span>
+            {product.isComingSoon ? (
+              <span className="font-serif-brand font-bold text-sm text-[#16382B]">
+                {product.price > 0 ? `Est. ₹${product.price}` : t('Coming Soon', 'தயாரிப்பில்')}
+              </span>
+            ) : (
+              <>
+                <span className="font-serif-brand font-bold text-base text-[#16382B]">
+                  ₹{product.price * quantity}
+                </span>
+                <span className="text-[10px] text-[#8A9B93] line-through">
+                  ₹{mrp * quantity}
+                </span>
+                <span className="text-[8.5px] font-bold text-green-700 bg-green-50 px-1 rounded">
+                  {discountPercent}% OFF
+                </span>
+              </>
+            )}
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          <button
-            type="button"
-            onClick={handleAddToCart}
-            className="h-10 px-3 rounded-xl bg-[#16382B] text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all shadow-xs"
+        {product.isComingSoon ? (
+          <a
+            href={`https://wa.me/919171508042?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, I want to enquire about: ${product.name} (${product.tamilName}).`)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="h-10 px-4 rounded-xl bg-[#25D366] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all shadow-xs"
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>{t('Add to Cart', 'சேர்க்க')}</span>
-          </button>
-          <button
-            type="button"
-            onClick={handleBuyNow}
-            className="h-10 px-3 rounded-xl bg-[#C29043] text-[#16382B] text-xs font-bold cursor-pointer active:scale-95 transition-all shadow-xs flex items-center gap-1"
-          >
-            <Zap className="w-3.5 h-3.5" />
-            <span>{t('Buy Now', 'வாங்க')}</span>
-          </button>
-        </div>
+            <MessageCircle className="w-4 h-4" />
+            <span>{t('Enquire WhatsApp', 'விசாரிக்க')}</span>
+          </a>
+        ) : (
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleAddToCart}
+              className="h-10 px-3 rounded-xl bg-[#16382B] text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all shadow-xs"
+            >
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span>{t('Add to Cart', 'சேர்க்க')}</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleBuyNow}
+              className="h-10 px-3 rounded-xl bg-[#C29043] text-[#16382B] text-xs font-bold cursor-pointer active:scale-95 transition-all shadow-xs flex items-center gap-1"
+            >
+              <Zap className="w-3.5 h-3.5" />
+              <span>{t('Buy Now', 'வாங்க')}</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+

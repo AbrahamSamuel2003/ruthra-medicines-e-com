@@ -1,12 +1,37 @@
+export type MedicalSystem = 'siddha' | 'ayurveda' | 'proprietary';
+
 export type FormulationType = 
+  // Siddha Formulations
   | 'Chooranam'
   | 'Kudineer'
-  | 'Capsules'
+  | 'Kudineer Chooranam'
+  | 'Legiyam'
+  | 'Maathirai'
+  | 'Rasayanam'
+  | 'Vadagam'
+  | 'Nei'
+  | 'Mezhugu'
+  | 'Parpam'
+  | 'Theeneer'
+  | 'Manapagu'
+  | 'Vennai'
   | 'Thailam'
+  // Ayurveda Formulations
+  | 'Churna'
+  | 'Kwatha Churna'
+  | 'Vati'
+  | 'Lehyam'
+  | 'Tailam'
+  | 'Ghritam'
+  | 'Asavam / Arishta'
+  | 'Single Herb'
+  // Proprietary & Specialty
+  | 'Capsules'
   | 'Syrups'
   | 'Drops'
   | 'Syrup & Kashayam'
-  | 'Personal Care';
+  | 'Personal Care'
+  | 'Proprietary';
 
 export type ConcernSlug = 
   | 'joint-mobility'
@@ -45,8 +70,10 @@ export interface Product {
   name: string;
   tamilName: string;
   slug: string;
+  medicalSystem?: MedicalSystem;
   formulation: FormulationType;
   formulationTa: string;
+  categoryGroup?: string;
   concerns: ConcernSlug[];
   price: number;
   originalPrice?: number;
@@ -61,6 +88,9 @@ export interface Product {
   badge?: string;
   badgeTa?: string;
   image: string;
+  images?: string[];
+  gallery?: string[];
+  isComingSoon?: boolean;
   ingredients: IngredientItem[];
   howToUse: UseStep[];
   dosage: {

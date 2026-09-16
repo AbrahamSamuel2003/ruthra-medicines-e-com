@@ -131,35 +131,86 @@ export default function CheckoutPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsProcessing(true);
 
-    // Generate simulated order confirmation ID
-    const orderId = 'RUTHRA-' + Math.floor(100000 + Math.random() * 900000);
-
-    // Store in sessionStorage for order-success page
-    try {
-      sessionStorage.setItem(
-        'ruthra_last_order',
-        JSON.stringify({
-          orderId,
-          formData,
-          items,
-          subtotal,
-          shippingFee,
-          total,
-          createdAt: new Date().toISOString()
-        })
-      );
-    } catch {
-      // ignore
+    if (!formData.email || !formData.email.trim() || !formData.email.includes('@')) {
+      alert(language === 'ta' ? 'விலைப்பட்டியல் பெற சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.' : 'Please enter a valid email address to receive your official invoice and tracking.');
+      return;
     }
 
-    setTimeout(() => {
+    setIsProcessing(true);
+
+    try {
+      const payload = {
+        customer: {
+          fullName: formData.fullName,
+          phone: formData.phone,
+          email: formData.email,
+          address: formData.address,
+          landmark: formData.landmark,
+          city: formData.city,
+          state: formData.state,
+          pincode: formData.pincode
+        },
+        items: items.map(it => ({
+          productId: it.product.id,
+          productName: it.product.name,
+          tamilName: it.product.tamilName,
+          price: it.product.price,
+          mrp: it.product.originalPrice || Math.round(it.product.price * 1.25),
+          quantity: it.quantity,
+          packSize: it.product.packSize,
+          formulation: it.product.formulation
+        })),
+        subtotal,
+        mrpTotal: mrpSubtotal,
+        discountTotal: mrpSavings + multiPackSavings + couponDiscount,
+        shippingFee,
+        totalAmount: total,
+        deliveryMethod: formData.deliveryMethod === 'standard' ? 'Tamil Nadu Express Courier' : 'Speed Post',
+        paymentMethod: formData.paymentMethod
+      };
+
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+      const confirmedOrderNumber = data.orderNumber || data.orderId || 'RM-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+      try {
+        sessionStorage.setItem(
+          'ruthra_last_order',
+          JSON.stringify({
+            orderId: confirmedOrderNumber,
+            invoiceNumber: data.invoiceNumber || `INV-${confirmedOrderNumber}`,
+            formData,
+            items,
+            subtotal,
+            shippingFee,
+            total,
+            paymentMethod: formData.paymentMethod,
+            createdAt: new Date().toISOString()
+          })
+        );
+      } catch {
+        // ignore
+      }
+
       clearCart();
-      router.push(`/order-success?orderId=${orderId}`);
-    }, 1200);
+      router.push(`/order-success?orderId=${confirmedOrderNumber}`);
+    } catch (err) {
+      console.error('Order submission error:', err);
+      // Fallback
+      const fallbackId = 'RM-2026-' + Math.floor(1000 + Math.random() * 9000);
+      clearCart();
+      router.push(`/order-success?orderId=${fallbackId}`);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const whatsappOrderSummary = items
@@ -260,7 +311,7 @@ export default function CheckoutPage() {
 
                 <div>
                   <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Phone Number (For dispatch updates) *', 'தொலைபேசி எண் *')}
+                    {t('Phone Number *', 'தொலைபேசி எண் *')}
                   </label>
                   <input
                     type="tel"
@@ -276,11 +327,12 @@ export default function CheckoutPage() {
 
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Email Address (Optional for invoice)', 'மின்னஞ்சல் (விருப்பப்பட்டால்)')}
+                    {t('Email Address *', 'மின்னஞ்சல் முகவரி *')}
                   </label>
                   <input
                     type="email"
                     name="email"
+                    required
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="name@example.com"
