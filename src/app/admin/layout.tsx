@@ -214,8 +214,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           })}
         </nav>
 
-        {/* Sidebar Bottom: Admin Profile Info */}
-        <div className="p-4 border-t border-white/10">
+        {/* Sidebar Bottom: Admin Profile Info & Partner Attribution */}
+        <div className="p-4 border-t border-white/10 space-y-3">
           <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#DFB36C] to-[#C29043] text-[#16382B] flex items-center justify-center font-bold text-xs shadow-xs">
               <ShieldCheck className="w-4 h-4" />
@@ -224,6 +224,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <span className="text-xs font-bold text-white block truncate">Master Admin</span>
               <span className="text-[10px] text-[#DFB36C] font-mono block truncate">admin1234@gmail.com</span>
             </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href="https://ss40network.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] text-white/50 hover:text-[#DFB36C] transition-colors inline-block tracking-wide"
+            >
+              Powered by <span className="font-semibold text-white/70 hover:text-[#DFB36C]">SS40 NETWORK</span>
+            </a>
           </div>
         </div>
       </aside>

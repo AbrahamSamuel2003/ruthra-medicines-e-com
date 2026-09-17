@@ -188,12 +188,27 @@ export default function Footer() {
         </div>
 
         {/* Bottom Sub-footer */}
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 text-xs text-white/60 text-center md:text-left">
-          <div>
-            © {new Date().getFullYear()} Ruthra Medicines, Tirunelveli. {t('All Rights Reserved.', 'அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.')}
+        <div className="pt-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-white/60 text-center lg:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <span>
+              © {new Date().getFullYear()} Ruthra Medicines, Tirunelveli. {t('All Rights Reserved.', 'அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.')}
+            </span>
+            <span className="hidden sm:inline text-white/20">•</span>
+            <span className="text-[11px] text-[#DFB36C]">
+              {t('Developed by', 'உருவாக்கம்:')}{' '}
+              <a
+                href="https://ss40network.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#DFB36C] hover:text-white transition-colors underline decoration-[#DFB36C]/40 hover:decoration-white underline-offset-2"
+                title="SS40 NETWORK PRIVATE LIMITED - Digital Platform & Cloud Infrastructure"
+              >
+                SS40 NETWORK PRIVATE LIMITED
+              </a>
+            </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-2 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center lg:justify-end gap-x-4 gap-y-2 text-[11px]">
             <Link href="/shipping" className="hover:text-white transition-colors">
               {t('Shipping Policy', 'அஞ்சல் விபரம்')}
             </Link>

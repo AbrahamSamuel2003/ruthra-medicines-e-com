@@ -210,8 +210,8 @@ export default function AdminLoginPage() {
             </form>
           </div>
 
-          {/* Bottom Storefront Link */}
-          <div className="pt-3 mt-2 border-t border-[#16382B]/10 text-center">
+          {/* Bottom Storefront & Technical Partner Links */}
+          <div className="pt-3 mt-2 border-t border-[#16382B]/10 text-center space-y-2">
             <Link
               href="/"
               className="text-[11px] sm:text-xs text-[#5C7368] hover:text-[#16382B] font-semibold transition-colors inline-flex items-center gap-1.5"
@@ -219,6 +219,18 @@ export default function AdminLoginPage() {
               <ArrowLeft className="w-3.5 h-3.5 text-[#C29043]" />
               <span>Back to Customer Store</span>
             </Link>
+
+            <div className="text-[10px] text-[#8A9B93]">
+              Cloud Architecture & Infrastructure by{' '}
+              <a
+                href="https://ss40network.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#16382B] hover:text-[#C29043] transition-colors underline decoration-[#16382B]/30 underline-offset-2"
+              >
+                SS40 NETWORK PRIVATE LIMITED
+              </a>
+            </div>
           </div>
         </div>
 
