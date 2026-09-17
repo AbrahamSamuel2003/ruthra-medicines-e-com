@@ -187,47 +187,48 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Sub-footer */}
-        <div className="pt-6 flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-white/60 text-center lg:text-left">
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
-            <span>
-              © {new Date().getFullYear()} Ruthra Medicines, Tirunelveli. {t('All Rights Reserved.', 'அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.')}
-            </span>
-            <span className="hidden sm:inline text-white/20">•</span>
-            <span className="text-[11px] text-[#DFB36C]">
-              {t('Developed by', 'உருவாக்கம்:')}{' '}
-              <a
-                href="https://ss40network.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#DFB36C] hover:text-white transition-colors underline decoration-[#DFB36C]/40 hover:decoration-white underline-offset-2"
-                title="SS40 NETWORK PRIVATE LIMITED - Digital Platform & Cloud Infrastructure"
-              >
-                SS40 NETWORK PRIVATE LIMITED
-              </a>
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center lg:justify-end gap-x-4 gap-y-2 text-[11px]">
-            <Link href="/shipping" className="hover:text-white transition-colors">
-              {t('Shipping Policy', 'அஞ்சல் விபரம்')}
-            </Link>
-            <Link href="/returns" className="hover:text-white transition-colors">
-              {t('Returns & Refunds', 'ரீஃபண்ட் கொள்கை')}
-            </Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">
-              {t('Privacy Policy', 'தனியுரிமை')}
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
-              {t('Terms of Service', 'விதிமுறைகள்')}
-            </Link>
-            <Link href="/faq" className="hover:text-white transition-colors">
-              {t('FAQ', 'கேள்வி பதில்')}
-            </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
-              {t('Contact Us', 'தொடர்பு')}
-            </Link>
-          </div>
+        {/* Bottom Sub-footer: Single Centralized Line with Proper Spacing */}
+        <div className="pt-6 pb-2 flex flex-wrap items-center justify-center gap-x-2 lg:gap-x-2.5 gap-y-1.5 text-center text-[10.5px] sm:text-[11px] lg:text-[11.5px] text-white/70">
+          <span className="whitespace-nowrap">
+            © {new Date().getFullYear()} Ruthra Medicines, Tirunelveli.
+          </span>
+          <span className="text-[#C29043]/60">•</span>
+          <span className="text-[#DFB36C] whitespace-nowrap">
+            {t('Developed by', 'உருவாக்கம்:')}{' '}
+            <a
+              href="https://ss40network.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-[#DFB36C] hover:text-white transition-colors underline decoration-[#DFB36C]/40 hover:decoration-white underline-offset-2"
+              title="SS40 NETWORK PRIVATE LIMITED"
+            >
+              SS40 NETWORK PRIVATE LIMITED
+            </a>
+          </span>
+          <span className="text-white/25">•</span>
+          <Link href="/shipping" className="hover:text-white transition-colors whitespace-nowrap">
+            {t('Shipping Policy', 'அஞ்சல் விபரம்')}
+          </Link>
+          <span className="text-white/25">•</span>
+          <Link href="/returns" className="hover:text-white transition-colors whitespace-nowrap">
+            {t('Returns & Refunds', 'ரீஃபண்ட் கொள்கை')}
+          </Link>
+          <span className="text-white/25">•</span>
+          <Link href="/privacy" className="hover:text-white transition-colors whitespace-nowrap">
+            {t('Privacy Policy', 'தனியுரிமை')}
+          </Link>
+          <span className="text-white/25">•</span>
+          <Link href="/terms" className="hover:text-white transition-colors whitespace-nowrap">
+            {t('Terms of Service', 'விதிமுறைகள்')}
+          </Link>
+          <span className="text-white/25">•</span>
+          <Link href="/faq" className="hover:text-white transition-colors whitespace-nowrap">
+            {t('FAQ', 'கேள்வி பதில்')}
+          </Link>
+          <span className="text-white/25">•</span>
+          <Link href="/contact" className="hover:text-white transition-colors whitespace-nowrap">
+            {t('Contact Us', 'தொடர்பு')}
+          </Link>
         </div>
       </div>
     </footer>
