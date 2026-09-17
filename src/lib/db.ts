@@ -1,4 +1,6 @@
 import { prisma } from './prisma';
+import { PRODUCTS } from '@/data/products';
+import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES } from '@/data/categories';
 import { 
   Order, 
   Customer, 
@@ -154,7 +156,8 @@ function mapPrismaOrderToApp(o: any): Order {
    ========================================================================= */
 
 /**
- * Retrieves catalog products from PostgreSQL with optional filtering
+ * Retrieves catalog products from PostgreSQL with optional filtering,
+ * with automatic fallback to static master products if database is unreachable or empty.
  */
 export async function getProducts(filter?: {
   search?: string;
@@ -183,33 +186,72 @@ export async function getProducts(filter?: {
       orderBy: { id: 'asc' }
     });
 
-    let list = prismaProducts.map(mapPrismaProductToApp);
+    if (prismaProducts && prismaProducts.length > 0) {
+      let list = prismaProducts.map(mapPrismaProductToApp);
 
-    if (filter?.concern && filter.concern !== 'ALL') {
-      list = list.filter(p => p.concerns && p.concerns.includes(filter.concern as any));
+      if (filter?.concern && filter.concern !== 'ALL') {
+        list = list.filter(p => p.concerns && p.concerns.includes(filter.concern as any));
+      }
+
+      if (filter?.search) {
+        const q = filter.search.toLowerCase().trim();
+        list = list.filter(p => 
+          p.name.toLowerCase().includes(q) ||
+          p.tamilName.includes(q) ||
+          p.slug.toLowerCase().includes(q) ||
+          p.id.toLowerCase().includes(q) ||
+          p.searchKeywords?.some(k => k.toLowerCase().includes(q)) ||
+          p.tamilKeywords?.some(k => k.includes(q))
+        );
+      }
+
+      return list;
     }
-
-    if (filter?.search) {
-      const q = filter.search.toLowerCase().trim();
-      list = list.filter(p => 
-        p.name.toLowerCase().includes(q) ||
-        p.tamilName.includes(q) ||
-        p.slug.toLowerCase().includes(q) ||
-        p.id.toLowerCase().includes(q) ||
-        p.searchKeywords?.some(k => k.toLowerCase().includes(q)) ||
-        p.tamilKeywords?.some(k => k.includes(q))
-      );
-    }
-
-    return list;
   } catch (err) {
-    console.error('Failed to get products from PostgreSQL:', err);
-    return [];
+    console.warn('PostgreSQL products query fallback to master catalog:', err);
   }
+
+  // Fallback to static in-memory products
+  let list = [...PRODUCTS];
+
+  if (filter?.medicalSystem && filter.medicalSystem !== 'ALL') {
+    const sys = filter.medicalSystem.toLowerCase();
+    list = list.filter(p => p.medicalSystem?.toLowerCase() === sys);
+  }
+
+  if (filter?.formulation && filter.formulation !== 'ALL') {
+    const form = filter.formulation.toLowerCase();
+    list = list.filter(p => 
+      p.formulation?.toLowerCase() === form ||
+      (p.categoryGroup && p.categoryGroup.toLowerCase() === form)
+    );
+  }
+
+  if (filter?.featured !== undefined) {
+    list = list.filter(p => Boolean(p.featured) === filter.featured);
+  }
+
+  if (filter?.concern && filter.concern !== 'ALL') {
+    list = list.filter(p => p.concerns && p.concerns.includes(filter.concern as any));
+  }
+
+  if (filter?.search) {
+    const q = filter.search.toLowerCase().trim();
+    list = list.filter(p => 
+      p.name.toLowerCase().includes(q) ||
+      p.tamilName.includes(q) ||
+      p.slug.toLowerCase().includes(q) ||
+      p.id.toLowerCase().includes(q) ||
+      p.searchKeywords?.some(k => k.toLowerCase().includes(q)) ||
+      p.tamilKeywords?.some(k => k.includes(q))
+    );
+  }
+
+  return list;
 }
 
 /**
- * Retrieves a single product by its unique SKU/ID from PostgreSQL
+ * Retrieves a single product by its unique SKU/ID from PostgreSQL with static fallback
  */
 export async function getProductById(id: string): Promise<Product | null> {
   try {
@@ -218,13 +260,13 @@ export async function getProductById(id: string): Promise<Product | null> {
     });
     if (p) return mapPrismaProductToApp(p);
   } catch (err) {
-    console.error(`Failed to get product ${id} from PostgreSQL:`, err);
+    console.warn(`PostgreSQL getProductById(${id}) fallback:`, err);
   }
-  return null;
+  return PRODUCTS.find(p => p.id === id) || null;
 }
 
 /**
- * Retrieves a single product by its URL-friendly slug from PostgreSQL
+ * Retrieves a single product by its URL-friendly slug from PostgreSQL with static fallback
  */
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   try {
@@ -233,9 +275,9 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     });
     if (p) return mapPrismaProductToApp(p);
   } catch (err) {
-    console.error(`Failed to get product slug ${slug} from PostgreSQL:`, err);
+    console.warn(`PostgreSQL getProductBySlug(${slug}) fallback:`, err);
   }
-  return null;
+  return PRODUCTS.find(p => p.slug === slug) || null;
 }
 
 /**
@@ -333,7 +375,7 @@ export async function deleteProduct(id: string): Promise<boolean> {
 }
 
 /**
- * Retrieves all categories with live item counts from PostgreSQL
+ * Retrieves all categories with live item counts from PostgreSQL with static fallback
  */
 export async function getCategories(medicalSystem?: string) {
   try {
@@ -346,24 +388,37 @@ export async function getCategories(medicalSystem?: string) {
       orderBy: { title: 'asc' }
     });
 
-    const prods = await prisma.product.findMany({
-      select: { categoryGroup: true, formulation: true, medicalSystem: true }
-    });
+    if (categories && categories.length > 0) {
+      const prods = await prisma.product.findMany({
+        select: { categoryGroup: true, formulation: true, medicalSystem: true }
+      });
 
-    return categories.map(c => {
-      const count = prods.filter(p => 
-        (p.categoryGroup && p.categoryGroup.toLowerCase() === c.slug.toLowerCase()) ||
-        (p.formulation && p.formulation.toLowerCase() === c.title.toLowerCase())
-      ).length;
-      return {
-        ...c,
-        itemCount: count > 0 ? count : c.itemCount
-      };
-    });
+      return categories.map(c => {
+        const count = prods.filter(p => 
+          (p.categoryGroup && p.categoryGroup.toLowerCase() === c.slug.toLowerCase()) ||
+          (p.formulation && p.formulation.toLowerCase() === c.title.toLowerCase())
+        ).length;
+        return {
+          ...c,
+          itemCount: count > 0 ? count : c.itemCount
+        };
+      });
+    }
   } catch (err) {
-    console.error('Failed to get categories from PostgreSQL:', err);
-    return [];
+    console.warn('PostgreSQL getCategories fallback to master categories:', err);
   }
+
+  // Fallback to static nav categories
+  const sys = medicalSystem?.toUpperCase();
+  const allCats = [
+    ...SIDDHA_NAV_CATEGORIES.map(c => ({ id: `cat-${c.slug}`, slug: c.slug, title: c.title, titleTa: c.titleTa, medicalSystem: 'SIDDHA', description: c.desc, itemCount: c.count })),
+    ...AYURVEDA_NAV_CATEGORIES.map(c => ({ id: `cat-${c.slug}`, slug: c.slug, title: c.title, titleTa: c.titleTa, medicalSystem: 'AYURVEDA', description: c.desc, itemCount: c.count }))
+  ];
+
+  if (sys && sys !== 'ALL') {
+    return allCats.filter(c => c.medicalSystem === sys);
+  }
+  return allCats;
 }
 
 /**
