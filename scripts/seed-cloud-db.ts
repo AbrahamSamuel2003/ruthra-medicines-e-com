@@ -21,7 +21,13 @@ try {
   // fallback
 }
 
-const pool = new Pool({ connectionString });
+const isCloud = connectionString.includes('supabase') || connectionString.includes('pooler');
+const cleanConnectionString = connectionString.replace(/[?&]sslmode=[^&]+/g, '');
+
+const pool = new Pool({ 
+  connectionString: cleanConnectionString,
+  ...(isCloud ? { ssl: { rejectUnauthorized: false } } : {})
+});
 const adapter = new PrismaPg(pool, { schema });
 const prisma = new PrismaClient({ adapter });
 
