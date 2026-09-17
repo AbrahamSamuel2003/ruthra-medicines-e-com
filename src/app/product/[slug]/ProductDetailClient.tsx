@@ -11,6 +11,7 @@ import {
   Minus,
   ShieldCheck,
   AlertTriangle,
+  AlertCircle,
   Clock,
   HelpCircle,
   Share2,
@@ -53,25 +54,32 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const [copiedLink, setCopiedLink] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
 
+  const isComingSoon = Boolean(product.isComingSoon);
+  const stockCount = product.stock !== undefined ? product.stock : 20;
+  const isOutOfStock = !isComingSoon && (!product.inStock || stockCount <= 0);
+  const isLowStock = !isComingSoon && !isOutOfStock && stockCount <= 10;
+  const maxQuantity = Math.max(1, Math.min(stockCount > 0 ? stockCount : 1, 10));
+
+  const fallbackImg = '/images/ruthra-icon.png';
   // Cache-busting version so new AI packaging graphics are never superseded by stale Next.js cache
   const CACHE_VERSION = 'v=ruthra-20260916-2';
-  const getBustedUrl = (url: string) => {
-    if (!url) return url;
+  const getBustedUrl = (url?: string | null) => {
+    if (!url || !url.trim()) return fallbackImg;
     return url.includes('?') ? `${url}&${CACHE_VERSION}` : `${url}?${CACHE_VERSION}`;
   };
-
-  // Gallery resolution (ensuring exactly 3 angles matching reference)
   const rawList = (product.images && product.images.length > 0
     ? product.images
     : product.gallery && product.gallery.length > 0
     ? product.gallery
-    : [product.image]).map(getBustedUrl);
+    : [product.image || fallbackImg])
+    .filter(Boolean)
+    .map(getBustedUrl);
 
   const galleryImages = rawList.length >= 3
     ? rawList.slice(0, 3)
-    : [rawList[0], rawList[1] || rawList[0], rawList[2] || rawList[0]];
+    : [rawList[0] || fallbackImg, rawList[1] || rawList[0] || fallbackImg, rawList[2] || rawList[0] || fallbackImg];
 
-  const activeImage = galleryImages[selectedImageIndex] || galleryImages[0];
+  const activeImage = galleryImages[selectedImageIndex] || galleryImages[0] || fallbackImg;
 
   useEffect(() => {
     setSelectedImageIndex(0);
@@ -523,52 +531,72 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             <div className="flex items-center gap-3 flex-shrink-0">
               <div className="text-right">
                 <span className="font-serif-brand font-bold text-sm sm:text-base text-[#16382B]">
-                  ₹{product.price * quantity}
+                  {product.price > 0 ? `₹${product.price * quantity}` : t('Price on Request', 'விலை விபரம் கோரலாம்')}
                 </span>
-                <span className="text-[10px] text-[#8A9B93] line-through ml-1.5">
-                  ₹{mrp * quantity}
-                </span>
+                {mrp > product.price && (
+                  <span className="text-[10px] text-[#8A9B93] line-through ml-1.5">
+                    ₹{mrp * quantity}
+                  </span>
+                )}
               </div>
 
-              <div className="flex items-center border border-[#16382B]/20 rounded-lg overflow-hidden bg-[#FAF8F5]">
-                <button
-                  type="button"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-1.5 text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
-                  aria-label="Decrease quantity"
+              {isComingSoon || isOutOfStock ? (
+                <a
+                  href={`https://wa.me/919171508042?text=${encodeURIComponent(
+                    isComingSoon
+                      ? `Hello Ruthra Siddha Medicines, I want to enquire about when ${product.name} (${product.tamilName}) will be available.`
+                      : `Hello Ruthra Siddha Medicines, please notify me when ${product.name} (${product.tamilName}) is back in stock.`
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-2 px-3.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
                 >
-                  <Minus className="w-3 h-3" />
-                </button>
-                <span className="px-2 text-xs font-semibold text-[#16382B]">
-                  {quantity}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="p-1.5 text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
-                  aria-label="Increase quantity"
-                >
-                  <Plus className="w-3 h-3" />
-                </button>
-              </div>
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>{isComingSoon ? t('Coming Soon - Enquire', 'தயாரிப்பில் - விசாரிக்க') : t('Out of Stock - Enquire', 'கையிருப்பில்லை - அறிய')}</span>
+                </a>
+              ) : (
+                <>
+                  <div className="flex items-center border border-[#16382B]/20 rounded-lg overflow-hidden bg-[#FAF8F5]">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="p-1.5 text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <span className="px-2 text-xs font-semibold text-[#16382B]">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity(Math.min(maxQuantity, quantity + 1))}
+                      className="p-1.5 text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="w-3 h-3" />
+                    </button>
+                  </div>
 
-              <button
-                type="button"
-                onClick={handleAddToCart}
-                className="py-2 px-3.5 rounded-lg bg-[#16382B] hover:bg-[#204C3B] active:scale-95 text-white text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
-              >
-                <ShoppingBag className="w-3.5 h-3.5" />
-                <span>{t('Add to Cart', 'சேர்க்க')}</span>
-              </button>
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="py-2 px-3.5 rounded-lg bg-[#16382B] hover:bg-[#204C3B] active:scale-95 text-white text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
+                  >
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    <span>{t('Add to Cart', 'சேர்க்க')}</span>
+                  </button>
 
-              <button
-                type="button"
-                onClick={handleBuyNow}
-                className="py-2 px-3.5 rounded-lg bg-[#C29043] hover:bg-[#DFB36C] active:scale-95 text-[#16382B] text-xs font-bold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
-              >
-                <Zap className="w-3.5 h-3.5" />
-                <span>{t('Buy Now', 'வாங்க')}</span>
-              </button>
+                  <button
+                    type="button"
+                    onClick={handleBuyNow}
+                    className="py-2 px-3.5 rounded-lg bg-[#C29043] hover:bg-[#DFB36C] active:scale-95 text-[#16382B] text-xs font-bold flex items-center gap-1.5 shadow-xs transition-all cursor-pointer"
+                  >
+                    <Zap className="w-3.5 h-3.5" />
+                    <span>{t('Buy Now', 'வாங்க')}</span>
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -927,35 +955,49 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </div>
 
                   <div className="text-right">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] text-[10.5px] sm:text-[11px] font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#16382B]" />
-                      {t('In Stock', 'இருப்பில் உள்ளது')}
-                    </span>
+                    {isOutOfStock ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 text-[10.5px] sm:text-[11px] font-bold border border-red-200">
+                        <AlertCircle className="w-3 h-3 text-red-600" />
+                        {t('Out of Stock', 'கையிருப்பு இல்லை')}
+                      </span>
+                    ) : isLowStock ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[10.5px] sm:text-[11px] font-bold">
+                        <AlertCircle className="w-3 h-3 text-amber-700" />
+                        {t(`Only ${stockCount} left in stock - order soon!`, `${stockCount} மட்டுமே கையிருப்பில் உள்ளது!`)}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#E8F1EB] text-[#16382B] text-[10.5px] sm:text-[11px] font-bold">
+                        <Check className="w-3 h-3 text-emerald-600" />
+                        {t(`In Stock (${stockCount} units available)`, `கையிருப்பில் உள்ளது (${stockCount} பாக்கெட்டுகள்)`)}
+                      </span>
+                    )}
                     <p className="text-[10px] text-[#8A9B93] mt-1 flex items-center justify-end gap-1">
                       <Truck className="w-3 h-3 text-[#C29043]" />
-                      {t('Dispatched in 24-48h', '24-48 மணிநேரத்தில் அஞ்சல்')}
+                      {isOutOfStock ? t('Restocking soon', 'விரைவில் புதிய தயாரிப்பு') : t('Dispatched in 24-48h', '24-48 மணிநேரத்தில் அஞ்சல்')}
                     </p>
                   </div>
                 </div>
 
                 {/* Duo Pack Volume Incentive */}
-                <div className="flex items-center justify-between text-[10.5px] bg-[#FFF9F0] border border-[#C29043]/30 px-2.5 py-1.5 rounded-lg text-[#8B5E14]">
-                  <span className="flex items-center gap-1.5 truncate">
-                    <Tag className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-                    <span className="truncate">
-                      {t(`Select 2+ boxes for extra 5% Duo Savings (Save ₹${duoSavings})`, `2 பெட்டிகள் எடுத்தால் 5% கூடுதல் தள்ளுபடி (₹${duoSavings} சேமிப்பு)`)}
+                {!isOutOfStock && (
+                  <div className="flex items-center justify-between text-[10.5px] bg-[#FFF9F0] border border-[#C29043]/30 px-2.5 py-1.5 rounded-lg text-[#8B5E14]">
+                    <span className="flex items-center gap-1.5 truncate">
+                      <Tag className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
+                      <span className="truncate">
+                        {t(`Select 2+ boxes for extra 5% Duo Savings (Save ₹${duoSavings})`, `2 பெட்டிகள் எடுத்தால் 5% கூடுதல் தள்ளுபடி (₹${duoSavings} சேமிப்பு)`)}
+                      </span>
                     </span>
-                  </span>
-                  {quantity === 1 && (
-                    <button
-                      type="button"
-                      onClick={() => setQuantity(2)}
-                      className="font-bold text-[#16382B] hover:text-[#C29043] underline cursor-pointer text-[10px] whitespace-nowrap ml-1.5"
-                    >
-                      {t('+ Make it 2', '+2 ஆக்கு')}
-                    </button>
-                  )}
-                </div>
+                    {quantity === 1 && (
+                      <button
+                        type="button"
+                        onClick={() => setQuantity(Math.min(2, maxQuantity))}
+                        className="font-bold text-[#16382B] hover:text-[#C29043] underline cursor-pointer text-[10px] whitespace-nowrap ml-1.5"
+                      >
+                        {t('+ Make it 2', '+2 ஆக்கு')}
+                      </button>
+                    )}
+                  </div>
+                )}
 
                 {/* Free Tamil Nadu Shipping Meter */}
                 <div className="pt-2 border-t border-[#16382B]/10">
@@ -990,8 +1032,35 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </div>
             )}
 
+            {/* Out of Stock Notice & Restock Notification Button */}
+            {isOutOfStock && !product.isComingSoon && (
+              <div className="space-y-2.5 pt-0.5">
+                <div className="p-3 bg-red-50 rounded-xl border border-red-200 text-xs text-red-900 space-y-1">
+                  <p className="font-bold flex items-center gap-1.5 text-red-800">
+                    <AlertCircle className="w-4 h-4 text-red-600" />
+                    {t('Currently Out of Stock', 'தற்போது கையிருப்பில் இல்லை')}
+                  </p>
+                  <p className="text-[#3D5A68]">
+                    {t(
+                      'This herbal batch is currently being prepared. You can enquire with our pharmacy desk to get notified when fresh stock arrives.',
+                      'இந்த மருந்து தற்போது பாரம்பரிய சுத்தி முறையில் தயாரிக்கப்படுகிறது. புதிய கையிருப்பு தயாரானதும் தகவல் பெற தொடர்பு கொள்ளவும்.'
+                    )}
+                  </p>
+                </div>
+                <a
+                  href={`https://wa.me/919171508042?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, please notify me when ${product.name} (${product.tamilName}) is back in stock.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full h-12 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{t('Enquire Availability & Restock on WhatsApp', 'வாட்ஸ்அப்பில் இருப்பு விபரம் அறிய')}</span>
+                </a>
+              </div>
+            )}
+
             {/* Quantity Selector & Primary Actions for Available Stock */}
-            {!product.isComingSoon && (
+            {!product.isComingSoon && !isOutOfStock && (
               <div className="space-y-2.5 pt-0.5">
                 <div className="flex items-center gap-2 sm:gap-3">
                   {/* Quantity Stepper */}
@@ -1009,7 +1078,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     </span>
                     <button
                       type="button"
-                      onClick={() => setQuantity(quantity + 1)}
+                      onClick={() => setQuantity(Math.min(maxQuantity, quantity + 1))}
                       className="px-2.5 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex items-center justify-center"
                       aria-label="Increase quantity"
                     >

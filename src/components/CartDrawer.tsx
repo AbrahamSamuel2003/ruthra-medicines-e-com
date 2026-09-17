@@ -215,7 +215,7 @@ export default function CartDrawer() {
                           className="w-14 h-14 relative flex-shrink-0 bg-[#FAF8F5] rounded-lg p-1 border border-[#16382B]/10 flex items-center justify-center overflow-hidden hover:bg-[#F4EFEA] transition-colors"
                         >
                           <Image
-                            src={product.image}
+                            src={product.image || '/images/ruthra-icon.png'}
                             alt={product.name}
                             width={48}
                             height={48}

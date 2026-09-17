@@ -9,7 +9,36 @@ const JWT_SECRET = new TextEncoder().encode(
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Protect /admin routes
+  // 1. Protect Admin API endpoints (/api/admin/*)
+  if (pathname.startsWith('/api/admin')) {
+    // Whitelist login endpoint
+    if (pathname === '/api/admin/auth/login') {
+      return NextResponse.next();
+    }
+
+    const token = request.cookies.get('ruthra_admin_session')?.value;
+    let isAuthenticated = false;
+
+    if (token) {
+      try {
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        if (payload.role === 'ADMIN' && payload.email === 'admin1234@gmail.com') {
+          isAuthenticated = true;
+        }
+      } catch {
+        isAuthenticated = false;
+      }
+    }
+
+    if (!isAuthenticated) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized: Admin authentication required.' },
+        { status: 401 }
+      );
+    }
+  }
+
+  // 2. Protect Admin UI routes (/admin/*)
   if (pathname.startsWith('/admin')) {
     const isLoginPage = pathname === '/admin/login';
     const token = request.cookies.get('ruthra_admin_session')?.value;
@@ -39,9 +68,17 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+
+  // 3. Security response headers
+  response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+
+  return response;
 }
 
 export const config = {
-  matcher: ['/admin/:path*']
+  matcher: ['/admin/:path*', '/api/admin/:path*']
 };

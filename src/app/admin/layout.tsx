@@ -30,6 +30,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+  { name: 'Products', href: '/admin/products', icon: Package },
   { name: 'Orders', href: '/admin/orders', icon: ShoppingBag },
   { name: 'Customers', href: '/admin/customers', icon: Users },
   { name: 'Invoices', href: '/admin/invoices', icon: FileText },

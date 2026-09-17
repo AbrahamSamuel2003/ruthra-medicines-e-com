@@ -1,5 +1,4 @@
-import fs from 'fs';
-import path from 'path';
+import { prisma } from './prisma';
 import { 
   Order, 
   Customer, 
@@ -11,484 +10,404 @@ import {
   DailySummaryReport,
   OrderStatus,
   PaymentStatus,
-  PaymentMethod
+  PaymentMethod,
+  AddressType
 } from '@/types/admin';
-import { Product } from '@/types/product';
-import { PRODUCTS } from '@/data/products';
+import { Product, MedicalSystem } from '@/types/product';
 
-interface DatabaseSchema {
-  products: Product[];
-  customers: Customer[];
-  addresses: CustomerAddress[];
-  orders: Order[];
-}
-
-const DB_DIR = path.join(process.cwd(), 'data');
-const DB_FILE = path.join(DB_DIR, 'ruthra_store.json');
-
-let memoryDb: DatabaseSchema | null = null;
-
-function ensureDbDirectory() {
-  if (!fs.existsSync(DB_DIR)) {
-    try {
-      fs.mkdirSync(DB_DIR, { recursive: true });
-    } catch {
-      // ignore
-    }
-  }
-}
-
-function getInitialSeedData(): DatabaseSchema {
-  const now = new Date();
-  const todayStr = now.toISOString();
-
-  // 1. Initial Addresses
-  const sampleAddresses: CustomerAddress[] = [
-    {
-      id: 'addr-101',
-      customerId: 'cust-101',
-      fullAddress: '42 South Car Street, Palayamkottai',
-      landmark: 'Near Murugan Temple',
-      city: 'Tirunelveli',
-      state: 'Tamil Nadu',
-      pincode: '627002',
-      addressType: 'HOME',
-      createdAt: new Date(now.getTime() - 10 * 86400000).toISOString(),
-      updatedAt: todayStr
-    },
-    {
-      id: 'addr-102',
-      customerId: 'cust-102',
-      fullAddress: '18 West Masi Street',
-      landmark: 'Near Meenakshi Temple Tower',
-      city: 'Madurai',
-      state: 'Tamil Nadu',
-      pincode: '625001',
-      addressType: 'HOME',
-      createdAt: new Date(now.getTime() - 6 * 86400000).toISOString(),
-      updatedAt: todayStr
-    },
-    {
-      id: 'addr-103',
-      customerId: 'cust-103',
-      fullAddress: '77 Anna Nagar 2nd Avenue',
-      landmark: 'Opposite Roundtana',
-      city: 'Chennai',
-      state: 'Tamil Nadu',
-      pincode: '600040',
-      addressType: 'WORK',
-      createdAt: new Date(now.getTime() - 15 * 86400000).toISOString(),
-      updatedAt: todayStr
-    }
-  ];
-
-  // 2. Initial Customers
-  const sampleCustomers: Customer[] = [
-    {
-      id: 'cust-101',
-      fullName: 'S. Ramasamy',
-      phone: '+91 94431 22890',
-      email: 'ramasamy.s@gmail.com',
-      address: sampleAddresses[0].fullAddress,
-      city: sampleAddresses[0].city,
-      state: sampleAddresses[0].state,
-      pincode: sampleAddresses[0].pincode,
-      addresses: [sampleAddresses[0]],
-      primaryAddress: sampleAddresses[0],
-      totalOrders: 2,
-      totalSpend: 1133,
-      createdAt: new Date(now.getTime() - 10 * 86400000).toISOString(),
-      updatedAt: todayStr
-    },
-    {
-      id: 'cust-102',
-      fullName: 'K. Meenakshi Sundaram',
-      phone: '+91 98421 77341',
-      email: 'meenakshi.sundar@yahoo.com',
-      address: sampleAddresses[1].fullAddress,
-      city: sampleAddresses[1].city,
-      state: sampleAddresses[1].state,
-      pincode: sampleAddresses[1].pincode,
-      addresses: [sampleAddresses[1]],
-      primaryAddress: sampleAddresses[1],
-      totalOrders: 1,
-      totalSpend: 530,
-      createdAt: new Date(now.getTime() - 6 * 86400000).toISOString(),
-      updatedAt: todayStr
-    },
-    {
-      id: 'cust-103',
-      fullName: 'Dr. V. Karthikeyan',
-      phone: '+91 97890 54123',
-      email: 'dr.karthi.ayur@gmail.com',
-      address: sampleAddresses[2].fullAddress,
-      city: sampleAddresses[2].city,
-      state: sampleAddresses[2].state,
-      pincode: sampleAddresses[2].pincode,
-      addresses: [sampleAddresses[2]],
-      primaryAddress: sampleAddresses[2],
-      totalOrders: 1,
-      totalSpend: 645,
-      createdAt: new Date(now.getTime() - 15 * 86400000).toISOString(),
-      updatedAt: todayStr
-    }
-  ];
-
-  const p1 = PRODUCTS[0];  // Amirtha Sanjeevi Chooranam (234)
-  const p2 = PRODUCTS[7];  // Maha Viyadhi Chooranam (240)
-  const p3 = PRODUCTS[10]; // Ramabaana Kudineer (60)
-  const p4 = PRODUCTS[12]; // Sinocof Syrup (135)
-  const p5 = PRODUCTS[18]; // Rej-Viyan Pain Oil (135)
-
-  const pastDate5 = new Date(now.getTime() - 5 * 86400000).toISOString();
-  const pastDate8 = new Date(now.getTime() - 8 * 86400000).toISOString();
-
-  // 3. Initial Orders with Immutable Snapshots
-  const sampleOrders: Order[] = [
-    {
-      id: 'ord-1001',
-      orderNumber: 'RM-2026-1001',
-      customerId: 'cust-101',
-      customer: sampleCustomers[0],
-      addressId: 'addr-101',
-      items: [
-        {
-          id: 'item-1001-1',
-          orderId: 'ord-1001',
-          productId: p1.id,
-          productName: p1.name,
-          tamilName: p1.tamilName,
-          formulation: p1.formulation,
-          packSize: p1.packSize,
-          quantity: 2,
-          unitPrice: p1.price,
-          lineTotal: p1.price * 2
-        },
-        {
-          id: 'item-1001-2',
-          orderId: 'ord-1001',
-          productId: p5.id,
-          productName: p5.name,
-          tamilName: p5.tamilName,
-          formulation: p5.formulation,
-          packSize: p5.packSize,
-          quantity: 1,
-          unitPrice: p5.price,
-          lineTotal: p5.price
-        }
-      ],
-      payment: {
-        id: 'pay-1001',
-        orderId: 'ord-1001',
-        amount: 603,
-        method: 'upi',
-        status: 'PAID',
-        transactionRef: 'UPI-REF-902341829',
-        paidAt: pastDate5,
-        createdAt: pastDate5,
-        updatedAt: pastDate5
-      },
-      invoice: {
-        id: 'inv-1001',
-        invoiceNumber: 'INV-2026-1001',
-        orderId: 'ord-1001',
-        issueDate: pastDate5,
-        subtotal: 603,
-        discount: 0,
-        deliveryCharge: 0,
-        finalTotal: 603,
-        customerName: sampleCustomers[0].fullName,
-        customerPhone: sampleCustomers[0].phone,
-        customerAddress: `${sampleAddresses[0].fullAddress}, ${sampleAddresses[0].city} - ${sampleAddresses[0].pincode}`,
-        paymentMethod: 'upi',
-        paymentStatus: 'PAID',
-        createdAt: pastDate5
-      },
-      status: 'DELIVERED',
-      subtotal: 603,
-      discount: 0,
-      deliveryCharge: 0,
-      finalTotal: 603,
-      deliveryMethod: 'Tamil Nadu Express Courier',
-      shippingSnapshot: {
-        fullName: sampleCustomers[0].fullName,
-        phone: sampleCustomers[0].phone,
-        email: sampleCustomers[0].email,
-        address: sampleAddresses[0].fullAddress,
-        landmark: sampleAddresses[0].landmark,
-        city: sampleAddresses[0].city,
-        state: sampleAddresses[0].state,
-        pincode: sampleAddresses[0].pincode
-      },
-      notes: 'Tamper tape packaging required',
-      createdAt: pastDate5,
-      updatedAt: pastDate5
-    },
-    {
-      id: 'ord-1002',
-      orderNumber: 'RM-2026-1002',
-      customerId: 'cust-102',
-      customer: sampleCustomers[1],
-      addressId: 'addr-102',
-      items: [
-        {
-          id: 'item-1002-1',
-          orderId: 'ord-1002',
-          productId: p2.id,
-          productName: p2.name,
-          tamilName: p2.tamilName,
-          formulation: p2.formulation,
-          packSize: p2.packSize,
-          quantity: 2,
-          unitPrice: p2.price,
-          lineTotal: p2.price * 2
-        }
-      ],
-      payment: {
-        id: 'pay-1002',
-        orderId: 'ord-1002',
-        amount: 530,
-        method: 'cod',
-        status: 'PAID',
-        paidAt: pastDate8,
-        createdAt: pastDate8,
-        updatedAt: pastDate8
-      },
-      invoice: {
-        id: 'inv-1002',
-        invoiceNumber: 'INV-2026-1002',
-        orderId: 'ord-1002',
-        issueDate: pastDate8,
-        subtotal: 480,
-        discount: 0,
-        deliveryCharge: 50,
-        finalTotal: 530,
-        customerName: sampleCustomers[1].fullName,
-        customerPhone: sampleCustomers[1].phone,
-        customerAddress: `${sampleAddresses[1].fullAddress}, ${sampleAddresses[1].city} - ${sampleAddresses[1].pincode}`,
-        paymentMethod: 'cod',
-        paymentStatus: 'PAID',
-        createdAt: pastDate8
-      },
-      status: 'DELIVERED',
-      subtotal: 480,
-      discount: 0,
-      deliveryCharge: 50,
-      finalTotal: 530,
-      deliveryMethod: 'Tamil Nadu Express Courier',
-      shippingSnapshot: {
-        fullName: sampleCustomers[1].fullName,
-        phone: sampleCustomers[1].phone,
-        email: sampleCustomers[1].email,
-        address: sampleAddresses[1].fullAddress,
-        landmark: sampleAddresses[1].landmark,
-        city: sampleAddresses[1].city,
-        state: sampleAddresses[1].state,
-        pincode: sampleAddresses[1].pincode
-      },
-      createdAt: pastDate8,
-      updatedAt: pastDate8
-    },
-    {
-      id: 'ord-1003',
-      orderNumber: 'RM-2026-1003',
-      customerId: 'cust-103',
-      customer: sampleCustomers[2],
-      addressId: 'addr-103',
-      items: [
-        {
-          id: 'item-1003-1',
-          orderId: 'ord-1003',
-          productId: p3.id,
-          productName: p3.name,
-          tamilName: p3.tamilName,
-          formulation: p3.formulation,
-          packSize: p3.packSize,
-          quantity: 4,
-          unitPrice: p3.price,
-          lineTotal: p3.price * 4
-        },
-        {
-          id: 'item-1003-2',
-          orderId: 'ord-1003',
-          productId: p4.id,
-          productName: p4.name,
-          tamilName: p4.tamilName,
-          formulation: p4.formulation,
-          packSize: p4.packSize,
-          quantity: 3,
-          unitPrice: p4.price,
-          lineTotal: p4.price * 3
-        }
-      ],
-      payment: {
-        id: 'pay-1003',
-        orderId: 'ord-1003',
-        amount: 645,
-        method: 'cards',
-        status: 'PAID',
-        transactionRef: 'CARD-TXN-884102',
-        paidAt: new Date(now.getTime() - 2 * 86400000).toISOString(),
-        createdAt: new Date(now.getTime() - 2 * 86400000).toISOString(),
-        updatedAt: new Date(now.getTime() - 2 * 86400000).toISOString()
-      },
-      invoice: {
-        id: 'inv-1003',
-        invoiceNumber: 'INV-2026-1003',
-        orderId: 'ord-1003',
-        issueDate: new Date(now.getTime() - 2 * 86400000).toISOString(),
-        subtotal: 645,
-        discount: 0,
-        deliveryCharge: 0,
-        finalTotal: 645,
-        customerName: sampleCustomers[2].fullName,
-        customerPhone: sampleCustomers[2].phone,
-        customerAddress: `${sampleAddresses[2].fullAddress}, ${sampleAddresses[2].city} - ${sampleAddresses[2].pincode}`,
-        paymentMethod: 'cards',
-        paymentStatus: 'PAID',
-        createdAt: new Date(now.getTime() - 2 * 86400000).toISOString()
-      },
-      status: 'DELIVERED',
-      subtotal: 645,
-      discount: 0,
-      deliveryCharge: 0,
-      finalTotal: 645,
-      deliveryMethod: 'Speed Post India',
-      shippingSnapshot: {
-        fullName: sampleCustomers[2].fullName,
-        phone: sampleCustomers[2].phone,
-        email: sampleCustomers[2].email,
-        address: sampleAddresses[2].fullAddress,
-        landmark: sampleAddresses[2].landmark,
-        city: sampleAddresses[2].city,
-        state: sampleAddresses[2].state,
-        pincode: sampleAddresses[2].pincode
-      },
-      createdAt: new Date(now.getTime() - 2 * 86400000).toISOString(),
-      updatedAt: new Date(now.getTime() - 1 * 86400000).toISOString()
-    }
-  ];
-
+function mapPrismaProductToApp(p: any): Product {
   return {
-    products: [...PRODUCTS],
-    customers: sampleCustomers,
-    addresses: sampleAddresses,
-    orders: sampleOrders
+    id: p.id,
+    name: p.name,
+    tamilName: p.tamilName,
+    slug: p.slug,
+    medicalSystem: (p.medicalSystem ? p.medicalSystem.toLowerCase() : 'siddha') as MedicalSystem,
+    formulation: p.formulation,
+    formulationTa: p.formulationTa,
+    categoryGroup: p.categoryGroup || undefined,
+    concerns: Array.isArray(p.concerns) ? p.concerns : [],
+    price: Number(p.price),
+    originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
+    packSize: p.packSize,
+    packSizeTa: p.packSizeTa,
+    shortDescription: p.shortDescription,
+    shortDescriptionTa: p.shortDescriptionTa,
+    description: p.description,
+    descriptionTa: p.descriptionTa,
+    traditionalRole: p.traditionalRole,
+    traditionalRoleTa: p.traditionalRoleTa,
+    badge: p.badge || undefined,
+    badgeTa: p.badgeTa || undefined,
+    image: p.image,
+    images: Array.isArray(p.images) ? p.images : [],
+    gallery: Array.isArray(p.gallery) ? p.gallery : [],
+    isComingSoon: Boolean(p.isComingSoon),
+    inStock: Boolean(p.inStock),
+    stock: p.stock !== undefined && p.stock !== null ? Number(p.stock) : 20,
+    featured: Boolean(p.featured),
+    ingredients: Array.isArray(p.ingredients) ? p.ingredients : [],
+    howToUse: Array.isArray(p.howToUse) ? p.howToUse : [],
+    dosage: (p.dosage && typeof p.dosage === 'object') ? p.dosage : { morning: '', evening: '', timing: '', with: '' },
+    safety: (p.safety && typeof p.safety === 'object') ? p.safety : { contraindications: '', precautions: '' },
+    storage: (p.storage && typeof p.storage === 'object') ? p.storage : { temperature: 'Store in a cool, dry place', precautions: 'Keep away from direct sunlight' },
+    faqs: Array.isArray(p.faqs) ? p.faqs : [],
+    searchKeywords: Array.isArray(p.searchKeywords) ? p.searchKeywords : [],
+    tamilKeywords: Array.isArray(p.tamilKeywords) ? p.tamilKeywords : []
   };
 }
 
-function loadDatabase(): DatabaseSchema {
-  if (memoryDb) return memoryDb;
-  ensureDbDirectory();
+function mapPrismaOrderToApp(o: any): Order {
+  const customer: Customer = {
+    id: o.customer.id,
+    fullName: o.customer.fullName,
+    phone: o.customer.phone,
+    email: o.customer.email || undefined,
+    address: o.address?.fullAddress || (o.shippingSnapshot as any)?.address || '',
+    landmark: o.address?.landmark || (o.shippingSnapshot as any)?.landmark || undefined,
+    city: o.address?.city || (o.shippingSnapshot as any)?.city || '',
+    state: o.address?.state || (o.shippingSnapshot as any)?.state || 'Tamil Nadu',
+    pincode: o.address?.pincode || (o.shippingSnapshot as any)?.pincode || '',
+    totalOrders: o.customer.totalOrders,
+    totalSpend: Number(o.customer.totalSpend),
+    createdAt: o.customer.createdAt instanceof Date ? o.customer.createdAt.toISOString() : o.customer.createdAt,
+    updatedAt: o.customer.updatedAt instanceof Date ? o.customer.updatedAt.toISOString() : o.customer.updatedAt
+  };
 
-  if (fs.existsSync(DB_FILE)) {
-    try {
-      const content = fs.readFileSync(DB_FILE, 'utf-8');
-      memoryDb = JSON.parse(content);
-      
-      // Ensure all master products are always seeded and updated in existing DB
-      if (!memoryDb!.products || memoryDb!.products.length < PRODUCTS.length) {
-        memoryDb!.products = [...PRODUCTS];
-        saveDatabase(memoryDb!);
-      }
-      return memoryDb!;
-    } catch {
-      // fallback
-    }
-  }
+  const items: OrderItem[] = (o.items || []).map((it: any) => ({
+    id: it.id,
+    orderId: it.orderId,
+    productId: it.productId,
+    productName: it.productName,
+    tamilName: it.tamilName || undefined,
+    formulation: it.formulation,
+    packSize: it.packSize,
+    quantity: it.quantity,
+    unitPrice: Number(it.unitPrice),
+    discount: Number(it.discount || 0),
+    lineTotal: Number(it.lineTotal),
+    createdAt: it.createdAt instanceof Date ? it.createdAt.toISOString() : it.createdAt
+  }));
 
-  const initial = getInitialSeedData();
-  saveDatabase(initial);
-  memoryDb = initial;
-  return memoryDb;
-}
+  const payment: Payment = o.payment ? {
+    id: o.payment.id,
+    orderId: o.payment.orderId,
+    amount: Number(o.payment.amount),
+    method: String(o.payment.method).toLowerCase() as PaymentMethod,
+    status: o.payment.status as PaymentStatus,
+    transactionRef: o.payment.transactionRef || undefined,
+    gatewayDetails: o.payment.gatewayDetails || undefined,
+    paidAt: o.payment.paidAt ? (o.payment.paidAt instanceof Date ? o.payment.paidAt.toISOString() : o.payment.paidAt) : undefined,
+    createdAt: o.payment.createdAt instanceof Date ? o.payment.createdAt.toISOString() : o.payment.createdAt,
+    updatedAt: o.payment.updatedAt instanceof Date ? o.payment.updatedAt.toISOString() : o.payment.updatedAt
+  } : {
+    id: `pay-${o.id}`,
+    orderId: o.id,
+    amount: Number(o.finalTotal),
+    method: 'cod',
+    status: 'PENDING',
+    createdAt: o.createdAt instanceof Date ? o.createdAt.toISOString() : o.createdAt
+  };
 
-function saveDatabase(db: DatabaseSchema) {
-  memoryDb = db;
-  ensureDbDirectory();
-  try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), 'utf-8');
-  } catch {
-    // ignore
-  }
+  const invoice: Invoice | undefined = o.invoice ? {
+    id: o.invoice.id,
+    invoiceNumber: o.invoice.invoiceNumber,
+    orderId: o.invoice.orderId,
+    issueDate: o.invoice.issueDate instanceof Date ? o.invoice.issueDate.toISOString() : o.invoice.issueDate,
+    subtotal: Number(o.invoice.subtotal),
+    discount: Number(o.invoice.discount),
+    deliveryCharge: Number(o.invoice.deliveryCharge),
+    tax: Number(o.invoice.tax || 0),
+    finalTotal: Number(o.invoice.finalTotal),
+    customerName: o.invoice.customerName,
+    customerPhone: o.invoice.customerPhone,
+    customerAddress: o.invoice.customerAddress,
+    paymentMethod: o.invoice.paymentMethod,
+    paymentStatus: o.invoice.paymentStatus,
+    createdAt: o.invoice.createdAt instanceof Date ? o.invoice.createdAt.toISOString() : o.invoice.createdAt
+  } : undefined;
+
+  return {
+    id: o.id,
+    orderNumber: o.orderNumber,
+    customerId: o.customerId,
+    customer,
+    addressId: o.addressId || undefined,
+    items,
+    payment,
+    invoice,
+    status: o.status as OrderStatus,
+    subtotal: Number(o.subtotal),
+    discount: Number(o.discount),
+    deliveryCharge: Number(o.deliveryCharge),
+    tax: Number(o.tax || 0),
+    finalTotal: Number(o.finalTotal),
+    deliveryMethod: o.deliveryMethod,
+    shippingSnapshot: o.shippingSnapshot || {},
+    notes: o.notes || undefined,
+    createdAt: o.createdAt instanceof Date ? o.createdAt.toISOString() : o.createdAt,
+    updatedAt: o.updatedAt instanceof Date ? o.updatedAt.toISOString() : o.updatedAt
+  };
 }
 
 /* =========================================================================
-   PUBLIC DATABASE API METHODS
+   PUBLIC DATABASE API METHODS (100% POSTGRESQL / PRISMA EXCLUSIVE)
    ========================================================================= */
 
 /**
- * Retrieves all catalog products seeded in the database with optional filtering
+ * Retrieves catalog products from PostgreSQL with optional filtering
  */
 export async function getProducts(filter?: {
   search?: string;
   formulation?: string;
   concern?: string;
+  medicalSystem?: string;
   featured?: boolean;
 }): Promise<Product[]> {
-  const db = loadDatabase();
-  let list = db.products && db.products.length > 0 ? [...db.products] : [...PRODUCTS];
+  try {
+    const where: any = {};
 
-  if (filter?.formulation && filter.formulation !== 'ALL') {
-    list = list.filter(p => p.formulation === filter.formulation);
+    if (filter?.medicalSystem && filter.medicalSystem !== 'ALL') {
+      where.medicalSystem = filter.medicalSystem.toUpperCase();
+    }
+
+    if (filter?.formulation && filter.formulation !== 'ALL') {
+      where.formulation = filter.formulation;
+    }
+
+    if (filter?.featured !== undefined) {
+      where.featured = filter.featured;
+    }
+
+    const prismaProducts = await prisma.product.findMany({
+      where,
+      orderBy: { id: 'asc' }
+    });
+
+    let list = prismaProducts.map(mapPrismaProductToApp);
+
+    if (filter?.concern && filter.concern !== 'ALL') {
+      list = list.filter(p => p.concerns && p.concerns.includes(filter.concern as any));
+    }
+
+    if (filter?.search) {
+      const q = filter.search.toLowerCase().trim();
+      list = list.filter(p => 
+        p.name.toLowerCase().includes(q) ||
+        p.tamilName.includes(q) ||
+        p.slug.toLowerCase().includes(q) ||
+        p.id.toLowerCase().includes(q) ||
+        p.searchKeywords?.some(k => k.toLowerCase().includes(q)) ||
+        p.tamilKeywords?.some(k => k.includes(q))
+      );
+    }
+
+    return list;
+  } catch (err) {
+    console.error('Failed to get products from PostgreSQL:', err);
+    return [];
   }
-
-  if (filter?.concern && filter.concern !== 'ALL') {
-    list = list.filter(p => p.concerns && p.concerns.includes(filter.concern as any));
-  }
-
-  if (filter?.featured !== undefined) {
-    list = list.filter(p => p.featured === filter.featured);
-  }
-
-  if (filter?.search) {
-    const q = filter.search.toLowerCase().trim();
-    list = list.filter(p => 
-      p.name.toLowerCase().includes(q) ||
-      p.tamilName.includes(q) ||
-      p.slug.toLowerCase().includes(q) ||
-      p.id.toLowerCase().includes(q) ||
-      p.searchKeywords?.some(k => k.toLowerCase().includes(q)) ||
-      p.tamilKeywords?.some(k => k.includes(q))
-    );
-  }
-
-  return list;
 }
 
 /**
- * Retrieves a single product by its unique SKU/ID
+ * Retrieves a single product by its unique SKU/ID from PostgreSQL
  */
 export async function getProductById(id: string): Promise<Product | null> {
-  const db = loadDatabase();
-  const list = db.products && db.products.length > 0 ? db.products : PRODUCTS;
-  const product = list.find(p => p.id === id);
-  return product || null;
+  try {
+    const p = await prisma.product.findUnique({
+      where: { id }
+    });
+    if (p) return mapPrismaProductToApp(p);
+  } catch (err) {
+    console.error(`Failed to get product ${id} from PostgreSQL:`, err);
+  }
+  return null;
 }
 
 /**
- * Retrieves a single product by its URL-friendly slug
+ * Retrieves a single product by its URL-friendly slug from PostgreSQL
  */
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  const db = loadDatabase();
-  const list = db.products && db.products.length > 0 ? db.products : PRODUCTS;
-  const product = list.find(p => p.slug === slug);
-  return product || null;
+  try {
+    const p = await prisma.product.findUnique({
+      where: { slug }
+    });
+    if (p) return mapPrismaProductToApp(p);
+  } catch (err) {
+    console.error(`Failed to get product slug ${slug} from PostgreSQL:`, err);
+  }
+  return null;
 }
 
 /**
- * Ensures all master products are synchronized into the live database
+ * Updates a product in PostgreSQL (Admin CMS)
+ */
+export async function updateProduct(id: string, data: Partial<Product>): Promise<Product | null> {
+  try {
+    const updated = await prisma.product.update({
+      where: { id },
+      data: {
+        ...(data.name && { name: data.name }),
+        ...(data.tamilName && { tamilName: data.tamilName }),
+        ...(data.price !== undefined && { price: data.price }),
+        ...(data.originalPrice !== undefined && { originalPrice: data.originalPrice }),
+        ...(data.packSize && { packSize: data.packSize }),
+        ...(data.packSizeTa && { packSizeTa: data.packSizeTa }),
+        ...(data.inStock !== undefined && { inStock: data.inStock }),
+        ...(data.stock !== undefined && { stock: Number(data.stock) }),
+        ...(data.isComingSoon !== undefined && { isComingSoon: data.isComingSoon }),
+        ...(data.featured !== undefined && { featured: data.featured }),
+        ...(data.shortDescription && { shortDescription: data.shortDescription }),
+        ...(data.shortDescriptionTa && { shortDescriptionTa: data.shortDescriptionTa }),
+        ...(data.description && { description: data.description }),
+        ...(data.descriptionTa && { descriptionTa: data.descriptionTa }),
+        ...(data.image && { image: data.image }),
+        ...(data.images && { images: data.images }),
+        ...(data.gallery && { gallery: data.gallery })
+      } as any
+    });
+    return mapPrismaProductToApp(updated);
+  } catch (err) {
+    console.error(`Failed to update product ${id} in PostgreSQL:`, err);
+    return null;
+  }
+}
+
+/**
+ * Creates a new product in PostgreSQL (Admin CMS)
+ */
+export async function createProduct(product: Product): Promise<Product> {
+  const created = await prisma.product.create({
+    data: {
+      id: product.id,
+      name: product.name,
+      tamilName: product.tamilName,
+      slug: product.slug,
+      medicalSystem: (product.medicalSystem || 'SIDDHA').toUpperCase() as any,
+      formulation: product.formulation,
+      formulationTa: product.formulationTa,
+      categoryGroup: product.categoryGroup || product.formulation.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      concerns: product.concerns || [],
+      price: product.price,
+      originalPrice: product.originalPrice || null,
+      packSize: product.packSize,
+      packSizeTa: product.packSizeTa,
+      shortDescription: product.shortDescription,
+      shortDescriptionTa: product.shortDescriptionTa,
+      description: product.description,
+      descriptionTa: product.descriptionTa,
+      traditionalRole: product.traditionalRole || '',
+      traditionalRoleTa: product.traditionalRoleTa || '',
+      badge: product.badge || null,
+      badgeTa: product.badgeTa || null,
+      image: product.image,
+      images: product.images || [],
+      gallery: product.gallery || [],
+      isComingSoon: Boolean(product.isComingSoon),
+      inStock: Boolean(product.inStock),
+      stock: product.stock !== undefined ? Number(product.stock) : 20,
+      featured: Boolean(product.featured),
+      ingredients: (product.ingredients || []) as any,
+      howToUse: (product.howToUse || []) as any,
+      dosage: (product.dosage || {}) as any,
+      safety: (product.safety || {}) as any,
+      storage: (product.storage || {}) as any,
+      faqs: (product.faqs || []) as any,
+      searchKeywords: product.searchKeywords || [],
+      tamilKeywords: product.tamilKeywords || []
+    } as any
+  });
+  return mapPrismaProductToApp(created);
+}
+
+/**
+ * Deletes a product from PostgreSQL (Admin CMS)
+ */
+export async function deleteProduct(id: string): Promise<boolean> {
+  try {
+    await prisma.product.delete({ where: { id } });
+    return true;
+  } catch (err) {
+    console.error(`Failed to delete product ${id} from PostgreSQL:`, err);
+    return false;
+  }
+}
+
+/**
+ * Retrieves all categories with live item counts from PostgreSQL
+ */
+export async function getCategories(medicalSystem?: string) {
+  try {
+    const where: any = {};
+    if (medicalSystem && medicalSystem !== 'ALL') {
+      where.medicalSystem = medicalSystem.toUpperCase();
+    }
+    const categories = await prisma.category.findMany({
+      where,
+      orderBy: { title: 'asc' }
+    });
+
+    const prods = await prisma.product.findMany({
+      select: { categoryGroup: true, formulation: true, medicalSystem: true }
+    });
+
+    return categories.map(c => {
+      const count = prods.filter(p => 
+        (p.categoryGroup && p.categoryGroup.toLowerCase() === c.slug.toLowerCase()) ||
+        (p.formulation && p.formulation.toLowerCase() === c.title.toLowerCase())
+      ).length;
+      return {
+        ...c,
+        itemCount: count > 0 ? count : c.itemCount
+      };
+    });
+  } catch (err) {
+    console.error('Failed to get categories from PostgreSQL:', err);
+    return [];
+  }
+}
+
+/**
+ * Creates a new category in PostgreSQL (Admin CMS)
+ */
+export async function createCategory(data: {
+  slug: string;
+  title: string;
+  titleTa: string;
+  medicalSystem: string;
+  description?: string;
+}) {
+  try {
+    const created = await prisma.category.create({
+      data: {
+        slug: data.slug,
+        title: data.title,
+        titleTa: data.titleTa,
+        medicalSystem: data.medicalSystem.toUpperCase() as any,
+        description: data.description || null,
+        itemCount: 0
+      }
+    });
+    return created;
+  } catch (err) {
+    console.error('Failed to create category in PostgreSQL:', err);
+    throw err;
+  }
+}
+
+/**
+ * Ensures all master products are synchronized into PostgreSQL
  */
 export async function syncProductCatalog(): Promise<{ totalProducts: number; updated: boolean }> {
-  const db = loadDatabase();
-  db.products = [...PRODUCTS];
-  saveDatabase(db);
+  const count = await prisma.product.count();
   return {
-    totalProducts: db.products.length,
+    totalProducts: count,
     updated: true
   };
 }
 
+/**
+ * Retrieves all orders from PostgreSQL
+ */
 export async function getOrders(filter?: {
   status?: string;
   paymentStatus?: string;
@@ -496,45 +415,79 @@ export async function getOrders(filter?: {
   fromDate?: string;
   toDate?: string;
 }): Promise<Order[]> {
-  const db = loadDatabase();
-  let list = [...db.orders];
+  try {
+    const where: any = {};
+    if (filter?.status && filter.status !== 'ALL') {
+      where.status = filter.status;
+    }
+    if (filter?.fromDate || filter?.toDate) {
+      where.createdAt = {};
+      if (filter.fromDate) where.createdAt.gte = new Date(filter.fromDate);
+      if (filter.toDate) where.createdAt.lte = new Date(new Date(filter.toDate).getTime() + 86400000 - 1);
+    }
 
-  if (filter?.status && filter.status !== 'ALL') {
-    list = list.filter(o => o.status === filter.status);
+    const prismaOrders = await prisma.order.findMany({
+      where,
+      include: {
+        customer: true,
+        address: true,
+        items: true,
+        payment: true,
+        invoice: true
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+
+    let list = prismaOrders.map(mapPrismaOrderToApp);
+
+    if (filter?.paymentStatus && filter.paymentStatus !== 'ALL') {
+      list = list.filter(o => o.payment.status === filter.paymentStatus);
+    }
+
+    if (filter?.search) {
+      const q = filter.search.toLowerCase().trim();
+      list = list.filter(o => 
+        o.orderNumber.toLowerCase().includes(q) ||
+        o.customer.fullName.toLowerCase().includes(q) ||
+        o.customer.phone.includes(q) ||
+        (o.shippingSnapshot as any)?.city?.toLowerCase().includes(q)
+      );
+    }
+
+    return list;
+  } catch (err) {
+    console.error('Failed to fetch orders from PostgreSQL:', err);
+    return [];
   }
-
-  if (filter?.paymentStatus && filter.paymentStatus !== 'ALL') {
-    list = list.filter(o => o.payment.status === filter.paymentStatus);
-  }
-
-  if (filter?.fromDate) {
-    const fromTime = new Date(filter.fromDate).getTime();
-    list = list.filter(o => new Date(o.createdAt).getTime() >= fromTime);
-  }
-
-  if (filter?.toDate) {
-    const toTime = new Date(filter.toDate).getTime() + 86400000 - 1;
-    list = list.filter(o => new Date(o.createdAt).getTime() <= toTime);
-  }
-
-  if (filter?.search) {
-    const q = filter.search.toLowerCase().trim();
-    list = list.filter(o => 
-      o.orderNumber.toLowerCase().includes(q) ||
-      o.customer.fullName.toLowerCase().includes(q) ||
-      o.customer.phone.includes(q) ||
-      o.shippingSnapshot.city.toLowerCase().includes(q)
-    );
-  }
-
-  return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 }
 
+/**
+ * Retrieves single order by ID or orderNumber from PostgreSQL
+ */
 export async function getOrderById(id: string): Promise<Order | null> {
-  const db = loadDatabase();
-  return db.orders.find(o => o.id === id || o.orderNumber === id) || null;
+  try {
+    const order = await prisma.order.findFirst({
+      where: {
+        OR: [{ id }, { orderNumber: id }]
+      },
+      include: {
+        customer: true,
+        address: true,
+        items: true,
+        payment: true,
+        invoice: true
+      }
+    });
+    if (order) return mapPrismaOrderToApp(order);
+  } catch (err) {
+    console.error(`Failed to fetch order ${id} from PostgreSQL:`, err);
+  }
+  return null;
 }
 
+/**
+ * Creates an order directly in PostgreSQL
+ */
 export async function createOrder(data: {
   customer: {
     fullName: string;
@@ -563,175 +516,160 @@ export async function createOrder(data: {
   paymentMethod: PaymentMethod;
   notes?: string;
 }): Promise<Order> {
-  const db = loadDatabase();
-  const now = new Date();
-  const nowStr = now.toISOString();
+  try {
+    const now = new Date();
+    const cleanPhone = data.customer.phone.trim();
 
-  // 1. Find or create customer
-  let customer = db.customers.find(
-    c => c.phone.replace(/\D/g, '') === data.customer.phone.replace(/\D/g, '')
-  );
+    // 1. Find or create customer
+    let customer = await prisma.customer.findUnique({
+      where: { phone: cleanPhone }
+    });
 
-  const addressId = `addr-${Date.now()}`;
-  const newAddress: CustomerAddress = {
-    id: addressId,
-    customerId: customer ? customer.id : `cust-${Date.now()}`,
-    fullAddress: data.customer.address,
-    landmark: data.customer.landmark,
-    city: data.customer.city,
-    state: data.customer.state,
-    pincode: data.customer.pincode,
-    addressType: 'HOME',
-    createdAt: nowStr,
-    updatedAt: nowStr
-  };
-  db.addresses.push(newAddress);
+    if (!customer) {
+      customer = await prisma.customer.create({
+        data: {
+          fullName: data.customer.fullName,
+          phone: cleanPhone,
+          email: data.customer.email || null,
+          totalOrders: 1,
+          totalSpend: data.finalTotal
+        }
+      });
+    } else {
+      customer = await prisma.customer.update({
+        where: { id: customer.id },
+        data: {
+          fullName: data.customer.fullName,
+          email: data.customer.email || customer.email,
+          totalOrders: { increment: 1 },
+          totalSpend: { increment: data.finalTotal }
+        }
+      });
+    }
 
-  if (customer) {
-    customer.fullName = data.customer.fullName;
-    customer.email = data.customer.email || customer.email;
-    customer.address = data.customer.address;
-    customer.landmark = data.customer.landmark;
-    customer.city = data.customer.city;
-    customer.state = data.customer.state;
-    customer.pincode = data.customer.pincode;
-    customer.totalOrders += 1;
-    customer.totalSpend += data.finalTotal;
-    customer.updatedAt = nowStr;
-    if (!customer.addresses) customer.addresses = [];
-    customer.addresses.push(newAddress);
-    customer.primaryAddress = newAddress;
-  } else {
-    customer = {
-      id: newAddress.customerId,
-      fullName: data.customer.fullName,
-      phone: data.customer.phone,
-      email: data.customer.email || '',
-      address: data.customer.address,
-      landmark: data.customer.landmark,
-      city: data.customer.city,
-      state: data.customer.state,
-      pincode: data.customer.pincode,
-      addresses: [newAddress],
-      primaryAddress: newAddress,
-      totalOrders: 1,
-      totalSpend: data.finalTotal,
-      createdAt: nowStr,
-      updatedAt: nowStr
-    };
-    db.customers.push(customer);
+    // 2. Create customer address
+    const address = await prisma.customerAddress.create({
+      data: {
+        customerId: customer.id,
+        fullAddress: data.customer.address,
+        landmark: data.customer.landmark || null,
+        city: data.customer.city,
+        state: data.customer.state || 'Tamil Nadu',
+        pincode: data.customer.pincode,
+        addressType: 'HOME'
+      }
+    });
+
+    // 3. Generate Order and Invoice numbers
+    const totalOrdersCount = await prisma.order.count();
+    const orderNumber = `RM-2026-${1000 + totalOrdersCount + 1}`;
+    const invoiceNumber = `INV-2026-${1000 + totalOrdersCount + 1}`;
+    const isPaidOnline = data.paymentMethod === 'upi' || data.paymentMethod === 'cards';
+
+    // 4. Create Order with items, payment, and invoice in PostgreSQL
+    const createdOrder = await prisma.order.create({
+      data: {
+        orderNumber,
+        customerId: customer.id,
+        addressId: address.id,
+        status: isPaidOnline ? 'CONFIRMED' : 'PENDING',
+        subtotal: data.subtotal,
+        discount: data.discount,
+        deliveryCharge: data.deliveryCharge,
+        finalTotal: data.finalTotal,
+        deliveryMethod: data.deliveryMethod || 'Tamil Nadu Express Courier',
+        shippingSnapshot: {
+          fullName: data.customer.fullName,
+          phone: cleanPhone,
+          email: data.customer.email,
+          address: data.customer.address,
+          landmark: data.customer.landmark,
+          city: data.customer.city,
+          state: data.customer.state,
+          pincode: data.customer.pincode
+        },
+        notes: data.notes || null,
+        items: {
+          create: data.items.map(it => ({
+            productId: it.productId,
+            productName: it.productName,
+            tamilName: it.tamilName || null,
+            formulation: it.formulation,
+            packSize: it.packSize,
+            quantity: it.quantity,
+            unitPrice: it.price,
+            discount: 0,
+            lineTotal: it.price * it.quantity
+          }))
+        },
+        payment: {
+          create: {
+            method: data.paymentMethod.toUpperCase() as any,
+            amount: data.finalTotal,
+            status: isPaidOnline ? 'PAID' : 'PENDING',
+            transactionRef: isPaidOnline ? `TXN-${Date.now()}` : null,
+            paidAt: isPaidOnline ? now : null
+          }
+        },
+        invoice: {
+          create: {
+            invoiceNumber,
+            issueDate: now,
+            subtotal: data.subtotal,
+            discount: data.discount,
+            deliveryCharge: data.deliveryCharge,
+            tax: 0,
+            finalTotal: data.finalTotal,
+            customerName: data.customer.fullName,
+            customerPhone: cleanPhone,
+            customerAddress: `${data.customer.address}, ${data.customer.city} - ${data.customer.pincode}`,
+            paymentMethod: data.paymentMethod,
+            paymentStatus: isPaidOnline ? 'PAID' : 'PENDING'
+          }
+        }
+      },
+      include: {
+        customer: true,
+        address: true,
+        items: true,
+        payment: true,
+        invoice: true
+      }
+    });
+
+    return mapPrismaOrderToApp(createdOrder);
+  } catch (err) {
+    console.error('Failed to create order in PostgreSQL:', err);
+    throw err;
   }
-
-  // 2. Generate unique order and invoice numbers
-  const orderCount = db.orders.length + 1001;
-  const orderNumber = `RM-${now.getFullYear()}-${orderCount}`;
-  const orderId = `ord-${Date.now()}`;
-  const invoiceNumber = `INV-${now.getFullYear()}-${orderCount}`;
-
-  // 3. Create line items with IMMUTABLE snapshots
-  const lineItems: OrderItem[] = data.items.map((it, idx) => ({
-    id: `item-${orderId}-${idx + 1}`,
-    orderId,
-    productId: it.productId,
-    productName: it.productName, // Snapshot
-    tamilName: it.tamilName,
-    formulation: it.formulation,
-    packSize: it.packSize,
-    quantity: it.quantity,
-    unitPrice: it.price, // Snapshot
-    lineTotal: it.price * it.quantity,
-    createdAt: nowStr
-  }));
-
-  // 4. Create payment record
-  const isPaidInitial = data.paymentMethod !== 'cod';
-  const payment: Payment = {
-    id: `pay-${orderId}`,
-    orderId,
-    amount: data.finalTotal,
-    method: data.paymentMethod,
-    status: isPaidInitial ? 'PAID' : 'PENDING',
-    transactionRef: isPaidInitial ? `TXN-${Date.now()}` : undefined,
-    paidAt: isPaidInitial ? nowStr : undefined,
-    createdAt: nowStr,
-    updatedAt: nowStr
-  };
-
-  // 5. Create invoice record
-  const invoice: Invoice = {
-    id: `inv-${orderId}`,
-    invoiceNumber,
-    orderId,
-    issueDate: nowStr,
-    subtotal: data.subtotal,
-    discount: data.discount,
-    deliveryCharge: data.deliveryCharge,
-    finalTotal: data.finalTotal,
-    customerName: customer.fullName,
-    customerPhone: customer.phone,
-    customerAddress: `${data.customer.address}, ${data.customer.city} - ${data.customer.pincode}`,
-    paymentMethod: data.paymentMethod,
-    paymentStatus: payment.status,
-    createdAt: nowStr
-  };
-
-  // 6. Complete Order
-  const newOrder: Order = {
-    id: orderId,
-    orderNumber,
-    customerId: customer.id,
-    customer,
-    addressId: newAddress.id,
-    items: lineItems,
-    payment,
-    invoice,
-    status: isPaidInitial ? 'CONFIRMED' : 'PENDING',
-    subtotal: data.subtotal,
-    discount: data.discount,
-    deliveryCharge: data.deliveryCharge,
-    finalTotal: data.finalTotal,
-    deliveryMethod: data.deliveryMethod || 'Tamil Nadu Express Courier',
-    shippingSnapshot: {
-      fullName: data.customer.fullName,
-      phone: data.customer.phone,
-      email: data.customer.email,
-      address: data.customer.address,
-      landmark: data.customer.landmark,
-      city: data.customer.city,
-      state: data.customer.state,
-      pincode: data.customer.pincode
-    },
-    notes: data.notes,
-    createdAt: nowStr,
-    updatedAt: nowStr
-  };
-
-  db.orders.unshift(newOrder);
-  saveDatabase(db);
-
-  return newOrder;
 }
 
 export async function updateOrderStatus(orderId: string, status: OrderStatus): Promise<Order | null> {
-  const db = loadDatabase();
-  const order = db.orders.find(o => o.id === orderId || o.orderNumber === orderId);
-  if (!order) return null;
+  try {
+    const updated = await prisma.order.update({
+      where: { id: orderId },
+      data: { status },
+      include: { customer: true, address: true, items: true, payment: true, invoice: true }
+    });
 
-  order.status = status;
-  const nowStr = new Date().toISOString();
-  order.updatedAt = nowStr;
-
-  // For COD orders: when status transitions to DELIVERED, cash payment has been collected
-  if (status === 'DELIVERED' && order.payment.status === 'PENDING') {
-    order.payment.status = 'PAID';
-    order.payment.paidAt = nowStr;
-    if (order.invoice) {
-      order.invoice.paymentStatus = 'PAID';
+    if (status === 'DELIVERED' && updated.payment?.status === 'PENDING') {
+      await prisma.payment.update({
+        where: { orderId },
+        data: { status: 'PAID', paidAt: new Date() }
+      });
+      if (updated.invoice) {
+        await prisma.invoice.update({
+          where: { orderId },
+          data: { paymentStatus: 'PAID' }
+        });
+      }
     }
-  }
 
-  saveDatabase(db);
-  return order;
+    return mapPrismaOrderToApp(updated);
+  } catch (err) {
+    console.error(`Failed to update order status ${orderId}:`, err);
+    return null;
+  }
 }
 
 export async function updatePaymentStatus(
@@ -739,84 +677,194 @@ export async function updatePaymentStatus(
   status: PaymentStatus, 
   transactionRef?: string
 ): Promise<Order | null> {
-  const db = loadDatabase();
-  const order = db.orders.find(o => o.id === orderId || o.orderNumber === orderId);
-  if (!order) return null;
+  try {
+    await prisma.payment.update({
+      where: { orderId },
+      data: {
+        status,
+        ...(transactionRef && { transactionRef }),
+        ...(status === 'PAID' && { paidAt: new Date() })
+      }
+    });
 
-  order.payment.status = status;
-  if (transactionRef) {
-    order.payment.transactionRef = transactionRef;
-  }
-  if (status === 'PAID' && !order.payment.paidAt) {
-    order.payment.paidAt = new Date().toISOString();
-    if (order.status === 'PENDING') {
-      order.status = 'CONFIRMED';
+    const updated = await prisma.order.update({
+      where: { id: orderId },
+      data: {
+        ...(status === 'PAID' && { status: 'CONFIRMED' })
+      },
+      include: { customer: true, address: true, items: true, payment: true, invoice: true }
+    });
+
+    if (updated.invoice) {
+      await prisma.invoice.update({
+        where: { orderId },
+        data: { paymentStatus: status }
+      });
     }
+
+    return mapPrismaOrderToApp(updated);
+  } catch (err) {
+    console.error(`Failed to update payment status for ${orderId}:`, err);
+    return null;
   }
-  if (order.invoice) {
-    order.invoice.paymentStatus = status;
-  }
-  order.updatedAt = new Date().toISOString();
-  saveDatabase(db);
-  return order;
 }
 
 export async function getCustomers(search?: string): Promise<Customer[]> {
-  const db = loadDatabase();
-  let list = [...db.customers];
-  if (search) {
-    const q = search.toLowerCase().trim();
-    list = list.filter(c => 
-      c.fullName.toLowerCase().includes(q) ||
-      c.phone.includes(q) ||
-      (c.email && c.email.toLowerCase().includes(q))
-    );
+  try {
+    const where: any = search ? {
+      OR: [
+        { fullName: { contains: search, mode: 'insensitive' } },
+        { phone: { contains: search } },
+        { email: { contains: search, mode: 'insensitive' } }
+      ]
+    } : {};
+
+    const list = await prisma.customer.findMany({
+      where,
+      include: {
+        addresses: true
+      },
+      orderBy: { totalSpend: 'desc' }
+    });
+
+    return list.map(c => ({
+      id: c.id,
+      fullName: c.fullName,
+      phone: c.phone,
+      email: c.email || undefined,
+      address: c.addresses[0]?.fullAddress || '',
+      city: c.addresses[0]?.city || '',
+      state: c.addresses[0]?.state || 'Tamil Nadu',
+      pincode: c.addresses[0]?.pincode || '',
+      addresses: c.addresses.map(a => ({
+        id: a.id,
+        customerId: a.customerId,
+        fullAddress: a.fullAddress,
+        landmark: a.landmark || undefined,
+        city: a.city,
+        state: a.state,
+        pincode: a.pincode,
+        addressType: a.addressType as AddressType,
+        createdAt: a.createdAt.toISOString(),
+        updatedAt: a.updatedAt.toISOString()
+      })),
+      totalOrders: c.totalOrders,
+      totalSpend: Number(c.totalSpend),
+      createdAt: c.createdAt.toISOString(),
+      updatedAt: c.updatedAt.toISOString()
+    }));
+  } catch (err) {
+    console.error('Failed to get customers from PostgreSQL:', err);
+    return [];
   }
-  return list.sort((a, b) => b.totalSpend - a.totalSpend);
 }
 
 export async function getCustomerById(id: string): Promise<{ customer: Customer; addresses: CustomerAddress[]; orders: Order[] } | null> {
-  const db = loadDatabase();
-  const customer = db.customers.find(c => c.id === id);
-  if (!customer) return null;
-  const addresses = db.addresses.filter(a => a.customerId === customer.id);
-  const orders = db.orders.filter(o => o.customerId === customer.id);
-  return { customer, addresses, orders };
+  try {
+    const customer = await prisma.customer.findUnique({
+      where: { id },
+      include: {
+        addresses: true,
+        orders: {
+          include: { customer: true, address: true, items: true, payment: true, invoice: true },
+          orderBy: { createdAt: 'desc' }
+        }
+      }
+    });
+    if (!customer) return null;
+
+    const addresses: CustomerAddress[] = customer.addresses.map(a => ({
+      id: a.id,
+      customerId: a.customerId,
+      fullAddress: a.fullAddress,
+      landmark: a.landmark || undefined,
+      city: a.city,
+      state: a.state,
+      pincode: a.pincode,
+      addressType: a.addressType as AddressType,
+      createdAt: a.createdAt.toISOString(),
+      updatedAt: a.updatedAt.toISOString()
+    }));
+
+    const custApp: Customer = {
+      id: customer.id,
+      fullName: customer.fullName,
+      phone: customer.phone,
+      email: customer.email || undefined,
+      address: addresses[0]?.fullAddress,
+      city: addresses[0]?.city,
+      state: addresses[0]?.state,
+      pincode: addresses[0]?.pincode,
+      addresses,
+      primaryAddress: addresses[0],
+      totalOrders: customer.totalOrders,
+      totalSpend: Number(customer.totalSpend),
+      createdAt: customer.createdAt.toISOString(),
+      updatedAt: customer.updatedAt.toISOString()
+    };
+
+    const orders = customer.orders.map(mapPrismaOrderToApp);
+    return { customer: custApp, addresses, orders };
+  } catch (err) {
+    console.error(`Failed to get customer ${id} from PostgreSQL:`, err);
+    return null;
+  }
 }
 
 export async function getDashboardMetrics(): Promise<DashboardMetrics> {
-  const db = loadDatabase();
-  const now = new Date();
-  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  try {
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  let todayOrdersCount = 0;
-  let todaySalesVolume = 0;
-  let pendingOrdersCount = 0;
-  let paidOrdersCount = 0;
+    const totalOrdersCount = await prisma.order.count();
+    const totalCustomersCount = await prisma.customer.count();
 
-  db.orders.forEach(o => {
-    const oTime = new Date(o.createdAt).getTime();
-    if (oTime >= startOfToday) {
-      todayOrdersCount += 1;
-      todaySalesVolume += o.finalTotal;
-    }
-    if (o.status === 'PENDING' || o.payment.status === 'PENDING') {
-      pendingOrdersCount += 1;
-    }
-    if (o.payment.status === 'PAID') {
-      paidOrdersCount += 1;
-    }
-  });
+    const todayOrders = await prisma.order.findMany({
+      where: { createdAt: { gte: startOfToday } }
+    });
 
-  return {
-    todayOrdersCount,
-    todaySalesVolume,
-    pendingOrdersCount,
-    paidOrdersCount,
-    totalCustomersCount: db.customers.length,
-    totalOrdersCount: db.orders.length,
-    recentOrders: db.orders.slice(0, 8)
-  };
+    const pendingOrdersCount = await prisma.order.count({
+      where: {
+        OR: [
+          { status: 'PENDING' },
+          { payment: { status: 'PENDING' } }
+        ]
+      }
+    });
+
+    const paidOrdersCount = await prisma.payment.count({
+      where: { status: 'PAID' }
+    });
+
+    const todaySalesVolume = todayOrders.reduce((sum, o) => sum + Number(o.finalTotal), 0);
+
+    const recentPrismaOrders = await prisma.order.findMany({
+      take: 8,
+      orderBy: { createdAt: 'desc' },
+      include: { customer: true, address: true, items: true, payment: true, invoice: true }
+    });
+
+    return {
+      todayOrdersCount: todayOrders.length,
+      todaySalesVolume,
+      pendingOrdersCount,
+      paidOrdersCount,
+      totalCustomersCount,
+      totalOrdersCount,
+      recentOrders: recentPrismaOrders.map(mapPrismaOrderToApp)
+    };
+  } catch (err) {
+    console.error('Failed to get dashboard metrics from PostgreSQL:', err);
+    return {
+      todayOrdersCount: 0,
+      todaySalesVolume: 0,
+      pendingOrdersCount: 0,
+      paidOrdersCount: 0,
+      totalCustomersCount: 0,
+      totalOrdersCount: 0,
+      recentOrders: []
+    };
+  }
 }
 
 export async function getInvoicesByDateRange(fromDate: string, toDate: string): Promise<Order[]> {
@@ -824,14 +872,13 @@ export async function getInvoicesByDateRange(fromDate: string, toDate: string): 
 }
 
 export async function getDailySummary(dateStr?: string): Promise<DailySummaryReport> {
-  const db = loadDatabase();
   const targetDate = dateStr ? new Date(dateStr) : new Date();
-  const startOfDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()).getTime();
-  const endOfDay = startOfDay + 86400000 - 1;
+  const startOfDay = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+  const endOfDay = new Date(startOfDay.getTime() + 86400000 - 1);
 
-  const dayOrders = db.orders.filter(o => {
-    const t = new Date(o.createdAt).getTime();
-    return t >= startOfDay && t <= endOfDay;
+  const dayOrders = await getOrders({
+    fromDate: startOfDay.toISOString(),
+    toDate: endOfDay.toISOString()
   });
 
   let totalSales = 0;
@@ -843,12 +890,7 @@ export async function getDailySummary(dateStr?: string): Promise<DailySummaryRep
   const productCountMap: Record<string, { name: string; quantity: number; revenue: number }> = {};
   const urgentDispatches: Array<{ orderNumber: string; customerName: string; city: string; total: number }> = [];
 
-  // Sort day orders chronologically
-  const sortedDayOrders = [...dayOrders].sort(
-    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-  );
-
-  sortedDayOrders.forEach(o => {
+  dayOrders.forEach(o => {
     totalSales += o.finalTotal;
     if (o.payment.status === 'PAID') {
       paidOrders += 1;
@@ -864,7 +906,7 @@ export async function getDailySummary(dateStr?: string): Promise<DailySummaryRep
       urgentDispatches.push({
         orderNumber: o.orderNumber,
         customerName: o.customer.fullName,
-        city: o.shippingSnapshot.city,
+        city: (o.shippingSnapshot as any).city || 'Tamil Nadu',
         total: o.finalTotal
       });
     }
@@ -880,21 +922,25 @@ export async function getDailySummary(dateStr?: string): Promise<DailySummaryRep
 
   const topProducts = Object.values(productCountMap).sort((a, b) => b.quantity - a.quantity).slice(0, 10);
 
-  const newCustomers = db.customers.filter(c => {
-    const t = new Date(c.createdAt).getTime();
-    return t >= startOfDay && t <= endOfDay;
-  }).length;
+  const newCustomers = await prisma.customer.count({
+    where: {
+      createdAt: {
+        gte: startOfDay,
+        lte: endOfDay
+      }
+    }
+  }).catch(() => 0);
 
   return {
     date: targetDate.toISOString().split('T')[0],
-    totalOrders: sortedDayOrders.length,
+    totalOrders: dayOrders.length,
     paidOrders,
     pendingOrders,
     failedOrders,
     totalSales,
     paidAmount: paidSales,
     pendingCodAmount: pendingCodSales,
-    orders: sortedDayOrders,
+    orders: dayOrders,
     topProducts,
     newCustomers,
     urgentDispatches

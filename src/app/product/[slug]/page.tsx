@@ -1,8 +1,10 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { PRODUCTS } from '@/data/products';
+import { getProductBySlug, getProducts } from '@/lib/db';
 import ProductDetailClient from './ProductDetailClient';
+
+export const dynamic = 'force-dynamic';
 
 interface ProductPageProps {
   params: Promise<{
@@ -10,15 +12,9 @@ interface ProductPageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  return PRODUCTS.map(prod => ({
-    slug: prod.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = PRODUCTS.find(p => p.slug === slug);
+  const product = await getProductBySlug(slug);
   if (!product) return {};
 
   return {
@@ -28,7 +24,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       canonical: `/product/${product.slug}`,
     },
     openGraph: {
-      title: `${product.name} — Classical Siddha Formulation`,
+      title: `${product.name} — ${product.medicalSystem === 'siddha' ? 'Classical Siddha' : product.medicalSystem === 'ayurveda' ? 'Classical Ayurveda' : 'Proprietary'} Formulation`,
       description: product.shortDescription,
       images: [product.image],
     },
@@ -37,15 +33,16 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = PRODUCTS.find(p => p.slug === slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const relatedProducts = PRODUCTS.filter(
-    p => p.id !== product.id && p.concerns.some(c => product.concerns.includes(c))
-  );
+  const allProducts = await getProducts();
+  const relatedProducts = allProducts.filter(
+    p => p.id !== product.id && p.concerns?.some(c => product.concerns?.includes(c))
+  ).slice(0, 4);
 
   // JSON-LD Product Schema
   const productSchema = {
@@ -61,14 +58,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
     },
     offers: {
       '@type': 'Offer',
-      url: `https://ruthramedicos.com/product/${product.slug}`,
       priceCurrency: 'INR',
       price: product.price,
       availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      seller: {
-        '@type': 'Organization',
-        name: 'Ruthra Siddha Herbals'
-      }
+      itemCondition: 'https://schema.org/NewCondition'
     }
   };
 
@@ -78,11 +71,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      <ProductDetailClient
-        key={product.slug}
-        product={product}
-        relatedProducts={relatedProducts}
-      />
+      <ProductDetailClient product={product} relatedProducts={relatedProducts} />
     </>
   );
 }

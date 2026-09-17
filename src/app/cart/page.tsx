@@ -196,7 +196,7 @@ export default function CartPage() {
                     <div className="flex items-center gap-3.5 flex-1 min-w-0">
                       <div className="w-18 h-18 sm:w-20 sm:h-20 rounded-xl bg-white p-2 border border-[#16382B]/10 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
                         <Image
-                          src={product.image}
+                          src={product.image || '/images/ruthra-icon.png'}
                           alt={product.name}
                           width={70}
                           height={70}

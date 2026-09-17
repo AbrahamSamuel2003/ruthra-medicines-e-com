@@ -1,8 +1,10 @@
 import React from 'react';
 import { Metadata } from 'next';
 import AyurvedaCatalogClient from '@/app/ayurveda/AyurvedaCatalogClient';
-import { PRODUCTS } from '@/data/products';
-import { AYURVEDA_NAV_CATEGORIES } from '@/components/Header';
+import { getProducts } from '@/lib/db';
+import { AYURVEDA_NAV_CATEGORIES } from '@/data/categories';
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -20,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AyurvedaCategoryPage({ params }: Props) {
   const { category } = await params;
-  const ayurvedaProducts = PRODUCTS.filter(p => p.medicalSystem === 'ayurveda');
+  const ayurvedaProducts = await getProducts({ medicalSystem: 'ayurveda' });
 
   return <AyurvedaCatalogClient products={ayurvedaProducts} initialCategory={category} />;
 }

@@ -123,6 +123,7 @@ export interface Product {
   searchKeywords: string[];
   tamilKeywords: string[];
   inStock: boolean;
+  stock?: number;
   featured?: boolean;
 }
 

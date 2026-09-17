@@ -600,7 +600,7 @@ export default function CheckoutPage() {
                   <div key={product.id} className="flex items-center gap-3 text-xs">
                     <div className="w-12 h-12 rounded-lg bg-[#FAF8F5] p-1 border border-[#16382B]/10 flex items-center justify-center flex-shrink-0">
                       <Image
-                        src={product.image}
+                        src={product.image || '/images/ruthra-icon.png'}
                         alt={product.name}
                         width={40}
                         height={40}

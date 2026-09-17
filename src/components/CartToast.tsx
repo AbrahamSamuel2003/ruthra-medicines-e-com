@@ -69,7 +69,7 @@ export default function CartToast() {
           <div className="flex items-center gap-3">
             <div className="relative w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 p-1 flex-shrink-0 overflow-hidden">
               <Image
-                src={toastNotification.product.image}
+                src={toastNotification.product.image || '/images/ruthra-icon.png'}
                 alt={toastNotification.product.name}
                 fill
                 className="object-contain p-1"

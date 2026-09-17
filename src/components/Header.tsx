@@ -24,46 +24,24 @@ import {
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import { 
+  SIDDHA_NAV_CATEGORIES, 
+  AYURVEDA_NAV_CATEGORIES, 
+  CONCERN_NAV_ITEMS as RAW_CONCERN_NAV_ITEMS 
+} from '@/data/categories';
 
-// Siddha Master Categories from Manufacturing Poster
-export const SIDDHA_NAV_CATEGORIES = [
-  { slug: 'chooranam', title: 'Chooranam', titleTa: 'சூரணம்', count: 41, desc: 'Herbal powders & sachets' },
-  { slug: 'kudineer-chooranam', title: 'Kudineer Chooranam', titleTa: 'குடிநீர் சூரணம்', count: 16, desc: 'Decoction powders' },
-  { slug: 'legiyam', title: 'Legiyam', titleTa: 'லேகியம்', count: 11, desc: 'Herbal jams & electuaries' },
-  { slug: 'thailam-ennai', title: 'Thailam / Ennai', titleTa: 'தைலம் / எண்ணெய்', count: 9, desc: 'Medicated body & hair oils' },
-  { slug: 'nei-ghritham', title: 'Nei (Ghritham)', titleTa: 'நெய்', count: 8, desc: 'Medicated herbal ghee' },
-  { slug: 'parpam', title: 'Parpam', titleTa: 'பற்பம்', count: 5, desc: 'Calcinated nano preparations' },
-  { slug: 'vadagam', title: 'Vadagam', titleTa: 'வடகம்', count: 4, desc: 'Chewable herbal tablets' },
-  { slug: 'rasayanam', title: 'Rasayanam', titleTa: 'ரசாயனம்', count: 4, desc: 'Rejuvenative tonics' },
-  { slug: 'mezhugu', title: 'Mezhugu', titleTa: 'மெழுகு', count: 4, desc: 'Waxy resinous compounds' },
-  { slug: 'maathirai-kuligai', title: 'Maathirai / Kuligai', titleTa: 'மாத்திரை / குளிகை', count: 4, desc: 'Classical pills' },
-  { slug: 'manapagu', title: 'Manapagu', titleTa: 'மணப்பாகு', count: 2, desc: 'Herbal syrup cordials' },
-  { slug: 'theeneer', title: 'Theeneer', titleTa: 'தீநீர்', count: 1, desc: 'Distilled herbal hydro-sol' },
-  { slug: 'vennai', title: 'Vennai', titleTa: 'வெண்ணெய்', count: 1, desc: 'Herbal medicated butters' },
-  { slug: 'kudineer', title: 'Kudineer', titleTa: 'குடிநீர்', count: 1, desc: 'Ready boiled decoctions' }
-];
+export { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES };
 
-// Ayurveda Master Categories from Manufacturing Poster
-export const AYURVEDA_NAV_CATEGORIES = [
-  { slug: 'churna', title: 'Churna', titleTa: 'சூர்ணம்', count: 28, desc: 'Classical herbal powders' },
-  { slug: 'single-herbs', title: 'Single Herbs & Minerals', titleTa: 'தனி மூலிகைகள்', count: 13, desc: 'Pure single botanicals' },
-  { slug: 'tailam', title: 'Tailam', titleTa: 'தைலம்', count: 6, desc: 'Medicated oils & massage' },
-  { slug: 'asavam-arishta', title: 'Asavam / Arishta', titleTa: 'ஆஸவம் / அரிஷ்டம்', count: 5, desc: 'Naturally fermented elixirs' },
-  { slug: 'lehyam', title: 'Lehyam', titleTa: 'லேஹ்யம்', count: 4, desc: 'Nourishing herbal preserves' },
-  { slug: 'ghritam', title: 'Ghritam', titleTa: 'கிருதம்', count: 3, desc: 'Medicated cow ghee' },
-  { slug: 'vati-guggulu', title: 'Vati / Guggulu', titleTa: 'வடி / குக்குலு', count: 3, desc: 'Compressed herbal tablets' },
-  { slug: 'kwatha-churna', title: 'Kwatha Churna', titleTa: 'க்வாத சூர்ணம்', count: 2, desc: 'Coarse decoction blends' }
-];
-
-// Health Indication Categories
-export const CONCERN_NAV_ITEMS = [
-  { slug: 'joint-mobility', title: 'Joint & Muscle Mobility', titleTa: 'மூட்டு & தசை நலம்', desc: 'Arthritis, spondylosis & pain relief', icon: Activity, count: 24 },
-  { slug: 'respiratory', title: 'Respiratory & Cough Care', titleTa: 'சுவாச & சளி நலம்', desc: 'Sinusitis, cough & bronchial ease', icon: Wind, count: 21 },
-  { slug: 'digestive-wellness', title: 'Digestive & Acidity Care', titleTa: 'செரிமான & அமில நலம்', desc: 'GERD, ulcers & bowel regularity', icon: Flame, count: 32 },
-  { slug: 'womens-wellness', title: "Women's Health & Harmony", titleTa: 'மகளிர் நலம்', desc: 'Hormonal balance & uterine care', icon: Heart, count: 19 },
-  { slug: 'skin-hair', title: 'Skin, Hair & Beauty', titleTa: 'தோல் & கூந்தல் நலம்', desc: 'Complexion, eczema & hair growth', icon: Droplets, count: 26 },
-  { slug: 'metabolic-wellness', title: 'Metabolic & Vitality Care', titleTa: 'உடல் பலம் & ரத்த சுத்தி', desc: 'Liver detox, stamina & hemoglobin', icon: Sparkles, count: 38 }
-];
+// Health Indication Categories with Icons for Header navigation
+export const CONCERN_NAV_ITEMS = RAW_CONCERN_NAV_ITEMS.map(item => {
+  let icon = Activity;
+  if (item.slug === 'respiratory') icon = Wind;
+  if (item.slug === 'digestive-wellness') icon = Flame;
+  if (item.slug === 'womens-wellness') icon = Heart;
+  if (item.slug === 'skin-hair') icon = Droplets;
+  if (item.slug === 'metabolic-wellness') icon = Sparkles;
+  return { ...item, icon };
+});
 
 export default function Header() {
   const pathname = usePathname();

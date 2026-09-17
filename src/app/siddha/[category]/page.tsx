@@ -1,8 +1,10 @@
 import React from 'react';
 import { Metadata } from 'next';
 import SiddhaCatalogClient from '../SiddhaCatalogClient';
-import { PRODUCTS } from '@/data/products';
-import { SIDDHA_NAV_CATEGORIES } from '@/components/Header';
+import { getProducts } from '@/lib/db';
+import { SIDDHA_NAV_CATEGORIES } from '@/data/categories';
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -20,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SiddhaCategoryPage({ params }: Props) {
   const { category } = await params;
-  const siddhaProducts = PRODUCTS.filter(p => p.medicalSystem === 'siddha' || (!p.medicalSystem && p.formulation !== 'Capsules' && p.formulation !== 'Tailam'));
+  const siddhaProducts = await getProducts({ medicalSystem: 'siddha' });
 
   return <SiddhaCatalogClient products={siddhaProducts} initialCategory={category} />;
 }

@@ -31,11 +31,25 @@ import { useCart } from '@/context/CartContext';
 import StoreHeroCarousel from '@/components/StoreHeroCarousel';
 import ProductCard from '@/components/ProductCard';
 import { PRODUCTS, CONCERN_CATEGORIES, FORMULATION_CATEGORIES, BUNDLES } from '@/data/products';
+import { Product } from '@/types/product';
 
 export default function HomePage() {
   const { language, t } = useLanguage();
   const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState<string>('all');
+  const [productList, setProductList] = useState<Product[]>(PRODUCTS);
+
+  // Sync with PostgreSQL
+  React.useEffect(() => {
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+          setProductList(data.products);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Helper to get category icons with vibrant accents
   const getConcernIcon = (slug: string) => {
@@ -52,27 +66,27 @@ export default function HomePage() {
 
   // Category Filtered Products for the Interactive Explorer (shows top 8)
   const filteredTabProducts = activeTab === 'all'
-    ? PRODUCTS.filter(p => p.featured).slice(0, 8)
-    : PRODUCTS.filter(p => p.concerns.includes(activeTab as any) || p.formulation.toLowerCase().includes(activeTab)).slice(0, 8);
+    ? productList.filter(p => p.featured).slice(0, 8)
+    : productList.filter(p => p.concerns?.includes(activeTab as any) || p.formulation.toLowerCase().includes(activeTab)).slice(0, 8);
 
   // Dedicated Category Aisles (Top 4 products per category shelf)
-  const jointCareProducts = PRODUCTS.filter(p => p.concerns.includes('joint-mobility')).slice(0, 4);
-  const totalJointCare = PRODUCTS.filter(p => p.concerns.includes('joint-mobility')).length;
+  const jointCareProducts = productList.filter(p => p.concerns?.includes('joint-mobility')).slice(0, 4);
+  const totalJointCare = productList.filter(p => p.concerns?.includes('joint-mobility')).length;
 
-  const respiratoryProducts = PRODUCTS.filter(p => p.concerns.includes('respiratory')).slice(0, 4);
-  const totalRespiratory = PRODUCTS.filter(p => p.concerns.includes('respiratory')).length;
+  const respiratoryProducts = productList.filter(p => p.concerns?.includes('respiratory')).slice(0, 4);
+  const totalRespiratory = productList.filter(p => p.concerns?.includes('respiratory')).length;
 
-  const digestiveProducts = PRODUCTS.filter(p => p.concerns.includes('digestive-wellness')).slice(0, 4);
-  const totalDigestive = PRODUCTS.filter(p => p.concerns.includes('digestive-wellness')).length;
+  const digestiveProducts = productList.filter(p => p.concerns?.includes('digestive-wellness')).slice(0, 4);
+  const totalDigestive = productList.filter(p => p.concerns?.includes('digestive-wellness')).length;
 
-  const womensCareProducts = PRODUCTS.filter(p => p.concerns.includes('womens-wellness')).slice(0, 4);
-  const totalWomensCare = PRODUCTS.filter(p => p.concerns.includes('womens-wellness')).length;
+  const womensCareProducts = productList.filter(p => p.concerns?.includes('womens-wellness')).slice(0, 4);
+  const totalWomensCare = productList.filter(p => p.concerns?.includes('womens-wellness')).length;
 
-  const skinHairProducts = PRODUCTS.filter(p => p.concerns.includes('skin-hair')).slice(0, 4);
-  const totalSkinHair = PRODUCTS.filter(p => p.concerns.includes('skin-hair')).length;
+  const skinHairProducts = productList.filter(p => p.concerns?.includes('skin-hair')).slice(0, 4);
+  const totalSkinHair = productList.filter(p => p.concerns?.includes('skin-hair')).length;
 
-  const metabolicProducts = PRODUCTS.filter(p => p.concerns.includes('metabolic-wellness')).slice(0, 4);
-  const totalMetabolic = PRODUCTS.filter(p => p.concerns.includes('metabolic-wellness')).length;
+  const metabolicProducts = productList.filter(p => p.concerns?.includes('metabolic-wellness')).slice(0, 4);
+  const totalMetabolic = productList.filter(p => p.concerns?.includes('metabolic-wellness')).length;
 
   const TABS = [
     { id: 'all', nameEn: 'All Bestsellers', nameTa: 'பிரபல தயாரிப்புகள்' },

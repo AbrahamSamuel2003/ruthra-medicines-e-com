@@ -86,6 +86,20 @@ function ShopContent() {
     };
   }, [showMobileFilter]);
 
+  const [productList, setProductList] = useState<Product[]>(PRODUCTS);
+
+  // Sync latest catalog from PostgreSQL
+  useEffect(() => {
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+          setProductList(data.products);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   // Reset page to 1 whenever any filter or search changes
   useEffect(() => {
     setCurrentPage(1);
@@ -93,39 +107,39 @@ function ShopContent() {
 
   // Dynamic Item Counts
   const formulationCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: PRODUCTS.length };
-    PRODUCTS.forEach(p => {
+    const counts: Record<string, number> = { all: productList.length };
+    productList.forEach(p => {
       counts[p.formulation] = (counts[p.formulation] || 0) + 1;
     });
     return counts;
-  }, []);
+  }, [productList]);
 
   const concernCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: PRODUCTS.length };
-    PRODUCTS.forEach(p => {
-      p.concerns.forEach(c => {
+    const counts: Record<string, number> = { all: productList.length };
+    productList.forEach(p => {
+      p.concerns?.forEach(c => {
         counts[c] = (counts[c] || 0) + 1;
       });
     });
     return counts;
-  }, []);
+  }, [productList]);
 
   const priceCounts = useMemo(() => {
     return {
-      all: PRODUCTS.length,
-      'under-200': PRODUCTS.filter(p => p.price < 200).length,
-      '200-300': PRODUCTS.filter(p => p.price >= 200 && p.price <= 300).length,
-      'above-300': PRODUCTS.filter(p => p.price > 300).length,
+      all: productList.length,
+      'under-200': productList.filter(p => p.price < 200).length,
+      '200-300': productList.filter(p => p.price >= 200 && p.price <= 300).length,
+      'above-300': productList.filter(p => p.price > 300).length,
     };
-  }, []);
+  }, [productList]);
 
   // Pre-indexed and memoized filtered products (sub-millisecond filtering for 1,000+ items)
   const filteredProducts = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
-    return PRODUCTS.filter(p => {
+    return productList.filter(p => {
       // Concern Filter
-      if (selectedConcern !== 'all' && !p.concerns.includes(selectedConcern as ConcernSlug)) {
+      if (selectedConcern !== 'all' && !p.concerns?.includes(selectedConcern as ConcernSlug)) {
         return false;
       }
       // Formulation Filter
@@ -802,7 +816,7 @@ function ShopContent() {
                         className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 flex-shrink-0 p-2 flex items-center justify-center overflow-hidden group-hover:bg-[#F4EFEA] transition-colors"
                       >
                         <Image
-                          src={prod.image}
+                          src={prod.image || '/images/ruthra-icon.png'}
                           alt={prod.name}
                           width={80}
                           height={80}

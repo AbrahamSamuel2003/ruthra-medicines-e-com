@@ -34,6 +34,38 @@ export default function AdminReportsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSendingSummary, setIsSendingSummary] = useState(false);
   const [summaryStatus, setSummaryStatus] = useState<string | null>(null);
+  const [adminRecipientEmail, setAdminRecipientEmail] = useState('abrahamsamuel645@gmail.com');
+  const [summaryDeliveryTime, setSummaryDeliveryTime] = useState('20:00');
+  const [isSaved, setIsSaved] = useState(false);
+
+  // Load custom summary preferences
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedEmail = localStorage.getItem('ruthra_admin_summary_email');
+      const savedTime = localStorage.getItem('ruthra_admin_summary_time');
+      if (savedEmail) setAdminRecipientEmail(savedEmail);
+      if (savedTime) setSummaryDeliveryTime(savedTime);
+    }
+  }, []);
+
+  const handleSaveSchedule = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('ruthra_admin_summary_email', adminRecipientEmail);
+      localStorage.setItem('ruthra_admin_summary_time', summaryDeliveryTime);
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
+    }
+  };
+
+  const summaryDeliveryTimeLabel = {
+    '18:00': '6:00 PM IST',
+    '19:00': '7:00 PM IST',
+    '20:00': '8:00 PM IST',
+    '21:00': '9:00 PM IST',
+    '22:00': '10:00 PM IST',
+    '08:00': '8:00 AM IST',
+    '09:00': '9:00 AM IST'
+  }[summaryDeliveryTime] || '8:00 PM IST';
 
   const fetchReports = async () => {
     setIsLoading(true);
@@ -58,10 +90,11 @@ export default function AdminReportsPage() {
     setIsSendingSummary(true);
     setSummaryStatus(null);
     try {
-      const res = await fetch('/api/cron/daily-summary');
+      const queryEmail = encodeURIComponent(adminRecipientEmail.trim() || 'abrahamsamuel645@gmail.com');
+      const res = await fetch(`/api/cron/daily-summary?email=${queryEmail}`);
       if (res.ok) {
         const result = await res.json();
-        setSummaryStatus(`8:00 PM Summary compiled & dispatched to ${result.recipient || 'abrahamsamuel645@gmail.com'} (${result.summary.totalOrders} orders processed • Total: ₹${result.summary.totalSales})`);
+        setSummaryStatus(`Summary compiled and dispatched to ${result.recipient || adminRecipientEmail} (${result.summary.totalOrders} orders processed • Total: ₹${result.summary.totalSales})`);
       } else {
         setSummaryStatus('Failed to compile summary.');
       }
@@ -185,10 +218,10 @@ export default function AdminReportsPage() {
             </div>
             <div>
               <h2 className="font-serif-brand font-bold text-base text-[#16382B]">
-                Automated Daily Order Summary Email
+                Daily Sales &amp; Order Summary Email
               </h2>
               <p className="text-xs text-[#3D5A68]">
-                Every night, the server compiles order volume, paid transactions, products sold, and dispatch priorities for admin.
+                Automated daily report summarizing order volume, revenue, payment collections, and items pending dispatch.
               </p>
             </div>
           </div>
@@ -200,7 +233,7 @@ export default function AdminReportsPage() {
             className="px-4 py-2 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs transition-all disabled:opacity-70"
           >
             <Send className="w-3.5 h-3.5 text-[#DFB36C]" />
-            <span>{isSendingSummary ? 'Compiling Report...' : 'Compile & Send Summary Now'}</span>
+            <span>{isSendingSummary ? 'Compiling Report...' : 'Send Summary Email Now'}</span>
           </button>
         </div>
 
@@ -211,18 +244,70 @@ export default function AdminReportsPage() {
           </div>
         )}
 
-        <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div>
-            <span className="text-[#8A9B93] block text-[10.5px]">Client / Admin Recipient</span>
-            <span className="font-bold text-[#16382B] font-mono">abrahamsamuel645@gmail.com</span>
+        {/* ADMIN CONFIGURABLE TIMING & RECIPIENT */}
+        <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-[11px] font-bold text-[#16382B] mb-1">
+                Admin Recipient Email
+              </label>
+              <input
+                type="email"
+                value={adminRecipientEmail}
+                onChange={(e) => {
+                  setAdminRecipientEmail(e.target.value);
+                  setIsSaved(false);
+                }}
+                placeholder="admin@example.com"
+                className="w-full px-3 py-2 rounded-xl border border-[#16382B]/15 bg-white text-[#16382B] font-mono text-xs focus:border-[#C29043] focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-[11px] font-bold text-[#16382B] mb-1">
+                Scheduled Daily Dispatch Time
+              </label>
+              <select
+                value={summaryDeliveryTime}
+                onChange={(e) => {
+                  setSummaryDeliveryTime(e.target.value);
+                  setIsSaved(false);
+                }}
+                className="w-full px-3 py-2 rounded-xl border border-[#16382B]/15 bg-white text-[#16382B] font-semibold text-xs focus:border-[#C29043] focus:outline-none cursor-pointer"
+              >
+                <option value="18:00">6:00 PM IST (Evening Close)</option>
+                <option value="19:00">7:00 PM IST (Post-Shift)</option>
+                <option value="20:00">8:00 PM IST (Standard Nightly Close)</option>
+                <option value="21:00">9:00 PM IST (Late Night)</option>
+                <option value="22:00">10:00 PM IST (End of Day)</option>
+                <option value="08:00">8:00 AM IST (Morning Digest)</option>
+                <option value="09:00">9:00 AM IST (Opening Digest)</option>
+              </select>
+            </div>
           </div>
-          <div>
-            <span className="text-[#8A9B93] block text-[10.5px]">Scheduled Frequency</span>
-            <span className="font-bold text-[#16382B]">Every Day at 8:00 PM IST</span>
-          </div>
-          <div>
-            <span className="text-[#8A9B93] block text-[10.5px]">Cron Trigger Endpoint</span>
-            <span className="font-bold text-[#16382B] font-mono">/api/cron/daily-summary</span>
+
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-2 border-t border-[#16382B]/10">
+            <div className="text-[11px] text-[#5C7368] flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>
+                Automated daily dispatch active • Delivery set for <strong>{summaryDeliveryTimeLabel}</strong> to <strong>{adminRecipientEmail}</strong>
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleSaveSchedule}
+              className="px-3.5 py-1.5 rounded-lg bg-white border border-[#16382B]/15 text-[#16382B] font-semibold text-xs hover:bg-[#FAF8F5] transition-all cursor-pointer flex items-center gap-1 shadow-2xs"
+            >
+              {isSaved ? (
+                <>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-emerald-800">Saved</span>
+                </>
+              ) : (
+                <span>Save Timing &amp; Email</span>
+              )}
+            </button>
           </div>
         </div>
       </div>

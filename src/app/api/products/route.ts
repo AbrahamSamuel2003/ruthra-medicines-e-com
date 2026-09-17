@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search') || undefined;
     const formulation = searchParams.get('formulation') || undefined;
     const concern = searchParams.get('concern') || undefined;
+    const medicalSystem = searchParams.get('medicalSystem') || undefined;
     const featuredParam = searchParams.get('featured');
     const featured = featuredParam !== null ? featuredParam === 'true' : undefined;
 
@@ -16,6 +17,7 @@ export async function GET(request: NextRequest) {
       search,
       formulation,
       concern,
+      medicalSystem,
       featured
     });
 

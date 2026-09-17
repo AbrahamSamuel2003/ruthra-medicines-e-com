@@ -9,6 +9,7 @@ import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import { CONCERN_CATEGORIES, FORMULATION_CATEGORIES } from '@/data/products';
+import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES } from '@/data/categories';
 
 export default function MobileHeader() {
   const rawPathname = usePathname();
@@ -255,28 +256,22 @@ export default function MobileHeader() {
               <div className="border-t border-[#16382B]/10 pt-3">
                 <div className="flex items-center justify-between px-2 mb-2">
                   <p className="text-[10px] uppercase font-bold tracking-wider text-[#16382B]">
-                    {t('Siddha Forms (14)', 'சித்த மருந்து வடிவங்கள்')}
+                    {t('Siddha Forms (14)', 'சித்த மருந்து வடிவங்கள் (14)')}
                   </p>
                   <Link href="/siddha" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#C29043]">
                     {t('View All', 'அனைத்தும்')}
                   </Link>
                 </div>
-                <div className="grid grid-cols-2 gap-1">
-                  {[
-                    { slug: 'chooranam', title: 'Chooranam (41)', titleTa: 'சூரணம் (41)' },
-                    { slug: 'kudineer-chooranam', title: 'Kudineer (16)', titleTa: 'குடிநீர் (16)' },
-                    { slug: 'legiyam', title: 'Legiyam (11)', titleTa: 'லேகியம் (11)' },
-                    { slug: 'thailam-ennai', title: 'Thailam (9)', titleTa: 'தைலம் (9)' },
-                    { slug: 'nei-ghritham', title: 'Nei (8)', titleTa: 'நெய் (8)' },
-                    { slug: 'parpam', title: 'Parpam (5)', titleTa: 'பற்பம் (5)' }
-                  ].map(form => (
+                <div className="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto pr-1">
+                  {SIDDHA_NAV_CATEGORIES.map(form => (
                     <Link
                       key={form.slug}
                       href={`/siddha/${form.slug}`}
                       onClick={handleMobileNavClick}
-                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate"
+                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate flex items-center justify-between"
                     >
-                      {language === 'ta' ? form.titleTa : form.title}
+                      <span className="truncate">{language === 'ta' ? form.titleTa : form.title}</span>
+                      <span className="text-[10px] text-[#8C9E96] font-medium ml-1">({form.count})</span>
                     </Link>
                   ))}
                 </div>
@@ -286,28 +281,22 @@ export default function MobileHeader() {
               <div className="border-t border-[#16382B]/10 pt-3">
                 <div className="flex items-center justify-between px-2 mb-2">
                   <p className="text-[10px] uppercase font-bold tracking-wider text-[#C29043]">
-                    {t('Ayurveda Forms (8)', 'ஆயுர்வேத மருந்து வடிவங்கள்')}
+                    {t('Ayurveda Forms (8)', 'ஆயுர்வேத மருந்து வடிவங்கள் (8)')}
                   </p>
                   <Link href="/ayurveda" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#16382B]">
                     {t('View All', 'அனைத்தும்')}
                   </Link>
                 </div>
-                <div className="grid grid-cols-2 gap-1">
-                  {[
-                    { slug: 'churna', title: 'Churna (28)', titleTa: 'சூர்ணம் (28)' },
-                    { slug: 'single-herbs', title: 'Single Herbs (13)', titleTa: 'தனி மூலிகைகள் (13)' },
-                    { slug: 'tailam', title: 'Tailam (6)', titleTa: 'தைலம் (6)' },
-                    { slug: 'asavam-arishta', title: 'Asavam (5)', titleTa: 'ஆஸவம் (5)' },
-                    { slug: 'lehyam', title: 'Lehyam (4)', titleTa: 'லேஹ்யம் (4)' },
-                    { slug: 'ghritam', title: 'Ghritam (3)', titleTa: 'கிருதம் (3)' }
-                  ].map(form => (
+                <div className="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto pr-1">
+                  {AYURVEDA_NAV_CATEGORIES.map(form => (
                     <Link
                       key={form.slug}
                       href={`/ayurveda/${form.slug}`}
                       onClick={handleMobileNavClick}
-                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate"
+                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate flex items-center justify-between"
                     >
-                      {language === 'ta' ? form.titleTa : form.title}
+                      <span className="truncate">{language === 'ta' ? form.titleTa : form.title}</span>
+                      <span className="text-[10px] text-[#8C9E96] font-medium ml-1">({form.count})</span>
                     </Link>
                   ))}
                 </div>

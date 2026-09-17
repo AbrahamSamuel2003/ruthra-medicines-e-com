@@ -180,7 +180,7 @@ export default function SearchModal() {
                   >
                     <div className="w-14 h-14 relative flex-shrink-0 bg-[#FAF8F5] rounded-lg p-1 border border-[#E8F1EB] flex items-center justify-center">
                       <Image
-                        src={prod.image}
+                        src={prod.image || '/images/ruthra-icon.png'}
                         alt={prod.name}
                         width={48}
                         height={48}

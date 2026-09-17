@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Leaf, 
@@ -9,6 +9,9 @@ import {
   SlidersHorizontal, 
   Award, 
   ChevronRight,
+  ChevronLeft,
+  ChevronsLeft,
+  ChevronsRight,
   Sparkles,
   RotateCcw,
   LayoutGrid,
@@ -26,7 +29,7 @@ import {
 import { Product, ConcernSlug } from '@/types/product';
 import { useLanguage } from '@/context/LanguageContext';
 import ProductCard from '@/components/ProductCard';
-import { SIDDHA_NAV_CATEGORIES } from '@/components/Header';
+import { SIDDHA_NAV_CATEGORIES } from '@/data/categories';
 
 interface SiddhaCatalogClientProps {
   products: Product[];
@@ -59,17 +62,22 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price-low' | 'price-high' | 'name'>('featured');
-  const [perPage, setPerPage] = useState<number>(24);
+  const [perPage, setPerPage] = useState<number>(12);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
+  // Reset currentPage to 1 whenever any filter, search, sort, or perPage changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, selectedConcern, selectedPrice, inStockOnly, searchQuery, sortBy, perPage]);
 
   // Compute category counts
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: products.length };
     SIDDHA_NAV_CATEGORIES.forEach(cat => {
       counts[cat.slug] = products.filter(p => {
-        return p.formulation.toLowerCase().includes(cat.title.toLowerCase()) ||
-               p.categoryGroup?.toLowerCase() === cat.slug ||
-               p.slug.includes(cat.slug);
+        return p.categoryGroup === cat.slug ||
+               p.formulation.toLowerCase() === cat.title.toLowerCase();
       }).length;
     });
     return counts;
@@ -102,9 +110,12 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
     setSelectedPrice('all');
     setInStockOnly(false);
     setSearchQuery('');
+    setSortBy('featured');
+    setPerPage(12);
+    setCurrentPage(1);
   };
 
-  const hasActiveFilters = selectedCategory !== 'all' || selectedConcern !== 'all' || selectedPrice !== 'all' || inStockOnly || searchQuery.trim() !== '';
+  const hasActiveFilters = selectedCategory !== 'all' || selectedConcern !== 'all' || selectedPrice !== 'all' || inStockOnly || searchQuery.trim() !== '' || sortBy !== 'featured';
 
   // Filter products based on criteria
   const filteredProducts = useMemo(() => {
@@ -113,10 +124,9 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
       if (selectedCategory !== 'all') {
         const catObj = SIDDHA_NAV_CATEGORIES.find(c => c.slug === selectedCategory);
         if (catObj) {
-          const matchTitle = p.formulation.toLowerCase().includes(catObj.title.toLowerCase()) ||
-                             p.categoryGroup?.toLowerCase() === catObj.slug ||
-                             p.slug.includes(catObj.slug);
-          if (!matchTitle) return false;
+          const matchCat = p.categoryGroup === catObj.slug ||
+                           p.formulation.toLowerCase() === catObj.title.toLowerCase();
+          if (!matchCat) return false;
         }
       }
 
@@ -161,8 +171,25 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
     return list;
   }, [filteredProducts, sortBy]);
 
-  // Group products by category when viewing All (and no active search/concern/price filters)
-  const isGroupedView = selectedCategory === 'all' && selectedConcern === 'all' && selectedPrice === 'all' && !inStockOnly && !searchQuery.trim();
+  // Pagination computations
+  const totalItems = sortedProducts.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / perPage));
+  const startIndex = (currentPage - 1) * perPage;
+  const endIndex = Math.min(startIndex + perPage, totalItems);
+  const paginatedProducts = useMemo(() => {
+    return sortedProducts.slice(startIndex, endIndex);
+  }, [sortedProducts, startIndex, endIndex]);
+
+  const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 180, behavior: 'smooth' });
+    }
+  };
+
+  // Group products by category only when viewing All with no active filters, default sort, and perPage >= totalItems
+  const isGroupedView = selectedCategory === 'all' && selectedConcern === 'all' && selectedPrice === 'all' && !inStockOnly && !searchQuery.trim() && sortBy === 'featured' && perPage >= totalItems;
 
   const groupedCategories = useMemo(() => {
     if (!isGroupedView) return [];
@@ -226,7 +253,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
           
           {/* ========================================= */}
-          {/* 1. LEFT STICKY FILTER SIDEBAR (Screenshot 2) */}
+          {/* 1. LEFT STICKY FILTER SIDEBAR */}
           {/* ========================================= */}
           <aside className="w-full lg:w-68 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 self-start max-h-[calc(100vh-7rem)] lg:overflow-y-auto pr-0 lg:pr-2 custom-scrollbar">
             <div className="bg-white rounded-2xl border border-[#16382B]/10 p-4 sm:p-5 shadow-xs flex flex-col gap-5">
@@ -410,7 +437,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
           {/* ========================================= */}
           <main className="flex-1 min-w-0">
             
-            {/* Top Sticky Search & Controls Bar (Screenshot 2) */}
+            {/* Top Sticky Search & Controls Bar */}
             <div className="bg-white rounded-2xl border border-[#16382B]/10 p-3 sm:p-4 mb-5 shadow-xs sticky top-20 z-20">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 
@@ -461,7 +488,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                     <option value={12}>12 / page</option>
                     <option value={24}>24 / page</option>
                     <option value={48}>48 / page</option>
-                    <option value={150}>All ({sortedProducts.length})</option>
+                    <option value={totalItems || 150}>All ({totalItems})</option>
                   </select>
 
                   {/* View Mode Toggle */}
@@ -472,6 +499,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                         viewMode === 'grid' ? 'bg-[#16382B] text-white shadow-2xs' : 'text-[#8A9B93] hover:text-[#16382B]'
                       }`}
                       aria-label="Grid View"
+                      title="Grid View"
                     >
                       <LayoutGrid className="w-4 h-4" />
                     </button>
@@ -481,6 +509,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                         viewMode === 'list' ? 'bg-[#16382B] text-white shadow-2xs' : 'text-[#8A9B93] hover:text-[#16382B]'
                       }`}
                       aria-label="List View"
+                      title="List View"
                     >
                       <LayoutList className="w-4 h-4" />
                     </button>
@@ -492,9 +521,13 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
               {/* Status & Active Chips */}
               <div className="flex items-center justify-between mt-2.5 pt-2.5 border-t border-[#16382B]/5 text-xs text-[#8A9B93]">
                 <span>
-                  {t(
-                    `Showing ${Math.min(perPage, sortedProducts.length)} of ${sortedProducts.length} formulations`,
-                    `${sortedProducts.length} தயாரிப்புகளில் ${Math.min(perPage, sortedProducts.length)} காட்டப்படுகிறது`
+                  {totalItems > 0 ? (
+                    t(
+                      `Showing ${startIndex + 1}–${endIndex} of ${totalItems} formulations`,
+                      `${totalItems} தயாரிப்புகளில் ${startIndex + 1}–${endIndex} காட்டப்படுகிறது`
+                    )
+                  ) : (
+                    t('0 formulations found', '0 மருந்துகள் கண்டறியப்பட்டன')
                   )}
                 </span>
                 {hasActiveFilters && (
@@ -506,7 +539,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
             </div>
 
             {/* ========================================= */}
-            {/* 3. PRODUCT DISPLAY: CATEGORY GROUPED OR FLAT GRID */}
+            {/* 3. PRODUCT DISPLAY: CATEGORY GROUPED OR PAGINATED GRID/LIST */}
             {/* ========================================= */}
             {sortedProducts.length === 0 ? (
               <div className="bg-white rounded-2xl border border-[#16382B]/10 p-12 text-center my-6">
@@ -525,7 +558,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                 </button>
               </div>
             ) : isGroupedView ? (
-              /* Issue 3: Grouped by Dosage Form Sections on All mode */
+              /* Grouped by Dosage Form Sections on All mode */
               <div className="space-y-10">
                 {groupedCategories.map(cat => (
                   <section key={cat.slug} id={cat.slug} className="scroll-mt-32">
@@ -547,21 +580,122 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                       </span>
                     </div>
 
-                    {/* Products Grid for this category */}
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5">
-                      {cat.items.slice(0, perPage).map(product => (
-                        <ProductCard key={product.id} product={product} />
+                    {/* Products Grid or List for this category */}
+                    <div className={viewMode === 'grid' ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5' : 'space-y-3'}>
+                      {cat.items.map(product => (
+                        <ProductCard key={product.id} product={product} viewMode={viewMode} />
                       ))}
                     </div>
                   </section>
                 ))}
               </div>
             ) : (
-              /* Filtered / Searched Flat Grid */
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5">
-                {sortedProducts.slice(0, perPage).map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+              /* Filtered / Paginated Grid or List */
+              <div className="space-y-6">
+                <div className={viewMode === 'grid' ? 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5' : 'space-y-3'}>
+                  {paginatedProducts.map(product => (
+                    <ProductCard key={product.id} product={product} viewMode={viewMode} />
+                  ))}
+                </div>
+
+                {/* Scalable Pagination Controls */}
+                {totalPages > 1 && (
+                  <div className="bg-white rounded-2xl border border-[#16382B]/10 p-4 sm:p-5 shadow-2xs">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                      {/* Progress info */}
+                      <div className="text-[#3D5A68] text-center sm:text-left">
+                        <span className="font-semibold text-[#16382B]">
+                          {t(`Page ${currentPage} of ${totalPages}`, `பக்கம் ${currentPage} / ${totalPages}`)}
+                        </span>
+                        <span className="mx-2 text-[#8A9B93]">•</span>
+                        <span>
+                          {t(
+                            `Showing ${startIndex + 1}–${endIndex} of ${totalItems} formulations`,
+                            `${totalItems} தயாரிப்புகளில் ${startIndex + 1}–${endIndex}`
+                          )}
+                        </span>
+                      </div>
+
+                      {/* Navigation Buttons */}
+                      <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                        {/* First Page */}
+                        <button
+                          type="button"
+                          onClick={() => handlePageChange(1)}
+                          disabled={currentPage === 1}
+                          className="p-2 rounded-lg border border-[#16382B]/15 text-[#16382B] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                          title="First Page"
+                          aria-label="First Page"
+                        >
+                          <ChevronsLeft className="w-4 h-4" />
+                        </button>
+
+                        {/* Previous Page */}
+                        <button
+                          type="button"
+                          onClick={() => handlePageChange(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          className="p-2 rounded-lg border border-[#16382B]/15 text-[#16382B] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                          title="Previous Page"
+                          aria-label="Previous Page"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                        </button>
+
+                        {/* Page Numbers */}
+                        <div className="flex items-center gap-1 px-1">
+                          {Array.from({ length: totalPages }, (_, i) => i + 1)
+                            .filter(p => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
+                            .map((pageNum, idx, arr) => {
+                              const prevPage = arr[idx - 1];
+                              const hasGap = prevPage && pageNum - prevPage > 1;
+
+                              return (
+                                <React.Fragment key={pageNum}>
+                                  {hasGap && <span className="px-1 text-[#8A9B93]">...</span>}
+                                  <button
+                                    type="button"
+                                    onClick={() => handlePageChange(pageNum)}
+                                    className={`w-8 h-8 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                                      currentPage === pageNum
+                                        ? 'bg-[#16382B] text-white shadow-2xs'
+                                        : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/10'
+                                    }`}
+                                  >
+                                    {pageNum}
+                                  </button>
+                                </React.Fragment>
+                              );
+                            })}
+                        </div>
+
+                        {/* Next Page */}
+                        <button
+                          type="button"
+                          onClick={() => handlePageChange(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                          className="p-2 rounded-lg border border-[#16382B]/15 text-[#16382B] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                          title="Next Page"
+                          aria-label="Next Page"
+                        >
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+
+                        {/* Last Page */}
+                        <button
+                          type="button"
+                          onClick={() => handlePageChange(totalPages)}
+                          disabled={currentPage === totalPages}
+                          className="p-2 rounded-lg border border-[#16382B]/15 text-[#16382B] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                          title="Last Page"
+                          aria-label="Last Page"
+                        >
+                          <ChevronsRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

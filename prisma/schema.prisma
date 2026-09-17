@@ -4,7 +4,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+}
+
+enum MedicalSystem {
+  SIDDHA
+  AYURVEDA
+  PROPRIETARY
 }
 
 enum OrderStatus {
@@ -44,6 +49,72 @@ model Admin {
   @@map("admins")
 }
 
+model Category {
+  id            String         @id @default(uuid())
+  slug          String         @unique
+  title         String
+  titleTa       String
+  medicalSystem MedicalSystem  @default(SIDDHA)
+  description   String?
+  itemCount     Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([medicalSystem])
+  @@index([slug])
+  @@map("categories")
+}
+
+model Product {
+  id                 String         @id // e.g. prod-siddha-001 or prod-prop-01
+  name               String
+  tamilName          String
+  slug               String         @unique
+  medicalSystem      MedicalSystem  @default(SIDDHA)
+  formulation        String
+  formulationTa      String
+  categoryGroup      String?        // e.g. chooranam, kudineer-chooranam, churna, tailam
+  concerns           String[]       @default([])
+  price              Float
+  originalPrice      Float?
+  packSize           String
+  packSizeTa         String
+  shortDescription   String
+  shortDescriptionTa String
+  description        String
+  descriptionTa      String
+  traditionalRole    String
+  traditionalRoleTa  String
+  badge              String?
+  badgeTa            String?
+  image              String
+  images             String[]       @default([])
+  gallery            String[]       @default([])
+  isComingSoon       Boolean        @default(false)
+  inStock            Boolean        @default(true)
+  stock              Int            @default(20)
+  featured           Boolean        @default(false)
+  
+  ingredients        Json           @default("[]")
+  howToUse           Json           @default("[]")
+  dosage             Json           @default("{}")
+  safety             Json           @default("{}")
+  storage            Json           @default("{}")
+  faqs               Json           @default("[]")
+  searchKeywords     String[]       @default([])
+  tamilKeywords      String[]       @default([])
+
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  @@index([medicalSystem])
+  @@index([categoryGroup])
+  @@index([formulation])
+  @@index([slug])
+  @@index([inStock])
+  @@map("products")
+}
+
 model Customer {
   id          String            @id @default(uuid())
   fullName    String
@@ -81,10 +152,10 @@ model CustomerAddress {
 }
 
 model Order {
-  id             String          @id @default(uuid())
-  orderNumber    String          @unique // e.g. RM-2026-1001
+  id             String           @id @default(uuid())
+  orderNumber    String           @unique // e.g. RM-2026-1001
   customerId     String
-  customer       Customer        @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  customer       Customer         @relation(fields: [customerId], references: [id], onDelete: Restrict)
   addressId      String?
   address        CustomerAddress? @relation(fields: [addressId], references: [id], onDelete: SetNull)
   
@@ -92,19 +163,19 @@ model Order {
   payment        Payment?
   invoice        Invoice?
 
-  status         OrderStatus     @default(PENDING)
+  status         OrderStatus      @default(PENDING)
   subtotal       Float
-  discount       Float           @default(0.0)
-  deliveryCharge Float           @default(0.0)
-  tax            Float           @default(0.0)
+  discount       Float            @default(0.0)
+  deliveryCharge Float            @default(0.0)
+  tax            Float            @default(0.0)
   finalTotal     Float
   
-  deliveryMethod String          @default("Tamil Nadu Express Courier")
-  shippingSnapshot Json          // Full address snapshot at time of order
+  deliveryMethod String           @default("Tamil Nadu Express Courier")
+  shippingSnapshot Json           // Full address snapshot at time of order
   notes          String?
   
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
 
   @@index([customerId])
   @@index([orderNumber])
@@ -117,13 +188,13 @@ model OrderItem {
   id             String   @id @default(uuid())
   orderId        String
   order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  productId      String   // Reference to hardcoded catalog SKU
-  productName    String   // Immutable snapshot at time of purchase
+  productId      String   // Reference to SKU
+  productName    String   // Immutable snapshot
   tamilName      String?
   formulation    String
   packSize       String
   quantity       Int
-  unitPrice      Float    // Price snapshot at time of purchase
+  unitPrice      Float    // Snapshot price
   discount       Float    @default(0.0)
   lineTotal      Float
   createdAt      DateTime @default(now())
@@ -152,22 +223,22 @@ model Payment {
 }
 
 model Invoice {
-  id             String   @id @default(uuid())
-  invoiceNumber  String   @unique // e.g. INV-2026-1001
-  orderId        String   @unique
-  order          Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  issueDate      DateTime @default(now())
-  subtotal       Float
-  discount       Float    @default(0.0)
-  deliveryCharge Float    @default(0.0)
-  tax            Float    @default(0.0)
-  finalTotal     Float
-  customerName   String
-  customerPhone  String
+  id              String   @id @default(uuid())
+  invoiceNumber   String   @unique // e.g. INV-2026-1001
+  orderId         String   @unique
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  issueDate       DateTime @default(now())
+  subtotal        Float
+  discount        Float    @default(0.0)
+  deliveryCharge  Float    @default(0.0)
+  tax             Float    @default(0.0)
+  finalTotal      Float
+  customerName    String
+  customerPhone   String
   customerAddress String
-  paymentMethod  String
-  paymentStatus  String
-  createdAt      DateTime @default(now())
+  paymentMethod   String
+  paymentStatus   String
+  createdAt       DateTime @default(now())
 
   @@index([orderId])
   @@index([invoiceNumber])
