@@ -132,8 +132,8 @@ export default function Header() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#C29043]" />
             <span className="font-medium whitespace-nowrap">
               {t(
-                'Authentic Siddha (111 SKUs) & Ayurveda (64 SKUs) | Postal Delivery Across Tamil Nadu',
-                '111 சித்த மருந்துகள் & 64 ஆயுர்வேத மருந்துகள் | தமிழ்நாடு முழுவதும் அஞ்சல் விநியோகம்'
+                'Authentic Siddha (111 SKUs), Ayurveda (55 SKUs) & Proprietary (10 SKUs) | Postal Delivery Across Tamil Nadu',
+                '111 சித்த மருந்துகள், 55 ஆயுர்வேத மருந்துகள் & 10 சிறப்பு தயாரிப்புகள் | தமிழ்நாடு முழுவதும் அஞ்சல் விநியோகம்'
               )}
             </span>
           </div>

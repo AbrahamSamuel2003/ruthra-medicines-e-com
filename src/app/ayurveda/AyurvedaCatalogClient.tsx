@@ -224,7 +224,7 @@ export default function AyurvedaCatalogClient({ products, initialCategory }: Ayu
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F1EB]/15 border border-[#C29043]/40 text-xs text-[#DFB36C] font-semibold mb-2">
                 <Droplets className="w-3.5 h-3.5" />
-                <span>{t('Classical Ayurvedic Formulary of India (64 SKUs)', 'இந்திய ஆயுர்வேத பார்முலரி (64 தயாரிப்புகள்)')}</span>
+                <span>{t('Classical Ayurvedic Formulary of India (55 SKUs)', 'இந்திய ஆயுர்வேத பார்முலரி (55 தயாரிப்புகள்)')}</span>
               </div>
               <h1 className="font-serif-brand text-2xl sm:text-3xl font-bold tracking-tight">
                 {activeCategoryMeta 

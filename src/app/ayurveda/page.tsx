@@ -6,8 +6,8 @@ import { getProducts } from '@/lib/db';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Classical Ayurveda Medicines | 64 Master Formulations | Ruthra Medicines',
-  description: 'Explore 64 classical Ayurveda formulations across 8 traditional dosage forms including Churna, Vati, Tailam, Ghritam, and Asavam prepared per Ayurvedic Formulary of India (AFI).'
+  title: 'Classical Ayurveda Medicines | 55 Master Formulations | Ruthra Medicines',
+  description: 'Explore 55 classical Ayurveda formulations across 7 traditional dosage forms including Chooranam, Kvatha Churna, Lehya, Ghrita, Arishtam, Guggulu, and Taila prepared per Ayurvedic Formulary of India (AFI).'
 };
 
 export default async function AyurvedaPage() {

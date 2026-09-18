@@ -58,7 +58,7 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-white/80 flex flex-col items-center md:items-start">
               <li>
                 <Link href="/shop" className="hover:text-white transition-colors">
-                  {t('All 20 Formulations', 'அனைத்து 20 மருந்துகள்')}
+                  {t('All Formulations', 'அனைத்து மருந்துகள்')}
                 </Link>
               </li>
               <li>
