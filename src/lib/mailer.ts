@@ -635,3 +635,274 @@ export async function sendDailySummaryEmail({
     };
   }
 }
+
+/**
+ * Builds the official Ruthra HTML email template for dispatched orders with tracking link
+ */
+export function buildDispatchedEmailHtml(order: Order, trackingUrl: string): string {
+  const recipientName = order.shippingSnapshot?.fullName || order.customer.fullName || 'Valued Customer';
+  const cleanUrl = trackingUrl.startsWith('http://') || trackingUrl.startsWith('https://') 
+    ? trackingUrl 
+    : `https://${trackingUrl}`;
+
+  const itemsRows = order.items
+    .map(
+      (item) => `
+      <tr style="border-bottom: 1px solid #E8F1EB;">
+        <td style="padding: 10px 8px; font-size: 13px; color: #16382B;">
+          <strong>${item.productName}</strong>
+          ${item.tamilName ? `<div style="font-size: 11px; color: #3D5A68;">${item.tamilName}</div>` : ''}
+          <div style="font-size: 11px; color: #8A9B93;">Pack: ${item.packSize} • ${item.formulation}</div>
+        </td>
+        <td style="padding: 10px 8px; font-size: 13px; text-align: center; color: #3D5A68;">${item.quantity}</td>
+        <td style="padding: 10px 8px; font-size: 13px; text-align: right; color: #3D5A68;">₹${item.unitPrice}</td>
+        <td style="padding: 10px 8px; font-size: 13px; text-align: right; font-weight: bold; color: #16382B;">₹${item.lineTotal}</td>
+      </tr>
+    `
+    )
+    .join('');
+
+  const fullAddress = `${order.shippingSnapshot?.address || order.customer.address || ''}, ${
+    order.shippingSnapshot?.city || order.customer.city || ''
+  }, ${order.shippingSnapshot?.state || 'Tamil Nadu'} - ${order.shippingSnapshot?.pincode || ''}`;
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Order Has Been Dispatched - Ruthra Medicines</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #264653; line-height: 1.5;">
+  <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(22, 56, 43, 0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+    
+    <!-- BRAND HEADER -->
+    <div style="background-color: #16382B; padding: 28px 24px; text-align: center; color: #ffffff;">
+      <div style="display: inline-block; width: 44px; height: 44px; line-height: 44px; border-radius: 12px; background: linear-gradient(135deg, #DFB36C, #C29043); color: #16382B; font-weight: bold; font-size: 22px; font-family: serif; margin-bottom: 8px;">
+        R
+      </div>
+      <h1 style="margin: 0; font-size: 20px; font-weight: bold; letter-spacing: 0.5px; color: #ffffff;">RUTHRA MEDICINES</h1>
+      <p style="margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #DFB36C;">
+        Siddha &amp; Ayurveda Dispensary • Tirunelveli
+      </p>
+    </div>
+
+    <!-- MAIN BODY -->
+    <div style="padding: 32px 24px;">
+      
+      <!-- STATUS BADGE -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="display: inline-block; background-color: #E8F5E9; color: #1B5E20; border: 1px solid #A5D6A7; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+          Order Dispatched
+        </span>
+        <h2 style="margin: 12px 0 6px 0; font-size: 22px; color: #16382B; font-weight: bold;">
+          Your Order is on the Way
+        </h2>
+        <p style="margin: 0; font-size: 14px; color: #3D5A68;">
+          Dear ${recipientName}, your order has been handed over to the courier partner and is in transit.
+        </p>
+      </div>
+
+      <!-- TRACKING ACTION CARD -->
+      <div style="background-color: #F4F8F5; border: 2px solid #16382B; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 24px;">
+        <div style="font-size: 12px; text-transform: uppercase; color: #16382B; font-weight: bold; letter-spacing: 1px; margin-bottom: 8px;">
+          Courier Tracking Link
+        </div>
+        <p style="font-size: 13px; color: #3D5A68; margin: 0 0 16px 0;">
+          Use the link below to track the real-time status and delivery location of your package.
+        </p>
+        <a href="${cleanUrl}" target="_blank" style="display: inline-block; background-color: #16382B; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 2px 6px rgba(22, 56, 43, 0.2);">
+          Track Your Package Live
+        </a>
+        <div style="margin-top: 14px; font-size: 11px; color: #64748B; word-break: break-all;">
+          Direct Link: <a href="${cleanUrl}" style="color: #16382B; text-decoration: underline;">${cleanUrl}</a>
+        </div>
+      </div>
+
+      <!-- ORDER DETAILS METADATA -->
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; background-color: #FAF8F5; border-radius: 8px; overflow: hidden;">
+        <tr>
+          <td style="padding: 12px 16px; font-size: 13px; color: #3D5A68;">Order Number:</td>
+          <td style="padding: 12px 16px; font-size: 13px; font-weight: bold; color: #16382B; text-align: right; font-family: monospace;">${order.orderNumber}</td>
+        </tr>
+        <tr style="border-top: 1px solid #E8F1EB;">
+          <td style="padding: 12px 16px; font-size: 13px; color: #3D5A68;">Delivery Method:</td>
+          <td style="padding: 12px 16px; font-size: 13px; font-weight: bold; color: #16382B; text-align: right;">${order.deliveryMethod}</td>
+        </tr>
+        <tr style="border-top: 1px solid #E8F1EB;">
+          <td style="padding: 12px 16px; font-size: 13px; color: #3D5A68;">Payment:</td>
+          <td style="padding: 12px 16px; font-size: 13px; font-weight: bold; color: #16382B; text-align: right;">${order.payment.method.toUpperCase()} (${order.payment.status})</td>
+        </tr>
+      </table>
+
+      <!-- ITEMS SUMMARY -->
+      <div style="margin-bottom: 24px;">
+        <div style="font-size: 13px; font-weight: bold; color: #16382B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; border-bottom: 2px solid #E8F1EB; padding-bottom: 6px;">
+          Items in this Shipment
+        </div>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #FAF8F5; font-size: 11px; text-transform: uppercase; color: #8A9B93;">
+              <th style="padding: 8px; text-align: left;">Product</th>
+              <th style="padding: 8px; text-align: center;">Qty</th>
+              <th style="padding: 8px; text-align: right;">Price</th>
+              <th style="padding: 8px; text-align: right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsRows}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" style="padding: 12px 8px 4px 8px; text-align: right; font-size: 14px; font-weight: bold; color: #16382B;">Total Amount:</td>
+              <td style="padding: 12px 8px 4px 8px; text-align: right; font-size: 16px; font-weight: bold; color: #16382B;">₹${order.finalTotal}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- DELIVERY ADDRESS -->
+      <div style="background-color: #FAF8F5; border-radius: 8px; padding: 14px 16px; margin-bottom: 24px; font-size: 12px; line-height: 1.6; color: #3D5A68;">
+        <strong style="color: #16382B; display: block; margin-bottom: 4px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Shipping Destination:</strong>
+        ${order.shippingSnapshot?.fullName || order.customer.fullName}<br/>
+        ${fullAddress}<br/>
+        Contact: ${order.shippingSnapshot?.phone || order.customer.phone}
+      </div>
+
+      <!-- SUPPORT FOOTER -->
+      <div style="border-top: 1px solid #E8F1EB; padding-top: 16px; text-align: center; font-size: 12px; color: #64748B;">
+        <p style="margin: 0 0 4px 0;">Need help with your delivery or have medical questions?</p>
+        <p style="margin: 0; color: #16382B; font-weight: bold;">
+          Phone &amp; WhatsApp: +91 91715 08042 • Email: orders@ruthramedicos.com
+        </p>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="background-color: #FAF8F5; border-top: 1px solid rgba(22, 56, 43, 0.08); padding: 16px 24px; text-align: center; font-size: 11px; color: #8A9B93;">
+      <p style="margin: 0 0 4px 0;">Ruthra Medicines &amp; Polyclinic, Tirunelveli, Tamil Nadu</p>
+      <p style="margin: 0;">GMP Certified • Traditional Classical Siddha Shodhana Protocols</p>
+    </div>
+
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+/**
+ * Sends the order dispatched email containing tracking link to the customer
+ */
+export async function sendOrderDispatchedEmail({
+  order,
+  trackingUrl,
+  recipientEmail
+}: {
+  order: Order;
+  trackingUrl: string;
+  recipientEmail?: string;
+}): Promise<EmailResult> {
+  const targetEmail = recipientEmail || order.shippingSnapshot?.email || order.customer.email;
+
+  if (!targetEmail) {
+    return {
+      success: false,
+      recipient: 'unknown',
+      mode: 'simulated',
+      error: 'No recipient email address found on order'
+    };
+  }
+
+  const htmlContent = buildDispatchedEmailHtml(order, trackingUrl);
+  const subject = `Order Dispatched: ${order.orderNumber} - Ruthra Medicines`;
+
+  // Save preview for development verification
+  const previewDir = path.join(process.cwd(), 'data');
+  const previewPath = path.join(previewDir, `dispatched_${order.orderNumber}.html`);
+  try {
+    if (!fs.existsSync(previewDir)) fs.mkdirSync(previewDir, { recursive: true });
+    fs.writeFileSync(previewPath, htmlContent, 'utf-8');
+  } catch {
+    // ignore
+  }
+
+  try {
+    // 1. SMTP (e.g. Gmail)
+    const smtp = getSmtpTransporter();
+    if (smtp) {
+      const fromAddress = process.env.EMAIL_FROM || process.env.SMTP_USER || 'orders@ruthramedicos.com';
+      const info = await smtp.sendMail({
+        from: `"Ruthra Medicines Dispatch" <${fromAddress}>`,
+        to: targetEmail,
+        subject,
+        html: htmlContent
+      });
+
+      console.log(`[Mailer:Dispatch:SMTP] Dispatched tracking email to ${targetEmail} for ${order.orderNumber} (Message ID: ${info.messageId})`);
+      return {
+        success: true,
+        recipient: targetEmail,
+        messageId: info.messageId,
+        mode: 'smtp',
+        previewFilePath: previewPath
+      };
+    }
+
+    // 2. Resend API
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (resendApiKey) {
+      const fromAddress = process.env.EMAIL_FROM || 'Ruthra Orders <orders@ruthramedicos.com>';
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${resendApiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: fromAddress,
+          to: [targetEmail],
+          subject,
+          html: htmlContent
+        })
+      });
+
+      const resData = await res.json();
+      if (!res.ok) {
+        throw new Error(resData.message || 'Resend API returned an error');
+      }
+
+      console.log(`[Mailer:Dispatch:Resend] Dispatched tracking email to ${targetEmail} via Resend (ID: ${resData.id})`);
+      return {
+        success: true,
+        recipient: targetEmail,
+        messageId: resData.id,
+        mode: 'resend',
+        previewFilePath: previewPath
+      };
+    }
+
+    // 3. Simulated local dispatch
+    console.log(
+      `[Mailer:Dispatch:Simulated] Order ${order.orderNumber} tracking email recorded for ${targetEmail} -> Saved preview to: ${previewPath}`
+    );
+    return {
+      success: true,
+      recipient: targetEmail,
+      messageId: `sim_dispatch_${Date.now()}`,
+      mode: 'simulated',
+      previewFilePath: previewPath
+    };
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : 'Unknown dispatch mailer error';
+    console.error(`[Mailer:Dispatch:Error] Failed to send tracking email to ${targetEmail}:`, errorMsg);
+    return {
+      success: false,
+      recipient: targetEmail,
+      mode: 'simulated',
+      previewFilePath: previewPath,
+      error: errorMsg
+    };
+  }
+}

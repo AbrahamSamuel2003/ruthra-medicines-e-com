@@ -168,6 +168,9 @@ function mapPrismaOrderToApp(o: any): Order {
     deliveryMethod: o.deliveryMethod,
     shippingSnapshot: o.shippingSnapshot || {},
     notes: o.notes || undefined,
+    trackingUrl: o.trackingUrl || undefined,
+    trackingSentAt: o.trackingSentAt ? (o.trackingSentAt instanceof Date ? o.trackingSentAt.toISOString() : o.trackingSentAt) : undefined,
+    dispatchedAt: o.dispatchedAt ? (o.dispatchedAt instanceof Date ? o.dispatchedAt.toISOString() : o.dispatchedAt) : undefined,
     createdAt: o.createdAt instanceof Date ? o.createdAt.toISOString() : o.createdAt,
     updatedAt: o.updatedAt instanceof Date ? o.updatedAt.toISOString() : o.updatedAt
   };
@@ -894,6 +897,48 @@ export async function updateOrderStatus(orderId: string, status: OrderStatus): P
       if (memOrder.invoice) memOrder.invoice.paymentStatus = 'PAID';
     }
     memOrder.updatedAt = new Date().toISOString();
+    return memOrder;
+  }
+  return null;
+}
+
+/**
+ * Updates order with courier tracking link and automatically sets status to DISPATCHED
+ */
+export async function updateOrderTracking(orderId: string, trackingUrl: string): Promise<Order | null> {
+  const cleanUrl = trackingUrl.trim();
+  const formattedUrl = cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://') 
+    ? cleanUrl 
+    : `https://${cleanUrl}`;
+  const now = new Date();
+
+  try {
+    const updated = await prisma.order.update({
+      where: { id: orderId },
+      data: {
+        trackingUrl: formattedUrl,
+        trackingSentAt: now,
+        dispatchedAt: now,
+        status: 'DISPATCHED'
+      } as any,
+      include: { customer: true, address: true, items: true, payment: true, invoice: true }
+    });
+
+    const mapped = mapPrismaOrderToApp(updated);
+    const inMemIdx = inMemoryOrders.findIndex(o => o.id === orderId || o.orderNumber === orderId);
+    if (inMemIdx !== -1) inMemoryOrders[inMemIdx] = mapped;
+    return mapped;
+  } catch (err) {
+    console.warn(`PostgreSQL updateOrderTracking(${orderId}) fallback:`, err);
+  }
+
+  const memOrder = inMemoryOrders.find(o => o.id === orderId || o.orderNumber === orderId);
+  if (memOrder) {
+    memOrder.trackingUrl = formattedUrl;
+    memOrder.trackingSentAt = now.toISOString();
+    memOrder.dispatchedAt = now.toISOString();
+    memOrder.status = 'DISPATCHED';
+    memOrder.updatedAt = now.toISOString();
     return memOrder;
   }
   return null;

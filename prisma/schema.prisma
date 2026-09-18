@@ -173,6 +173,9 @@ model Order {
   deliveryMethod String           @default("Tamil Nadu Express Courier")
   shippingSnapshot Json           // Full address snapshot at time of order
   notes          String?
+  trackingUrl    String?
+  trackingSentAt DateTime?
+  dispatchedAt   DateTime?
   
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt

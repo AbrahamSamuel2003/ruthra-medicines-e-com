@@ -134,8 +134,9 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.email.trim() || !formData.email.includes('@')) {
-      alert(language === 'ta' ? 'விலைப்பட்டியல் பெற சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.' : 'Please enter a valid email address to receive your official invoice and tracking.');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email.trim())) {
+      alert(language === 'ta' ? 'விலைப்பட்டியல் மற்றும் டிராக்கிங் பெற சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.' : 'Please enter a valid email address to receive your official invoice and courier tracking link.');
       return;
     }
 
@@ -338,6 +339,9 @@ export default function CheckoutPage() {
                     placeholder="name@example.com"
                     className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
                   />
+                  <p className="text-[11px] text-[#8A9B93] mt-1">
+                    {t('Required for digital invoice PDF and live courier tracking link.', 'விலைப்பட்டியல் PDF மற்றும் கூரியர் டிராக்கிங் இணைப்பு பெற அவசியம்.')}
+                  </p>
                 </div>
               </div>
             </div>

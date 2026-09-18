@@ -12,7 +12,10 @@ import {
   Truck, 
   XCircle,
   Eye,
-  AlertCircle
+  AlertCircle,
+  Send,
+  ExternalLink,
+  Link2
 } from 'lucide-react';
 import { Order, OrderStatus, PaymentStatus } from '@/types/admin';
 import { generateOrderInvoicePdf } from '@/lib/invoiceGenerator';
@@ -25,6 +28,16 @@ export default function AdminOrdersPage() {
   const [paymentFilter, setPaymentFilter] = useState('ALL');
   const [activeOrder, setActiveOrder] = useState<Order | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [trackingInput, setTrackingInput] = useState('');
+  const [isSendingTracking, setIsSendingTracking] = useState(false);
+  const [trackingFeedback, setTrackingFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  useEffect(() => {
+    if (activeOrder) {
+      setTrackingInput(activeOrder.trackingUrl || '');
+      setTrackingFeedback(null);
+    }
+  }, [activeOrder]);
 
   const fetchOrders = useCallback(async () => {
     setIsLoading(true);
@@ -63,6 +76,49 @@ export default function AdminOrdersPage() {
       document.body.style.overflow = '';
     };
   }, [activeOrder]);
+
+  const handleSendTracking = async () => {
+    if (!activeOrder) return;
+    if (!trackingInput.trim()) {
+      setTrackingFeedback({ type: 'error', message: 'Please paste a valid tracking link before sending.' });
+      return;
+    }
+
+    setIsSendingTracking(true);
+    setTrackingFeedback(null);
+
+    try {
+      const res = await fetch(`/api/admin/orders/${activeOrder.id}/tracking`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trackingUrl: trackingInput.trim() })
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setActiveOrder(data.order);
+        setTrackingFeedback({
+          type: 'success',
+          message: data.emailSent 
+            ? 'Tracking link emailed to customer and order marked as DISPATCHED.'
+            : 'Order marked as DISPATCHED with tracking link.'
+        });
+        fetchOrders();
+      } else {
+        setTrackingFeedback({
+          type: 'error',
+          message: data.error || 'Failed to send tracking link.'
+        });
+      }
+    } catch {
+      setTrackingFeedback({
+        type: 'error',
+        message: 'Network error occurred while sending tracking link.'
+      });
+    } finally {
+      setIsSendingTracking(false);
+    }
+  };
 
   const handleUpdateStatus = async (orderId: string, newStatus: OrderStatus) => {
     setIsUpdating(true);
@@ -278,6 +334,12 @@ export default function AdminOrdersPage() {
                         }`}>
                           {order.payment.method.toUpperCase()}
                         </span>
+                        {order.trackingUrl && (
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-0.5">
+                            <CheckCircle2 className="w-2.5 h-2.5" />
+                            <span>Tracked</span>
+                          </span>
+                        )}
                       </div>
                       <span className="font-serif-brand font-bold text-sm text-[#16382B]">
                         ₹{order.finalTotal}
@@ -369,6 +431,12 @@ export default function AdminOrdersPage() {
                         }`}>
                           {order.status}
                         </span>
+                        {order.trackingUrl && (
+                          <span className="block text-[9.5px] text-emerald-700 font-semibold mt-1 flex items-center gap-0.5">
+                            <CheckCircle2 className="w-2.5 h-2.5" />
+                            <span>Tracking Sent</span>
+                          </span>
+                        )}
                       </td>
                       <td className="py-3.5 px-4 text-right">
                         <div className="inline-flex items-center gap-1.5">
@@ -499,6 +567,98 @@ export default function AdminOrdersPage() {
                     {activeOrder.shippingSnapshot?.city || ''}, {activeOrder.shippingSnapshot?.state || ''} - {activeOrder.shippingSnapshot?.pincode || ''}
                   </p>
                 </div>
+              </div>
+
+              {/* Courier Tracking Dispatch Card */}
+              <div className="p-4 rounded-2xl bg-white border border-[#16382B]/15 shadow-2xs space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Truck className="w-4 h-4 text-[#16382B]" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#16382B]">
+                      Courier Tracking & Dispatch
+                    </span>
+                  </div>
+                  {activeOrder.trackingSentAt ? (
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" />
+                      <span>Tracking Sent ({new Date(activeOrder.trackingSentAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })})</span>
+                    </span>
+                  ) : (
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-600">
+                      No Tracking Sent Yet
+                    </span>
+                  )}
+                </div>
+
+                {activeOrder.trackingUrl && (
+                  <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs flex items-center justify-between gap-2">
+                    <div className="truncate text-[#3D5A68]">
+                      <span className="font-semibold text-[#16382B] block text-[10.5px] uppercase tracking-wider">Active Tracking Link:</span>
+                      <a 
+                        href={activeOrder.trackingUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-[#16382B] font-mono text-[11px] underline truncate block hover:text-[#C29043]"
+                      >
+                        {activeOrder.trackingUrl}
+                      </a>
+                    </div>
+                    <a
+                      href={activeOrder.trackingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-lg bg-white border border-[#16382B]/15 text-[#16382B] hover:bg-[#FAF8F5] flex-shrink-0"
+                      title="Open tracking link"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                )}
+
+                <div className="space-y-1.5">
+                  <label className="block text-[11px] font-semibold text-[#16382B]">
+                    Paste Courier Tracking Link:
+                  </label>
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <input
+                        type="text"
+                        value={trackingInput}
+                        onChange={(e) => setTrackingInput(e.target.value)}
+                        placeholder="e.g. https://stcourier.com/track?no=123456789"
+                        className="w-full py-2 px-3 pl-8 border border-[#16382B]/20 rounded-xl bg-[#FAF8F5] text-xs text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#16382B]"
+                      />
+                      <Link2 className="w-3.5 h-3.5 text-[#8A9B93] absolute left-2.5 top-1/2 -translate-y-1/2" />
+                    </div>
+                    <button
+                      type="button"
+                      disabled={isSendingTracking || !trackingInput.trim()}
+                      onClick={handleSendTracking}
+                      className="px-4 py-2 rounded-xl bg-[#16382B] hover:bg-[#204C3B] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer flex-shrink-0 shadow-xs"
+                    >
+                      <Send className="w-3.5 h-3.5 text-[#DFB36C]" />
+                      <span>{isSendingTracking ? 'Sending...' : 'Send Tracking'}</span>
+                    </button>
+                  </div>
+                  <p className="text-[10.5px] text-[#8A9B93]">
+                    Pasting and clicking Send will email the tracking link to {activeOrder.shippingSnapshot?.email || activeOrder.customer.email || 'the customer'} and automatically change status to DISPATCHED.
+                  </p>
+                </div>
+
+                {trackingFeedback && (
+                  <div className={`p-2.5 rounded-xl text-xs flex items-center gap-2 ${
+                    trackingFeedback.type === 'success' 
+                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' 
+                      : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}>
+                    {trackingFeedback.type === 'success' ? (
+                      <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-600" />
+                    ) : (
+                      <AlertCircle className="w-4 h-4 flex-shrink-0 text-red-600" />
+                    )}
+                    <span>{trackingFeedback.message}</span>
+                  </div>
+                )}
               </div>
 
               {/* Itemized Table */}

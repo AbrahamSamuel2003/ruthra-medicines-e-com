@@ -107,6 +107,9 @@ export interface Order {
     pincode: string;
   };
   notes?: string;
+  trackingUrl?: string;
+  trackingSentAt?: string;
+  dispatchedAt?: string;
   createdAt: string;
   updatedAt: string;
 }
