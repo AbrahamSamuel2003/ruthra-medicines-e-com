@@ -475,14 +475,158 @@ export async function createCategory(data: {
 }
 
 /**
- * Ensures all master products are synchronized into PostgreSQL
+ * Ensures all master products and categories are synchronized into PostgreSQL,
+ * pruning obsolete categories/products and upserting all 176 master catalog items.
  */
-export async function syncProductCatalog(): Promise<{ totalProducts: number; updated: boolean }> {
-  const count = await prisma.product.count();
-  return {
-    totalProducts: count,
-    updated: true
-  };
+export async function syncProductCatalog(): Promise<{ totalProducts: number; updated: boolean; prunedProducts: number; prunedCategories: number }> {
+  try {
+    const allCategories = [
+      ...SIDDHA_NAV_CATEGORIES.map(c => ({
+        slug: c.slug,
+        title: c.title,
+        titleTa: c.titleTa,
+        medicalSystem: 'SIDDHA' as const,
+        description: c.desc,
+        itemCount: c.count
+      })),
+      ...AYURVEDA_NAV_CATEGORIES.map(c => ({
+        slug: c.slug,
+        title: c.title,
+        titleTa: c.titleTa,
+        medicalSystem: 'AYURVEDA' as const,
+        description: c.desc,
+        itemCount: c.count
+      }))
+    ];
+
+    for (const cat of allCategories) {
+      await prisma.category.upsert({
+        where: { slug: cat.slug },
+        update: {
+          title: cat.title,
+          titleTa: cat.titleTa,
+          medicalSystem: cat.medicalSystem,
+          description: cat.description,
+          itemCount: cat.itemCount
+        },
+        create: {
+          slug: cat.slug,
+          title: cat.title,
+          titleTa: cat.titleTa,
+          medicalSystem: cat.medicalSystem,
+          description: cat.description,
+          itemCount: cat.itemCount
+        }
+      });
+    }
+
+    const validIds = PRODUCTS.map(p => p.id);
+    const deletedProds = await prisma.product.deleteMany({
+      where: {
+        id: { notIn: validIds }
+      }
+    });
+
+    const validCatSlugs = allCategories.map(c => c.slug);
+    const deletedCats = await prisma.category.deleteMany({
+      where: {
+        slug: { notIn: validCatSlugs }
+      }
+    });
+
+    for (const p of PRODUCTS) {
+      const medSys = (p.medicalSystem ? p.medicalSystem.toUpperCase() : 'SIDDHA') as 'SIDDHA' | 'AYURVEDA' | 'PROPRIETARY';
+      await prisma.product.upsert({
+        where: { id: p.id },
+        update: {
+          name: p.name,
+          tamilName: p.tamilName,
+          slug: p.slug,
+          medicalSystem: medSys,
+          formulation: p.formulation,
+          formulationTa: p.formulationTa,
+          categoryGroup: p.categoryGroup || p.formulation.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          concerns: p.concerns || [],
+          price: p.price,
+          originalPrice: p.originalPrice || null,
+          packSize: p.packSize,
+          packSizeTa: p.packSizeTa,
+          shortDescription: p.shortDescription,
+          shortDescriptionTa: p.shortDescriptionTa,
+          description: p.description,
+          descriptionTa: p.descriptionTa,
+          traditionalRole: p.traditionalRole || '',
+          traditionalRoleTa: p.traditionalRoleTa || '',
+          badge: p.badge || null,
+          badgeTa: p.badgeTa || null,
+          image: p.image,
+          images: p.images || [],
+          gallery: p.gallery || [],
+          isComingSoon: Boolean(p.isComingSoon),
+          inStock: Boolean(p.inStock),
+          stock: p.stock !== undefined ? Number(p.stock) : 20,
+          featured: Boolean(p.featured),
+          ingredients: (p.ingredients || []) as any,
+          howToUse: (p.howToUse || []) as any,
+          dosage: (p.dosage || {}) as any,
+          safety: (p.safety || {}) as any,
+          storage: (p.storage || {}) as any,
+          faqs: (p.faqs || []) as any,
+          searchKeywords: p.searchKeywords || [],
+          tamilKeywords: p.tamilKeywords || []
+        },
+        create: {
+          id: p.id,
+          name: p.name,
+          tamilName: p.tamilName,
+          slug: p.slug,
+          medicalSystem: medSys,
+          formulation: p.formulation,
+          formulationTa: p.formulationTa,
+          categoryGroup: p.categoryGroup || p.formulation.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+          concerns: p.concerns || [],
+          price: p.price,
+          originalPrice: p.originalPrice || null,
+          packSize: p.packSize,
+          packSizeTa: p.packSizeTa,
+          shortDescription: p.shortDescription,
+          shortDescriptionTa: p.shortDescriptionTa,
+          description: p.description,
+          descriptionTa: p.descriptionTa,
+          traditionalRole: p.traditionalRole || '',
+          traditionalRoleTa: p.traditionalRoleTa || '',
+          badge: p.badge || null,
+          badgeTa: p.badgeTa || null,
+          image: p.image,
+          images: p.images || [],
+          gallery: p.gallery || [],
+          isComingSoon: Boolean(p.isComingSoon),
+          inStock: Boolean(p.inStock),
+          stock: p.stock !== undefined ? Number(p.stock) : 20,
+          featured: Boolean(p.featured),
+          ingredients: (p.ingredients || []) as any,
+          howToUse: (p.howToUse || []) as any,
+          dosage: (p.dosage || {}) as any,
+          safety: (p.safety || {}) as any,
+          storage: (p.storage || {}) as any,
+          faqs: (p.faqs || []) as any,
+          searchKeywords: p.searchKeywords || [],
+          tamilKeywords: p.tamilKeywords || []
+        }
+      });
+    }
+
+    const totalCount = await prisma.product.count();
+    return {
+      totalProducts: totalCount,
+      updated: true,
+      prunedProducts: deletedProds.count,
+      prunedCategories: deletedCats.count
+    };
+  } catch (err) {
+    console.error('Failed to synchronize product catalog in PostgreSQL:', err);
+    throw err;
+  }
 }
 
 /**
