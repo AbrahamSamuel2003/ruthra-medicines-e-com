@@ -4,11 +4,28 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { PRODUCTS } from '../src/data/products';
 import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES } from '../src/data/categories';
 
-const connectionString = process.env.DATABASE_URL;
+import fs from 'fs';
+import path from 'path';
+
+let connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+  const envFiles = ['.env.local', '.env'];
+  for (const ef of envFiles) {
+    const p = path.resolve(process.cwd(), ef);
+    if (fs.existsSync(p)) {
+      const content = fs.readFileSync(p, 'utf-8');
+      const m = content.match(/DATABASE_URL=["']?([^"'\r\n]+)["']?/);
+      if (m) {
+        connectionString = m[1];
+        break;
+      }
+    }
+  }
+}
 
 if (!connectionString) {
   console.error('ERROR: DATABASE_URL environment variable is not defined.');
-  console.error('Usage: DATABASE_URL="postgresql://..." npx ts-node scripts/seed-cloud-db.ts');
   process.exit(1);
 }
 
@@ -78,8 +95,29 @@ async function seed() {
   }
   console.log(`Successfully synced ${allCategories.length} categories.`);
 
-  // 2. Upsert Products
-  console.log('Seeding 182 Formulations...');
+  // 2. Prune Obsolete Products & Categories not in Master Catalog first
+  const validIds = PRODUCTS.map(p => p.id);
+  const deletedProds = await prisma.product.deleteMany({
+    where: {
+      id: { notIn: validIds }
+    }
+  });
+  if (deletedProds.count > 0) {
+    console.log(`Pruned ${deletedProds.count} obsolete products from DB.`);
+  }
+
+  const validCatSlugs = allCategories.map(c => c.slug);
+  const deletedCats = await prisma.category.deleteMany({
+    where: {
+      slug: { notIn: validCatSlugs }
+    }
+  });
+  if (deletedCats.count > 0) {
+    console.log(`Pruned ${deletedCats.count} obsolete categories from DB.`);
+  }
+
+  // 3. Upsert Master Products
+  console.log(`Seeding ${PRODUCTS.length} Formulations...`);
   let count = 0;
   for (const p of PRODUCTS) {
     const medSys = (p.medicalSystem ? p.medicalSystem.toUpperCase() : 'SIDDHA') as 'SIDDHA' | 'AYURVEDA' | 'PROPRIETARY';
@@ -164,7 +202,7 @@ async function seed() {
     count++;
   }
 
-  console.log(`Cloud DB Seed Complete: ${count} products successfully synced.`);
+  console.log(`Cloud DB Seed Complete: ${count} master formulations synced.`);
 }
 
 seed()

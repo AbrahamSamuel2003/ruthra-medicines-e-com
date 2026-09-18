@@ -281,7 +281,7 @@ export default function MobileHeader() {
               <div className="border-t border-[#16382B]/10 pt-3">
                 <div className="flex items-center justify-between px-2 mb-2">
                   <p className="text-[10px] uppercase font-bold tracking-wider text-[#C29043]">
-                    {t('Ayurveda Forms (8)', 'ஆயுர்வேத மருந்து வடிவங்கள் (8)')}
+                    {t('Ayurveda Forms (7)', 'ஆயுர்வேத மருந்து வடிவங்கள் (7)')}
                   </p>
                   <Link href="/ayurveda" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#16382B]">
                     {t('View All', 'அனைத்தும்')}

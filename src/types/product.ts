@@ -19,14 +19,22 @@ export type FormulationType =
   // Ayurveda Formulations
   | 'Churna'
   | 'Kwatha Churna'
+  | 'Kvatha Churna'
   | 'Vati'
   | 'Lehyam'
+  | 'Lehya'
   | 'Tailam'
+  | 'Taila'
   | 'Ghritam'
+  | 'Ghrita'
   | 'Asavam / Arishta'
+  | 'Arishtam'
+  | 'Guggulu'
   | 'Single Herb'
   // Proprietary & Specialty
   | 'Capsules'
+  | 'Tablet'
+  | 'Powder'
   | 'Syrups'
   | 'Drops'
   | 'Syrup & Kashayam'
@@ -94,30 +102,33 @@ export interface Product {
   ingredients: IngredientItem[];
   howToUse: UseStep[];
   dosage: {
-    amount: string;
-    frequency: string;
-    timing: string;
-    vehicle: string; // anupanam (e.g. warm water, honey, milk)
-    amountTa: string;
-    frequencyTa: string;
-    timingTa: string;
-    vehicleTa: string;
+    amount?: string;
+    frequency?: string;
+    timing?: string;
+    vehicle?: string; // anupanam (e.g. warm water, honey, milk)
+    amountTa?: string;
+    frequencyTa?: string;
+    timingTa?: string;
+    vehicleTa?: string;
+    [key: string]: any;
   };
   safety: {
-    pregnancy: string;
-    pregnancyTa: string;
-    children: string;
-    childrenTa: string;
-    interactions: string;
-    interactionsTa: string;
-    precautions: string[];
-    precautionsTa: string[];
+    pregnancy?: string;
+    pregnancyTa?: string;
+    children?: string;
+    childrenTa?: string;
+    interactions?: string;
+    interactionsTa?: string;
+    precautions?: string[] | string;
+    precautionsTa?: string[] | string;
+    [key: string]: any;
   };
   storage: {
-    conditions: string;
-    conditionsTa: string;
-    shelfLife: string;
-    shelfLifeTa: string;
+    conditions?: string;
+    conditionsTa?: string;
+    shelfLife?: string;
+    shelfLifeTa?: string;
+    [key: string]: any;
   };
   faqs: ProductFaq[];
   searchKeywords: string[];

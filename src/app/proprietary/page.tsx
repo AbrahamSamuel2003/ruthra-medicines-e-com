@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Proprietary Formulations | Ruthra Specialized Healthcare',
-  description: 'Discover Ruthra’s 7 proprietary botanical formulations: Rej-Viyan Pain Relief Oil, Ulcera Wound Oil, Narshika Hair Oil, Nalpamaradi Taila, Sinocof Cough Syrup, Ramabaana Kashayam, and Esy-Swas Sinus Drops.'
+  description: "Discover Ruthra's 10 proprietary botanical formulations: Madhura Powder, Navara Tablet, Sinocof Syrup, Esyswas Drops, Ulcera Oil, Rejviyan Oil, Narshika Oil, Ramabaana Kasayam, Nalanguma Powder, and Shigakai Powder."
 };
 
 export default async function ProprietaryPage() {

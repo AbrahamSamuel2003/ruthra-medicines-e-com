@@ -1,349 +1,143 @@
-import { Product, ConcernCategory, FormulationCategory, BundleItem } from '@/types/product';
+import { Product, ConcernCategory, FormulationCategory, BundleItem, ConcernSlug } from '@/types/product';
 
 export const PRODUCTS: Product[] = [
 
   // ==========================================
-  // 1. RUTHRA FLAGSHIP PROPRIETARY FORMULATIONS (7 SKUs)
+  // 1. RUTHRA FLAGSHIP PROPRIETARY FORMULATIONS (10 SKUs)
   // ==========================================
   {
-    id: 'prod-26',
-    name: 'Ruthra Rej-Viyan Pain Oil',
-    tamilName: 'ருத்ரா ரெஜ்-வியான் வலி நிவாரண தைலம்',
-    slug: 'ruthra-rej-viyan-pain-oil',
+    id: 'prod-prop-01',
+    name: 'Ruthra Madhura Powder',
+    tamilName: 'ருத்ரா மதுரா பவுடர்',
+    slug: 'ruthra-madhura-powder',
     medicalSystem: 'proprietary',
-    formulation: 'Thailam',
-    formulationTa: 'தைலம்',
-    concerns: ['joint-mobility'],
-    price: 200,
-    originalPrice: 230,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Fast-penetrating classical botanical massage oil for rapid relief from neck, shoulder, knee, heel, and lower back pain, muscle spasms, and sprains.',
-    shortDescriptionTa: 'கழுத்து, தோள்பட்டை, முழங்கால், குதிகால் மற்றும் இடுப்பு வலி, சுளுக்கு மற்றும் தசை பிடிப்புகளுக்கு உடனடி நிவாரணம் தரும் மூலிகை வலி தைலம்.',
-    description: 'Ruthra Rej-Viyan Pain Oil is crafted by slow-cooking anti-inflammatory botanicals including Mudakathan, Vatha Narayana, Nilgiri oil, and Camphor in pure unrefined sesame oil. It delivers deep transdermal penetration to pacify inflamed joint capsules, resolve swelling, relax locked muscle fibers, and restore smooth mobility.',
-    descriptionTa: 'ரெஜ்-வியான் வலி தைலம் முடக்கத்தான், வாத நாராயணன், கற்பூரம், தைல இலை எண்ணெய் கொண்டு பாரம்பரிய முறைப்படி காய்ச்சப்படுகிறது. இது மூட்டுகளில் ஆழமாக ஊடுருவி, வீக்கத்தை குறைத்து, கடுமையான வலியை உடனடியாக போக்கும்.',
-    traditionalRole: 'Topical analgesic for neck, shoulder, knee, heel, back pain, muscle spasms, and sprains.',
-    traditionalRoleTa: 'கழுத்து, தோள்பட்டை, மூட்டு, இடுப்பு, குதிகால் வலி மற்றும் சுளுக்கு நிவாரணம்.',
-    badge: 'Top Selling Pain Oil',
-    badgeTa: 'முதன்மையான வலி தைலம்',
-    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
-    images: [
-      '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
-      '/images/products/ruthra-rej-viyan-pain-oil/angle.jpg',
-      '/images/products/ruthra-rej-viyan-pain-oil/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
-      '/images/products/ruthra-rej-viyan-pain-oil/angle.jpg',
-      '/images/products/ruthra-rej-viyan-pain-oil/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Mudakathan (Balloon Vine)', tamilName: 'முடக்கத்தான்', botanicalName: 'Cardiospermum halicacabum', role: 'Dissolves uric acid crystals and joint stiffness', roleTa: 'மூட்டு பிடிப்பு மற்றும் வாதத்தை போக்கும்', amount: '30%' },
-      { name: 'Vathanarayana', tamilName: 'வாத நாராயணன்', botanicalName: 'Delonix elata', role: 'Calms acute neuropathic shooting pain', roleTa: 'நரம்பு குடைச்சலை நீக்கும்', amount: '25%' },
-      { name: 'Karpooram (Camphor)', tamilName: 'பச்சை கற்பூரம்', botanicalName: 'Cinnamomum camphora', role: 'Promotes rapid micro-vascular absorption and cooling relief', roleTa: 'விரைவாக ஊடுருவி உடனடி நிவாரணம் தரும்', amount: '15%' },
-      { name: 'Nilgiri Thailam (Eucalyptus Oil)', tamilName: 'நீலகிரி தைலம்', botanicalName: 'Eucalyptus globulus', role: 'Warming analgesic for tense muscle fibers', roleTa: 'தசை வலிகளை தளர்த்தும்', amount: '15%' },
-      { name: 'Nalla Ennai (Pure Sesame Oil Base)', tamilName: 'நல்லெண்ணெய்', botanicalName: 'Sesamum indicum', role: 'Deep penetrating transdermal lipid base', roleTa: 'ஆழமாக ஊடுருவும் தூய நல்லெண்ணெய்', amount: '15%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Apply Generously', titleTa: 'எண்ணெய் தடவவும்', instruction: 'Pour 5-10ml oil on the affected painful joint.', instructionTa: '5-10 மி.லி எண்ணெயை வலி உள்ள இடத்தில் விடவும்.' },
-      { step: '02', title: 'Gentle Massage', titleTa: 'மென்மையாக மசாஜ்', instruction: 'Massage gently in circular motions for 5 minutes.', instructionTa: '5 நிமிடம் மென்மையாக வட்ட வடிவில் தேய்க்கவும்.' },
-      { step: '03', title: 'Fomentation (Optional)', titleTa: 'ஒத்தடம் (விருப்பப்பட்டால்)', instruction: 'Apply warm fomentation for deeper therapeutic benefit.', instructionTa: 'சிறந்த பலனுக்கு லேசான வெந்நீர் ஒத்தடம் கொடுக்கலாம்.' }
-    ],
-    dosage: {
-      amount: '5ml - 10ml as needed',
-      frequency: '2 to 3 times daily',
-      timing: 'External application',
-      vehicle: 'Direct gentle massage',
-      amountTa: '5 - 10 மி.லி',
-      frequencyTa: 'தினமும் 2-3 முறை',
-      timingTa: 'வெளிப்புற பயன்பாடு',
-      vehicleTa: 'மென்மையாக தேய்க்கவும்'
-    },
-    safety: {
-      pregnancy: 'Safe for external application on back and limbs.',
-      pregnancyTa: 'வெளிப்புறமாக பயன்படுத்த பாதுகாப்பானது.',
-      children: 'Safe for children above 4 years for sprains.',
-      childrenTa: '4 வயதுக்கு மேற்பட்ட குழந்தைகளுக்கு உகந்தது.',
-      interactions: 'Can be combined with Sarvanga Vatha Chooranam internally.',
-      interactionsTa: 'உள் மருந்துகளுடன் சேர்த்து பயன்படுத்தலாம்.',
-      precautions: ['FOR EXTERNAL APPLICATION ONLY. Do not apply on open broken skin.'],
-      precautionsTa: ['வெளிப்புற பயன்பாட்டிற்கு மட்டும். திறந்த புண்களில் தடவ வேண்டாம்.']
-    },
-    storage: {
-      conditions: 'Keep bottle tightly capped away from direct heat.',
-      conditionsTa: 'நேரடி வெப்பம் படாமல் வைக்கவும்.',
-      shelfLife: '36 Months',
-      shelfLifeTa: '36 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How quickly does Rej-Viyan Pain Oil work?',
-        questionTa: 'ரெஜ்-வியான் தைலம் எவ்வளவு நேரத்தில் பலன் தரும்?',
-        answer: 'Most users experience soothing warmth and pain relief within 10 to 15 minutes of gentle massage.',
-        answerTa: 'மசாஜ் செய்த 10 முதல் 15 நிமிடங்களில் வலி குறைந்து சுகமான நிவாரணம் கிடைக்கும்.'
-      }
-    ],
-    searchKeywords: ['rej-viyan', 'pain oil', 'thailam', 'knee pain', 'back pain', 'joint pain', 'muscle spasm', 'sprain'],
-    tamilKeywords: ['ரெஜ்-வியான்', 'வலி தைலம்', 'மூட்டு வலி', 'இடுப்பு வலி', 'சுளுக்கு', 'கழுத்து வலி'],
-    inStock: true,
-    featured: true
-  },
-
-  {
-    id: 'prod-27',
-    name: 'Ruthra Ulcera Oil – The Wound Healer',
-    tamilName: 'ருத்ரா அல்சரா புண் ஆற்று தைலம்',
-    slug: 'ruthra-ulcera-wound-oil',
-    medicalSystem: 'proprietary',
-    formulation: 'Thailam',
-    formulationTa: 'தைலம்',
-    concerns: ['skin-hair'],
-    price: 210,
-    originalPrice: 240,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Clinically esteemed topical wound healing oil for venous ulcers, diabetic non-healing ulcers, cuts, bedsores, bruises, trauma wounds, and lacerations.',
-    shortDescriptionTa: 'ஆறாத சர்க்கரை புண்கள் (Diabetic Ulcers), நரம்பு புண்கள் (Venous Ulcers), படுக்கை புண்கள் (Bedsores) மற்றும் காயங்களை விரைவாக ஆற்றும் உன்னத தைலம்.',
-    description: 'Ruthra Ulcera Oil is processed with potent wound-cleansing (Vrana Shodhana) and tissue-generating (Vrana Ropana) Siddha botanicals. It clears necrotic slough, suppresses bacterial biofilm, stimulates healthy pink granulation tissue, and dramatically accelerates wound closure in chronic diabetic and venous ulcers.',
-    descriptionTa: 'அல்சரா புண் ஆற்று தைலம் சர்க்கரை நோயாளிகளுக்கு ஏற்படும் ஆறாத கால் புண்கள், வெட்டுக்காயங்கள், படுக்கை புண்கள் மற்றும் தீக்காயங்களை எவ்வித வடுவும் இன்றி விரைவாக ஆற்றும் மருத்துவ குணம் கொண்டது.',
-    traditionalRole: 'Accelerates wound healing for diabetic ulcers, venous stasis ulcers, bedsores, cuts, bruises, and abrasions.',
-    traditionalRoleTa: 'சர்க்கரை புண்கள், படுக்கை புண்கள், வெட்டுக்காயங்கள் மற்றும் ஆறாத புண்களை ஆற்றுதல்.',
-    badge: 'Clinical Wound Care',
-    badgeTa: 'ஆறாத புண் நிவாரணம்',
-    image: '/images/products/ruthra-ulcera-wound-oil/front.jpg',
-    images: [
-      '/images/products/ruthra-ulcera-wound-oil/front.jpg',
-      '/images/products/ruthra-ulcera-wound-oil/angle.jpg',
-      '/images/products/ruthra-ulcera-wound-oil/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-ulcera-wound-oil/front.jpg',
-      '/images/products/ruthra-ulcera-wound-oil/angle.jpg',
-      '/images/products/ruthra-ulcera-wound-oil/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Kuppaimeni', tamilName: 'குப்பைமேனி', botanicalName: 'Acalypha indica', role: 'Potent antimicrobial and wound purifier', roleTa: 'கிருமி நாசினி மற்றும் புண் சுத்திகரிப்பு', amount: '35%' },
-      { name: 'Kasthuri Manjal (Wild Turmeric)', tamilName: 'கஸ்தூரி மஞ்சள்', botanicalName: 'Curcuma aromatica', role: 'Accelerates granulation and tissue regeneration', roleTa: 'புதிய திசுக்களை உருவாக்கி புண்ணை ஆற்றும்', amount: '25%' },
-      { name: 'Vembu Ennai (Pure Neem Oil)', tamilName: 'வேப்பெண்ணெய்', botanicalName: 'Azadirachta indica', role: 'Suppresses bacterial biofilms and fungal infection', roleTa: 'புற்று மற்றும் பாக்டீரியா தொற்று தடுப்பு', amount: '20%' },
-      { name: 'Coconut Oil Base', tamilName: 'தூய தேங்காய் எண்ணெய்', botanicalName: 'Cocos nucifera', role: 'Cooling emollient base for non-stick dressing', roleTa: 'குளிர்ச்சி தந்து புண்ணை மென்மையாக்கும்', amount: '20%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Cleanse Wound', titleTa: 'புண்ணை சுத்தம் செய்யவும்', instruction: 'Clean the wound with sterile saline water.', instructionTa: 'புண்ணை சுத்தமான நீரால் கழுவி துடைக்கவும்.' },
-      { step: '02', title: 'Apply Oil', titleTa: 'எண்ணெய் தடவவும்', instruction: 'Apply oil gently using sterile gauze or clean cotton.', instructionTa: 'சுத்தமான பஞ்சு அல்லது காஸ் துணியில் நனைத்து தடவவும்.' },
-      { step: '03', title: 'Dress Gently', titleTa: 'டிரெஸ்ஸிங் செய்யவும்', instruction: 'Bandage lightly or leave exposed as advised twice daily.', instructionTa: 'லேசாக கட்டுப்போடவும்; தினமும் இருவேளை மாற்றவும்.' }
-    ],
-    dosage: {
-      amount: 'A few drops to coat the wound surface',
-      frequency: 'Twice daily',
-      timing: 'External dressing',
-      vehicle: 'Direct topical application / sterile gauze',
-      amountTa: 'தேவைக்கேற்ப சில துளிகள்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'வெளிப்புற டிரெஸ்ஸிங்',
-      vehicleTa: 'சுத்தமான பஞ்சால் தடவவும்'
-    },
-    safety: {
-      pregnancy: 'Safe for external application.',
-      pregnancyTa: 'வெளிப்புற பயன்பாட்டிற்கு முற்றிலும் பாதுகாப்பானது.',
-      children: 'Safe for minor cuts and scrapes in children.',
-      childrenTa: 'குழந்தைகளின் சிராய்ப்பு மற்றும் காயங்களுக்கு உகந்தது.',
-      interactions: 'Can be used alongside oral antibiotics if prescribed.',
-      interactionsTa: 'பாதுகாப்பானது.',
-      precautions: ['Maintain clean sterile dressing practices for diabetic ulcers.'],
-      precautionsTa: ['சர்க்கரை புண்களை சுத்தமாக பராமரிக்கவும்.']
-    },
-    storage: {
-      conditions: 'Keep tightly closed in a cool, dark place.',
-      conditionsTa: 'குளிர்ந்த உலர்ந்த இடத்தில் வைக்கவும்.',
-      shelfLife: '36 Months',
-      shelfLifeTa: '36 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'Is it effective for non-healing chronic diabetic foot ulcers?',
-        questionTa: 'சர்க்கரை நோயாளிகளின் ஆறாத கால் புண்களுக்கு இது பலனளிக்குமா?',
-        answer: 'Yes, Ulcera Oil is specially formulated for chronic, sluggish ulcers by stimulating rapid healthy granulation.',
-        answerTa: 'ஆம், சர்க்கரை நோயாளிகளுக்கு ஏற்படும் ஆறாத நாள்பட்ட புண்களை ஆற்ற பிரத்யேகமாக தயாரிக்கப்பட்டது.'
-      }
-    ],
-    searchKeywords: ['ulcera oil', 'wound healer', 'diabetic ulcer', 'venous ulcer', 'bedsores', 'cuts', 'healing oil'],
-    tamilKeywords: ['அல்சரா', 'புண் ஆற்று தைலம்', 'சர்க்கரை புண்', 'படுக்கை புண்', 'காயம்', 'வெட்டுக்காயம்'],
-    inStock: true,
-    featured: true
-  },
-
-  {
-    id: 'prod-28',
-    name: 'Ruthra Narshika Hair Oil',
-    tamilName: 'ருத்ரா நார்ஷிகா மூலிகை கூந்தல் தைலம்',
-    slug: 'ruthra-narshika-hair-oil',
-    medicalSystem: 'proprietary',
-    formulation: 'Thailam',
-    formulationTa: 'தைலம்',
-    concerns: ['skin-hair'],
+    formulation: 'Chooranam',
+    formulationTa: 'சூரணம்',
+    concerns: ['metabolic-wellness', 'digestive-wellness'],
     price: 240,
     originalPrice: 280,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Nutrient-rich traditional botanical hair oil that eradicates stubborn dandruff, controls severe hair fall, strengthens roots, and stimulates dense hair growth.',
-    shortDescriptionTa: 'பொடுகு தொல்லையை முழுமையாக நீக்கி, முடி உதிர்வை தடுத்து, வேர்களை பலப்படுத்தி அடர்த்தியான கூந்தல் வளர்ச்சியை தரும் மூலிகை தைலம்.',
-    description: 'Ruthra Narshika Hair Oil is processed with 15+ native botanical extracts including Bringaraja (Karisalankanni), Amla (Nellikkai), Henna, Poduthalai, and Vetiver infused into unrefined cold-pressed coconut oil. It cools an overheated scalp, nourishes micro-follicles, stops premature greying, and leaves hair lustrous and thick.',
-    descriptionTa: 'நார்ஷிகா கூந்தல் தைலம் கரிசலாங்கண்ணி, நெல்லிக்காய், பொடுதலை, மருதாணி, வெட்டிவேர் உள்ளிட்ட மூலிகைகளைக் கொண்டு தேங்காய் எண்ணெயில் காய்ச்சப்படுகிறது. இது தலைச்சூட்டை தணித்து, பொடுகை போக்கி, முடி உதிர்வை நிறுத்தி அடர்த்தியாக வளரச் செய்கிறது.',
-    traditionalRole: 'Controls dandruff, reduces hair fall, stimulates micro-follicles, and keeps scalp deeply nourished.',
-    traditionalRoleTa: 'பொடுகு கட்டுப்பாடு, முடி உதிர்வு தடுப்பு, கூந்தல் வேர் பலம் மற்றும் அடர்த்தி.',
-    badge: 'Herbal Hair Regrowth',
-    badgeTa: 'மூலிகை கூந்தல் வளர்ச்சி',
-    image: '/images/products/ruthra-narshika-hair-oil/front.jpg',
-    images: [
-      '/images/products/ruthra-narshika-hair-oil/front.jpg',
-      '/images/products/ruthra-narshika-hair-oil/angle.jpg',
-      '/images/products/ruthra-narshika-hair-oil/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-narshika-hair-oil/front.jpg',
-      '/images/products/ruthra-narshika-hair-oil/angle.jpg',
-      '/images/products/ruthra-narshika-hair-oil/back.jpg'
-    ],
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Specially crafted proprietary botanical blend supporting natural glycemic balance, healthy digestion, and metabolic vitality.',
+    shortDescriptionTa: 'இயற்கையான சர்க்கரை சமநிலை, செரிமான ஆற்றல் மற்றும் உடல் புத்துணர்ச்சியை ஆதரிக்கும் சிறப்பு மூலிகைப் பொடி.',
+    description: 'Ruthra Madhura Powder is an authentic proprietary formulation combining Syzygium cumini (Jamun), Gymnema sylvestre (Meshashringi), Momordica charantia (Karela), and Vijaysar. It aids in optimizing healthy carbohydrate metabolism, maintaining healthy blood sugar levels, and revitalizing pancreatic functions.',
+    descriptionTa: 'நாவல் விதை, சிறுகுறிஞ்சான், பாகற்காய், வேங்கை மரம் உள்ளிட்ட சக்திவாய்ந்த மூலிகைகளின் கூட்டுக்கலவை. ரத்த சர்க்கரை அளவை சீராக்கவும் கணைய செயல்பாட்டை பலப்படுத்தவும் உதவுகிறது.',
+    traditionalRole: 'Supports balanced glycemic response and metabolic equilibrium.',
+    traditionalRoleTa: 'சர்க்கரை சமநிலை மற்றும் செரிமான செயல்பாடுகளை சீராக்க உதவுகிறது.',
+    badge: 'Proprietary Blend',
+    badgeTa: 'சிறப்பு மூலிகை தயாரிப்பு',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Karisalanganni (Bringaraja)', tamilName: 'கரிசலாங்கண்ணி', botanicalName: 'Eclipta prostrata', role: 'Reactivates dormant hair follicles and darkens pigment', roleTa: 'கூந்தல் வேர்களை தூண்டி கருமையை தரும்', amount: '30%' },
-      { name: 'Poduthalai', tamilName: 'பொடுதலை', botanicalName: 'Phyla nodiflora', role: 'Sovereign anti-dandruff and scalp antifungal herb', roleTa: 'பொடுகு மற்றும் தலையில் அரிப்பை நீக்கும்', amount: '25%' },
-      { name: 'Nellikkai (Amla)', tamilName: 'நெல்லிக்காய்', botanicalName: 'Phyllanthus emblica', role: 'Vitamin C antioxidant booster for follicle strength', roleTa: 'வைட்டமின் சி மற்றும் கூந்தல் வேர் ஊட்டச்சத்து', amount: '20%' },
-      { name: 'Vettiver & Kasthuri Manjal', tamilName: 'வெட்டிவேர் & கஸ்தூரி மஞ்சள்', botanicalName: 'Aromatics', role: 'Scalp cooling and natural fragrance', roleTa: 'தலை குளிர்ச்சி மற்றும் நறுமணம்', amount: '15%' },
-      { name: 'Marakakku Coconut Oil Base', tamilName: 'மரச்செக்கு தேங்காய் எண்ணெய்', botanicalName: 'Cocos nucifera', role: 'Cold-pressed virgin lipid base', roleTa: 'மரச்செக்கு தூய தேங்காய் எண்ணெய்', amount: '10%' }
+      { name: 'Jamun Seed (Syzygium cumini)', tamilName: 'நாவல் விதை', botanicalName: 'Syzygium cumini', role: 'Helps regulate blood glucose levels', roleTa: 'சர்க்கரை அளவை சமன் செய்யும்', amount: '30%' },
+      { name: 'Meshashringi (Gymnema sylvestre)', tamilName: 'சிறுகுறிஞ்சான்', botanicalName: 'Gymnema sylvestre', role: 'Sugar destroyer botanical', roleTa: 'இனிப்பு உறிஞ்சுதலை தடுக்கும்', amount: '25%' },
+      { name: 'Karela (Momordica charantia)', tamilName: 'பாகற்காய்', botanicalName: 'Momordica charantia', role: 'Promotes cellular glucose uptake', roleTa: 'செரிமானத்தை தூண்டும்', amount: '25%' },
+      { name: 'Vijaysar (Pterocarpus marsupium)', tamilName: 'வேங்கை', botanicalName: 'Pterocarpus marsupium', role: 'Rejuvenates pancreatic beta cells', roleTa: 'கணையத்தை பலப்படுத்தும்', amount: '20%' }
     ],
     howToUse: [
-      { step: '01', title: 'Apply to Scalp', titleTa: 'மண்டையோட்டில் வைக்கவும்', instruction: 'Part hair and apply 5-10ml oil directly onto scalp roots.', instructionTa: 'முடியை வகிடு எடுத்து 5-10 மி.லி எண்ணெயை வேர்களில் வைக்கவும்.' },
-      { step: '02', title: 'Gentle Massage', titleTa: 'மென்மையாக மசாஜ்', instruction: 'Massage gently with fingertips for 5 minutes.', instructionTa: 'விரல் நுனிகளால் 5 நிமிடம் மென்மையாக மசாஜ் செய்யவும்.' },
-      { step: '03', title: 'Leave on / Wash', titleTa: 'ஊற வைத்து குளிக்கவும்', instruction: 'Leave on overnight or wash after 1 hour with Shigakai Powder.', instructionTa: 'இரவு முழுவதும் வைக்கலாம் அல்லது 1 மணி நேரம் கழித்து சிகைக்காய் போட்டு குளிக்கவும்.' }
+      { step: '01', title: 'Take with Warm Water', titleTa: 'வெந்நீரில் உட்கொள்ளவும்', instruction: 'Take 3-5g powder with warm water before food.', instructionTa: 'உணவுக்கு முன் 3-5 கிராம் பொடியை வெந்நீரில் கலக்கி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5ml - 10ml per application',
-      frequency: 'Daily or 3 times a week',
-      timing: 'Scalp application',
-      vehicle: 'Direct scalp massage',
-      amountTa: '5 - 10 மி.லி',
-      frequencyTa: 'தினமும் அல்லது வாரம் 3 முறை',
-      timingTa: 'மண்டையோடு மசாஜ்',
-      vehicleTa: 'விரல்களால் தேய்க்கவும்'
+      morning: '3g before breakfast',
+      evening: '3g before dinner',
+      timing: 'Before meals with warm water',
+      with: 'Warm water',
+      morningTa: 'காலை 3 கிராம் உணவுக்கு முன்',
+      eveningTa: 'இரவு 3 கிராம் உணவுக்கு முன்',
+      timingTa: 'உணவுக்கு முன்',
+      withTa: 'வெதுவெதுப்பான நீர்'
     },
     safety: {
-      pregnancy: 'Completely safe during pregnancy and lactation.',
-      pregnancyTa: 'முற்றிலும் பாதுகாப்பானது.',
-      children: 'Safe for children above 3 years.',
-      childrenTa: '3 வயதுக்கு மேற்பட்ட குழந்தைகளுக்கு பாதுகாப்பானது.',
-      interactions: 'Pair with Ruthra Shigakai Powder for best natural cleansing.',
-      interactionsTa: 'ருத்ராவின் சிகைக்காய் பொடியுடன் பயன்படுத்த சிறந்த பலன் தரும்.',
-      precautions: ['Natural herbal oil with no mineral oils or synthetic fragrances.'],
-      precautionsTa: ['மினரல் ஆயில் அல்லது செயற்கை நறுமணம் சேர்க்கப்படாதது.']
+      contraindications: 'Consult physician if on intense hypoglycemic therapy.',
+      precautions: 'Monitor blood sugar levels regularly.',
+      contraindicationsTa: 'மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'சர்க்கரை அளவை தொடர்ந்து கண்காணிக்கவும்.'
     },
     storage: {
-      conditions: 'Keep in a cool place tightly sealed.',
-      conditionsTa: 'குளிர்ந்த உலர்ந்த இடத்தில் வைக்கவும்.',
-      shelfLife: '36 Months',
-      shelfLifeTa: '36 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'ஈரப்பதம் படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'Does it cause a cold when applied daily?',
-        questionTa: 'தினமும் தேய்த்தால் சளி பிடிக்குமா?',
-        answer: 'No, it is balanced with warming spices like Black Pepper and Vetiver to prevent excess phlegm while keeping the scalp cool.',
-        answerTa: 'இல்லை, சமச்சீரான மூலிகைகள் உள்ளதால் சளி பிடிக்காமல் தலைச்சூட்டை மட்டும் தணிக்கும்.'
-      }
+      { question: 'When is the best time to take Madhura Powder?', answer: 'Take 30 minutes prior to meals with warm water.', questionTa: 'எப்போது சாப்பிட வேண்டும்?', answerTa: 'உணவுக்கு 30 நிமிடங்களுக்கு முன் வெந்நீரில் சாப்பிடவும்.' }
     ],
-    searchKeywords: ['narshika', 'hair oil', 'hair fall', 'dandruff', 'bringaraja', 'amla', 'hair growth'],
-    tamilKeywords: ['நார்ஷிகா', 'கூந்தல் தைலம்', 'முடி உதிர்வு', 'பொடுகு', 'கரிசலாங்கண்ணி', 'கூந்தல் வளர்ச்சி'],
+    searchKeywords: ['madhura powder', 'glycemic care', 'diabetes support', 'sugar care'],
+    tamilKeywords: ['மதுரா பவுடர்', 'சர்க்கரை நோய்', 'நாவல் விதை பொடி'],
     inStock: true,
-    featured: true
+    featured: false
   },
 
   {
-    id: 'prod-29',
-    name: 'Ruthra Nalpamaradi Taila',
-    tamilName: 'ருத்ரா நால்பாமராதி தைலம்',
-    slug: 'ruthra-nalpamaradi-taila',
+    id: 'prod-prop-02',
+    name: 'Ruthra Navara Tablet',
+    tamilName: 'ருத்ரா நவரா மாத்திரை',
+    slug: 'ruthra-navara-tablet',
     medicalSystem: 'proprietary',
-    formulation: 'Thailam',
-    formulationTa: 'தைலம்',
-    concerns: ['skin-hair'],
-    price: 180,
-    originalPrice: 210,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Golden classical Ayurvedic & Siddha radiance and skin therapy oil for eczema, erysipelas, itching, boils, carbuncles, hyperpigmentation, and bridal Abhyangam.',
-    shortDescriptionTa: 'தோல் நோய்கள், அரிப்பு, தடிப்பு, கட்டிகள், மேனி கருமை நீக்கம் மற்றும் பொலிவான சருமத்திற்கு பாரம்பரிய நால்பாமராதி தைலம்.',
-    description: 'Ruthra Nalpamaradi Taila is brewed from the Four Sacred Ficus Barks (Nalpamara: Athi, Ithi, Arayal, Peral) combined with pure Turmeric (Manjal) and cooling Triphala. Revered as the sovereign skin beautifier and dermatological healer, it clears tanning, cures skin itching and boils, and restores luminous complexion.',
-    descriptionTa: 'நால்பாமராதி தைலம் அத்தி, இத்தி, அரசு, ஆல் ஆகிய நான்கு மரப்பட்டைகள் மற்றும் கஸ்தூரி மஞ்சள் கொண்டு காய்ச்சப்படுகிறது. இது தோல் அரிப்பு, படர்தாமரை, தேமல், கரும்புள்ளிகளை போக்கி சருமத்திற்கு இயற்கை பொலிவையும் பளபளப்பையும் தருகிறது.',
-    traditionalRole: 'Addresses eczema, erysipelas, itching, boils, carbuncles, hyperpigmentation, and full body Abhyangam massage.',
-    traditionalRoleTa: 'தோல் நோய்கள், அரிப்பு, தேமல், கரும்புள்ளிகள் நீக்கம் மற்றும் பொலிவான சருமம்.',
-    badge: 'Radiance & Skin Therapy',
-    badgeTa: 'சரும பொலிவு & தேமல் நீக்கம்',
-    image: '/images/products/ruthra-nalpamaradi-taila/front.jpg',
-    images: [
-      '/images/products/ruthra-nalpamaradi-taila/front.jpg',
-      '/images/products/ruthra-nalpamaradi-taila/angle.jpg',
-      '/images/products/ruthra-nalpamaradi-taila/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-nalpamaradi-taila/front.jpg',
-      '/images/products/ruthra-nalpamaradi-taila/angle.jpg',
-      '/images/products/ruthra-nalpamaradi-taila/back.jpg'
-    ],
+    formulation: 'Tablet',
+    formulationTa: 'மாத்திரை',
+    concerns: ['joint-mobility', 'metabolic-wellness'],
+    price: 320,
+    originalPrice: 380,
+    packSize: '60 Tablets',
+    packSizeTa: '60 மாத்திரைகள்',
+    shortDescription: 'Nutritive restorative tablet formulation for physical strength, nerve nourishment, and neuromuscular vigor.',
+    shortDescriptionTa: 'உடல் வலிமை, நரம்பு உறுதி மற்றும் தசை புத்துணர்ச்சி தரும் சத்து நிறைந்த மூலிகை மாத்திரை.',
+    description: 'Ruthra Navara Tablet utilizes the rejuvenative and nourishing essence of Navara red rice processed with strengthening herbs such as Ashwagandha, Bala, and Shatavari. It serves as an effective nutritional support for muscle weakness, joint debility, and convalescence.',
+    descriptionTa: 'பாரம்பரிய நவர நெல் சத்து மற்றும் அஸ்வகந்தா, சிற்றாமுட்டி, தண்ணீர்விட்டான் கிழங்கு அடங்கிய ஊட்டச்சத்து மாத்திரை. நரம்பு தளர்ச்சி மற்றும் உடல் சோர்வை நீக்கி புத்துணர்ச்சி தரும்.',
+    traditionalRole: 'Nourishes neuromuscular tissues and restores stamina.',
+    traditionalRoleTa: 'நரம்பு தளர்ச்சி, தசை சோர்வை போக்கி பலம் தரும்.',
+    badge: 'Vitality Booster',
+    badgeTa: 'உடல் பலம் தரும் மாத்திரை',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Nalpamara (Four Sacred Ficus Barks)', tamilName: 'நால்பாமரம் (அத்தி, இத்தி, அரசு, ஆல்)', botanicalName: 'Ficus Tree Complex', role: 'Astringent and sovereign skin tone clarifier', roleTa: 'தோல் சுருக்கம் மற்றும் நோய்களை போக்கும்', amount: '40%' },
-      { name: 'Manjal (Pure Turmeric)', tamilName: 'மஞ்சள்', botanicalName: 'Curcuma longa', role: 'Natural antibacterial and complexion enhancer', roleTa: 'கிருமி நாசினி மற்றும் மேனி பொலிவு', amount: '25%' },
-      { name: 'Thiripala Complex', tamilName: 'திரிபலா', botanicalName: 'Triphala Blend', role: 'Detoxifies skin pores and soothes boils', roleTa: 'தோல் துவாரங்களை சுத்திகரிக்கும்', amount: '20%' },
-      { name: 'Sesame & Coconut Oil Base', tamilName: 'எண்ணெய் கலவை', botanicalName: 'Lipid Base', role: 'Deep transdermal nourishment', roleTa: 'தோலுக்கு மென்மை தரும்', amount: '15%' }
+      { name: 'Navara Rice Extract', tamilName: 'நவரா நெல் சாறு', botanicalName: 'Oryza sativa (Navara)', role: 'Deep tissue nourishment and strength', roleTa: 'திசு பலம் மற்றும் சத்து தரும்', amount: '35%' },
+      { name: 'Ashwagandha', tamilName: 'அமுக்கரா', botanicalName: 'Withania somnifera', role: 'Nerve tonic and rejuvenator', roleTa: 'நரம்பு டானிக்', amount: '25%' },
+      { name: 'Bala (Sida cordifolia)', tamilName: 'சிற்றாமுட்டி', botanicalName: 'Sida cordifolia', role: 'Strengthens muscles and tendons', roleTa: 'தசைகளுக்கு வலிமை தரும்', amount: '20%' },
+      { name: 'Shatavari', tamilName: 'தண்ணீர்விட்டான் கிழங்கு', botanicalName: 'Asparagus racemosus', role: 'Nutritive and stamina booster', roleTa: 'உடல் பலம் தரும்', amount: '20%' }
     ],
     howToUse: [
-      { step: '01', title: 'Apply on Skin', titleTa: 'சருமத்தில் தடவவும்', instruction: 'Take 5-10ml oil and massage over face and body.', instructionTa: '5-10 மி.லி எண்ணெயை முகம் மற்றும் உடலில் தடவி மசாஜ் செய்யவும்.' },
-      { step: '02', title: 'Leave on for 30 mins', titleTa: '30 நிமிடம் ஊற வைக்கவும்', instruction: 'Allow the golden botanicals to penetrate for 30 minutes.', instructionTa: '30 நிமிடம் தோலில் ஊற விடவும்.' },
-      { step: '03', title: 'Wash with Nalangu Maavu', titleTa: 'நலங்கு மாவு போட்டு குளிக்கவும்', instruction: 'Wash off with warm water and Ruthra Nalangu Maavu Powder.', instructionTa: 'ருத்ராவின் நலங்கு மாவு தேய்த்து வெதுவெதுப்பான நீரில் குளிக்கவும்.' }
+      { step: '01', title: 'Oral Intake with Milk or Water', titleTa: 'பால் அல்லது தண்ணீருடன் உட்கொள்ளவும்', instruction: 'Take 1-2 tablets twice daily after food.', instructionTa: 'உணவுக்குப் பின் 1-2 மாத்திரைகள் பால் அல்லது வெந்நீருடன் உட்கொள்ளவும்.' }
     ],
     dosage: {
-      amount: '5ml - 10ml per application',
-      frequency: 'Daily or before bath',
-      timing: 'Pre-bath body massage',
-      vehicle: 'Direct skin massage',
-      amountTa: '5 - 10 மி.லி',
-      frequencyTa: 'தினமும் குளிப்பதற்கு முன்',
-      timingTa: 'முழு உடல் மசாஜ்',
-      vehicleTa: 'மென்மையாக தேய்க்கவும்'
+      morning: '1-2 tablets after breakfast',
+      evening: '1-2 tablets after dinner',
+      timing: 'After meals',
+      with: 'Warm milk or water',
+      morningTa: 'காலை 1-2 மாத்திரை உணவுக்குப் பின்',
+      eveningTa: 'இரவு 1-2 மாத்திரை உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான பால் அல்லது நீர்'
     },
     safety: {
-      pregnancy: 'Completely safe during pregnancy and for newborn baby massage.',
-      pregnancyTa: 'கர்ப்பிணிகள் மற்றும் பச்சிளம் குழந்தைகளுக்கு மிகவும் பாதுகாப்பானது.',
-      children: 'Highly recommended for infant skin glow and protection.',
-      childrenTa: 'குழந்தைகளுக்கு மிகவும் உகந்தது.',
-      interactions: 'Wash with natural herbal powder like Nalangu Maavu rather than harsh chemical soaps.',
-      interactionsTa: 'நலங்கு மாவு கொண்டு குளிப்பது சிறந்த பலன் தரும்.',
-      precautions: ['Natural turmeric may stain white clothes temporarily.'],
-      precautionsTa: ['மஞ்சள் உள்ளதால் வெள்ளை ஆடைகளில் படாமல் பார்த்துக்கொள்ளவும்.']
+      contraindications: 'Safe for long-term nutritive use.',
+      precautions: 'Follow recommended daily dosage.',
+      contraindicationsTa: 'பக்கவிளைவுகள் அற்ற பாதுகாப்பான தயாரிப்பு.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Keep tightly closed in a cool place.',
-      conditionsTa: 'குளிர்ந்த உலர்ந்த இடத்தில் வைக்கவும்.',
-      shelfLife: '36 Months',
-      shelfLifeTa: '36 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'ஈரப்பதம் படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'Is Nalpamaradi Taila good for bridal glow and hyperpigmentation?',
-        questionTa: 'மணப்பெண் பொலிவு மற்றும் கரும்புள்ளிகளுக்கு இது நல்லதா?',
-        answer: 'Yes, it is the most famous classical formula for removing sun tan, blemishes, and achieving a golden glowing complexion.',
-        answerTa: 'ஆம், சூரிய ஒளி கருமை, கரும்புள்ளிகளை நீக்கி மேனிக்கு பொலிவு தரும் தலைசிறந்த தைலம்.'
-      }
+      { question: 'Who can take Navara Tablet?', answer: 'Anyone experiencing fatigue, nerve weakness, or recovering from illness.', questionTa: 'யார் சாப்பிடலாம்?', answerTa: 'உடல் சோர்வு, நரம்பு தளர்ச்சி உள்ள அனைவரும் சாப்பிடலாம்.' }
     ],
-    searchKeywords: ['nalpamaradi', 'taila', 'skin glow', 'eczema', 'itching', 'turmeric oil', 'bridal massage'],
-    tamilKeywords: ['நால்பாமராதி', 'தைலம்', 'மேனி பொலிவு', 'கரும்புள்ளிகள்', 'தோல் நோய்', 'அரிப்பு', 'மஞ்சள் தைலம்'],
+    searchKeywords: ['navara tablet', 'stamina', 'vitality', 'nerve tonic', 'strength'],
+    tamilKeywords: ['நவரா மாத்திரை', 'உடல் பலம்', 'நரம்பு தளர்ச்சி மாத்திரை'],
     inStock: true,
-    featured: true
+    featured: false
   },
 
-  {
+{
     id: 'prod-30',
-    name: 'Ruthra Sinocof Cough Syrup',
+    name: 'Ruthra Sinocof Syrup',
     tamilName: 'ருத்ரா சினோகாஃப் இருமல் சிரப்',
-    slug: 'ruthra-sinocof-cough-syrup',
+    slug: 'ruthra-sinocof-syrup',
     medicalSystem: 'proprietary',
     formulation: 'Syrups',
     formulationTa: 'சிரப்',
@@ -372,10 +166,10 @@ export const PRODUCTS: Product[] = [
       '/images/products/ruthra-sinocof-cough-syrup/back.jpg'
     ],
     ingredients: [
-      { name: 'Adathodai (Vasaka)', tamilName: 'ஆடாதோடை', botanicalName: 'Justicia adhatoda', role: 'Liquefies tenacious bronchial sputum', roleTa: 'நெஞ்சு சளியை இளக்கும் முதன்மை மூலிகை', amount: '30%' },
-      { name: 'Thulasi (Holy Basil)', tamilName: 'துளசி', botanicalName: 'Ocimum sanctum', role: 'Antiviral, antibacterial, and immune support', roleTa: 'கிருமி நாசினி மற்றும் நோய் எதிர்ப்பு', amount: '25%' },
-      { name: 'Athimathuram (Liquorice)', tamilName: 'அதிமதுரம்', botanicalName: 'Glycyrrhiza glabra', role: 'Coats and soothes raw, inflamed throat membranes', roleTa: 'தொண்டை புண்களை ஆற்றும் இதமான மூலிகை', amount: '25%' },
-      { name: 'Kantakari & Thippili', tamilName: 'கண்டங்கத்திரி & திப்பிலி', botanicalName: 'Herbal Bio-actives', role: 'Bronchodilator and eases breathing', roleTa: 'சுவாச குழாயை தளர்த்தி எளிதாக மூச்சு விட உதவும்', amount: '20%' }
+      { name: 'Ruthra Sinocof Syrup', tamilName: 'ஆடாதோடை', botanicalName: 'Justicia adhatoda', role: 'Liquefies tenacious bronchial sputum', roleTa: 'நெஞ்சு சளியை இளக்கும் முதன்மை மூலிகை', amount: '30%' },
+      { name: 'Ruthra Sinocof Syrup', tamilName: 'துளசி', botanicalName: 'Ocimum sanctum', role: 'Antiviral, antibacterial, and immune support', roleTa: 'கிருமி நாசினி மற்றும் நோய் எதிர்ப்பு', amount: '25%' },
+      { name: 'Ruthra Sinocof Syrup', tamilName: 'அதிமதுரம்', botanicalName: 'Glycyrrhiza glabra', role: 'Coats and soothes raw, inflamed throat membranes', roleTa: 'தொண்டை புண்களை ஆற்றும் இதமான மூலிகை', amount: '25%' },
+      { name: 'Ruthra Sinocof Syrup', tamilName: 'கண்டங்கத்திரி & திப்பிலி', botanicalName: 'Herbal Bio-actives', role: 'Bronchodilator and eases breathing', roleTa: 'சுவாச குழாயை தளர்த்தி எளிதாக மூச்சு விட உதவும்', amount: '20%' }
     ],
     howToUse: [
       { step: '01', title: 'Dose Measurement', titleTa: 'அளவு', instruction: 'Take 5ml to 10ml (1 to 2 tsp).', instructionTa: '5 முதல் 10 மி.லி (1-2 ஸ்பூன்) எடுக்கவும்.' },
@@ -422,11 +216,345 @@ export const PRODUCTS: Product[] = [
     featured: true
   },
 
-  {
+{
+    id: 'prod-32',
+    name: 'Ruthra Esyswas Drops',
+    tamilName: 'ருத்ரா ஈஸி-ஸ்வாஸ் சொட்டு மருந்து',
+    slug: 'ruthra-esyswas-drops',
+    medicalSystem: 'proprietary',
+    formulation: 'Drops',
+    formulationTa: 'சொட்டு மருந்து',
+    concerns: ['respiratory'],
+    price: 198,
+    originalPrice: 220,
+    packSize: '50ml',
+    packSizeTa: '50 மி.லி',
+    shortDescription: 'High-potency aromatic steam inhalation drops & chest rub for instant relief from blocked nose, sinus congestion, wheezing, and asthma.',
+    shortDescriptionTa: 'மூக்கடைப்பு, சைனஸ் பாரம், ஆஸ்துமா, வீசிங் மற்றும் கடுமையான சளி தொல்லையிலிருந்து உடனடியாக நிவாரணம் தரும் ஆவி பிடிக்கும் மூலிகை சொட்டு மருந்து.',
+    description: 'Ruthra Esy-swas Drops is a therapeutic aromatic botanical formulation composed of Nilgiri oil (Eucalyptus), Pudina Sathuva (Menthol crystals), Karpooram (Camphor), and Ajwain extracts. Just 3-5 drops in boiling water releases penetrating vapors that immediately unblock congested sinus cavities, dissolve upper respiratory phlegm, and restore free breathing.',
+    descriptionTa: 'ஈஸி-ஸ்வாஸ் சொட்டு மருந்து நீலகிரி தைலம், புதினா உப்பு, பச்சை கற்பூரம் மற்றும் ஓம திரவம் சேர்ந்த சக்திவாய்ந்த மருந்து. சுடுநீரில் சில துளிகள் விட்டு ஆவி பிடித்தால் அடைத்த மூக்கு உடனடியாக திறந்து சுவாசப்பாதை சுத்தமாகும்.',
+    traditionalRole: 'Aromatic steam inhalation & rubefacient for nasal block, sinusitis, wheezing, COPD, and head heaviness.',
+    traditionalRoleTa: 'மூக்கடைப்பு, சைனஸ் தலைபாரம், ஆஸ்துமா மற்றும் மூச்சுத்திணறல் நிவாரணம்.',
+    badge: 'Instant Sinus Relief',
+    badgeTa: 'உடனடி சைனஸ் நிவாரணம்',
+    image: '/images/products/ruthra-esy-swas-drops/front.jpg',
+    images: [
+      '/images/products/ruthra-esy-swas-drops/front.jpg',
+      '/images/products/ruthra-esy-swas-drops/angle.jpg',
+      '/images/products/ruthra-esy-swas-drops/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-esy-swas-drops/front.jpg',
+      '/images/products/ruthra-esy-swas-drops/angle.jpg',
+      '/images/products/ruthra-esy-swas-drops/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Ruthra Esyswas Drops', tamilName: 'நீலகிரி தைலம்', botanicalName: 'Eucalyptus globulus', role: 'Potent decongestant and bronchodilator', roleTa: 'மூக்கடைப்பை நீக்கி சுவாசத்தை சீராக்கும்', amount: '35%' },
+      { name: 'Ruthra Esyswas Drops', tamilName: 'புதினா உப்பு', botanicalName: 'Mentha piperita', role: 'Cooling airflow enhancer and opens nasal passages', roleTa: 'குளிர்ச்சியான தடையற்ற சுவாசத்தை தரும்', amount: '25%' },
+      { name: 'Ruthra Esyswas Drops', tamilName: 'பச்சை கற்பூரம்', botanicalName: 'Cinnamomum camphora', role: 'Soothes sinus inflammation and head heaviness', roleTa: 'தலைபாரத்தை போக்கும் கற்பூரம்', amount: '25%' },
+      { name: 'Ruthra Esyswas Drops', tamilName: 'ஓம திரவம்', botanicalName: 'Trachyspermum ammi', role: 'Antispasmodic for wheezing and tight chest', roleTa: 'நெஞ்சு இறுக்கத்தை தளர்த்தும்', amount: '15%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Steam Inhalation', titleTa: 'ஆவி பிடித்தல்', instruction: 'Add 3-5 drops to a bowl of steaming hot water.', instructionTa: 'கொதிக்கும் வெந்நீரில் 3 முதல் 5 துளிகள் விடவும்.' },
+      { step: '02', title: 'Inhale Deeply', titleTa: 'ஆழமாக சுவாசிக்கவும்', instruction: 'Inhale vapors deeply for 5-10 minutes with eyes closed.', instructionTa: 'கண்களை மூடிக்கொண்டு 5-10 நிமிடங்கள் ஆழமாக சுவாசிக்கவும்.' },
+      { step: '03', title: 'Topical Rub (Optional)', titleTa: 'லேசாக தடவவும்', instruction: 'Can also apply 1-2 drops directly onto chest and throat.', instructionTa: '1-2 துளிகள் மார்பு மற்றும் தொண்டையில் லேசாக தடவலாம்.' }
+    ],
+    dosage: {
+      amount: '3 to 5 drops per inhalation session',
+      frequency: '2 to 3 times daily',
+      timing: 'As needed for congestion',
+      vehicle: 'Boiling steam water or direct topical smear',
+      amountTa: '3 முதல் 5 துளிகள்',
+      frequencyTa: 'தினமும் 2-3 முறை',
+      timingTa: 'தேவைப்படும் போது',
+      vehicleTa: 'ஆவி பிடிக்க சுடுநீரில் அல்லது மார்பில் தடவ'
+    },
+    safety: {
+      pregnancy: 'Completely safe for steam inhalation.',
+      pregnancyTa: 'ஆவி பிடிக்க முற்றிலும் பாதுகாப்பானது.',
+      children: 'Safe for children above 3 years under parental supervision.',
+      childrenTa: '3 வயதுக்கு மேற்பட்ட குழந்தைகளுக்கு பெரியவர்கள் முன்னிலையில் கொடுக்கலாம்.',
+      interactions: 'Safe with all internal oral medications.',
+      interactionsTa: 'பாதுகாப்பானது.',
+      precautions: ['Avoid direct contact with eyes.'],
+      precautionsTa: ['கண்களில் படாமல் பார்த்துக்கொள்ளவும்.']
+    },
+    storage: {
+      conditions: 'Keep bottle tightly sealed to prevent evaporation.',
+      conditionsTa: 'ஆவியாகாமல் இருக்க பாட்டிலை நன்றாக மூடி வைக்கவும்.',
+      shelfLife: '36 Months',
+      shelfLifeTa: '36 மாதங்கள்'
+    },
+    faqs: [
+      {
+        question: 'How quickly does it open a blocked nose or sinus?',
+        questionTa: 'மூக்கடைப்பு மற்றும் சைனஸ் பாரம் எவ்வளவு நேரத்தில் நீங்கும்?',
+        answer: 'Within 60 seconds of steam inhalation, nasal air passages open up clearly.',
+        answerTa: 'ஆவி பிடித்த 1 நிமிடத்தில் மூக்கடைப்பு நீங்கி எளிதாக சுவாசிக்க முடியும்.'
+      }
+    ],
+    searchKeywords: ['esy-swas', 'drops', 'steam inhalation', 'asthma', 'wheezing', 'copd', 'blocked nose', 'sinusitis'],
+    tamilKeywords: ['ஈஸி-ஸ்வாஸ்', 'சொட்டு மருந்து', 'ஆவி பிடித்தல்', 'ஆஸ்துமா', 'வீசிங்', 'மூக்கடைப்பு', 'சைனஸ்'],
+    inStock: true,
+    featured: true
+  },
+
+{
+    id: 'prod-27',
+    name: 'Ruthra Ulcera Oil',
+    tamilName: 'ருத்ரா அல்சரா புண் ஆற்று தைலம்',
+    slug: 'ruthra-ulcera-oil',
+    medicalSystem: 'proprietary',
+    formulation: 'Thailam',
+    formulationTa: 'தைலம்',
+    concerns: ['skin-hair'],
+    price: 210,
+    originalPrice: 240,
+    packSize: '100ml',
+    packSizeTa: '100 மி.லி',
+    shortDescription: 'Clinically esteemed topical wound healing oil for venous ulcers, diabetic non-healing ulcers, cuts, bedsores, bruises, trauma wounds, and lacerations.',
+    shortDescriptionTa: 'ஆறாத சர்க்கரை புண்கள் (Diabetic Ulcers), நரம்பு புண்கள் (Venous Ulcers), படுக்கை புண்கள் (Bedsores) மற்றும் காயங்களை விரைவாக ஆற்றும் உன்னத தைலம்.',
+    description: 'Ruthra Ulcera Oil is processed with potent wound-cleansing (Vrana Shodhana) and tissue-generating (Vrana Ropana) Siddha botanicals. It clears necrotic slough, suppresses bacterial biofilm, stimulates healthy pink granulation tissue, and dramatically accelerates wound closure in chronic diabetic and venous ulcers.',
+    descriptionTa: 'அல்சரா புண் ஆற்று தைலம் சர்க்கரை நோயாளிகளுக்கு ஏற்படும் ஆறாத கால் புண்கள், வெட்டுக்காயங்கள், படுக்கை புண்கள் மற்றும் தீக்காயங்களை எவ்வித வடுவும் இன்றி விரைவாக ஆற்றும் மருத்துவ குணம் கொண்டது.',
+    traditionalRole: 'Accelerates wound healing for diabetic ulcers, venous stasis ulcers, bedsores, cuts, bruises, and abrasions.',
+    traditionalRoleTa: 'சர்க்கரை புண்கள், படுக்கை புண்கள், வெட்டுக்காயங்கள் மற்றும் ஆறாத புண்களை ஆற்றுதல்.',
+    badge: 'Clinical Wound Care',
+    badgeTa: 'ஆறாத புண் நிவாரணம்',
+    image: '/images/products/ruthra-ulcera-wound-oil/front.jpg',
+    images: [
+      '/images/products/ruthra-ulcera-wound-oil/front.jpg',
+      '/images/products/ruthra-ulcera-wound-oil/angle.jpg',
+      '/images/products/ruthra-ulcera-wound-oil/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-ulcera-wound-oil/front.jpg',
+      '/images/products/ruthra-ulcera-wound-oil/angle.jpg',
+      '/images/products/ruthra-ulcera-wound-oil/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Ruthra Ulcera Oil', tamilName: 'குப்பைமேனி', botanicalName: 'Acalypha indica', role: 'Potent antimicrobial and wound purifier', roleTa: 'கிருமி நாசினி மற்றும் புண் சுத்திகரிப்பு', amount: '35%' },
+      { name: 'Ruthra Ulcera Oil', tamilName: 'கஸ்தூரி மஞ்சள்', botanicalName: 'Curcuma aromatica', role: 'Accelerates granulation and tissue regeneration', roleTa: 'புதிய திசுக்களை உருவாக்கி புண்ணை ஆற்றும்', amount: '25%' },
+      { name: 'Ruthra Ulcera Oil', tamilName: 'வேப்பெண்ணெய்', botanicalName: 'Azadirachta indica', role: 'Suppresses bacterial biofilms and fungal infection', roleTa: 'புற்று மற்றும் பாக்டீரியா தொற்று தடுப்பு', amount: '20%' },
+      { name: 'Ruthra Ulcera Oil', tamilName: 'தூய தேங்காய் எண்ணெய்', botanicalName: 'Cocos nucifera', role: 'Cooling emollient base for non-stick dressing', roleTa: 'குளிர்ச்சி தந்து புண்ணை மென்மையாக்கும்', amount: '20%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Cleanse Wound', titleTa: 'புண்ணை சுத்தம் செய்யவும்', instruction: 'Clean the wound with sterile saline water.', instructionTa: 'புண்ணை சுத்தமான நீரால் கழுவி துடைக்கவும்.' },
+      { step: '02', title: 'Apply Oil', titleTa: 'எண்ணெய் தடவவும்', instruction: 'Apply oil gently using sterile gauze or clean cotton.', instructionTa: 'சுத்தமான பஞ்சு அல்லது காஸ் துணியில் நனைத்து தடவவும்.' },
+      { step: '03', title: 'Dress Gently', titleTa: 'டிரெஸ்ஸிங் செய்யவும்', instruction: 'Bandage lightly or leave exposed as advised twice daily.', instructionTa: 'லேசாக கட்டுப்போடவும்; தினமும் இருவேளை மாற்றவும்.' }
+    ],
+    dosage: {
+      amount: 'A few drops to coat the wound surface',
+      frequency: 'Twice daily',
+      timing: 'External dressing',
+      vehicle: 'Direct topical application / sterile gauze',
+      amountTa: 'தேவைக்கேற்ப சில துளிகள்',
+      frequencyTa: 'தினமும் இருவேளை',
+      timingTa: 'வெளிப்புற டிரெஸ்ஸிங்',
+      vehicleTa: 'சுத்தமான பஞ்சால் தடவவும்'
+    },
+    safety: {
+      pregnancy: 'Safe for external application.',
+      pregnancyTa: 'வெளிப்புற பயன்பாட்டிற்கு முற்றிலும் பாதுகாப்பானது.',
+      children: 'Safe for minor cuts and scrapes in children.',
+      childrenTa: 'குழந்தைகளின் சிராய்ப்பு மற்றும் காயங்களுக்கு உகந்தது.',
+      interactions: 'Can be used alongside oral antibiotics if prescribed.',
+      interactionsTa: 'பாதுகாப்பானது.',
+      precautions: ['Maintain clean sterile dressing practices for diabetic ulcers.'],
+      precautionsTa: ['சர்க்கரை புண்களை சுத்தமாக பராமரிக்கவும்.']
+    },
+    storage: {
+      conditions: 'Keep tightly closed in a cool, dark place.',
+      conditionsTa: 'குளிர்ந்த உலர்ந்த இடத்தில் வைக்கவும்.',
+      shelfLife: '36 Months',
+      shelfLifeTa: '36 மாதங்கள்'
+    },
+    faqs: [
+      {
+        question: 'Is it effective for non-healing chronic diabetic foot ulcers?',
+        questionTa: 'சர்க்கரை நோயாளிகளின் ஆறாத கால் புண்களுக்கு இது பலனளிக்குமா?',
+        answer: 'Yes, Ulcera Oil is specially formulated for chronic, sluggish ulcers by stimulating rapid healthy granulation.',
+        answerTa: 'ஆம், சர்க்கரை நோயாளிகளுக்கு ஏற்படும் ஆறாத நாள்பட்ட புண்களை ஆற்ற பிரத்யேகமாக தயாரிக்கப்பட்டது.'
+      }
+    ],
+    searchKeywords: ['ulcera oil', 'wound healer', 'diabetic ulcer', 'venous ulcer', 'bedsores', 'cuts', 'healing oil'],
+    tamilKeywords: ['அல்சரா', 'புண் ஆற்று தைலம்', 'சர்க்கரை புண்', 'படுக்கை புண்', 'காயம்', 'வெட்டுக்காயம்'],
+    inStock: true,
+    featured: true
+  },
+
+{
+    id: 'prod-26',
+    name: 'Ruthra Rejviyan Oil',
+    tamilName: 'ருத்ரா ரெஜ்-வியான் வலி நிவாரண தைலம்',
+    slug: 'ruthra-rejviyan-oil',
+    medicalSystem: 'proprietary',
+    formulation: 'Thailam',
+    formulationTa: 'தைலம்',
+    concerns: ['joint-mobility'],
+    price: 200,
+    originalPrice: 230,
+    packSize: '100ml',
+    packSizeTa: '100 மி.லி',
+    shortDescription: 'Fast-penetrating classical botanical massage oil for rapid relief from neck, shoulder, knee, heel, and lower back pain, muscle spasms, and sprains.',
+    shortDescriptionTa: 'கழுத்து, தோள்பட்டை, முழங்கால், குதிகால் மற்றும் இடுப்பு வலி, சுளுக்கு மற்றும் தசை பிடிப்புகளுக்கு உடனடி நிவாரணம் தரும் மூலிகை வலி தைலம்.',
+    description: 'Ruthra Rej-Viyan Pain Oil is crafted by slow-cooking anti-inflammatory botanicals including Mudakathan, Vatha Narayana, Nilgiri oil, and Camphor in pure unrefined sesame oil. It delivers deep transdermal penetration to pacify inflamed joint capsules, resolve swelling, relax locked muscle fibers, and restore smooth mobility.',
+    descriptionTa: 'ரெஜ்-வியான் வலி தைலம் முடக்கத்தான், வாத நாராயணன், கற்பூரம், தைல இலை எண்ணெய் கொண்டு பாரம்பரிய முறைப்படி காய்ச்சப்படுகிறது. இது மூட்டுகளில் ஆழமாக ஊடுருவி, வீக்கத்தை குறைத்து, கடுமையான வலியை உடனடியாக போக்கும்.',
+    traditionalRole: 'Topical analgesic for neck, shoulder, knee, heel, back pain, muscle spasms, and sprains.',
+    traditionalRoleTa: 'கழுத்து, தோள்பட்டை, மூட்டு, இடுப்பு, குதிகால் வலி மற்றும் சுளுக்கு நிவாரணம்.',
+    badge: 'Top Selling Pain Oil',
+    badgeTa: 'முதன்மையான வலி தைலம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: [
+      '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+      '/images/products/ruthra-rej-viyan-pain-oil/angle.jpg',
+      '/images/products/ruthra-rej-viyan-pain-oil/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+      '/images/products/ruthra-rej-viyan-pain-oil/angle.jpg',
+      '/images/products/ruthra-rej-viyan-pain-oil/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Ruthra Rejviyan Oil', tamilName: 'முடக்கத்தான்', botanicalName: 'Cardiospermum halicacabum', role: 'Dissolves uric acid crystals and joint stiffness', roleTa: 'மூட்டு பிடிப்பு மற்றும் வாதத்தை போக்கும்', amount: '30%' },
+      { name: 'Ruthra Rejviyan Oil', tamilName: 'வாத நாராயணன்', botanicalName: 'Delonix elata', role: 'Calms acute neuropathic shooting pain', roleTa: 'நரம்பு குடைச்சலை நீக்கும்', amount: '25%' },
+      { name: 'Ruthra Rejviyan Oil', tamilName: 'பச்சை கற்பூரம்', botanicalName: 'Cinnamomum camphora', role: 'Promotes rapid micro-vascular absorption and cooling relief', roleTa: 'விரைவாக ஊடுருவி உடனடி நிவாரணம் தரும்', amount: '15%' },
+      { name: 'Ruthra Rejviyan Oil', tamilName: 'நீலகிரி தைலம்', botanicalName: 'Eucalyptus globulus', role: 'Warming analgesic for tense muscle fibers', roleTa: 'தசை வலிகளை தளர்த்தும்', amount: '15%' },
+      { name: 'Ruthra Rejviyan Oil', tamilName: 'நல்லெண்ணெய்', botanicalName: 'Sesamum indicum', role: 'Deep penetrating transdermal lipid base', roleTa: 'ஆழமாக ஊடுருவும் தூய நல்லெண்ணெய்', amount: '15%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Apply Generously', titleTa: 'எண்ணெய் தடவவும்', instruction: 'Pour 5-10ml oil on the affected painful joint.', instructionTa: '5-10 மி.லி எண்ணெயை வலி உள்ள இடத்தில் விடவும்.' },
+      { step: '02', title: 'Gentle Massage', titleTa: 'மென்மையாக மசாஜ்', instruction: 'Massage gently in circular motions for 5 minutes.', instructionTa: '5 நிமிடம் மென்மையாக வட்ட வடிவில் தேய்க்கவும்.' },
+      { step: '03', title: 'Fomentation (Optional)', titleTa: 'ஒத்தடம் (விருப்பப்பட்டால்)', instruction: 'Apply warm fomentation for deeper therapeutic benefit.', instructionTa: 'சிறந்த பலனுக்கு லேசான வெந்நீர் ஒத்தடம் கொடுக்கலாம்.' }
+    ],
+    dosage: {
+      amount: '5ml - 10ml as needed',
+      frequency: '2 to 3 times daily',
+      timing: 'External application',
+      vehicle: 'Direct gentle massage',
+      amountTa: '5 - 10 மி.லி',
+      frequencyTa: 'தினமும் 2-3 முறை',
+      timingTa: 'வெளிப்புற பயன்பாடு',
+      vehicleTa: 'மென்மையாக தேய்க்கவும்'
+    },
+    safety: {
+      pregnancy: 'Safe for external application on back and limbs.',
+      pregnancyTa: 'வெளிப்புறமாக பயன்படுத்த பாதுகாப்பானது.',
+      children: 'Safe for children above 4 years for sprains.',
+      childrenTa: '4 வயதுக்கு மேற்பட்ட குழந்தைகளுக்கு உகந்தது.',
+      interactions: 'Can be combined with Sarvanga Vatha Chooranam internally.',
+      interactionsTa: 'உள் மருந்துகளுடன் சேர்த்து பயன்படுத்தலாம்.',
+      precautions: ['FOR EXTERNAL APPLICATION ONLY. Do not apply on open broken skin.'],
+      precautionsTa: ['வெளிப்புற பயன்பாட்டிற்கு மட்டும். திறந்த புண்களில் தடவ வேண்டாம்.']
+    },
+    storage: {
+      conditions: 'Keep bottle tightly capped away from direct heat.',
+      conditionsTa: 'நேரடி வெப்பம் படாமல் வைக்கவும்.',
+      shelfLife: '36 Months',
+      shelfLifeTa: '36 மாதங்கள்'
+    },
+    faqs: [
+      {
+        question: 'How quickly does Rej-Viyan Pain Oil work?',
+        questionTa: 'ரெஜ்-வியான் தைலம் எவ்வளவு நேரத்தில் பலன் தரும்?',
+        answer: 'Most users experience soothing warmth and pain relief within 10 to 15 minutes of gentle massage.',
+        answerTa: 'மசாஜ் செய்த 10 முதல் 15 நிமிடங்களில் வலி குறைந்து சுகமான நிவாரணம் கிடைக்கும்.'
+      }
+    ],
+    searchKeywords: ['rej-viyan', 'pain oil', 'thailam', 'knee pain', 'back pain', 'joint pain', 'muscle spasm', 'sprain'],
+    tamilKeywords: ['ரெஜ்-வியான்', 'வலி தைலம்', 'மூட்டு வலி', 'இடுப்பு வலி', 'சுளுக்கு', 'கழுத்து வலி'],
+    inStock: true,
+    featured: true
+  },
+
+{
+    id: 'prod-28',
+    name: 'Ruthra Narshika Oil',
+    tamilName: 'ருத்ரா நார்ஷிகா மூலிகை கூந்தல் தைலம்',
+    slug: 'ruthra-narshika-oil',
+    medicalSystem: 'proprietary',
+    formulation: 'Thailam',
+    formulationTa: 'தைலம்',
+    concerns: ['skin-hair'],
+    price: 240,
+    originalPrice: 280,
+    packSize: '100ml',
+    packSizeTa: '100 மி.லி',
+    shortDescription: 'Nutrient-rich traditional botanical hair oil that eradicates stubborn dandruff, controls severe hair fall, strengthens roots, and stimulates dense hair growth.',
+    shortDescriptionTa: 'பொடுகு தொல்லையை முழுமையாக நீக்கி, முடி உதிர்வை தடுத்து, வேர்களை பலப்படுத்தி அடர்த்தியான கூந்தல் வளர்ச்சியை தரும் மூலிகை தைலம்.',
+    description: 'Ruthra Narshika Hair Oil is processed with 15+ native botanical extracts including Bringaraja (Karisalankanni), Amla (Nellikkai), Henna, Poduthalai, and Vetiver infused into unrefined cold-pressed coconut oil. It cools an overheated scalp, nourishes micro-follicles, stops premature greying, and leaves hair lustrous and thick.',
+    descriptionTa: 'நார்ஷிகா கூந்தல் தைலம் கரிசலாங்கண்ணி, நெல்லிக்காய், பொடுதலை, மருதாணி, வெட்டிவேர் உள்ளிட்ட மூலிகைகளைக் கொண்டு தேங்காய் எண்ணெயில் காய்ச்சப்படுகிறது. இது தலைச்சூட்டை தணித்து, பொடுகை போக்கி, முடி உதிர்வை நிறுத்தி அடர்த்தியாக வளரச் செய்கிறது.',
+    traditionalRole: 'Controls dandruff, reduces hair fall, stimulates micro-follicles, and keeps scalp deeply nourished.',
+    traditionalRoleTa: 'பொடுகு கட்டுப்பாடு, முடி உதிர்வு தடுப்பு, கூந்தல் வேர் பலம் மற்றும் அடர்த்தி.',
+    badge: 'Herbal Hair Regrowth',
+    badgeTa: 'மூலிகை கூந்தல் வளர்ச்சி',
+    image: '/images/products/ruthra-narshika-hair-oil/front.jpg',
+    images: [
+      '/images/products/ruthra-narshika-hair-oil/front.jpg',
+      '/images/products/ruthra-narshika-hair-oil/angle.jpg',
+      '/images/products/ruthra-narshika-hair-oil/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-narshika-hair-oil/front.jpg',
+      '/images/products/ruthra-narshika-hair-oil/angle.jpg',
+      '/images/products/ruthra-narshika-hair-oil/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Ruthra Narshika Oil', tamilName: 'கரிசலாங்கண்ணி', botanicalName: 'Eclipta prostrata', role: 'Reactivates dormant hair follicles and darkens pigment', roleTa: 'கூந்தல் வேர்களை தூண்டி கருமையை தரும்', amount: '30%' },
+      { name: 'Ruthra Narshika Oil', tamilName: 'பொடுதலை', botanicalName: 'Phyla nodiflora', role: 'Sovereign anti-dandruff and scalp antifungal herb', roleTa: 'பொடுகு மற்றும் தலையில் அரிப்பை நீக்கும்', amount: '25%' },
+      { name: 'Ruthra Narshika Oil', tamilName: 'நெல்லிக்காய்', botanicalName: 'Phyllanthus emblica', role: 'Vitamin C antioxidant booster for follicle strength', roleTa: 'வைட்டமின் சி மற்றும் கூந்தல் வேர் ஊட்டச்சத்து', amount: '20%' },
+      { name: 'Ruthra Narshika Oil', tamilName: 'வெட்டிவேர் & கஸ்தூரி மஞ்சள்', botanicalName: 'Aromatics', role: 'Scalp cooling and natural fragrance', roleTa: 'தலை குளிர்ச்சி மற்றும் நறுமணம்', amount: '15%' },
+      { name: 'Ruthra Narshika Oil', tamilName: 'மரச்செக்கு தேங்காய் எண்ணெய்', botanicalName: 'Cocos nucifera', role: 'Cold-pressed virgin lipid base', roleTa: 'மரச்செக்கு தூய தேங்காய் எண்ணெய்', amount: '10%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Apply to Scalp', titleTa: 'மண்டையோட்டில் வைக்கவும்', instruction: 'Part hair and apply 5-10ml oil directly onto scalp roots.', instructionTa: 'முடியை வகிடு எடுத்து 5-10 மி.லி எண்ணெயை வேர்களில் வைக்கவும்.' },
+      { step: '02', title: 'Gentle Massage', titleTa: 'மென்மையாக மசாஜ்', instruction: 'Massage gently with fingertips for 5 minutes.', instructionTa: 'விரல் நுனிகளால் 5 நிமிடம் மென்மையாக மசாஜ் செய்யவும்.' },
+      { step: '03', title: 'Leave on / Wash', titleTa: 'ஊற வைத்து குளிக்கவும்', instruction: 'Leave on overnight or wash after 1 hour with Shigakai Powder.', instructionTa: 'இரவு முழுவதும் வைக்கலாம் அல்லது 1 மணி நேரம் கழித்து சிகைக்காய் போட்டு குளிக்கவும்.' }
+    ],
+    dosage: {
+      amount: '5ml - 10ml per application',
+      frequency: 'Daily or 3 times a week',
+      timing: 'Scalp application',
+      vehicle: 'Direct scalp massage',
+      amountTa: '5 - 10 மி.லி',
+      frequencyTa: 'தினமும் அல்லது வாரம் 3 முறை',
+      timingTa: 'மண்டையோடு மசாஜ்',
+      vehicleTa: 'விரல்களால் தேய்க்கவும்'
+    },
+    safety: {
+      pregnancy: 'Completely safe during pregnancy and lactation.',
+      pregnancyTa: 'முற்றிலும் பாதுகாப்பானது.',
+      children: 'Safe for children above 3 years.',
+      childrenTa: '3 வயதுக்கு மேற்பட்ட குழந்தைகளுக்கு பாதுகாப்பானது.',
+      interactions: 'Pair with Ruthra Shigakai Powder for best natural cleansing.',
+      interactionsTa: 'ருத்ராவின் சிகைக்காய் பொடியுடன் பயன்படுத்த சிறந்த பலன் தரும்.',
+      precautions: ['Natural herbal oil with no mineral oils or synthetic fragrances.'],
+      precautionsTa: ['மினரல் ஆயில் அல்லது செயற்கை நறுமணம் சேர்க்கப்படாதது.']
+    },
+    storage: {
+      conditions: 'Keep in a cool place tightly sealed.',
+      conditionsTa: 'குளிர்ந்த உலர்ந்த இடத்தில் வைக்கவும்.',
+      shelfLife: '36 Months',
+      shelfLifeTa: '36 மாதங்கள்'
+    },
+    faqs: [
+      {
+        question: 'Does it cause a cold when applied daily?',
+        questionTa: 'தினமும் தேய்த்தால் சளி பிடிக்குமா?',
+        answer: 'No, it is balanced with warming spices like Black Pepper and Vetiver to prevent excess phlegm while keeping the scalp cool.',
+        answerTa: 'இல்லை, சமச்சீரான மூலிகைகள் உள்ளதால் சளி பிடிக்காமல் தலைச்சூட்டை மட்டும் தணிக்கும்.'
+      }
+    ],
+    searchKeywords: ['narshika', 'hair oil', 'hair fall', 'dandruff', 'bringaraja', 'amla', 'hair growth'],
+    tamilKeywords: ['நார்ஷிகா', 'கூந்தல் தைலம்', 'முடி உதிர்வு', 'பொடுகு', 'கரிசலாங்கண்ணி', 'கூந்தல் வளர்ச்சி'],
+    inStock: true,
+    featured: true
+  },
+
+{
     id: 'prod-31',
-    name: 'Ruthra Ramabana Kashayam',
+    name: 'Ruthra Ramabaana Kasayam',
     tamilName: 'ருத்ரா ராமபாண திரவ கஷாயம்',
-    slug: 'ruthra-ramabana-kashayam',
+    slug: 'ruthra-ramabaana-kasayam',
     medicalSystem: 'proprietary',
     formulation: 'Syrup & Kashayam',
     formulationTa: 'திரவ கஷாயம்',
@@ -455,10 +583,10 @@ export const PRODUCTS: Product[] = [
       '/images/products/ruthra-ramabana-kashayam/back.jpg'
     ],
     ingredients: [
-      { name: 'Nilavembu (Kalmegh)', tamilName: 'நிலவேம்பு', botanicalName: 'Andrographis paniculata', role: 'Broad-spectrum antiviral and antipyretic', roleTa: 'காய்ச்சலை கட்டுப்படுத்தும் முதன்மை மூலிகை', amount: '30%' },
-      { name: 'Papali Ilai (Papaya Leaf)', tamilName: 'பப்பாளி இலை சாறு', botanicalName: 'Carica papaya', role: 'Stimulates thrombopoiesis and elevates platelet counts', roleTa: 'இரத்த தட்டணுக்களை (Platelets) அதிகரிக்கும்', amount: '25%' },
-      { name: 'Seenthil (Guduchi / Giloy)', tamilName: 'சீந்தில் கொடி', botanicalName: 'Tinospora cordifolia', role: 'Immunomodulator and cellular vitality protector', roleTa: 'நோய் எதிர்ப்பு சக்தியை பலப்படுத்தும்', amount: '25%' },
-      { name: 'Vettiver & Sandanam Base', tamilName: 'வெட்டிவேர் & சந்தனம்', botanicalName: 'Cooling Botanicals', role: 'Calms internal morbid heat and burning sensation', roleTa: 'உடல் சூடு மற்றும் கண் எரிச்சலை தணிக்கும்', amount: '20%' }
+      { name: 'Ruthra Ramabaana Kasayam', tamilName: 'நிலவேம்பு', botanicalName: 'Andrographis paniculata', role: 'Broad-spectrum antiviral and antipyretic', roleTa: 'காய்ச்சலை கட்டுப்படுத்தும் முதன்மை மூலிகை', amount: '30%' },
+      { name: 'Ruthra Ramabaana Kasayam', tamilName: 'பப்பாளி இலை சாறு', botanicalName: 'Carica papaya', role: 'Stimulates thrombopoiesis and elevates platelet counts', roleTa: 'இரத்த தட்டணுக்களை (Platelets) அதிகரிக்கும்', amount: '25%' },
+      { name: 'Ruthra Ramabaana Kasayam', tamilName: 'சீந்தில் கொடி', botanicalName: 'Tinospora cordifolia', role: 'Immunomodulator and cellular vitality protector', roleTa: 'நோய் எதிர்ப்பு சக்தியை பலப்படுத்தும்', amount: '25%' },
+      { name: 'Ruthra Ramabaana Kasayam', tamilName: 'வெட்டிவேர் & சந்தனம்', botanicalName: 'Cooling Botanicals', role: 'Calms internal morbid heat and burning sensation', roleTa: 'உடல் சூடு மற்றும் கண் எரிச்சலை தணிக்கும்', amount: '20%' }
     ],
     howToUse: [
       { step: '01', title: 'Measure Dosage', titleTa: 'அளவு', instruction: 'Take 10ml to 15ml decoction.', instructionTa: '10 முதல் 15 மி.லி எடுக்கவும்.' },
@@ -506,97 +634,133 @@ export const PRODUCTS: Product[] = [
   },
 
   {
-    id: 'prod-32',
-    name: 'Ruthra Esy-swas Drops',
-    tamilName: 'ருத்ரா ஈஸி-ஸ்வாஸ் சொட்டு மருந்து',
-    slug: 'ruthra-esy-swas-drops',
+    id: 'prod-prop-09',
+    name: "Ruthra's Nalanguma Powder",
+    tamilName: "ருத்ராவின் நலங்கு மாவு பொடி",
+    slug: 'ruthras-nalanguma-powder',
     medicalSystem: 'proprietary',
-    formulation: 'Drops',
-    formulationTa: 'சொட்டு மருந்து',
-    concerns: ['respiratory'],
-    price: 198,
+    formulation: 'Powder',
+    formulationTa: 'பொடி',
+    concerns: ['skin-hair'],
+    price: 180,
     originalPrice: 220,
-    packSize: '50ml',
-    packSizeTa: '50 மி.லி',
-    shortDescription: 'High-potency aromatic steam inhalation drops & chest rub for instant relief from blocked nose, sinus congestion, wheezing, and asthma.',
-    shortDescriptionTa: 'மூக்கடைப்பு, சைனஸ் பாரம், ஆஸ்துமா, வீசிங் மற்றும் கடுமையான சளி தொல்லையிலிருந்து உடனடியாக நிவாரணம் தரும் ஆவி பிடிக்கும் மூலிகை சொட்டு மருந்து.',
-    description: 'Ruthra Esy-swas Drops is a therapeutic aromatic botanical formulation composed of Nilgiri oil (Eucalyptus), Pudina Sathuva (Menthol crystals), Karpooram (Camphor), and Ajwain extracts. Just 3-5 drops in boiling water releases penetrating vapors that immediately unblock congested sinus cavities, dissolve upper respiratory phlegm, and restore free breathing.',
-    descriptionTa: 'ஈஸி-ஸ்வாஸ் சொட்டு மருந்து நீலகிரி தைலம், புதினா உப்பு, பச்சை கற்பூரம் மற்றும் ஓம திரவம் சேர்ந்த சக்திவாய்ந்த மருந்து. சுடுநீரில் சில துளிகள் விட்டு ஆவி பிடித்தால் அடைத்த மூக்கு உடனடியாக திறந்து சுவாசப்பாதை சுத்தமாகும்.',
-    traditionalRole: 'Aromatic steam inhalation & rubefacient for nasal block, sinusitis, wheezing, COPD, and head heaviness.',
-    traditionalRoleTa: 'மூக்கடைப்பு, சைனஸ் தலைபாரம், ஆஸ்துமா மற்றும் மூச்சுத்திணறல் நிவாரணம்.',
-    badge: 'Instant Sinus Relief',
-    badgeTa: 'உடனடி சைனஸ் நிவாரணம்',
-    image: '/images/products/ruthra-esy-swas-drops/front.jpg',
-    images: [
-      '/images/products/ruthra-esy-swas-drops/front.jpg',
-      '/images/products/ruthra-esy-swas-drops/angle.jpg',
-      '/images/products/ruthra-esy-swas-drops/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-esy-swas-drops/front.jpg',
-      '/images/products/ruthra-esy-swas-drops/angle.jpg',
-      '/images/products/ruthra-esy-swas-drops/back.jpg'
-    ],
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Traditional therapeutic herbal bath powder for luminous skin complexion, cooling body comfort, and blemish-free skin.',
+    shortDescriptionTa: 'இயற்கையான சருமப் பொலிவு, உடல் குளிர்ச்சி மற்றும் கரும்புள்ளிகளை நீக்கும் பாரம்பரிய மூலிகை நலங்கு மாவு குளியல் பொடி.',
+    description: "Ruthra's Nalanguma Powder is an artisanal herbal bath formulation prepared with fragrant wild turmeric (Kasturi Manjal), Rose petals, Poolankilangu, Vetiver, and Green gram. It gently exfoliates dead cells, clears skin blemishes, regulates excess sebum, and leaves skin refreshed and naturally aromatic without chemical sulfates.",
+    descriptionTa: 'கஸ்தூரி மஞ்சள், ரோஜா இதழ், பூலாங்கிழங்கு, வெட்டிவேர் மற்றும் பாசிப்பயறு கொண்டு தயாரிக்கப்பட்ட பாரம்பரிய நலங்கு மாவு. உடலுக்கு குளிர்ச்சியையும் முகத்திற்கு பொலிவையும் தரும்.',
+    traditionalRole: 'Natural herbal cleanser, skin radiance promoter, and body cooling bath powder.',
+    traditionalRoleTa: 'இயற்கை குளியல் பொடி, சரும பளபளப்பு மற்றும் உடல் குளிர்ச்சி தரும்.',
+    badge: 'Traditional Skin Care',
+    badgeTa: 'பாரம்பரிய சருமப் பராமரிப்பு',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Nilgiri Thailam (Pure Eucalyptus Oil)', tamilName: 'நீலகிரி தைலம்', botanicalName: 'Eucalyptus globulus', role: 'Potent decongestant and bronchodilator', roleTa: 'மூக்கடைப்பை நீக்கி சுவாசத்தை சீராக்கும்', amount: '35%' },
-      { name: 'Pudina Sathuva (Menthol Crystals)', tamilName: 'புதினா உப்பு', botanicalName: 'Mentha piperita', role: 'Cooling airflow enhancer and opens nasal passages', roleTa: 'குளிர்ச்சியான தடையற்ற சுவாசத்தை தரும்', amount: '25%' },
-      { name: 'Karpooram (Purified Camphor)', tamilName: 'பச்சை கற்பூரம்', botanicalName: 'Cinnamomum camphora', role: 'Soothes sinus inflammation and head heaviness', roleTa: 'தலைபாரத்தை போக்கும் கற்பூரம்', amount: '25%' },
-      { name: 'Omam (Ajwain Extract)', tamilName: 'ஓம திரவம்', botanicalName: 'Trachyspermum ammi', role: 'Antispasmodic for wheezing and tight chest', roleTa: 'நெஞ்சு இறுக்கத்தை தளர்த்தும்', amount: '15%' }
+      { name: 'Kasturi Manjal (Wild Turmeric)', tamilName: 'கஸ்தூரி மஞ்சள்', botanicalName: 'Curcuma aromatica', role: 'Skin brightening and antibacterial', roleTa: 'சரும பொலிவு தரும்', amount: '25%' },
+      { name: 'Poolankilangu (White Turmeric)', tamilName: 'பூலாங்கிழங்கு', botanicalName: 'Curcuma zedoaria', role: 'Aromatic skin coolant', roleTa: 'நறுமணம் மற்றும் குளிர்ச்சி தரும்', amount: '20%' },
+      { name: 'Vetiver (Khus)', tamilName: 'வெட்டிவேர்', botanicalName: 'Chrysopogon zizanioides', role: 'Calms skin heat and irritation', roleTa: 'உடல் சூட்டை தணிக்கும்', amount: '20%' },
+      { name: 'Rose Petals', tamilName: 'ரோஜா இதழ்கள்', botanicalName: 'Rosa damascena', role: 'Skin toning and natural fragrance', roleTa: 'தோல் மென்மையாக்கும்', amount: '15%' },
+      { name: 'Green Gram Flour (Moong)', tamilName: 'பாசிப்பயறு', botanicalName: 'Vigna radiata', role: 'Gentle natural skin cleanser base', roleTa: 'இயற்கையான அழுக்கு நீக்கி', amount: '20%' }
     ],
     howToUse: [
-      { step: '01', title: 'Steam Inhalation', titleTa: 'ஆவி பிடித்தல்', instruction: 'Add 3-5 drops to a bowl of steaming hot water.', instructionTa: 'கொதிக்கும் வெந்நீரில் 3 முதல் 5 துளிகள் விடவும்.' },
-      { step: '02', title: 'Inhale Deeply', titleTa: 'ஆழமாக சுவாசிக்கவும்', instruction: 'Inhale vapors deeply for 5-10 minutes with eyes closed.', instructionTa: 'கண்களை மூடிக்கொண்டு 5-10 நிமிடங்கள் ஆழமாக சுவாசிக்கவும்.' },
-      { step: '03', title: 'Topical Rub (Optional)', titleTa: 'லேசாக தடவவும்', instruction: 'Can also apply 1-2 drops directly onto chest and throat.', instructionTa: '1-2 துளிகள் மார்பு மற்றும் தொண்டையில் லேசாக தடவலாம்.' }
+      { step: '01', title: 'Make a Paste', titleTa: 'குழைத்து பூசவும்', instruction: 'Mix 2-3 tablespoons with water or rose water to form a smooth paste.', instructionTa: '2-3 ஸ்பூன் பொடியை தண்ணீர் அல்லது பன்னீரில் குழைக்கவும்.' },
+      { step: '02', title: 'Apply and Rinse', titleTa: 'தேய்த்துக் குளிக்கவும்', instruction: 'Apply over body and face, massage gently, and rinse with plain water.', instructionTa: 'உடல் மற்றும் முகத்தில் தேய்த்து மென்மையாக மசாஜ் செய்து குளிக்கவும்.' }
     ],
     dosage: {
-      amount: '3 to 5 drops per inhalation session',
-      frequency: '2 to 3 times daily',
-      timing: 'As needed for congestion',
-      vehicle: 'Boiling steam water or direct topical smear',
-      amountTa: '3 முதல் 5 துளிகள்',
-      frequencyTa: 'தினமும் 2-3 முறை',
-      timingTa: 'தேவைப்படும் போது',
-      vehicleTa: 'ஆவி பிடிக்க சுடுநீரில் அல்லது மார்பில் தடவ'
+      timing: 'Use during daily bath instead of chemical soap',
+      with: 'Water or Rose water or Curd',
+      timingTa: 'தினசரி குளியலின் போது சோப்பிற்கு பதிலாக பயன்படுத்தவும்',
+      withTa: 'தண்ணீர், பன்னீர் அல்லது தயிர்'
     },
     safety: {
-      pregnancy: 'Completely safe for steam inhalation.',
-      pregnancyTa: 'ஆவி பிடிக்க முற்றிலும் பாதுகாப்பானது.',
-      children: 'Safe for children above 3 years under parental supervision.',
-      childrenTa: '3 வயதுக்கு மேற்பட்ட குழந்தைகளுக்கு பெரியவர்கள் முன்னிலையில் கொடுக்கலாம்.',
-      interactions: 'Safe with all internal oral medications.',
-      interactionsTa: 'பாதுகாப்பானது.',
-      precautions: ['Avoid direct contact with eyes.'],
-      precautionsTa: ['கண்களில் படாமல் பார்த்துக்கொள்ளவும்.']
+      contraindications: 'For external use only.',
+      precautions: 'Do a patch test before first facial application.',
+      contraindicationsTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்.',
+      precautionsTa: 'கண்களில் படாமல் உபயோகிக்கவும்.'
     },
     storage: {
-      conditions: 'Keep bottle tightly sealed to prevent evaporation.',
-      conditionsTa: 'ஆவியாகாமல் இருக்க பாட்டிலை நன்றாக மூடி வைக்கவும்.',
-      shelfLife: '36 Months',
-      shelfLifeTa: '36 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep away from moisture',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'ஈரப்பதம் படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How quickly does it open a blocked nose or sinus?',
-        questionTa: 'மூக்கடைப்பு மற்றும் சைனஸ் பாரம் எவ்வளவு நேரத்தில் நீங்கும்?',
-        answer: 'Within 60 seconds of steam inhalation, nasal air passages open up clearly.',
-        answerTa: 'ஆவி பிடித்த 1 நிமிடத்தில் மூக்கடைப்பு நீங்கி எளிதாக சுவாசிக்க முடியும்.'
-      }
+      { question: 'Can babies and kids use this?', answer: 'Yes, it is 100% natural, herbal, and chemical-free.', questionTa: 'குழந்தைகளுக்கு பயன்படுத்தலாமா?', answerTa: 'ஆம், 100% இயற்கை மூலிகைகளால் ஆனது என்பதால் தாராளமாக பயன்படுத்தலாம்.' }
     ],
-    searchKeywords: ['esy-swas', 'drops', 'steam inhalation', 'asthma', 'wheezing', 'copd', 'blocked nose', 'sinusitis'],
-    tamilKeywords: ['ஈஸி-ஸ்வாஸ்', 'சொட்டு மருந்து', 'ஆவி பிடித்தல்', 'ஆஸ்துமா', 'வீசிங்', 'மூக்கடைப்பு', 'சைனஸ்'],
+    searchKeywords: ['nalanguma powder', 'bath powder', 'herbal soap alternative', 'skin glowing powder', 'kasturi manjal bath'],
+    tamilKeywords: ['நலங்கு மாவு பொடி', 'குளியல் பொடி', 'கஸ்தூரி மஞ்சள் குளியல் பொடி'],
     inStock: true,
-    featured: true
+    featured: false
+  },
+
+  {
+    id: 'prod-prop-10',
+    name: "Ruthra's Shigakai Powder",
+    tamilName: "ருத்ராவின் சிகைக்காய் பொடி",
+    slug: 'ruthras-shigakai-powder',
+    medicalSystem: 'proprietary',
+    formulation: 'Powder',
+    formulationTa: 'பொடி',
+    concerns: ['skin-hair'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Pure botanical hair wash powder that promotes voluminous hair growth, stops hair fall, and eliminates dandruff naturally.',
+    shortDescriptionTa: 'முடி உதிர்வை தடுத்து, பொடுகை போக்கி அடர்த்தியான கூந்தல் வளர்ச்சி தரும் தூய மூலிகை சிகைக்காய் பொடி.',
+    description: "Ruthra's Shigakai Powder is traditionally compounded with premium Senegalia rugata (Shikakai), Sapindus mukorossi (Soapnut / Reetha), Hibiscus flower, Amla, and Fenugreek. It conditions hair strands, deep cleans scalp sebum, prevents premature graying, and enhances natural lustrous hair bounce without stripping natural essential oils.",
+    descriptionTa: 'சீயக்காய், பூவந்திக்கொட்டை, செம்பருத்தி, நெல்லி மற்றும் வெந்தயம் கலந்த உன்னத மூலிகை தலைக்குளியல் பொடி. வேர்க்கால்களை பலப்படுத்தி பொடுகு மற்றும் முடி கொட்டுதலை நிறுத்தும்.',
+    traditionalRole: 'Scalp cleanser, anti-dandruff hair cleanser, and natural conditioner.',
+    traditionalRoleTa: 'பொடுகு நீக்கி, கூந்தல் வேர்களை பலப்படுத்தும் இயற்கை சிகைக்காய்.',
+    badge: '100% Natural Hair Wash',
+    badgeTa: 'தூய மூலிகை சிகைக்காய்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    ingredients: [
+      { name: 'Shikakai (Senegalia rugata)', tamilName: 'சிகைக்காய்', botanicalName: 'Senegalia rugata', role: 'Natural foaming hair cleanser and conditioner', roleTa: 'இயற்கை நுரை மற்றும் கண்டிஷனர்', amount: '35%' },
+      { name: 'Reetha (Soapnut)', tamilName: 'பூவந்திக்கொட்டை', botanicalName: 'Sapindus mukorossi', role: 'Deep scalp oil removal', roleTa: 'அழுக்கை ஆழமாக நீக்கும்', amount: '20%' },
+      { name: 'Hibiscus Petals (Sembaruthi)', tamilName: 'செம்பருத்தி பூ', botanicalName: 'Hibiscus rosa-sinensis', role: 'Promotes silky soft hair bounce', roleTa: 'கூந்தலை பட்டு போல் மென்மையாக்கும்', amount: '15%' },
+      { name: 'Amla (Indian Gooseberry)', tamilName: 'நெல்லிக்காய்', botanicalName: 'Phyllanthus emblica', role: 'Vitamin C rich hair follicle tonic', roleTa: 'முடி வளர்ச்சியை தூண்டும்', amount: '15%' },
+      { name: 'Fenugreek (Vendhayam)', tamilName: 'வெந்தயம்', botanicalName: 'Trigonella foenum-graecum', role: 'Cooling conditioning agent and dandruff fighter', roleTa: 'உடல் சூட்டை தணித்து பொடுகு நீக்கும்', amount: '15%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Prepare Paste', titleTa: 'பேஸ்ட் தயார் செய்க', instruction: 'Mix 2-3 tablespoons with warm water or rice water to make a creamy lather.', instructionTa: '2-3 ஸ்பூன் பொடியை வெதுவெதுப்பான நீர் அல்லது சாதம் வடித்த தண்ணீரில் கலக்கவும்.' },
+      { step: '02', title: 'Scalp Massage & Wash', titleTa: 'தேய்த்துக் கழுவவும்', instruction: 'Gently massage into scalp and hair strands, leave for 3 minutes, then rinse thoroughly.', instructionTa: 'தலை மற்றும் கூந்தலில் மென்மையாக தேய்த்து 3 நிமிடம் கழித்து சுத்தமான நீரில் அலசவும்.' }
+    ],
+    dosage: {
+      timing: 'Use 2-3 times a week during hair wash',
+      with: 'Plain water or Rice congee water',
+      timingTa: 'வாரத்திற்கு 2-3 முறை தலைக்குளியலின் போது பயன்படுத்தவும்',
+      withTa: 'சுத்தமான நீர் அல்லது கஞ்சித் தண்ணீர்'
+    },
+    safety: {
+      contraindications: 'For external hair wash use only.',
+      precautions: 'Avoid direct contact with eyes; rinse immediately with cool water if contact occurs.',
+      contraindicationsTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்.',
+      precautionsTa: 'கண்களில் படாமல் கவனமாக கழுவவும்.'
+    },
+    storage: {
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container moisture-free',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'ஈரப்பதம் படாமல் காற்று புகாத டப்பாவில் வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Does it replace shampoo?', answer: 'Yes, it provides a 100% natural, chemical-free alternative to chemical shampoos.', questionTa: 'ஷாம்பூவிற்கு மாற்றாக பயன்படுத்தலாமா?', answerTa: 'ஆம், ரசாயன ஷாம்பூவிற்கு பதிலாக முழுமையான இயற்கை தயாரிப்பு.' }
+    ],
+    searchKeywords: ['shigakai powder', 'hair wash powder', 'herbal shampoo', 'anti-dandruff shikakai', 'ruthras shigakai'],
+    tamilKeywords: ['சிகைக்காய் பொடி', 'தலைக்குளியல் பொடி', 'பொடுகு நீக்கும் சீயக்காய்'],
+    inStock: true,
+    featured: false
   },
 
   // ==========================================
-  // 2. CLASSICAL SIDDHA MASTER CATALOG (111 SKUs across 14 categories)
-  // Strictly aligned with Ruthra Medicines Manufacturing Poster
+  // 2. CLASSICAL SIDDHA MEDICINES (111 SKUs)
   // ==========================================
-
-  // ==========================================
-  // SIDDHA: CHOORANAM (41 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-001',
     name: 'Ruthra Amirtha Sanjeevi Chooranam',
     tamilName: 'ருத்ரா அமிர்த சஞ்சீவி சூரணம்',
@@ -675,7 +839,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அமிர்த சஞ்சீவி சூரணம்","ருத்ரா அமிர்த சஞ்சீவி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-002',
     name: 'Ruthra Amukkara Chooranam',
     tamilName: 'ருத்ரா அமுக்கரா சூரணம்',
@@ -754,7 +919,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அமுக்கரா சூரணம்","ருத்ரா அமுக்கரா சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-003',
     name: 'Ruthra Amukkara Kizhangu Chooranam',
     tamilName: 'ருத்ரா அமுக்கரா கிழங்கு சூரணம்',
@@ -833,7 +999,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அமுக்கரா கிழங்கு சூரணம்","ருத்ரா அமுக்கரா கிழங்கு சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-004',
     name: 'Ruthra Athimathura Chooranam',
     tamilName: 'ருத்ரா அதிமதுர சூரணம்',
@@ -912,7 +1079,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அதிமதுர சூரணம்","ருத்ரா அதிமதுர சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-005',
     name: 'Ruthra Attathi Chooranam',
     tamilName: 'ருத்ரா அட்டாதி சூரணம்',
@@ -991,7 +1159,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அட்டாதி சூரணம்","ருத்ரா அட்டாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-006',
     name: 'Ruthra Bhavanakadukkai Chooranam',
     tamilName: 'ருத்ரா பாவனக்கடுக்காய் சூரணம்',
@@ -1070,7 +1239,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பாவனக்கடுக்காய் சூரணம்","ருத்ரா பாவனக்கடுக்காய் சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-007',
     name: 'Ruthra Chandragandhi Chooranam',
     tamilName: 'ருத்ரா சந்திரகாந்தி சூரணம்',
@@ -1149,7 +1319,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சந்திரகாந்தி சூரணம்","ருத்ரா சந்திரகாந்தி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-008',
     name: 'Ruthra Chundaivatral Chooranam',
     tamilName: 'ருத்ரா சுண்டைவற்றல் சூரணம்',
@@ -1228,7 +1399,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சுண்டைவற்றல் சூரணம்","ருத்ரா சுண்டைவற்றல் சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-009',
     name: 'Ruthra Drakshadhi Chooranam',
     tamilName: 'ருத்ரா திராட்சாதி சூரணம்',
@@ -1307,7 +1479,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["திராட்சாதி சூரணம்","ருத்ரா திராட்சாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-010',
     name: 'Ruthra Elathi Chooranam',
     tamilName: 'ருத்ரா ஏலாதி சூரணம்',
@@ -1386,7 +1559,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["ஏலாதி சூரணம்","ருத்ரா ஏலாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-011',
     name: 'Ruthra Gunma Uppu Chooranam',
     tamilName: 'ருத்ரா குன்ம உப்பு சூரணம்',
@@ -1465,7 +1639,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["குன்ம உப்பு சூரணம்","ருத்ரா குன்ம உப்பு சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-012',
     name: 'Ruthra Jeeraga Chooranam',
     tamilName: 'ருத்ரா சீரக சூரணம்',
@@ -1544,7 +1719,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சீரக சூரணம்","ருத்ரா சீரக சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-013',
     name: 'Ruthra Kaatukarunai Chooranam',
     tamilName: 'ருத்ரா காட்டுக்கருணை சூரணம்',
@@ -1623,7 +1799,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["காட்டுக்கருணை சூரணம்","ருத்ரா காட்டுக்கருணை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-014',
     name: 'Ruthra Kabangusa Chooranam',
     tamilName: 'ருத்ரா கபாங்குச சூரணம்',
@@ -1702,7 +1879,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கபாங்குச சூரணம்","ருத்ரா கபாங்குச சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-015',
     name: 'Ruthra Karanthai Chooranam',
     tamilName: 'ருத்ரா கரந்தை சூரணம்',
@@ -1781,7 +1959,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கரந்தை சூரணம்","ருத்ரா கரந்தை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-016',
     name: 'Ruthra Kazharchi Chooranam',
     tamilName: 'ருத்ரா கழற்சி சூரணம்',
@@ -1860,7 +2039,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கழற்சி சூரணம்","ருத்ரா கழற்சி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-017',
     name: 'Ruthra Kumatti Chooranam',
     tamilName: 'ருத்ரா குமட்டி சூரணம்',
@@ -1939,7 +2119,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["குமட்டி சூரணம்","ருத்ரா குமட்டி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-018',
     name: 'Ruthra Lavangathi Chooranam',
     tamilName: 'ருத்ரா லவங்காதி சூரணம்',
@@ -2018,7 +2199,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["லவங்காதி சூரணம்","ருத்ரா லவங்காதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-019',
     name: 'Ruthra Madhuradhi Chooranam',
     tamilName: 'ருத்ரா மதுராதி சூரணம்',
@@ -2097,7 +2279,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மதுராதி சூரணம்","ருத்ரா மதுராதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-020',
     name: 'Ruthra Maruthampattai Chooranam',
     tamilName: 'ருத்ரா மருதம்பட்டை சூரணம்',
@@ -2176,7 +2359,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மருதம்பட்டை சூரணம்","ருத்ரா மருதம்பட்டை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-021',
     name: 'Ruthra Mayiliragathi Chooranam',
     tamilName: 'ருத்ரா மயிலிறகாதி சூரணம்',
@@ -2255,7 +2439,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மயிலிறகாதி சூரணம்","ருத்ரா மயிலிறகாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-022',
     name: 'Ruthra Megasanthi Chooranam',
     tamilName: 'ருத்ரா மேகசாந்தி சூரணம்',
@@ -2334,7 +2519,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மேகசாந்தி சூரணம்","ருத்ரா மேகசாந்தி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-023',
     name: 'Ruthra Nelli Chooranam',
     tamilName: 'ருத்ரா நெல்லி சூரணம்',
@@ -2413,7 +2599,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நெல்லி சூரணம்","ருத்ரா நெல்லி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-024',
     name: 'Ruthra Nilavarai Chooranam',
     tamilName: 'ருத்ரா நிலாவரை சூரணம்',
@@ -2492,7 +2679,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நிலாவரை சூரணம்","ருத்ரா நிலாவரை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-025',
     name: 'Ruthra Panchadeepakini Chooranam',
     tamilName: 'ருத்ரா பஞ்சதீபாகினி சூரணம்',
@@ -2571,7 +2759,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பஞ்சதீபாகினி சூரணம்","ருத்ரா பஞ்சதீபாகினி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-026',
     name: 'Ruthra Parangichakkai Chooranam',
     tamilName: 'ருத்ரா பறங்கிச்சக்கை சூரணம்',
@@ -2650,7 +2839,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பறங்கிச்சக்கை சூரணம்","ருத்ரா பறங்கிச்சக்கை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-027',
     name: 'Ruthra Parangipattai Chooranam',
     tamilName: 'ருத்ரா பறங்கிப்பட்டை சூரணம்',
@@ -2729,7 +2919,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பறங்கிப்பட்டை சூரணம்","ருத்ரா பறங்கிப்பட்டை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-028',
     name: 'Ruthra Peisori Chooranam',
     tamilName: 'ருத்ரா பேய்சொறி சூரணம்',
@@ -2808,7 +2999,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பேய்சொறி சூரணம்","ருத்ரா பேய்சொறி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-029',
     name: 'Ruthra Pirandai Chooranam',
     tamilName: 'ருத்ரா பிரண்டை சூரணம்',
@@ -2887,7 +3079,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பிரண்டை சூரணம்","ருத்ரா பிரண்டை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-030',
     name: 'Ruthra Ponnavarai Chooranam',
     tamilName: 'ருத்ரா பொன்னாவரை சூரணம்',
@@ -2966,7 +3159,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பொன்னாவரை சூரணம்","ருத்ரா பொன்னாவரை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-031',
     name: 'Ruthra Poonaikali Vidhai Chooranam',
     tamilName: 'ருத்ரா பூனைக்காலி விதை சூரணம்',
@@ -3045,7 +3239,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பூனைக்காலி விதை சூரணம்","ருத்ரா பூனைக்காலி விதை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-032',
     name: 'Ruthra Pungampoo Chooranam',
     tamilName: 'ருத்ரா புங்கம்பூ சூரணம்',
@@ -3124,7 +3319,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["புங்கம்பூ சூரணம்","ருத்ரா புங்கம்பூ சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-033',
     name: 'Ruthra Sagalanoi Chooranam',
     tamilName: 'ருத்ரா சகலநோய் சூரணம்',
@@ -3203,7 +3399,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சகலநோய் சூரணம்","ருத்ரா சகலநோய் சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-034',
     name: 'Ruthra Sarvangavatha Chooranam',
     tamilName: 'ருத்ரா சர்வாங்கவாத சூரணம்',
@@ -3282,7 +3479,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சர்வாங்கவாத சூரணம்","ருத்ரா சர்வாங்கவாத சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-035',
     name: 'Ruthra Sirupeelai Chooranam',
     tamilName: 'ருத்ரா சிறுபீளை சூரணம்',
@@ -3361,7 +3559,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சிறுபீளை சூரணம்","ருத்ரா சிறுபீளை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-036',
     name: 'Ruthra Sivathai Chooranam',
     tamilName: 'ருத்ரா சிவத்தை சூரணம்',
@@ -3440,7 +3639,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சிவத்தை சூரணம்","ருத்ரா சிவத்தை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-037',
     name: 'Ruthra Sugabethi Chooranam',
     tamilName: 'ருத்ரா சுகபேதி சூரணம்',
@@ -3519,7 +3719,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சுகபேதி சூரணம்","ருத்ரா சுகபேதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-038',
     name: 'Ruthra Thaleesathi Chooranam',
     tamilName: 'ருத்ரா தாளீசாதி சூரணம்',
@@ -3598,7 +3799,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["தாளீசாதி சூரணம்","ருத்ரா தாளீசாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-039',
     name: 'Ruthra Thayirchundi Chooranam',
     tamilName: 'ருத்ரா தயிர்ச்சுண்டி சூரணம்',
@@ -3677,7 +3879,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["தயிர்ச்சுண்டி சூரணம்","ருத்ரா தயிர்ச்சுண்டி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-040',
     name: 'Ruthra Thirikadugu Chooranam',
     tamilName: 'ருத்ரா திரிகடுக சூரணம்',
@@ -3756,7 +3959,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["திரிகடுக சூரணம்","ருத்ரா திரிகடுக சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-041',
     name: 'Ruthra Thiripala Chooranam',
     tamilName: 'ருத்ரா திரிபலா சூரணம்',
@@ -3836,10 +4040,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: KUDINEER CHOORANAM (16 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-042',
     name: 'Ruthra Adathodai Kudineer Chooranam',
     tamilName: 'ருத்ரா ஆடாதோடை குடிநீர் சூரணம்',
@@ -3918,7 +4119,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["ஆடாதோடை குடிநீர் சூரணம்","ருத்ரா ஆடாதோடை குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-043',
     name: 'Ruthra Kabasura Kudineer Chooranam',
     tamilName: 'ருத்ரா கபசூர குடிநீர் சூரணம்',
@@ -3997,7 +4199,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கபசூர குடிநீர் சூரணம்","ருத்ரா கபசூர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-044',
     name: 'Ruthra Kalladaippu Kudineer Chooranam',
     tamilName: 'ருத்ரா கல்லடைப்பு குடிநீர் சூரணம்',
@@ -4076,7 +4279,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கல்லடைப்பு குடிநீர் சூரணம்","ருத்ரா கல்லடைப்பு குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-045',
     name: 'Ruthra Malattukarpa Kudineer Chooranam',
     tamilName: 'ருத்ரா மலட்டுக்கற்ப குடிநீர் சூரணம்',
@@ -4155,7 +4359,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மலட்டுக்கற்ப குடிநீர் சூரணம்","ருத்ரா மலட்டுக்கற்ப குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-046',
     name: 'Ruthra Mandurathi Kudineer Chooranam',
     tamilName: 'ருத்ரா மண்டூராதி குடிநீர் சூரணம்',
@@ -4234,7 +4439,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மண்டூராதி குடிநீர் சூரணம்","ருத்ரா மண்டூராதி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-047',
     name: 'Ruthra Manjal Noi Kudineer Chooranam',
     tamilName: 'ருத்ரா மஞ்சள் நோய் குடிநீர் சூரணம்',
@@ -4313,7 +4519,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மஞ்சள் நோய் குடிநீர் சூரணம்","ருத்ரா மஞ்சள் நோய் குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-048',
     name: 'Ruthra Naakupoochi Kudineer Chooranam',
     tamilName: 'ருத்ரா நாக்குப்பூச்சி குடிநீர் சூரணம்',
@@ -4392,7 +4599,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நாக்குப்பூச்சி குடிநீர் சூரணம்","ருத்ரா நாக்குப்பூச்சி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-049',
     name: 'Ruthra Nannari Kudineer Chooranam',
     tamilName: 'ருத்ரா நன்னாரி குடிநீர் சூரணம்',
@@ -4471,7 +4679,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நன்னாரி குடிநீர் சூரணம்","ருத்ரா நன்னாரி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-050',
     name: 'Ruthra Neermulli Kudineer Chooranam',
     tamilName: 'ருத்ரா நீர்முள்ளி குடிநீர் சூரணம்',
@@ -4550,7 +4759,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நீர்முள்ளி குடிநீர் சூரணம்","ருத்ரா நீர்முள்ளி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-051',
     name: 'Ruthra Nilavembu Kudineer Chooranam',
     tamilName: 'ருத்ரா நிலவேம்பு குடிநீர் சூரணம்',
@@ -4629,7 +4839,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நிலவேம்பு குடிநீர் சூரணம்","ருத்ரா நிலவேம்பு குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-052',
     name: 'Ruthra Nochi Kudineer Chooranam',
     tamilName: 'ருத்ரா நொச்சி குடிநீர் சூரணம்',
@@ -4708,7 +4919,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நொச்சி குடிநீர் சூரணம்","ருத்ரா நொச்சி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-053',
     name: 'Ruthra Pidangunari Kudineer Chooranam',
     tamilName: 'ருத்ரா பிடங்குநாரி குடிநீர் சூரணம்',
@@ -4787,7 +4999,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பிடங்குநாரி குடிநீர் சூரணம்","ருத்ரா பிடங்குநாரி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-054',
     name: 'Ruthra Pithasura Kudineer Chooranam',
     tamilName: 'ருத்ரா பித்தசுர குடிநீர் சூரணம்',
@@ -4866,7 +5079,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பித்தசுர குடிநீர் சூரணம்","ருத்ரா பித்தசுர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-055',
     name: 'Ruthra Sarvasura Kudineer Chooranam',
     tamilName: 'ருத்ரா சர்வசுர குடிநீர் சூரணம்',
@@ -4945,7 +5159,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சர்வசுர குடிநீர் சூரணம்","ருத்ரா சர்வசுர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-056',
     name: 'Ruthra Soodhagathai Udaikum Kudineer Chooranam',
     tamilName: 'ருத்ரா சூதகத்தை உடைக்கும் குடிநீர் சூரணம்',
@@ -5024,7 +5239,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சூதகத்தை உடைக்கும் குடிநீர் சூரணம்","ருத்ரா சூதகத்தை உடைக்கும் குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-057',
     name: 'Ruthra Vatha Sura Kudineer Chooranam',
     tamilName: 'ருத்ரா வாத சுர குடிநீர் சூரணம்',
@@ -5104,10 +5320,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: KUDINEER (1 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-058',
     name: 'Ruthra Oma Kudineer',
     tamilName: 'ருத்ரா ஓம குடிநீர்',
@@ -5187,10 +5400,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: MANAPAGU (2 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-059',
     name: 'Ruthra Nannar Manapagu',
     tamilName: 'ருத்ரா நன்னாரி மணப்பாகு',
@@ -5269,7 +5479,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நன்னாரி மணப்பாகு","ருத்ரா நன்னாரி மணப்பாகு","மணப்பாகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-060',
     name: 'Ruthra Thurinj Manapagu',
     tamilName: 'ருத்ரா துரிஞ்சி மணப்பாகு',
@@ -5349,10 +5560,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: LEGIYAM (11 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-061',
     name: 'Ruthra Aswagandhi Legiyam',
     tamilName: 'ருத்ரா அஸ்வகந்தி லேகியம்',
@@ -5431,7 +5639,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அஸ்வகந்தி லேகியம்","ருத்ரா அஸ்வகந்தி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-062',
     name: 'Ruthra Inji Legiyam',
     tamilName: 'ருத்ரா இஞ்சி லேகியம்',
@@ -5510,7 +5719,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["இஞ்சி லேகியம்","ருத்ரா இஞ்சி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-063',
     name: 'Ruthra Kandathri Legiyam',
     tamilName: 'ருத்ரா கண்டங்கத்திரி லேகியம்',
@@ -5589,7 +5799,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கண்டங்கத்திரி லேகியம்","ருத்ரா கண்டங்கத்திரி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-064',
     name: 'Ruthra Karisalai Legiyam',
     tamilName: 'ருத்ரா கரிசலாங்கண்ணி லேகியம்',
@@ -5668,7 +5879,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கரிசலாங்கண்ணி லேகியம்","ருத்ரா கரிசலாங்கண்ணி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-065',
     name: 'Ruthra Karunai Legiyam',
     tamilName: 'ருத்ரா கருணை லேகியம்',
@@ -5747,7 +5959,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கருணை லேகியம்","ருத்ரா கருணை லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-066',
     name: 'Ruthra Madhanasanjeevi Legiyam',
     tamilName: 'ருத்ரா மதனசஞ்சீவி லேகியம்',
@@ -5826,7 +6039,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மதனசஞ்சீவி லேகியம்","ருத்ரா மதனசஞ்சீவி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-067',
     name: 'Ruthra Mudakathan Legiyam',
     tamilName: 'ருத்ரா முடக்கத்தான் லேகியம்',
@@ -5905,7 +6119,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["முடக்கத்தான் லேகியம்","ருத்ரா முடக்கத்தான் லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-068',
     name: 'Ruthra Narasimma Legiyam',
     tamilName: 'ருத்ரா நரசிம்ம லேகியம்',
@@ -5984,7 +6199,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நரசிம்ம லேகியம்","ருத்ரா நரசிம்ம லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-069',
     name: 'Ruthra Panchadeepakini Legiyam',
     tamilName: 'ருத்ரா பஞ்சதீபாகினி லேகியம்',
@@ -6063,7 +6279,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பஞ்சதீபாகினி லேகியம்","ருத்ரா பஞ்சதீபாகினி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-070',
     name: 'Ruthra Perumbadu Legiyam',
     tamilName: 'ருத்ரா பெரும்பாடு லேகியம்',
@@ -6142,7 +6359,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பெரும்பாடு லேகியம்","ருத்ரா பெரும்பாடு லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-071',
     name: 'Ruthra Vilvathi Legiyam',
     tamilName: 'ருத்ரா வில்வாதி லேகியம்',
@@ -6222,10 +6440,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: MAATHIRAI (4 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-072',
     name: 'Ruthra Chithiramoolathi Kuligai',
     tamilName: 'ருத்ரா சித்திரமூலாதி குளிகை',
@@ -6304,9 +6519,10 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சித்திரமூலாதி குளிகை","ருத்ரா சித்திரமூலாதி குளிகை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-073',
-    name: 'Ruthra Kalludaikudri Mathirai',
+    name: 'Ruthra Kalludaikudori Mathirai',
     tamilName: 'ருத்ரா கல்லுடைக்குடி மாத்திரை',
     slug: 'ruthra-kalludaikudri-mathirai',
     medicalSystem: 'siddha',
@@ -6338,7 +6554,7 @@ export const PRODUCTS: Product[] = [
       '/images/products/ruthra-kalludaikudri-mathirai/back.jpg'
     ],
     ingredients: [
-      { name: 'Kalludaikudri Mathirai Classical Compound', tamilName: 'கல்லுடைக்குடி மாத்திரை மூலிகைக் கூட்டு', role: 'Active classical therapeutic synergy', roleTa: 'பாரம்பரிய கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Ruthra Kalludaikudori Mathirai', tamilName: 'கல்லுடைக்குடி மாத்திரை மூலிகைக் கூட்டு', role: 'Active classical therapeutic synergy', roleTa: 'பாரம்பரிய கூட்டு மருத்துவ குணம்', amount: '100%' }
     ],
     howToUse: [
       { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '1-2 Tablets', instructionTa: '1-2 மாத்திரைகள்' },
@@ -6383,7 +6599,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கல்லுடைக்குடி மாத்திரை","ருத்ரா கல்லுடைக்குடி மாத்திரை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-074',
     name: 'Ruthra Neerkovai Mathirai',
     tamilName: 'ருத்ரா நீர்க்கோவை மாத்திரை',
@@ -6462,7 +6679,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நீர்க்கோவை மாத்திரை","ருத்ரா நீர்க்கோவை மாத்திரை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-075',
     name: 'Ruthra Swasakudori Mathirai',
     tamilName: 'ருத்ரா சுவாசகுடோரி மாத்திரை',
@@ -6542,10 +6760,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: RASAYANAM (4 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-076',
     name: 'Ruthra Gandhaga Rasayanam',
     tamilName: 'ருத்ரா கந்தக ரசாயனம்',
@@ -6624,7 +6839,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கந்தக ரசாயனம்","ருத்ரா கந்தக ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-077',
     name: 'Ruthra Kadhali Rasayanam',
     tamilName: 'ருத்ரா கதலி ரசாயனம்',
@@ -6703,7 +6919,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கதலி ரசாயனம்","ருத்ரா கதலி ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-078',
     name: 'Ruthra Parangi Rasayanam',
     tamilName: 'ருத்ரா பறங்கி ரசாயனம்',
@@ -6782,7 +6999,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பறங்கி ரசாயனம்","ருத்ரா பறங்கி ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-079',
     name: 'Ruthra Thippili Rasayanam',
     tamilName: 'ருத்ரா திப்பிலி ரசாயனம்',
@@ -6862,10 +7080,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: VADAGAM (4 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-080',
     name: 'Ruthra Imbooral Vadagam',
     tamilName: 'ருத்ரா இம்பூரல் வடகம்',
@@ -6944,7 +7159,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["இம்பூரல் வடகம்","ருத்ரா இம்பூரல் வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-081',
     name: 'Ruthra Kadukkai Vadagam',
     tamilName: 'ருத்ரா கடுக்காய் வடகம்',
@@ -7023,7 +7239,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கடுக்காய் வடகம்","ருத்ரா கடுக்காய் வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-082',
     name: 'Ruthra Karuvepilai Vadagam',
     tamilName: 'ருத்ரா கறிவேப்பிலை வடகம்',
@@ -7102,7 +7319,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கறிவேப்பிலை வடகம்","ருத்ரா கறிவேப்பிலை வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-083',
     name: 'Ruthra Thalisathy Vadagam',
     tamilName: 'ருத்ரா தாளீசாதி வடகம்',
@@ -7182,10 +7400,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: NEI (8 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-084',
     name: 'Ruthra Aavarai Nei',
     tamilName: 'ருத்ரா ஆவாரை நெய்',
@@ -7264,9 +7479,10 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["ஆவாரை நெய்","ருத்ரா ஆவாரை நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-085',
-    name: 'Ruthra Kalyanagritham',
+    name: 'Ruthra Kalyanaghritham',
     tamilName: 'ருத்ரா கல்யாண கிருதம்',
     slug: 'ruthra-kalyanagritham',
     medicalSystem: 'siddha',
@@ -7298,7 +7514,7 @@ export const PRODUCTS: Product[] = [
       '/images/products/ruthra-kalyanagritham/back.jpg'
     ],
     ingredients: [
-      { name: 'Kalyanagritham Classical Compound', tamilName: 'கல்யாண கிருதம் மூலிகைக் கூட்டு', role: 'Active classical therapeutic synergy', roleTa: 'பாரம்பரிய கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Ruthra Kalyanaghritham', tamilName: 'கல்யாண கிருதம் மூலிகைக் கூட்டு', role: 'Active classical therapeutic synergy', roleTa: 'பாரம்பரிய கூட்டு மருத்துவ குணம்', amount: '100%' }
     ],
     howToUse: [
       { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 ml', instructionTa: '5-10 மி.லி' },
@@ -7343,7 +7559,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கல்யாண கிருதம்","ருத்ரா கல்யாண கிருதம்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-086',
     name: 'Ruthra Keezhanelli Ghritham',
     tamilName: 'ருத்ரா கீழாநெல்லி கிருதம்',
@@ -7422,7 +7639,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கீழாநெல்லி கிருதம்","ருத்ரா கீழாநெல்லி கிருதம்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-087',
     name: 'Ruthra Naaval Nei',
     tamilName: 'ருத்ரா நாவல் நெய்',
@@ -7501,7 +7719,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நாவல் நெய்","ருத்ரா நாவல் நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-088',
     name: 'Ruthra Nilapanai Nei',
     tamilName: 'ருத்ரா நிலப்பனை நெய்',
@@ -7580,7 +7799,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நிலப்பனை நெய்","ருத்ரா நிலப்பனை நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-089',
     name: 'Ruthra Serankottai Nei',
     tamilName: 'ருத்ரா சேராங்கொட்டை நெய்',
@@ -7659,7 +7879,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சேராங்கொட்டை நெய்","ருத்ரா சேராங்கொட்டை நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-090',
     name: 'Ruthra Soodhaga Sanni Nei',
     tamilName: 'ருத்ரா சூதக சன்னி நெய்',
@@ -7738,7 +7959,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சூதக சன்னி நெய்","ருத்ரா சூதக சன்னி நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-091',
     name: 'Ruthra Venpoosani Nei',
     tamilName: 'ருத்ரா வெண்பூசணி நெய்',
@@ -7818,10 +8040,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: MEZHUGU (4 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-092',
     name: 'Ruthra Ganthi Mezhugu',
     tamilName: 'ருத்ரா காந்தி மெழுகு',
@@ -7900,7 +8119,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["காந்தி மெழுகு","ருத்ரா காந்தி மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-093',
     name: 'Ruthra Gunmakudori Mezhugu',
     tamilName: 'ருத்ரா குன்மக்குடோரி மெழுகு',
@@ -7979,7 +8199,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["குன்மக்குடோரி மெழுகு","ருத்ரா குன்மக்குடோரி மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-094',
     name: 'Ruthra Malakkutara Mezhugu',
     tamilName: 'ருத்ரா மலக்குடார மெழுகு',
@@ -8058,7 +8279,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மலக்குடார மெழுகு","ருத்ரா மலக்குடார மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-095',
     name: 'Ruthra Rasagandhi Mezhugu',
     tamilName: 'ருத்ரா ரசகந்தி மெழுகு',
@@ -8138,10 +8360,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: PARPAM (5 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-096',
     name: 'Ruthra Karasooda Sathu Parpam',
     tamilName: 'ருத்ரா காரசூட சத்து பற்பம்',
@@ -8220,7 +8439,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["காரசூட சத்து பற்பம்","ருத்ரா காரசூட சத்து பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-097',
     name: 'Ruthra Karuvanga Parpam',
     tamilName: 'ருத்ரா கருவங்க பற்பம்',
@@ -8299,7 +8519,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கருவங்க பற்பம்","ருத்ரா கருவங்க பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-098',
     name: 'Ruthra Naga Parpam',
     tamilName: 'ருத்ரா நாக பற்பம்',
@@ -8378,7 +8599,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["நாக பற்பம்","ருத்ரா நாக பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-099',
     name: 'Ruthra Panchalavana Parpam',
     tamilName: 'ருத்ரா பஞ்சலவண பற்பம்',
@@ -8457,7 +8679,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["பஞ்சலவண பற்பம்","ருத்ரா பஞ்சலவண பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-100',
     name: 'Ruthra Sangu Parpam',
     tamilName: 'ருத்ரா சங்கு பற்பம்',
@@ -8537,10 +8760,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: THEENEER (1 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-101',
     name: 'Ruthra Oma Theeneer',
     tamilName: 'ருத்ரா ஓம தீநீர்',
@@ -8620,10 +8840,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: THAILAM (9 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-102',
     name: 'Ruthra Amirthakumari Thailam',
     tamilName: 'ருத்ரா அமிர்தகுமாரி தைலம்',
@@ -8702,7 +8919,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["அமிர்தகுமாரி தைலம்","ருத்ரா அமிர்தகுமாரி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-103',
     name: 'Ruthra Citramutti Madakku Tailam',
     tamilName: 'ருத்ரா சிற்றாமுட்டி மடக்கு தைலம்',
@@ -8781,7 +8999,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["சிற்றாமுட்டி மடக்கு தைலம்","ருத்ரா சிற்றாமுட்டி மடக்கு தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-104',
     name: 'Ruthra Garudankizhangu Ennai',
     tamilName: 'ருத்ரா கருடன்கிழங்கு எண்ணெய்',
@@ -8860,7 +9079,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["கருடன்கிழங்கு எண்ணெய்","ருத்ரா கருடன்கிழங்கு எண்ணெய்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-105',
     name: 'Ruthra Kulirthamarai Thailam',
     tamilName: 'ருத்ரா குளிர்தாமரை தைலம்',
@@ -8939,7 +9159,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["குளிர்தாமரை தைலம்","ருத்ரா குளிர்தாமரை தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-106',
     name: 'Ruthra Kumari Thailam',
     tamilName: 'ருத்ரா குமரி தைலம்',
@@ -9018,7 +9239,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["குமரி தைலம்","ருத்ரா குமரி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-107',
     name: 'Ruthra Meni Thilam',
     tamilName: 'ருத்ரா மேனி தைலம்',
@@ -9097,7 +9319,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மேனி தைலம்","ருத்ரா மேனி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-108',
     name: 'Ruthra Merugulli Thailam',
     tamilName: 'ருத்ரா மெழுகுள்ளி தைலம்',
@@ -9176,7 +9399,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["மெழுகுள்ளி தைலம்","ருத்ரா மெழுகுள்ளி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-109',
     name: 'Ruthra Veezhi Ennai',
     tamilName: 'ருத்ரா வீழி எண்ணெய்',
@@ -9255,7 +9479,8 @@ export const PRODUCTS: Product[] = [
     tamilKeywords: ["வீழி எண்ணெய்","ருத்ரா வீழி எண்ணெய்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
     inStock: true
   },
-  {
+
+{
     id: 'prod-siddha-110',
     name: 'Ruthra Vizhuthi Ennai',
     tamilName: 'ருத்ரா விழுதி எண்ணெய்',
@@ -9335,10 +9560,7 @@ export const PRODUCTS: Product[] = [
     inStock: true
   },
 
-  // ==========================================
-  // SIDDHA: VENNAI (1 SKUs)
-  // ==========================================
-  {
+{
     id: 'prod-siddha-111',
     name: 'Ruthra Vanga Vennai',
     tamilName: 'ருத்ரா வங்க வெண்ணெய்',
@@ -9419,329 +9641,256 @@ export const PRODUCTS: Product[] = [
   },
 
   // ==========================================
-  // 3. CLASSICAL AYURVEDA MASTER CATALOG (64 SKUs across 8 categories)
-  // Strictly aligned with Ruthra Medicines Manufacturing Poster
-  // ==========================================
-
-  // ==========================================
-  // AYURVEDA: CHURNA (28 SKUs)
+  // 3. CLASSICAL AYURVEDA MEDICINES (55 SKUs)
   // ==========================================
   {
     id: 'prod-ayurveda-001',
     name: 'Ruthra Amalaki Churna',
-    tamilName: 'ருத்ரா ஆமலகி சூர்ணம்',
+    tamilName: 'ருத்ரா நெல்லி சூர்ணம்',
     slug: 'ruthra-amalaki-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["metabolic-wellness","skin-hair"],
-    price: 135,
+    concerns: ['metabolic-wellness', 'skin-hair', 'digestive-wellness'],
+    price: 140,
     originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Pure Indian Gooseberry rasayana, rich in natural Vitamin C, balances Tridosha, strengthens vision and hair. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'நெல்லிக்காய் சூர்ணம்; வைட்டமின் சி நிறைந்தது, திரிதோஷ சமநிலை, பார்வை மற்றும் கூந்தல் வளர்ச்சிக்கு உகந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Amalaki Churna (ஆமலகி சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா ஆமலகி சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Pure Indian Gooseberry rasayana, rich in natural Vitamin C, balances Tridosha, strengthens vision and hair.',
-    traditionalRoleTa: 'நெல்லிக்காய் சூர்ணம்; வைட்டமின் சி நிறைந்தது, திரிதோஷ சமநிலை, பார்வை மற்றும் கூந்தல் வளர்ச்சிக்கு உகந்தது.',
-    badge: 'Vitamin C & Rasayana',
-    badgeTa: 'வைட்டமின் சி & காயகற்பம்',
-    image: '/images/products/ruthra-amalaki-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-amalaki-churna/front.jpg',
-      '/images/products/ruthra-amalaki-churna/angle.jpg',
-      '/images/products/ruthra-amalaki-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-amalaki-churna/front.jpg',
-      '/images/products/ruthra-amalaki-churna/angle.jpg',
-      '/images/products/ruthra-amalaki-churna/back.jpg'
-    ],
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Pure classical Emblica officinalis (Amla) powder rich in natural Vitamin C and antioxidants for immunity, digestion, and hair vitality.',
+    shortDescriptionTa: 'இயற்கையான வைட்டமின் சி மற்றும் ஆன்டிஆக்ஸிடன்ட்கள் நிறைந்த தூய நெல்லி சூர்ணம்.',
+    description: 'Ruthra Amalaki Churna is prepared from shade-dried wild Amla fruits. Known as a premier Rasayana in Ayurveda, it strengthens digestive fire (Agni), pacifies Pitta dosha, rejuvenates skin complexion, and supports healthy vision and hair growth.',
+    descriptionTa: 'பாரம்பரிய முறைப்படி தயாரிக்கப்பட்ட தூய நெல்லிக்காய் சூர்ணம். பித்தத்தை தணித்து, நோய் எதிர்ப்பு சக்தி, கண் பார்வை மற்றும் தலைமுடி வளர்ச்சியை பெருக்கும்.',
+    traditionalRole: 'Premier Pitta-pacifying Rasayana, natural antioxidant, and digestive promoter.',
+    traditionalRoleTa: 'பித்த சமன், நோய் எதிர்ப்பு சக்தி மற்றும் செரிமான தூண்டி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Amalaki Churna Classical Composition', tamilName: 'ஆமலகி சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Amalaki (Indian Gooseberry)', tamilName: 'நெல்லிக்காய்', botanicalName: 'Phyllanthus emblica', role: 'Vitamin C antioxidant and Rasayana', roleTa: 'இயற்கை வைட்டமின் சி மற்றும் ரசாயனம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Amalaki Churna prepared?',
-        questionTa: 'ருத்ரா ஆமலகி சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["amalaki churna","ruthra amalaki churna","churna","amalaki","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["ஆமலகி சூர்ணம்","ருத்ரா ஆமலகி சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra amalaki churna', 'ruthra-amalaki-churna', 'ayurveda churna', 'amalaki churna'],
+    tamilKeywords: ['ருத்ரா நெல்லி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-002',
     name: 'Ruthra Arjuna Churna',
-    tamilName: 'ருத்ரா அர்ஜுன சூர்ணம்',
+    tamilName: 'ருத்ரா அர்ஜுன சூர்ணம் (மருதம்பட்டை)',
     slug: 'ruthra-arjuna-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Terminalia arjuna bark powder supporting cardiovascular wellness, arterial elasticity, and normal blood pressure. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'மருதம்பட்டை சூர்ணம்; இதய தசைகளை பலப்படுத்தி ரத்த ஓட்டத்தை சீராக்கும் தலைசிறந்த இதய டானிக். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Arjuna Churna (அர்ஜுன சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அர்ஜுன சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Terminalia arjuna bark powder supporting cardiovascular wellness, arterial elasticity, and normal blood pressure.',
-    traditionalRoleTa: 'மருதம்பட்டை சூர்ணம்; இதய தசைகளை பலப்படுத்தி ரத்த ஓட்டத்தை சீராக்கும் தலைசிறந்த இதய டானிக்.',
-    badge: 'Cardio Tonic',
-    badgeTa: 'இதய நலம்',
-    image: '/images/products/ruthra-arjuna-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-arjuna-churna/front.jpg',
-      '/images/products/ruthra-arjuna-churna/angle.jpg',
-      '/images/products/ruthra-arjuna-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-arjuna-churna/front.jpg',
-      '/images/products/ruthra-arjuna-churna/angle.jpg',
-      '/images/products/ruthra-arjuna-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness'],
+    price: 150,
+    originalPrice: 180,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical Terminalia arjuna bark powder revered for cardiac health, vascular elasticity, and healthy lipid balance.',
+    shortDescriptionTa: 'இதய நலம், ரத்த ஓட்டம் மற்றும் ரத்த அழுத்தத்தை சீராக்கும் உன்னத மருதம்பட்டை சூர்ணம்.',
+    description: 'Ruthra Arjuna Churna is made from wild Arjuna tree bark. It is celebrated in Ayurveda as the foremost Hridya (cardioprotective) botanical that nourishes cardiac muscle fibers and maintains normal blood pressure.',
+    descriptionTa: 'இதய தசைகளை பலப்படுத்தி, ரத்த நாளங்களின் நெகிழ்வுத்தன்மையை பாதுகாக்கும் பாரம்பரிய அர்ஜுன மருதம்பட்டை சூர்ணம்.',
+    traditionalRole: 'Classical cardioprotective and vascular tonic.',
+    traditionalRoleTa: 'இதய பலம் மற்றும் ரத்த நாள பாதுகாப்பு.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Arjuna Churna Classical Composition', tamilName: 'அர்ஜுன சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Arjuna Bark', tamilName: 'மருதம்பட்டை', botanicalName: 'Terminalia arjuna', role: 'Cardiotonic and vascular support', roleTa: 'இதய நலம் காக்கும் மூலிகை', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Arjuna Churna prepared?',
-        questionTa: 'ருத்ரா அர்ஜுன சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["arjuna churna","ruthra arjuna churna","churna","arjuna","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அர்ஜுன சூர்ணம்","ருத்ரா அர்ஜுன சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra arjuna churna', 'ruthra-arjuna-churna', 'ayurveda churna', 'arjuna churna'],
+    tamilKeywords: ['ருத்ரா அர்ஜுன சூர்ணம் (மருதம்பட்டை)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-003',
     name: 'Ruthra Asvagandha Churna',
-    tamilName: 'ருத்ரா அஸ்வகந்தா சூர்ணம்',
+    tamilName: 'ருத்ரா அஸ்வகந்தா சூர்ணம் (அமுக்கரா)',
     slug: 'ruthra-asvagandha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Premier adaptogen and nerve rejuvenator for physical endurance, chronic stress, muscle building, and restful sleep. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'அமுக்கரா சூர்ணம்; நரம்பு பலவீனம், மன அழுத்தம், தசை வலிமை மற்றும் உடல் தேற்றத்திற்கு அருமருந்து. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Asvagandha Churna (அஸ்வகந்தா சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அஸ்வகந்தா சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Premier adaptogen and nerve rejuvenator for physical endurance, chronic stress, muscle building, and restful sleep.',
-    traditionalRoleTa: 'அமுக்கரா சூர்ணம்; நரம்பு பலவீனம், மன அழுத்தம், தசை வலிமை மற்றும் உடல் தேற்றத்திற்கு அருமருந்து.',
-    badge: 'Stress & Muscle Rejuvenator',
-    badgeTa: 'மன அழுத்தம் & உடல் பலம்',
-    image: '/images/products/ruthra-asvagandha-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-asvagandha-churna/front.jpg',
-      '/images/products/ruthra-asvagandha-churna/angle.jpg',
-      '/images/products/ruthra-asvagandha-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-asvagandha-churna/front.jpg',
-      '/images/products/ruthra-asvagandha-churna/angle.jpg',
-      '/images/products/ruthra-asvagandha-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness', 'joint-mobility'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Renowned adaptogenic Withania somnifera root powder for vitality, stress resilience, and muscular strength.',
+    shortDescriptionTa: 'உடல் வலிமை, மன அமைதி மற்றும் நரம்பு பலம் தரும் முதன்மையான அஸ்வகந்தா சூர்ணம்.',
+    description: 'Ruthra Asvagandha Churna provides potent Balya and Rasayana benefits. It modulates stress hormones, enhances deep restful sleep, and restores youthful physical stamina.',
+    descriptionTa: 'நரம்பு தளர்ச்சியை போக்கி, மன அழுத்தத்தை குறைத்து, ஆழ்ந்த தூக்கம் மற்றும் உடல் பலத்தை பெருக்கும் அமுக்கரா சூர்ணம்.',
+    traditionalRole: 'Adaptogen, nerve tonic, and muscular strength promoter.',
+    traditionalRoleTa: 'நரம்பு பலம், மன அமைதி மற்றும் உடல் உரம் தரும் ரசாயனம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Asvagandha Churna Classical Composition', tamilName: 'அஸ்வகந்தா சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Asvagandha Root', tamilName: 'அஸ்வகந்தா / அமுக்கரா', botanicalName: 'Withania somnifera', role: 'Adaptogen and vitality tonic', roleTa: 'உடல் பலம் தரும் மூலிகை', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Asvagandha Churna prepared?',
-        questionTa: 'ருத்ரா அஸ்வகந்தா சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["asvagandha churna","ruthra asvagandha churna","churna","asvagandha","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அஸ்வகந்தா சூர்ணம்","ருத்ரா அஸ்வகந்தா சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra asvagandha churna', 'ruthra-asvagandha-churna', 'ayurveda churna', 'asvagandha churna'],
+    tamilKeywords: ['ருத்ரா அஸ்வகந்தா சூர்ணம் (அமுக்கரா)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-004',
     name: 'Ruthra Atmagupta Churna',
-    tamilName: 'ருத்ரா ஆத்மகுப்தா சூர்ணம்',
+    tamilName: 'ருத்ரா ஆத்மகுப்தா சூர்ணம் (பூனைக்காலி)',
     slug: 'ruthra-atmagupta-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Mucuna pruriens seed powder for neuro-motor vitality, Parkinsonian tremors, libido, and stamina. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பூனைக்காலி விதை சூர்ணம்; நரம்பு மண்டல புத்துணர்ச்சி, நடுக்கு வாதம் மற்றும் தாது புஷ்டிக்கு சிறந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Atmagupta Churna (ஆத்மகுப்தா சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா ஆத்மகுப்தா சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Mucuna pruriens seed powder for neuro-motor vitality, Parkinsonian tremors, libido, and stamina.',
-    traditionalRoleTa: 'பூனைக்காலி விதை சூர்ணம்; நரம்பு மண்டல புத்துணர்ச்சி, நடுக்கு வாதம் மற்றும் தாது புஷ்டிக்கு சிறந்தது.',
-    badge: 'Neuro & Vitality Tonic',
-    badgeTa: 'நரம்பு & தாது பலம்',
-    image: '/images/products/ruthra-atmagupta-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-atmagupta-churna/front.jpg',
-      '/images/products/ruthra-atmagupta-churna/angle.jpg',
-      '/images/products/ruthra-atmagupta-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-atmagupta-churna/front.jpg',
-      '/images/products/ruthra-atmagupta-churna/angle.jpg',
-      '/images/products/ruthra-atmagupta-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness', 'womens-wellness'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical Mucuna pruriens seed powder containing natural L-dopa for reproductive vitality and neuromuscular harmony.',
+    shortDescriptionTa: 'நரம்பு மண்டல செயல்பாடு, விந்து பலம் மற்றும் புத்துணர்ச்சி தரும் பூனைக்காலி சூர்ணம்.',
+    description: 'Ruthra Atmagupta Churna (Kapikacchu) is a potent Vrishya and Vata-pacifying formulation that supports motor neuron health and male/female reproductive vitality.',
+    descriptionTa: 'பாரம்பரிய பூனைக்காலி விதை சூர்ணம். நரம்பு நலம், உடல் பலம் மற்றும் விந்து அணுக்களின் பெருக்கத்திற்கு உகந்தது.',
+    traditionalRole: 'Classical reproductive tonic and dopamine precursor support.',
+    traditionalRoleTa: 'நரம்பு பலம் மற்றும் தாது விருத்தி தரும் மூலிகை.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Atmagupta Churna Classical Composition', tamilName: 'ஆத்மகுப்தா சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Atmagupta Seed', tamilName: 'பூனைக்காலி விதை', botanicalName: 'Mucuna pruriens', role: 'Neuromuscular support and vitality', roleTa: 'நரம்பு மற்றும் தாது பலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Atmagupta Churna prepared?',
-        questionTa: 'ருத்ரா ஆத்மகுப்தா சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["atmagupta churna","ruthra atmagupta churna","churna","atmagupta","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["ஆத்மகுப்தா சூர்ணம்","ருத்ரா ஆத்மகுப்தா சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra atmagupta churna', 'ruthra-atmagupta-churna', 'ayurveda churna', 'atmagupta churna'],
+    tamilKeywords: ['ருத்ரா ஆத்மகுப்தா சூர்ணம் (பூனைக்காலி)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-005',
     name: 'Ruthra Avipattikara Churna',
@@ -9751,76 +9900,61 @@ export const PRODUCTS: Product[] = [
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Classical Pitta pacifier for severe hyperacidity, GERD, heartburn, sour belching, and bilious headaches. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'அசிடிட்டி, நெஞ்செரிச்சல், புளித்த ஏப்பம் மற்றும் பித்த தலைவலியை போக்கும் பாரம்பரிய சூர்ணம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Avipattikara Churna (அவிபத்திகர சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அவிபத்திகர சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Classical Pitta pacifier for severe hyperacidity, GERD, heartburn, sour belching, and bilious headaches.',
-    traditionalRoleTa: 'அசிடிட்டி, நெஞ்செரிச்சல், புளித்த ஏப்பம் மற்றும் பித்த தலைவலியை போக்கும் பாரம்பரிய சூர்ணம்.',
-    badge: 'Hyperacidity & GERD Care',
-    badgeTa: 'அசிடிட்டி & நெஞ்செரிச்சல்',
-    image: '/images/products/ruthra-avipattikara-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-avipattikara-churna/front.jpg',
-      '/images/products/ruthra-avipattikara-churna/angle.jpg',
-      '/images/products/ruthra-avipattikara-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-avipattikara-churna/front.jpg',
-      '/images/products/ruthra-avipattikara-churna/angle.jpg',
-      '/images/products/ruthra-avipattikara-churna/back.jpg'
-    ],
+    concerns: ['digestive-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Premier classical compound for hyperacidity, heartburn, sour belching, and gentle bowel regulation.',
+    shortDescriptionTa: 'நெஞ்செரிச்சல், அசிடிட்டி, புளித்த ஏப்பம் மற்றும் மலச்சிக்கலை போக்கும் உன்னத அவிபத்திகர சூர்ணம்.',
+    description: 'Ruthra Avipattikara Churna combines Trikatu, Triphala, Musta, Ela, and Trivrit to neutralize excess stomach acids and restore gentle downward digestive flow.',
+    descriptionTa: 'அமிலத்தன்மையை சமன் செய்து, செரிமான மண்டலத்தை குளிர்வித்து, சீரான குடல் இயக்கத்தை உறுதி செய்யும் பாரம்பரிய சூர்ணம்.',
+    traditionalRole: 'Antacid, carminative, and gentle Pitta purgative.',
+    traditionalRoleTa: 'அமில நிவாரணம் மற்றும் பித்த சமன சூர்ணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Avipattikara Churna Classical Composition', tamilName: 'அவிபத்திகர சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Trikatu & Triphala blend', tamilName: 'திரிகடுகு & திரிபலா', botanicalName: 'Classical compound', role: 'Digestive fire balance', roleTa: 'செரிமான சமநிலை', amount: '50%' },
+      { name: 'Trivrit (Operculina turpethum)', tamilName: 'சிவதை', botanicalName: 'Operculina turpethum', role: 'Gentle Pitta laxative', roleTa: 'பித்த விரேசனம்', amount: '40%' },
+      { name: 'Cane Sugar & Spices', tamilName: 'சர்க்கரை & நறுமணப் பொருட்கள்', botanicalName: 'Saccharum officinarum', role: 'Cooling vehicle', roleTa: 'குளிர்ச்சி தரும் காரணி', amount: '10%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Avipattikara Churna prepared?',
-        questionTa: 'ருத்ரா அவிபத்திகர சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["avipattikara churna","ruthra avipattikara churna","churna","avipattikara","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அவிபத்திகர சூர்ணம்","ருத்ரா அவிபத்திகர சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra avipattikara churna', 'ruthra-avipattikara-churna', 'ayurveda churna', 'avipattikara churna'],
+    tamilKeywords: ['ருத்ரா அவிபத்திகர சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-006',
     name: 'Ruthra Baskara Lavana Churna',
@@ -9830,4686 +9964,3102 @@ export const PRODUCTS: Product[] = [
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Mineral salt appetizer stimulating sluggish digestive enzyme secretion, relieving chronic flatulence and colic. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'செரிமான தீயை தூண்டி, பசியின்மை, வாயு பிடிப்பு மற்றும் வயிற்று உப்புசத்தை போக்கும் லவண சூர்ணம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Baskara Lavana Churna (பாஸ்கர லவண சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா பாஸ்கர லவண சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Mineral salt appetizer stimulating sluggish digestive enzyme secretion, relieving chronic flatulence and colic.',
-    traditionalRoleTa: 'செரிமான தீயை தூண்டி, பசியின்மை, வாயு பிடிப்பு மற்றும் வயிற்று உப்புசத்தை போக்கும் லவண சூர்ணம்.',
-    badge: 'Appetizer & Carminative',
-    badgeTa: 'பசி தூண்டி & வாயு நிவாரணி',
-    image: '/images/products/ruthra-baskara-lavana-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-baskara-lavana-churna/front.jpg',
-      '/images/products/ruthra-baskara-lavana-churna/angle.jpg',
-      '/images/products/ruthra-baskara-lavana-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-baskara-lavana-churna/front.jpg',
-      '/images/products/ruthra-baskara-lavana-churna/angle.jpg',
-      '/images/products/ruthra-baskara-lavana-churna/back.jpg'
-    ],
+    concerns: ['digestive-wellness'],
+    price: 150,
+    originalPrice: 180,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Therapeutic mineral salt and herbal digestive compound for loss of appetite, bloating, and sluggish digestion.',
+    shortDescriptionTa: 'பசியின்மை, வாயுத்தொல்லை மற்றும் மந்தமான செரிமானத்தை குணமாக்கும் உப்பு மூலிகை கூட்டு.',
+    description: 'Ruthra Baskara Lavana Churna is formulated with five therapeutic salts, Piper longum, Coriander, and Pomegranate seeds to rekindle digestive fire and relieve abdominal distension.',
+    descriptionTa: 'ஐந்து வகை இயற்கை உப்புகள் மற்றும் மூலிகைகள் கொண்ட சூர்ணம். வயிற்று உப்புசம், அஜீரணம் மற்றும் பசியின்மையை நீக்கும்.',
+    traditionalRole: 'Deepana (appetizer) and Pachana (digestive stimulant).',
+    traditionalRoleTa: 'பசி தூண்டி மற்றும் வாயு நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Baskara Lavana Churna Classical Composition', tamilName: 'பாஸ்கர லவண சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Therapeutic Salts Blend', tamilName: 'பஞ்ச லவணங்கள்', botanicalName: 'Mineral salts', role: 'Kindles digestive secretions', roleTa: 'செரிமான அமிலங்களை தூண்டும்', amount: '40%' },
+      { name: 'Pomegranate & Trikatu', tamilName: 'மாதுளை & திரிகடுகு', botanicalName: 'Punica granatum', role: 'Carminative and digestive', roleTa: 'வாயு அகற்றல்', amount: '60%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Baskara Lavana Churna prepared?',
-        questionTa: 'ருத்ரா பாஸ்கர லவண சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["baskara lavana churna","ruthra baskara lavana churna","churna","baskara","lavana","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["பாஸ்கர லவண சூர்ணம்","ருத்ரா பாஸ்கர லவண சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra baskara lavana churna', 'ruthra-baskara-lavana-churna', 'ayurveda churna', 'baskara lavana churna'],
+    tamilKeywords: ['ருத்ரா பாஸ்கர லவண சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-007',
     name: 'Ruthra Dadimastaka Churna',
-    tamilName: 'ருத்ரா தாடிமாஷ்டக சூர்ணம்',
+    tamilName: 'ருத்ரா தாடிமாஷ்டக சூர்ணம் (மாதுளை கூட்டு)',
     slug: 'ruthra-dadimastaka-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Pomegranate-based intestinal astringent for irritable bowel syndrome (IBS), chronic diarrhea, and sprue. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'மாதுளை கூட்டு சூர்ணம்; நாள்பட்ட கழிச்சல், கிரஹணி மற்றும் குடல் பலவீனத்தை போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Dadimastaka Churna (தாடிமாஷ்டக சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா தாடிமாஷ்டக சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Pomegranate-based intestinal astringent for irritable bowel syndrome (IBS), chronic diarrhea, and sprue.',
-    traditionalRoleTa: 'மாதுளை கூட்டு சூர்ணம்; நாள்பட்ட கழிச்சல், கிரஹணி மற்றும் குடல் பலவீனத்தை போக்கும்.',
-    badge: 'IBS & Gut Restorer',
-    badgeTa: 'குடல் கழிச்சல் நிவாரணம்',
-    image: '/images/products/ruthra-dadimastaka-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-dadimastaka-churna/front.jpg',
-      '/images/products/ruthra-dadimastaka-churna/angle.jpg',
-      '/images/products/ruthra-dadimastaka-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-dadimastaka-churna/front.jpg',
-      '/images/products/ruthra-dadimastaka-churna/angle.jpg',
-      '/images/products/ruthra-dadimastaka-churna/back.jpg'
-    ],
+    concerns: ['digestive-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Pomegranate-rich classical digestive blend for chronic diarrhea, irritable bowel, and malabsorption.',
+    shortDescriptionTa: 'சீதபேதி, வயிற்றுப்போக்கு, குடல் பலவீனம் மற்றும் கிரகணி நோய்களுக்கு உகந்த மாதுளை சூர்ணம்.',
+    description: 'Ruthra Dadimastaka Churna incorporates dried pomegranate rind, aromatic spices, and carminatives to astringe loose bowels and restore healthy gut flora.',
+    descriptionTa: 'மாதுளைத் தோல் மற்றும் நறுமண மூலிகைகள் அடங்கிய சூர்ணம். குடல் இயக்கத்தை சீராக்கி வயிற்றுப்போக்கு மற்றும் சீதக்கழிச்சலை குணமாக்கும்.',
+    traditionalRole: 'Grahi (absorbent) and bowel regulator.',
+    traditionalRoleTa: 'குடல் பலப்படுத்தி மற்றும் கழிச்சல் நீக்கி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Dadimastaka Churna Classical Composition', tamilName: 'தாடிமாஷ்டக சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Dadima (Pomegranate)', tamilName: 'மாதுளை', botanicalName: 'Punica granatum', role: 'Gut astringent and nutrient enhancer', roleTa: 'குடல் பலம் தரும்', amount: '50%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Dadimastaka Churna prepared?',
-        questionTa: 'ருத்ரா தாடிமாஷ்டக சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["dadimastaka churna","ruthra dadimastaka churna","churna","dadimastaka","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["தாடிமாஷ்டக சூர்ணம்","ருத்ரா தாடிமாஷ்டக சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra dadimastaka churna', 'ruthra-dadimastaka-churna', 'ayurveda churna', 'dadimastaka churna'],
+    tamilKeywords: ['ருத்ரா தாடிமாஷ்டக சூர்ணம் (மாதுளை கூட்டு)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-008',
-    name: 'Ruthra Dashamoola Churna',
-    tamilName: 'ருத்ரா தசமூல சூர்ணம்',
-    slug: 'ruthra-dashamoola-churna',
+    name: 'Ruthra Jatamayadi Churna',
+    tamilName: 'ருத்ரா ஜடாமயாதி சூர்ணம்',
+    slug: 'ruthra-jatamayadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["joint-mobility","respiratory"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Ten-sacred-roots compound for balancing Vata-Kapha, post-fever convalescence, and neuromuscular aches. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பத்து மூலிகைகளின் வேர் கலவை; வாத நோய்கள், காய்ச்சலுக்கு பின் வரும் உடல் சோர்வு மற்றும் மூட்டு வலி போக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Dashamoola Churna (தசமூல சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா தசமூல சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Ten-sacred-roots compound for balancing Vata-Kapha, post-fever convalescence, and neuromuscular aches.',
-    traditionalRoleTa: 'பத்து மூலிகைகளின் வேர் கலவை; வாத நோய்கள், காய்ச்சலுக்கு பின் வரும் உடல் சோர்வு மற்றும் மூட்டு வலி போக்கி.',
-    badge: 'Ten Roots Vata Tonic',
-    badgeTa: 'தசமூல வாத நிவாரணம்',
-    image: '/images/products/ruthra-dashamoola-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-dashamoola-churna/front.jpg',
-      '/images/products/ruthra-dashamoola-churna/angle.jpg',
-      '/images/products/ruthra-dashamoola-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-dashamoola-churna/front.jpg',
-      '/images/products/ruthra-dashamoola-churna/angle.jpg',
-      '/images/products/ruthra-dashamoola-churna/back.jpg'
-    ],
+    concerns: ['joint-mobility'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical external application powder (Lepa) for gouty arthritis, burning joint sensations, and inflammatory swelling.',
+    shortDescriptionTa: 'வாத வீக்கம், மூட்டு எரிச்சல் மற்றும் மூட்டு வலிகளுக்கு பற்று போட பயன்படும் பாரம்பரிய சூர்ணம்.',
+    description: 'Ruthra Jatamayadi Churna is traditionally compounded with Jatamansi, Chandana, and Usheera. When made into a paste with rice water or tamarind juice and applied externally, it quickly draws out localized heat and inflammation.',
+    descriptionTa: 'ஜடாமாஞ்சி, சந்தனம், வெட்டிவேர் உள்ளிட்ட மூலிகைகளின் கலவை. வெளிப்புற பற்றாக பூசும்போது மூட்டு வலி, வீக்கம் மற்றும் எரிச்சலை உடனடியாக தணிக்கும்.',
+    traditionalRole: 'Anti-inflammatory external Lepa for Vatarakta and joint heat.',
+    traditionalRoleTa: 'மூட்டு வீக்கம் மற்றும் எரிச்சலை தணிக்கும் பற்று பொடி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Dashamoola Churna Classical Composition', tamilName: 'தசமூல சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Jatamansi & Chandana blend', tamilName: 'ஜடாமாஞ்சி & சந்தனம்', botanicalName: 'Nardostachys jatamansi', role: 'Cooling anti-inflammatory', roleTa: 'குளிர்ச்சி மற்றும் வீக்கம் குறைத்தல்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Dashamoola Churna prepared?',
-        questionTa: 'ருத்ரா தசமூல சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["dashamoola churna","ruthra dashamoola churna","churna","dashamoola","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["தசமூல சூர்ணம்","ருத்ரா தசமூல சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra jatamayadi churna', 'ruthra-jatamayadi-churna', 'ayurveda churna', 'jatamayadi churna'],
+    tamilKeywords: ['ருத்ரா ஜடாமயாதி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-009',
-    name: 'Ruthra Eladi Churna',
-    tamilName: 'ருத்ரா ஏலாதி சூர்ணம்',
-    slug: 'ruthra-eladi-churna',
+    name: 'Ruthra Jatiphaladya Churna',
+    tamilName: 'ருத்ரா ஜாதிபலாத்யா சூர்ணம் (ஜாதிக்காய் கூட்டு)',
+    slug: 'ruthra-jatiphaladya-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["respiratory","digestive-wellness","skin-hair"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Cardamom formulation for soothing upper respiratory congestion, throat irritation, and improving skin complexion. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'ஏலக்காய் கலவை; தொண்டை கரகரப்பு, இருமல், பித்த உஷ்ணம் மற்றும் தோல் பொலிவுக்கு உகந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Eladi Churna (ஏலாதி சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா ஏலாதி சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Cardamom formulation for soothing upper respiratory congestion, throat irritation, and improving skin complexion.',
-    traditionalRoleTa: 'ஏலக்காய் கலவை; தொண்டை கரகரப்பு, இருமல், பித்த உஷ்ணம் மற்றும் தோல் பொலிவுக்கு உகந்தது.',
-    badge: 'Throat & Complexion',
-    badgeTa: 'தொண்டை & தோல் நலம்',
-    image: '/images/products/ruthra-eladi-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-eladi-churna/front.jpg',
-      '/images/products/ruthra-eladi-churna/angle.jpg',
-      '/images/products/ruthra-eladi-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-eladi-churna/front.jpg',
-      '/images/products/ruthra-eladi-churna/angle.jpg',
-      '/images/products/ruthra-eladi-churna/back.jpg'
-    ],
+    concerns: ['respiratory', 'digestive-wellness'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Aromatic Nutmeg formulation for chronic cough, asthma, throat irritation, and sprue syndrome.',
+    shortDescriptionTa: 'ஜாதிக்காய், கிராம்பு அடங்கிய சூர்ணம். தொடர் இருமல், இரைப்பு, ஆஸ்துமா மற்றும் குடல் பலவீனத்தை போக்கும்.',
+    description: 'Ruthra Jatiphaladya Churna combines Myristica fragrans (Nutmeg), clove, cardamom, and herbal carminatives to soothe respiratory spasms, calm chronic coughs, and support digestive assimilation.',
+    descriptionTa: 'சுவாசப் பாதையில் உள்ள கபத்தை வெளியேற்றி, இருமல் மற்றும் செரிமான கோளாறுகளை ஒரே நேரத்தில் தீர்க்கும் பாரம்பரிய கூட்டு.',
+    traditionalRole: 'Respiratory antispasmodic and digestive astringent.',
+    traditionalRoleTa: 'சுவாச மற்றும் செரிமான மண்டல பலப்படுத்தி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Eladi Churna Classical Composition', tamilName: 'ஏலாதி சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Jatiphal (Nutmeg)', tamilName: 'ஜாதிக்காய்', botanicalName: 'Myristica fragrans', role: 'Expectorant and digestive tonic', roleTa: 'கபகாரி மற்றும் செரிமான பலம்', amount: '40%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Eladi Churna prepared?',
-        questionTa: 'ருத்ரா ஏலாதி சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["eladi churna","ruthra eladi churna","churna","eladi","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["ஏலாதி சூர்ணம்","ருத்ரா ஏலாதி சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra jatiphaladya churna', 'ruthra-jatiphaladya-churna', 'ayurveda churna', 'jatiphaladya churna'],
+    tamilKeywords: ['ருத்ரா ஜாதிபலாத்யா சூர்ணம் (ஜாதிக்காய் கூட்டு)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-010',
-    name: 'Ruthra Gandhakadhi Churna',
-    tamilName: 'ருத்ரா கந்தகாதி சூர்ணம்',
-    slug: 'ruthra-gandhakadhi-churna',
+    name: 'Ruthra Kolakulathadi Churna',
+    tamilName: 'ருத்ரா கோலகுலத்தாதி சூர்ணம்',
+    slug: 'ruthra-kolakulathadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["skin-hair","metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified sulfur botanical blend for chronic skin dermatoses, eczema, scabies, and systemic blood purification. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கந்தக கலவை; சோரியாசிஸ், கரப்பான், அரிப்பு மற்றும் ரத்தத்தில் உள்ள நச்சுக்களை நீக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Gandhakadhi Churna (கந்தகாதி சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா கந்தகாதி சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified sulfur botanical blend for chronic skin dermatoses, eczema, scabies, and systemic blood purification.',
-    traditionalRoleTa: 'கந்தக கலவை; சோரியாசிஸ், கரப்பான், அரிப்பு மற்றும் ரத்தத்தில் உள்ள நச்சுக்களை நீக்கும்.',
-    badge: 'Blood & Skin Purifier',
-    badgeTa: 'ரத்த சுத்தி & தோல் நலம்',
-    image: '/images/products/ruthra-gandhakadhi-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-gandhakadhi-churna/front.jpg',
-      '/images/products/ruthra-gandhakadhi-churna/angle.jpg',
-      '/images/products/ruthra-gandhakadhi-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-gandhakadhi-churna/front.jpg',
-      '/images/products/ruthra-gandhakadhi-churna/angle.jpg',
-      '/images/products/ruthra-gandhakadhi-churna/back.jpg'
-    ],
+    concerns: ['joint-mobility'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical warm poultice (Upanaha / Lepa) powder for muscular rigidity, sciatica, and chronic Vata joint pain.',
+    shortDescriptionTa: 'இடுப்பு வலி, சியாட்டிகா நரம்பு வலி, மூட்டு பிடிப்புக்கு வெதுவெதுப்பாக பற்று போட பயன்படும் மூலிகைப் பொடி.',
+    description: 'Ruthra Kolakulathadi Churna is a time-tested formulation prepared with Horse gram (Kulattha), Kola, and warming aromatic herbs. Applied as an external poultice with warm buttermilk or vinegar, it melts away stiffness and promotes microcirculation.',
+    descriptionTa: 'கொள்ளு, இலந்தை மற்றும் வாத நிவாரண மூலிகைகள் அடங்கிய பொடி. வெதுவெதுப்பாக பற்று போடுவதன் மூலம் தசை பிடிப்பு, இடுப்பு வாதம் நீங்கும்.',
+    traditionalRole: 'External analgesic poultice for Vata disorders and stiffness.',
+    traditionalRoleTa: 'வாத வலி, தசை இறுக்கம் போக்கும் வெளிப் பூச்சு பொடி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Gandhakadhi Churna Classical Composition', tamilName: 'கந்தகாதி சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Kulattha (Horse gram) & Herbs', tamilName: 'கொள்ளு மற்றும் மூலிகைகள்', botanicalName: 'Macrotyloma uniflorum', role: 'Warming Vata pacifier', roleTa: 'வாத சமன காரணி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Gandhakadhi Churna prepared?',
-        questionTa: 'ருத்ரா கந்தகாதி சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["gandhakadhi churna","ruthra gandhakadhi churna","churna","gandhakadhi","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["கந்தகாதி சூர்ணம்","ருத்ரா கந்தகாதி சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra kolakulathadi churna', 'ruthra-kolakulathadi-churna', 'ayurveda churna', 'kolakulathadi churna'],
+    tamilKeywords: ['ருத்ரா கோலகுலத்தாதி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-011',
-    name: 'Ruthra Hingvastaka Churna',
-    tamilName: 'ருத்ரா இங்வாஷ்டக சூர்ணம்',
-    slug: 'ruthra-hingvastaka-churna',
+    name: 'Ruthra Kottamcukkadi Churna',
+    tamilName: 'ருத்ரா கோட்டஞ்சுக்காதி சூர்ணம்',
+    slug: 'ruthra-kottamcukkadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Eight-ingredient asafoetida compound relieving severe abdominal distension, gas cramps, and indigestion. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பெருங்காய கூட்டு; வயிற்று உப்புசம், வாயு பிடிப்பு, செரிமான மந்தம் மற்றும் குடல் இரைச்சல் போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Hingvastaka Churna (இங்வாஷ்டக சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா இங்வாஷ்டக சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Eight-ingredient asafoetida compound relieving severe abdominal distension, gas cramps, and indigestion.',
-    traditionalRoleTa: 'பெருங்காய கூட்டு; வயிற்று உப்புசம், வாயு பிடிப்பு, செரிமான மந்தம் மற்றும் குடல் இரைச்சல் போக்கும்.',
-    badge: 'Gas & Bloating Relief',
-    badgeTa: 'வாயு & செரிமான நலம்',
-    image: '/images/products/ruthra-hingvastaka-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-hingvastaka-churna/front.jpg',
-      '/images/products/ruthra-hingvastaka-churna/angle.jpg',
-      '/images/products/ruthra-hingvastaka-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-hingvastaka-churna/front.jpg',
-      '/images/products/ruthra-hingvastaka-churna/angle.jpg',
-      '/images/products/ruthra-hingvastaka-churna/back.jpg'
-    ],
+    concerns: ['joint-mobility'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Famous Saussurea and Dry Ginger external Lepa for rheumatic swellings, sprains, and frozen shoulder.',
+    shortDescriptionTa: 'மூட்டு வீக்கம், சுளுக்கு, தோள்பட்டை இறுக்கம் மற்றும் வாத வீக்கத்தை போக்கும் கோஷ்டம்-சுக்கு பற்றுப் பொடி.',
+    description: 'Ruthra Kottamcukkadi Churna incorporates Kottam (Saussurea lappa), Chukku (Dry Ginger), Vayambu, and Shigru. When applied over painful, swollen joints, it rapidly reduces synovial effusion and restores freedom of movement.',
+    descriptionTa: 'கோஷ்டம், சுக்கு, வசம்பு அடங்கிய புகழ்மிக்க மூலிகைக் கூட்டு. சுளுக்கு மற்றும் மூட்டு வீக்கங்களை வேகமாக குறைக்கும்.',
+    traditionalRole: 'Anti-edematous, analgesic Lepa for arthritis and sprains.',
+    traditionalRoleTa: 'சுளுக்கு மற்றும் வாத வீக்கம் குறைக்கும் பற்று சூர்ணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Hingvastaka Churna Classical Composition', tamilName: 'இங்வாஷ்டக சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Kottam & Chukku (Ginger)', tamilName: 'கோஷ்டம் & சுக்கு', botanicalName: 'Saussurea lappa & Zingiber officinale', role: 'Relieves inflammation and swelling', roleTa: 'வீக்கம் மற்றும் வலி குறைப்பு', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Hingvastaka Churna prepared?',
-        questionTa: 'ருத்ரா இங்வாஷ்டக சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["hingvastaka churna","ruthra hingvastaka churna","churna","hingvastaka","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["இங்வாஷ்டக சூர்ணம்","ருத்ரா இங்வாஷ்டக சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra kottamcukkadi churna', 'ruthra-kottamcukkadi-churna', 'ayurveda churna', 'kottamcukkadi churna'],
+    tamilKeywords: ['ருத்ரா கோட்டஞ்சுக்காதி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-012',
-    name: 'Ruthra Jatyadi Churna',
-    tamilName: 'ருத்ரா ஜாத்யாதி சூர்ணம்',
-    slug: 'ruthra-jatyadi-churna',
+    name: 'Ruthra Madhusnuhi Churna',
+    tamilName: 'ருத்ரா மதுஸ்னுஹி சூர்ணம் (பறங்கிப்பட்டை)',
+    slug: 'ruthra-madhusnuhi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["skin-hair"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Herbal compound for external wound dusting, cleansing non-healing ulcers, anal fissures, and eczema. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'ஆறாத புண்கள், வெட்டுக்காயங்கள், ஆசனவாய் பிளவு மற்றும் தோல் ரணங்களை ஆற்றும் சூர்ணம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Jatyadi Churna (ஜாத்யாதி சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா ஜாத்யாதி சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Herbal compound for external wound dusting, cleansing non-healing ulcers, anal fissures, and eczema.',
-    traditionalRoleTa: 'ஆறாத புண்கள், வெட்டுக்காயங்கள், ஆசனவாய் பிளவு மற்றும் தோல் ரணங்களை ஆற்றும் சூர்ணம்.',
-    badge: 'Wound Dusting Powder',
-    badgeTa: 'புண் ஆற்றும் சூர்ணம்',
-    image: '/images/products/ruthra-jatyadi-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-jatyadi-churna/front.jpg',
-      '/images/products/ruthra-jatyadi-churna/angle.jpg',
-      '/images/products/ruthra-jatyadi-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-jatyadi-churna/front.jpg',
-      '/images/products/ruthra-jatyadi-churna/angle.jpg',
-      '/images/products/ruthra-jatyadi-churna/back.jpg'
-    ],
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical Smilax china formulation for chronic skin conditions, eczema, psoriasis, and deep blood purification.',
+    shortDescriptionTa: 'தோல் வியாதிகள், எக்ஸிமா, தடிப்பு மற்றும் ரத்த சுத்திக்கு பயன்படும் பாரம்பரிய பறங்கிப்பட்டை சூர்ணம்.',
+    description: 'Ruthra Madhusnuhi Churna (Chobchini) acts as a powerful systemic detoxifier and blood cleanser. It flushes accumulated metabolic toxins (Ama) from dermal layers and calms stubborn skin irritations.',
+    descriptionTa: 'ரத்தத்தில் உள்ள நச்சுக்களை வெளியேற்றி, நீண்ட நாள் தோல் பிரச்சனைகள், படை, நமைச்சலை குணமாக்கும் உன்னத சூர்ணம்.',
+    traditionalRole: 'Blood purifier, immunomodulator, and skin restorative.',
+    traditionalRoleTa: 'ரத்த சுத்தி மற்றும் தோல் நோய் நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Jatyadi Churna Classical Composition', tamilName: 'ஜாத்யாதி சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Madhusnuhi (Smilax china)', tamilName: 'பறங்கிப்பட்டை', botanicalName: 'Smilax china', role: 'Dermal detox and blood purifier', roleTa: 'ரத்த சுத்தி மற்றும் தோல் நலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Jatyadi Churna prepared?',
-        questionTa: 'ருத்ரா ஜாத்யாதி சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["jatyadi churna","ruthra jatyadi churna","churna","jatyadi","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["ஜாத்யாதி சூர்ணம்","ருத்ரா ஜாத்யாதி சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra madhusnuhi churna', 'ruthra-madhusnuhi-churna', 'ayurveda churna', 'madhusnuhi churna'],
+    tamilKeywords: ['ருத்ரா மதுஸ்னுஹி சூர்ணம் (பறங்கிப்பட்டை)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-013',
-    name: 'Ruthra Katuki Churna',
-    tamilName: 'ருத்ரா கடுகிரோகிணி சூர்ணம்',
-    slug: 'ruthra-katuki-churna',
+    name: 'Ruthra Mandukaparni Churna',
+    tamilName: 'ருத்ரா மண்டூகபர்ணி சூர்ணம் (வல்லாரை)',
+    slug: 'ruthra-mandukaparni-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["metabolic-wellness","digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Picrorhiza kurroa root powder for hepatic detox, balancing Pitta-Kapha, fever reduction, and liver health. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கல்லீரல் செயல்பாடு மேன்மை, மஞ்சள் காமாலை தற்காப்பு, பித்த கழிவு நீக்கம் மற்றும் காய்ச்சல் தணிக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Katuki Churna (கடுகிரோகிணி சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா கடுகிரோகிணி சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Picrorhiza kurroa root powder for hepatic detox, balancing Pitta-Kapha, fever reduction, and liver health.',
-    traditionalRoleTa: 'கல்லீரல் செயல்பாடு மேன்மை, மஞ்சள் காமாலை தற்காப்பு, பித்த கழிவு நீக்கம் மற்றும் காய்ச்சல் தணிக்கும்.',
-    badge: 'Hepatic Cleanser',
-    badgeTa: 'கல்லீரல் சுத்திகரிப்பு',
-    image: '/images/products/ruthra-katuki-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-katuki-churna/front.jpg',
-      '/images/products/ruthra-katuki-churna/angle.jpg',
-      '/images/products/ruthra-katuki-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-katuki-churna/front.jpg',
-      '/images/products/ruthra-katuki-churna/angle.jpg',
-      '/images/products/ruthra-katuki-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Medhya Rasayana (Centella asiatica / Gotu Kola) powder for memory, cognitive acuity, focus, and mental calm.',
+    shortDescriptionTa: 'நினைவாற்றல், மூளை சுறுசுறுப்பு, மன அமைதி தரும் உன்னத வல்லாரை சூர்ணம்.',
+    description: 'Ruthra Mandukaparni Churna nourishes cerebral microvessels, enhances neuroplasticity, reduces mental fatigue, and promotes sharp memory and emotional balance.',
+    descriptionTa: 'மூளை செல்களுக்கு புத்துணர்ச்சி அளித்து, ஞாபக சக்தி மற்றும் கவனக்குவிப்பை அதிகரிக்கும் பாரம்பரிய மேத்ய ரசாயனம்.',
+    traditionalRole: 'Premier Medhya Rasayana for brain health and mental focus.',
+    traditionalRoleTa: 'ஞாபக சக்தி மற்றும் மூளை நலம் காக்கும் மூலிகை.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Katuki Churna Classical Composition', tamilName: 'கடுகிரோகிணி சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Mandukaparni (Gotu Kola)', tamilName: 'வல்லாரை', botanicalName: 'Centella asiatica', role: 'Cognitive and memory booster', roleTa: 'நினைவாற்றல் பெருக்கி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Katuki Churna prepared?',
-        questionTa: 'ருத்ரா கடுகிரோகிணி சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["katuki churna","ruthra katuki churna","churna","katuki","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["கடுகிரோகிணி சூர்ணம்","ருத்ரா கடுகிரோகிணி சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra mandukaparni churna', 'ruthra-mandukaparni-churna', 'ayurveda churna', 'mandukaparni churna'],
+    tamilKeywords: ['ருத்ரா மண்டூகபர்ணி சூர்ணம் (வல்லாரை)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-014',
-    name: 'Ruthra Kumaryasava Churna',
-    tamilName: 'ருத்ரா குமார்யாசவ சூர்ணம்',
-    slug: 'ruthra-kumaryasava-churna',
+    name: 'Ruthra Mesasrngi Churna',
+    tamilName: 'ருத்ரா மேஷசிருங்கி சூர்ணம் (சிறுகுறிஞ்சான்)',
+    slug: 'ruthra-mesasrngi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["womens-wellness","digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Aloe vera infused powder for female hormonal harmony, amenorrhea, liver sluggishness, and anemia. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கற்றாழை கூட்டு சூர்ணம்; மகளிர் மாதவிடாய் ஒழுங்குபடுத்தி, கல்லீரல் பலம் மற்றும் ரத்த சோகை நீக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Kumaryasava Churna (குமார்யாசவ சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா குமார்யாசவ சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Aloe vera infused powder for female hormonal harmony, amenorrhea, liver sluggishness, and anemia.',
-    traditionalRoleTa: 'கற்றாழை கூட்டு சூர்ணம்; மகளிர் மாதவிடாய் ஒழுங்குபடுத்தி, கல்லீரல் பலம் மற்றும் ரத்த சோகை நீக்கி.',
-    badge: 'Hormonal & Liver Balance',
-    badgeTa: 'மகளிர் & கல்லீரல் நலம்',
-    image: '/images/products/ruthra-kumaryasava-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-kumaryasava-churna/front.jpg',
-      '/images/products/ruthra-kumaryasava-churna/angle.jpg',
-      '/images/products/ruthra-kumaryasava-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-kumaryasava-churna/front.jpg',
-      '/images/products/ruthra-kumaryasava-churna/angle.jpg',
-      '/images/products/ruthra-kumaryasava-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical Gymnema sylvestre (Sugar Destroyer) powder for healthy glucose metabolism and sugar craving management.',
+    shortDescriptionTa: 'ரத்த சர்க்கரை அளவை கட்டுப்படுத்தவும், இனிப்பு நாட்டத்தை குறைக்கவும் உதவும் சிறுகுறிஞ்சான் சூர்ணம்.',
+    description: 'Ruthra Mesasrngi Churna contains pure gymnemic acids that block sugar receptors on the tongue and intestinal lining, supporting optimal glycemic balance and healthy lipid profiles.',
+    descriptionTa: 'கணைய செல்களை தூண்டி, ரத்தத்தில் சர்க்கரை உறிஞ்சுதலை கட்டுப்படுத்தும் உன்னத சர்க்கரை நோய் துணை மூலிகை.',
+    traditionalRole: 'Glycemic regulator and metabolic booster.',
+    traditionalRoleTa: 'சர்க்கரை சமநிலை மற்றும் கணைய நலம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Kumaryasava Churna Classical Composition', tamilName: 'குமார்யாசவ சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Mesasrngi (Gymnema)', tamilName: 'சிறுகுறிஞ்சான்', botanicalName: 'Gymnema sylvestre', role: 'Glycemic balancer', roleTa: 'சர்க்கரை சமன் செய்யும் மூலிகை', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Kumaryasava Churna prepared?',
-        questionTa: 'ருத்ரா குமார்யாசவ சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["kumaryasava churna","ruthra kumaryasava churna","churna","kumaryasava","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["குமார்யாசவ சூர்ணம்","ருத்ரா குமார்யாசவ சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra mesasrngi churna', 'ruthra-mesasrngi-churna', 'ayurveda churna', 'mesasrngi churna'],
+    tamilKeywords: ['ருத்ரா மேஷசிருங்கி சூர்ணம் (சிறுகுறிஞ்சான்)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-015',
-    name: 'Ruthra Lodhra Churna',
-    tamilName: 'ருத்ரா லோத்ரா சூர்ணம்',
-    slug: 'ruthra-lodhra-churna',
+    name: 'Ruthra Navayasa Churna',
+    tamilName: 'ருத்ரா நவயாஸ சூர்ணம்',
+    slug: 'ruthra-navayasa-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["womens-wellness","skin-hair"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Symplocos racemosa bark for excessive uterine bleeding, leucorrhea, acne, and firming loose skin tissues. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'வெள்ளைப்படுதல், அதிக உதிரப்போக்கு, கருப்பை பலவீனம் மற்றும் முகப்பருக்களை போக்கும் லோத்ரா. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Lodhra Churna (லோத்ரா சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா லோத்ரா சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Symplocos racemosa bark for excessive uterine bleeding, leucorrhea, acne, and firming loose skin tissues.',
-    traditionalRoleTa: 'வெள்ளைப்படுதல், அதிக உதிரப்போக்கு, கருப்பை பலவீனம் மற்றும் முகப்பருக்களை போக்கும் லோத்ரா.',
-    badge: 'Uterine Astringent',
-    badgeTa: 'மகளிர் கருப்பை நலம்',
-    image: '/images/products/ruthra-lodhra-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-lodhra-churna/front.jpg',
-      '/images/products/ruthra-lodhra-churna/angle.jpg',
-      '/images/products/ruthra-lodhra-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-lodhra-churna/front.jpg',
-      '/images/products/ruthra-lodhra-churna/angle.jpg',
-      '/images/products/ruthra-lodhra-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Herbo-mineral classical formulation for iron deficiency anemia, jaundice, liver sluggishness, and fatigue.',
+    shortDescriptionTa: 'ரத்த சோகை, இரும்புச்சத்து குறைபாடு, கல்லீரல் பலவீனம் மற்றும் மஞ்சள் காமாலைக்கு உகந்த சூர்ணம்.',
+    description: 'Ruthra Navayasa Churna combines purified Iron calx (Lauha Bhasma) with 9 herbs including Trikatu, Triphala, Musta, and Vidanga for optimal bioavailable hematinic replenishment.',
+    descriptionTa: 'தூய இரும்புச்சத்து பற்பம் மற்றும் ஒன்பது மூலிகைகளின் கூட்டு. ரத்தத்தில் ஹீமோகுளோபின் அளவை உயர்த்தி உடல் சோர்வை நீக்கும்.',
+    traditionalRole: 'Hematinic, liver stimulant, and Pandu (anemia) remedy.',
+    traditionalRoleTa: 'ஹீமோகுளோபின் பெருக்கி மற்றும் கல்லீரல் பலம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Lodhra Churna Classical Composition', tamilName: 'லோத்ரா சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Lauha Bhasma & 9 Herbs', tamilName: 'நவயாஸ மூலிகைகள் மற்றும் இரும்பு பற்பம்', botanicalName: 'Classical compound', role: 'Iron assimilation and liver support', roleTa: 'ரத்த உற்பத்தி மற்றும் கல்லீரல் நலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Lodhra Churna prepared?',
-        questionTa: 'ருத்ரா லோத்ரா சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["lodhra churna","ruthra lodhra churna","churna","lodhra","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["லோத்ரா சூர்ணம்","ருத்ரா லோத்ரா சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra navayasa churna', 'ruthra-navayasa-churna', 'ayurveda churna', 'navayasa churna'],
+    tamilKeywords: ['ருத்ரா நவயாஸ சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-016',
-    name: 'Ruthra Musta Churna',
-    tamilName: 'ருத்ரா முஸ்தா (கோரைக்கிழங்கு) சூர்ணம்',
-    slug: 'ruthra-musta-churna',
+    name: 'Ruthra Nimbadi Churna',
+    tamilName: 'ருத்ரா நிம்பாதி சூர்ணம்',
+    slug: 'ruthra-nimbadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness","metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Nutgrass root powder for chronic enteritis, infantile diarrhea, fever thirst, and digestive assimilation. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கோரைக்கிழங்கு சூர்ணம்; குழந்தைகளுக்கு மாந்த கழிச்சல், காய்ச்சல் தாகம் மற்றும் குடல் புண் ஆற்றும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Musta Churna (முஸ்தா (கோரைக்கிழங்கு) சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா முஸ்தா (கோரைக்கிழங்கு) சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Nutgrass root powder for chronic enteritis, infantile diarrhea, fever thirst, and digestive assimilation.',
-    traditionalRoleTa: 'கோரைக்கிழங்கு சூர்ணம்; குழந்தைகளுக்கு மாந்த கழிச்சல், காய்ச்சல் தாகம் மற்றும் குடல் புண் ஆற்றும்.',
-    badge: 'Digestive & Anti-Diarrheal',
-    badgeTa: 'செரிமானம் & பேதி கட்டுப்பாடு',
-    image: '/images/products/ruthra-musta-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-musta-churna/front.jpg',
-      '/images/products/ruthra-musta-churna/angle.jpg',
-      '/images/products/ruthra-musta-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-musta-churna/front.jpg',
-      '/images/products/ruthra-musta-churna/angle.jpg',
-      '/images/products/ruthra-musta-churna/back.jpg'
-    ],
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Neem-centered multi-herb compound for skin eruptions, boils, allergic dermatitis, and pruritus.',
+    shortDescriptionTa: 'வேப்பிலை முதன்மை மூலிகையாக கொண்ட சூர்ணம். தோல் அரிப்பு, கொப்பளங்கள், ஒவ்வாமை மற்றும் நமைச்சலை போக்கும்.',
+    description: 'Ruthra Nimbadi Churna combines Neem with Haridra, Daruharidra, and Triphala to clear Pitta-Kapha skin toxins, purify the lymphatic system, and restore clear, healthy skin.',
+    descriptionTa: 'வேம்பு, மஞ்சள், மரமஞ்சள் அடங்கிய தோல் நோய் தீர்க்கும் பாரம்பரிய சூர்ணம். ரத்த நச்சுக்களை அகற்றி தோல் பளபளப்பை தரும்.',
+    traditionalRole: 'Blood purifier, antibacterial, and dermatological tonic.',
+    traditionalRoleTa: 'தோல் நமைச்சல் போக்கும் ரத்த சுத்தி சூர்ணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Musta Churna Classical Composition', tamilName: 'முஸ்தா (கோரைக்கிழங்கு) சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Nimba (Neem) & Herbs', tamilName: 'வேம்பு மற்றும் மூலிகைகள்', botanicalName: 'Azadirachta indica', role: 'Blood purifier and antibacterial', roleTa: 'தோல் நோய் தடுப்பான்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Musta Churna prepared?',
-        questionTa: 'ருத்ரா முஸ்தா (கோரைக்கிழங்கு) சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["musta churna","ruthra musta churna","churna","musta","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["முஸ்தா (கோரைக்கிழங்கு) சூர்ணம்","ருத்ரா முஸ்தா (கோரைக்கிழங்கு) சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra nimbadi churna', 'ruthra-nimbadi-churna', 'ayurveda churna', 'nimbadi churna'],
+    tamilKeywords: ['ருத்ரா நிம்பாதி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-017',
-    name: 'Ruthra Nimba Churna',
-    tamilName: 'ருத்ரா நிம்ப (வேம்பு) சூர்ணம்',
-    slug: 'ruthra-nimba-churna',
+    name: 'Ruthra Nimbapatra Churna',
+    tamilName: 'ருத்ரா நிம்பபத்ர சூர்ணம் (வேப்பிலை)',
+    slug: 'ruthra-nimbapatra-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["skin-hair","metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Pure Neem leaf powder for deep microbial defense, blood detoxification, acne, and managing blood glucose. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'வேப்பிலை சூர்ணம்; கிருமி நாசினி, ரத்த சுத்தி, சரும நோய்கள் மற்றும் சர்க்கரை அளவு சமநிலைக்கு. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Nimba Churna (நிம்ப (வேம்பு) சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா நிம்ப (வேம்பு) சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Pure Neem leaf powder for deep microbial defense, blood detoxification, acne, and managing blood glucose.',
-    traditionalRoleTa: 'வேப்பிலை சூர்ணம்; கிருமி நாசினி, ரத்த சுத்தி, சரும நோய்கள் மற்றும் சர்க்கரை அளவு சமநிலைக்கு.',
-    badge: 'Antimicrobial & Glucose Balance',
-    badgeTa: 'கிருமி நாசினி & ரத்த சுத்தி',
-    image: '/images/products/ruthra-nimba-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-nimba-churna/front.jpg',
-      '/images/products/ruthra-nimba-churna/angle.jpg',
-      '/images/products/ruthra-nimba-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-nimba-churna/front.jpg',
-      '/images/products/ruthra-nimba-churna/angle.jpg',
-      '/images/products/ruthra-nimba-churna/back.jpg'
-    ],
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 130,
+    originalPrice: 150,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Pure single-origin Azadirachta indica leaf powder for systemic blood cleansing, scalp care, and microbial balance.',
+    shortDescriptionTa: 'தூய வேப்பிலை சூர்ணம். ரத்த சுத்தி, கிருமி நாசினி மற்றும் தோல்/கூந்தல் பராமரிப்பிற்கு உகந்தது.',
+    description: 'Ruthra Nimbapatra Churna contains 100% clean-milled neem leaves with potent bitter principles (Nimbidin, Nimbin) that cleanse toxins and pacify acute Pitta-Kapha disorders.',
+    descriptionTa: 'இயற்கையான முறையில் உலர்த்தப்பட்ட வேப்பிலைப் பொடி. கிருமி நாசினியாகவும், ரத்தத்தை சுத்திகரிக்கவும் பயன்படுகிறது.',
+    traditionalRole: 'Single herb antibacterial and Pitta-Kapha pacifier.',
+    traditionalRoleTa: 'இயற்கை கிருமி நாசினி மற்றும் ரத்த சுத்தி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Nimba Churna Classical Composition', tamilName: 'நிம்ப (வேம்பு) சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Nimbapatra (Neem Leaves)', tamilName: 'வேப்பிலை', botanicalName: 'Azadirachta indica', role: 'Antibacterial and detoxifier', roleTa: 'கிருமி நாசினி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Nimba Churna prepared?',
-        questionTa: 'ருத்ரா நிம்ப (வேம்பு) சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["nimba churna","ruthra nimba churna","churna","nimba","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["நிம்ப (வேம்பு) சூர்ணம்","ருத்ரா நிம்ப (வேம்பு) சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra nimbapatra churna', 'ruthra-nimbapatra-churna', 'ayurveda churna', 'nimbapatra churna'],
+    tamilKeywords: ['ருத்ரா நிம்பபத்ர சூர்ணம் (வேப்பிலை)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-018',
-    name: 'Ruthra Panchakola Churna',
-    tamilName: 'ருத்ரா பஞ்சகோல சூர்ணம்',
-    slug: 'ruthra-panchakola-churna',
+    name: 'Ruthra Pusyanuga Churna',
+    tamilName: 'ருத்ரா புஷ்யானுக சூர்ணம்',
+    slug: 'ruthra-pusyanuga-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness","respiratory"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Pippali, Pippalimula, Chavya, Chitraka, Nagara compound igniting profound digestive power and clearing Kapha. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'ஐந்து மூலிகை கூட்டு; கடுமையான அஜீரணம், மந்தம், பசியின்மை மற்றும் கப அடைப்பை போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Panchakola Churna (பஞ்சகோல சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா பஞ்சகோல சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Pippali, Pippalimula, Chavya, Chitraka, Nagara compound igniting profound digestive power and clearing Kapha.',
-    traditionalRoleTa: 'ஐந்து மூலிகை கூட்டு; கடுமையான அஜீரணம், மந்தம், பசியின்மை மற்றும் கப அடைப்பை போக்கும்.',
-    badge: 'Profound Digestive Catalyst',
-    badgeTa: 'தீவிர செரிமான தூண்டி',
-    image: '/images/products/ruthra-panchakola-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-panchakola-churna/front.jpg',
-      '/images/products/ruthra-panchakola-churna/angle.jpg',
-      '/images/products/ruthra-panchakola-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-panchakola-churna/front.jpg',
-      '/images/products/ruthra-panchakola-churna/angle.jpg',
-      '/images/products/ruthra-panchakola-churna/back.jpg'
-    ],
+    concerns: ['womens-wellness'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Premier classical Ayurvedic formulation for women\'s uterine health, menorrhagia, and leukorrhea.',
+    shortDescriptionTa: 'பெண்களின் கர்ப்பப்பை நலம், அதிக உதிரப்போக்கு மற்றும் வெள்ளைப்படுதலை குணமாக்கும் முதன்மையான சூர்ணம்.',
+    description: 'Ruthra Pusyanuga Churna is compounded with 25 balancing botanicals including Lodhra, Patha, and red sandalwood. Taken with honey or rice water, it tones uterine musculature and regulates heavy menstrual bleeding.',
+    descriptionTa: 'லோத்ரா, செஞ்சந்தனம் உள்ளிட்ட மூலிகைகள் அடங்கிய கர்ப்பப்பை பலப்படுத்தும் உன்னத சூர்ணம்.',
+    traditionalRole: 'Uterine astringent and hormonal balancer.',
+    traditionalRoleTa: 'மகளிர் நலம் மற்றும் கர்ப்பப்பை பலப்படுத்தி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Panchakola Churna Classical Composition', tamilName: 'பஞ்சகோல சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Lodhra & 25 Botanicals', tamilName: 'லோத்ரா மற்றும் மூலிகைகள்', botanicalName: 'Symplocos racemosa', role: 'Uterine tonic', roleTa: 'கர்ப்பப்பை பலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Panchakola Churna prepared?',
-        questionTa: 'ருத்ரா பஞ்சகோல சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["panchakola churna","ruthra panchakola churna","churna","panchakola","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["பஞ்சகோல சூர்ணம்","ருத்ரா பஞ்சகோல சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra pusyanuga churna', 'ruthra-pusyanuga-churna', 'ayurveda churna', 'pusyanuga churna'],
+    tamilKeywords: ['ருத்ரா புஷ்யானுக சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-019',
-    name: 'Ruthra Pippali Churna',
-    tamilName: 'ருத்ரா திப்பிலி சூர்ணம்',
-    slug: 'ruthra-pippali-churna',
+    name: 'Ruthra Rakta Punarnava Churna',
+    tamilName: 'ருத்ரா ரக்த புனர்நவா சூர்ணம் (சாரணை)',
+    slug: 'ruthra-rakta-punarnava-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["respiratory","digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Long pepper rasayana for chronic asthma, productive cough, spleen enlargement, and metabolic enhancement. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'திப்பிலி சூர்ணம்; ஆஸ்துமா, நாள்பட்ட இருமல், இரைப்பு மற்றும் செரிமான தீயை தூண்டும் காயகற்பம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Pippali Churna (திப்பிலி சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திப்பிலி சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Long pepper rasayana for chronic asthma, productive cough, spleen enlargement, and metabolic enhancement.',
-    traditionalRoleTa: 'திப்பிலி சூர்ணம்; ஆஸ்துமா, நாள்பட்ட இருமல், இரைப்பு மற்றும் செரிமான தீயை தூண்டும் காயகற்பம்.',
-    badge: 'Respiratory Rasayana',
-    badgeTa: 'சுவாச காயகற்பம்',
-    image: '/images/products/ruthra-pippali-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-pippali-churna/front.jpg',
-      '/images/products/ruthra-pippali-churna/angle.jpg',
-      '/images/products/ruthra-pippali-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-pippali-churna/front.jpg',
-      '/images/products/ruthra-pippali-churna/angle.jpg',
-      '/images/products/ruthra-pippali-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness'],
+    price: 150,
+    originalPrice: 180,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Renowned Boerhavia diffusa root powder for renal rejuvenation, fluid balance, and edema relief.',
+    shortDescriptionTa: 'சிறுநீரக செயல்பாடு, நீர்ச்சத்து சமநிலை மற்றும் உடல் வீக்கத்தை போக்கும் சிவப்பு புனர்நவா சூர்ணம்.',
+    description: 'Ruthra Rakta Punarnava Churna acts as a natural diuretic that clears excess water retention, flushes urinary micro-crystals, and revitalizes kidney nephron function.',
+    descriptionTa: 'சிறுநீரகங்களை பாதுகாத்து, கை கால் வீக்கம் மற்றும் நீர் அடைப்பை நீக்கும் பாரம்பரிய மூலிகை சூர்ணம்.',
+    traditionalRole: 'Renal restorative, diuretic, and anti-edematous.',
+    traditionalRoleTa: 'சிறுநீரக பாதுகாப்பு மற்றும் நீர் பெருக்கி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Pippali Churna Classical Composition', tamilName: 'திப்பிலி சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Rakta Punarnava Root', tamilName: 'சிவப்பு மூக்கிரட்டை / சாரணை', botanicalName: 'Boerhavia diffusa', role: 'Diuretic and kidney tonic', roleTa: 'சிறுநீரக நலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Pippali Churna prepared?',
-        questionTa: 'ருத்ரா திப்பிலி சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["pippali churna","ruthra pippali churna","churna","pippali","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திப்பிலி சூர்ணம்","ருத்ரா திப்பிலி சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra rakta punarnava churna', 'ruthra-rakta-punarnava-churna', 'ayurveda churna', 'rakta punarnava churna'],
+    tamilKeywords: ['ருத்ரா ரக்த புனர்நவா சூர்ணம் (சாரணை)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-020',
-    name: 'Ruthra Pippalimula Churna',
-    tamilName: 'ருத்ரா திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம்',
-    slug: 'ruthra-pippalimula-churna',
+    name: 'Ruthra Rasnadi Churna',
+    tamilName: 'ருத்ரா ராஸ்னாதி சூர்ணம்',
+    slug: 'ruthra-rasnadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness","respiratory"],
-    price: 135,
+    concerns: ['respiratory', 'joint-mobility'],
+    price: 140,
     originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Roots of long pepper for relieving chronic insomnia, abdominal flatulence, body aches, and deep cough. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கண்டந்திப்பிலி சூர்ணம்; தூக்கமின்மை, வாயு பிடிப்பு, நெஞ்சு சளி மற்றும் உடல் வலிகளை போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Pippalimula Churna (திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Roots of long pepper for relieving chronic insomnia, abdominal flatulence, body aches, and deep cough.',
-    traditionalRoleTa: 'கண்டந்திப்பிலி சூர்ணம்; தூக்கமின்மை, வாயு பிடிப்பு, நெஞ்சு சளி மற்றும் உடல் வலிகளை போக்கும்.',
-    badge: 'Deep Rest & Carminative',
-    badgeTa: 'தூக்கமின்மை & வாயு நிவாரணம்',
-    image: '/images/products/ruthra-pippalimula-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-pippalimula-churna/front.jpg',
-      '/images/products/ruthra-pippalimula-churna/angle.jpg',
-      '/images/products/ruthra-pippalimula-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-pippalimula-churna/front.jpg',
-      '/images/products/ruthra-pippalimula-churna/angle.jpg',
-      '/images/products/ruthra-pippalimula-churna/back.jpg'
-    ],
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical cranial application powder to prevent head colds, sinus congestion, and headache after hair wash.',
+    shortDescriptionTa: 'தலைக்குளித்த பின் நீர் கோர்த்தல், தலைபாரம், சளி மற்றும் ஒற்றைத் தலைவலியை தடுக்கும் உச்சிப் பொடி.',
+    description: 'Ruthra Rasnadi Churna is traditionally rubbed onto the crown of the head (Bregma) after bathing. Its warming botanicals (Rasna, Ashwagandha, Devadaru) absorb moisture and prevent sinusitis.',
+    descriptionTa: 'ராஸ்னா, தேவதாரு உள்ளிட்ட மூலிகைகளின் கூட்டு. உச்சந்தலையில் தேய்ப்பதால் சைனஸ், தலைபாரம் மற்றும் சளி பிடிக்காமல் தடுக்கும்.',
+    traditionalRole: 'External cranial protective powder and anti-catarrhal.',
+    traditionalRoleTa: 'உச்சி தேய்ப்பு சூர்ணம், தலைபாரம் நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Pippalimula Churna Classical Composition', tamilName: 'திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Rasna & Devadaru blend', tamilName: 'ராஸ்னா & தேவதாரு', botanicalName: 'Alpinia galanga & Cedrus deodara', role: 'Absorbs cranial moisture', roleTa: 'தலை நீர் உறிஞ்சி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Pippalimula Churna prepared?',
-        questionTa: 'ருத்ரா திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["pippalimula churna","ruthra pippalimula churna","churna","pippalimula","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம்","ருத்ரா திப்பிலி மூலம் (கண்டந்திப்பிலி) சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra rasnadi churna', 'ruthra-rasnadi-churna', 'ayurveda churna', 'rasnadi churna'],
+    tamilKeywords: ['ருத்ரா ராஸ்னாதி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-021',
-    name: 'Ruthra Pushyanuga Churna',
-    tamilName: 'ருத்ரா புஷ்யானுக சூர்ணம்',
-    slug: 'ruthra-pushyanuga-churna',
+    name: 'Ruthra Sarasvata Churna',
+    tamilName: 'ருத்ரா சரஸ்வத சூர்ணம்',
+    slug: 'ruthra-sarasvata-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["womens-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Classical multi-herb gynecological astringent for menorrhagia, metrorrhagia, leucorrhea, and hemorrhoids. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'மகளிர் உதிரப்போக்கு, வெள்ளைப்படுதல், கருப்பை வீக்கம் மற்றும் மூல நோய்க்கு சிறந்த பாரம்பரிய சூர்ணம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Pushyanuga Churna (புஷ்யானுக சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா புஷ்யானுக சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Classical multi-herb gynecological astringent for menorrhagia, metrorrhagia, leucorrhea, and hemorrhoids.',
-    traditionalRoleTa: 'மகளிர் உதிரப்போக்கு, வெள்ளைப்படுதல், கருப்பை வீக்கம் மற்றும் மூல நோய்க்கு சிறந்த பாரம்பரிய சூர்ணம்.',
-    badge: 'Women’s Classical Care',
-    badgeTa: 'மகளிர் உதிரப்போக்கு நிவாரணம்',
-    image: '/images/products/ruthra-pushyanuga-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-pushyanuga-churna/front.jpg',
-      '/images/products/ruthra-pushyanuga-churna/angle.jpg',
-      '/images/products/ruthra-pushyanuga-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-pushyanuga-churna/front.jpg',
-      '/images/products/ruthra-pushyanuga-churna/angle.jpg',
-      '/images/products/ruthra-pushyanuga-churna/back.jpg'
-    ],
+    concerns: ['metabolic-wellness'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical nerve tonic formulation for speech clarity, intellect, memory retention, and mental composure.',
+    shortDescriptionTa: 'பேச்சு தெளிவு, புத்திக்கூர்மை, ஞாபக சக்தி மற்றும் நரம்பு அமைதி தரும் பாரம்பரிய சரஸ்வத சூர்ணம்.',
+    description: 'Ruthra Sarasvata Churna incorporates Brahmi, Vacha, Shankhapushpi, and Kushtha. It supports students, professionals, and the elderly seeking sharp cognitive processing and articulate speech.',
+    descriptionTa: 'பிராமி, வசம்பு, சங்குபுஷ்பி அடங்கிய உன்னத அறிவு டானிக். திக்குவாய், ஞாபக மறதி மற்றும் நரம்பு சோர்வை போக்கும்.',
+    traditionalRole: 'Nootropic, Medhya Rasayana, and speech enhancer.',
+    traditionalRoleTa: 'அறிவுத்திறன் மற்றும் நினைவாற்றல் பெருக்கி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Pushyanuga Churna Classical Composition', tamilName: 'புஷ்யானுக சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Brahmi & Vacha compound', tamilName: 'பிராமி மற்றும் வசம்பு கூட்டு', botanicalName: 'Bacopa monnieri & Acorus calamus', role: 'Nerve and intellect booster', roleTa: 'நரம்பு மற்றும் மூளை ஊக்கி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Pushyanuga Churna prepared?',
-        questionTa: 'ருத்ரா புஷ்யானுக சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["pushyanuga churna","ruthra pushyanuga churna","churna","pushyanuga","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["புஷ்யானுக சூர்ணம்","ருத்ரா புஷ்யானுக சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra sarasvata churna', 'ruthra-sarasvata-churna', 'ayurveda churna', 'sarasvata churna'],
+    tamilKeywords: ['ருத்ரா சரஸ்வத சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-022',
-    name: 'Ruthra Shatavari Churna',
-    tamilName: 'ருத்ரா சதாவரி (தண்ணீர்விட்டான்) சூர்ணம்',
-    slug: 'ruthra-shatavari-churna',
+    name: 'Ruthra Sarpagandha Churna',
+    tamilName: 'ருத்ரா சர்பகந்தா சூர்ணம் (சிவனமல்பொடி)',
+    slug: 'ruthra-sarpagandha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["womens-wellness","metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
+    concerns: ['metabolic-wellness'],
+    price: 220,
+    originalPrice: 260,
     packSize: '50g',
     packSizeTa: '50 கிராம்',
-    shortDescription: 'Asparagus racemosus root powder for female reproductive nourishment, lactation, cooling Pitta, and vitality. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'தண்ணீர்விட்டான் கிழங்கு; தாய்ப்பால் பெருக்கி, பெண் ஹார்மோன் சமநிலை, உடல் குளிர்ச்சி மற்றும் தேக பலம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Shatavari Churna (சதாவரி (தண்ணீர்விட்டான்) சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சதாவரி (தண்ணீர்விட்டான்) சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Asparagus racemosus root powder for female reproductive nourishment, lactation, cooling Pitta, and vitality.',
-    traditionalRoleTa: 'தண்ணீர்விட்டான் கிழங்கு; தாய்ப்பால் பெருக்கி, பெண் ஹார்மோன் சமநிலை, உடல் குளிர்ச்சி மற்றும் தேக பலம்.',
-    badge: 'Female Tonic & Lactation',
-    badgeTa: 'மகளிர் டானிக் & தாய்ப்பால்',
-    image: '/images/products/ruthra-shatavari-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-shatavari-churna/front.jpg',
-      '/images/products/ruthra-shatavari-churna/angle.jpg',
-      '/images/products/ruthra-shatavari-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-shatavari-churna/front.jpg',
-      '/images/products/ruthra-shatavari-churna/angle.jpg',
-      '/images/products/ruthra-shatavari-churna/back.jpg'
-    ],
+    shortDescription: 'Classical Rauvolfia serpentina root powder for high blood pressure, insomnia, and nervous anxiety.',
+    shortDescriptionTa: 'உயர் ரத்த அழுத்தம், தூக்கமின்மை மற்றும் பதட்டத்தை தணிக்கும் உன்னத சர்பகந்தா சூர்ணம்.',
+    description: 'Ruthra Sarpagandha Churna is standardized from wild Rauvolfia roots. It naturally calms an agitated nervous system, stabilizes elevated arterial pressure, and induces serene sleep.',
+    descriptionTa: 'ரத்த அழுத்தத்தை சீராக்கி, நரம்பு மண்டலத்தை அமைதிப்படுத்தி நிம்மதியான தூக்கத்தை அளிக்கும் பாரம்பரிய மூலிகை சூர்ணம்.',
+    traditionalRole: 'Antihypertensive and central nervous system sedative.',
+    traditionalRoleTa: 'ரத்த அழுத்த சமன் மற்றும் தூக்கம் தூண்டி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Shatavari Churna Classical Composition', tamilName: 'சதாவரி (தண்ணீர்விட்டான்) சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Sarpagandha Root', tamilName: 'சர்பகந்தா வேர்', botanicalName: 'Rauvolfia serpentina', role: 'Hypotensive and sedative', roleTa: 'ரத்த அழுத்தம் தணிப்பான்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Shatavari Churna prepared?',
-        questionTa: 'ருத்ரா சதாவரி (தண்ணீர்விட்டான்) சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["shatavari churna","ruthra shatavari churna","churna","shatavari","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சதாவரி (தண்ணீர்விட்டான்) சூர்ணம்","ருத்ரா சதாவரி (தண்ணீர்விட்டான்) சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra sarpagandha churna', 'ruthra-sarpagandha-churna', 'ayurveda churna', 'sarpagandha churna'],
+    tamilKeywords: ['ருத்ரா சர்பகந்தா சூர்ணம் (சிவனமல்பொடி)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-023',
-    name: 'Ruthra Shigru Churna',
-    tamilName: 'ருத்ரா ஷிக்ரு (முருங்கை) சூர்ணம்',
-    slug: 'ruthra-shigru-churna',
+    name: 'Ruthra Sitopaladhi Churna',
+    tamilName: 'ருத்ரா சீதோபலாதி சூர்ணம்',
+    slug: 'ruthra-sitopaladhi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["joint-mobility","metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Moringa oleifera leaf powder packed with antioxidants, calcium, and minerals for joint strength and vitality. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'முருங்கை இலை சூர்ணம்; மூட்டு வலி நிவாரணம், எலும்பு வலிமை, ரத்த சோகை நீக்கம் மற்றும் இயற்கை சத்துக்கள். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Shigru Churna (ஷிக்ரு (முருங்கை) சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா ஷிக்ரு (முருங்கை) சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Moringa oleifera leaf powder packed with antioxidants, calcium, and minerals for joint strength and vitality.',
-    traditionalRoleTa: 'முருங்கை இலை சூர்ணம்; மூட்டு வலி நிவாரணம், எலும்பு வலிமை, ரத்த சோகை நீக்கம் மற்றும் இயற்கை சத்துக்கள்.',
-    badge: 'Superfood & Joint Strength',
-    badgeTa: 'இயற்கை சத்து & மூட்டு பலம்',
-    image: '/images/products/ruthra-shigru-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-shigru-churna/front.jpg',
-      '/images/products/ruthra-shigru-churna/angle.jpg',
-      '/images/products/ruthra-shigru-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-shigru-churna/front.jpg',
-      '/images/products/ruthra-shigru-churna/angle.jpg',
-      '/images/products/ruthra-shigru-churna/back.jpg'
-    ],
+    concerns: ['respiratory'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Famous sweet botanical blend for dry/wet cough, bronchial irritation, chest congestion, and debility.',
+    shortDescriptionTa: 'இருமல், சளி, தொண்டை கரகரப்பு, மூச்சுக்குழாய் அழற்சி மற்றும் காய்ச்சல் பிந்தைய சோர்வை போக்கும் சீதோபலாதி சூர்ணம்.',
+    description: 'Ruthra Sitopaladhi Churna blends sugar candy (Mishri), Vamshalochana (Bamboo silica), Pippali, Ela, and Tvak. Taken with raw honey and ghee, it coats raw bronchial airways and promotes rapid recovery.',
+    descriptionTa: 'படிக வெல்லம், மூங்கில் உப்பு, திப்பிலி, ஏலக்காய், இலவங்கப்பட்டை அடங்கிய சுவையான இருமல் நிவாரணி. குழந்தைகளுக்கும் ஏற்றது.',
+    traditionalRole: 'Gentle demulcent, antitussive, and lung rejuvenator.',
+    traditionalRoleTa: 'இருமல் நிவாரணி மற்றும் நுரையீரல் பலப்படுத்தி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Shigru Churna Classical Composition', tamilName: 'ஷிக்ரு (முருங்கை) சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Mishri & Vamshalochana blend', tamilName: 'படிக வெல்லம் & மூங்கில் உப்பு கூட்டு', botanicalName: 'Bambusa arundinacea compound', role: 'Demulcent expectorant', roleTa: 'தொண்டை மென்மைப்படுத்தி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Shigru Churna prepared?',
-        questionTa: 'ருத்ரா ஷிக்ரு (முருங்கை) சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["shigru churna","ruthra shigru churna","churna","shigru","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["ஷிக்ரு (முருங்கை) சூர்ணம்","ருத்ரா ஷிக்ரு (முருங்கை) சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra sitopaladhi churna', 'ruthra-sitopaladhi-churna', 'ayurveda churna', 'sitopaladhi churna'],
+    tamilKeywords: ['ருத்ரா சீதோபலாதி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-024',
-    name: 'Ruthra Sunthi Churna',
-    tamilName: 'ருத்ரா சுக்கு சூர்ணம்',
-    slug: 'ruthra-sunthi-churna',
+    name: 'Ruthra Tulasi Churna',
+    tamilName: 'ருத்ரா துளசி சூர்ணம்',
+    slug: 'ruthra-tulasi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["digestive-wellness","respiratory"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified dry ginger powder for chronic dyspepsia, motion sickness, colds, nausea, and joint pain. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சுக்கு சூர்ணம்; அஜீரணம், தலைபாரம், சளி, பித்த வாந்தி மற்றும் மூட்டு வலிகளை போக்கும் அருமருந்து. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Sunthi Churna (சுக்கு சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சுக்கு சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified dry ginger powder for chronic dyspepsia, motion sickness, colds, nausea, and joint pain.',
-    traditionalRoleTa: 'சுக்கு சூர்ணம்; அஜீரணம், தலைபாரம், சளி, பித்த வாந்தி மற்றும் மூட்டு வலிகளை போக்கும் அருமருந்து.',
-    badge: 'Universal Digestive Root',
-    badgeTa: 'சகல செரிமான நிவாரணி',
-    image: '/images/products/ruthra-sunthi-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-sunthi-churna/front.jpg',
-      '/images/products/ruthra-sunthi-churna/angle.jpg',
-      '/images/products/ruthra-sunthi-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-sunthi-churna/front.jpg',
-      '/images/products/ruthra-sunthi-churna/angle.jpg',
-      '/images/products/ruthra-sunthi-churna/back.jpg'
-    ],
+    concerns: ['respiratory', 'metabolic-wellness'],
+    price: 130,
+    originalPrice: 150,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Pure Holy Basil (Ocimum sanctum) powder for respiratory immunity, seasonal allergies, and cellular detox.',
+    shortDescriptionTa: 'நோய் எதிர்ப்பு சக்தி, சளி, தும்மல் மற்றும் சுவாச நலம் காக்கும் தூய துளசி சூர்ணம்.',
+    description: 'Ruthra Tulasi Churna contains pure milled Rama & Krishna Tulsi leaves rich in eugenol and essential terpenes to clear mucous congestion and enhance respiratory vital capacity.',
+    descriptionTa: 'பாரம்பரிய புனித துளசி இலை பொடி. தினசரி வெந்நீரில் பருகி வர கப நோய்கள் மற்றும் ஒவ்வாமை நீங்கும்.',
+    traditionalRole: 'Respiratory tonic, antiviral, and immunomodulator.',
+    traditionalRoleTa: 'சுவாச பாதை பாதுகாப்பு மற்றும் நோய் எதிர்ப்பு சக்தி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Sunthi Churna Classical Composition', tamilName: 'சுக்கு சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Tulasi Leaves', tamilName: 'துளசி இலை', botanicalName: 'Ocimum sanctum', role: 'Antiviral and bronchodilator', roleTa: 'சுவாச நலன்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Sunthi Churna prepared?',
-        questionTa: 'ருத்ரா சுக்கு சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["sunthi churna","ruthra sunthi churna","churna","sunthi","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சுக்கு சூர்ணம்","ருத்ரா சுக்கு சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra tulasi churna', 'ruthra-tulasi-churna', 'ayurveda churna', 'tulasi churna'],
+    tamilKeywords: ['ருத்ரா துளசி சூர்ணம்', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-025',
-    name: 'Ruthra Tankana Churna',
-    tamilName: 'ருத்ரா வெண்கார சூர்ணம்',
-    slug: 'ruthra-tankana-churna',
+    name: 'Ruthra Yasti Churna',
+    tamilName: 'ருத்ரா யஷ்டி சூர்ணம் (அதிமதுரம்)',
+    slug: 'ruthra-yasti-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
-    concerns: ["respiratory","digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified Borax compound for thick phlegm expectoration, stomatitis mouth ulcers, and urinary gravel. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சுத்தி செய்த வெண்காரம்; தொண்டை சளி அடைப்பு, வாய் புண்கள் மற்றும் சிறுநீரக அடைப்பு போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Tankana Churna (வெண்கார சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா வெண்கார சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified Borax compound for thick phlegm expectoration, stomatitis mouth ulcers, and urinary gravel.',
-    traditionalRoleTa: 'சுத்தி செய்த வெண்காரம்; தொண்டை சளி அடைப்பு, வாய் புண்கள் மற்றும் சிறுநீரக அடைப்பு போக்கும்.',
-    badge: 'Purified Borax Calx',
-    badgeTa: 'வெண்கார சூர்ணம்',
-    image: '/images/products/ruthra-tankana-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-tankana-churna/front.jpg',
-      '/images/products/ruthra-tankana-churna/angle.jpg',
-      '/images/products/ruthra-tankana-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-tankana-churna/front.jpg',
-      '/images/products/ruthra-tankana-churna/angle.jpg',
-      '/images/products/ruthra-tankana-churna/back.jpg'
-    ],
+    concerns: ['respiratory', 'digestive-wellness', 'skin-hair'],
+    price: 150,
+    originalPrice: 180,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical Glycyrrhiza glabra (Licorice) root powder for sore throat, gastric ulcers, and skin brightening.',
+    shortDescriptionTa: 'தொண்டை வலி, குரல் கம்மல், வயிற்றுப்புண் மற்றும் தோல் பளபளப்பிற்கு உதவும் அதிமதுர சூர்ணம்.',
+    description: 'Ruthra Yasti Churna (Mulethi) provides soothing mucosal protection for inflamed throats and hyperacidic stomach linings while enhancing natural melanin regulation.',
+    descriptionTa: 'குரல்வளை மற்றும் வயிற்றுப் புண்களை ஆற்றும் அதிமதுர சூர்ணம். தொண்டை கரகரப்புக்கு உடனடி நிவாரணம் தரும்.',
+    traditionalRole: 'Demulcent, mucosal protector, and voice restorative.',
+    traditionalRoleTa: 'தொண்டை இதம் மற்றும் குடல் புண் நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Tankana Churna Classical Composition', tamilName: 'வெண்கார சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Yastimadhu Root (Licorice)', tamilName: 'அதிமதுரம்', botanicalName: 'Glycyrrhiza glabra', role: 'Demulcent and ulcer healer', roleTa: 'தொண்டை மற்றும் குடல் புண் ஆற்றி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Tankana Churna prepared?',
-        questionTa: 'ருத்ரா வெண்கார சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["tankana churna","ruthra tankana churna","churna","tankana","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["வெண்கார சூர்ணம்","ருத்ரா வெண்கார சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra yasti churna', 'ruthra-yasti-churna', 'ayurveda churna', 'yasti churna'],
+    tamilKeywords: ['ருத்ரா யஷ்டி சூர்ணம் (அதிமதுரம்)', 'சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-026',
-    name: 'Ruthra Trikatu Churna',
-    tamilName: 'ருத்ரா திரிகடு சூர்ணம்',
-    slug: 'ruthra-trikatu-churna',
+    name: 'Ruthra Amruthotharam Kvatha Churna',
+    tamilName: 'ருத்ரா அம்ருதோத்தரம் க்வாத சூர்ணம்',
+    slug: 'ruthra-amruthotharam-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Churna',
-    formulationTa: 'சூர்ணம்',
-    categoryGroup: 'churna',
-    concerns: ["respiratory","digestive-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Sunthi, Maricha, Pippali trio accelerating metabolic rate, clearing sinus congestion, and boosting bioavailability. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சுக்கு, மிளகு, திப்பிலி சேர்ந்த முக்கூட்டு; சளி, இருமல், செரிமான குறைபாடு போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Trikatu Churna (திரிகடு சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திரிகடு சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Sunthi, Maricha, Pippali trio accelerating metabolic rate, clearing sinus congestion, and boosting bioavailability.',
-    traditionalRoleTa: 'சுக்கு, மிளகு, திப்பிலி சேர்ந்த முக்கூட்டு; சளி, இருமல், செரிமான குறைபாடு போக்கும்.',
-    badge: 'Metabolic & Respiratory Fire',
-    badgeTa: 'திரிகடுகு செரிமானம்',
-    image: '/images/products/ruthra-trikatu-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-trikatu-churna/front.jpg',
-      '/images/products/ruthra-trikatu-churna/angle.jpg',
-      '/images/products/ruthra-trikatu-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-trikatu-churna/front.jpg',
-      '/images/products/ruthra-trikatu-churna/angle.jpg',
-      '/images/products/ruthra-trikatu-churna/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['metabolic-wellness', 'digestive-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical three-herb decoction (Guduchi, Haritaki, Shunthi) for intermittent fevers, sluggish liver, and Ama toxicity.',
+    shortDescriptionTa: 'சீந்தில், கடுக்காய், சுக்கு கலந்த உன்னத குடிநீர். காய்ச்சல், கல்லீரல் மந்தம் மற்றும் உடல் நச்சுகளை நீக்கும்.',
+    description: 'Ruthra Amruthotharam Kvatha Churna is a prime classical antipyretic decoction that eliminates deep metabolic toxins (Ama), cleanses the lymphatic channels, and restores normal digestion.',
+    descriptionTa: 'காய்ச்சலின் போது ஏற்படும் உடல் சோர்வு, பசியின்மை மற்றும் அஜீரணத்தை போக்கும் பாரம்பரிய கஷாயப் பொடி.',
+    traditionalRole: 'Antipyretic, Ama-detoxifier, and hepatic promoter.',
+    traditionalRoleTa: 'காய்ச்சல் மற்றும் நச்சு நீக்கி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Trikatu Churna Classical Composition', tamilName: 'திரிகடு சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Guduchi (Tinospora cordifolia)', tamilName: 'சீந்தில் கொடி', botanicalName: 'Tinospora cordifolia', role: 'Immunomodulator and antipyretic', roleTa: 'காய்ச்சல் தணிப்பான்', amount: '50%' },
+      { name: 'Haritaki (Terminalia chebula)', tamilName: 'கடுக்காய்', botanicalName: 'Terminalia chebula', role: 'Mild laxative and detoxifier', roleTa: 'குடல் சுத்தி', amount: '30%' },
+      { name: 'Shunthi (Dry Ginger)', tamilName: 'சுக்கு', botanicalName: 'Zingiber officinale', role: 'Kindles digestive fire', roleTa: 'செரிமான தூண்டி', amount: '20%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Trikatu Churna prepared?',
-        questionTa: 'ருத்ரா திரிகடு சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["trikatu churna","ruthra trikatu churna","churna","trikatu","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திரிகடு சூர்ணம்","ருத்ரா திரிகடு சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra amruthotharam kvatha churna', 'ruthra-amruthotharam-kvatha-churna', 'ayurveda kvatha-churna', 'amruthotharam kvatha churna'],
+    tamilKeywords: ['ருத்ரா அம்ருதோத்தரம் க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-027',
-    name: 'Ruthra Triphala Churna',
-    tamilName: 'ருத்ரா திரிபலா சூர்ணம்',
-    slug: 'ruthra-triphala-churna',
+    name: 'Ruthra Astavarga Kvatha Churna',
+    tamilName: 'ருத்ரா அஷ்டவர்க்க க்வாத சூர்ணம்',
+    slug: 'ruthra-astavarga-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Churna',
-    formulationTa: 'சூர்ணம்',
-    categoryGroup: 'churna',
-    concerns: ["digestive-wellness","metabolic-wellness","skin-hair"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Haritaki, Bibhitaki, Amalaki compound for gentle colon detox, digestive rejuvenation, and ocular health. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கடுக்காய், நெல்லிக்காய், தான்றிக்காய்; மலக்குடல் சுத்தி, கண் பார்வை, ரத்த சுத்தி மற்றும் இளமை காக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Triphala Churna (திரிபலா சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திரிபலா சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Haritaki, Bibhitaki, Amalaki compound for gentle colon detox, digestive rejuvenation, and ocular health.',
-    traditionalRoleTa: 'கடுக்காய், நெல்லிக்காய், தான்றிக்காய்; மலக்குடல் சுத்தி, கண் பார்வை, ரத்த சுத்தி மற்றும் இளமை காக்கும்.',
-    badge: 'Master Colon Cleanser',
-    badgeTa: 'திரிபலா கல்ப சூர்ணம்',
-    image: '/images/products/ruthra-triphala-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-triphala-churna/front.jpg',
-      '/images/products/ruthra-triphala-churna/angle.jpg',
-      '/images/products/ruthra-triphala-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-triphala-churna/front.jpg',
-      '/images/products/ruthra-triphala-churna/angle.jpg',
-      '/images/products/ruthra-triphala-churna/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['joint-mobility'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Eight-herb classical formulation for rheumatic joint stiffness, hemiplegia, and neurological Vata conditions.',
+    shortDescriptionTa: 'எட்டு மூலிகைகள் கலந்த வாத நிவாரண கஷாயப் பொடி. பக்கவாதம், மூட்டு பிடிப்பு மற்றும் நரம்பு வலிகளுக்கு உகந்தது.',
+    description: 'Ruthra Astavarga Kvatha Churna combines 8 potent neuro-muscular botanicals (Bala, Sahachara, Eranda, Rasna, etc.) to soothe pinched nerves and alleviate severe Vata pain.',
+    descriptionTa: 'வாத நாடிகளை பலப்படுத்தி, தசை வலி மற்றும் நரம்பு பலவீனத்தை போக்கும் பாரம்பரிய கஷாயம்.',
+    traditionalRole: 'Vata-pacifying, neuro-restorative decoction.',
+    traditionalRoleTa: 'வாத நாடி பலம் மற்றும் மூட்டு வலி நிவாரணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Triphala Churna Classical Composition', tamilName: 'திரிபலா சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Astavarga Herbal Blend', tamilName: 'அஷ்டவர்க்க மூலிகைகள்', botanicalName: 'Classical 8-herb compound', role: 'Calms Vata and muscle stiffness', roleTa: 'வாத தணிப்பான்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Triphala Churna prepared?',
-        questionTa: 'ருத்ரா திரிபலா சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["triphala churna","ruthra triphala churna","churna","triphala","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திரிபலா சூர்ணம்","ருத்ரா திரிபலா சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra astavarga kvatha churna', 'ruthra-astavarga-kvatha-churna', 'ayurveda kvatha-churna', 'astavarga kvatha churna'],
+    tamilKeywords: ['ருத்ரா அஷ்டவர்க்க க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-028',
-    name: 'Ruthra Vidanga Churna',
-    tamilName: 'ருத்ரா வாய்விடங்க சூர்ணம்',
-    slug: 'ruthra-vidanga-churna',
+    name: 'Ruthra Dasamula Kvatha Churna',
+    tamilName: 'ருத்ரா தசமூல க்வாத சூர்ணம்',
+    slug: 'ruthra-dasamula-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Churna',
-    formulationTa: 'சூர்ணம்',
-    categoryGroup: 'churna',
-    concerns: ["digestive-wellness","metabolic-wellness"],
-    price: 135,
-    originalPrice: 160,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Embelia ribes powder, the supreme Ayurvedic anthelmintic for expelling intestinal worms and cleansing skin. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'வாய்விடங்கம் சூர்ணம்; குடற்புழுக்கள், நாக்குப்பூச்சிகளை அகற்றி குடல் ஆரோக்கியம் காக்கும் சிறந்த மருந்து. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Vidanga Churna (வாய்விடங்க சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா வாய்விடங்க சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Embelia ribes powder, the supreme Ayurvedic anthelmintic for expelling intestinal worms and cleansing skin.',
-    traditionalRoleTa: 'வாய்விடங்கம் சூர்ணம்; குடற்புழுக்கள், நாக்குப்பூச்சிகளை அகற்றி குடல் ஆரோக்கியம் காக்கும் சிறந்த மருந்து.',
-    badge: 'Supreme Anthelmintic',
-    badgeTa: 'குடற்புழு நாசினி',
-    image: '/images/products/ruthra-vidanga-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-vidanga-churna/front.jpg',
-      '/images/products/ruthra-vidanga-churna/angle.jpg',
-      '/images/products/ruthra-vidanga-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-vidanga-churna/front.jpg',
-      '/images/products/ruthra-vidanga-churna/angle.jpg',
-      '/images/products/ruthra-vidanga-churna/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['respiratory', 'womens-wellness', 'joint-mobility'],
+    price: 180,
+    originalPrice: 210,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Ten classical medicinal roots decoction for postpartum recovery, respiratory distress, and generalized body aches.',
+    shortDescriptionTa: 'பத்து மூலிகை வேர்களின் கூட்டு. பிரசவத்திற்கு பிந்தைய நலம், இருமல் மற்றும் உடல் வலிகளை போக்கும்.',
+    description: 'Ruthra Dasamula Kvatha Churna brings together 5 tree roots (Brihat Panchamula) and 5 shrub roots (Laghu Panchamula) to pacify systemic Vata and support respiratory harmony.',
+    descriptionTa: 'தசமூலம் எனப்படும் பத்து புனித வேர்கள் அடங்கிய கஷாயப் பொடி. உடல் வலிகளை நீக்கி புத்துணர்ச்சி தரும்.',
+    traditionalRole: 'Systemic Vata-Kapha pacifier and postpartum tonic.',
+    traditionalRoleTa: 'வாத நிவாரணம் மற்றும் பிரசவ நலம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Vidanga Churna Classical Composition', tamilName: 'வாய்விடங்க சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Dasamula (10 Sacred Roots)', tamilName: 'தசமூல வேர்கள்', botanicalName: '10 Roots Compound', role: 'Deep anti-inflammatory and restorative', roleTa: 'உடல் நலம் காக்கும் பத்து வேர்கள்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Vidanga Churna prepared?',
-        questionTa: 'ருத்ரா வாய்விடங்க சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["vidanga churna","ruthra vidanga churna","churna","vidanga","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["வாய்விடங்க சூர்ணம்","ருத்ரா வாய்விடங்க சூர்ணம்","சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra dasamula kvatha churna', 'ruthra-dasamula-kvatha-churna', 'ayurveda kvatha-churna', 'dasamula kvatha churna'],
+    tamilKeywords: ['ருத்ரா தசமூல க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: KWATHA CHURNA (2 SKUs)
-  // ==========================================
   {
     id: 'prod-ayurveda-029',
-    name: 'Ruthra Dashamoola Kwatha Churna',
-    tamilName: 'ருத்ரா தசமூல க்வாத சூர்ணம்',
-    slug: 'ruthra-dashamoola-kwatha-churna',
+    name: 'Ruthra Dasamula Katutraya Kvatha Churna',
+    tamilName: 'ருத்ரா தசமூல கடுத்ரய க்வாத சூர்ணம்',
+    slug: 'ruthra-dasamula-katutraya-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Kwatha Churna',
+    formulation: 'Kvatha Churna',
     formulationTa: 'க்வாத சூர்ணம்',
-    categoryGroup: 'kwatha-churna',
-    concerns: ["joint-mobility","respiratory"],
-    price: 155,
-    originalPrice: 180,
+    categoryGroup: 'kvatha-churna',
+    concerns: ['respiratory'],
+    price: 180,
+    originalPrice: 220,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
-    shortDescription: 'Coarse ten-root decoction blend for severe neuromuscular disorders, sciatica, cervical spondylosis, and cough. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பத்து மூலிகை வேர் கஷாய தூள்; வாத நோய்கள், இடுப்பு வலி, சியாட்டிகா, ஆஸ்துமா மற்றும் மூட்டு வீக்கம் போக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Dashamoola Kwatha Churna (தசமூல க்வாத சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா தசமூல க்வாத சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Coarse ten-root decoction blend for severe neuromuscular disorders, sciatica, cervical spondylosis, and cough.',
-    traditionalRoleTa: 'பத்து மூலிகை வேர் கஷாய தூள்; வாத நோய்கள், இடுப்பு வலி, சியாட்டிகா, ஆஸ்துமா மற்றும் மூட்டு வீக்கம் போக்கி.',
-    badge: 'Ten Roots Decoction',
-    badgeTa: 'தசமூல கஷாயம்',
-    image: '/images/products/ruthra-dashamoola-kwatha-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-dashamoola-kwatha-churna/front.jpg',
-      '/images/products/ruthra-dashamoola-kwatha-churna/angle.jpg',
-      '/images/products/ruthra-dashamoola-kwatha-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-dashamoola-kwatha-churna/front.jpg',
-      '/images/products/ruthra-dashamoola-kwatha-churna/angle.jpg',
-      '/images/products/ruthra-dashamoola-kwatha-churna/back.jpg'
-    ],
+    shortDescription: 'Ten roots combined with three warming pungents (Trikatu) for stubborn phlegm, bronchitis, and chest tightness.',
+    shortDescriptionTa: 'தசமூலம் மற்றும் திரிகடுகு கலந்த கஷாயப் பொடி. நெஞ்சு சளி, ஆஸ்துமா மற்றும் மூச்சடைப்பை நீக்கும்.',
+    description: 'Ruthra Dasamula Katutraya Kvatha Churna expels deep-seated chest mucous, expands constricted bronchia, and promotes easy unobstructed breathing.',
+    descriptionTa: 'நுரையீரலில் தங்கியுள்ள கபத்தை வெளியேற்றி, மூச்சுக்குழாயை விரிவடையச் செய்து சுவாசத்தை எளிதாக்கும்.',
+    traditionalRole: 'Bronchodilator, mucolytic, and Kapha-Vata pacifier.',
+    traditionalRoleTa: 'கபகாரி மற்றும் சுவாச பாதை விரிப்பான்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Dashamoola Kwatha Churna Classical Composition', tamilName: 'தசமூல க்வாத சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Dasamula & Trikatu', tamilName: 'தசமூலம் மற்றும் திரிகடுகு', botanicalName: '10 Roots with Piper & Ginger', role: 'Expels phlegm and opens airways', roleTa: 'சளி வெளியேற்றி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '10-15 grams boiled in 200ml water reduced to 50ml', instructionTa: '10-15 கிராம் பொடியை 200 மி.லி தண்ணீரில் இட்டு 50 மி.லியாக வற்றவைத்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Fresh warm decoction.', instructionTa: 'புதிய வெதுவெதுப்பான கஷாயம் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily before food.', instructionTa: 'தினமும் இருவேளை உணவுக்கு முன்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '10-15 grams boiled in 200ml water reduced to 50ml',
-      frequency: 'Twice daily',
-      timing: 'Twice daily before food',
-      vehicle: 'Fresh warm decoction',
-      amountTa: '10-15 கிராம் பொடியை 200 மி.லி தண்ணீரில் இட்டு 50 மி.லியாக வற்றவைத்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்கு முன்',
-      vehicleTa: 'புதிய வெதுவெதுப்பான கஷாயம்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Dashamoola Kwatha Churna prepared?',
-        questionTa: 'ருத்ரா தசமூல க்வாத சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["dashamoola kwatha churna","ruthra dashamoola kwatha churna","kwatha churna","dashamoola","kwatha","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["தசமூல க்வாத சூர்ணம்","ருத்ரா தசமூல க்வாத சூர்ணம்","க்வாத சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra dasamula katutraya kvatha churna', 'ruthra-dasamula-katutraya-kvatha-churna', 'ayurveda kvatha-churna', 'dasamula katutraya kvatha churna'],
+    tamilKeywords: ['ருத்ரா தசமூல கடுத்ரய க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-030',
-    name: 'Ruthra Triphala Kwatha Churna',
-    tamilName: 'ருத்ரா திரிபலா க்வாத சூர்ணம்',
-    slug: 'ruthra-triphala-kwatha-churna',
+    name: 'Ruthra Draksadi Kvatha Churna',
+    tamilName: 'ருத்ரா திராக்ஷாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-draksadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Kwatha Churna',
+    formulation: 'Kvatha Churna',
     formulationTa: 'க்வாத சூர்ணம்',
-    categoryGroup: 'kwatha-churna',
-    concerns: ["digestive-wellness","skin-hair"],
-    price: 155,
-    originalPrice: 180,
+    categoryGroup: 'kvatha-churna',
+    concerns: ['digestive-wellness', 'metabolic-wellness'],
+    price: 170,
+    originalPrice: 200,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
-    shortDescription: 'Coarse myrobalan blend for preparing fresh decoctions for eye wash, wound cleaning, and internal colon detox. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'திரிபலா கஷாய தூள்; கண் கழுவுதல், ஆறாத புண்களை கழுவுதல் மற்றும் குடல் சுத்திகரிப்புக்கு உகந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Triphala Kwatha Churna (திரிபலா க்வாத சூர்ணம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திரிபலா க்வாத சூர்ணம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Coarse myrobalan blend for preparing fresh decoctions for eye wash, wound cleaning, and internal colon detox.',
-    traditionalRoleTa: 'திரிபலா கஷாய தூள்; கண் கழுவுதல், ஆறாத புண்களை கழுவுதல் மற்றும் குடல் சுத்திகரிப்புக்கு உகந்தது.',
-    badge: 'Eye Wash & Detox Decoction',
-    badgeTa: 'திரிபலா கஷாயம்',
-    image: '/images/products/ruthra-triphala-kwatha-churna/front.jpg',
-    images: [
-      '/images/products/ruthra-triphala-kwatha-churna/front.jpg',
-      '/images/products/ruthra-triphala-kwatha-churna/angle.jpg',
-      '/images/products/ruthra-triphala-kwatha-churna/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-triphala-kwatha-churna/front.jpg',
-      '/images/products/ruthra-triphala-kwatha-churna/angle.jpg',
-      '/images/products/ruthra-triphala-kwatha-churna/back.jpg'
-    ],
+    shortDescription: 'Raisin and cooling herb decoction for excessive thirst, hangover, internal heat, and burning micturition.',
+    shortDescriptionTa: 'உலர் திராட்சை அடங்கிய குளிர்ச்சி கஷாயம். உடல் சூடு, அதீத தாகம், மயக்கம் மற்றும் பித்த வாந்தியை குணமாக்கும்.',
+    description: 'Ruthra Draksadi Kvatha Churna blends Draksha (raisins), Madhuka, Chandana, and Usheera to quickly pacify aggravated Pitta dosha and rehydrate the body.',
+    descriptionTa: 'பித்த அதிகரிப்பால் உண்டாகும் நெஞ்செரிச்சல், நாவறட்சி மற்றும் தலைசுற்றலை தணிக்கும் உன்னத கஷாயம்.',
+    traditionalRole: 'Cooling Pitta pacifier, antipyretic, and thirst quencher.',
+    traditionalRoleTa: 'பித்த சமனி மற்றும் உடல் குளிர்ச்சி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Triphala Kwatha Churna Classical Composition', tamilName: 'திரிபலா க்வாத சூர்ணம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Draksha (Raisins) & Herbs', tamilName: 'திராட்சை மற்றும் மூலிகைகள்', botanicalName: 'Vitis vinifera compound', role: 'Soothes internal burning and thirst', roleTa: 'தாகம் மற்றும் சூடு தணிப்பான்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '10-15 grams boiled in 200ml water reduced to 50ml', instructionTa: '10-15 கிராம் பொடியை 200 மி.லி தண்ணீரில் இட்டு 50 மி.லியாக வற்றவைத்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Fresh warm decoction.', instructionTa: 'புதிய வெதுவெதுப்பான கஷாயம் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily before food.', instructionTa: 'தினமும் இருவேளை உணவுக்கு முன்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '10-15 grams boiled in 200ml water reduced to 50ml',
-      frequency: 'Twice daily',
-      timing: 'Twice daily before food',
-      vehicle: 'Fresh warm decoction',
-      amountTa: '10-15 கிராம் பொடியை 200 மி.லி தண்ணீரில் இட்டு 50 மி.லியாக வற்றவைத்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்கு முன்',
-      vehicleTa: 'புதிய வெதுவெதுப்பான கஷாயம்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Triphala Kwatha Churna prepared?',
-        questionTa: 'ருத்ரா திரிபலா க்வாத சூர்ணம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["triphala kwatha churna","ruthra triphala kwatha churna","kwatha churna","triphala","kwatha","churna","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திரிபலா க்வாத சூர்ணம்","ருத்ரா திரிபலா க்வாத சூர்ணம்","க்வாத சூர்ணம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra draksadi kvatha churna', 'ruthra-draksadi-kvatha-churna', 'ayurveda kvatha-churna', 'draksadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா திராக்ஷாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: VATI (3 SKUs)
-  // ==========================================
   {
     id: 'prod-ayurveda-031',
-    name: 'Ruthra Triphala Guggulu',
-    tamilName: 'ருத்ரா திரிபலா குக்குலு',
-    slug: 'ruthra-triphala-guggulu',
+    name: 'Ruthra Gandharvahasthadi Kvatha Churna',
+    tamilName: 'ருத்ரா கந்தர்வஹஸ்தாதி க்வாத சூர்ணம் (ஆமணக்கு வேர்)',
+    slug: 'ruthra-gandharvahasthadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Vati',
-    formulationTa: 'வடி / குக்குலு',
-    categoryGroup: 'vati-guggulu',
-    concerns: ["digestive-wellness","metabolic-wellness"],
-    price: 195,
-    originalPrice: 230,
-    packSize: '60 Tablets',
-    packSizeTa: '60 மாத்திரைகள்',
-    shortDescription: 'Purified Commiphora mukul and Triphala for hemorrhoids, anal fistula, inflammatory swellings, and weight detox. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'மூல நோய், பவுத்திரம், ஆசனவாய் வீக்கம் மற்றும் ரத்த கொழுப்பை குறைக்க உதவும் குக்குலு மாத்திரை. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Triphala Guggulu (திரிபலா குக்குலு) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திரிபலா குக்குலு திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified Commiphora mukul and Triphala for hemorrhoids, anal fistula, inflammatory swellings, and weight detox.',
-    traditionalRoleTa: 'மூல நோய், பவுத்திரம், ஆசனவாய் வீக்கம் மற்றும் ரத்த கொழுப்பை குறைக்க உதவும் குக்குலு மாத்திரை.',
-    badge: 'Piles & Fistula Care',
-    badgeTa: 'மூலம் & பவுத்திர நிவாரணம்',
-    image: '/images/products/ruthra-triphala-guggulu/front.jpg',
-    images: [
-      '/images/products/ruthra-triphala-guggulu/front.jpg',
-      '/images/products/ruthra-triphala-guggulu/angle.jpg',
-      '/images/products/ruthra-triphala-guggulu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-triphala-guggulu/front.jpg',
-      '/images/products/ruthra-triphala-guggulu/angle.jpg',
-      '/images/products/ruthra-triphala-guggulu/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['digestive-wellness', 'joint-mobility'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Castor root classical decoction for chronic constipation, lower back pain, and trapped abdominal gas.',
+    shortDescriptionTa: 'ஆமணக்கு வேர் அடங்கிய கஷாயப் பொடி. மலச்சிக்கல், இடுப்பு வலி மற்றும் வாயு பிடிப்பை நீக்கும்.',
+    description: 'Ruthra Gandharvahasthadi Kvatha Churna utilizes Ricinus communis root with carminatives to stimulate intestinal peristalsis and downward Vata motion (Apana Vayu).',
+    descriptionTa: 'குடல் இயக்கத்தை சீராக்கி, ஆசனவாய் இறுக்கம் மற்றும் இடுப்பு சியாட்டிகா வலியை போக்கும் பாரம்பரிய கஷாயம்.',
+    traditionalRole: 'Anulomana (downward wind regulator) and gentle laxative.',
+    traditionalRoleTa: 'மலச்சிக்கல் நீக்கி மற்றும் வாயு சமனி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Triphala Guggulu Classical Composition', tamilName: 'திரிபலா குக்குலு மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Gandharvahasta (Castor Root)', tamilName: 'ஆமணக்கு வேர்', botanicalName: 'Ricinus communis', role: 'Promotes downward Vata flow', roleTa: 'குடல் இயக்கம் தூண்டி', amount: '60%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '1-2 Tablets', instructionTa: '1-2 மாத்திரைகள்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water or milk.', instructionTa: 'வெதுவெதுப்பான நீர் அல்லது பால் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '1-2 Tablets',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water or milk',
-      amountTa: '1-2 மாத்திரைகள்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர் அல்லது பால்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Triphala Guggulu prepared?',
-        questionTa: 'ருத்ரா திரிபலா குக்குலு எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["triphala guggulu","ruthra triphala guggulu","vati","triphala","guggulu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திரிபலா குக்குலு","ருத்ரா திரிபலா குக்குலு","வடி / குக்குலு","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra gandharvahasthadi kvatha churna', 'ruthra-gandharvahasthadi-kvatha-churna', 'ayurveda kvatha-churna', 'gandharvahasthadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா கந்தர்வஹஸ்தாதி க்வாத சூர்ணம் (ஆமணக்கு வேர்)', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-032',
-    name: 'Ruthra Kaishora Guggulu',
-    tamilName: 'ருத்ரா கைஷோர குக்குலு',
-    slug: 'ruthra-kaishora-guggulu',
+    name: 'Ruthra Guduchyaadi Kvatha Churna',
+    tamilName: 'ருத்ரா குடூச்யாதி க்வாத சூர்ணம் (சீந்தில் கஷாயம்)',
+    slug: 'ruthra-guduchyaadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Vati',
-    formulationTa: 'வடி / குக்குலு',
-    categoryGroup: 'vati-guggulu',
-    concerns: ["joint-mobility","skin-hair"],
-    price: 195,
-    originalPrice: 230,
-    packSize: '60 Tablets',
-    packSizeTa: '60 மாத்திரைகள்',
-    shortDescription: 'Celebrated compound for high uric acid, gouty arthritis, chronic skin inflammation, and blood purification. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'யூரிக் அமிலம் குறைப்பு, மூட்டு வாதம், கவுட் வலி, தோல் நோய்கள் மற்றும் ரத்த தூய்மைக்கு கைஷோர குக்குலு. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Kaishora Guggulu (கைஷோர குக்குலு) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா கைஷோர குக்குலு திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Celebrated compound for high uric acid, gouty arthritis, chronic skin inflammation, and blood purification.',
-    traditionalRoleTa: 'யூரிக் அமிலம் குறைப்பு, மூட்டு வாதம், கவுட் வலி, தோல் நோய்கள் மற்றும் ரத்த தூய்மைக்கு கைஷோர குக்குலு.',
-    badge: 'Uric Acid & Gout Relief',
-    badgeTa: 'யூரிக் அமிலம் & மூட்டு வாதம்',
-    image: '/images/products/ruthra-kaishora-guggulu/front.jpg',
-    images: [
-      '/images/products/ruthra-kaishora-guggulu/front.jpg',
-      '/images/products/ruthra-kaishora-guggulu/angle.jpg',
-      '/images/products/ruthra-kaishora-guggulu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-kaishora-guggulu/front.jpg',
-      '/images/products/ruthra-kaishora-guggulu/angle.jpg',
-      '/images/products/ruthra-kaishora-guggulu/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['metabolic-wellness', 'digestive-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Tinospora cordifolia compound for high fever, jaundice, bitter taste in mouth, and liver detox.',
+    shortDescriptionTa: 'சீந்தில் முதன்மை மூலிகையாக கொண்ட கஷாயம். காய்ச்சல், கல்லீரல் வீக்கம், மஞ்சள் காமாலைக்கு உகந்தது.',
+    description: 'Ruthra Guduchyaadi Kvatha Churna purifies the blood, enhances white blood cell defense, and revitalizes liver parenchyma function.',
+    descriptionTa: 'ரத்த அணுக்களை பாதுகாத்து, உடலின் நோய் எதிர்ப்பு ஆற்றலை பலப்படுத்தும் பாரம்பரிய கஷாயப் பொடி.',
+    traditionalRole: 'Hepato-protective, antiviral, and immunomodulatory decoction.',
+    traditionalRoleTa: 'கல்லீரல் பாதுகாப்பு மற்றும் நோய் எதிர்ப்பு.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Kaishora Guggulu Classical Composition', tamilName: 'கைஷோர குக்குலு மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Guduchi & Bitter Botanicals', tamilName: 'சீந்தில் மற்றும் மூலிகைகள்', botanicalName: 'Tinospora cordifolia compound', role: 'Immunity and liver detox', roleTa: 'நோய் எதிர்ப்பு மற்றும் நச்சு நீக்கம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '1-2 Tablets', instructionTa: '1-2 மாத்திரைகள்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water or milk.', instructionTa: 'வெதுவெதுப்பான நீர் அல்லது பால் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '1-2 Tablets',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water or milk',
-      amountTa: '1-2 மாத்திரைகள்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர் அல்லது பால்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Kaishora Guggulu prepared?',
-        questionTa: 'ருத்ரா கைஷோர குக்குலு எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["kaishora guggulu","ruthra kaishora guggulu","vati","kaishora","guggulu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["கைஷோர குக்குலு","ருத்ரா கைஷோர குக்குலு","வடி / குக்குலு","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra guduchyaadi kvatha churna', 'ruthra-guduchyaadi-kvatha-churna', 'ayurveda kvatha-churna', 'guduchyaadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா குடூச்யாதி க்வாத சூர்ணம் (சீந்தில் கஷாயம்)', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-033',
-    name: 'Ruthra Yogaraja Guggulu',
-    tamilName: 'ருத்ரா யோகராஜ குக்குலு',
-    slug: 'ruthra-yogaraja-guggulu',
+    name: 'Ruthra Indukantham Kvathachurna',
+    tamilName: 'ருத்ரா இந்து காந்தம் க்வாத சூர்ணம்',
+    slug: 'ruthra-indukantham-kvathachurna',
     medicalSystem: 'ayurveda',
-    formulation: 'Vati',
-    formulationTa: 'வடி / குக்குலு',
-    categoryGroup: 'vati-guggulu',
-    concerns: ["joint-mobility"],
-    price: 195,
-    originalPrice: 230,
-    packSize: '60 Tablets',
-    packSizeTa: '60 மாத்திரைகள்',
-    shortDescription: 'Potent Vata pacifier for severe rheumatoid arthritis, osteoarthritis, chronic back pain, and joint stiffness. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'முடக்கு வாதம், மூட்டு தேய்மானம், முதுகு தண்டுவட வலி மற்றும் தசை இறுக்கத்தை போக்கும் யோகராஜ குக்குலு. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Yogaraja Guggulu (யோகராஜ குக்குலு) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா யோகராஜ குக்குலு திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Potent Vata pacifier for severe rheumatoid arthritis, osteoarthritis, chronic back pain, and joint stiffness.',
-    traditionalRoleTa: 'முடக்கு வாதம், மூட்டு தேய்மானம், முதுகு தண்டுவட வலி மற்றும் தசை இறுக்கத்தை போக்கும் யோகராஜ குக்குலு.',
-    badge: 'Vata & Joint Mobility',
-    badgeTa: 'முடக்கு வாத நிவாரணம்',
-    image: '/images/products/ruthra-yogaraja-guggulu/front.jpg',
-    images: [
-      '/images/products/ruthra-yogaraja-guggulu/front.jpg',
-      '/images/products/ruthra-yogaraja-guggulu/angle.jpg',
-      '/images/products/ruthra-yogaraja-guggulu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-yogaraja-guggulu/front.jpg',
-      '/images/products/ruthra-yogaraja-guggulu/angle.jpg',
-      '/images/products/ruthra-yogaraja-guggulu/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['digestive-wellness', 'metabolic-wellness'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Premier rejuvenating gastroprotective decoction for peptic ulcers, abdominal colic, and emaciation.',
+    shortDescriptionTa: 'குடல் புண், வயிற்று வலி, பசியின்மை மற்றும் உடல் மெலிவை போக்கும் உன்னத ஊட்டச்சத்து கஷாயம்.',
+    description: 'Ruthra Indukantham Kvathachurna heals gastric mucosal ulcerations, kindles sluggish metabolic fire, and restores healthy physical weight and stamina.',
+    descriptionTa: 'செரிமான மண்டலத்தை பலப்படுத்தி, அல்சர் மற்றும் வயிற்று வலியை ஆற்றும் பாரம்பரிய ஊட்டச்சத்து கஷாயப் பொடி.',
+    traditionalRole: 'Gastroprotective, Ulcer healer, and immunity enhancer.',
+    traditionalRoleTa: 'வயிற்றுப் புண் ஆற்றி மற்றும் உடல் பலம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Yogaraja Guggulu Classical Composition', tamilName: 'யோகராஜ குக்குலு மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Panchakola & Dasamula', tamilName: 'பஞ்சகோலம் மற்றும் தசமூலம்', botanicalName: 'Digestive & restorative blend', role: 'Heals gastric lining', roleTa: 'குடல் புண் ஆற்றுதல்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '1-2 Tablets', instructionTa: '1-2 மாத்திரைகள்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water or milk.', instructionTa: 'வெதுவெதுப்பான நீர் அல்லது பால் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '1-2 Tablets',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water or milk',
-      amountTa: '1-2 மாத்திரைகள்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர் அல்லது பால்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Yogaraja Guggulu prepared?',
-        questionTa: 'ருத்ரா யோகராஜ குக்குலு எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["yogaraja guggulu","ruthra yogaraja guggulu","vati","yogaraja","guggulu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["யோகராஜ குக்குலு","ருத்ரா யோகராஜ குக்குலு","வடி / குக்குலு","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra indukantham kvathachurna', 'ruthra-indukantham-kvathachurna', 'ayurveda kvatha-churna', 'indukantham kvathachurna'],
+    tamilKeywords: ['ருத்ரா இந்து காந்தம் க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: LEHYAM (4 SKUs)
-  // ==========================================
   {
     id: 'prod-ayurveda-034',
-    name: 'Ruthra Chyavanaprasham',
-    tamilName: 'ருத்ரா சியவனபிராசம் லேஹ்யம்',
-    slug: 'ruthra-chyavanaprasham',
+    name: 'Ruthra Maharasnadhi Kvathachurna',
+    tamilName: 'ருத்ரா மகாராஸ்னாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-maharasnadhi-kvathachurna',
     medicalSystem: 'ayurveda',
-    formulation: 'Lehyam',
-    formulationTa: 'லேஹ்யம்',
-    categoryGroup: 'lehyam',
-    concerns: ["metabolic-wellness","respiratory"],
-    price: 260,
-    originalPrice: 300,
-    packSize: '250g',
-    packSizeTa: '250 கிராம்',
-    shortDescription: 'Premier classical Ayurvedic rasayana with 50+ herbs for supreme immunity, vitality, lung strength, and longevity. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: '50+ மூலிகைகள் சேர்ந்த உன்னத காயகற்ப லேகியம்; நோய் எதிர்ப்பு சக்தி, சுவாச பலம் மற்றும் நீண்ட ஆயுள் தரும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Chyavanaprasham (சியவனபிராசம் லேஹ்யம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சியவனபிராசம் லேஹ்யம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Premier classical Ayurvedic rasayana with 50+ herbs for supreme immunity, vitality, lung strength, and longevity.',
-    traditionalRoleTa: '50+ மூலிகைகள் சேர்ந்த உன்னத காயகற்ப லேகியம்; நோய் எதிர்ப்பு சக்தி, சுவாச பலம் மற்றும் நீண்ட ஆயுள் தரும்.',
-    badge: 'Immunity & Longevity Jam',
-    badgeTa: 'நோய் எதிர்ப்பு காயகற்பம்',
-    image: '/images/products/ruthra-chyavanaprasham/front.jpg',
-    images: [
-      '/images/products/ruthra-chyavanaprasham/front.jpg',
-      '/images/products/ruthra-chyavanaprasham/angle.jpg',
-      '/images/products/ruthra-chyavanaprasham/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-chyavanaprasham/front.jpg',
-      '/images/products/ruthra-chyavanaprasham/angle.jpg',
-      '/images/products/ruthra-chyavanaprasham/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['joint-mobility'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Grand 26-herb classical formulation for severe osteoarthritis, spondylosis, sciatica, and chronic Vata pains.',
+    shortDescriptionTa: 'இருபத்தாறு மூலிகைகள் கலந்த மகத்தான வாத நிவாரண கஷாயம். கழுத்து வலி, இடுப்பு வலி மற்றும் மூட்டு தேய்மானத்திற்கு உகந்தது.',
+    description: 'Ruthra Maharasnadhi Kvathachurna is the supreme classical decoction for degenerative joint diseases, lumbar spondylosis, and motor dysfunction.',
+    descriptionTa: 'மூட்டுகளின் தேய்மானத்தை தடுத்து, கடுமையான வலி மற்றும் வீக்கத்தை போக்கும் முதன்மையான ஆயுர்வேத கஷாயம்.',
+    traditionalRole: 'Supreme anti-arthritic and neuro-muscular decoction.',
+    traditionalRoleTa: 'முதன்மையான மூட்டு மற்றும் நரம்பு வலி நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Chyavanaprasham Classical Composition', tamilName: 'சியவனபிராசம் லேஹ்யம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Rasna & 26 Classical Herbs', tamilName: 'ராஸ்னா மற்றும் 26 மூலிகைகள்', botanicalName: 'Alpinia galanga compound', role: 'Deep joint nourishment', roleTa: 'மூட்டு மற்றும் நரம்பு நலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 grams (1-2 teaspoons)', instructionTa: '5-10 கிராம் (1-2 தேக்கரண்டி)' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பசும்பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 grams (1-2 teaspoons)',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 கிராம் (1-2 தேக்கரண்டி)',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'சூடான பசும்பால் அல்லது வெந்நீர்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Chyavanaprasham prepared?',
-        questionTa: 'ருத்ரா சியவனபிராசம் லேஹ்யம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["chyavanaprasham","ruthra chyavanaprasham","lehyam","chyavanaprasham","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சியவனபிராசம் லேஹ்யம்","ருத்ரா சியவனபிராசம் லேஹ்யம்","லேஹ்யம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra maharasnadhi kvathachurna', 'ruthra-maharasnadhi-kvathachurna', 'ayurveda kvatha-churna', 'maharasnadhi kvathachurna'],
+    tamilKeywords: ['ருத்ரா மகாராஸ்னாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-035',
-    name: 'Ruthra Aswagandha Lehyam',
-    tamilName: 'ருத்ரா அஸ்வகந்தா லேஹ்யம்',
-    slug: 'ruthra-aswagandha-lehyam',
+    name: 'Ruthra Manjstadhi Kvathachurna',
+    tamilName: 'ருத்ரா மஞ்சிஷ்டாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-manjstadhi-kvathachurna',
     medicalSystem: 'ayurveda',
-    formulation: 'Lehyam',
-    formulationTa: 'லேஹ்யம்',
-    categoryGroup: 'lehyam',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 260,
-    originalPrice: 300,
-    packSize: '250g',
-    packSizeTa: '250 கிராம்',
-    shortDescription: 'Nourishing botanical jam for general weakness, muscle building, stamina restoration, and nervous vitality. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'உடல் தேற்ற லேகியம்; நரம்பு தளர்ச்சி, தசை வளர்ச்சி, சோர்வு நீக்கம் மற்றும் ஆண்மை பலம் அளிக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Aswagandha Lehyam (அஸ்வகந்தா லேஹ்யம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அஸ்வகந்தா லேஹ்யம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Nourishing botanical jam for general weakness, muscle building, stamina restoration, and nervous vitality.',
-    traditionalRoleTa: 'உடல் தேற்ற லேகியம்; நரம்பு தளர்ச்சி, தசை வளர்ச்சி, சோர்வு நீக்கம் மற்றும் ஆண்மை பலம் அளிக்கும்.',
-    badge: 'Nourishing Strength Jam',
-    badgeTa: 'உடல் பலம் & நரம்பு சக்தி',
-    image: '/images/products/ruthra-aswagandha-lehyam/front.jpg',
-    images: [
-      '/images/products/ruthra-aswagandha-lehyam/front.jpg',
-      '/images/products/ruthra-aswagandha-lehyam/angle.jpg',
-      '/images/products/ruthra-aswagandha-lehyam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-aswagandha-lehyam/front.jpg',
-      '/images/products/ruthra-aswagandha-lehyam/angle.jpg',
-      '/images/products/ruthra-aswagandha-lehyam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Premier lymphatic and blood purifying decoction for chronic skin diseases, boils, eczema, and gout.',
+    shortDescriptionTa: 'மஞ்சிஷ்டா அடங்கிய ரத்த சுத்தி கஷாயம். தோல் வியாதிகள், படை, சொரியாசிஸ் மற்றும் மூட்டு வாதத்திற்கு உகந்தது.',
+    description: 'Ruthra Manjstadhi Kvathachurna breaks down circulating immune complexes and purifies micro-lymphatic channels to restore crystal clear skin.',
+    descriptionTa: 'ரத்தத்தில் உள்ள கழிவுகளை அகற்றி, தோல் நோய்களை வேரிலிருந்து குணப்படுத்தும் உன்னத கஷாயப் பொடி.',
+    traditionalRole: 'Systemic blood purifier, alterative, and dermatological tonic.',
+    traditionalRoleTa: 'ரத்த சுத்தி மற்றும் தோல் நோய் நிவாரணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Aswagandha Lehyam Classical Composition', tamilName: 'அஸ்வகந்தா லேஹ்யம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Manjistha (Rubia cordifolia) & Herbs', tamilName: 'மஞ்சிஷ்டா மற்றும் மூலிகைகள்', botanicalName: 'Rubia cordifolia compound', role: 'Deep blood cleanser', roleTa: 'ரத்த சுத்தி காரணி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 grams (1-2 teaspoons)', instructionTa: '5-10 கிராம் (1-2 தேக்கரண்டி)' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பசும்பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 grams (1-2 teaspoons)',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 கிராம் (1-2 தேக்கரண்டி)',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'சூடான பசும்பால் அல்லது வெந்நீர்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Aswagandha Lehyam prepared?',
-        questionTa: 'ருத்ரா அஸ்வகந்தா லேஹ்யம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["aswagandha lehyam","ruthra aswagandha lehyam","lehyam","aswagandha","lehyam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அஸ்வகந்தா லேஹ்யம்","ருத்ரா அஸ்வகந்தா லேஹ்யம்","லேஹ்யம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra manjstadhi kvathachurna', 'ruthra-manjstadhi-kvathachurna', 'ayurveda kvatha-churna', 'manjstadhi kvathachurna'],
+    tamilKeywords: ['ருத்ரா மஞ்சிஷ்டாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-036',
-    name: 'Ruthra Drakshavalehyam',
-    tamilName: 'ருத்ரா திராட்சாவலேஹ்யம்',
-    slug: 'ruthra-drakshavalehyam',
+    name: 'Ruthra Nayopayam Kvatha Churna',
+    tamilName: 'ருத்ரா நயோபாயம் க்வாத சூர்ணம்',
+    slug: 'ruthra-nayopayam-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Lehyam',
-    formulationTa: 'லேஹ்யம்',
-    categoryGroup: 'lehyam',
-    concerns: ["digestive-wellness","metabolic-wellness"],
-    price: 260,
-    originalPrice: 300,
-    packSize: '250g',
-    packSizeTa: '250 கிராம்',
-    shortDescription: 'Grape and iron synergist for post-fever weakness, jaundice convalescence, anemia, hyperacidity, and dizziness. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'திராட்சை லேகியம்; மஞ்சள் காமாலை குணமாக, ரத்த சோகை நீக்கம், பித்த தலைச்சுற்றல் மற்றும் நெஞ்செரிச்சல் போக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Drakshavalehyam (திராட்சாவலேஹ்யம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திராட்சாவலேஹ்யம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Grape and iron synergist for post-fever weakness, jaundice convalescence, anemia, hyperacidity, and dizziness.',
-    traditionalRoleTa: 'திராட்சை லேகியம்; மஞ்சள் காமாலை குணமாக, ரத்த சோகை நீக்கம், பித்த தலைச்சுற்றல் மற்றும் நெஞ்செரிச்சல் போக்கி.',
-    badge: 'Anemia & Liver Restorative',
-    badgeTa: 'ரத்த சோகை & கல்லீரல் நலம்',
-    image: '/images/products/ruthra-drakshavalehyam/front.jpg',
-    images: [
-      '/images/products/ruthra-drakshavalehyam/front.jpg',
-      '/images/products/ruthra-drakshavalehyam/angle.jpg',
-      '/images/products/ruthra-drakshavalehyam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-drakshavalehyam/front.jpg',
-      '/images/products/ruthra-drakshavalehyam/angle.jpg',
-      '/images/products/ruthra-drakshavalehyam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['respiratory'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Simple yet powerful classical formula (Bala, Jiraka, Shunthi) for bronchial asthma, gasping, and wheezing.',
+    shortDescriptionTa: 'சிற்றாமுட்டி, சீரகம், சுக்கு அடங்கிய கஷாயம். ஆஸ்துமா, மூச்சுத்திணறல் மற்றும் நெஞ்சு சளியை நீக்கும்.',
+    description: 'Ruthra Nayopayam Kvatha Churna calms respiratory bronchospasms, strengthens thoracic respiratory muscles, and eases breathing.',
+    descriptionTa: 'சுவாச குழாய்களை தளர்த்தி, இரைப்பு மற்றும் மூச்சுத்திணறலை விரைவாக கட்டுப்படுத்தும் பாரம்பரிய கஷாயம்.',
+    traditionalRole: 'Bronchodilator and respiratory antispasmodic.',
+    traditionalRoleTa: 'ஆஸ்துமா மற்றும் மூச்சுத்திணறல் நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Drakshavalehyam Classical Composition', tamilName: 'திராட்சாவலேஹ்யம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Bala, Jiraka & Shunthi', tamilName: 'சிற்றாமுட்டி, சீரகம் & சுக்கு', botanicalName: 'Sida cordifolia, Cuminum & Zingiber', role: 'Relieves airway spasms', roleTa: 'சுவாச தசை தளர்த்தி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 grams (1-2 teaspoons)', instructionTa: '5-10 கிராம் (1-2 தேக்கரண்டி)' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பசும்பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 grams (1-2 teaspoons)',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 கிராம் (1-2 தேக்கரண்டி)',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'சூடான பசும்பால் அல்லது வெந்நீர்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Drakshavalehyam prepared?',
-        questionTa: 'ருத்ரா திராட்சாவலேஹ்யம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["drakshavalehyam","ruthra drakshavalehyam","lehyam","drakshavalehyam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திராட்சாவலேஹ்யம்","ருத்ரா திராட்சாவலேஹ்யம்","லேஹ்யம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra nayopayam kvatha churna', 'ruthra-nayopayam-kvatha-churna', 'ayurveda kvatha-churna', 'nayopayam kvatha churna'],
+    tamilKeywords: ['ருத்ரா நயோபாயம் க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-037',
-    name: 'Ruthra Vidaryadi Lehyam',
-    tamilName: 'ருத்ரா விதார்யாதி லேஹ்யம்',
-    slug: 'ruthra-vidaryadi-lehyam',
+    name: 'Ruthra Nimbadi Kvatha Churna',
+    tamilName: 'ருத்ரா நிம்பாதி க்வாத சூர்ணம் (வேம்பு கஷாயம்)',
+    slug: 'ruthra-nimbadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Lehyam',
-    formulationTa: 'லேஹ்யம்',
-    categoryGroup: 'lehyam',
-    concerns: ["metabolic-wellness","respiratory"],
-    price: 260,
-    originalPrice: 300,
-    packSize: '250g',
-    packSizeTa: '250 கிராம்',
-    shortDescription: 'Restorative nutritive electuary promoting healthy weight gain, cardiac strength, and emaciation recovery. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'விதாரி லேகியம்; உடல் எடை அதிகரிக்க, இதய பலம், நுரையீரல் உறுதி மற்றும் தேக புஷ்டிக்கு உகந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Vidaryadi Lehyam (விதார்யாதி லேஹ்யம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா விதார்யாதி லேஹ்யம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Restorative nutritive electuary promoting healthy weight gain, cardiac strength, and emaciation recovery.',
-    traditionalRoleTa: 'விதாரி லேகியம்; உடல் எடை அதிகரிக்க, இதய பலம், நுரையீரல் உறுதி மற்றும் தேக புஷ்டிக்கு உகந்தது.',
-    badge: 'Weight Gain & Vitality',
-    badgeTa: 'உடல் எடை & தாது பலம்',
-    image: '/images/products/ruthra-vidaryadi-lehyam/front.jpg',
-    images: [
-      '/images/products/ruthra-vidaryadi-lehyam/front.jpg',
-      '/images/products/ruthra-vidaryadi-lehyam/angle.jpg',
-      '/images/products/ruthra-vidaryadi-lehyam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-vidaryadi-lehyam/front.jpg',
-      '/images/products/ruthra-vidaryadi-lehyam/angle.jpg',
-      '/images/products/ruthra-vidaryadi-lehyam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Neem and bitter herb decoction for non-healing ulcers, infected wounds, and allergic skin lesions.',
+    shortDescriptionTa: 'வேம்பு அடங்கிய கிருமி நாசினி கஷாயம். ஆறாத புண்கள், தோல் அரிப்பு மற்றும் ரத்த நச்சுகளை போக்கும்.',
+    description: 'Ruthra Nimbadi Kvatha Churna exhibits potent systemic antibacterial, antifungal, and wound-granulating properties.',
+    descriptionTa: 'உடலில் உள்ள கிருமி தொற்றுகளை அழித்து, புண்களை விரைவாக ஆற்றும் உன்னத கஷாயப் பொடி.',
+    traditionalRole: 'Antibacterial, wound healer, and blood cleanser.',
+    traditionalRoleTa: 'கிருமி நாசினி மற்றும் புண் ஆற்றி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Vidaryadi Lehyam Classical Composition', tamilName: 'விதார்யாதி லேஹ்யம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Nimba & Bitter Herbs', tamilName: 'வேம்பு மற்றும் கசப்பு மூலிகைகள்', botanicalName: 'Azadirachta indica compound', role: 'Antimicrobial detoxifier', roleTa: 'தோல் நோய் தடுப்பு', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 grams (1-2 teaspoons)', instructionTa: '5-10 கிராம் (1-2 தேக்கரண்டி)' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பசும்பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 grams (1-2 teaspoons)',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 கிராம் (1-2 தேக்கரண்டி)',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'சூடான பசும்பால் அல்லது வெந்நீர்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Vidaryadi Lehyam prepared?',
-        questionTa: 'ருத்ரா விதார்யாதி லேஹ்யம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["vidaryadi lehyam","ruthra vidaryadi lehyam","lehyam","vidaryadi","lehyam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["விதார்யாதி லேஹ்யம்","ருத்ரா விதார்யாதி லேஹ்யம்","லேஹ்யம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra nimbadi kvatha churna', 'ruthra-nimbadi-kvatha-churna', 'ayurveda kvatha-churna', 'nimbadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா நிம்பாதி க்வாத சூர்ணம் (வேம்பு கஷாயம்)', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: TAILAM (6 SKUs)
-  // ==========================================
   {
     id: 'prod-ayurveda-038',
-    name: 'Ruthra Mahanarayana Tailam',
-    tamilName: 'ருத்ரா மகாநாராயண தைலம்',
-    slug: 'ruthra-mahanarayana-tailam',
+    name: 'Ruthra Nisakathakadi Kvatha Churna',
+    tamilName: 'ருத்ரா நிசாகதகாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-nisakathakadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Tailam',
-    formulationTa: 'தைலம்',
-    categoryGroup: 'tailam',
-    concerns: ["joint-mobility"],
-    price: 210,
-    originalPrice: 245,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Classical royal massage oil for osteoarthritis, paralysis, frozen shoulder, spondylosis, and muscle stiffness. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'மூட்டு தேய்மானம், பக்கவாதம், தோள்பட்டை இறுக்கம், தண்டுவட வலி மற்றும் வாத வலிகளுக்கு சிறந்த மசாஜ் தைலம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Mahanarayana Tailam (மகாநாராயண தைலம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா மகாநாராயண தைலம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Classical royal massage oil for osteoarthritis, paralysis, frozen shoulder, spondylosis, and muscle stiffness.',
-    traditionalRoleTa: 'மூட்டு தேய்மானம், பக்கவாதம், தோள்பட்டை இறுக்கம், தண்டுவட வலி மற்றும் வாத வலிகளுக்கு சிறந்த மசாஜ் தைலம்.',
-    badge: 'Royal Joint Massage Oil',
-    badgeTa: 'மூட்டு & பக்கவாத தைலம்',
-    image: '/images/products/ruthra-mahanarayana-tailam/front.jpg',
-    images: [
-      '/images/products/ruthra-mahanarayana-tailam/front.jpg',
-      '/images/products/ruthra-mahanarayana-tailam/angle.jpg',
-      '/images/products/ruthra-mahanarayana-tailam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-mahanarayana-tailam/front.jpg',
-      '/images/products/ruthra-mahanarayana-tailam/angle.jpg',
-      '/images/products/ruthra-mahanarayana-tailam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['metabolic-wellness'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Premier classical formulation for diabetes mellitus (Prameha) and diabetic neuropathy prevention.',
+    shortDescriptionTa: 'சர்க்கரை நோயாளிகளுக்கான முதன்மையான கஷாயம். ரத்த சர்க்கரையை சீராக்கி, நரம்பு எரிச்சலை தடுக்கும்.',
+    description: 'Ruthra Nisakathakadi Kvatha Churna combines Nisa (Turmeric), Kathaka (Strychnos potatorum), Amla, and Usheera to protect microvascular circulation and renal filtration in diabetic patients.',
+    descriptionTa: 'மஞ்சள், தேத்தாங்கொட்டை உள்ளிட்ட மூலிகைகள் அடங்கிய சர்க்கரை நோய் துணை கஷாயப் பொடி.',
+    traditionalRole: 'Anti-diabetic, anti-hyperglycemic, and microvascular protector.',
+    traditionalRoleTa: 'சர்க்கரை சமநிலை மற்றும் நரம்பு பாதுகாப்பு.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Mahanarayana Tailam Classical Composition', tamilName: 'மகாநாராயண தைலம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Nisa (Turmeric) & Kathaka', tamilName: 'மஞ்சள் மற்றும் தேத்தாங்கொட்டை', botanicalName: 'Curcuma longa & Strychnos potatorum', role: 'Glycemic control', roleTa: 'சர்க்கரை சமன்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: 'Sufficient quantity for gentle external massage', instructionTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with External application only.', instructionTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Apply warmed oil and massage gently 30-45 minutes before bath.', instructionTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: 'Sufficient quantity for gentle external massage',
-      frequency: 'Twice daily',
-      timing: 'Apply warmed oil and massage gently 30-45 minutes before bath',
-      vehicle: 'External application only',
-      amountTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்',
-      vehicleTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Mahanarayana Tailam prepared?',
-        questionTa: 'ருத்ரா மகாநாராயண தைலம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["mahanarayana tailam","ruthra mahanarayana tailam","tailam","mahanarayana","tailam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["மகாநாராயண தைலம்","ருத்ரா மகாநாராயண தைலம்","தைலம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra nisakathakadi kvatha churna', 'ruthra-nisakathakadi-kvatha-churna', 'ayurveda kvatha-churna', 'nisakathakadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா நிசாகதகாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-039',
-    name: 'Ruthra Karpasasthyadi Tailam',
-    tamilName: 'ருத்ரா கார்ப்பாசாஸ்த்யாதி தைலம்',
-    slug: 'ruthra-karpasasthyadi-tailam',
+    name: 'Ruthra Panchatikta Kvatha Churna',
+    tamilName: 'ருத்ரா பஞ்சதிக்த க்வாத சூர்ணம்',
+    slug: 'ruthra-panchatikta-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Tailam',
-    formulationTa: 'தைலம்',
-    categoryGroup: 'tailam',
-    concerns: ["joint-mobility"],
-    price: 210,
-    originalPrice: 245,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Cotton seed infused medicated oil for hemiplegia, facial palsy, cervical spondylosis, and upper body numbness. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பக்கவாதம், முக வாதம், கழுத்து வலி மற்றும் நரம்பு மரத்துப்போதலுக்கு உன்னத வெளிப்புற தைலம். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Karpasasthyadi Tailam (கார்ப்பாசாஸ்த்யாதி தைலம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா கார்ப்பாசாஸ்த்யாதி தைலம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Cotton seed infused medicated oil for hemiplegia, facial palsy, cervical spondylosis, and upper body numbness.',
-    traditionalRoleTa: 'பக்கவாதம், முக வாதம், கழுத்து வலி மற்றும் நரம்பு மரத்துப்போதலுக்கு உன்னத வெளிப்புற தைலம்.',
-    badge: 'Neurological Deficit Oil',
-    badgeTa: 'முக வாத & நரம்பு தைலம்',
-    image: '/images/products/ruthra-karpasasthyadi-tailam/front.jpg',
-    images: [
-      '/images/products/ruthra-karpasasthyadi-tailam/front.jpg',
-      '/images/products/ruthra-karpasasthyadi-tailam/angle.jpg',
-      '/images/products/ruthra-karpasasthyadi-tailam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-karpasasthyadi-tailam/front.jpg',
-      '/images/products/ruthra-karpasasthyadi-tailam/angle.jpg',
-      '/images/products/ruthra-karpasasthyadi-tailam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Five sacred bitter botanicals decoction for stubborn fevers, osteopenia, eczema, and liver sluggishness.',
+    shortDescriptionTa: 'ஐந்து புனித கசப்பு மூலிகைகள் கலந்த கஷாயம். நாள்பட்ட காய்ச்சல், தோல் வியாதிகள் மற்றும் எலும்பு பலத்திற்கு உகந்தது.',
+    description: 'Ruthra Panchatikta Kvatha Churna comprises Neem, Guduchi, Vasa, Patola, and Kantakari to deeply purify plasma and bone tissue.',
+    descriptionTa: 'வேம்பு, சீந்தில், ஆடாதோடை அடங்கிய ஐந்து கசப்புகள். ரத்த நச்சுகளை அகற்றி உடலை தூய்மைப்படுத்தும்.',
+    traditionalRole: 'Deep tissue alterative and bone marrow purifier.',
+    traditionalRoleTa: 'ரத்த மற்றும் எலும்பு சுத்தி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Karpasasthyadi Tailam Classical Composition', tamilName: 'கார்ப்பாசாஸ்த்யாதி தைலம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Panchatikta (5 Bitters)', tamilName: 'பஞ்சதிக்த மூலிகைகள்', botanicalName: '5 Bitter Herbs Compound', role: 'Purifies deep tissues', roleTa: 'திசு நச்சு நீக்கம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: 'Sufficient quantity for gentle external massage', instructionTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with External application only.', instructionTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Apply warmed oil and massage gently 30-45 minutes before bath.', instructionTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: 'Sufficient quantity for gentle external massage',
-      frequency: 'Twice daily',
-      timing: 'Apply warmed oil and massage gently 30-45 minutes before bath',
-      vehicle: 'External application only',
-      amountTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்',
-      vehicleTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Karpasasthyadi Tailam prepared?',
-        questionTa: 'ருத்ரா கார்ப்பாசாஸ்த்யாதி தைலம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["karpasasthyadi tailam","ruthra karpasasthyadi tailam","tailam","karpasasthyadi","tailam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["கார்ப்பாசாஸ்த்யாதி தைலம்","ருத்ரா கார்ப்பாசாஸ்த்யாதி தைலம்","தைலம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra panchatikta kvatha churna', 'ruthra-panchatikta-kvatha-churna', 'ayurveda kvatha-churna', 'panchatikta kvatha churna'],
+    tamilKeywords: ['ருத்ரா பஞ்சதிக்த க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-040',
-    name: 'Ruthra Bala Tailam',
-    tamilName: 'ருத்ரா பலா தைலம்',
-    slug: 'ruthra-bala-tailam',
+    name: 'Ruthra Prasaranyadi Kvatha Churna',
+    tamilName: 'ருத்ரா பிரசாரண்யாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-prasaranyadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Tailam',
-    formulationTa: 'தைலம்',
-    categoryGroup: 'tailam',
-    concerns: ["joint-mobility","metabolic-wellness"],
-    price: 210,
-    originalPrice: 245,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Sida cordifolia oil for musculoskeletal emaciation, nerve weakness, arthritis, and postnatal body massage. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சிற்றாமுட்டி தைலம்; தசை பலவீனம், மூட்டு வலி, நரம்பு சோர்வு மற்றும் பிரசவத்திற்கு பின் தாய்மார்கள் மசாஜ் செய்ய. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Bala Tailam (பலா தைலம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா பலா தைலம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Sida cordifolia oil for musculoskeletal emaciation, nerve weakness, arthritis, and postnatal body massage.',
-    traditionalRoleTa: 'சிற்றாமுட்டி தைலம்; தசை பலவீனம், மூட்டு வலி, நரம்பு சோர்வு மற்றும் பிரசவத்திற்கு பின் தாய்மார்கள் மசாஜ் செய்ய.',
-    badge: 'Muscle Nourishing Oil',
-    badgeTa: 'தசை பலம் & மசாஜ் தைலம்',
-    image: '/images/products/ruthra-bala-tailam/front.jpg',
-    images: [
-      '/images/products/ruthra-bala-tailam/front.jpg',
-      '/images/products/ruthra-bala-tailam/angle.jpg',
-      '/images/products/ruthra-bala-tailam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-bala-tailam/front.jpg',
-      '/images/products/ruthra-bala-tailam/angle.jpg',
-      '/images/products/ruthra-bala-tailam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['joint-mobility'],
+    price: 180,
+    originalPrice: 220,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical remedy for frozen shoulder (Apabahuka), neck stiffness, cervical spondylosis, and brachial neuralgia.',
+    shortDescriptionTa: 'தோள்பட்டை இறுக்கம், கழுத்து வலி, நரம்பு சுளுக்கு மற்றும் கை தூக்க முடியாத நிலையை போக்கும் கஷாயம்.',
+    description: 'Ruthra Prasaranyadi Kvatha Churna relaxes constricted rotator cuff tendons and improves brachial nerve conductivity.',
+    descriptionTa: 'தோள்பட்டை மூட்டுகளுக்கு ரத்த ஓட்டம் பாய்ச்சி, கைகளின் அசைவை சுலபமாக்கும் பாரம்பரிய கஷாயப் பொடி.',
+    traditionalRole: 'Specific remedy for frozen shoulder and cervical radiculopathy.',
+    traditionalRoleTa: 'தோள்பட்டை மற்றும் கழுத்து நரம்பு வலி நிவாரணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Bala Tailam Classical Composition', tamilName: 'பலா தைலம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Prasarani & Herbs', tamilName: 'பிரசாரணி மற்றும் மூலிகைகள்', botanicalName: 'Paederia foetida compound', role: 'Relieves brachial tension', roleTa: 'தோள்பட்டை இறுக்கம் தளர்த்தி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: 'Sufficient quantity for gentle external massage', instructionTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with External application only.', instructionTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Apply warmed oil and massage gently 30-45 minutes before bath.', instructionTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: 'Sufficient quantity for gentle external massage',
-      frequency: 'Twice daily',
-      timing: 'Apply warmed oil and massage gently 30-45 minutes before bath',
-      vehicle: 'External application only',
-      amountTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்',
-      vehicleTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Bala Tailam prepared?',
-        questionTa: 'ருத்ரா பலா தைலம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["bala tailam","ruthra bala tailam","tailam","bala","tailam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["பலா தைலம்","ருத்ரா பலா தைலம்","தைலம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra prasaranyadi kvatha churna', 'ruthra-prasaranyadi-kvatha-churna', 'ayurveda kvatha-churna', 'prasaranyadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா பிரசாரண்யாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-041',
-    name: 'Ruthra Kshirabala Tailam',
-    tamilName: 'ருத்ரா க்ஷீரபலா தைலம்',
-    slug: 'ruthra-kshirabala-tailam',
+    name: 'Ruthra Punarnavadi Kvatha Churna',
+    tamilName: 'ருத்ரா புனர்நவாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-punarnavadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Tailam',
-    formulationTa: 'தைலம்',
-    categoryGroup: 'tailam',
-    concerns: ["joint-mobility","metabolic-wellness"],
-    price: 210,
-    originalPrice: 245,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Cow’s milk and Bala processed oil for peripheral neuropathy, insomnia, burning feet, and sciatica pain. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பால் மற்றும் சிற்றாமுட்டி சேர்ந்த தைலம்; நரம்பு எரிச்சல், தூக்கமின்மை, பாத எரிச்சல் மற்றும் வாத வலி போக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Kshirabala Tailam (க்ஷீரபலா தைலம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா க்ஷீரபலா தைலம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Cow’s milk and Bala processed oil for peripheral neuropathy, insomnia, burning feet, and sciatica pain.',
-    traditionalRoleTa: 'பால் மற்றும் சிற்றாமுட்டி சேர்ந்த தைலம்; நரம்பு எரிச்சல், தூக்கமின்மை, பாத எரிச்சல் மற்றும் வாத வலி போக்கி.',
-    badge: 'Nerve Soothing & Sleep Oil',
-    badgeTa: 'நரம்பு & பாத எரிச்சல் தைலம்',
-    image: '/images/products/ruthra-kshirabala-tailam/front.jpg',
-    images: [
-      '/images/products/ruthra-kshirabala-tailam/front.jpg',
-      '/images/products/ruthra-kshirabala-tailam/angle.jpg',
-      '/images/products/ruthra-kshirabala-tailam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-kshirabala-tailam/front.jpg',
-      '/images/products/ruthra-kshirabala-tailam/angle.jpg',
-      '/images/products/ruthra-kshirabala-tailam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['metabolic-wellness'],
+    price: 160,
+    originalPrice: 190,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Famous renal stimulant and diuretic decoction for generalized edema, ascites, and urinary sluggishness.',
+    shortDescriptionTa: 'உடல் நீர் வீக்கம், சிறுநீரக பலவீனம் மற்றும் நீர் அடைப்பை போக்கும் முதன்மையான புனர்நவா கஷாயம்.',
+    description: 'Ruthra Punarnavadi Kvatha Churna stimulates glomerular filtration and relieves swelling around the eyes and ankles.',
+    descriptionTa: 'சிறுநீரகங்களின் வடிகட்டும் திறனை அதிகரித்து, உடலில் தங்கியுள்ள அதிகப்படியான நீரை வெளியேற்றும்.',
+    traditionalRole: 'Diuretic, anti-edematous, and nephroprotective.',
+    traditionalRoleTa: 'நீர் பெருக்கி மற்றும் சிறுநீரக பாதுகாப்பு.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Kshirabala Tailam Classical Composition', tamilName: 'க்ஷீரபலா தைலம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Punarnava & 7 Botanicals', tamilName: 'சாரணை மற்றும் மூலிகைகள்', botanicalName: 'Boerhavia diffusa compound', role: 'Eliminates fluid accumulation', roleTa: 'நீர் வீக்கம் குறைப்பான்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: 'Sufficient quantity for gentle external massage', instructionTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with External application only.', instructionTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Apply warmed oil and massage gently 30-45 minutes before bath.', instructionTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: 'Sufficient quantity for gentle external massage',
-      frequency: 'Twice daily',
-      timing: 'Apply warmed oil and massage gently 30-45 minutes before bath',
-      vehicle: 'External application only',
-      amountTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்',
-      vehicleTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Kshirabala Tailam prepared?',
-        questionTa: 'ருத்ரா க்ஷீரபலா தைலம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["kshirabala tailam","ruthra kshirabala tailam","tailam","kshirabala","tailam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["க்ஷீரபலா தைலம்","ருத்ரா க்ஷீரபலா தைலம்","தைலம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra punarnavadi kvatha churna', 'ruthra-punarnavadi-kvatha-churna', 'ayurveda kvatha-churna', 'punarnavadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா புனர்நவாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-042',
-    name: 'Ruthra Dhanwantharam Tailam',
-    tamilName: 'ருத்ரா தன்வந்தரம் தைலம்',
-    slug: 'ruthra-dhanwantharam-tailam',
+    name: 'Ruthra Rasnadi Kvatha Churna',
+    tamilName: 'ருத்ரா ராஸ்னாதி க்வாத சூர்ணம்',
+    slug: 'ruthra-rasnadi-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Tailam',
-    formulationTa: 'தைலம்',
-    categoryGroup: 'tailam',
-    concerns: ["joint-mobility","womens-wellness"],
-    price: 210,
-    originalPrice: 245,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Universal Ayurvedic analgesic oil for rheumatoid pains, sprains, sports injuries, and prenatal/postnatal care. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'தன்வந்தரி அருளிய உன்னத தைலம்; மூட்டு வலி, சுளுக்கு, வீக்கம் மற்றும் மகளிரின் பிரசவ கால பராமரிப்புக்கு. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Dhanwantharam Tailam (தன்வந்தரம் தைலம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா தன்வந்தரம் தைலம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Universal Ayurvedic analgesic oil for rheumatoid pains, sprains, sports injuries, and prenatal/postnatal care.',
-    traditionalRoleTa: 'தன்வந்தரி அருளிய உன்னத தைலம்; மூட்டு வலி, சுளுக்கு, வீக்கம் மற்றும் மகளிரின் பிரசவ கால பராமரிப்புக்கு.',
-    badge: 'Universal Vata Relief Oil',
-    badgeTa: 'தன்வந்தரம் வாத தைலம்',
-    image: '/images/products/ruthra-dhanwantharam-tailam/front.jpg',
-    images: [
-      '/images/products/ruthra-dhanwantharam-tailam/front.jpg',
-      '/images/products/ruthra-dhanwantharam-tailam/angle.jpg',
-      '/images/products/ruthra-dhanwantharam-tailam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-dhanwantharam-tailam/front.jpg',
-      '/images/products/ruthra-dhanwantharam-tailam/angle.jpg',
-      '/images/products/ruthra-dhanwantharam-tailam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['joint-mobility'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical Alpinia galanga decoction for rheumatoid arthritis, body aches, and joint stiffness.',
+    shortDescriptionTa: 'ராஸ்னா முதன்மை மூலிகையாக கொண்ட கஷாயம். மூட்டு வீக்கம், வாத வலி மற்றும் தசை பிடிப்பை போக்கும்.',
+    description: 'Ruthra Rasnadi Kvatha Churna pacifies aggravated Vata in synovial membranes and enhances functional mobility.',
+    descriptionTa: 'வாதத்தை தணித்து மூட்டுகளின் நெகிழ்வுத்தன்மையை பாதுகாக்கும் பாரம்பரிய கஷாயப் பொடி.',
+    traditionalRole: 'Anti-inflammatory analgesic for Amavata (rheumatoid arthritis).',
+    traditionalRoleTa: 'மூட்டு வாத நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Dhanwantharam Tailam Classical Composition', tamilName: 'தன்வந்தரம் தைலம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Rasna & Vata-pacifying Herbs', tamilName: 'ராஸ்னா மற்றும் வாத மூலிகைகள்', botanicalName: 'Alpinia galanga compound', role: 'Relieves joint swelling', roleTa: 'மூட்டு வலி தணிப்பான்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: 'Sufficient quantity for gentle external massage', instructionTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with External application only.', instructionTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Apply warmed oil and massage gently 30-45 minutes before bath.', instructionTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: 'Sufficient quantity for gentle external massage',
-      frequency: 'Twice daily',
-      timing: 'Apply warmed oil and massage gently 30-45 minutes before bath',
-      vehicle: 'External application only',
-      amountTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்',
-      vehicleTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Dhanwantharam Tailam prepared?',
-        questionTa: 'ருத்ரா தன்வந்தரம் தைலம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["dhanwantharam tailam","ruthra dhanwantharam tailam","tailam","dhanwantharam","tailam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["தன்வந்தரம் தைலம்","ருத்ரா தன்வந்தரம் தைலம்","தைலம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra rasnadi kvatha churna', 'ruthra-rasnadi-kvatha-churna', 'ayurveda kvatha-churna', 'rasnadi kvatha churna'],
+    tamilKeywords: ['ருத்ரா ராஸ்னாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-043',
-    name: 'Ruthra Neelibhringadi Tailam',
-    tamilName: 'ருத்ரா நீலிப்ரிங்காதி தைலம்',
-    slug: 'ruthra-neelibhringadi-tailam',
+    name: 'Ruthra Saptasara Kvatha Churna',
+    tamilName: 'ருத்ரா சப்தசார க்வாத சூர்ணம்',
+    slug: 'ruthra-saptasara-kvatha-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Tailam',
-    formulationTa: 'தைலம்',
-    categoryGroup: 'tailam',
-    concerns: ["skin-hair"],
-    price: 210,
-    originalPrice: 245,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Premier classical hair tonic oil for arresting premature greying, cooling head heat, and promoting thick hair growth. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'தலைசிறந்த கூந்தல் தைலம்; இளநரை தடுத்து, தலைச்சூடு நீக்கி, முடி உதிர்வை கட்டுப்படுத்தி அடர்த்தியாக வளரச் செய்யும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Neelibhringadi Tailam (நீலிப்ரிங்காதி தைலம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா நீலிப்ரிங்காதி தைலம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Premier classical hair tonic oil for arresting premature greying, cooling head heat, and promoting thick hair growth.',
-    traditionalRoleTa: 'தலைசிறந்த கூந்தல் தைலம்; இளநரை தடுத்து, தலைச்சூடு நீக்கி, முடி உதிர்வை கட்டுப்படுத்தி அடர்த்தியாக வளரச் செய்யும்.',
-    badge: 'Crown Hair Regrowth Oil',
-    badgeTa: 'நீலிப்ரிங்காதி கூந்தல் தைலம்',
-    image: '/images/products/ruthra-neelibhringadi-tailam/front.jpg',
-    images: [
-      '/images/products/ruthra-neelibhringadi-tailam/front.jpg',
-      '/images/products/ruthra-neelibhringadi-tailam/angle.jpg',
-      '/images/products/ruthra-neelibhringadi-tailam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-neelibhringadi-tailam/front.jpg',
-      '/images/products/ruthra-neelibhringadi-tailam/angle.jpg',
-      '/images/products/ruthra-neelibhringadi-tailam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['womens-wellness', 'digestive-wellness'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Seven-herb classical formulation for painful menstruation (dysmenorrhea), PCOS, and pelvic colic.',
+    shortDescriptionTa: 'ஏழு மூலிகைகளின் கூட்டு. மாதவிடாய் வலி, சினைப்பை நீர்க்கட்டி மற்றும் அடிவயிற்று வலியை போக்கும்.',
+    description: 'Ruthra Saptasara Kvatha Churna regulates pelvic microcirculation and relieves menstrual cramps and abdominal bloating.',
+    descriptionTa: 'பெண்களின் மாதவிடாய் சுழற்சியை சீராக்கி, கடுமையான மாதவிடாய் வலியை குறைக்கும் சிறந்த கஷாயப் பொடி.',
+    traditionalRole: 'Emmenagogue, antispasmodic, and pelvic tonic.',
+    traditionalRoleTa: 'மாதவிடாய் ஒழுங்குபடுத்தி மற்றும் வலி நிவாரணி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Neelibhringadi Tailam Classical Composition', tamilName: 'நீலிப்ரிங்காதி தைலம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Saptasara (7 Herbs Blend)', tamilName: 'சப்தசார மூலிகைகள்', botanicalName: '7 Botanicals Compound', role: 'Uterine and pelvic comfort', roleTa: 'கர்ப்பப்பை நலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: 'Sufficient quantity for gentle external massage', instructionTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with External application only.', instructionTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Apply warmed oil and massage gently 30-45 minutes before bath.', instructionTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: 'Sufficient quantity for gentle external massage',
-      frequency: 'Twice daily',
-      timing: 'Apply warmed oil and massage gently 30-45 minutes before bath',
-      vehicle: 'External application only',
-      amountTa: 'தேவையான அளவு வெளிப்புற மசாஜிற்கு',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'லேசாக சூடாக்கி தேய்த்து 30-45 நிமிடம் கழித்து குளிக்கவும்',
-      vehicleTa: 'வெளிப்புற பயன்பாட்டிற்கு மட்டும்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Neelibhringadi Tailam prepared?',
-        questionTa: 'ருத்ரா நீலிப்ரிங்காதி தைலம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["neelibhringadi tailam","ruthra neelibhringadi tailam","tailam","neelibhringadi","tailam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["நீலிப்ரிங்காதி தைலம்","ருத்ரா நீலிப்ரிங்காதி தைலம்","தைலம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra saptasara kvatha churna', 'ruthra-saptasara-kvatha-churna', 'ayurveda kvatha-churna', 'saptasara kvatha churna'],
+    tamilKeywords: ['ருத்ரா சப்தசார க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: GHRITAM (3 SKUs)
-  // ==========================================
   {
     id: 'prod-ayurveda-044',
-    name: 'Ruthra Mahatikta Ghritam',
-    tamilName: 'ருத்ரா மஹாதிக்த கிருதம்',
-    slug: 'ruthra-mahatikta-ghritam',
+    name: 'Ruthra Stanyasodhana Kasaya Churna',
+    tamilName: 'ருத்ரா ஸ்தன்யசோதன கஷாய சூர்ணம்',
+    slug: 'ruthra-stanyasodhana-kasaya-churna',
     medicalSystem: 'ayurveda',
-    formulation: 'Ghritam',
-    formulationTa: 'கிருதம்',
-    categoryGroup: 'ghritam',
-    concerns: ["skin-hair","metabolic-wellness"],
-    price: 295,
-    originalPrice: 340,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Bitter herbs medicated ghee for chronic psoriasis, eczema, deep skin ulcers, liver detox, and high Pitta. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கசப்பு மூலிகைகள் சேர்ந்த நெய்; சோரியாசிஸ், நாள்பட்ட தோல் வியாதிகள், ரத்த நச்சுக்கள் மற்றும் பித்த அழற்சி போக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Mahatikta Ghritam (மஹாதிக்த கிருதம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா மஹாதிக்த கிருதம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Bitter herbs medicated ghee for chronic psoriasis, eczema, deep skin ulcers, liver detox, and high Pitta.',
-    traditionalRoleTa: 'கசப்பு மூலிகைகள் சேர்ந்த நெய்; சோரியாசிஸ், நாள்பட்ட தோல் வியாதிகள், ரத்த நச்சுக்கள் மற்றும் பித்த அழற்சி போக்கி.',
-    badge: 'Bitter Skin Healing Ghee',
-    badgeTa: 'மஹாதிக்த தோல் நெய்',
-    image: '/images/products/ruthra-mahatikta-ghritam/front.jpg',
-    images: [
-      '/images/products/ruthra-mahatikta-ghritam/front.jpg',
-      '/images/products/ruthra-mahatikta-ghritam/angle.jpg',
-      '/images/products/ruthra-mahatikta-ghritam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-mahatikta-ghritam/front.jpg',
-      '/images/products/ruthra-mahatikta-ghritam/angle.jpg',
-      '/images/products/ruthra-mahatikta-ghritam/back.jpg'
-    ],
+    formulation: 'Kvatha Churna',
+    formulationTa: 'க்வாத சூர்ணம்',
+    categoryGroup: 'kvatha-churna',
+    concerns: ['womens-wellness'],
+    price: 170,
+    originalPrice: 200,
+    packSize: '100g',
+    packSizeTa: '100 கிராம்',
+    shortDescription: 'Classical breast milk purifying decoction for lactating mothers to improve milk purity and infant digestion.',
+    shortDescriptionTa: 'தாய்ப்பால் சுத்தி கஷாயப் பொடி. தாய்ப்பாலை சுத்திகரித்து, குழந்தைகளுக்கு செரிமான கோளாறுகள் வராமல் தடுக்கும்.',
+    description: 'Ruthra Stanyasodhana Kasaya Churna clears doshic impurities from breast milk, ensuring optimal infant nourishment and maternal well-being.',
+    descriptionTa: 'பாலூட்டும் தாய்மார்களுக்கு உகந்தது. தாய்ப்பாலை நச்சு நீக்கி குழந்தையின் ஆரோக்கியத்தை காக்கும்.',
+    traditionalRole: 'Galactagogue and breast milk purifier.',
+    traditionalRoleTa: 'தாய்ப்பால் சுத்தி மற்றும் பால் பெருக்கி.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Mahatikta Ghritam Classical Composition', tamilName: 'மஹாதிக்த கிருதம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Patha, Devadaru & Herbs', tamilName: 'பாடாஹா, தேவதாரு மற்றும் மூலிகைகள்', botanicalName: 'Classical Stanyasodhana compound', role: 'Purifies lactation', roleTa: 'பால் சுத்திகரிப்பு', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 ml', instructionTa: '5-10 மி.லி' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily on an empty stomach or as prescribed.', instructionTa: 'தினமும் இருவேளை வெறும் வயிற்றில் அல்லது மருத்துவர் பரிந்துரைப்படி.' }
+      { step: '01', title: 'Boil or Mix with Warm Water', titleTa: 'வெந்நீரில் கலக்கவும்', instruction: 'Take 3-5g powder with warm water or boil as decoction.', instructionTa: '3-5 கிராம் பொடியை வெந்நீரில் கலந்து அல்லது காய்ச்சி குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 ml',
-      frequency: 'Twice daily',
-      timing: 'Twice daily on an empty stomach or as prescribed',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 மி.லி',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை வெறும் வயிற்றில் அல்லது மருத்துவர் பரிந்துரைப்படி',
-      vehicleTa: 'சூடான பால் அல்லது வெந்நீர்'
+      morning: '3-5g after breakfast',
+      evening: '3-5g after dinner',
+      timing: 'After meals with warm water',
+      with: 'Warm water or Honey',
+      morningTa: 'காலை 3-5 கிராம் உணவுக்குப் பின்',
+      eveningTa: 'இரவு 3-5 கிராம் உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது தேன்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Mahatikta Ghritam prepared?',
-        questionTa: 'ருத்ரா மஹாதிக்த கிருதம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["mahatikta ghritam","ruthra mahatikta ghritam","ghritam","mahatikta","ghritam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["மஹாதிக்த கிருதம்","ருத்ரா மஹாதிக்த கிருதம்","கிருதம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra stanyasodhana kasaya churna', 'ruthra-stanyasodhana-kasaya-churna', 'ayurveda kvatha-churna', 'stanyasodhana kasaya churna'],
+    tamilKeywords: ['ருத்ரா ஸ்தன்யசோதன கஷாய சூர்ணம்', 'க்வாத சூர்ணம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-045',
-    name: 'Ruthra Panchagavya Ghritam',
-    tamilName: 'ருத்ரா பஞ்சகவ்ய கிருதம்',
-    slug: 'ruthra-panchagavya-ghritam',
+    name: 'Ruthra Chyanaprasha Lehya',
+    tamilName: 'ருத்ரா சியவனபிராசம் லேகியம்',
+    slug: 'ruthra-chyanaprasha-lehya',
     medicalSystem: 'ayurveda',
-    formulation: 'Ghritam',
-    formulationTa: 'கிருதம்',
-    categoryGroup: 'ghritam',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 295,
+    formulation: 'Lehya',
+    formulationTa: 'லேஹ்யம்',
+    categoryGroup: 'lehya',
+    concerns: ['metabolic-wellness', 'respiratory'],
+    price: 280,
     originalPrice: 340,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Five sacred cow derivatives processed ghee for cognitive clarity, memory, neurological stability, and detox. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'பஞ்சகவ்ய நெய்; மூளை நரம்புகள் புத்துணர்ச்சி, நினைவாற்றல் பெருக்கம் மற்றும் நரம்பு மண்டல சமநிலைக்கு. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Panchagavya Ghritam (பஞ்சகவ்ய கிருதம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா பஞ்சகவ்ய கிருதம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Five sacred cow derivatives processed ghee for cognitive clarity, memory, neurological stability, and detox.',
-    traditionalRoleTa: 'பஞ்சகவ்ய நெய்; மூளை நரம்புகள் புத்துணர்ச்சி, நினைவாற்றல் பெருக்கம் மற்றும் நரம்பு மண்டல சமநிலைக்கு.',
-    badge: 'Neuro-Cognitive Ghee',
-    badgeTa: 'பஞ்சகவ்ய நெய்',
-    image: '/images/products/ruthra-panchagavya-ghritam/front.jpg',
-    images: [
-      '/images/products/ruthra-panchagavya-ghritam/front.jpg',
-      '/images/products/ruthra-panchagavya-ghritam/angle.jpg',
-      '/images/products/ruthra-panchagavya-ghritam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-panchagavya-ghritam/front.jpg',
-      '/images/products/ruthra-panchagavya-ghritam/angle.jpg',
-      '/images/products/ruthra-panchagavya-ghritam/back.jpg'
-    ],
+    packSize: '500g',
+    packSizeTa: '500 கிராம்',
+    shortDescription: 'Ancient 50-herb rejuvenative electuary rich in Amla, honey, and ghee for longevity, vitality, and lung immunity.',
+    shortDescriptionTa: 'ஐம்பதுக்கும் மேற்பட்ட மூலிகைகள் மற்றும் நெல்லிக்காய் கொண்ட உன்னத நோய் எதிர்ப்பு ரசாயன லேகியம்.',
+    description: 'Ruthra Chyanaprasha Lehya is prepared according to the classical Charaka Samhita formulation to fortify immunity, protect respiratory tissues, and nourish all seven bodily Dhatus.',
+    descriptionTa: 'நெல்லிக்காய், தேன், நெய் மற்றும் அரிய மூலிகைகள் கொண்டு தயாரிக்கப்படும் புகழ்மிக்க லேகியம். அனைத்து வயதினருக்கும் ஏற்றது.',
+    traditionalRole: 'Universal Rasayana, lung tonic, and immunomodulator.',
+    traditionalRoleTa: 'நோய் எதிர்ப்பு மற்றும் ஆயுள் பெருக்கும் ரசாயனம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Panchagavya Ghritam Classical Composition', tamilName: 'பஞ்சகவ்ய கிருதம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Amalaki & 50 Himalayan Botanicals', tamilName: 'நெல்லிக்காய் மற்றும் 50 மூலிகைகள்', botanicalName: 'Classical Chyawanprash Formula', role: 'Total body rejuvenation', roleTa: 'முழு உடல் புத்துணர்ச்சி', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 ml', instructionTa: '5-10 மி.லி' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily on an empty stomach or as prescribed.', instructionTa: 'தினமும் இருவேளை வெறும் வயிற்றில் அல்லது மருத்துவர் பரிந்துரைப்படி.' }
+      { step: '01', title: 'Consume with Warm Milk or Water', titleTa: 'பால் அல்லது வெந்நீருடன் உட்கொள்ளவும்', instruction: 'Take 5-10g twice daily followed by warm milk or water.', instructionTa: '5-10 கிராம் லேகியத்தை உண்டு வெதுவெதுப்பான பால் அல்லது நீர் குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 ml',
-      frequency: 'Twice daily',
-      timing: 'Twice daily on an empty stomach or as prescribed',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 மி.லி',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை வெறும் வயிற்றில் அல்லது மருத்துவர் பரிந்துரைப்படி',
-      vehicleTa: 'சூடான பால் அல்லது வெந்நீர்'
+      morning: '5-10g after breakfast',
+      evening: '5-10g before sleep',
+      timing: 'After meals',
+      with: 'Warm milk or water',
+      morningTa: 'காலை 5-10 கிராம்',
+      eveningTa: 'இரவு 5-10 கிராம்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான பால் அல்லது நீர்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Panchagavya Ghritam prepared?',
-        questionTa: 'ருத்ரா பஞ்சகவ்ய கிருதம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["panchagavya ghritam","ruthra panchagavya ghritam","ghritam","panchagavya","ghritam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["பஞ்சகவ்ய கிருதம்","ருத்ரா பஞ்சகவ்ய கிருதம்","கிருதம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra chyanaprasha lehya', 'ruthra-chyanaprasha-lehya', 'ayurveda lehya', 'chyanaprasha lehya'],
+    tamilKeywords: ['ருத்ரா சியவனபிராசம் லேகியம்', 'லேஹ்யம்'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-046',
-    name: 'Ruthra Saraswatha Ghritam',
-    tamilName: 'ருத்ரா சரஸ்வத கிருதம்',
-    slug: 'ruthra-saraswatha-ghritam',
+    name: 'Ruthra Sukumara Rasayanam',
+    tamilName: 'ருத்ரா சுகுமார ரசாயனம்',
+    slug: 'ruthra-sukumara-rasayanam',
     medicalSystem: 'ayurveda',
-    formulation: 'Ghritam',
-    formulationTa: 'கிருதம்',
-    categoryGroup: 'ghritam',
-    concerns: ["metabolic-wellness"],
-    price: 295,
-    originalPrice: 340,
-    packSize: '100ml',
-    packSizeTa: '100 மி.லி',
-    shortDescription: 'Brahmi-infused medicated ghee enhancing intellect, speech eloquence, memory retention, and mental acuity. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சரஸ்வதி நெய்; குழந்தைகளின் பேச்சு திறன், நினைவாற்றல், கற்கும் திறன் மற்றும் மூளை கூர்மைக்கு உகந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Saraswatha Ghritam (சரஸ்வத கிருதம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சரஸ்வத கிருதம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Brahmi-infused medicated ghee enhancing intellect, speech eloquence, memory retention, and mental acuity.',
-    traditionalRoleTa: 'சரஸ்வதி நெய்; குழந்தைகளின் பேச்சு திறன், நினைவாற்றல், கற்கும் திறன் மற்றும் மூளை கூர்மைக்கு உகந்தது.',
-    badge: 'Intellect & Speech Ghee',
-    badgeTa: 'சரஸ்வத நினைவாற்றல் நெய்',
-    image: '/images/products/ruthra-saraswatha-ghritam/front.jpg',
-    images: [
-      '/images/products/ruthra-saraswatha-ghritam/front.jpg',
-      '/images/products/ruthra-saraswatha-ghritam/angle.jpg',
-      '/images/products/ruthra-saraswatha-ghritam/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-saraswatha-ghritam/front.jpg',
-      '/images/products/ruthra-saraswatha-ghritam/angle.jpg',
-      '/images/products/ruthra-saraswatha-ghritam/back.jpg'
-    ],
+    formulation: 'Lehya',
+    formulationTa: 'லேஹ்யம்',
+    categoryGroup: 'lehya',
+    concerns: ['womens-wellness', 'digestive-wellness'],
+    price: 240,
+    originalPrice: 290,
+    packSize: '250g',
+    packSizeTa: '250 கிராம்',
+    shortDescription: 'Classical nourishing jam for female fertility, uterine fibroids, painful periods, and digestive debility.',
+    shortDescriptionTa: 'பெண்களின் கருப்பை நலம், நீர்க்கட்டி, மாதவிடாய் கோளாறுகள் மற்றும் செரிமான பலவீனத்தை போக்கும் ரசாயனம்.',
+    description: 'Ruthra Sukumara Rasayanam strengthens pelvic organs, corrects Apana Vayu disturbances, and relieves abdominal colic.',
+    descriptionTa: 'கர்ப்பப்பை தசைகளை பலப்படுத்தி, ஹார்மோன் சமநிலையை காக்கும் உன்னத ஆயுர்வேத லேகியம்.',
+    traditionalRole: 'Uterine tonic, fertility promoter, and gentle laxative.',
+    traditionalRoleTa: 'கர்ப்பப்பை பலம் மற்றும் மகளிர் நலம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Saraswatha Ghritam Classical Composition', tamilName: 'சரஸ்வத கிருதம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Punarnava & Dasamula in Ghee/Jaggery', tamilName: 'சாரணை, தசமூலம் நெய்/வெல்ல கூட்டு', botanicalName: 'Classical Sukumara compound', role: 'Pelvic and digestive nourishment', roleTa: 'கர்ப்பப்பை சத்து', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '5-10 ml', instructionTa: '5-10 மி.லி' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm milk or warm water.', instructionTa: 'சூடான பால் அல்லது வெந்நீர் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily on an empty stomach or as prescribed.', instructionTa: 'தினமும் இருவேளை வெறும் வயிற்றில் அல்லது மருத்துவர் பரிந்துரைப்படி.' }
+      { step: '01', title: 'Consume with Warm Milk or Water', titleTa: 'பால் அல்லது வெந்நீருடன் உட்கொள்ளவும்', instruction: 'Take 5-10g twice daily followed by warm milk or water.', instructionTa: '5-10 கிராம் லேகியத்தை உண்டு வெதுவெதுப்பான பால் அல்லது நீர் குடிக்கவும்.' }
     ],
     dosage: {
-      amount: '5-10 ml',
-      frequency: 'Twice daily',
-      timing: 'Twice daily on an empty stomach or as prescribed',
-      vehicle: 'Warm milk or warm water',
-      amountTa: '5-10 மி.லி',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை வெறும் வயிற்றில் அல்லது மருத்துவர் பரிந்துரைப்படி',
-      vehicleTa: 'சூடான பால் அல்லது வெந்நீர்'
+      morning: '5-10g after breakfast',
+      evening: '5-10g before sleep',
+      timing: 'After meals',
+      with: 'Warm milk or water',
+      morningTa: 'காலை 5-10 கிராம்',
+      eveningTa: 'இரவு 5-10 கிராம்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான பால் அல்லது நீர்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Saraswatha Ghritam prepared?',
-        questionTa: 'ருத்ரா சரஸ்வத கிருதம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["saraswatha ghritam","ruthra saraswatha ghritam","ghritam","saraswatha","ghritam","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சரஸ்வத கிருதம்","ருத்ரா சரஸ்வத கிருதம்","கிருதம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra sukumara rasayanam', 'ruthra-sukumara-rasayanam', 'ayurveda lehya', 'sukumara rasayanam'],
+    tamilKeywords: ['ருத்ரா சுகுமார ரசாயனம்', 'லேஹ்யம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: ASAVAM / ARISHTA (5 SKUs)
-  // ==========================================
   {
     id: 'prod-ayurveda-047',
-    name: 'Ruthra Aswagandharishta',
-    tamilName: 'ருத்ரா அஸ்வகந்தாரிஷ்டம்',
-    slug: 'ruthra-aswagandharishta',
+    name: 'Ruthra Panchatikta Ghrita',
+    tamilName: 'ருத்ரா பஞ்சதிக்த கிருதம் (நெய்)',
+    slug: 'ruthra-panchatikta-ghrita',
     medicalSystem: 'ayurveda',
-    formulation: 'Asavam / Arishta',
-    formulationTa: 'ஆஸவம் / அரிஷ்டம்',
-    categoryGroup: 'asavam-arishta',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 225,
-    originalPrice: 260,
-    packSize: '450ml',
-    packSizeTa: '450 மி.லி',
-    shortDescription: 'Naturally fermented elixir for chronic nervous exhaustion, insomnia, anxiety, and physical emaciation. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'அஸ்வகந்தா அரிஷ்டம்; நரம்பு தளர்ச்சி, தூக்கமின்மை, மன சோர்வு மற்றும் பொது பலவீனத்தை போக்கும் உன்னத டானிக். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Aswagandharishta (அஸ்வகந்தாரிஷ்டம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அஸ்வகந்தாரிஷ்டம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Naturally fermented elixir for chronic nervous exhaustion, insomnia, anxiety, and physical emaciation.',
-    traditionalRoleTa: 'அஸ்வகந்தா அரிஷ்டம்; நரம்பு தளர்ச்சி, தூக்கமின்மை, மன சோர்வு மற்றும் பொது பலவீனத்தை போக்கும் உன்னத டானிக்.',
-    badge: 'Nerve & Vitality Elixir',
-    badgeTa: 'நரம்பு & தேக பல அரிஷ்டம்',
-    image: '/images/products/ruthra-aswagandharishta/front.jpg',
-    images: [
-      '/images/products/ruthra-aswagandharishta/front.jpg',
-      '/images/products/ruthra-aswagandharishta/angle.jpg',
-      '/images/products/ruthra-aswagandharishta/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-aswagandharishta/front.jpg',
-      '/images/products/ruthra-aswagandharishta/angle.jpg',
-      '/images/products/ruthra-aswagandharishta/back.jpg'
-    ],
+    formulation: 'Ghrita',
+    formulationTa: 'கிருதம்',
+    categoryGroup: 'ghrita',
+    concerns: ['skin-hair', 'joint-mobility'],
+    price: 290,
+    originalPrice: 350,
+    packSize: '150g',
+    packSizeTa: '150 கிராம்',
+    shortDescription: 'Medicated cow ghee cooked with five premier bitter botanicals for chronic skin disorders, psoriasis, and bone diseases.',
+    shortDescriptionTa: 'ஐந்து கசப்பு மூலிகைகள் கொண்டு காய்ச்சப்பட்ட மருத்துவ நெய். சொரியாசிஸ், நாள்பட்ட தோல் வியாதிகள் மற்றும் எலும்பு தேய்மானத்திற்கு உகந்தது.',
+    description: 'Ruthra Panchatikta Ghrita carries lipophilic bitter phytochemicals across cellular barriers to cleanse deep toxins and lubricate joints.',
+    descriptionTa: 'தோல் நமைச்சல் மற்றும் எலும்பு பலவீனத்தை போக்கும் பாரம்பரிய மருத்துவ நெய் தயாரிப்பு.',
+    traditionalRole: 'Deep tissue lipophilic cleanser and anti-psoriatic.',
+    traditionalRoleTa: 'தோல் நோய் மற்றும் எலும்பு பலப்படுத்தும் நெய்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Aswagandharishta Classical Composition', tamilName: 'அஸ்வகந்தாரிஷ்டம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Panchatikta herbs in Pure Cow Ghee', tamilName: 'பஞ்சதிக்த மூலிகைகள் மற்றும் பசு நெய்', botanicalName: '5 Bitters in Cow\'s Ghee', role: 'Deep cellular detox', roleTa: 'உள் திசு நச்சு நீக்கம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '15-25 ml with equal quantity of water', instructionTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Diluted with equal quantity of drinking water.', instructionTa: 'சம அளவு குடிநீருடன் கலந்து உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily immediately after meals.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக.' }
+      { step: '01', title: 'Take on Empty Stomach', titleTa: 'வெறும் வயிற்றில் உட்கொள்ளவும்', instruction: 'Take 5-10g with warm water or warm milk in the morning.', instructionTa: 'காலை வெறும் வயிற்றில் 5-10 கிராம் வெந்நீருடன் உட்கொள்ளவும்.' }
     ],
     dosage: {
-      amount: '15-25 ml with equal quantity of water',
-      frequency: 'Twice daily',
-      timing: 'Twice daily immediately after meals',
-      vehicle: 'Diluted with equal quantity of drinking water',
-      amountTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக',
-      vehicleTa: 'சம அளவு குடிநீருடன் கலந்து'
+      morning: '5-10g morning empty stomach',
+      evening: '5g evening before food',
+      timing: 'Before meals with warm water',
+      with: 'Warm water or milk',
+      morningTa: 'காலை 5-10 கிராம் வெறும் வயிற்றில்',
+      eveningTa: 'மாலை 5 கிராம் உணவுக்கு முன்',
+      timingTa: 'உணவுக்கு முன்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது பால்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Aswagandharishta prepared?',
-        questionTa: 'ருத்ரா அஸ்வகந்தாரிஷ்டம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["aswagandharishta","ruthra aswagandharishta","asavam / arishta","aswagandharishta","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அஸ்வகந்தாரிஷ்டம்","ருத்ரா அஸ்வகந்தாரிஷ்டம்","ஆஸவம் / அரிஷ்டம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-048',
-    name: 'Ruthra Draksharishta',
-    tamilName: 'ருத்ரா திராட்சாரிஷ்டம்',
-    slug: 'ruthra-draksharishta',
-    medicalSystem: 'ayurveda',
-    formulation: 'Asavam / Arishta',
-    formulationTa: 'ஆஸவம் / அரிஷ்டம்',
-    categoryGroup: 'asavam-arishta',
-    concerns: ["respiratory","digestive-wellness"],
-    price: 225,
-    originalPrice: 260,
-    packSize: '450ml',
-    packSizeTa: '450 மி.லி',
-    shortDescription: 'Fermented raisin tonic for chronic cough, breathlessness, poor appetite, intestinal sluggishness, and anemia. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'திராட்சை அரிஷ்டம்; தொடர் இருமல், இரைப்பு, பசியின்மை, செரிமான மந்தம் மற்றும் ரத்த விருத்தி தரும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Draksharishta (திராட்சாரிஷ்டம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திராட்சாரிஷ்டம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Fermented raisin tonic for chronic cough, breathlessness, poor appetite, intestinal sluggishness, and anemia.',
-    traditionalRoleTa: 'திராட்சை அரிஷ்டம்; தொடர் இருமல், இரைப்பு, பசியின்மை, செரிமான மந்தம் மற்றும் ரத்த விருத்தி தரும்.',
-    badge: 'Appetite & Lung Elixir',
-    badgeTa: 'பசி & சுவாச அரிஷ்டம்',
-    image: '/images/products/ruthra-draksharishta/front.jpg',
-    images: [
-      '/images/products/ruthra-draksharishta/front.jpg',
-      '/images/products/ruthra-draksharishta/angle.jpg',
-      '/images/products/ruthra-draksharishta/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-draksharishta/front.jpg',
-      '/images/products/ruthra-draksharishta/angle.jpg',
-      '/images/products/ruthra-draksharishta/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Draksharishta Classical Composition', tamilName: 'திராட்சாரிஷ்டம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '15-25 ml with equal quantity of water', instructionTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Diluted with equal quantity of drinking water.', instructionTa: 'சம அளவு குடிநீருடன் கலந்து உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily immediately after meals.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக.' }
-    ],
-    dosage: {
-      amount: '15-25 ml with equal quantity of water',
-      frequency: 'Twice daily',
-      timing: 'Twice daily immediately after meals',
-      vehicle: 'Diluted with equal quantity of drinking water',
-      amountTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக',
-      vehicleTa: 'சம அளவு குடிநீருடன் கலந்து'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Draksharishta prepared?',
-        questionTa: 'ருத்ரா திராட்சாரிஷ்டம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["draksharishta","ruthra draksharishta","asavam / arishta","draksharishta","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திராட்சாரிஷ்டம்","ருத்ரா திராட்சாரிஷ்டம்","ஆஸவம் / அரிஷ்டம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-049',
-    name: 'Ruthra Kumaryasava',
-    tamilName: 'ருத்ரா குமார்யாஸவம்',
-    slug: 'ruthra-kumaryasava',
-    medicalSystem: 'ayurveda',
-    formulation: 'Asavam / Arishta',
-    formulationTa: 'ஆஸவம் / அரிஷ்டம்',
-    categoryGroup: 'asavam-arishta',
-    concerns: ["womens-wellness","digestive-wellness"],
-    price: 225,
-    originalPrice: 260,
-    packSize: '450ml',
-    packSizeTa: '450 மி.லி',
-    shortDescription: 'Aloe vera fermented cordial for delayed menstruation, PCOS, liver congestion, abdominal gas, and anemia. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'கற்றாழை ஆஸவம்; மகளிர் மாதவிடாய் கோளாறுகள், சினைப்பை நீர்க்கட்டி, கல்லீரல் மந்தம் மற்றும் ரத்த சோகை நீக்கி. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Kumaryasava (குமார்யாஸவம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா குமார்யாஸவம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Aloe vera fermented cordial for delayed menstruation, PCOS, liver congestion, abdominal gas, and anemia.',
-    traditionalRoleTa: 'கற்றாழை ஆஸவம்; மகளிர் மாதவிடாய் கோளாறுகள், சினைப்பை நீர்க்கட்டி, கல்லீரல் மந்தம் மற்றும் ரத்த சோகை நீக்கி.',
-    badge: 'Women’s Cycle & Liver Elixir',
-    badgeTa: 'மகளிர் & கல்லீரல் ஆஸவம்',
-    image: '/images/products/ruthra-kumaryasava/front.jpg',
-    images: [
-      '/images/products/ruthra-kumaryasava/front.jpg',
-      '/images/products/ruthra-kumaryasava/angle.jpg',
-      '/images/products/ruthra-kumaryasava/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-kumaryasava/front.jpg',
-      '/images/products/ruthra-kumaryasava/angle.jpg',
-      '/images/products/ruthra-kumaryasava/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Kumaryasava Classical Composition', tamilName: 'குமார்யாஸவம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '15-25 ml with equal quantity of water', instructionTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Diluted with equal quantity of drinking water.', instructionTa: 'சம அளவு குடிநீருடன் கலந்து உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily immediately after meals.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக.' }
-    ],
-    dosage: {
-      amount: '15-25 ml with equal quantity of water',
-      frequency: 'Twice daily',
-      timing: 'Twice daily immediately after meals',
-      vehicle: 'Diluted with equal quantity of drinking water',
-      amountTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக',
-      vehicleTa: 'சம அளவு குடிநீருடன் கலந்து'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Kumaryasava prepared?',
-        questionTa: 'ருத்ரா குமார்யாஸவம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["kumaryasava","ruthra kumaryasava","asavam / arishta","kumaryasava","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["குமார்யாஸவம்","ருத்ரா குமார்யாஸவம்","ஆஸவம் / அரிஷ்டம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-050',
-    name: 'Ruthra Lodhrasava',
-    tamilName: 'ருத்ரா லோத்ராஸவம்',
-    slug: 'ruthra-lodhrasava',
-    medicalSystem: 'ayurveda',
-    formulation: 'Asavam / Arishta',
-    formulationTa: 'ஆஸவம் / அரிஷ்டம்',
-    categoryGroup: 'asavam-arishta',
-    concerns: ["womens-wellness","skin-hair"],
-    price: 225,
-    originalPrice: 260,
-    packSize: '450ml',
-    packSizeTa: '450 மி.லி',
-    shortDescription: 'Symplocos fermented elixir treating menorrhagia, leucorrhea, obesity, metabolic sluggishness, and skin spots. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'லோத்ரா ஆஸவம்; அதிக உதிரப்போக்கு, வெள்ளைப்படுதல், உடல் பருமன் மற்றும் தோல் மங்கு நீக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Lodhrasava (லோத்ராஸவம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா லோத்ராஸவம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Symplocos fermented elixir treating menorrhagia, leucorrhea, obesity, metabolic sluggishness, and skin spots.',
-    traditionalRoleTa: 'லோத்ரா ஆஸவம்; அதிக உதிரப்போக்கு, வெள்ளைப்படுதல், உடல் பருமன் மற்றும் தோல் மங்கு நீக்கும்.',
-    badge: 'Menorrhagia & Metabolic Elixir',
-    badgeTa: 'உதிரப்போக்கு & லோத்ரா ஆஸவம்',
-    image: '/images/products/ruthra-lodhrasava/front.jpg',
-    images: [
-      '/images/products/ruthra-lodhrasava/front.jpg',
-      '/images/products/ruthra-lodhrasava/angle.jpg',
-      '/images/products/ruthra-lodhrasava/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-lodhrasava/front.jpg',
-      '/images/products/ruthra-lodhrasava/angle.jpg',
-      '/images/products/ruthra-lodhrasava/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Lodhrasava Classical Composition', tamilName: 'லோத்ராஸவம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '15-25 ml with equal quantity of water', instructionTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Diluted with equal quantity of drinking water.', instructionTa: 'சம அளவு குடிநீருடன் கலந்து உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily immediately after meals.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக.' }
-    ],
-    dosage: {
-      amount: '15-25 ml with equal quantity of water',
-      frequency: 'Twice daily',
-      timing: 'Twice daily immediately after meals',
-      vehicle: 'Diluted with equal quantity of drinking water',
-      amountTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக',
-      vehicleTa: 'சம அளவு குடிநீருடன் கலந்து'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Lodhrasava prepared?',
-        questionTa: 'ருத்ரா லோத்ராஸவம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["lodhrasava","ruthra lodhrasava","asavam / arishta","lodhrasava","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["லோத்ராஸவம்","ருத்ரா லோத்ராஸவம்","ஆஸவம் / அரிஷ்டம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-051',
-    name: 'Ruthra Arjunarishta',
-    tamilName: 'ருத்ரா அர்ஜுனாரிஷ்டம்',
-    slug: 'ruthra-arjunarishta',
-    medicalSystem: 'ayurveda',
-    formulation: 'Asavam / Arishta',
-    formulationTa: 'ஆஸவம் / அரிஷ்டம்',
-    categoryGroup: 'asavam-arishta',
-    concerns: ["metabolic-wellness"],
-    price: 225,
-    originalPrice: 260,
-    packSize: '450ml',
-    packSizeTa: '450 மி.லி',
-    shortDescription: 'Terminalia arjuna fermented cordial nourishing cardiac rhythm, relieving palpitations, and promoting stamina. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'அர்ஜுனா அரிஷ்டம்; இதய படபடப்பு, ரத்த அழுத்த சமநிலை, இதய தசைகள் பலம் மற்றும் ரத்த ஓட்டத்தை சீராக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Arjunarishta (அர்ஜுனாரிஷ்டம்) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அர்ஜுனாரிஷ்டம் திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Terminalia arjuna fermented cordial nourishing cardiac rhythm, relieving palpitations, and promoting stamina.',
-    traditionalRoleTa: 'அர்ஜுனா அரிஷ்டம்; இதய படபடப்பு, ரத்த அழுத்த சமநிலை, இதய தசைகள் பலம் மற்றும் ரத்த ஓட்டத்தை சீராக்கும்.',
-    badge: 'Cardiac Strength Elixir',
-    badgeTa: 'இதய நலம் தரும் அரிஷ்டம்',
-    image: '/images/products/ruthra-arjunarishta/front.jpg',
-    images: [
-      '/images/products/ruthra-arjunarishta/front.jpg',
-      '/images/products/ruthra-arjunarishta/angle.jpg',
-      '/images/products/ruthra-arjunarishta/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-arjunarishta/front.jpg',
-      '/images/products/ruthra-arjunarishta/angle.jpg',
-      '/images/products/ruthra-arjunarishta/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Arjunarishta Classical Composition', tamilName: 'அர்ஜுனாரிஷ்டம் மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '15-25 ml with equal quantity of water', instructionTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Diluted with equal quantity of drinking water.', instructionTa: 'சம அளவு குடிநீருடன் கலந்து உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily immediately after meals.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக.' }
-    ],
-    dosage: {
-      amount: '15-25 ml with equal quantity of water',
-      frequency: 'Twice daily',
-      timing: 'Twice daily immediately after meals',
-      vehicle: 'Diluted with equal quantity of drinking water',
-      amountTa: '15-25 மி.லி சம அளவு தண்ணீருடன் கலந்து',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின் உடனடியாக',
-      vehicleTa: 'சம அளவு குடிநீருடன் கலந்து'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Arjunarishta prepared?',
-        questionTa: 'ருத்ரா அர்ஜுனாரிஷ்டம் எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["arjunarishta","ruthra arjunarishta","asavam / arishta","arjunarishta","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அர்ஜுனாரிஷ்டம்","ருத்ரா அர்ஜுனாரிஷ்டம்","ஆஸவம் / அரிஷ்டம்","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra panchatikta ghrita', 'ruthra-panchatikta-ghrita', 'ayurveda ghrita', 'panchatikta ghrita'],
+    tamilKeywords: ['ருத்ரா பஞ்சதிக்த கிருதம் (நெய்)', 'கிருதம்'],
+    inStock: true,
+    featured: false
   },
 
-  // ==========================================
-  // AYURVEDA: SINGLE HERB (13 SKUs)
-  // ==========================================
+  {
+    id: 'prod-ayurveda-048',
+    name: 'Ruthra Arjunarishtam',
+    tamilName: 'ருத்ரா அர்ஜுனாரிஷ்டம் (பார்த்தாத்யாரிஷ்டம்)',
+    slug: 'ruthra-arjunarishtam',
+    medicalSystem: 'ayurveda',
+    formulation: 'Arishtam',
+    formulationTa: 'அரிஷ்டம்',
+    categoryGroup: 'arishtam',
+    concerns: ['metabolic-wellness'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '450ml',
+    packSizeTa: '450 மி.லி',
+    shortDescription: 'Naturally fermented Arjuna bark cardiotonic elixir for healthy blood pressure, myocardial strength, and circulation.',
+    shortDescriptionTa: 'இயற்கையாக நொதிக்க வைக்கப்பட்ட மருதம்பட்டை அரிஷ்டம். இதய துடிப்பு, ரத்த அழுத்தம் மற்றும் ரத்த ஓட்டத்தை சீராக்கும்.',
+    description: 'Ruthra Arjunarishtam strengthens cardiac muscle elasticity, relieves palpitations and chest weakness, and supports arterial health.',
+    descriptionTa: 'இதயத்திற்கு புத்துணர்ச்சி அளித்து, சோர்வு மற்றும் படபடப்பை நீக்கும் பாரம்பரிய அரிஷ்டம்.',
+    traditionalRole: 'Foremost classical Hridya (cardiac) elixir.',
+    traditionalRoleTa: 'இதய பலம் மற்றும் ரத்த நாள பாதுகாப்பு.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    ingredients: [
+      { name: 'Arjuna Bark (Terminalia arjuna)', tamilName: 'மருதம்பட்டை', botanicalName: 'Terminalia arjuna', role: 'Cardiotonic', roleTa: 'இதய நலம்', amount: '60%' },
+      { name: 'Draksha & Dhataki', tamilName: 'திராட்சை & தாத்திரி பூ', botanicalName: 'Vitis vinifera & Woodfordia', role: 'Natural fermentation base', roleTa: 'இயற்கை நொதித்தல்', amount: '40%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Equal Quantity Water', titleTa: 'சம அளவு நீருடன் உட்கொள்ளவும்', instruction: 'Take 15-30ml twice daily with equal quantity of warm water after food.', instructionTa: '15-30 மி.லி சம அளவு வெந்நீருடன் உணவுக்குப் பின் குடிக்கவும்.' }
+    ],
+    dosage: {
+      morning: '15-30ml after breakfast',
+      evening: '15-30ml after dinner',
+      timing: 'After meals',
+      with: 'Equal quantity warm water',
+      morningTa: 'காலை 15-30 மி.லி உணவுக்குப் பின்',
+      eveningTa: 'இரவு 15-30 மி.லி உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'சம அளவு வெதுவெதுப்பான நீர்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
+    },
+    storage: {
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
+    ],
+    searchKeywords: ['ruthra arjunarishtam', 'ruthra-arjunarishtam', 'ayurveda arishtam', 'arjunarishtam'],
+    tamilKeywords: ['ருத்ரா அர்ஜுனாரிஷ்டம் (பார்த்தாத்யாரிஷ்டம்)', 'அரிஷ்டம்'],
+    inStock: true,
+    featured: false
+  },
+
+  {
+    id: 'prod-ayurveda-049',
+    name: 'Ruthra Dasamoolarishtam',
+    tamilName: 'ருத்ரா தசமூலாரிஷ்டம்',
+    slug: 'ruthra-dasamoolarishtam',
+    medicalSystem: 'ayurveda',
+    formulation: 'Arishtam',
+    formulationTa: 'அரிஷ்டம்',
+    categoryGroup: 'arishtam',
+    concerns: ['womens-wellness', 'metabolic-wellness', 'joint-mobility'],
+    price: 210,
+    originalPrice: 250,
+    packSize: '450ml',
+    packSizeTa: '450 மி.லி',
+    shortDescription: 'Famous comprehensive restorative elixir for postpartum convalescence, fatigue, joint aches, and general debility.',
+    shortDescriptionTa: 'தசமூலம் அடங்கிய புகழ்மிக்க டானிக். பிரசவத்திற்கு பிந்தைய பலவீனம், சோர்வு மற்றும் உடல் வலிகளை போக்கும்.',
+    description: 'Ruthra Dasamoolarishtam combines over 50 potent herbs to rekindle digestive fire, promote restful sleep, and restore vitality.',
+    descriptionTa: 'பிரசவித்த பெண்களுக்கு உடல் வலிமை, பசி மற்றும் பால் பெருக்கத்தை தரும் உன்னத ஆயுர்வேத டானிக்.',
+    traditionalRole: 'General tonic, postpartum restorative, and anti-fatigue.',
+    traditionalRoleTa: 'உடல் பலம் தரும் பொது டானிக்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    ingredients: [
+      { name: 'Dasamula & 50 Herbal Ingredients', tamilName: 'தசமூலம் மற்றும் 50 மூலிகைகள்', botanicalName: 'Classical Dasamoolarishta compound', role: 'Comprehensive revitalization', roleTa: 'முழு உடல் புத்துணர்ச்சி', amount: '100%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Equal Quantity Water', titleTa: 'சம அளவு நீருடன் உட்கொள்ளவும்', instruction: 'Take 15-30ml twice daily with equal quantity of warm water after food.', instructionTa: '15-30 மி.லி சம அளவு வெந்நீருடன் உணவுக்குப் பின் குடிக்கவும்.' }
+    ],
+    dosage: {
+      morning: '15-30ml after breakfast',
+      evening: '15-30ml after dinner',
+      timing: 'After meals',
+      with: 'Equal quantity warm water',
+      morningTa: 'காலை 15-30 மி.லி உணவுக்குப் பின்',
+      eveningTa: 'இரவு 15-30 மி.லி உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'சம அளவு வெதுவெதுப்பான நீர்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
+    },
+    storage: {
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
+    ],
+    searchKeywords: ['ruthra dasamoolarishtam', 'ruthra-dasamoolarishtam', 'ayurveda arishtam', 'dasamoolarishtam'],
+    tamilKeywords: ['ருத்ரா தசமூலாரிஷ்டம்', 'அரிஷ்டம்'],
+    inStock: true,
+    featured: false
+  },
+
+  {
+    id: 'prod-ayurveda-050',
+    name: 'Ruthra Khadirarishtam',
+    tamilName: 'ருத்ரா கதீராரிஷ்டம் (கருங்காலி அரிஷ்டம்)',
+    slug: 'ruthra-khadirarishtam',
+    medicalSystem: 'ayurveda',
+    formulation: 'Arishtam',
+    formulationTa: 'அரிஷ்டம்',
+    categoryGroup: 'arishtam',
+    concerns: ['skin-hair', 'metabolic-wellness'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '450ml',
+    packSizeTa: '450 மி.லி',
+    shortDescription: 'Acacia catechu fermented elixir for allergic dermatitis, vitiligo, chronic acne, and blood purification.',
+    shortDescriptionTa: 'கருங்காலி அடங்கிய ரத்த சுத்தி அரிஷ்டம். தோல் அரிப்பு, முகப்பரு, தடிப்பு மற்றும் தோல் நோய்களை குணமாக்கும்.',
+    description: 'Ruthra Khadirarishtam is celebrated as the premier classical dermatological liquid formulation for purifying blood toxins.',
+    descriptionTa: 'ரத்தத்தில் உள்ள கிருமிகளை அழித்து, தோல் பொலிவு தரும் பாரம்பரிய கதீராரிஷ்டம்.',
+    traditionalRole: 'Supreme dermatological blood cleanser and alterative.',
+    traditionalRoleTa: 'ரத்த சுத்தி மற்றும் தோல் நோய் நிவாரணம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    ingredients: [
+      { name: 'Khadira (Acacia catechu) & Devadaru', tamilName: 'கருங்காலி மற்றும் தேவதாரு', botanicalName: 'Acacia catechu compound', role: 'Dermal purifier', roleTa: 'தோல் நச்சு நீக்கி', amount: '100%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Equal Quantity Water', titleTa: 'சம அளவு நீருடன் உட்கொள்ளவும்', instruction: 'Take 15-30ml twice daily with equal quantity of warm water after food.', instructionTa: '15-30 மி.லி சம அளவு வெந்நீருடன் உணவுக்குப் பின் குடிக்கவும்.' }
+    ],
+    dosage: {
+      morning: '15-30ml after breakfast',
+      evening: '15-30ml after dinner',
+      timing: 'After meals',
+      with: 'Equal quantity warm water',
+      morningTa: 'காலை 15-30 மி.லி உணவுக்குப் பின்',
+      eveningTa: 'இரவு 15-30 மி.லி உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'சம அளவு வெதுவெதுப்பான நீர்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
+    },
+    storage: {
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
+    ],
+    searchKeywords: ['ruthra khadirarishtam', 'ruthra-khadirarishtam', 'ayurveda arishtam', 'khadirarishtam'],
+    tamilKeywords: ['ருத்ரா கதீராரிஷ்டம் (கருங்காலி அரிஷ்டம்)', 'அரிஷ்டம்'],
+    inStock: true,
+    featured: false
+  },
+
+  {
+    id: 'prod-ayurveda-051',
+    name: 'Ruthra Punarnavasam',
+    tamilName: 'ருத்ரா புனர்நவாஸம் (சாரணை ஆஸவம்)',
+    slug: 'ruthra-punarnavasam',
+    medicalSystem: 'ayurveda',
+    formulation: 'Arishtam',
+    formulationTa: 'ஆஸவம்',
+    categoryGroup: 'arishtam',
+    concerns: ['metabolic-wellness'],
+    price: 190,
+    originalPrice: 230,
+    packSize: '450ml',
+    packSizeTa: '450 மி.லி',
+    shortDescription: 'Fermented renal stimulant for water retention, liver disorders, spleen enlargement, and anemia.',
+    shortDescriptionTa: 'சிறுநீரகம் மற்றும் கல்லீரல் செயல்பாடு தூண்டும் ஆஸவம். நீர் வீக்கம், கல்லீரல் வீக்கம், சோகையை போக்கும்.',
+    description: 'Ruthra Punarnavasam encourages natural diuresis, flushes microvascular fluid accumulation, and rejuvenates liver and kidney tissues.',
+    descriptionTa: 'சிறுநீரக வடிகட்டுதலை சீராக்கி, உடல் வீக்கத்தை போக்கும் உன்னத ஆஸவ தயாரிப்பு.',
+    traditionalRole: 'Diuretic, hepato-protective, and anti-edematous.',
+    traditionalRoleTa: 'நீர் வீக்கம் நீக்கி மற்றும் சிறுநீரக டானிக்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    ingredients: [
+      { name: 'Punarnava & Triphala compound', tamilName: 'சாரணை மற்றும் திரிபலா கூட்டு', botanicalName: 'Boerhavia diffusa fermented compound', role: 'Fluid balancer and liver support', roleTa: 'நீர் சமன் மற்றும் கல்லீரல் நலம்', amount: '100%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Equal Quantity Water', titleTa: 'சம அளவு நீருடன் உட்கொள்ளவும்', instruction: 'Take 15-30ml twice daily with equal quantity of warm water after food.', instructionTa: '15-30 மி.லி சம அளவு வெந்நீருடன் உணவுக்குப் பின் குடிக்கவும்.' }
+    ],
+    dosage: {
+      morning: '15-30ml after breakfast',
+      evening: '15-30ml after dinner',
+      timing: 'After meals',
+      with: 'Equal quantity warm water',
+      morningTa: 'காலை 15-30 மி.லி உணவுக்குப் பின்',
+      eveningTa: 'இரவு 15-30 மி.லி உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'சம அளவு வெதுவெதுப்பான நீர்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
+    },
+    storage: {
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
+    ],
+    searchKeywords: ['ruthra punarnavasam', 'ruthra-punarnavasam', 'ayurveda arishtam', 'punarnavasam'],
+    tamilKeywords: ['ருத்ரா புனர்நவாஸம் (சாரணை ஆஸவம்)', 'ஆஸவம்'],
+    inStock: true,
+    featured: false
+  },
+
   {
     id: 'prod-ayurveda-052',
-    name: 'Ruthra Hingu',
-    tamilName: 'ருத்ரா பெருங்காயம் (ஹிங்கு)',
-    slug: 'ruthra-hingu',
+    name: 'Ruthra Chandraprabavati',
+    tamilName: 'ருத்ரா சந்திரபிரபாவதி மாத்திரை',
+    slug: 'ruthra-chandraprabavati',
     medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["digestive-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified Ferula foetida resin powder, supreme carminative for instant gas relief, bloating, and spasmodic colic. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சுத்தி செய்த பெருங்காயம்; வயிற்று வலி, வாயு பிடிப்பு, நெஞ்செரிச்சல் மற்றும் செரிமான மந்தத்தை போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Hingu (பெருங்காயம் (ஹிங்கு)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா பெருங்காயம் (ஹிங்கு) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified Ferula foetida resin powder, supreme carminative for instant gas relief, bloating, and spasmodic colic.',
-    traditionalRoleTa: 'சுத்தி செய்த பெருங்காயம்; வயிற்று வலி, வாயு பிடிப்பு, நெஞ்செரிச்சல் மற்றும் செரிமான மந்தத்தை போக்கும்.',
-    badge: 'Pure Ferula Resin',
-    badgeTa: 'சுத்தமான பெருங்காயம்',
-    image: '/images/products/ruthra-hingu/front.jpg',
-    images: [
-      '/images/products/ruthra-hingu/front.jpg',
-      '/images/products/ruthra-hingu/angle.jpg',
-      '/images/products/ruthra-hingu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-hingu/front.jpg',
-      '/images/products/ruthra-hingu/angle.jpg',
-      '/images/products/ruthra-hingu/back.jpg'
-    ],
+    formulation: 'Guggulu',
+    formulationTa: 'குக்குலு / வடி',
+    categoryGroup: 'guggulu',
+    concerns: ['metabolic-wellness', 'womens-wellness'],
+    price: 220,
+    originalPrice: 260,
+    packSize: '60 Tablets',
+    packSizeTa: '60 மாத்திரைகள்',
+    shortDescription: 'Famous 37-herb classical tablet for urinary tract health, burning urination, kidney stones, and prostate wellness.',
+    shortDescriptionTa: 'சிறுநீரக பாதை தொற்று, எரிச்சல், கல் அடைப்பு மற்றும் ஆண்/பெண் பிறப்புறுப்பு நலம் காக்கும் மாத்திரை.',
+    description: 'Ruthra Chandraprabavati blends Shilajit, Guggulu, and herbs to rejuvenate the genitourinary system and optimize metabolic health.',
+    descriptionTa: 'சிலாஜித் மற்றும் குக்குலு அடங்கிய மாத்திரை. சிறுநீர் எரிச்சல், சர்க்கரை நோய் சோர்வு மற்றும் பலவீனத்தை நீக்கும்.',
+    traditionalRole: 'Genitourinary rejuvenator and urinary alkalizer.',
+    traditionalRoleTa: 'சிறுநீரக மண்டல பாதுகாப்பு மாத்திரை.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Hingu Classical Composition', tamilName: 'பெருங்காயம் (ஹிங்கு) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Shilajit, Guggulu & 35 Botanicals', tamilName: 'சிலாஜித், குக்குலு மற்றும் மூலிகைகள்', botanicalName: 'Classical Chandraprabha formulation', role: 'Urinary and metabolic tonic', roleTa: 'சிறுநீரக மற்றும் தாது பலம்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Take with Warm Water', titleTa: 'வெந்நீருடன் உட்கொள்ளவும்', instruction: 'Take 1-2 tablets twice daily after food.', instructionTa: '1-2 மாத்திரைகள் உணவுக்குப் பின் வெந்நீருடன் உட்கொள்ளவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '1-2 tablets after breakfast',
+      evening: '1-2 tablets after dinner',
+      timing: 'After meals',
+      with: 'Warm water',
+      morningTa: 'காலை 1-2 மாத்திரை உணவுக்குப் பின்',
+      eveningTa: 'இரவு 1-2 மாத்திரை உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Hingu prepared?',
-        questionTa: 'ருத்ரா பெருங்காயம் (ஹிங்கு) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["hingu","ruthra hingu","single herb","hingu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["பெருங்காயம் (ஹிங்கு)","ருத்ரா பெருங்காயம் (ஹிங்கு)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra chandraprabavati', 'ruthra-chandraprabavati', 'ayurveda guggulu', 'chandraprabavati'],
+    tamilKeywords: ['ருத்ரா சந்திரபிரபாவதி மாத்திரை', 'குக்குலு / வடி'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-053',
-    name: 'Ruthra Tankana',
-    tamilName: 'ருத்ரா வெண்காரம் (டங்கண)',
-    slug: 'ruthra-tankana',
+    name: 'Ruthra Kanchanara Guggulu',
+    tamilName: 'ருத்ரா காஞ்சனார குக்குலு',
+    slug: 'ruthra-kanchanara-guggulu',
     medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["respiratory","digestive-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified Borax mineral powder for clearing tenacious bronchitic phlegm, mouth ulcers, and dysuria. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சுத்தி செய்த வெண்கார பற்பம்; தொண்டை சளி அடைப்பு, வாய் புண் மற்றும் சிறுநீர் பாதையை சுத்தப்படுத்தும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Tankana (வெண்காரம் (டங்கண)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா வெண்காரம் (டங்கண) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified Borax mineral powder for clearing tenacious bronchitic phlegm, mouth ulcers, and dysuria.',
-    traditionalRoleTa: 'சுத்தி செய்த வெண்கார பற்பம்; தொண்டை சளி அடைப்பு, வாய் புண் மற்றும் சிறுநீர் பாதையை சுத்தப்படுத்தும்.',
-    badge: 'Purified Mineral Salt',
-    badgeTa: 'சுத்தி வெண்காரம்',
-    image: '/images/products/ruthra-tankana/front.jpg',
-    images: [
-      '/images/products/ruthra-tankana/front.jpg',
-      '/images/products/ruthra-tankana/angle.jpg',
-      '/images/products/ruthra-tankana/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-tankana/front.jpg',
-      '/images/products/ruthra-tankana/angle.jpg',
-      '/images/products/ruthra-tankana/back.jpg'
-    ],
+    formulation: 'Guggulu',
+    formulationTa: 'குக்குலு',
+    categoryGroup: 'guggulu',
+    concerns: ['womens-wellness', 'metabolic-wellness'],
+    price: 230,
+    originalPrice: 270,
+    packSize: '60 Tablets',
+    packSizeTa: '60 மாத்திரைகள்',
+    shortDescription: 'Classical Bauhinia variegata formulation for thyroid swelling, lymphadenopathy, lipomas, and ovarian cysts (PCOS).',
+    shortDescriptionTa: 'தைராய்டு வீக்கம், நிணநீர் கட்டி, சினைப்பை நீர்க்கட்டி மற்றும் கொழுப்புக் கட்டிகளை கரைக்கும் மாத்திரை.',
+    description: 'Ruthra Kanchanara Guggulu penetrates glandular tissues, resolves glandular congestions, and supports optimal lymphatic drainage.',
+    descriptionTa: 'காஞ்சனார பட்டை மற்றும் தூய குக்குலு கலந்த மாத்திரை. கட்டிகளை கரைத்து சுரப்பி செயல்பாடுகளை சீராக்கும்.',
+    traditionalRole: 'Glandular decongestant and anti-tumorigenic Guggulu.',
+    traditionalRoleTa: 'கட்டிகளை கரைக்கும் சுரப்பி டானிக்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Tankana Classical Composition', tamilName: 'வெண்காரம் (டங்கண) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Kanchanara Bark & Shuddha Guggulu', tamilName: 'காஞ்சனார பட்டை & குக்குலு', botanicalName: 'Bauhinia variegata & Commiphora mukul', role: 'Dissolves glandular lumps', roleTa: 'கட்டிகளை கரைத்தல்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Take with Warm Water', titleTa: 'வெந்நீருடன் உட்கொள்ளவும்', instruction: 'Take 1-2 tablets twice daily after food.', instructionTa: '1-2 மாத்திரைகள் உணவுக்குப் பின் வெந்நீருடன் உட்கொள்ளவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '1-2 tablets after breakfast',
+      evening: '1-2 tablets after dinner',
+      timing: 'After meals',
+      with: 'Warm water',
+      morningTa: 'காலை 1-2 மாத்திரை உணவுக்குப் பின்',
+      eveningTa: 'இரவு 1-2 மாத்திரை உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Tankana prepared?',
-        questionTa: 'ருத்ரா வெண்காரம் (டங்கண) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["tankana","ruthra tankana","single herb","tankana","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["வெண்காரம் (டங்கண)","ருத்ரா வெண்காரம் (டங்கண)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra kanchanara guggulu', 'ruthra-kanchanara-guggulu', 'ayurveda guggulu', 'kanchanara guggulu'],
+    tamilKeywords: ['ருத்ரா காஞ்சனார குக்குலு', 'குக்குலு'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-054',
-    name: 'Ruthra Shilajitu',
-    tamilName: 'ருத்ரா சுத்த சிலாஜித் (ஷிலாஜித்து)',
-    slug: 'ruthra-shilajitu',
+    name: 'Ruthra Mahayogaraja Guggulu',
+    tamilName: 'ருத்ரா மகாயோகராஜ குக்குலு',
+    slug: 'ruthra-mahayogaraja-guggulu',
     medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified Himalayan asphaltum rich in fulvic acid, enhances cellular energy, stamina, virility, and immunity. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'இமயமலை சுத்த சிலாஜித்; தாது பலம், உடல் ஆற்றல், சர்க்கரை கட்டுப்பாடு மற்றும் நீண்ட ஆயுள் தரும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Shilajitu (சுத்த சிலாஜித் (ஷிலாஜித்து)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சுத்த சிலாஜித் (ஷிலாஜித்து) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified Himalayan asphaltum rich in fulvic acid, enhances cellular energy, stamina, virility, and immunity.',
-    traditionalRoleTa: 'இமயமலை சுத்த சிலாஜித்; தாது பலம், உடல் ஆற்றல், சர்க்கரை கட்டுப்பாடு மற்றும் நீண்ட ஆயுள் தரும்.',
-    badge: 'Himalayan Fulvic Mineral',
-    badgeTa: 'சுத்த சிலாஜித்',
-    image: '/images/products/ruthra-shilajitu/front.jpg',
-    images: [
-      '/images/products/ruthra-shilajitu/front.jpg',
-      '/images/products/ruthra-shilajitu/angle.jpg',
-      '/images/products/ruthra-shilajitu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-shilajitu/front.jpg',
-      '/images/products/ruthra-shilajitu/angle.jpg',
-      '/images/products/ruthra-shilajitu/back.jpg'
-    ],
+    formulation: 'Guggulu',
+    formulationTa: 'குக்குலு',
+    categoryGroup: 'guggulu',
+    concerns: ['joint-mobility'],
+    price: 260,
+    originalPrice: 310,
+    packSize: '60 Tablets',
+    packSizeTa: '60 மாத்திரைகள்',
+    shortDescription: 'Potent herbo-mineral Guggulu tablet for advanced arthritis, neuromuscular stiffness, paralysis, and chronic pain.',
+    shortDescriptionTa: 'கடுமையான மூட்டு வாதம், நரம்பு தளர்ச்சி, வாத பிடிப்பு மற்றும் மூட்டு தேய்மானத்தை போக்கும் உன்னத மாத்திரை.',
+    description: 'Ruthra Mahayogaraja Guggulu combines purified Guggulu with rejuvenating Bhasmas and herbs to pacify deep-seated chronic Vata conditions.',
+    descriptionTa: 'மூட்டுகளின் வலி மற்றும் வீக்கத்தை போக்கி நரம்புகளுக்கு வலிமை சேர்க்கும் முதன்மையான ஆயுர்வேத மாத்திரை.',
+    traditionalRole: 'Supreme anti-arthritic and neuro-muscular compound.',
+    traditionalRoleTa: 'முதன்மையான மூட்டு மற்றும் வாத வலி நிவாரணி மாத்திரை.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Shilajitu Classical Composition', tamilName: 'சுத்த சிலாஜித் (ஷிலாஜித்து) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Purified Guggulu & Rejuvenating Herbs', tamilName: 'சுத்தி செய்த குக்குலு மற்றும் பற்பங்கள்', botanicalName: 'Classical Mahayogaraja compound', role: 'Deep joint and nerve restoration', roleTa: 'மூட்டு மற்றும் நரம்பு புதுப்பித்தல்', amount: '100%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Take with Warm Water', titleTa: 'வெந்நீருடன் உட்கொள்ளவும்', instruction: 'Take 1-2 tablets twice daily after food.', instructionTa: '1-2 மாத்திரைகள் உணவுக்குப் பின் வெந்நீருடன் உட்கொள்ளவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: '1-2 tablets after breakfast',
+      evening: '1-2 tablets after dinner',
+      timing: 'After meals',
+      with: 'Warm water',
+      morningTa: 'காலை 1-2 மாத்திரை உணவுக்குப் பின்',
+      eveningTa: 'இரவு 1-2 மாத்திரை உணவுக்குப் பின்',
+      timingTa: 'உணவுக்குப் பின்',
+      withTa: 'வெதுவெதுப்பான நீர்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Shilajitu prepared?',
-        questionTa: 'ருத்ரா சுத்த சிலாஜித் (ஷிலாஜித்து) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["shilajitu","ruthra shilajitu","single herb","shilajitu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சுத்த சிலாஜித் (ஷிலாஜித்து)","ருத்ரா சுத்த சிலாஜித் (ஷிலாஜித்து)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    searchKeywords: ['ruthra mahayogaraja guggulu', 'ruthra-mahayogaraja-guggulu', 'ayurveda guggulu', 'mahayogaraja guggulu'],
+    tamilKeywords: ['ருத்ரா மகாயோகராஜ குக்குலு', 'குக்குலு'],
+    inStock: true,
+    featured: false
   },
+
   {
     id: 'prod-ayurveda-055',
-    name: 'Ruthra Shuddha Guggulu',
-    tamilName: 'ருத்ரா சுத்த குக்குலு',
-    slug: 'ruthra-shuddha-guggulu',
+    name: 'Ruthra Nalpamaradi Taila',
+    tamilName: 'ருத்ரா நால்பாமராதி தைலம்',
+    slug: 'ruthra-nalpamaradi-taila',
     medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["joint-mobility","metabolic-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Purified Commiphora resin reducing joint inflammation, clearing arterial lipid plaques, and easing arthritis. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சுத்தி செய்த குக்குலு பிசின்; மூட்டு வீக்கம், கொலஸ்ட்ரால் குறைப்பு மற்றும் உடல் பருமனை குறைக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Shuddha Guggulu (சுத்த குக்குலு) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சுத்த குக்குலு திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Purified Commiphora resin reducing joint inflammation, clearing arterial lipid plaques, and easing arthritis.',
-    traditionalRoleTa: 'சுத்தி செய்த குக்குலு பிசின்; மூட்டு வீக்கம், கொலஸ்ட்ரால் குறைப்பு மற்றும் உடல் பருமனை குறைக்கும்.',
-    badge: 'Purified Commiphora Resin',
-    badgeTa: 'சுத்த குக்குலு',
-    image: '/images/products/ruthra-shuddha-guggulu/front.jpg',
-    images: [
-      '/images/products/ruthra-shuddha-guggulu/front.jpg',
-      '/images/products/ruthra-shuddha-guggulu/angle.jpg',
-      '/images/products/ruthra-shuddha-guggulu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-shuddha-guggulu/front.jpg',
-      '/images/products/ruthra-shuddha-guggulu/angle.jpg',
-      '/images/products/ruthra-shuddha-guggulu/back.jpg'
-    ],
+    formulation: 'Taila',
+    formulationTa: 'தைலம்',
+    categoryGroup: 'taila',
+    concerns: ['skin-hair'],
+    price: 280,
+    originalPrice: 330,
+    packSize: '200ml',
+    packSizeTa: '200 மி.லி',
+    shortDescription: 'Fabled golden bridal turmeric & 4 ficus bark massage oil for tan removal, pigmentation, and radiant glowing skin.',
+    shortDescriptionTa: 'நால்பாமரம் (4 ஆலமரப்பட்டைகள்) மற்றும் மஞ்சள் கலந்த சரும பொலிவு தைலம். கரும்புள்ளிகள், மங்கு மற்றும் தழும்புகளை நீக்கும்.',
+    description: 'Ruthra Nalpamaradi Taila is slow-cooked with the bark of 4 sacred Ficus trees (Nalpamaram), pure Turmeric, Chandana, and unrefined sesame oil. It repairs sun damage, lightens dark patches, and imparts a luminous golden complexion.',
+    descriptionTa: 'நால்பாமரப் பட்டைகள் மற்றும் தூய மஞ்சள் கொண்டு நல்லெண்ணெயில் காய்ச்சப்பட்ட அழகு தைலம். முகம் மற்றும் உடலை பளபளப்பாக்கும்.',
+    traditionalRole: 'Premier classical skin brightening and complexion oil.',
+    traditionalRoleTa: 'சரும பொலிவு மற்றும் மங்கு நீக்கும் தைலம்.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
+    images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
+    gallery: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
     ingredients: [
-      { name: 'Shuddha Guggulu Classical Composition', tamilName: 'சுத்த குக்குலு மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
+      { name: 'Nalpamaram (4 Sacred Ficus Barks)', tamilName: 'நால்பாமரப் பட்டைகள் (ஆல், அரசு, இத்தி, அத்தி)', botanicalName: 'Ficus microcarpa, religiosa, benghalensis, racemosa', role: 'Repairs hyperpigmentation and skin barrier', roleTa: 'தோல் தழும்புகள் மற்றும் நிறமியை சீராக்கும்', amount: '40%' },
+      { name: 'Haridra (Wild Turmeric)', tamilName: 'மஞ்சள்', botanicalName: 'Curcuma longa', role: 'Complexion illumination and antibacterial', roleTa: 'சரும நிறம் மற்றும் பொலிவு கூட்டும்', amount: '20%' },
+      { name: 'Pure Sesame Oil Base', tamilName: 'நல்லெண்ணெய்', botanicalName: 'Sesamum indicum', role: 'Transdermal lipid carrier', roleTa: 'ஆழமாக ஊடுருவும் தூய நல்லெண்ணெய்', amount: '40%' }
     ],
     howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
+      { step: '01', title: 'Apply on Skin', titleTa: 'சருமத்தில் தடவவும்', instruction: 'Apply generous amount over face and body, massage gently for 15 minutes before bath.', instructionTa: 'முகத்திலும் உடலிலும் தேய்த்து 15 நிமிடம் மசாஜ் செய்து குளிக்கவும்.' }
     ],
     dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
+      morning: 'External application prior to bath',
+      evening: 'External massage as needed',
+      timing: 'External use',
+      with: 'Gentle circular massage',
+      morningTa: 'குளியலுக்கு முன் வெளிப்புற பூச்சு',
+      eveningTa: 'தேவைக்கேற்ப மசாஜ் செய்யவும்',
+      timingTa: 'வெளிப்புற பயன்பாடு',
+      withTa: 'மென்மையாக தேய்க்கவும்'
     },
     safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
+      contraindications: 'Consult an Ayurvedic physician during pregnancy or severe chronic illness.',
+      precautions: 'Follow recommended classical dosage guidelines.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மற்றும் தீவிர நோயாளிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'குறிப்பிட்ட அளவில் உட்கொள்ளவும்.'
     },
     storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
+      temperature: 'Store in a cool, dry place',
+      precautions: 'Keep container tightly closed and away from direct sunlight',
+      temperatureTa: 'குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'நேரடி சூரிய ஒளி படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      {
-        question: 'How is Ruthra Shuddha Guggulu prepared?',
-        questionTa: 'ருத்ரா சுத்த குக்குலு எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
+      { question: 'Is this an authentic classical Ayurvedic formulation?', answer: 'Yes, prepared per authentic Ayurvedic Formulary of India (AFI) standards.', questionTa: 'இது உண்மையான பாரம்பரிய ஆயுர்வேத தயாரிப்பா?', answerTa: 'ஆம், இந்திய ஆயுர்வேத பார்முலா (AFI) முறைப்படி தயாரிக்கப்பட்டது.' }
     ],
-    searchKeywords: ["shuddha guggulu","ruthra shuddha guggulu","single herb","shuddha","guggulu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சுத்த குக்குலு","ருத்ரா சுத்த குக்குலு","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-056',
-    name: 'Ruthra Yashtimadhu',
-    tamilName: 'ருத்ரா அதிமதுரம் (யஷ்டிமது)',
-    slug: 'ruthra-yashtimadhu',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["respiratory","digestive-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Pure Glycyrrhiza glabra root powder soothing throat mucosal irritation, dry cough, and gastric ulcers. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'தூய அதிமதுர பொடி; இருமல், தொண்டை கரகரப்பு, வயிற்றுப்புண் மற்றும் குரல் வளத்திற்கு உகந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Yashtimadhu (அதிமதுரம் (யஷ்டிமது)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா அதிமதுரம் (யஷ்டிமது) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Pure Glycyrrhiza glabra root powder soothing throat mucosal irritation, dry cough, and gastric ulcers.',
-    traditionalRoleTa: 'தூய அதிமதுர பொடி; இருமல், தொண்டை கரகரப்பு, வயிற்றுப்புண் மற்றும் குரல் வளத்திற்கு உகந்தது.',
-    badge: 'Throat & Ulcer Demulcent',
-    badgeTa: 'அதிமதுர பொடி',
-    image: '/images/products/ruthra-yashtimadhu/front.jpg',
-    images: [
-      '/images/products/ruthra-yashtimadhu/front.jpg',
-      '/images/products/ruthra-yashtimadhu/angle.jpg',
-      '/images/products/ruthra-yashtimadhu/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-yashtimadhu/front.jpg',
-      '/images/products/ruthra-yashtimadhu/angle.jpg',
-      '/images/products/ruthra-yashtimadhu/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Yashtimadhu Classical Composition', tamilName: 'அதிமதுரம் (யஷ்டிமது) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Yashtimadhu prepared?',
-        questionTa: 'ருத்ரா அதிமதுரம் (யஷ்டிமது) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["yashtimadhu","ruthra yashtimadhu","single herb","yashtimadhu","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["அதிமதுரம் (யஷ்டிமது)","ருத்ரா அதிமதுரம் (யஷ்டிமது)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-057',
-    name: 'Ruthra Trivrit',
-    tamilName: 'ருத்ரா திரிவ்ரித் (சிவத்தை வேர்)',
-    slug: 'ruthra-trivrit',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["digestive-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Operculina turpethum pure root powder for gentle system detox, clearing Pitta congestion, and constipation. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சிவத்தை வேர் பொடி; மென்மையான மலமிளக்கி, பித்த கழிவு நீக்கம் மற்றும் குடல் சுத்திக்கு சிறந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Trivrit (திரிவ்ரித் (சிவத்தை வேர்)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா திரிவ்ரித் (சிவத்தை வேர்) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Operculina turpethum pure root powder for gentle system detox, clearing Pitta congestion, and constipation.',
-    traditionalRoleTa: 'சிவத்தை வேர் பொடி; மென்மையான மலமிளக்கி, பித்த கழிவு நீக்கம் மற்றும் குடல் சுத்திக்கு சிறந்தது.',
-    badge: 'Natural Gentle Purgative',
-    badgeTa: 'சிவத்தை வேர் பொடி',
-    image: '/images/products/ruthra-trivrit/front.jpg',
-    images: [
-      '/images/products/ruthra-trivrit/front.jpg',
-      '/images/products/ruthra-trivrit/angle.jpg',
-      '/images/products/ruthra-trivrit/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-trivrit/front.jpg',
-      '/images/products/ruthra-trivrit/angle.jpg',
-      '/images/products/ruthra-trivrit/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Trivrit Classical Composition', tamilName: 'திரிவ்ரித் (சிவத்தை வேர்) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Trivrit prepared?',
-        questionTa: 'ருத்ரா திரிவ்ரித் (சிவத்தை வேர்) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["trivrit","ruthra trivrit","single herb","trivrit","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["திரிவ்ரித் (சிவத்தை வேர்)","ருத்ரா திரிவ்ரித் (சிவத்தை வேர்)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-058',
-    name: 'Ruthra Haritaki',
-    tamilName: 'ருத்ரா கடுக்காய் (ஹரிதகி)',
-    slug: 'ruthra-haritaki',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["digestive-wellness","metabolic-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'King of Ayurvedic herbs for gentle bowel regulation, eliminating cellular toxins, and ocular rejuvenation. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'தூய கடுக்காய் பொடி; குடல் நச்சு கழிவகற்றி, மலச்சிக்கல் நீக்கி, கண் பார்வை மற்றும் இளமை காக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Haritaki (கடுக்காய் (ஹரிதகி)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா கடுக்காய் (ஹரிதகி) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'King of Ayurvedic herbs for gentle bowel regulation, eliminating cellular toxins, and ocular rejuvenation.',
-    traditionalRoleTa: 'தூய கடுக்காய் பொடி; குடல் நச்சு கழிவகற்றி, மலச்சிக்கல் நீக்கி, கண் பார்வை மற்றும் இளமை காக்கும்.',
-    badge: 'King of Herbs Rasayana',
-    badgeTa: 'கடுக்காய் பொடி',
-    image: '/images/products/ruthra-haritaki/front.jpg',
-    images: [
-      '/images/products/ruthra-haritaki/front.jpg',
-      '/images/products/ruthra-haritaki/angle.jpg',
-      '/images/products/ruthra-haritaki/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-haritaki/front.jpg',
-      '/images/products/ruthra-haritaki/angle.jpg',
-      '/images/products/ruthra-haritaki/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Haritaki Classical Composition', tamilName: 'கடுக்காய் (ஹரிதகி) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Haritaki prepared?',
-        questionTa: 'ருத்ரா கடுக்காய் (ஹரிதகி) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["haritaki","ruthra haritaki","single herb","haritaki","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["கடுக்காய் (ஹரிதகி)","ருத்ரா கடுக்காய் (ஹரிதகி)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-059',
-    name: 'Ruthra Vibhitaki',
-    tamilName: 'ருத்ரா தான்றிக்காய் (விபீதகி)',
-    slug: 'ruthra-vibhitaki',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["respiratory","skin-hair"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Terminalia bellirica fruit powder for chronic cough, voice hoarseness, throat phlegm, and nourishing hair roots. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'தான்றிக்காய் பொடி; குரல் கம்மல், கப இருமல், தொண்டை சளி மற்றும் கூந்தல் வளர்ச்சிக்கு சிறந்தது. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Vibhitaki (தான்றிக்காய் (விபீதகி)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா தான்றிக்காய் (விபீதகி) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Terminalia bellirica fruit powder for chronic cough, voice hoarseness, throat phlegm, and nourishing hair roots.',
-    traditionalRoleTa: 'தான்றிக்காய் பொடி; குரல் கம்மல், கப இருமல், தொண்டை சளி மற்றும் கூந்தல் வளர்ச்சிக்கு சிறந்தது.',
-    badge: 'Throat & Hair Rasayana',
-    badgeTa: 'தான்றிக்காய் பொடி',
-    image: '/images/products/ruthra-vibhitaki/front.jpg',
-    images: [
-      '/images/products/ruthra-vibhitaki/front.jpg',
-      '/images/products/ruthra-vibhitaki/angle.jpg',
-      '/images/products/ruthra-vibhitaki/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-vibhitaki/front.jpg',
-      '/images/products/ruthra-vibhitaki/angle.jpg',
-      '/images/products/ruthra-vibhitaki/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Vibhitaki Classical Composition', tamilName: 'தான்றிக்காய் (விபீதகி) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Vibhitaki prepared?',
-        questionTa: 'ருத்ரா தான்றிக்காய் (விபீதகி) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["vibhitaki","ruthra vibhitaki","single herb","vibhitaki","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["தான்றிக்காய் (விபீதகி)","ருத்ரா தான்றிக்காய் (விபீதகி)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-060',
-    name: 'Ruthra Amlaki',
-    tamilName: 'ருத்ரா நெல்லிக்காய் (ஆமலகி)',
-    slug: 'ruthra-amlaki',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["metabolic-wellness","skin-hair"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Pure Emblica officinalis fruit powder for antioxidant defense, liver support, anti-aging, and radiant skin. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'நெல்லிக்காய் பொடி; வைட்டமின் சி, நோய் எதிர்ப்பு சக்தி, கல்லீரல் பலம் மற்றும் தோல் பொலிவு தரும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Amlaki (நெல்லிக்காய் (ஆமலகி)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா நெல்லிக்காய் (ஆமலகி) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Pure Emblica officinalis fruit powder for antioxidant defense, liver support, anti-aging, and radiant skin.',
-    traditionalRoleTa: 'நெல்லிக்காய் பொடி; வைட்டமின் சி, நோய் எதிர்ப்பு சக்தி, கல்லீரல் பலம் மற்றும் தோல் பொலிவு தரும்.',
-    badge: 'Pure Amla Antioxidant',
-    badgeTa: 'நெல்லிக்காய் பொடி',
-    image: '/images/products/ruthra-amlaki/front.jpg',
-    images: [
-      '/images/products/ruthra-amlaki/front.jpg',
-      '/images/products/ruthra-amlaki/angle.jpg',
-      '/images/products/ruthra-amlaki/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-amlaki/front.jpg',
-      '/images/products/ruthra-amlaki/angle.jpg',
-      '/images/products/ruthra-amlaki/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Amlaki Classical Composition', tamilName: 'நெல்லிக்காய் (ஆமலகி) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Amlaki prepared?',
-        questionTa: 'ருத்ரா நெல்லிக்காய் (ஆமலகி) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["amlaki","ruthra amlaki","single herb","amlaki","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["நெல்லிக்காய் (ஆமலகி)","ருத்ரா நெல்லிக்காய் (ஆமலகி)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-061',
-    name: 'Ruthra Gokshura',
-    tamilName: 'ருத்ரா நெருஞ்சில் (கோக்ஷுரா)',
-    slug: 'ruthra-gokshura',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["metabolic-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Tribulus terrestris fruit powder supporting urinary flow, kidney stone flushing, and male reproductive vitality. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'நெருஞ்சில் பொடி; சிறுநீரக கற்கள் கரைப்பான், சிறுநீர் எரிச்சல் நீக்கி மற்றும் ஆண்மை சக்தி அளிக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Gokshura (நெருஞ்சில் (கோக்ஷுரா)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா நெருஞ்சில் (கோக்ஷுரா) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Tribulus terrestris fruit powder supporting urinary flow, kidney stone flushing, and male reproductive vitality.',
-    traditionalRoleTa: 'நெருஞ்சில் பொடி; சிறுநீரக கற்கள் கரைப்பான், சிறுநீர் எரிச்சல் நீக்கி மற்றும் ஆண்மை சக்தி அளிக்கும்.',
-    badge: 'Renal & Vitality Botanical',
-    badgeTa: 'நெருஞ்சில் பொடி',
-    image: '/images/products/ruthra-gokshura/front.jpg',
-    images: [
-      '/images/products/ruthra-gokshura/front.jpg',
-      '/images/products/ruthra-gokshura/angle.jpg',
-      '/images/products/ruthra-gokshura/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-gokshura/front.jpg',
-      '/images/products/ruthra-gokshura/angle.jpg',
-      '/images/products/ruthra-gokshura/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Gokshura Classical Composition', tamilName: 'நெருஞ்சில் (கோக்ஷுரா) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Gokshura prepared?',
-        questionTa: 'ருத்ரா நெருஞ்சில் (கோக்ஷுரா) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["gokshura","ruthra gokshura","single herb","gokshura","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["நெருஞ்சில் (கோக்ஷுரா)","ருத்ரா நெருஞ்சில் (கோக்ஷுரா)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-062',
-    name: 'Ruthra Punarnava',
-    tamilName: 'ருத்ரா மூக்கிரட்டை (புனர்நவா)',
-    slug: 'ruthra-punarnava',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["metabolic-wellness","joint-mobility"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Boerhavia diffusa whole herb powder for systemic fluid drainage, pedal edema, liver renewal, and kidney health. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'மூக்கிரட்டை பொடி; நீர் வீக்கம், கால் வீக்கம் குறைத்து சிறுநீரகம் மற்றும் கல்லீரலை புத்துணர்ச்சியாக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Punarnava (மூக்கிரட்டை (புனர்நவா)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா மூக்கிரட்டை (புனர்நவா) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Boerhavia diffusa whole herb powder for systemic fluid drainage, pedal edema, liver renewal, and kidney health.',
-    traditionalRoleTa: 'மூக்கிரட்டை பொடி; நீர் வீக்கம், கால் வீக்கம் குறைத்து சிறுநீரகம் மற்றும் கல்லீரலை புத்துணர்ச்சியாக்கும்.',
-    badge: 'Cellular Renewal & Diuretic',
-    badgeTa: 'மூக்கிரட்டை பொடி',
-    image: '/images/products/ruthra-punarnava/front.jpg',
-    images: [
-      '/images/products/ruthra-punarnava/front.jpg',
-      '/images/products/ruthra-punarnava/angle.jpg',
-      '/images/products/ruthra-punarnava/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-punarnava/front.jpg',
-      '/images/products/ruthra-punarnava/angle.jpg',
-      '/images/products/ruthra-punarnava/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Punarnava Classical Composition', tamilName: 'மூக்கிரட்டை (புனர்நவா) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Punarnava prepared?',
-        questionTa: 'ருத்ரா மூக்கிரட்டை (புனர்நவா) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["punarnava","ruthra punarnava","single herb","punarnava","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["மூக்கிரட்டை (புனர்நவா)","ருத்ரா மூக்கிரட்டை (புனர்நவா)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-063',
-    name: 'Ruthra Shatapushpa',
-    tamilName: 'ருத்ரா சதகுப்பை (சதபுஷ்பா)',
-    slug: 'ruthra-shatapushpa',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["womens-wellness","digestive-wellness"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Anethum sowa seed powder for menstrual cramp relief, regulating ovulatory flow, and relieving digestive colic. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'சதகுப்பை பொடி; மாதவிடாய் வலி, அடிவயிற்று பிடிப்பு மற்றும் செரிமான வாயுவை போக்கும். இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Shatapushpa (சதகுப்பை (சதபுஷ்பா)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா சதகுப்பை (சதபுஷ்பா) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Anethum sowa seed powder for menstrual cramp relief, regulating ovulatory flow, and relieving digestive colic.',
-    traditionalRoleTa: 'சதகுப்பை பொடி; மாதவிடாய் வலி, அடிவயிற்று பிடிப்பு மற்றும் செரிமான வாயுவை போக்கும்.',
-    badge: 'Menstrual & Digestive Herb',
-    badgeTa: 'சதகுப்பை பொடி',
-    image: '/images/products/ruthra-shatapushpa/front.jpg',
-    images: [
-      '/images/products/ruthra-shatapushpa/front.jpg',
-      '/images/products/ruthra-shatapushpa/angle.jpg',
-      '/images/products/ruthra-shatapushpa/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-shatapushpa/front.jpg',
-      '/images/products/ruthra-shatapushpa/angle.jpg',
-      '/images/products/ruthra-shatapushpa/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Shatapushpa Classical Composition', tamilName: 'சதகுப்பை (சதபுஷ்பா) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Shatapushpa prepared?',
-        questionTa: 'ருத்ரா சதகுப்பை (சதபுஷ்பா) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["shatapushpa","ruthra shatapushpa","single herb","shatapushpa","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["சதகுப்பை (சதபுஷ்பா)","ருத்ரா சதகுப்பை (சதபுஷ்பா)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
-  {
-    id: 'prod-ayurveda-064',
-    name: 'Ruthra Ajwain (Yavani)',
-    tamilName: 'ருத்ரா ஓமம் (யவானி)',
-    slug: 'ruthra-ajwain-yavani',
-    medicalSystem: 'ayurveda',
-    formulation: 'Single Herb',
-    formulationTa: 'தனி மூலிகை / தாது',
-    categoryGroup: 'single-herbs',
-    concerns: ["digestive-wellness","respiratory"],
-    price: 150,
-    originalPrice: 175,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
-    shortDescription: 'Trachyspermum ammi seed powder for rapid digestive colic relief, abdominal heaviness, and clearing chest gas. Prepared in strict accordance with the Ayurvedic Formulary of India (AFI).',
-    shortDescriptionTa: 'ஓமப் பொடி; உடனடி வாயு நிவாரணம், அஜீரணம், மாந்தம் மற்றும் நெஞ்சு சளியை போக்கும் சிறந்த மருந்து. இந்திய ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
-    description: 'Ruthra Ajwain (Yavani) (ஓமம் (யவானி)) is prepared by Ruthra Medicines in Tirunelveli under certified GMP standards following authentic classical Ayurvedic texts (Charaka Samhita, Sushruta Samhita, and Sharangadhara Samhita). Compounded using sustainably harvested botanicals and minerals purified through traditional Shodhana.',
-    descriptionTa: 'ருத்ரா ஓமம் (யவானி) திருநெல்வேலியில் உள்ள ஜி.எம்.பி (GMP) சான்றளிக்கப்பட்ட ருத்ரா மெடிசின்ஸ் நிறுவனத்தால் பாரம்பரிய ஆயுர்வேத சுத்தி நெறிமுறைகளின்படி தயாரிக்கப்பட்ட உன்னத ஆயுர்வேத மருந்து.',
-    traditionalRole: 'Trachyspermum ammi seed powder for rapid digestive colic relief, abdominal heaviness, and clearing chest gas.',
-    traditionalRoleTa: 'ஓமப் பொடி; உடனடி வாயு நிவாரணம், அஜீரணம், மாந்தம் மற்றும் நெஞ்சு சளியை போக்கும் சிறந்த மருந்து.',
-    badge: 'Instant Carminative Seed',
-    badgeTa: 'தூய ஓமப் பொடி',
-    image: '/images/products/ruthra-ajwain-yavani/front.jpg',
-    images: [
-      '/images/products/ruthra-ajwain-yavani/front.jpg',
-      '/images/products/ruthra-ajwain-yavani/angle.jpg',
-      '/images/products/ruthra-ajwain-yavani/back.jpg'
-    ],
-    gallery: [
-      '/images/products/ruthra-ajwain-yavani/front.jpg',
-      '/images/products/ruthra-ajwain-yavani/angle.jpg',
-      '/images/products/ruthra-ajwain-yavani/back.jpg'
-    ],
-    ingredients: [
-      { name: 'Ajwain (Yavani) Classical Composition', tamilName: 'ஓமம் (யவானி) மூலிகைக் கூட்டு', role: 'Active Ayurvedic therapeutic synergy', roleTa: 'பாரம்பரிய ஆயுர்வேத கூட்டு மருத்துவ குணம்', amount: '100%' }
-    ],
-    howToUse: [
-      { step: '01', title: 'Dosage', titleTa: 'அளவு', instruction: '3-5 grams', instructionTa: '3-5 கிராம்' },
-      { step: '02', title: 'Adjuvant', titleTa: 'துணை மருந்து', instruction: 'Take with Warm water, honey, or ghee.', instructionTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய் உடன் உட்கொள்ளவும்.' },
-      { step: '03', title: 'Timing', titleTa: 'நேரம்', instruction: 'Twice daily after food.', instructionTa: 'தினமும் இருவேளை உணவுக்குப் பின்.' }
-    ],
-    dosage: {
-      amount: '3-5 grams',
-      frequency: 'Twice daily',
-      timing: 'Twice daily after food',
-      vehicle: 'Warm water, honey, or ghee',
-      amountTa: '3-5 கிராம்',
-      frequencyTa: 'தினமும் இருவேளை',
-      timingTa: 'தினமும் இருவேளை உணவுக்குப் பின்',
-      vehicleTa: 'வெதுவெதுப்பான நீர், தேன் அல்லது நெய்'
-    },
-    safety: {
-      pregnancy: 'Consult an Ayurvedic doctor before use during pregnancy.',
-      pregnancyTa: 'கர்ப்ப காலத்தில் மருத்துவரின் ஆலோசனை பெற்று உட்கொள்ளவும்.',
-      children: 'Safe in adjusted pediatric dosage under physician supervision.',
-      childrenTa: 'மருத்துவர் வழிகாட்டலின்படி குழந்தைகளுக்கு குறைந்த அளவில் கொடுக்கலாம்.',
-      interactions: 'No adverse interactions with standard health supplements.',
-      interactionsTa: 'பிற மருந்துகளுடன் எந்தவித எதிர்மறை விளைவுகளும் இல்லை.',
-      precautions: ['Store in a cool dry place away from moisture', 'Keep container tightly closed after use'],
-      precautionsTa: ['ஈரப்பதமில்லாத குளிர்ந்த இடத்தில் வைக்கவும்', 'பயன்பாட்டிற்குப் பின் மூடியை இறுக்கமாக மூடவும்']
-    },
-    storage: {
-      conditions: 'Store in an airtight container at room temperature away from direct sunlight.',
-      conditionsTa: 'நேரடி சூரிய ஒளி படாதவாறு காற்றுப்புகாத டப்பாவில் வைக்கவும்.',
-      shelfLife: '24 Months from manufacturing date',
-      shelfLifeTa: 'தயாரிப்பு தேதியிலிருந்து 24 மாதங்கள்'
-    },
-    faqs: [
-      {
-        question: 'How is Ruthra Ajwain (Yavani) prepared?',
-        questionTa: 'ருத்ரா ஓமம் (யவானி) எவ்வாறு தயாரிக்கப்படுகிறது?',
-        answer: 'Prepared in strict adherence to the Ayurvedic Pharmacopoeia of India using Shodhana purified ingredients in our GMP facility.',
-        answerTa: 'பாரம்பரிய ஆயுர்வேத சுத்தி முறைப்படி தூய மூலிகைகளை கொண்டு ஜிஎம்பி சான்றளிக்கப்பட்ட ஆய்வகத்தில் தயாரிக்கப்படுகிறது.'
-      }
-    ],
-    searchKeywords: ["ajwain (yavani)","ruthra ajwain (yavani)","single herb","ajwain","(yavani)","ayurveda medicine","classical ayurveda","ruthra medicines"],
-    tamilKeywords: ["ஓமம் (யவானி)","ருத்ரா ஓமம் (யவானி)","தனி மூலிகை / தாது","ஆயுர்வேத மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
-  },
+    searchKeywords: ['ruthra nalpamaradi taila', 'ruthra-nalpamaradi-taila', 'ayurveda taila', 'nalpamaradi taila'],
+    tamilKeywords: ['ருத்ரா நால்பாமராதி தைலம்', 'தைலம்'],
+    inStock: true,
+    featured: false
+  }
 ];
 
 export const CONCERN_CATEGORIES: ConcernCategory[] = [
@@ -14707,7 +13257,7 @@ export function getProductById(id: string): Product | undefined {
 }
 
 export function getProductsByConcern(concernSlug: string): Product[] {
-  return PRODUCTS.filter(p => p.concerns.includes(concernSlug as any));
+  return PRODUCTS.filter(p => p.concerns.includes(concernSlug as ConcernSlug));
 }
 
 export function getProductsByFormulation(formulationSlug: string): Product[] {
@@ -14718,3 +13268,4 @@ export function getProductsByFormulation(formulationSlug: string): Product[] {
 export function getFeaturedProducts(limit = 8): Product[] {
   return PRODUCTS.filter(p => p.featured).slice(0, limit);
 }
+export const BUNDLE_ITEMS = BUNDLES;

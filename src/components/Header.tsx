@@ -312,7 +312,7 @@ export default function Header() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#C29043]" />
                     <span className="text-xs font-bold uppercase tracking-wider text-[#16382B]">
-                      {t('8 Classical Ayurveda Dosage Forms (64 Master Products)', '8 வகை பாரம்பரிய ஆயுர்வேத மருந்துகள் (64 தயாரிப்புகள்)')}
+                      {t('7 Classical Ayurveda Dosage Forms (55 Master Products)', '7 வகை பாரம்பரிய ஆயுர்வேத மருந்துகள் (55 தயாரிப்புகள்)')}
                     </span>
                   </div>
                   <Link
@@ -320,7 +320,7 @@ export default function Header() {
                     onClick={handleNavClick}
                     className="text-xs font-bold text-[#C29043] hover:text-[#16382B] flex items-center gap-1"
                   >
-                    <span>{t('All Ayurveda (64)', 'அனைத்தும்')}</span>
+                    <span>{t('All Ayurveda (55)', 'அனைத்தும்')}</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>

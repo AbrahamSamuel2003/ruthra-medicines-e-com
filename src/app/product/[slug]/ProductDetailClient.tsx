@@ -431,7 +431,10 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               <div className="p-3 rounded-xl bg-white border border-[#16382B]/15 text-xs space-y-1">
                 <span className="font-bold block text-[#16382B]">{t('General Precautions:', 'பொதுவான குறிப்புகள்:')}</span>
                 <ul className="list-disc pl-5 space-y-0.5 text-[#3D5A68]">
-                  {(language === 'ta' ? product.safety.precautionsTa : product.safety.precautions).map((p, i) => (
+                  {(Array.isArray(language === 'ta' ? product.safety?.precautionsTa : product.safety?.precautions)
+                    ? (language === 'ta' ? product.safety?.precautionsTa : product.safety?.precautions) as string[]
+                    : [(language === 'ta' ? product.safety?.precautionsTa : product.safety?.precautions) as string].filter(Boolean)
+                  ).map((p: string, i: number) => (
                     <li key={i}>{p}</li>
                   ))}
                 </ul>

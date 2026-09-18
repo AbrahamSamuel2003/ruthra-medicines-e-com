@@ -32,16 +32,15 @@ export const SIDDHA_NAV_CATEGORIES: NavCategory[] = [
   { slug: 'vennai', title: 'Vennai', titleTa: 'வெண்ணெய்', count: 1, desc: 'Herbal medicated butters' }
 ];
 
-// Ayurveda Master Categories from Manufacturing Poster (64 Formulations across 8 Categories)
+// Ayurveda Master Categories from Manufacturing Poster (55 Formulations across 7 Categories)
 export const AYURVEDA_NAV_CATEGORIES: NavCategory[] = [
-  { slug: 'churna', title: 'Churna', titleTa: 'சூர்ணம்', count: 28, desc: 'Classical herbal powders' },
-  { slug: 'kwatha-churna', title: 'Kwatha Churna', titleTa: 'க்வாத சூர்ணம்', count: 2, desc: 'Coarse decoction blends' },
-  { slug: 'vati-guggulu', title: 'Vati / Tablet', titleTa: 'வடி / குக்குலு', count: 3, desc: 'Compressed herbal tablets' },
-  { slug: 'lehyam', title: 'Lehyam', titleTa: 'லேஹ்யம்', count: 4, desc: 'Nourishing herbal preserves' },
-  { slug: 'tailam', title: 'Tailam', titleTa: 'தைலம்', count: 6, desc: 'Medicated oils & massage' },
-  { slug: 'ghritam', title: 'Ghritam', titleTa: 'கிருதம்', count: 3, desc: 'Medicated cow ghee' },
-  { slug: 'asavam-arishta', title: 'Asavam / Arishta', titleTa: 'ஆஸவம் / அரிஷ்டம்', count: 5, desc: 'Naturally fermented elixirs' },
-  { slug: 'single-herbs', title: 'Others (Single Herbs & Minerals)', titleTa: 'தனி மூலிகைகள் & தாதுக்கள்', count: 13, desc: 'Pure single botanicals & minerals' }
+  { slug: 'churna', title: 'Churna', titleTa: 'சூர்ணம்', count: 25, desc: 'Classical herbal powders' },
+  { slug: 'kvatha-churna', title: 'Kvatha Churna', titleTa: 'க்வாத சூர்ணம்', count: 19, desc: 'Decoction powders' },
+  { slug: 'lehya', title: 'Lehya', titleTa: 'லேஹ்யம்', count: 2, desc: 'Nourishing herbal electuaries' },
+  { slug: 'ghrita', title: 'Ghrita', titleTa: 'கிருதம்', count: 1, desc: 'Medicated cow ghee' },
+  { slug: 'arishtam', title: 'Arishtam / Asava', titleTa: 'ஆஸவம் / அரிஷ்டம்', count: 4, desc: 'Naturally fermented elixirs' },
+  { slug: 'guggulu', title: 'Guggulu / Vati', titleTa: 'வடி / குக்குலு', count: 3, desc: 'Classical herbal tablets' },
+  { slug: 'taila', title: 'Taila', titleTa: 'தைலம்', count: 1, desc: 'Medicated oils & massage' }
 ];
 
 // Health Indication Categories
