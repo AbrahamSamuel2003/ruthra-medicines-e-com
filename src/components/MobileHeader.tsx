@@ -184,7 +184,7 @@ export default function MobileHeader() {
                 >
                   <span className="flex items-center gap-2">
                     <Droplets className="w-4 h-4 text-[#C29043]" />
-                    <span>{t('Ayurveda Medicines (64)', 'ஆயுர்வேத மருந்துகள் (64)')}</span>
+                    <span>{t('Ayurveda Medicines (55)', 'ஆயுர்வேத மருந்துகள் (55)')}</span>
                   </span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
@@ -201,7 +201,7 @@ export default function MobileHeader() {
                 >
                   <span className="flex items-center gap-2">
                     <Layers className="w-4 h-4 text-[#C29043]" />
-                    <span>{t('Proprietary Formulations', 'பிரத்தியேக மருந்துகள்')}</span>
+                    <span>{t('Proprietary Formulations (10)', 'பிரத்தியேக மருந்துகள் (10)')}</span>
                   </span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
