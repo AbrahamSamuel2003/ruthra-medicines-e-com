@@ -11,8 +11,8 @@ export async function middleware(request: NextRequest) {
 
   // 1. Protect Admin API endpoints (/api/admin/*)
   if (pathname.startsWith('/api/admin')) {
-    // Whitelist login endpoint
-    if (pathname === '/api/admin/auth/login') {
+    // Whitelist login and sync-catalog endpoints
+    if (pathname === '/api/admin/auth/login' || pathname === '/api/admin/sync-catalog') {
       return NextResponse.next();
     }
 
