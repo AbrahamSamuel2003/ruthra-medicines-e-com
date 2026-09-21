@@ -119,19 +119,13 @@ export default function FloatingWhatsApp() {
           <div className="bg-[#16382B] text-white p-4 relative">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                  <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-[#25D366] ring-2 ring-[#16382B]" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <h4 className="font-serif-brand font-bold text-sm text-white">
-                      Ruthra Siddha Helpdesk
-                    </h4>
-                    <span className="inline-block px-1.5 py-0.5 rounded text-[9px] font-semibold bg-[#25D366]/20 text-[#25D366]">
-                      Online
-                    </span>
-                  </div>
+                  <h4 className="font-serif-brand font-bold text-sm text-white">
+                    Ruthra Siddha Helpdesk
+                  </h4>
                   <p className="text-[11px] text-[#DFB36C]">
                     {t('Tirunelveli, Tamil Nadu • 9 AM - 7:30 PM', 'திருநெல்வேலி • காலை 9 - இரவு 7:30')}
                   </p>
@@ -140,7 +134,7 @@ export default function FloatingWhatsApp() {
 
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer"
                 aria-label="Close Chat"
               >
                 <X className="w-4 h-4" />
@@ -166,7 +160,7 @@ export default function FloatingWhatsApp() {
                 key={idx}
                 type="button"
                 onClick={() => handleQuickSend(topic.msg)}
-                className="w-full text-left p-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] border border-[#16382B]/10 hover:border-[#16382B]/30 text-xs text-[#264653] hover:text-[#16382B] transition-all flex items-center justify-between group shadow-2xs"
+                className="w-full text-left p-2.5 rounded-xl bg-white hover:bg-[#E8F1EB] border border-[#16382B]/10 hover:border-[#16382B]/30 text-xs text-[#264653] hover:text-[#16382B] transition-all flex items-center justify-between group shadow-2xs cursor-pointer"
               >
                 <span className="line-clamp-2 leading-relaxed font-medium">
                   {t(topic.en, topic.ta)}
@@ -185,12 +179,12 @@ export default function FloatingWhatsApp() {
                   value={customMsg}
                   onChange={e => setCustomMsg(e.target.value)}
                   placeholder={t('Type a message...', 'உங்கள் கேள்வியை தட்டச்சு செய்யவும்...')}
-                  className="w-full text-xs pl-3 pr-10 py-2.5 rounded-xl border border-[#16382B]/20 bg-white focus:outline-none focus:border-[#16382B] focus:ring-1 focus:ring-[#16382B]"
+                  className="w-full text-xs pl-3.5 pr-11 py-2.5 rounded-xl border-2 border-[#16382B]/30 bg-white text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:border-[#16382B] focus:ring-2 focus:ring-[#16382B]/20 shadow-xs transition-all"
                 />
                 <button
                   type="submit"
                   disabled={!customMsg.trim()}
-                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg bg-[#25D366] hover:bg-[#20ba59] disabled:opacity-40 text-white flex items-center justify-center transition-colors shadow-2xs"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7.5 h-7.5 rounded-lg bg-[#25D366] hover:bg-[#20ba59] disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-xs hover:scale-105 active:scale-95 cursor-pointer disabled:cursor-not-allowed"
                   aria-label="Send message"
                 >
                   <Send className="w-3.5 h-3.5" />
