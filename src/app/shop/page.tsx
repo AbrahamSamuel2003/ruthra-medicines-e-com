@@ -272,7 +272,7 @@ function ShopContent() {
           <div className="max-w-3xl">
             {/* Pharmacopeia Gold Badge */}
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/90 border border-[#C29043]/40 shadow-2xs mb-2">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C29043]" />
+              <Award className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
               <span className="text-[10px] sm:text-[11px] font-bold text-[#16382B] tracking-wide uppercase">
                 {t('Tirunelveli Classical Pharmacopeia', 'திருநெல்வேலி பாரம்பரிய சித்த மருந்தகம்')}
               </span>

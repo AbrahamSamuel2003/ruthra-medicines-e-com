@@ -12,7 +12,8 @@ import {
   Layers, 
   CreditCard,
   Send,
-  AlertCircle
+  AlertCircle,
+  Clock
 } from 'lucide-react';
 
 interface ReportData {
@@ -288,7 +289,7 @@ export default function AdminReportsPage() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-2 border-t border-[#16382B]/10">
             <div className="text-[11px] text-[#5C7368] flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <Clock className="w-3.5 h-3.5 text-emerald-700 flex-shrink-0" />
               <span>
                 Automated daily dispatch active • Delivery set for <strong>{summaryDeliveryTimeLabel}</strong> to <strong>{adminRecipientEmail}</strong>
               </span>

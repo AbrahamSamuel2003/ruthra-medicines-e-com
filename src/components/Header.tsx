@@ -19,7 +19,8 @@ import {
   FlaskConical,
   Activity,
   Wind,
-  Flame
+  Flame,
+  Gift
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -129,7 +130,7 @@ export default function Header() {
       <div className="bg-[#16382B] text-[#FAF8F5] py-1 px-4 text-xs tracking-wider border-b border-[#C29043]/30">
         <div className="max-w-[1440px] mx-auto w-full flex items-center justify-between px-2 sm:px-4">
           <div className="flex items-center gap-2 text-[11px]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C29043]" />
+            <Gift className="w-3.5 h-3.5 text-[#DFB36C] flex-shrink-0" />
             <span className="font-medium whitespace-nowrap">
               {t(
                 '5+1 & 10+2 Volume Scheme: Buy 5 items, unlock 1 FREE formulation of your choice | Express Delivery Across Tamil Nadu',
@@ -220,7 +221,6 @@ export default function Header() {
               >
                 <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-[#16382B]/10">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#16382B]" />
                     <span className="text-xs font-bold uppercase tracking-wider text-[#16382B]">
                       {t('14 Classical Siddha Dosage Forms (111 Master Products)', '14 வகை பாரம்பரிய சித்த மருந்துகள் (111 தயாரிப்புகள்)')}
                     </span>
@@ -310,7 +310,6 @@ export default function Header() {
               >
                 <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-[#16382B]/10">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#C29043]" />
                     <span className="text-xs font-bold uppercase tracking-wider text-[#16382B]">
                       {t('7 Classical Ayurveda Dosage Forms (55 Master Products)', '7 வகை பாரம்பரிய ஆயுர்வேத மருந்துகள் (55 தயாரிப்புகள்)')}
                     </span>
@@ -400,7 +399,6 @@ export default function Header() {
               >
                 <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-[#16382B]/10">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#16382B]" />
                     <span className="text-xs font-bold uppercase tracking-wider text-[#16382B]">
                       {t('Shop by Health Indication / Therapeutic Need', 'உடல் உபாதைகளுக்கான பாரம்பரிய தீர்வுகள்')}
                     </span>

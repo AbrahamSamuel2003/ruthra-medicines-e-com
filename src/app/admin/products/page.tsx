@@ -1948,7 +1948,7 @@ function ProductTableRow({
                 <Loader2 className="w-2.5 h-2.5 animate-spin" />
               ) : p.inStock && stockCount > 0 ? (
                 <>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                  <Check className="w-2.5 h-2.5 text-emerald-700 stroke-[2.5]" />
                   In Stock
                 </>
               ) : (
@@ -2138,7 +2138,7 @@ function ProductMobileCard({
               <Loader2 className="w-2.5 h-2.5 animate-spin" />
             ) : p.inStock && stockCount > 0 ? (
               <>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                <Check className="w-2.5 h-2.5 text-emerald-700 stroke-[2.5]" />
                 In Stock
               </>
             ) : (

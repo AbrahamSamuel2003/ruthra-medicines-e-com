@@ -45,9 +45,6 @@ export default function MobileBottomNav() {
         >
           <div className="relative">
             <Home className={`w-5 h-5 transition-transform ${isHome ? 'scale-105 stroke-[2.4]' : 'stroke-[1.8]'}`} />
-            {isHome && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#16382B]" />
-            )}
           </div>
           <span className="text-[9.5px] font-medium leading-tight truncate max-w-full mt-0.5">
             {t('Home', 'முகப்பு')}
@@ -66,9 +63,6 @@ export default function MobileBottomNav() {
         >
           <div className="relative">
             <Grid className={`w-5 h-5 transition-transform ${isShop ? 'scale-105 stroke-[2.4]' : 'stroke-[1.8]'}`} />
-            {isShop && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#16382B]" />
-            )}
           </div>
           <span className="text-[9.5px] font-medium leading-tight truncate max-w-full mt-0.5">
             {t('Shop', 'மருந்துகள்')}
@@ -103,9 +97,6 @@ export default function MobileBottomNav() {
         >
           <div className="relative">
             <Tag className={`w-5 h-5 transition-transform ${isOffers ? 'scale-105 stroke-[2.4]' : 'stroke-[1.8]'}`} />
-            {isOffers && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#16382B]" />
-            )}
           </div>
           <span className="text-[9.5px] font-medium leading-tight truncate max-w-full mt-0.5">
             {t('Offers', 'சலுகைகள்')}

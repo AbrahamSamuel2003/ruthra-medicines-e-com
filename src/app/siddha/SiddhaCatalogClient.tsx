@@ -565,7 +565,7 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                     {/* Category Section Header */}
                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#16382B]/15">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-3 h-3 rounded-full bg-[#16382B]" />
+                        <Leaf className="w-4 h-4 text-[#C29043] flex-shrink-0" />
                         <div>
                           <h2 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B]">
                             {language === 'ta' ? cat.titleTa : cat.title}
