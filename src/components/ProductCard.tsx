@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ShoppingBag, MessageCircle, Clock, AlertCircle } from 'lucide-react';
@@ -40,9 +40,17 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
     ? (language === 'ta' ? 'பிரத்தியேக தயாரிப்பு' : 'Proprietary') 
     : (language === 'ta' ? 'சித்த தயாரிப்பு' : 'Classical Siddha');
 
-  const imageUrl = product.image 
-    ? (product.image.includes('?') ? `${product.image}&v=ruthra-20260916-2` : `${product.image}?v=ruthra-20260916-2`) 
-    : '/images/ruthra-icon.png';
+  const [imgError, setImgError] = useState(false);
+
+  const imageUrl = useMemo(() => {
+    if (imgError || !product.image || !product.image.trim()) {
+      return '/images/ruthra-icon.png';
+    }
+    if (product.image.startsWith('data:') || product.image.startsWith('blob:') || product.image.startsWith('http')) {
+      return product.image;
+    }
+    return product.image.includes('?') ? `${product.image}&v=ruthra-20260916-2` : `${product.image}?v=ruthra-20260916-2`;
+  }, [product.image, imgError]);
 
   const whatsappMessage = encodeURIComponent(
     isComingSoon
@@ -93,6 +101,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
               unoptimized
               className="object-contain max-h-16 w-auto transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
+              onError={() => setImgError(true)}
             />
             <span className="absolute bottom-1 left-1 text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-white/95 border border-[#C29043]/30 text-[#16382B]">
               {formulationText}
@@ -248,6 +257,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
             unoptimized
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
+            onError={() => setImgError(true)}
           />
         </div>
       </Link>

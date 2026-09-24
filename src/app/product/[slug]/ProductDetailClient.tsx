@@ -66,6 +66,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const CACHE_VERSION = 'v=ruthra-20260916-2';
   const getBustedUrl = (url?: string | null) => {
     if (!url || !url.trim()) return fallbackImg;
+    if (url.startsWith('data:') || url.startsWith('blob:') || url.startsWith('http')) return url;
     return url.includes('?') ? `${url}&${CACHE_VERSION}` : `${url}?${CACHE_VERSION}`;
   };
   const rawList = (product.images && product.images.length > 0
