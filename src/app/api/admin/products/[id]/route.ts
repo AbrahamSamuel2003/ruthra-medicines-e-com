@@ -48,7 +48,7 @@ export async function DELETE(
     if (!success) {
       return NextResponse.json({ success: false, error: 'Product delete failed or not found' }, { status: 400 });
     }
-    return NextResponse.json({ success: true, message: 'Product deleted from PostgreSQL' });
+    return NextResponse.json({ success: true, message: 'Product deleted successfully' });
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : 'Failed to delete product';
     return NextResponse.json({ success: false, error: errorMsg }, { status: 500 });

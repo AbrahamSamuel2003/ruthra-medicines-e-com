@@ -423,7 +423,7 @@ export default function AdminProductsPage() {
       const data = await res.json();
       if (data.success) {
         setProducts(prev => prev.filter(p => p.id !== id));
-        showToast(`Deleted ${name} from database`);
+        showToast(`Deleted ${name}`);
       } else {
         alert(data.error || 'Failed to delete product');
       }
