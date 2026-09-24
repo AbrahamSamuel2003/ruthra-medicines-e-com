@@ -178,15 +178,19 @@ export default function PincodeDeliveryEstimator({ className = '' }: { className
             </div>
           </div>
 
-          {/* Trust Guarantees */}
+          {/* Trust Guarantees & Free Delivery */}
           <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#16382B]/5 text-[10.5px] text-[#3D5A68]">
+            <span className="flex items-center gap-1 font-bold text-emerald-800">
+              <Truck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>{t('100% Free Delivery (₹0 Shipping)', '100% இலவச டெலிவரி (₹0 அஞ்சல் கட்டணம்)')}</span>
+            </span>
             <span className="flex items-center gap-1 font-semibold text-green-800">
               <Banknote className="w-3.5 h-3.5 text-green-600" />
-              <span>{t('Cash on Delivery (COD) Available', 'பொருளை பெற்று பணம் செலுத்தும் வசதி உண்டு')}</span>
+              <span>{t('COD Available', 'பொருளை பெற்று பணம் செலுத்துங்கள்')}</span>
             </span>
             <span className="flex items-center gap-1 font-semibold text-[#16382B]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#C29043]" />
-              <span>{t('100% Transit Safe Packaging', 'பாதுகாப்பான பொட்டலம்')}</span>
+              <span>{t('Transit Safe', 'பாதுகாப்பான பொட்டலம்')}</span>
             </span>
           </div>
         </div>

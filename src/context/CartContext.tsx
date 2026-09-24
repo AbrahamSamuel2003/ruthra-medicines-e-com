@@ -21,6 +21,34 @@ export const getProductMRP = (product: Product): number => {
   return Math.max(product.price + 20, Math.round((product.price * 1.15) / 5) * 5);
 };
 
+/**
+ * Calculates volume discount percentage on total ordered quantity:
+ * - 1 to 4: 0%
+ * - 5 to 29: 10% OFF
+ * - 30+: 20% OFF (10% base + 10% extra)
+ */
+export const calculateDiscountPercent = (paidCount: number): number => {
+  if (paidCount >= 30) return 20;
+  if (paidCount >= 5) return 10;
+  return 0;
+};
+
+/**
+ * Calculates free formulation bonus slots earned:
+ * - 1 to 4: 0
+ * - 5 to 49: 1 free for every 5 items (floor(Q / 5))
+ * - 50+: 15 free at 50, +1 per 5 items (15 at 50-54, 16 at 55-59, 18 at 60-64, etc.)
+ */
+export const calculateFreeGiftsEarned = (paidCount: number): number => {
+  if (paidCount < 5) return 0;
+  if (paidCount < 50) {
+    return Math.floor(paidCount / 5);
+  }
+  const baseTens = Math.floor(paidCount / 10) * 3; // 50->15, 60->18, 70->21, 80->24...
+  const remainderFive = (paidCount % 10) >= 5 ? 1 : 0; // +1 for 55-59, 65-69...
+  return baseTens + remainderFive;
+};
+
 export interface CartToastData {
   product: Product;
   quantity: number;
@@ -37,10 +65,13 @@ interface CartContextType {
   paidItemCount: number;
   totalItemCount: number;
   subtotal: number;
+  discountPercent: number;
+  discountAmount: number;
+  discountedSubtotal: number;
   mrpSubtotal: number;
   mrpSavings: number;
   
-  // 5+1 / 10+2 Free Gift System
+  // Free Gift System (Selected strictly from purchased cart items)
   freeGiftItems: FreeGiftItem[];
   addFreeGift: (product: Product) => { success: boolean; message: string };
   removeFreeGift: (productId: string) => void;
@@ -74,8 +105,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-const FREE_SHIPPING_THRESHOLD = 500;
-const STANDARD_SHIPPING_FEE = 40;
+const STANDARD_SHIPPING_FEE = 0;
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -120,36 +150,78 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const paidItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
-  // 5+1 / 10+2 Free Gift Calculations
-  const freeSlotsEarned = Math.floor(paidItemCount / 5);
+  // Volume Discounts
+  const discountPercent = calculateDiscountPercent(paidItemCount);
+  const discountAmount = Math.round((subtotal * discountPercent) / 100);
+  const discountedSubtotal = subtotal - discountAmount;
+
+  // Free Gift Calculations
+  const freeSlotsEarned = calculateFreeGiftsEarned(paidItemCount);
   const totalFreeGiftsSelected = freeGiftItems.reduce((sum, item) => sum + item.quantity, 0);
   const freeSlotsRemaining = Math.max(0, freeSlotsEarned - totalFreeGiftsSelected);
   
-  const nextMilestoneCount = (Math.floor(paidItemCount / 5) + 1) * 5;
-  const itemsNeededForNextMilestone = nextMilestoneCount - paidItemCount;
-  const currentTierBase = Math.floor(paidItemCount / 5) * 5;
-  const progressPercent = Math.min(100, Math.round(((paidItemCount - currentTierBase) / 5) * 100));
+  // Milestone & Progression Logic
+  let nextMilestoneCount = 5;
+  let currentTierBase = 0;
+  let stepSize = 5;
 
-  // Automatically trim free gifts if paidItemCount was reduced
+  if (paidItemCount < 5) {
+    nextMilestoneCount = 5;
+    currentTierBase = 0;
+    stepSize = 5;
+  } else if (paidItemCount < 50) {
+    currentTierBase = Math.floor(paidItemCount / 5) * 5;
+    nextMilestoneCount = currentTierBase + 5;
+    stepSize = 5;
+  } else {
+    if ((paidItemCount % 10) < 5) {
+      currentTierBase = Math.floor(paidItemCount / 10) * 10;
+      nextMilestoneCount = currentTierBase + 5;
+      stepSize = 5;
+    } else {
+      currentTierBase = Math.floor(paidItemCount / 10) * 10 + 5;
+      nextMilestoneCount = currentTierBase + 5;
+      stepSize = 5;
+    }
+  }
+
+  const itemsNeededForNextMilestone = Math.max(1, nextMilestoneCount - paidItemCount);
+  const progressPercent = Math.min(
+    100,
+    Math.round(((paidItemCount - currentTierBase) / stepSize) * 100)
+  );
+
+  // Automatically validate and trim free gifts:
+  // 1. Remove free gifts for products no longer in the cart
+  // 2. Trim excess free gift units if paidItemCount was reduced
   useEffect(() => {
     if (!isLoaded) return;
-    if (totalFreeGiftsSelected > freeSlotsEarned) {
+    const cartProductIds = new Set(items.map(i => i.product.id));
+    
+    // Filter out free gifts for products not in the cart
+    let validGifts = freeGiftItems.filter(g => cartProductIds.has(g.product.id));
+    
+    const currentSelected = validGifts.reduce((sum, g) => sum + g.quantity, 0);
+    if (currentSelected > freeSlotsEarned) {
       if (freeSlotsEarned === 0) {
-        setFreeGiftItems([]);
+        validGifts = [];
       } else {
-        // Trim excess free gift units
         let allowed = freeSlotsEarned;
         const trimmed: FreeGiftItem[] = [];
-        for (const gift of freeGiftItems) {
+        for (const gift of validGifts) {
           if (allowed <= 0) break;
           const take = Math.min(gift.quantity, allowed);
           trimmed.push({ product: gift.product, quantity: take });
           allowed -= take;
         }
-        setFreeGiftItems(trimmed);
+        validGifts = trimmed;
       }
     }
-  }, [paidItemCount, freeSlotsEarned, totalFreeGiftsSelected, isLoaded]);
+
+    if (JSON.stringify(validGifts) !== JSON.stringify(freeGiftItems)) {
+      setFreeGiftItems(validGifts);
+    }
+  }, [items, freeSlotsEarned, freeGiftItems, isLoaded]);
 
   const dismissToast = () => {
     setToastNotification(null);
@@ -205,12 +277,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setFreeGiftItems([]);
   };
 
-  // Add Free Gift item
+  // Add Free Gift item (Restricted to products currently in the customer's cart)
   const addFreeGift = (product: Product): { success: boolean; message: string } => {
+    const isProductInCart = items.some(i => i.product.id === product.id);
+    if (!isProductInCart) {
+      return {
+        success: false,
+        message: 'Free formulation bonus can only be chosen from products currently in your cart.'
+      };
+    }
+
     if (freeSlotsRemaining <= 0) {
       return {
         success: false,
-        message: 'All free gift slots are already claimed. Add more products to unlock additional free formulations.'
+        message: 'All free gift slots are already claimed. Add more products to unlock additional free bonus medicines.'
       };
     }
 
@@ -224,7 +304,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [...prev, { product, quantity: 1 }];
     });
 
-    showToast(`Added ${product.name} as your free formulation bonus!`);
+    showToast(`Added free bonus unit of ${product.name}!`);
     return {
       success: true,
       message: `${product.name} added as free bonus.`
@@ -262,11 +342,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Shipping Calculation (Standard Tamil Nadu Express Courier)
   const shippingFee = subtotal === 0 ? 0 : STANDARD_SHIPPING_FEE;
 
-  // Total payable amount (Paid subtotal + standard shipping)
-  const total = Math.max(0, subtotal + shippingFee);
+  // Total payable amount (Discounted subtotal + shipping)
+  const total = Math.max(0, discountedSubtotal + shippingFee);
 
-  // Total savings customer receives on this order (Catalog MRP savings + 100% Free Gift Value)
-  const totalSavings = mrpSavings + freeGiftSavings;
+  // Total savings customer receives on this order (Catalog MRP savings + Volume discount + Free Gift Value)
+  const totalSavings = mrpSavings + discountAmount + freeGiftSavings;
 
   return (
     <CartContext.Provider
@@ -280,6 +360,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         paidItemCount,
         totalItemCount,
         subtotal,
+        discountPercent,
+        discountAmount,
+        discountedSubtotal,
         mrpSubtotal,
         mrpSavings,
 
@@ -295,7 +378,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         progressPercent,
         freeGiftSavings,
         isGiftModalOpen,
-        openGiftModal: () => setIsGiftModalOpen(true),
+        openGiftModal: () => {
+          setIsDrawerOpen(false);
+          setIsGiftModalOpen(true);
+        },
         closeGiftModal: () => setIsGiftModalOpen(false),
 
         totalSavings,

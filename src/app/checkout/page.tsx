@@ -16,7 +16,8 @@ import {
   Zap, 
   Gift, 
   PackageCheck,
-  ShieldCheck
+  ShieldCheck,
+  Percent
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -60,6 +61,8 @@ export default function CheckoutPage() {
     freeSlotsRemaining,
     openGiftModal,
     subtotal,
+    discountPercent,
+    discountAmount,
     mrpSubtotal,
     mrpSavings,
     freeGiftSavings,
@@ -128,12 +131,11 @@ export default function CheckoutPage() {
     const { name, value } = e.target;
     const updated = { ...formData, [name]: value };
 
-    // Auto-detect City and State from PIN Code
-    if (name === 'pincode') {
-      const detected = detectCityFromPincode(value);
-      if (detected) {
-        updated.city = detected;
-        updated.state = 'Tamil Nadu';
+    // If pincode entered is 6 digits, auto-fill city
+    if (name === 'pincode' && value.trim().length === 6) {
+      const autoCity = detectCityFromPincode(value.trim());
+      if (autoCity) {
+        updated.city = autoCity;
       }
     }
 
@@ -172,7 +174,7 @@ export default function CheckoutPage() {
         })),
         ...freeGiftItems.map(g => ({
           productId: g.product.id,
-          productName: `${g.product.name} (5+1 Free Gift)`,
+          productName: `${g.product.name} (Free Bonus)`,
           tamilName: `${g.product.tamilName} (இலவச மருந்து)`,
           price: 0,
           mrp: g.product.originalPrice || g.product.price,
@@ -196,11 +198,12 @@ export default function CheckoutPage() {
         items: orderItemsPayload,
         subtotal,
         mrpTotal: mrpSubtotal,
-        discountTotal: mrpSavings + freeGiftSavings,
+        discountTotal: discountAmount,
         shippingFee,
         totalAmount: total,
         deliveryMethod: formData.deliveryMethod === 'standard' ? 'Tamil Nadu Express Courier' : 'Speed Post',
-        paymentMethod: formData.paymentMethod
+        paymentMethod: formData.paymentMethod,
+        notes: discountPercent > 0 ? `${discountPercent}% Volume Discount Applied` : undefined
       };
 
       const res = await fetch('/api/orders', {
@@ -222,6 +225,8 @@ export default function CheckoutPage() {
             items,
             freeGiftItems,
             subtotal,
+            discountPercent,
+            discountAmount,
             shippingFee,
             total,
             paymentMethod: formData.paymentMethod,
@@ -248,11 +253,14 @@ export default function CheckoutPage() {
   const whatsappPurchasedSummary = items
     .map(i => `• ${i.product.name} (${i.product.packSize}) × ${i.quantity} = ₹${i.product.price * i.quantity}`)
     .join('\n');
+  const whatsappDiscountSummary = discountAmount > 0
+    ? `\n\n• Volume Discount (${discountPercent}% OFF): -₹${discountAmount}`
+    : '';
   const whatsappGiftSummary = freeGiftItems.length > 0
-    ? '\n\nFree Formulation Bonus (5+1 Scheme):\n' + freeGiftItems.map(g => `• [FREE] ${g.product.name} (${g.product.packSize}) × ${g.quantity}`).join('\n')
+    ? '\n\nFree Formulation Bonus (Cart Items Selection):\n' + freeGiftItems.map(g => `• [FREE] ${g.product.name} (${g.product.packSize}) × ${g.quantity}`).join('\n')
     : '';
 
-  const whatsappOrderText = `Vanakkam Ruthra Medicines,\nI would like to place an order directly:\n\n${whatsappPurchasedSummary}${whatsappGiftSummary}\n\nTotal Payable: ₹${total} (Free Tamil Nadu Delivery)\nCustomer Name: ${formData.fullName || '(Direct Guest)'}\nPhone: ${formData.phone || '(This contact)'}\nAddress: ${formData.address ? `${formData.address}, ${formData.city} - ${formData.pincode}` : '(Will share on chat)'}\n\nPlease confirm dispatch from Tirunelveli.`;
+  const whatsappOrderText = `Vanakkam Ruthra Medicines,\nI would like to place an order directly:\n\n${whatsappPurchasedSummary}${whatsappDiscountSummary}${whatsappGiftSummary}\n\nTotal Payable: ₹${total} (Free Tamil Nadu Delivery)\nCustomer Name: ${formData.fullName || '(Direct Guest)'}\nPhone: ${formData.phone || '(This contact)'}\nAddress: ${formData.address ? `${formData.address}, ${formData.city} - ${formData.pincode}` : '(Will share on chat)'}\n\nPlease confirm dispatch from Tirunelveli.`;
 
   if (items.length === 0) {
     return (
@@ -298,41 +306,40 @@ export default function CheckoutPage() {
               </p>
             </div>
           </div>
+
           <a
             href={`https://wa.me/919171508042?text=${encodeURIComponent(whatsappOrderText)}`}
             target="_blank"
             rel="noreferrer"
-            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-colors flex-shrink-0 cursor-pointer"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all flex-shrink-0"
           >
-            <Zap className="w-3.5 h-3.5 text-[#C29043]" />
-            <span>{t('1-Tap WhatsApp Checkout', 'வாட்ஸ்அப் நேரடி ஆர்டர்')}</span>
+            <Zap className="w-3.5 h-3.5 text-[#DFB36C]" />
+            <span>{t('Instant WhatsApp Checkout', 'வாட்ஸ்அப் விரைவு செக்அவுட்')}</span>
           </a>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Main Checkout Form Column */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Guest Address & Payment Method Form */}
           <form onSubmit={handleSubmit} className="lg:col-span-7 space-y-6">
-            {/* Step 1: Customer Contact Details */}
-            <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
-              <div className="flex items-center justify-between border-b border-[#16382B]/10 pb-3">
-                <h2 className="font-serif-brand text-base sm:text-lg font-bold text-[#16382B] flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-[#16382B] text-white text-xs flex items-center justify-center">1</span>
-                  {t('Customer Details (Guest Checkout)', 'வாடிக்கையாளர் விபரம்')}
+            {/* Delivery Address Card */}
+            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#16382B]/10">
+                <h2 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B] flex items-center gap-2">
+                  <PackageCheck className="w-5 h-5 text-[#C29043]" />
+                  <span>{t('1. Delivery Address (Tamil Nadu)', '1. டெலிவரி முகவரி')}</span>
                 </h2>
-                {hasSavedProfile ? (
-                  <span className="inline-flex items-center gap-1 text-[10.5px] text-green-700 font-semibold bg-green-50 px-2 py-0.5 rounded-full border border-green-200">
+                {hasSavedProfile && (
+                  <span className="text-[10px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full flex items-center gap-1 border border-green-200">
                     <CheckCircle2 className="w-3 h-3" />
-                    <span>{t('Auto-filled from saved profile', 'தானாக நிரப்பப்பட்டது')}</span>
+                    {t('Saved Info Loaded', 'சேமித்த முகவரி')}
                   </span>
-                ) : (
-                  <span className="text-[11px] text-[#8A9B93]">No login required</span>
                 )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Full Name *', 'முழு பெயர் *')}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="space-y-1 sm:col-span-2">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('Full Name *', 'முழுப் பெயர் *')}
                   </label>
                   <input
                     type="text"
@@ -340,14 +347,14 @@ export default function CheckoutPage() {
                     required
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="e.g. S. Ramanathan"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
+                    placeholder="e.g. Dr. S. Ramanathan / K. Meenakshi"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('WhatsApp / Mobile Number *', 'மொபைல் எண் *')}
+                <div className="space-y-1">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('Mobile Number (for SMS & Tracking) *', 'தொலைபேசி எண் *')}
                   </label>
                   <input
                     type="tel"
@@ -355,14 +362,14 @@ export default function CheckoutPage() {
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="e.g. 98400 12345"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
+                    placeholder="e.g. 9876543210"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
 
-                <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Email Address (For PDF Invoice & Live Tracking) *', 'மின்னஞ்சல் முகவரி *')}
+                <div className="space-y-1">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('Email Address (for Official Tax Invoice PDF) *', 'மின்னஞ்சல் முகவரி *')}
                   </label>
                   <input
                     type="email"
@@ -370,144 +377,100 @@ export default function CheckoutPage() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="e.g. ramanathan@gmail.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
+                    placeholder="e.g. yourname@gmail.com"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
-                  <p className="text-[10.5px] text-[#8A9B93] mt-1">
-                    {t('We will send the computerized GST invoice and courier consignment code to this email.', 'விலைப்பட்டியல் மற்றும் பார்சல் டிராக்கிங் எண் இந்த மின்னஞ்சலுக்கு அனுப்பப்படும்.')}
-                  </p>
                 </div>
-              </div>
-            </div>
 
-            {/* Step 2: Shipping Destination */}
-            <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
-              <div className="flex items-center justify-between border-b border-[#16382B]/10 pb-3">
-                <h2 className="font-serif-brand text-base sm:text-lg font-bold text-[#16382B] flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-[#16382B] text-white text-xs flex items-center justify-center">2</span>
-                  {t('Delivery Address (Tamil Nadu)', 'அஞ்சல் முகவரி')}
-                </h2>
-                <span className="text-[11px] text-[#8A9B93]">Direct Courier from Tirunelveli</span>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Door No, Street & Area Address *', 'கதவு எண், தெரு மற்றும் பகுதி *')}
+                <div className="space-y-1 sm:col-span-2">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('Door No, Street Name & Area *', 'கதவு எண், தெரு மற்றும் பகுதி *')}
                   </label>
                   <textarea
                     name="address"
-                    required
                     rows={2}
+                    required
                     value={formData.address}
                     onChange={handleInputChange}
-                    placeholder="e.g. 14/2B, South Car Street, Near Amman Kovil"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
+                    placeholder="e.g. 14/B, Sannathi Street, Near Swami Nellaiyappar Temple"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                      {t('PIN Code *', 'அஞ்சல் குறியீடு *')}
-                    </label>
-                    <input
-                      type="text"
-                      name="pincode"
-                      required
-                      maxLength={6}
-                      value={formData.pincode}
-                      onChange={handleInputChange}
-                      placeholder="e.g. 627001"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                      {t('District / City *', 'மாவட்டம் / நகரம் *')}
-                    </label>
-                    <input
-                      type="text"
-                      name="city"
-                      required
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      placeholder="e.g. Tirunelveli"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                      {t('State', 'மாநிலம்')}
-                    </label>
-                    <input
-                      type="text"
-                      name="state"
-                      readOnly
-                      value={formData.state}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm bg-gray-100 text-gray-700 cursor-not-allowed"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Nearby Landmark (Optional)', 'அடையாளம் (விருப்பத்தேர்வு)')}
+                <div className="space-y-1">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('Landmark (Optional)', 'அடையாளம்')}
                   </label>
                   <input
                     type="text"
                     name="landmark"
                     value={formData.landmark}
                     onChange={handleInputChange}
-                    placeholder="e.g. Opposite State Bank, Near Bus Stop"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
+                    placeholder="e.g. Opposite Post Office"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('Pincode (Auto-detects district) *', 'அஞ்சல் குறியீடு (Pincode) *')}
+                  </label>
+                  <input
+                    type="text"
+                    name="pincode"
+                    required
+                    maxLength={6}
+                    value={formData.pincode}
+                    onChange={handleInputChange}
+                    placeholder="e.g. 627001"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('City / District', 'மாவட்டம்')}
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    required
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Tirunelveli"
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="font-bold text-[#16382B] block">
+                    {t('State', 'மாநிலம்')}
+                  </label>
+                  <input
+                    type="text"
+                    name="state"
+                    disabled
+                    value={formData.state}
+                    className="w-full px-4 py-3 bg-gray-100 border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-gray-500 font-semibold cursor-not-allowed"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Step 3: Delivery Options */}
+            {/* Payment Method Card */}
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
-              <div className="border-b border-[#16382B]/10 pb-3">
+              <div className="pb-3 border-b border-[#16382B]/10">
                 <h2 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B] flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-[#16382B] text-white text-xs flex items-center justify-center">3</span>
-                  {t('Delivery Mode', 'அஞ்சல் முறை')}
+                  <CreditCard className="w-5 h-5 text-[#C29043]" />
+                  <span>{t('2. Select Payment Method', '2. பணம் செலுத்தும் முறை')}</span>
                 </h2>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <label className="p-4 rounded-2xl border-2 border-[#16382B] bg-[#E8F1EB]/40 flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="deliveryMethod"
-                    value="standard"
-                    checked={formData.deliveryMethod === 'standard'}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                  />
-                  <div>
-                    <span className="font-bold text-xs sm:text-sm text-[#16382B] block">
-                      {t('Tamil Nadu Express Courier (ST Courier / Speed Post)', 'விரைவு அஞ்சல் சேவை')}
-                    </span>
-                    <span className="text-[11px] text-[#3D5A68]">2 to 3 Business Days</span>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            {/* Step 4: Payment Infrastructure */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
-              <div className="border-b border-[#16382B]/10 pb-3">
-                <h2 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B] flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-[#16382B] text-white text-xs flex items-center justify-center">4</span>
-                  {t('Payment Method', 'பணம் செலுத்தும் முறை')}
-                </h2>
+                <p className="text-xs text-[#8A9B93] mt-0.5">
+                  Official Tirunelveli Direct Merchant Settlement
+                </p>
               </div>
 
               <div className="space-y-3">
-                {/* UPI / QR Option */}
+                {/* Instant UPI / QR */}
                 <label className={`p-4 rounded-2xl border-2 flex items-start gap-3 cursor-pointer transition-all ${
                   formData.paymentMethod === 'upi' ? 'border-[#16382B] bg-[#E8F1EB]/40' : 'border-[#16382B]/10 bg-white'
                 }`}>
@@ -522,25 +485,25 @@ export default function CheckoutPage() {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-xs sm:text-sm text-[#16382B]">
-                        {t('Instant UPI / QR Code (GPay, PhonePe, Paytm, BHIM)', 'யூ.பி.ஐ / க்யூஆர் கோட்')}
+                        {t('Instant UPI / GPay / PhonePe / Paytm', 'உடனடி UPI / GPay / PhonePe')}
                       </span>
                       <QrCode className="w-4 h-4 text-[#16382B]" />
                     </div>
                     <p className="text-[11px] text-[#3D5A68] mt-0.5">
-                      {t('Zero transaction fees. Instant dispatch priority.', 'கூடுதல் கட்டணம் ஏதுமில்லை.')}
+                      Zero transaction fees. Instant official tax invoice dispatched to email.
                     </p>
                   </div>
                 </label>
 
-                {/* Cards & Net Banking Option */}
+                {/* Cards & NetBanking */}
                 <label className={`p-4 rounded-2xl border-2 flex items-start gap-3 cursor-pointer transition-all ${
-                  formData.paymentMethod === 'cards' ? 'border-[#16382B] bg-[#E8F1EB]/40' : 'border-[#16382B]/10 bg-white'
+                  formData.paymentMethod === 'card' ? 'border-[#16382B] bg-[#E8F1EB]/40' : 'border-[#16382B]/10 bg-white'
                 }`}>
                   <input
                     type="radio"
                     name="paymentMethod"
-                    value="cards"
-                    checked={formData.paymentMethod === 'cards'}
+                    value="card"
+                    checked={formData.paymentMethod === 'card'}
                     onChange={handleInputChange}
                     className="mt-1"
                   />
@@ -588,7 +551,7 @@ export default function CheckoutPage() {
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full py-4 px-6 rounded-2xl bg-[#16382B] hover:bg-[#204C3B] active:scale-98 text-white font-serif-brand font-bold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg transition-all"
+              className="w-full py-4 px-6 rounded-2xl bg-[#16382B] hover:bg-[#204C3B] active:scale-98 text-white font-serif-brand font-bold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
             >
               {isProcessing ? (
                 <span>{t('Processing Your Order...', 'ஆர்டர் பதிவு செய்யப்படுகிறது...')}</span>
@@ -625,7 +588,7 @@ export default function CheckoutPage() {
                   <button
                     type="button"
                     onClick={openGiftModal}
-                    className="px-2.5 py-1 rounded-lg bg-[#16382B] text-white text-[11px] font-bold hover:bg-[#204C3B] transition-colors flex-shrink-0"
+                    className="px-2.5 py-1 rounded-lg bg-[#16382B] text-white text-[11px] font-bold hover:bg-[#204C3B] transition-colors flex-shrink-0 cursor-pointer"
                   >
                     {t('Select Gift', 'தேர்வு செய்க')}
                   </button>
@@ -673,7 +636,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <span className="text-[9px] uppercase font-bold tracking-wider px-1 py-0.2 rounded bg-emerald-700 text-white inline-block">
-                        {t('5+1 Free Gift', 'இலவச பரிசு')}
+                        {t('100% Free Bonus', 'இலவச பரிசு')}
                       </span>
                       <p className="font-semibold text-[#16382B] truncate mt-0.5">
                         {language === 'ta' ? product.tamilName : product.name}
@@ -686,38 +649,51 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              <div className="pt-4 border-t border-[#16382B]/10 space-y-2 text-xs text-[#3D5A68]">
-                <div className="flex justify-between">
-                  <span>{t('Total Items MRP', 'மொத்த அசல் விலை')}</span>
-                  <span className="line-through text-[#8A9B93]">₹{mrpSubtotal}</span>
+              <div className="pt-4 border-t border-[#16382B]/10 space-y-2.5 text-xs text-[#3D5A68]">
+                <div className="flex justify-between items-center">
+                  <span>{t('Items Subtotal', 'பொருட்களின் மொத்த தொகை')}</span>
+                  <span className="font-semibold text-[#16382B]">₹{subtotal}</span>
                 </div>
-                <div className="flex justify-between text-green-700">
-                  <span>{t('Direct Catalog Savings', 'நேரடி தயாரிப்பு தள்ளுபடி')}</span>
-                  <span className="font-semibold">-₹{mrpSavings}</span>
-                </div>
-                {freeGiftSavings > 0 && (
-                  <div className="flex justify-between text-emerald-800 font-semibold bg-emerald-50 px-2 py-1 rounded-md">
-                    <span>{t('5+1 Free Formulation Value', '5+1 இலவச மருந்து மதிப்பு')}</span>
-                    <span>-₹{freeGiftSavings} (FREE)</span>
+
+                {discountAmount > 0 && (
+                  <div className="flex justify-between items-center text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200">
+                    <span className="flex items-center gap-1.5">
+                      <Percent className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>{t(`${discountPercent}% Volume Discount`, `${discountPercent}% சிறப்பு தள்ளுபடி`)}</span>
+                    </span>
+                    <span>-₹{discountAmount}</span>
                   </div>
                 )}
+
                 <div className="flex justify-between items-center">
-                  <span>{t('Shipping (Tamil Nadu Express)', 'அஞ்சல் கட்டணம்')}</span>
-                  <span className="font-semibold text-[#16382B]">
-                    {shippingFee === 0 ? <span className="bg-green-50 border border-green-200 text-green-700 px-2 py-0.5 rounded font-bold text-xs">FREE</span> : `₹${shippingFee}`}
+                  <span>{t('Express Delivery (Tamil Nadu)', 'அஞ்சல் கட்டணம்')}</span>
+                  <span className="font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md text-xs">
+                    {t('FREE (₹0)', 'இலவசம் (₹0)')}
                   </span>
                 </div>
-                <div className="pt-2 border-t border-[#16382B]/10 flex justify-between text-base font-bold text-[#16382B]">
+
+                <div className="pt-2.5 border-t border-[#16382B]/10 flex justify-between items-center text-base font-bold text-[#16382B]">
                   <span>{t('Total Payable', 'செலுத்த வேண்டிய தொகை')}</span>
-                  <span className="font-serif-brand text-xl">₹{total}</span>
+                  <span className="font-serif-brand text-xl text-[#16382B]">₹{total}</span>
                 </div>
 
                 {totalSavings > 0 && (
-                  <div className="mt-2 p-2.5 rounded-xl bg-[#E8F1EB] border border-green-200 text-xs text-green-800 font-semibold flex items-center justify-between">
-                    <span className="flex items-center gap-1.5 font-bold">
-                      <Tag className="w-3.5 h-3.5 text-[#C29043]" />
-                      <span>{t(`Total Order Savings: ₹${totalSavings}`, `மொத்த சேமிப்பு: ₹${totalSavings}`)}</span>
-                    </span>
+                  <div className="mt-2 p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 font-semibold space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="flex items-center gap-1.5 font-bold text-emerald-800">
+                        <Tag className="w-3.5 h-3.5 text-[#C29043]" />
+                        <span>{t(`Total Order Savings: ₹${totalSavings}`, `மொத்த சேமிப்பு: ₹${totalSavings}`)}</span>
+                      </span>
+                      <span className="text-[10px] font-bold text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-200">
+                        {t('Best Value', 'சிறந்த சேமிப்பு')}
+                      </span>
+                    </div>
+                    {totalFreeGiftsSelected > 0 && (
+                      <p className="text-[11px] text-emerald-800 font-medium pt-1 border-t border-emerald-200/60 flex items-center gap-1.5">
+                        <Gift className="w-3.5 h-3.5 text-emerald-700 flex-shrink-0" />
+                        <span>{t(`Includes ${totalFreeGiftsSelected} Free Bonus Medicine(s)`, `${totalFreeGiftsSelected} இலவச சித்த மருந்துகள் சேர்க்கப்பட்டுள்ளன`)}</span>
+                      </p>
+                    )}
                   </div>
                 )}
               </div>

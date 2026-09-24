@@ -14,7 +14,8 @@ import {
   Tag,
   Check,
   Gift,
-  PackageCheck
+  PackageCheck,
+  Percent
 } from 'lucide-react';
 import { useCart, getProductMRP } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -30,6 +31,8 @@ export default function CartPage() {
     itemsNeededForNextMilestone,
     nextMilestoneCount,
     progressPercent,
+    discountPercent,
+    discountAmount,
     freeGiftSavings,
     openGiftModal,
     removeFreeGift,
@@ -41,9 +44,7 @@ export default function CartPage() {
     mrpSavings,
     totalSavings,
     shippingFee,
-    total,
-    freeShippingThreshold,
-    amountNeededForFreeShipping
+    total
   } = useCart();
 
   const { language, t } = useLanguage();
@@ -78,8 +79,6 @@ export default function CartPage() {
     );
   }
 
-  const freeShippingProgress = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
-
   return (
     <div className="w-full bg-[#FAF8F5] min-h-screen py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -100,7 +99,7 @@ export default function CartPage() {
             <button
               type="button"
               onClick={clearCart}
-              className="text-xs font-semibold text-[#8A9B93] hover:text-[#D9534F] transition-colors"
+              className="text-xs font-semibold text-[#8A9B93] hover:text-[#D9534F] transition-colors cursor-pointer"
             >
               {t('Clear Cart', 'கூடையை காலி செய்')}
             </button>
@@ -113,37 +112,49 @@ export default function CartPage() {
           </div>
         </div>
 
-        {/* 5+1 & 10+2 Volume Scheme Progress Strip */}
-        <div className="p-4 bg-[#E8F1EB] rounded-2xl border border-[#16382B]/10 space-y-2">
+        {/* Volume Scheme & Discount Progress Strip */}
+        <div className="p-4 bg-[#E8F1EB] rounded-2xl border border-[#16382B]/10 space-y-2.5">
           <div className="flex items-center justify-between text-xs font-semibold text-[#16382B]">
             <span className="flex items-center gap-2">
-              <Gift className="w-4 h-4 text-[#C29043]" />
+              {discountPercent > 0 ? (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-700 text-white text-xs font-bold">
+                  <Percent className="w-3 h-3" />
+                  {discountPercent}% OFF APPLIED
+                </span>
+              ) : (
+                <Gift className="w-4 h-4 text-[#C29043]" />
+              )}
               <span>
                 {freeSlotsEarned > 0
                   ? t(`${paidItemCount} Items in cart • ${freeSlotsEarned} FREE Formulation(s) Unlocked!`, `${paidItemCount} மருந்துகள் கூடையில் • ${freeSlotsEarned} இலவச மருந்து தேர்வு தகுதி!`)
                   : t(`${paidItemCount} Items in cart`, `${paidItemCount} மருந்துகள் கூடையில்`)}
               </span>
             </span>
-            <span className="font-bold text-[#16382B]">
-              {paidItemCount < 5 
-                ? t(`Next: 5 Items (Get 1 Free)`, `இலக்கு: 5 (1 இலவசம்)`)
-                : t(`Next: ${nextMilestoneCount} Items (Get ${nextMilestoneCount / 5} Free)`, `அடுத்த இலக்கு: ${nextMilestoneCount} (${nextMilestoneCount / 5} இலவசம்)`)}
+
+            <span className="font-bold text-xs text-[#16382B]">
+              {paidItemCount < 5 && t(`Next: 5 Items (10% OFF + 1 Free)`, `இலக்கு: 5 (10% + 1 இலவசம்)`)}
+              {paidItemCount >= 5 && paidItemCount < 30 && t(`Next: 30 Items (20% Bulk OFF)`, `இலக்கு: 30 (20% தள்ளுபடி)`)}
+              {paidItemCount >= 30 && paidItemCount < 50 && t(`Next: 50 Items (15 FREE Medicines!)`, `இலக்கு: 50 (15 இலவசம்!)`)}
+              {paidItemCount >= 50 && t(`Next Milestone: ${nextMilestoneCount} Items`, `அடுத்த இலக்கு: ${nextMilestoneCount}`)}
             </span>
           </div>
-          <div className="w-full h-2 rounded-full bg-white overflow-hidden">
+
+          <div className="w-full h-2.5 rounded-full bg-white overflow-hidden">
             <div
               className="h-full bg-[#16382B] rounded-full transition-all duration-300"
-              style={{ width: `${paidItemCount < 5 ? (paidItemCount / 5) * 100 : progressPercent}%` }}
+              style={{ width: `${progressPercent}%` }}
             />
           </div>
+
           <div className="flex justify-between text-[11px] text-[#3D5A68]">
             <span>
-              {paidItemCount < 5
-                ? t(`Add ${itemsNeededForNextMilestone} more item(s) to choose 1 FREE classical medicine`, `இன்னும் ${itemsNeededForNextMilestone} மருந்து சேர்த்தால் 1 இலவச மருந்து பெறலாம்`)
-                : t(`Add ${itemsNeededForNextMilestone} more for next free medicine milestone`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
+              {paidItemCount < 5 && t(`Add ${itemsNeededForNextMilestone} more item(s) to unlock 10% OFF and 1 FREE medicine`, `இன்னும் ${itemsNeededForNextMilestone} மருந்து சேர்த்தால் 10% தள்ளுபடி & 1 இலவச மருந்து பெறலாம்`)}
+              {paidItemCount >= 5 && paidItemCount < 30 && t(`Add ${itemsNeededForNextMilestone} more for 20% bulk order discount`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 20% கூடுதல் தள்ளுபடி`)}
+              {paidItemCount >= 30 && paidItemCount < 50 && t(`Add ${itemsNeededForNextMilestone} more to unlock 15 FREE bonus medicines!`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 15 இலவச மருந்துகள்!`)}
+              {paidItemCount >= 50 && t(`Add ${itemsNeededForNextMilestone} more for next free formulation bonus`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
             </span>
             <span className="font-bold text-[#16382B]">
-              {paidItemCount < 5 ? Math.round((paidItemCount / 5) * 100) : progressPercent}%
+              {progressPercent}%
             </span>
           </div>
         </div>
@@ -157,12 +168,12 @@ export default function CartPage() {
               </div>
               <div>
                 <h3 className="font-serif-brand font-bold text-sm text-[#16382B]">
-                  {t('5+1 Free Formulation Unlocked', '5+1 இலவச மருந்து தகுதி')}
+                  {t('Free Formulation Bonus Unlocked', 'இலவச மருந்து தகுதி')}
                 </h3>
                 <p className="text-xs text-emerald-800 mt-0.5">
                   {t(
-                    `You have ${freeSlotsRemaining} unclaimed Free Medicine slot(s)! Choose any formulation from the catalog for ₹0.00.`,
-                    `உங்களுக்கு ${freeSlotsRemaining} இலவச மருந்து தேர்வு செய்ய வாய்ப்புள்ளது! விருப்பமான மருந்தை ₹0.00-க்கு தேர்வு செய்யலாம்.`
+                    `You have ${freeSlotsRemaining} unclaimed Free Medicine slot(s)! Choose from your purchased formulations for ₹0.00.`,
+                    `உங்களுக்கு ${freeSlotsRemaining} இலவச மருந்து தேர்வு செய்ய வாய்ப்புள்ளது! வாங்கிய மருந்துகளிலிருந்தே ₹0.00-க்கு தேர்வு செய்யலாம்.`
                   )}
                 </p>
               </div>
@@ -192,11 +203,11 @@ export default function CartPage() {
                 <div className="flex items-center justify-between pb-2 border-b border-emerald-200">
                   <span className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-2">
                     <PackageCheck className="w-4 h-4 text-emerald-700" />
-                    <span>{t('Selected Free Bonus Formulations (5+1 Scheme)', 'தேர்வு செய்யப்பட்ட இலவச மருந்துகள்')}</span>
+                    <span>{t('Selected Free Bonus Formulations', 'தேர்வு செய்யப்பட்ட இலவச மருந்துகள்')}</span>
                   </span>
                   <button
                     onClick={openGiftModal}
-                    className="text-xs font-bold text-emerald-800 underline hover:text-[#16382B]"
+                    className="text-xs font-bold text-emerald-800 underline hover:text-[#16382B] cursor-pointer"
                   >
                     {t('Change / Add', 'மாற்றுக')}
                   </button>
@@ -234,7 +245,7 @@ export default function CartPage() {
                         </span>
                         <button
                           onClick={() => removeFreeGift(product.id)}
-                          className="text-gray-400 hover:text-red-600 p-1 transition-colors"
+                          className="text-gray-400 hover:text-red-600 p-1 transition-colors cursor-pointer"
                           title="Remove gift"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -260,7 +271,7 @@ export default function CartPage() {
                   const mrp = getProductMRP(product);
                   const unitSavings = mrp - product.price;
                   const totalItemSavings = unitSavings * quantity;
-                  const discountPercent = Math.round((unitSavings / mrp) * 100);
+                  const discountPercentUnit = Math.round((unitSavings / mrp) * 100);
 
                   return (
                     <div key={product.id} className="p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -289,7 +300,7 @@ export default function CartPage() {
                             <span className="font-bold text-sm text-[#16382B]">₹{product.price}</span>
                             <span className="text-xs text-[#8A9B93] line-through">₹{mrp}</span>
                             <span className="text-[10px] font-bold text-green-700 bg-green-50 px-1.5 py-0.2 rounded">
-                              {discountPercent}% OFF
+                              {discountPercentUnit}% OFF
                             </span>
                           </div>
                         </div>
@@ -300,7 +311,7 @@ export default function CartPage() {
                           <button
                             type="button"
                             onClick={() => updateQuantity(product.id, quantity - 1)}
-                            className="p-2 text-[#16382B] hover:bg-[#E8F1EB] transition-colors"
+                            className="p-2 text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
                           >
                             <Minus className="w-3.5 h-3.5" />
                           </button>
@@ -308,7 +319,7 @@ export default function CartPage() {
                           <button
                             type="button"
                             onClick={() => updateQuantity(product.id, quantity + 1)}
-                            className="p-2 text-[#16382B] hover:bg-[#E8F1EB] transition-colors"
+                            className="p-2 text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
                           >
                             <Plus className="w-3.5 h-3.5" />
                           </button>
@@ -326,7 +337,7 @@ export default function CartPage() {
                         <button
                           type="button"
                           onClick={() => removeItem(product.id)}
-                          className="text-gray-400 hover:text-red-600 p-1.5 transition-colors"
+                          className="text-gray-400 hover:text-red-600 p-1.5 transition-colors cursor-pointer"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -346,39 +357,51 @@ export default function CartPage() {
               </h3>
 
               <div className="space-y-2.5 text-xs text-[#3D5A68]">
-                <div className="flex justify-between">
-                  <span>{t('Items MRP Total', 'மொத்த அசல் விலை')}</span>
-                  <span className="line-through text-[#8A9B93]">₹{mrpSubtotal}</span>
+                <div className="flex justify-between items-center">
+                  <span>{t('Items Subtotal', 'பொருட்களின் மொத்த தொகை')}</span>
+                  <span className="font-semibold text-[#16382B]">₹{subtotal}</span>
                 </div>
-                <div className="flex justify-between text-green-700">
-                  <span>{t('Direct Catalog Savings', 'நேரடி தயாரிப்பு தள்ளுபடி')}</span>
-                  <span className="font-semibold">-₹{mrpSavings}</span>
-                </div>
-                {freeGiftSavings > 0 && (
-                  <div className="flex justify-between text-emerald-800 font-semibold bg-emerald-50 px-2.5 py-1 rounded-lg">
-                    <span>{t('5+1 Free Formulation Value', '5+1 இலவச மருந்து மதிப்பு')}</span>
-                    <span>-₹{freeGiftSavings} (FREE)</span>
+
+                {discountAmount > 0 && (
+                  <div className="flex justify-between items-center text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200">
+                    <span className="flex items-center gap-1.5">
+                      <Percent className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>{t(`${discountPercent}% Volume Discount`, `${discountPercent}% சிறப்பு தள்ளுபடி`)}</span>
+                    </span>
+                    <span>-₹{discountAmount}</span>
                   </div>
                 )}
+
                 <div className="flex justify-between items-center">
-                  <span>{t('Shipping (Tamil Nadu Express)', 'அஞ்சல் கட்டணம்')}</span>
-                  <span className="font-semibold text-[#16382B]">
-                    ₹{shippingFee}
+                  <span>{t('Express Delivery (Tamil Nadu)', 'அஞ்சல் கட்டணம்')}</span>
+                  <span className="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md text-xs border border-emerald-200">
+                    {t('FREE (₹0)', 'இலவசம் (₹0)')}
                   </span>
                 </div>
 
-                <div className="pt-3 border-t border-[#16382B]/10 flex justify-between text-base font-bold text-[#16382B]">
+                <div className="pt-3 border-t border-[#16382B]/10 flex justify-between items-center text-base font-bold text-[#16382B]">
                   <span>{t('Total Payable', 'செலுத்த வேண்டிய தொகை')}</span>
-                  <span className="font-serif-brand text-xl">₹{total}</span>
+                  <span className="font-serif-brand text-xl text-[#16382B]">₹{total}</span>
                 </div>
               </div>
 
               {totalSavings > 0 && (
-                <div className="p-3 rounded-2xl bg-[#E8F1EB] border border-green-200 text-xs text-green-800 font-semibold flex items-center justify-between">
-                  <span className="flex items-center gap-1.5 font-bold">
-                    <Tag className="w-3.5 h-3.5 text-[#C29043]" />
-                    <span>{t(`Total Savings: ₹${totalSavings}`, `மொத்த சேமிப்பு: ₹${totalSavings}`)}</span>
-                  </span>
+                <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 font-semibold space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 font-bold text-emerald-800">
+                      <Tag className="w-3.5 h-3.5 text-[#C29043]" />
+                      <span>{t(`Total Savings: ₹${totalSavings}`, `மொத்த சேமிப்பு: ₹${totalSavings}`)}</span>
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-200">
+                      {t('Best Value', 'சிறந்த சேமிப்பு')}
+                    </span>
+                  </div>
+                  {totalFreeGiftsSelected > 0 && (
+                    <p className="text-[11px] text-emerald-800 font-medium pt-1 border-t border-emerald-200/60 flex items-center gap-1.5">
+                      <Gift className="w-3.5 h-3.5 text-emerald-700 flex-shrink-0" />
+                      <span>{t(`Includes ${totalFreeGiftsSelected} Free Bonus Medicine(s)`, `${totalFreeGiftsSelected} இலவச சித்த மருந்துகள் சேர்க்கப்பட்டுள்ளன`)}</span>
+                    </p>
+                  )}
                 </div>
               )}
 

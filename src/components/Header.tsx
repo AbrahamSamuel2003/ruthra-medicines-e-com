@@ -133,8 +133,8 @@ export default function Header() {
             <Gift className="w-3.5 h-3.5 text-[#DFB36C] flex-shrink-0" />
             <span className="font-medium whitespace-nowrap">
               {t(
-                '5+1 & 10+2 Volume Scheme: Buy 5 items, unlock 1 FREE formulation of your choice | Express Delivery Across Tamil Nadu',
-                '5+1 திட்டம்: 5 மருந்துகள் வாங்கினால் 1 இலவச மருந்து தேர்வு செய்யலாம் | தமிழ்நாடு முழுவதும் விரைவு அஞ்சல்'
+                'Volume Offers: 10% OFF (5+ items) • 20% Bulk OFF (30+ items) + Free Formulation Bonuses | Express Delivery Across Tamil Nadu',
+                'சிறப்பு சலுகை: 5+ மருந்துகளுக்கு 10% தள்ளுபடி • 30+க்கு 20% தள்ளுபடி + இலவச மருந்துகள் | தமிழ்நாடு விரைவு அஞ்சல்'
               )}
             </span>
           </div>

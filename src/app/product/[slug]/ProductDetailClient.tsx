@@ -31,7 +31,7 @@ import {
   Gift
 } from 'lucide-react';
 import { Product } from '@/types/product';
-import { useCart, getProductMRP } from '@/context/CartContext';
+import { useCart, getProductMRP, calculateDiscountPercent, calculateFreeGiftsEarned } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import WhatsAppAssistance from '@/components/WhatsAppAssistance';
 import PincodeDeliveryEstimator from '@/components/PincodeDeliveryEstimator';
@@ -161,14 +161,8 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const mrp = getProductMRP(product);
   const unitSavings = Math.max(0, mrp - product.price);
   const discountPercent = Math.round((unitSavings / mrp) * 100);
-  const potentialFreeGifts = Math.floor(quantity / 5);
-
-  // Dynamic Free Shipping Calculation based on selected quantity
-  const currentTotal = product.price * quantity;
-  const freeShippingThreshold = 500;
-  const amountToFreeShipping = Math.max(0, freeShippingThreshold - currentTotal);
-  const freeShippingProgress = Math.min(100, Math.round((currentTotal / freeShippingThreshold) * 100));
-  const qualifiesForFreeShipping = currentTotal >= freeShippingThreshold;
+  const volumeDiscountPercent = calculateDiscountPercent(quantity);
+  const potentialFreeGifts = calculateFreeGiftsEarned(quantity);
 
   const tabs = [
     { id: 'overview' as const, labelEn: 'Overview', labelTa: 'கண்ணோட்டம்', icon: Leaf },
@@ -983,39 +977,39 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </div>
                 </div>
 
-                {/* 5+1 & 10+2 Classical Scheme Volume Incentive */}
+                {/* Volume Incentive & Free Formulation Scheme */}
                 {!isOutOfStock && (
                   <div className="space-y-2">
                     <div className={`p-2.5 rounded-xl border text-xs transition-all ${
-                      potentialFreeGifts > 0 
+                      volumeDiscountPercent > 0 || potentialFreeGifts > 0 
                         ? 'bg-emerald-50/80 border-emerald-300 text-emerald-950' 
                         : 'bg-[#FFF9F0] border-[#C29043]/30 text-[#8B5E14]'
                     }`}>
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <div className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                            potentialFreeGifts > 0 ? 'bg-emerald-600 text-white' : 'bg-[#C29043] text-white'
+                            volumeDiscountPercent > 0 || potentialFreeGifts > 0 ? 'bg-emerald-600 text-white' : 'bg-[#C29043] text-white'
                           }`}>
                             <Gift className="w-3.5 h-3.5" />
                           </div>
                           <div>
                             <span className="font-bold text-[11px] block">
-                              {potentialFreeGifts > 0
+                              {volumeDiscountPercent > 0
                                 ? t(
-                                    `5+1 Scheme Active: ${potentialFreeGifts} FREE Medicine ${potentialFreeGifts === 1 ? 'Slot' : 'Slots'} Unlocked!`,
-                                    `5+1 சலுகை: ${potentialFreeGifts} இலவச மருந்து தேர்வு தகுதி பெற்றுள்ளீர்கள்!`
+                                    `${volumeDiscountPercent}% Order Discount Active • ${potentialFreeGifts} FREE Medicine(s) Unlocked!`,
+                                    `${volumeDiscountPercent}% தள்ளுபடி & ${potentialFreeGifts} இலவச மருந்து தேர்வு தகுதி!`
                                   )
-                                : t('5+1 & 10+2 Free Formulation Scheme', '5+1 மற்றும் 10+2 இலவச மருந்து திட்டம்')}
+                                : t('10%–20% Discount & Free Formulation Scheme', '10%–20% தள்ளுபடி & இலவச மருந்து திட்டம்')}
                             </span>
                             <span className="text-[10px] opacity-85 block">
-                              {potentialFreeGifts > 0
+                              {volumeDiscountPercent > 0
                                 ? t(
-                                    'Choose any classical medicine from 176 formulations in cart at ₹0.00.',
-                                    'கூடையில் 176 மருந்துகளில் ஏதேனும் ஒன்றை ₹0.00 கட்டணத்தில் தேர்வு செய்யவும்.'
+                                    `Select ${potentialFreeGifts} free formulation(s) from your ordered medicines in cart at ₹0.00.`,
+                                    `கூடையில் ${potentialFreeGifts} இலவச மருந்துகளை ₹0.00-க்கு தேர்வு செய்யலாம்.`
                                   )
                                 : t(
-                                    `Select ${5 - (quantity % 5)} more units to earn 1 FREE formulation of your choice.`,
-                                    `இன்னும் ${5 - (quantity % 5)} பாக்கெட்டுகள் சேர்த்தால் 1 இலவச மருந்து தேர்வு செய்யலாம்.`
+                                    `Order 5 or more units to unlock 10% discount and 1 FREE formulation bonus.`,
+                                    `5 அல்லது அதற்கு மேற்பட்ட அலகுகளை தேர்வு செய்தால் 10% தள்ளுபடி & 1 இலவச மருந்து பெறலாம்.`
                                   )}
                             </span>
                           </div>
@@ -1024,11 +1018,11 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     </div>
 
                     {/* Quick Quantity Milestone Selector Pills */}
-                    <div className="grid grid-cols-3 gap-1.5 pt-0.5">
+                    <div className="grid grid-cols-4 gap-1.5 pt-0.5">
                       <button
                         type="button"
                         onClick={() => setQuantity(1)}
-                        className={`py-1.5 px-2 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center ${
+                        className={`py-1.5 px-1.5 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center ${
                           quantity === 1
                             ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
                             : 'bg-white text-[#16382B] border-[#16382B]/15 hover:border-[#C29043]'
@@ -1041,15 +1035,15 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                         <button
                           type="button"
                           onClick={() => setQuantity(5)}
-                          className={`py-1.5 px-2 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                          className={`py-1.5 px-1 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
                             quantity === 5
                               ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
                               : 'bg-emerald-50/70 text-emerald-900 border-emerald-200 hover:border-emerald-400'
                           }`}
                         >
                           <span>5 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
-                          <span className={`text-[8.5px] font-semibold ${quantity === 5 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
-                            +1 {t('FREE Gift', 'இலவசம்')}
+                          <span className={`text-[8px] font-bold ${quantity === 5 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
+                            10% + 1 Free
                           </span>
                         </button>
                       )}
@@ -1058,15 +1052,32 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                         <button
                           type="button"
                           onClick={() => setQuantity(10)}
-                          className={`py-1.5 px-2 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                          className={`py-1.5 px-1 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
                             quantity === 10
                               ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
                               : 'bg-emerald-50/70 text-emerald-900 border-emerald-200 hover:border-emerald-400'
                           }`}
                         >
                           <span>10 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
-                          <span className={`text-[8.5px] font-semibold ${quantity === 10 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
-                            +2 {t('FREE Gifts', 'இலவசம்')}
+                          <span className={`text-[8px] font-bold ${quantity === 10 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
+                            10% + 2 Free
+                          </span>
+                        </button>
+                      )}
+
+                      {stockCount >= 30 && (
+                        <button
+                          type="button"
+                          onClick={() => setQuantity(30)}
+                          className={`py-1.5 px-1 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                            quantity === 30
+                              ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
+                              : 'bg-emerald-50/70 text-emerald-900 border-emerald-200 hover:border-emerald-400'
+                          }`}
+                        >
+                          <span>30 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
+                          <span className={`text-[8px] font-bold ${quantity === 30 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
+                            20% + 6 Free
                           </span>
                         </button>
                       )}
@@ -1074,34 +1085,18 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </div>
                 )}
 
-                {/* Free Tamil Nadu Shipping Meter */}
+                {/* 100% Free Shipping Anywhere in Tamil Nadu */}
                 <div className="pt-2 border-t border-[#16382B]/10">
-                  <div className="flex items-center justify-between text-[10.5px] sm:text-[11px] mb-1">
-                    <span className="text-[#3D5A68] font-medium flex items-center gap-1.5 truncate">
-                      <Truck className={`w-3.5 h-3.5 flex-shrink-0 ${qualifiesForFreeShipping ? 'text-green-600' : 'text-[#C29043]'}`} />
-                      {qualifiesForFreeShipping ? (
-                        <span className="text-green-700 font-bold flex items-center gap-1 truncate">
-                          <Check className="w-3 h-3 flex-shrink-0" />
-                          {t('FREE Delivery across Tamil Nadu Unlocked! (Saved ₹40)', 'தமிழ்நாடு முழுவதும் இலவச அஞ்சல் தகுதி! (₹40 சேமிப்பு)')}
-                        </span>
-                      ) : (
-                        <span className="truncate">
-                          {t(`Add ₹${amountToFreeShipping} more for FREE Delivery`, `இலவச அஞ்சலுக்கு இன்னும் ₹${amountToFreeShipping} சேர்க்கவும்`)}
-                        </span>
-                      )}
+                  <div className="flex items-center justify-between bg-emerald-50/90 border border-emerald-200/90 px-3 py-2 rounded-xl text-[11px] sm:text-[11.5px]">
+                    <span className="text-emerald-950 font-bold flex items-center gap-1.5 truncate">
+                      <Truck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                      <span className="truncate">
+                        {t('100% Free Delivery Anywhere in Tamil Nadu', 'தமிழ்நாடு முழுவதும் 100% இலவச டெலிவரி')}
+                      </span>
                     </span>
-                    <span className={`font-bold ml-1.5 ${qualifiesForFreeShipping ? 'text-green-700' : 'text-[#16382B]'}`}>
-                      {freeShippingProgress}%
+                    <span className="text-[10px] font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-md border border-emerald-300 shadow-2xs flex-shrink-0">
+                      {t('₹0 Shipping', 'இலவசம்')}
                     </span>
-                  </div>
-
-                  <div className="w-full h-1.5 rounded-full bg-[#16382B]/10 overflow-hidden">
-                    <div
-                      className={`h-full rounded-full transition-all duration-300 ${
-                        qualifiesForFreeShipping ? 'bg-green-600' : 'bg-[#16382B]'
-                      }`}
-                      style={{ width: `${freeShippingProgress}%` }}
-                    />
                   </div>
                 </div>
               </div>

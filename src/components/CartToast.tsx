@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -16,6 +17,7 @@ export default function CartToast() {
     itemCount,
     paidItemCount,
     totalItemCount,
+    discountPercent,
     freeSlotsEarned,
     totalFreeGiftsSelected,
     freeSlotsRemaining,
@@ -35,7 +37,7 @@ export default function CartToast() {
 
     setProgress(100);
 
-    // 5.5s duration so customer has comfortable time to review their 5+1 offer progress and claim free gift
+    // 5.5s duration so customer has comfortable time to review their offer progress and claim free gift
     const startTime = Date.now();
     const duration = 5500;
 
@@ -66,7 +68,7 @@ export default function CartToast() {
 
   return (
     <aside
-      aria-label="Cart Notification & 5+1 Offer Status"
+      aria-label="Cart Notification & Offer Status"
       className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[80] w-[calc(100vw-32px)] sm:w-96 max-w-sm bg-white rounded-2xl shadow-2xl border border-[#16382B]/15 overflow-hidden transition-all duration-300 animate-in slide-in-from-top-3 fade-in"
     >
       {/* 1. Header Banner */}
@@ -123,18 +125,24 @@ export default function CartToast() {
           </p>
         )}
 
-        {/* 3. Integrated 5+1 & 10+2 Volume Scheme Offer Card */}
+        {/* 3. Integrated Volume Scheme Offer Card */}
         <div className="bg-white p-3 rounded-xl border border-[#C29043]/30 space-y-2">
           {/* Milestone Header */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-1.5 font-bold text-[#16382B]">
               <Gift className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
               <span>{paidItemCount} {t('Items in cart', 'கூடையில்')}</span>
+              {discountPercent > 0 && (
+                <span className="px-1.5 py-0.2 rounded bg-emerald-700 text-white text-[9.5px] font-bold">
+                  {discountPercent}% OFF
+                </span>
+              )}
             </div>
             <span className="text-xs font-bold text-[#C29043]">
-              {paidItemCount < 5 
-                ? t('Next: 5 Items (Get 1 Free)', 'இலக்கு: 5 (1 இலவசம்)')
-                : t(`Next: ${nextMilestoneCount} Items (Get ${nextMilestoneCount / 5} Free)`, `அடுத்த இலக்கு: ${nextMilestoneCount} (${nextMilestoneCount / 5} இலவசம்)`)}
+              {paidItemCount < 5 && t('Next: 5 Items (10% + 1 Free)', 'இலக்கு: 5 (10% + 1 இலவசம்)')}
+              {paidItemCount >= 5 && paidItemCount < 30 && t('Next: 30 Items (20% OFF)', 'இலக்கு: 30 (20% தள்ளுபடி)')}
+              {paidItemCount >= 30 && paidItemCount < 50 && t('Next: 50 Items (15 Free Gifts!)', 'இலக்கு: 50 (15 இலவசம்!)')}
+              {paidItemCount >= 50 && t(`Next: ${nextMilestoneCount} Items`, `அடுத்த இலக்கு: ${nextMilestoneCount}`)}
             </span>
           </div>
 
@@ -143,17 +151,18 @@ export default function CartToast() {
             <div className="w-full h-2 rounded-full bg-[#16382B]/10 overflow-hidden">
               <div
                 className="h-full bg-[#16382B] rounded-full transition-all duration-300"
-                style={{ width: `${paidItemCount < 5 ? (paidItemCount / 5) * 100 : progressPercent}%` }}
+                style={{ width: `${progressPercent}%` }}
               />
             </div>
             <div className="flex justify-between text-[10px] text-[#3D5A68]">
               <span>
-                {paidItemCount < 5
-                  ? t(`Add ${itemsNeededForNextMilestone} more for next free gift`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} தேவை`)
-                  : t(`Add ${itemsNeededForNextMilestone} more for next free gift`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} தேவை`)}
+                {paidItemCount < 5 && t(`Add ${itemsNeededForNextMilestone} more for 10% OFF & 1 Free bonus`, `10% தள்ளுபடிக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
+                {paidItemCount >= 5 && paidItemCount < 30 && t(`Add ${itemsNeededForNextMilestone} more for 20% bulk discount`, `20% தள்ளுபடிக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
+                {paidItemCount >= 30 && paidItemCount < 50 && t(`Add ${itemsNeededForNextMilestone} more for 15 Free bonus medicines!`, `15 இலவச மருந்துகளுக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்!`)}
+                {paidItemCount >= 50 && t(`Add ${itemsNeededForNextMilestone} more for next free formulation`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
               </span>
               <span className="font-bold text-[#16382B]">
-                {paidItemCount < 5 ? Math.round((paidItemCount / 5) * 100) : progressPercent}%
+                {progressPercent}%
               </span>
             </div>
           </div>
@@ -170,7 +179,7 @@ export default function CartToast() {
                   <Gift className="w-3.5 h-3.5" />
                   <span>
                     {t(
-                      `Choose ${freeSlotsRemaining} Free Gift (₹0.00)`,
+                      `Select ${freeSlotsRemaining} Free Medicine (₹0.00)`,
                       `${freeSlotsRemaining} இலவச மருந்தை தேர்வு செய்க (₹0.00)`
                     )}
                   </span>

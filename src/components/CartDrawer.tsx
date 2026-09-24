@@ -12,16 +12,14 @@ import {
   ShoppingBag,
   ArrowRight,
   ShieldCheck,
-  Truck,
   Tag,
-  Check,
   Gift,
   Sparkles,
-  PackageCheck
+  PackageCheck,
+  Percent
 } from 'lucide-react';
 import { useCart, getProductMRP } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
-import { Product } from '@/types/product';
 
 export default function CartDrawer() {
   const pathname = usePathname();
@@ -35,6 +33,8 @@ export default function CartDrawer() {
     itemsNeededForNextMilestone,
     nextMilestoneCount,
     progressPercent,
+    discountPercent,
+    discountAmount,
     freeGiftSavings,
     openGiftModal,
     isDrawerOpen,
@@ -48,9 +48,7 @@ export default function CartDrawer() {
     mrpSavings,
     totalSavings,
     shippingFee,
-    total,
-    freeShippingThreshold,
-    amountNeededForFreeShipping
+    total
   } = useCart();
 
   const { language, t } = useLanguage();
@@ -63,8 +61,6 @@ export default function CartDrawer() {
   }, [pathname]);
 
   if (!isDrawerOpen) return null;
-
-  const freeShippingProgress = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
 
   return (
     <div
@@ -113,34 +109,55 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        {/* 2. 5+1 & 10+2 VOLUME SCHEME HEADER BAR */}
+        {/* 2. DYNAMIC SCHEME & DISCOUNT PROGRESS BAR */}
         {items.length > 0 && (
-          <div className="px-3.5 py-2.5 bg-[#E8F1EB]/90 border-b border-[#16382B]/10 flex-shrink-0">
-            <div className="flex items-center justify-between text-xs mb-1 font-semibold text-[#16382B]">
+          <div className="px-3.5 py-2.5 bg-[#E8F1EB]/90 border-b border-[#16382B]/10 flex-shrink-0 space-y-1.5">
+            <div className="flex items-center justify-between text-xs font-semibold text-[#16382B]">
               <span className="flex items-center gap-1.5 text-[11.5px] truncate">
-                <Gift className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
+                {discountPercent > 0 ? (
+                  <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-emerald-700 text-white text-[10px] font-bold">
+                    <Percent className="w-2.5 h-2.5" />
+                    {discountPercent}% OFF
+                  </span>
+                ) : (
+                  <Gift className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
+                )}
                 <span>
                   {freeSlotsEarned > 0
-                    ? t(`${paidItemCount} Items in cart • ${freeSlotsEarned} FREE Gift Unlocked`, `${paidItemCount} மருந்துகள் • ${freeSlotsEarned} இலவசம்`)
+                    ? t(`${freeSlotsEarned} FREE Bonus Medicine(s) Unlocked`, `${freeSlotsEarned} இலவச மருந்துகள் தகுதி!`)
                     : t(`${paidItemCount} Items in cart`, `${paidItemCount} மருந்துகள் கூடையில்`)}
                 </span>
               </span>
-              <span className="font-bold text-xs text-[#16382B]">
-                {paidItemCount < 5 
-                  ? t(`Next: 5 Items (Get 1 Free)`, `இலக்கு: 5 (1 இலவசம்)`)
-                  : t(`Next: ${nextMilestoneCount} Items (Get ${nextMilestoneCount / 5} Free)`, `அடுத்த இலக்கு: ${nextMilestoneCount} (${nextMilestoneCount / 5} இலவசம்)`)}
+
+              <span className="font-bold text-[11px] text-[#16382B] flex-shrink-0">
+                {paidItemCount < 5 && t(`Next: 5 Items (10% OFF + 1 Free)`, `இலக்கு: 5 (10% + 1 இலவசம்)`)}
+                {paidItemCount >= 5 && paidItemCount < 30 && t(`Next: 30 Items (20% OFF)`, `இலக்கு: 30 (20% தள்ளுபடி)`)}
+                {paidItemCount >= 30 && paidItemCount < 50 && t(`Next: 50 Items (15 Free Gifts!)`, `இலக்கு: 50 (15 இலவசம்!)`)}
+                {paidItemCount >= 50 && t(`Next Milestone: ${nextMilestoneCount} Items`, `அடுத்த இலக்கு: ${nextMilestoneCount}`)}
               </span>
             </div>
+
+            {/* Visual Progress Track */}
             <div className="w-full h-1.5 rounded-full bg-white overflow-hidden">
               <div
                 className="h-full rounded-full bg-[#16382B] transition-all duration-300"
-                style={{ width: `${paidItemCount < 5 ? (paidItemCount / 5) * 100 : progressPercent}%` }}
+                style={{ width: `${progressPercent}%` }}
               />
+            </div>
+
+            <div className="flex justify-between items-center text-[10px] text-[#3D5A68]">
+              <span>
+                {paidItemCount < 5 && t(`Add ${itemsNeededForNextMilestone} more item(s) for 10% OFF & 1 Free formulation`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 10% தள்ளுபடி & 1 இலவசம்`)}
+                {paidItemCount >= 5 && paidItemCount < 30 && t(`Add ${itemsNeededForNextMilestone} more for 20% bulk discount`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 20% தள்ளுபடி`)}
+                {paidItemCount >= 30 && paidItemCount < 50 && t(`Add ${itemsNeededForNextMilestone} more to unlock 15 Free items!`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 15 இலவச மருந்துகள்!`)}
+                {paidItemCount >= 50 && t(`Add ${itemsNeededForNextMilestone} more for next free formulation bonus`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} தேவை`)}
+              </span>
+              <span className="font-bold text-[#16382B]">{progressPercent}%</span>
             </div>
           </div>
         )}
 
-        {/* 3. SCROLLABLE CONTENT AREA (Cart Items + Free Gift Selector + Order Breakdown) */}
+        {/* 3. SCROLLABLE CONTENT AREA */}
         <div className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-3 scrollbar-thin">
           {items.length === 0 ? (
             <div className="text-center py-16 px-4">
@@ -168,9 +185,9 @@ export default function CartDrawer() {
             </div>
           ) : (
             <>
-              {/* FREE GIFT CLAIM BANNER (When slots unlocked & available) */}
+              {/* FREE GIFT CLAIM BANNER */}
               {freeSlotsRemaining > 0 && (
-                <div className="p-3 bg-emerald-50/85 rounded-xl border border-emerald-300 space-y-2.5">
+                <div className="p-3 bg-emerald-50/90 rounded-xl border border-emerald-300 space-y-2.5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-7 h-7 rounded-lg bg-emerald-700 text-white flex items-center justify-center flex-shrink-0">
@@ -178,12 +195,12 @@ export default function CartDrawer() {
                       </div>
                       <div>
                         <h4 className="font-serif-brand font-bold text-xs text-[#16382B]">
-                          {t('5+1 Free Formulation Unlocked', '5+1 இலவச மருந்து தகுதி')}
+                          {t('Free Formulation Bonus Unlocked!', 'இலவச மருந்து தகுதி பெற்றது!')}
                         </h4>
                         <p className="text-[10.5px] text-emerald-800">
                           {t(
-                            `You have ${freeSlotsRemaining} unclaimed Free Medicine slot!`,
-                            `உங்களுக்கு ${freeSlotsRemaining} இலவச மருந்து தேர்வு செய்ய வாய்ப்புள்ளது!`
+                            `You have ${freeSlotsRemaining} unclaimed Free Medicine slot! Choose from your ordered formulations.`,
+                            `உங்களுக்கு ${freeSlotsRemaining} இலவச மருந்து உள்ளது! கூடையில் உள்ளவற்றிலிருந்து தேர்வு செய்யலாம்.`
                           )}
                         </p>
                       </div>
@@ -202,7 +219,7 @@ export default function CartDrawer() {
                     <Gift className="w-3.5 h-3.5 text-[#DFB36C]" />
                     <span>
                       {t(
-                        `Select Your Free Formulation (${freeSlotsRemaining} Available)`,
+                        `Select Free Formulation (${freeSlotsRemaining} Available)`,
                         `இலவச மருந்தைத் தேர்வு செய்க (${freeSlotsRemaining} உள்ளது)`
                       )}
                     </span>
@@ -245,7 +262,7 @@ export default function CartDrawer() {
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5">
                             <span className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded bg-emerald-700 text-white">
-                              {t('100% Free Gift', 'இலவச பரிசு')}
+                              {t('100% Free Bonus', 'இலவச பரிசு')}
                             </span>
                             <span className="text-[10px] text-[#8A9B93]">
                               {language === 'ta' ? product.packSizeTa : product.packSize}
@@ -288,7 +305,7 @@ export default function CartDrawer() {
                   const mrp = getProductMRP(product);
                   const unitSavings = mrp - product.price;
                   const totalItemSavings = unitSavings * quantity;
-                  const discountPercent = Math.round((unitSavings / mrp) * 100);
+                  const discountPerUnit = Math.round((unitSavings / mrp) * 100);
 
                   return (
                     <div
@@ -338,7 +355,7 @@ export default function CartDrawer() {
                             {language === 'ta' ? product.packSizeTa : product.packSize}
                           </p>
 
-                          {/* Price Row with Strikethrough & Discount Tag */}
+                          {/* Price Row */}
                           <div className="flex flex-wrap items-baseline gap-1.5 mt-0.5">
                             <span className="font-bold text-xs sm:text-sm text-[#16382B]">
                               ₹{product.price * quantity}
@@ -347,7 +364,7 @@ export default function CartDrawer() {
                               ₹{mrp * quantity}
                             </span>
                             <span className="text-[9px] font-bold text-green-700 bg-green-50 border border-green-200 px-1 py-0.2 rounded">
-                              {discountPercent}% OFF • Save ₹{totalItemSavings}
+                              {discountPerUnit}% OFF • Save ₹{totalItemSavings}
                             </span>
                           </div>
                         </div>
@@ -387,55 +404,58 @@ export default function CartDrawer() {
               </div>
 
               {/* ITEMIZED FINANCIAL BREAKDOWN */}
-              <div className="p-3 bg-white rounded-xl border border-[#16382B]/10 space-y-1.5 text-xs text-[#3D5A68]">
-                <div className="flex justify-between font-bold text-[#16382B] pb-1 border-b border-[#16382B]/10 text-[11px] uppercase tracking-wider">
+              <div className="p-3.5 bg-white rounded-xl border border-[#16382B]/10 space-y-2 text-xs text-[#3D5A68]">
+                <div className="flex justify-between font-bold text-[#16382B] pb-1.5 border-b border-[#16382B]/10 text-[11px] uppercase tracking-wider">
                   <span>{t('Bill Details', 'கட்டண விபரம்')}</span>
                   <span className="text-[#8A9B93] font-normal normal-case">
                     {paidItemCount} {t('Paid', 'வாங்கியவை')} {totalFreeGiftsSelected > 0 && `+ ${totalFreeGiftsSelected} ${t('Free', 'இலவசம்')}`}
                   </span>
                 </div>
 
-                <div className="flex justify-between">
-                  <span>{t('Items MRP Total', 'மொத்த அசல் விலை')}</span>
-                  <span className="line-through text-[#8A9B93]">₹{mrpSubtotal}</span>
+                <div className="flex justify-between items-center">
+                  <span>{t('Items Subtotal', 'பொருட்களின் மொத்த தொகை')}</span>
+                  <span className="font-semibold text-[#16382B]">₹{subtotal}</span>
                 </div>
 
-                <div className="flex justify-between text-green-700">
-                  <span>{t('Direct Catalog Savings', 'நேரடி தயாரிப்பு தள்ளுபடி')}</span>
-                  <span className="font-semibold">-₹{mrpSavings}</span>
-                </div>
-
-                {freeGiftSavings > 0 && (
-                  <div className="flex justify-between text-emerald-800 font-semibold bg-emerald-50/80 px-2 py-1 rounded-md">
+                {discountAmount > 0 && (
+                  <div className="flex justify-between items-center text-emerald-800 font-bold bg-emerald-50 px-2 py-1 rounded-md border border-emerald-200">
                     <span className="flex items-center gap-1">
-                      <Gift className="w-3 h-3 text-emerald-700" />
-                      <span>{t('5+1 Free Formulation Bonus', '5+1 இலவச மருந்து மதிப்பு')}</span>
+                      <Percent className="w-3 h-3 text-emerald-700" />
+                      <span>{t(`${discountPercent}% Volume Discount`, `${discountPercent}% சிறப்பு தள்ளுபடி`)}</span>
                     </span>
-                    <span>-₹{freeGiftSavings} (FREE)</span>
+                    <span>-₹{discountAmount}</span>
                   </div>
                 )}
 
                 <div className="flex justify-between items-center">
                   <span>{t('Express Courier (Tamil Nadu)', 'விரைவு அஞ்சல் கட்டணம்')}</span>
-                  <span className="font-semibold text-[#16382B]">
-                    ₹{shippingFee}
+                  <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md text-[11px] border border-emerald-200">
+                    {t('FREE (₹0)', 'இலவசம் (₹0)')}
                   </span>
                 </div>
 
-                <div className="border-t border-[#16382B]/10 pt-1.5 flex justify-between text-xs sm:text-sm font-bold text-[#16382B]">
+                <div className="border-t border-[#16382B]/10 pt-2 flex justify-between items-center text-xs sm:text-sm font-bold text-[#16382B]">
                   <span>{t('Total Payable', 'செலுத்த வேண்டிய தொகை')}</span>
-                  <span className="font-serif-brand text-base sm:text-lg">₹{total}</span>
+                  <span className="font-serif-brand text-base sm:text-lg text-[#16382B]">₹{total}</span>
                 </div>
               </div>
 
               {/* TOTAL SAVINGS CARD */}
               {totalSavings > 0 && (
-                <div className="p-2.5 rounded-xl bg-[#E8F1EB] border border-green-200 flex items-center justify-between text-xs text-green-800">
-                  <span className="flex items-center gap-1.5 font-bold text-[11px]">
-                    <Tag className="w-3.5 h-3.5 text-[#C29043]" />
-                    <span>{t(`You are saving ₹${totalSavings} on this order!`, `இந்த ஆர்டரில் மொத்தம் ₹${totalSavings} சேமிக்கிறீர்கள்!`)}</span>
-                  </span>
-                  <ShieldCheck className="w-4 h-4 text-green-700 flex-shrink-0" />
+                <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1 text-xs text-emerald-900 font-semibold">
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 font-bold text-[11px] text-emerald-800">
+                      <Tag className="w-3.5 h-3.5 text-[#C29043]" />
+                      <span>{t(`You are saving ₹${totalSavings}!`, `மொத்த சேமிப்பு ₹${totalSavings}!`)}</span>
+                    </span>
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 flex-shrink-0" />
+                  </div>
+                  {totalFreeGiftsSelected > 0 && (
+                    <p className="text-[10.5px] text-emerald-800 font-medium flex items-center gap-1.5 pt-0.5 border-t border-emerald-200/60">
+                      <Gift className="w-3.5 h-3.5 text-emerald-700 flex-shrink-0" />
+                      <span>{t(`Includes ${totalFreeGiftsSelected} Free Bonus Formulation(s)`, `${totalFreeGiftsSelected} இலவச சித்த மருந்துகள் கூடையில் சேர்க்கப்பட்டுள்ளன`)}</span>
+                    </p>
+                  )}
                 </div>
               )}
 
