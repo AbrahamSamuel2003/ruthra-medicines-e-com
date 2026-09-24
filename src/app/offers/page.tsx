@@ -1,147 +1,137 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
-  Tag,
   Gift,
   Zap,
-  Percent,
   Truck,
-  CheckCircle2,
   ShoppingBag,
   Sparkles,
   ArrowRight,
   ShieldCheck,
-  Clock,
-  Layers,
-  PhoneCall
+  Check,
+  Calculator,
+  Plus,
+  Minus
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
-import { BUNDLES, PRODUCTS } from '@/data/products';
 
 export default function OffersPage() {
   const { language, t } = useLanguage();
-  const { addItem, applyCoupon, couponCode, openDrawer, showToast } = useCart();
+  const { openDrawer } = useCart();
 
-  const handleAddBundle = (bundle: typeof BUNDLES[0]) => {
-    // Add all products in the bundle
-    const bundleProducts = PRODUCTS.filter(p => bundle.productSlugs.includes(p.slug));
-    bundleProducts.forEach(prod => {
-      addItem(prod, 1);
-    });
-    showToast(`Added ${bundle.title} combo to cart!`);
-    openDrawer();
-  };
+  // Interactive Scheme Simulator state
+  const [simulatedQty, setSimulatedQty] = useState(5);
 
-  const handleCopyCoupon = (code: string) => {
-    applyCoupon(code);
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(code);
-    }
-  };
+  const freeGiftsEarned = Math.floor(simulatedQty / 5);
+  const itemsNeededForNext = 5 - (simulatedQty % 5 === 0 ? 5 : simulatedQty % 5);
+  const nextTarget = (Math.floor(simulatedQty / 5) + 1) * 5;
+  const progressPercent = ((simulatedQty % 5) / 5) * 100;
 
-  const activeCoupons = [
+  const schemeTiers = [
     {
-      code: 'RUTHRA10',
-      titleEn: '10% Inaugural Siddha Discount',
-      titleTa: '10% தொடக்க கால சிறப்பு தள்ளுபடி',
-      descEn: 'Enjoy 10% instant discount across your entire cart on classical Siddha herbal formulations.',
-      descTa: 'அனைத்து சித்த மருந்து ஆர்டர்களுக்கும் உடனடி 10% கட்டண தள்ளுபடி.',
-      badgeEn: 'Best Value',
-      badgeTa: 'சிறந்த சலுகை',
-      minSpend: 'No minimum',
+      tier: '5 + 1 Scheme',
+      tierTa: '5 + 1 திட்டம்',
+      paidCount: 5,
+      freeCount: 1,
+      totalCount: 6,
+      badge: 'Popular',
+      badgeTa: 'பிரபலமானது',
+      descEn: 'Purchase any 5 formulations in a single order and unlock 1 Free Formulation of your direct choice.',
+      descTa: 'எந்தவொரு 5 மருந்துகளை வாங்கும் போதும் உங்களுக்கு விருப்பமான 1 மருந்து முற்றிலும் இலவசமாக கிடைக்கும்.'
     },
     {
-      code: 'SIDDHA25',
-      titleEn: '₹25 Wellness Care Voucher',
-      titleTa: '₹25 மூலிகை நல்வாழ்வு வவுச்சர்',
-      descEn: 'Flat ₹25 off on your order. Perfect for trial of Chooranam sachets and classical Thailams.',
-      descTa: 'உங்கள் மொத்த ஆர்டரில் ₹25 நேரடி தள்ளுபடி.',
-      badgeEn: 'Flat Off',
-      badgeTa: 'நேரடி தள்ளுபடி',
-      minSpend: 'Min ₹200',
+      tier: '10 + 2 Scheme',
+      tierTa: '10 + 2 திட்டம்',
+      paidCount: 10,
+      freeCount: 2,
+      totalCount: 12,
+      badge: 'Double Value',
+      badgeTa: 'இரு மடங்கு பலன்',
+      descEn: 'Purchase any 10 formulations and unlock 2 Free Formulations across our entire 176 pharmacopeia.',
+      descTa: '10 மருந்துகளை வாங்கும் போது 176 மருந்துகளிலிருந்து 2 மருந்துகளை முற்றிலும் இலவசமாக தேர்வு செய்யலாம்.'
     },
     {
-      code: 'TNEXPRESS',
-      titleEn: 'Free Tamil Nadu Express Shipping',
-      titleTa: 'இலவச தமிழ்நாடு விரைவு அஞ்சல்',
-      descEn: 'Free doorstep courier dispatch from Tirunelveli across all districts in Tamil Nadu.',
-      descTa: 'திருநெல்வேலியிலிருந்து தமிழகத்தின் அனைத்து மாவட்டங்களுக்கும் இலவச விரைவு அஞ்சல்.',
-      badgeEn: 'Free Delivery',
-      badgeTa: 'இலவச டெலிவரி',
-      minSpend: 'All Orders',
+      tier: '15 + 3 Scheme',
+      tierTa: '15 + 3 திட்டம்',
+      paidCount: 15,
+      freeCount: 3,
+      totalCount: 18,
+      badge: 'Family Regimen',
+      badgeTa: 'குடும்ப நலன்',
+      descEn: 'Purchase 15 items for complete multi-month family healthcare and claim 3 Free Formulations.',
+      descTa: '15 மருந்துகள் வாங்கும் போது 3 இலவச மருந்துகள் பெற்று குடும்ப முழுமை நலம் பேணிடுங்கள்.'
     }
   ];
 
   return (
     <div className="w-full bg-[#FAF8F5] min-h-screen pb-20">
-      {/* Top Hero Banner */}
+      {/* 1. Hero Showcase Banner */}
       <section className="bg-[#16382B] text-white pt-12 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#C29043_1px,transparent_1px)] [background-size:16px_16px]" />
         
         <div className="max-w-6xl mx-auto text-center relative z-10 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#C29043]/40 text-[#DFB36C] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#C29043]" />
-            <span>{t('Authentic Siddha Savings • Tirunelveli', 'சித்த மருத்துவ சிறப்பு சலுகைகள்')}</span>
+            <span>{t('Volume Benefits Program • Tirunelveli Pharmacopeia', 'பாரம்பரிய சித்த மருந்து சலுகை திட்டம்')}</span>
           </div>
 
           <h1 className="font-serif-brand text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-            {t('Special Offers & Value Bundles', 'சிறப்பு சலுகைகள் & மூலிகை தொகுப்புகள்')}
+            {t('5+1 & 10+2 Classical Formulation Scheme', '5+1 & 10+2 இலவச சித்த மருந்து திட்டம்')}
           </h1>
 
           <p className="text-sm sm:text-base text-[#DFB36C]/90 max-w-2xl mx-auto leading-relaxed">
             {t(
-              'Save on classical Chooranam sachets, Kudineer decoctions, and Thailam medicated oils with curated treatment kits and active promo coupons.',
-              'பாரம்பரிய சூரணம், குடிநீர் மற்றும் தைலங்களை சிறப்பு தள்ளுபடி விலையிலும் ஒருங்கிணைந்த தொகுப்புகளாகவும் பெற்றிடுங்கள்.'
+              'Order 5 or more units and select authentic bonus formulations of your choice from our 176-item catalog for ₹0.00.',
+              '5 அல்லது அதற்கு மேற்பட்ட மருந்துகளை வாங்கும் போது, எங்களின் 176 மருந்துகளிலிருந்து உங்கள் விருப்ப மருந்தை முற்றிலும் இலவசமாக தேர்வு செய்யுங்கள்.'
             )}
           </p>
         </div>
       </section>
 
-      {/* 3 Core Value Props Strip */}
+      {/* 2. Core Program Pillars Strip */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-7 relative z-20">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-2xl border border-[#16382B]/10 shadow-xs flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
-              <Percent className="w-5 h-5 text-[#C29043]" />
-            </div>
-            <div>
-              <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
-                {t('5% Multi-Pack Savings', '5% கூடுதல் சலுகை')}
-              </h4>
-              <p className="text-[11px] text-[#3D5A68]">
-                {t('Buy 2 or more of any item & save 5% automatically', '2 அல்லது அதற்கு மேற்பட்ட எண்ணிக்கையில் 5% சேமிப்பு')}
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-[#16382B]/10 shadow-xs flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
-              <Truck className="w-5 h-5 text-[#C29043]" />
-            </div>
-            <div>
-              <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
-                {t('Free Tamil Nadu Shipping', 'இலவச அஞ்சல் விநியோகம்')}
-              </h4>
-              <p className="text-[11px] text-[#3D5A68]">
-                {t('Automatic free delivery on orders above ₹500', '₹500க்கு மேற்பட்ட ஆர்டர்களுக்கு இலவச டெலிவரி')}
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-[#16382B]/10 shadow-xs flex items-center gap-3.5">
+          <div className="bg-white p-4.5 rounded-2xl border border-[#16382B]/10 shadow-xs flex items-center gap-3.5">
             <div className="w-11 h-11 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
               <Gift className="w-5 h-5 text-[#C29043]" />
             </div>
             <div>
               <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
-                {t('Save up to 20% on Combos', 'தொகுப்புகளில் 20% வரை சேமிப்பு')}
+                {t('Customer-Choice Free Gifts', 'வாடிக்கையாளர் விருப்ப இலவச மருந்து')}
               </h4>
               <p className="text-[11px] text-[#3D5A68]">
-                {t('Curated internal & external wellness bundles', 'உள் மற்றும் வெளிப்புற நலனுக்கான மருத்துவ சேர்க்கைகள்')}
+                {t('Choose any item from 176 formulations with zero price restrictions', 'விலை வரம்பின்றி 176 மருந்துகளிலிருந்து தேர்வு')}
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-4.5 rounded-2xl border border-[#16382B]/10 shadow-xs flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
+              <Truck className="w-5 h-5 text-[#C29043]" />
+            </div>
+            <div>
+              <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
+                {t('Tamil Nadu Express Courier', 'தமிழ்நாடு விரைவு அஞ்சல்')}
+              </h4>
+              <p className="text-[11px] text-[#3D5A68]">
+                {t('Direct parcel dispatch from Tirunelveli across all 38 districts', 'திருநெல்வேலியிலிருந்து அனைத்து மாவட்டங்களுக்கும் நேரடி அஞ்சல்')}
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white p-4.5 rounded-2xl border border-[#16382B]/10 shadow-xs flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="w-5 h-5 text-[#C29043]" />
+            </div>
+            <div>
+              <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
+                {t('100% Shodhana Pure', '100% தூய சித்த மருந்துகள்')}
+              </h4>
+              <p className="text-[11px] text-[#3D5A68]">
+                {t('Compounded in Tirunelveli adhering strictly to classical standards', 'திருநெல்வேலியில் முறைப்படி சுத்தி செய்யப்பட்டவை')}
               </p>
             </div>
           </div>
@@ -149,176 +139,204 @@ export default function OffersPage() {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 space-y-16">
-        {/* Section 1: Active Discount Coupon Codes */}
+        {/* Section 1: Tier Cards */}
         <section className="space-y-6">
           <div className="flex items-center justify-between border-b border-[#16382B]/10 pb-3">
             <div className="flex items-center gap-2.5">
-              <Tag className="w-5 h-5 text-[#C29043]" />
+              <Gift className="w-5 h-5 text-[#C29043]" />
               <h2 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B]">
-                {t('Active Promo Codes & Vouchers', 'செயலில் உள்ள கூப்பன் குறியீடுகள்')}
+                {t('Volume Scheme Milestones', 'இலவச மருந்து திட்ட அளவுகோல்கள்')}
               </h2>
             </div>
             <span className="text-xs text-[#8A9B93] hidden sm:inline">
-              {t('Click coupon to apply instantly', 'உடனடியாக பயன்படுத்த கிளிக் செய்யவும்')}
+              {t('Automatically applied at checkout', 'கூடையில் தானாக கணக்கிடப்படும்')}
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {activeCoupons.map((coupon, idx) => {
-              const isApplied = couponCode === coupon.code;
-              return (
-                <div
-                  key={idx}
-                  className={`p-5 rounded-2xl border transition-all flex flex-col justify-between bg-white relative overflow-hidden ${
-                    isApplied
-                      ? 'border-[#25D366] ring-2 ring-[#25D366]/20 shadow-md'
-                      : 'border-[#16382B]/15 hover:border-[#C29043] shadow-xs'
-                  }`}
-                >
-                  <div className="space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-[#E8F1EB] text-[#16382B]">
-                        {language === 'ta' ? coupon.badgeTa : coupon.badgeEn}
-                      </span>
-                      <span className="text-[11px] font-semibold text-[#8A9B93]">
-                        {coupon.minSpend}
-                      </span>
-                    </div>
+            {schemeTiers.map((tier, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-3xl bg-white border border-[#16382B]/15 hover:border-[#C29043] transition-all shadow-xs flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-[#E8F1EB] text-[#16382B]">
+                      {language === 'ta' ? tier.badgeTa : tier.badge}
+                    </span>
+                    <span className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      +{tier.freeCount} {t('FREE Gift', 'இலவசம்')}
+                    </span>
+                  </div>
 
-                    <div className="flex items-center justify-between bg-[#FAF8F5] p-2.5 rounded-xl border border-dashed border-[#16382B]/20">
-                      <span className="font-mono font-bold text-base text-[#16382B] tracking-wider">
-                        {coupon.code}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleCopyCoupon(coupon.code)}
-                        className={`text-xs font-bold px-3 py-1 rounded-lg transition-colors cursor-pointer ${
-                          isApplied
-                            ? 'bg-[#25D366] text-white'
-                            : 'bg-[#16382B] text-[#DFB36C] hover:bg-[#204C3B]'
-                        }`}
-                      >
-                        {isApplied ? t('Applied ', 'சேர்க்கப்பட்டது ') : t('Apply Code', 'பயன்படுத்து')}
-                      </button>
-                    </div>
-
-                    <h3 className="font-serif-brand font-bold text-sm text-[#16382B] pt-1">
-                      {language === 'ta' ? coupon.titleTa : coupon.titleEn}
+                  <div>
+                    <h3 className="font-serif-brand text-2xl font-bold text-[#16382B]">
+                      {language === 'ta' ? tier.tierTa : tier.tier}
                     </h3>
-                    <p className="text-xs text-[#3D5A68] leading-relaxed">
-                      {language === 'ta' ? coupon.descTa : coupon.descEn}
+                    <p className="text-xs text-[#C29043] font-bold mt-1">
+                      {t(`Buy ${tier.paidCount} Units → Get ${tier.freeCount} FREE (${tier.totalCount} Total Delivered)`, `${tier.paidCount} வாங்கினால் → ${tier.freeCount} இலவசம் (மொத்தம் ${tier.totalCount} அனுப்பப்படும்)`)}
                     </p>
                   </div>
+
+                  <p className="text-xs text-[#3D5A68] leading-relaxed">
+                    {language === 'ta' ? tier.descTa : tier.descEn}
+                  </p>
+
+                  <div className="bg-[#FAF8F5] p-3.5 rounded-2xl border border-[#16382B]/10 space-y-2 text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#8A9B93]">{t('Paid Formulations:', 'வாங்கும் மருந்துகள்:')}</span>
+                      <span className="font-bold text-[#16382B]">{tier.paidCount} {t('Items', 'எண்ணிக்கை')}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-emerald-700 font-medium">{t('Free Bonus Medicines:', 'இலவச மருந்துகள்:')}</span>
+                      <span className="font-bold text-emerald-700">{tier.freeCount} {t('Item (₹0.00)', 'மருந்து (₹0.00)')}</span>
+                    </div>
+                    <div className="flex items-center justify-between pt-1 border-t border-[#16382B]/10">
+                      <span className="text-[#16382B] font-bold">{t('Total in Parcel:', 'மொத்த பார்சல்:')}</span>
+                      <span className="font-bold text-[#16382B]">{tier.totalCount} {t('Bottles / Sachets', 'பாக்கெட்டுகள்')}</span>
+                    </div>
+                  </div>
                 </div>
-              );
-            })}
+
+                <div className="pt-5 mt-5 border-t border-[#16382B]/10">
+                  <Link
+                    href="/shop"
+                    className="w-full py-2.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <span>{t('Shop Formulations', 'மருந்துகள் பார்க்க')}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#DFB36C]" />
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Section 2: Curated Wellness Combos & Regimens */}
-        <section id="combos" className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#16382B]/10 pb-3 gap-2">
-            <div className="flex items-center gap-2.5">
-              <Gift className="w-5 h-5 text-[#C29043]" />
+        {/* Section 2: Interactive Milestone Simulator */}
+        <section className="bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/15 shadow-xs space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#16382B]/10 pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
+                <Calculator className="w-5 h-5 text-[#C29043]" />
+              </div>
               <div>
-                <h2 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B]">
-                  {t('Synergistic Wellness Combos', 'ஒருங்கிணைந்த மூலிகை தொகுப்புகள்')}
-                </h2>
+                <h3 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B]">
+                  {t('Interactive 5+1 Benefit Calculator', 'ஊடாடும் 5+1 பலன் கால்குலேட்டர்')}
+                </h3>
                 <p className="text-xs text-[#3D5A68] mt-0.5">
-                  {t('Formulated combinations delivering complete internal & external relief', 'முழுமையான நலம் தரும் பாரம்பரிய சித்த கூட்டு மருந்துகள்')}
+                  {t('Adjust the quantity below to see the exact free gifts unlocked in real time.', 'எண்ணிக்கையை மாற்றி உங்களுக்கு கிடைக்கும் இலவச பரிசுகளை உடனுக்குடன் காணுங்கள்.')}
                 </p>
               </div>
             </div>
-            <span className="text-xs font-bold text-[#16382B] bg-[#E8F1EB] px-3 py-1 rounded-full self-start sm:self-auto">
-              {t('Save up to ₹110 / kit', 'தொகுப்புக்கு ₹110 வரை சேமிப்பு')}
-            </span>
+
+            {/* Stepper Controls */}
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <span className="text-xs font-semibold text-[#8A9B93] mr-1">
+                {t('Paid Items in Cart:', 'கூடையில் உள்ளவை:')}
+              </span>
+              <div className="h-10 flex items-center border border-[#16382B]/20 rounded-xl bg-[#FAF8F5] overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setSimulatedQty(Math.max(1, simulatedQty - 1))}
+                  className="px-3 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                  aria-label="Decrease quantity"
+                >
+                  <Minus className="w-3.5 h-3.5" />
+                </button>
+                <span className="px-3 text-sm font-bold text-[#16382B]">
+                  {simulatedQty}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSimulatedQty(Math.min(25, simulatedQty + 1))}
+                  className="px-3 h-full text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+                  aria-label="Increase quantity"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {BUNDLES.map(bundle => {
-              const bundleProducts = PRODUCTS.filter(p => bundle.productSlugs.includes(p.slug));
-              return (
-                <div
-                  key={bundle.id}
-                  className="p-6 rounded-3xl bg-white border border-[#16382B]/15 hover:border-[#C29043] shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-[#E8F1EB] text-[#16382B]">
-                        {bundle.badge}
-                      </span>
-                      <span className="text-xs font-bold text-[#16382B] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#16382B]/15">
-                        {t(`Save ₹${bundle.savings}`, `₹${bundle.savings} சேமிப்பு`)}
-                      </span>
-                    </div>
+          {/* Calculator Output Display */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Left Result Card */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#16382B] uppercase tracking-wider">
+                    {t('Current Status & Milestone', 'தற்போதைய நிலை')}
+                  </span>
+                  <span className="text-xs font-bold text-emerald-800 bg-emerald-100/90 px-2.5 py-0.5 rounded-md">
+                    {freeGiftsEarned > 0
+                      ? t(`${freeGiftsEarned} FREE Gifts Unlocked`, `${freeGiftsEarned} இலவச மருந்துகள் தகுதி`)
+                      : t('Add more to unlock free gift', 'இலவச மருந்துக்கு இன்னும் சேர்க்கவும்')}
+                  </span>
+                </div>
 
-                    <div>
-                      <h3 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B]">
-                        {language === 'ta' ? bundle.titleTa : bundle.title}
-                      </h3>
-                      <p className="text-xs text-[#C29043] font-semibold mt-0.5">
-                        {language === 'ta' ? bundle.subtitleTa : bundle.subtitle}
-                      </p>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-[#264653] leading-relaxed">
-                      {language === 'ta' ? bundle.descriptionTa : bundle.description}
-                    </p>
-
-                    {/* Included Products List */}
-                    <div className="bg-[#FAF8F5] p-3.5 rounded-2xl border border-[#16382B]/10 space-y-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A9B93] block">
-                        {t('Kit Contains Formulations:', 'தொகுப்பில் உள்ள மருந்துகள்:')}
-                      </span>
-                      <div className="space-y-1.5">
-                        {bundleProducts.map(item => (
-                          <Link
-                            key={item.id}
-                            href={`/product/${item.slug}`}
-                            className="flex items-center justify-between text-xs text-[#16382B] hover:text-[#C29043] group/item py-0.5"
-                          >
-                            <span className="flex items-center gap-1.5 font-medium">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#C29043]" />
-                              <span>{language === 'ta' ? item.tamilName : item.name}</span>
-                              <span className="text-[10px] text-[#8A9B93]">({item.packSize})</span>
-                            </span>
-                            <span className="text-[11px] font-bold text-[#3D5A68]">
-                              ₹{item.price}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+                {/* Progress bar */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-xs text-[#3D5A68]">
+                    <span>
+                      {freeGiftsEarned > 0
+                        ? t(`Next Free Gift at ${nextTarget} items (Need ${itemsNeededForNext} more)`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNext} தேவை`)
+                        : t(`Add ${itemsNeededForNext} more to reach 5 items for 1 FREE Gift`, `1 இலவச மருந்து பெற இன்னும் ${itemsNeededForNext} சேர்க்கவும்`)}
+                    </span>
+                    <span className="font-bold text-[#16382B]">{Math.round(progressPercent)}%</span>
                   </div>
-
-                  {/* Pricing & Add to Cart Action */}
-                  <div className="pt-5 mt-5 border-t border-[#16382B]/10 flex items-center justify-between gap-4">
-                    <div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-bold text-[#16382B]">
-                          ₹{bundle.bundlePrice}
-                        </span>
-                        <span className="text-sm line-through text-[#8A9B93]">
-                          ₹{bundle.regularPrice}
-                        </span>
-                      </div>
-                      <span className="text-[11px] text-[#25D366] font-bold block">
-                        {t(`Instant ${Math.round((bundle.savings / bundle.regularPrice) * 100)}% combo discount`, `உடனடி ${Math.round((bundle.savings / bundle.regularPrice) * 100)}% தள்ளுபடி`)}
-                      </span>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => handleAddBundle(bundle)}
-                      className="px-4 py-2.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-bold flex items-center gap-2 shadow-xs transition-transform active:scale-95 cursor-pointer"
-                    >
-                      <ShoppingBag className="w-4 h-4 text-[#DFB36C]" />
-                      <span>{t('Add Combo to Cart', 'கூடையில் சேர்க்க')}</span>
-                    </button>
+                  <div className="w-full h-2 rounded-full bg-[#16382B]/10 overflow-hidden">
+                    <div
+                      className="h-full bg-[#16382B] rounded-full transition-all duration-300"
+                      style={{ width: `${progressPercent}%` }}
+                    />
                   </div>
                 </div>
-              );
-            })}
+
+                <div className="pt-2 text-xs text-[#264653] leading-relaxed">
+                  {freeGiftsEarned > 0 ? (
+                    <p className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span>
+                        {t(
+                          `You will pay for ${simulatedQty} formulations and receive ${simulatedQty + freeGiftsEarned} formulations total in your parcel.`,
+                          `நீங்கள் ${simulatedQty} மருந்துகளுக்கு மட்டும் பணம் செலுத்தி, மொத்தம் ${simulatedQty + freeGiftsEarned} மருந்துகளை பார்சலில் பெறுவீர்கள்.`
+                        )}
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="text-[#8A9B93]">
+                      {t(
+                        `Add ${itemsNeededForNext} more formulation(s) to unlock your first 100% free medicine.`,
+                        `இன்னும் ${itemsNeededForNext} மருந்துகள் சேர்த்தால் முதல் இலவச மருந்து தேர்வு செய்யலாம்.`
+                      )}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Summary Metrics */}
+            <div className="lg:col-span-5 grid grid-cols-2 gap-3">
+              <div className="p-4 rounded-2xl bg-[#E8F1EB] border border-[#16382B]/10 text-center space-y-1">
+                <span className="text-[10px] uppercase font-bold text-[#8A9B93] tracking-wider block">
+                  {t('Paid Items', 'கட்டண மருந்துகள்')}
+                </span>
+                <span className="font-serif-brand text-3xl font-bold text-[#16382B] block">
+                  {simulatedQty}
+                </span>
+                <span className="text-[10px] text-[#3D5A68] block">{t('Standard Price', 'வழக்கமான விலை')}</span>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-1">
+                <span className="text-[10px] uppercase font-bold text-emerald-800 tracking-wider block">
+                  {t('Free Medicines', 'இலவச மருந்துகள்')}
+                </span>
+                <span className="font-serif-brand text-3xl font-bold text-emerald-700 block">
+                  +{freeGiftsEarned}
+                </span>
+                <span className="text-[10px] text-emerald-800 font-semibold block">{t('₹0.00 in Cart', '₹0.00 கட்டணம்')}</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -338,6 +356,8 @@ export default function OffersPage() {
 
           <a
             href="https://api.whatsapp.com/send?phone=919171508042&text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20inquiry%20regarding%20custom%20Siddha%20bundles%20and%20offers."
+            target="_blank"
+            rel="noreferrer"
             className="px-5 py-3 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 shadow-sm transition-colors flex-shrink-0 cursor-pointer w-full sm:w-auto"
           >
             <Zap className="w-4 h-4 text-[#DFB36C]" />

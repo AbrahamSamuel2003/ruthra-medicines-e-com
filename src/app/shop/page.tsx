@@ -34,7 +34,7 @@ import {
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/ProductCard';
-import { PRODUCTS, CONCERN_CATEGORIES, FORMULATION_CATEGORIES, BUNDLES } from '@/data/products';
+import { PRODUCTS, CONCERN_CATEGORIES, FORMULATION_CATEGORIES } from '@/data/products';
 import { Product, ConcernSlug } from '@/types/product';
 
 // Price range & sort options
@@ -272,7 +272,7 @@ function ShopContent() {
           <div className="max-w-3xl">
             {/* Pharmacopeia Gold Badge */}
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/90 border border-[#C29043]/40 shadow-2xs mb-2">
-              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C29043] animate-pulse" />
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#C29043]" />
               <span className="text-[10px] sm:text-[11px] font-bold text-[#16382B] tracking-wide uppercase">
                 {t('Tirunelveli Classical Pharmacopeia', 'திருநெல்வேலி பாரம்பரிய சித்த மருந்தகம்')}
               </span>
@@ -999,30 +999,29 @@ function ShopContent() {
               </div>
             )}
 
-            {/* Value Combo Spotlight Strip (Below Products in Right Column) */}
+            {/* 5+1 & 10+2 Volume Scheme Spotlight Strip */}
             <div className="mt-8 bg-gradient-to-r from-[#16382B] via-[#1E4D3B] to-[#16382B] text-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#C29043]/30 shadow-md relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-5">
               <div className="space-y-1.5 z-10 max-w-xl text-center sm:text-left">
                 <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#C29043] text-[#16382B] text-[10px] font-bold uppercase tracking-wider">
-                  {t('Signature Value Combo', 'சிறப்பு மருத்துவ தொகுப்பு')}
+                  {t('Classical Volume Scheme', 'இலவச சித்த மருந்து திட்டம்')}
                 </span>
                 <h4 className="font-serif-brand font-bold text-lg sm:text-xl text-white">
-                  {language === 'ta' ? BUNDLES[0].titleTa : BUNDLES[0].title}
+                  {t('5+1 & 10+2 Customer-Choice Free Medicines', '5+1 & 10+2 இலவச மருந்து திட்டம்')}
                 </h4>
                 <p className="text-xs text-[#FAF8F5]/85 leading-relaxed">
-                  {language === 'ta' ? BUNDLES[0].subtitleTa : BUNDLES[0].subtitle}
+                  {t(
+                    'Order any 5 or more products in your cart to select 100% FREE bonus formulations across all 176 items.',
+                    'எந்தவொரு 5 மருந்துகளை வாங்கும் போதும் உங்களுக்கு விருப்பமான 1 மருந்து முற்றிலும் இலவசமாக தேர்வு செய்யலாம்.'
+                  )}
                 </p>
               </div>
 
               <div className="flex items-center gap-4 z-10 flex-shrink-0">
-                <div className="text-center sm:text-right">
-                  <div className="text-xl font-bold text-[#DFB36C]">₹{BUNDLES[0].bundlePrice}</div>
-                  <div className="text-xs line-through text-white/60">₹{BUNDLES[0].regularPrice}</div>
-                </div>
                 <Link
-                  href={`/product/${BUNDLES[0].productSlugs[0]}`}
-                  className="py-2.5 px-5 rounded-xl bg-white text-[#16382B] hover:bg-[#FAF8F5] text-xs font-bold transition-all shadow-xs"
+                  href="/offers"
+                  className="py-2.5 px-5 rounded-xl bg-[#DFB36C] hover:bg-[#C29043] text-[#16382B] text-xs font-bold transition-all shadow-xs"
                 >
-                  {t('View Combo Details →', 'விவரங்கள் பார்க்க →')}
+                  {t('Explore 5+1 Scheme Details', 'சலுகை விபரம் பார்க்க')}
                 </Link>
               </div>
             </div>

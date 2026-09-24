@@ -27,7 +27,8 @@ import {
   ChevronDown,
   Maximize2,
   MessageCircle,
-  X
+  X,
+  Gift
 } from 'lucide-react';
 import { Product } from '@/types/product';
 import { useCart, getProductMRP } from '@/context/CartContext';
@@ -43,7 +44,7 @@ interface ProductDetailClientProps {
 
 export default function ProductDetailClient({ product, relatedProducts }: ProductDetailClientProps) {
   const router = useRouter();
-  const { addItem, openDrawer } = useCart();
+  const { addItem, openDrawer, openGiftModal, freeSlotsEarned, freeSlotsRemaining } = useCart();
   const { language, t } = useLanguage();
 
   const [quantity, setQuantity] = useState(1);
@@ -159,7 +160,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const mrp = getProductMRP(product);
   const unitSavings = Math.max(0, mrp - product.price);
   const discountPercent = Math.round((unitSavings / mrp) * 100);
-  const duoSavings = Math.round(product.price * 2 * 0.05);
+  const potentialFreeGifts = Math.floor(quantity / 5);
 
   // Dynamic Free Shipping Calculation based on selected quantity
   const currentTotal = product.price * quantity;
@@ -981,24 +982,94 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </div>
                 </div>
 
-                {/* Duo Pack Volume Incentive */}
+                {/* 5+1 & 10+2 Classical Scheme Volume Incentive */}
                 {!isOutOfStock && (
-                  <div className="flex items-center justify-between text-[10.5px] bg-[#FFF9F0] border border-[#C29043]/30 px-2.5 py-1.5 rounded-lg text-[#8B5E14]">
-                    <span className="flex items-center gap-1.5 truncate">
-                      <Tag className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-                      <span className="truncate">
-                        {t(`Select 2+ boxes for extra 5% Duo Savings (Save ₹${duoSavings})`, `2 பெட்டிகள் எடுத்தால் 5% கூடுதல் தள்ளுபடி (₹${duoSavings} சேமிப்பு)`)}
-                      </span>
-                    </span>
-                    {quantity === 1 && (
+                  <div className="space-y-2">
+                    <div className={`p-2.5 rounded-xl border text-xs transition-all ${
+                      potentialFreeGifts > 0 
+                        ? 'bg-emerald-50/80 border-emerald-300 text-emerald-950' 
+                        : 'bg-[#FFF9F0] border-[#C29043]/30 text-[#8B5E14]'
+                    }`}>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                            potentialFreeGifts > 0 ? 'bg-emerald-600 text-white' : 'bg-[#C29043] text-white'
+                          }`}>
+                            <Gift className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <span className="font-bold text-[11px] block">
+                              {potentialFreeGifts > 0
+                                ? t(
+                                    `5+1 Scheme Active: ${potentialFreeGifts} FREE Medicine ${potentialFreeGifts === 1 ? 'Slot' : 'Slots'} Unlocked!`,
+                                    `5+1 சலுகை: ${potentialFreeGifts} இலவச மருந்து தேர்வு தகுதி பெற்றுள்ளீர்கள்!`
+                                  )
+                                : t('5+1 & 10+2 Free Formulation Scheme', '5+1 மற்றும் 10+2 இலவச மருந்து திட்டம்')}
+                            </span>
+                            <span className="text-[10px] opacity-85 block">
+                              {potentialFreeGifts > 0
+                                ? t(
+                                    'Choose any classical medicine from 176 formulations in cart at ₹0.00.',
+                                    'கூடையில் 176 மருந்துகளில் ஏதேனும் ஒன்றை ₹0.00 கட்டணத்தில் தேர்வு செய்யவும்.'
+                                  )
+                                : t(
+                                    `Select ${5 - (quantity % 5)} more units to earn 1 FREE formulation of your choice.`,
+                                    `இன்னும் ${5 - (quantity % 5)} பாக்கெட்டுகள் சேர்த்தால் 1 இலவச மருந்து தேர்வு செய்யலாம்.`
+                                  )}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Quick Quantity Milestone Selector Pills */}
+                    <div className="grid grid-cols-3 gap-1.5 pt-0.5">
                       <button
                         type="button"
-                        onClick={() => setQuantity(Math.min(2, maxQuantity))}
-                        className="font-bold text-[#16382B] hover:text-[#C29043] underline cursor-pointer text-[10px] whitespace-nowrap ml-1.5"
+                        onClick={() => setQuantity(1)}
+                        className={`py-1.5 px-2 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center ${
+                          quantity === 1
+                            ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
+                            : 'bg-white text-[#16382B] border-[#16382B]/15 hover:border-[#C29043]'
+                        }`}
                       >
-                        {t('+ Make it 2', '+2 ஆக்கு')}
+                        1 {language === 'ta' ? 'அலகு' : 'Unit'}
                       </button>
-                    )}
+
+                      {stockCount >= 5 && (
+                        <button
+                          type="button"
+                          onClick={() => setQuantity(5)}
+                          className={`py-1.5 px-2 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                            quantity === 5
+                              ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
+                              : 'bg-emerald-50/70 text-emerald-900 border-emerald-200 hover:border-emerald-400'
+                          }`}
+                        >
+                          <span>5 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
+                          <span className={`text-[8.5px] font-semibold ${quantity === 5 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
+                            +1 {t('FREE Gift', 'இலவசம்')}
+                          </span>
+                        </button>
+                      )}
+
+                      {stockCount >= 10 && (
+                        <button
+                          type="button"
+                          onClick={() => setQuantity(10)}
+                          className={`py-1.5 px-2 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center ${
+                            quantity === 10
+                              ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
+                              : 'bg-emerald-50/70 text-emerald-900 border-emerald-200 hover:border-emerald-400'
+                          }`}
+                        >
+                          <span>10 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
+                          <span className={`text-[8.5px] font-semibold ${quantity === 10 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
+                            +2 {t('FREE Gifts', 'இலவசம்')}
+                          </span>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 )}
 

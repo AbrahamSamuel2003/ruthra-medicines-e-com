@@ -274,13 +274,25 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
     doc.text(String(item.quantity), c5 + 7, y + 5, { align: 'center' });
 
     // Unit Price
-    doc.setFont('helvetica', 'normal');
-    doc.text(formatInr(item.unitPrice), c6 + 18, y + 5, { align: 'right' });
+    const isFreeItem = item.unitPrice === 0 || item.lineTotal === 0 || item.productName.includes('Free Gift');
+    doc.setFont('helvetica', isFreeItem ? 'bold' : 'normal');
+    if (isFreeItem) {
+      doc.setTextColor(6, 95, 70); // Emerald green for Free
+      doc.text('Rs. 0', c6 + 18, y + 5, { align: 'right' });
+    } else {
+      doc.setTextColor(15, 23, 42);
+      doc.text(formatInr(item.unitPrice), c6 + 18, y + 5, { align: 'right' });
+    }
 
     // Line Total
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(15, 23, 42);
-    doc.text(formatInr(item.lineTotal), margin + contentWidth - 2, y + 5, { align: 'right' });
+    if (isFreeItem) {
+      doc.setTextColor(6, 95, 70);
+      doc.text('FREE', margin + contentWidth - 2, y + 5, { align: 'right' });
+    } else {
+      doc.setTextColor(15, 23, 42);
+      doc.text(formatInr(item.lineTotal), margin + contentWidth - 2, y + 5, { align: 'right' });
+    }
 
     y += rowHeight;
   });

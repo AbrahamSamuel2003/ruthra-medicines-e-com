@@ -131,7 +131,7 @@ function OrderSuccessContent() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className={`w-2.5 h-2.5 rounded-full ${isCod ? 'bg-amber-500' : 'bg-emerald-500 animate-pulse'}`} />
+                  <span className={`w-2.5 h-2.5 rounded-full ${isCod ? 'bg-amber-500' : 'bg-emerald-500'}`} />
                   <span className="text-xs font-bold uppercase tracking-wider">
                     {isCod 
                       ? t('Cash on Delivery (Payment Due)', 'டெலிவரியின் போது பணம் செலுத்தவும்') 

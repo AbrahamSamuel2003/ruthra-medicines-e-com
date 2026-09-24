@@ -24,13 +24,14 @@ import {
   Zap,
   Filter,
   PhoneCall,
-  Calendar
+  Calendar,
+  Gift
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
 import StoreHeroCarousel from '@/components/StoreHeroCarousel';
 import ProductCard from '@/components/ProductCard';
-import { PRODUCTS, CONCERN_CATEGORIES, FORMULATION_CATEGORIES, BUNDLES } from '@/data/products';
+import { PRODUCTS, CONCERN_CATEGORIES, FORMULATION_CATEGORIES } from '@/data/products';
 import { Product } from '@/types/product';
 
 export default function HomePage() {
@@ -523,97 +524,41 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. CATCHY VALUE COMBOS SPOTLIGHT (Save up to 20%) */}
+      {/* 11. 5+1 & 10+2 VOLUME SCHEME SPOTLIGHT */}
       <section className="py-10 sm:py-14 bg-gradient-to-br from-[#16382B] to-[#0E251C] text-white border-y border-[#C29043]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D9534F] text-white text-xs font-black uppercase tracking-wider mb-2 shadow-sm">
-                <Zap className="w-3.5 h-3.5 fill-white" />
-                <span>{t('Special Apothecary Bundles', 'சிறப்பு காம்போ தள்ளுபடி')}</span>
+          <div className="p-6 sm:p-10 rounded-3xl bg-white/10 backdrop-blur-md border border-white/15 flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="space-y-3 max-w-2xl text-center lg:text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DFB36C] text-[#16382B] text-xs font-black uppercase tracking-wider shadow-sm">
+                <Gift className="w-3.5 h-3.5" />
+                <span>{t('Classical Volume Reward Scheme', 'இலவச சித்த மருந்து திட்டம்')}</span>
               </div>
               <h2 className="font-serif-brand text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                {t('Curated Wellness Regimens (Save 20%)', 'ஒருங்கிணைந்த மூலிகை தொகுப்புகள்')}
+                {t('Buy 5, Get 1 FREE • Buy 10, Get 2 FREE', '5 வாங்கினால் 1 இலவசம் • 10 வாங்கினால் 2 இலவசம்')}
               </h2>
+              <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
+                {t(
+                  'Order any 5 or more classical formulations and choose any authentic medicine from our 176-item catalog for ₹0.00. Compounded directly in Tirunelveli.',
+                  'எந்தவொரு 5 அல்லது அதற்கு மேற்பட்ட மருந்துகளை வாங்கும் போதும், 176 மருந்துகளிலிருந்து உங்கள் விருப்ப மருந்தை முற்றிலும் இலவசமாக தேர்வு செய்யுங்கள்.'
+                )}
+              </p>
             </div>
-            <Link
-              href="/shop#combos"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#DFB36C] hover:text-white transition-colors"
-            >
-              <span>{t('View All Combo Regimens', 'அனைத்து தொகுப்புகள்')}</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-            {BUNDLES.map(bundle => {
-              const bundleProducts = PRODUCTS.filter(p => bundle.productSlugs.includes(p.slug));
-              return (
-                <div
-                  key={bundle.id}
-                  className="p-5 sm:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 hover:border-[#DFB36C] shadow-lg transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-[11px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg bg-[#DFB36C] text-[#16382B] shadow-xs">
-                        {bundle.badge}
-                      </span>
-                      <span className="text-xs font-extrabold text-[#25D366] bg-black/40 px-3 py-1 rounded-full border border-[#25D366]/30">
-                        {t(`Save ₹${bundle.savings}`, `₹${bundle.savings} சேமிப்பு`)}
-                      </span>
-                    </div>
-
-                    <h3 className="font-serif-brand text-lg sm:text-xl font-bold text-white">
-                      {language === 'ta' ? bundle.titleTa : bundle.title}
-                    </h3>
-                    <p className="text-xs text-[#DFB36C] font-medium mt-0.5">
-                      {language === 'ta' ? bundle.subtitleTa : bundle.subtitle}
-                    </p>
-                    <p className="text-xs text-white/80 mt-2.5 leading-relaxed">
-                      {language === 'ta' ? bundle.descriptionTa : bundle.description}
-                    </p>
-
-                    {/* Included Items pills */}
-                    <div className="mt-4 pt-3 border-t border-white/10 space-y-1.5">
-                      <p className="text-[10.5px] font-bold text-white/70 uppercase tracking-wider">
-                        {t('Regimen Includes:', 'தொகுப்பில் உள்ளவை:')}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {bundleProducts.map(bp => (
-                          <span
-                            key={bp.id}
-                            className="text-[11px] px-2.5 py-1 rounded-md bg-white/10 text-white font-medium border border-white/10"
-                          >
-                            {language === 'ta' ? bp.tamilName : bp.name} ({bp.packSize})
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between gap-4">
-                    <div>
-                      <span className="text-xs line-through text-white/50 mr-2 font-medium">
-                        ₹{bundle.regularPrice}
-                      </span>
-                      <span className="font-serif-brand text-2xl font-black text-[#DFB36C]">
-                        ₹{bundle.bundlePrice}
-                      </span>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        bundleProducts.forEach(bp => addItem(bp, 1));
-                      }}
-                      className="px-5 py-2.5 rounded-xl bg-[#DFB36C] hover:bg-[#C29043] active:scale-95 text-[#16382B] text-xs font-black flex items-center gap-1.5 shadow-md hover:shadow-lg transition-all"
-                    >
-                      <ShoppingBag className="w-3.5 h-3.5" />
-                      <span>{t('Add Combo to Cart', 'தொகுப்பை வாங்கு')}</span>
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto flex-shrink-0">
+              <Link
+                href="/offers"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#DFB36C] hover:bg-[#C29043] active:scale-95 text-[#16382B] text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg transition-all"
+              >
+                <span>{t('Calculate Your 5+1 Savings', 'சலுகை கால்குலேட்டர்')}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/shop"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 active:scale-95 text-white text-xs sm:text-sm font-semibold border border-white/20 flex items-center justify-center transition-all"
+              >
+                <span>{t('Explore 176 Formulations', '176 மருந்துகள் பார்க்க')}</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

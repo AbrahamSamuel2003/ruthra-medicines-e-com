@@ -29,7 +29,7 @@ export default function MobileHeader() {
       {/* Mobile Top Announcement Strip */}
       <div className="bg-[#16382B] text-white text-[10.5px] px-3 py-1 flex items-center justify-between w-full overflow-hidden gap-2">
         <span className="truncate min-w-0 flex-1">
-          {t('Authentic Siddha | Tamil Nadu Delivery', 'பாரம்பரிய சித்த மருந்துகள் | தமிழகம் முழுவதும்')}
+          {t('5+1 Scheme: Buy 5, Get 1 FREE Medicine', '5+1 திட்டம்: 5 வாங்கினால் 1 இலவசம்')}
         </span>
         <span className="text-[#DFB36C] font-semibold flex-shrink-0 text-[10px]">
           {t('Tirunelveli', 'திருநெல்வேலி')}

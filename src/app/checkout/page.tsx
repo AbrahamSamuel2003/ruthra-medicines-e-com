@@ -4,7 +4,20 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { CreditCard, QrCode, Banknote, MessageCircle, PhoneCall, ArrowRight, Tag, CheckCircle2, Zap } from 'lucide-react';
+import { 
+  CreditCard, 
+  QrCode, 
+  Banknote, 
+  MessageCircle, 
+  PhoneCall, 
+  ArrowRight, 
+  Tag, 
+  CheckCircle2, 
+  Zap, 
+  Gift, 
+  PackageCheck,
+  ShieldCheck
+} from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -41,12 +54,15 @@ export default function CheckoutPage() {
   const router = useRouter();
   const {
     items,
+    freeGiftItems,
+    paidItemCount,
+    totalFreeGiftsSelected,
+    freeSlotsRemaining,
+    openGiftModal,
     subtotal,
     mrpSubtotal,
     mrpSavings,
-    multiPackSavings,
-    couponCode,
-    couponDiscount,
+    freeGiftSavings,
     totalSavings,
     shippingFee,
     total,
@@ -143,6 +159,29 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     try {
+      const orderItemsPayload = [
+        ...items.map(it => ({
+          productId: it.product.id,
+          productName: it.product.name,
+          tamilName: it.product.tamilName,
+          price: it.product.price,
+          mrp: it.product.originalPrice || Math.round(it.product.price * 1.25),
+          quantity: it.quantity,
+          packSize: it.product.packSize,
+          formulation: it.product.formulation
+        })),
+        ...freeGiftItems.map(g => ({
+          productId: g.product.id,
+          productName: `${g.product.name} (5+1 Free Gift)`,
+          tamilName: `${g.product.tamilName} (இலவச மருந்து)`,
+          price: 0,
+          mrp: g.product.originalPrice || g.product.price,
+          quantity: g.quantity,
+          packSize: g.product.packSize,
+          formulation: g.product.formulation
+        }))
+      ];
+
       const payload = {
         customer: {
           fullName: formData.fullName,
@@ -154,19 +193,10 @@ export default function CheckoutPage() {
           state: formData.state,
           pincode: formData.pincode
         },
-        items: items.map(it => ({
-          productId: it.product.id,
-          productName: it.product.name,
-          tamilName: it.product.tamilName,
-          price: it.product.price,
-          mrp: it.product.originalPrice || Math.round(it.product.price * 1.25),
-          quantity: it.quantity,
-          packSize: it.product.packSize,
-          formulation: it.product.formulation
-        })),
+        items: orderItemsPayload,
         subtotal,
         mrpTotal: mrpSubtotal,
-        discountTotal: mrpSavings + multiPackSavings + couponDiscount,
+        discountTotal: mrpSavings + freeGiftSavings,
         shippingFee,
         totalAmount: total,
         deliveryMethod: formData.deliveryMethod === 'standard' ? 'Tamil Nadu Express Courier' : 'Speed Post',
@@ -190,6 +220,7 @@ export default function CheckoutPage() {
             invoiceNumber: data.invoiceNumber || `INV-${confirmedOrderNumber}`,
             formData,
             items,
+            freeGiftItems,
             subtotal,
             shippingFee,
             total,
@@ -214,15 +245,19 @@ export default function CheckoutPage() {
     }
   };
 
-  const whatsappOrderSummary = items
+  const whatsappPurchasedSummary = items
     .map(i => `• ${i.product.name} (${i.product.packSize}) × ${i.quantity} = ₹${i.product.price * i.quantity}`)
     .join('\n');
-  const whatsappOrderText = `Vanakkam Ruthra Medicines,\nI would like to place an order directly:\n\n${whatsappOrderSummary}\n\nTotal Payable: ₹${total} (Free Tamil Nadu Delivery)\nCustomer Name: ${formData.fullName || '(Direct Guest)'}\nPhone: ${formData.phone || '(This contact)'}\nAddress: ${formData.address ? `${formData.address}, ${formData.city} - ${formData.pincode}` : '(Will share on chat)'}\n\nPlease confirm dispatch from Tirunelveli.`;
+  const whatsappGiftSummary = freeGiftItems.length > 0
+    ? '\n\nFree Formulation Bonus (5+1 Scheme):\n' + freeGiftItems.map(g => `• [FREE] ${g.product.name} (${g.product.packSize}) × ${g.quantity}`).join('\n')
+    : '';
+
+  const whatsappOrderText = `Vanakkam Ruthra Medicines,\nI would like to place an order directly:\n\n${whatsappPurchasedSummary}${whatsappGiftSummary}\n\nTotal Payable: ₹${total} (Free Tamil Nadu Delivery)\nCustomer Name: ${formData.fullName || '(Direct Guest)'}\nPhone: ${formData.phone || '(This contact)'}\nAddress: ${formData.address ? `${formData.address}, ${formData.city} - ${formData.pincode}` : '(Will share on chat)'}\n\nPlease confirm dispatch from Tirunelveli.`;
 
   if (items.length === 0) {
     return (
       <div className="w-full bg-[#FAF8F5] min-h-[60vh] flex items-center justify-center py-16 px-4">
-        <div className="text-center max-w-md bg-white p-8 rounded-3xl border border-[#16382B]/10">
+        <div className="text-center max-w-md bg-white p-8 rounded-3xl border border-[#16382B]/10 shadow-xs">
           <p className="font-serif-brand text-xl font-bold text-[#16382B]">
             {t('Your cart is empty', 'கூடையில் மருந்துகள் இல்லை')}
           </p>
@@ -248,7 +283,7 @@ export default function CheckoutPage() {
           <span className="text-[#16382B] font-semibold">{t('Guest Checkout', 'நேரடி செக்அவுட்')}</span>
         </nav>
 
-        {/* FAST 1-TAP WHATSAPP CHECKOUT CARD (Zero Manual Form Filling) */}
+        {/* FAST 1-TAP WHATSAPP CHECKOUT CARD */}
         <div className="mb-6 p-4 sm:p-5 rounded-2xl bg-[#E8F1EB]/90 border border-[#16382B]/15 flex flex-col sm:flex-row items-center justify-between gap-3.5 shadow-2xs">
           <div className="flex items-center gap-3 min-w-0 flex-1">
             <div className="w-10 h-10 rounded-xl bg-[#16382B] text-[#C29043] flex items-center justify-center flex-shrink-0 shadow-xs">
@@ -305,30 +340,29 @@ export default function CheckoutPage() {
                     required
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="e.g. Sundaram K."
-                    className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
+                    placeholder="e.g. S. Ramanathan"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Phone Number *', 'தொலைபேசி எண் *')}
+                    {t('WhatsApp / Mobile Number *', 'மொபைல் எண் *')}
                   </label>
                   <input
                     type="tel"
                     name="phone"
                     required
-                    pattern="[0-9]{10}"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="10-digit mobile number"
-                    className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
+                    placeholder="e.g. 98400 12345"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
                   />
                 </div>
 
                 <div className="sm:col-span-2">
                   <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Email Address *', 'மின்னஞ்சல் முகவரி *')}
+                    {t('Email Address (For PDF Invoice & Live Tracking) *', 'மின்னஞ்சல் முகவரி *')}
                   </label>
                   <input
                     type="email"
@@ -336,70 +370,62 @@ export default function CheckoutPage() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="name@example.com"
-                    className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
+                    placeholder="e.g. ramanathan@gmail.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
                   />
-                  <p className="text-[11px] text-[#8A9B93] mt-1">
-                    {t('Required for digital invoice PDF and live courier tracking link.', 'விலைப்பட்டியல் PDF மற்றும் கூரியர் டிராக்கிங் இணைப்பு பெற அவசியம்.')}
+                  <p className="text-[10.5px] text-[#8A9B93] mt-1">
+                    {t('We will send the computerized GST invoice and courier consignment code to this email.', 'விலைப்பட்டியல் மற்றும் பார்சல் டிராக்கிங் எண் இந்த மின்னஞ்சலுக்கு அனுப்பப்படும்.')}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Step 2: Shipping Address */}
+            {/* Step 2: Shipping Destination */}
             <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
               <div className="flex items-center justify-between border-b border-[#16382B]/10 pb-3">
                 <h2 className="font-serif-brand text-base sm:text-lg font-bold text-[#16382B] flex items-center gap-2">
                   <span className="w-6 h-6 rounded-full bg-[#16382B] text-white text-xs flex items-center justify-center">2</span>
-                  {t('Shipping Address', 'அஞ்சல் முகவரி')}
+                  {t('Delivery Address (Tamil Nadu)', 'அஞ்சல் முகவரி')}
                 </h2>
-                <span className="text-[11px] text-[#C29043] font-semibold">Tamil Nadu & All India</span>
+                <span className="text-[11px] text-[#8A9B93]">Direct Courier from Tirunelveli</span>
               </div>
 
               <div className="space-y-4">
                 <div>
                   <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                    {t('Door / Flat / Street Address *', 'வீட்டு எண் / தெரு முகவரி *')}
+                    {t('Door No, Street & Area Address *', 'கதவு எண், தெரு மற்றும் பகுதி *')}
                   </label>
                   <textarea
                     name="address"
-                    rows={2}
                     required
+                    rows={2}
                     value={formData.address}
                     onChange={handleInputChange}
-                    placeholder="Door no, Street name, Area"
-                    className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
+                    placeholder="e.g. 14/2B, South Car Street, Near Amman Kovil"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="block text-xs font-semibold text-[#16382B]">
-                        {t('Postal PIN Code *', 'அஞ்சல் குறியீடு *')}
-                      </label>
-                      {formData.city && (
-                        <span className="text-[10px] text-green-700 font-bold flex items-center gap-0.5">
-                          <CheckCircle2 className="w-2.5 h-2.5" />
-                          <span>Auto</span>
-                        </span>
-                      )}
-                    </div>
+                    <label className="block text-xs font-semibold text-[#16382B] mb-1">
+                      {t('PIN Code *', 'அஞ்சல் குறியீடு *')}
+                    </label>
                     <input
                       type="text"
                       name="pincode"
                       required
-                      pattern="[0-9]{6}"
+                      maxLength={6}
                       value={formData.pincode}
                       onChange={handleInputChange}
-                      placeholder="627010"
-                      className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
+                      placeholder="e.g. 627001"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                      {t('City / Town / District *', 'ஊர் / மாவட்டம் *')}
+                      {t('District / City *', 'மாவட்டம் / நகரம் *')}
                     </label>
                     <input
                       type="text"
@@ -407,54 +433,37 @@ export default function CheckoutPage() {
                       required
                       value={formData.city}
                       onChange={handleInputChange}
-                      placeholder="e.g. Tirunelveli, Chennai"
-                      className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
+                      placeholder="e.g. Tirunelveli"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-[#16382B] mb-1">
-                      {t('State *', 'மாநிலம் *')}
+                      {t('State', 'மாநிலம்')}
                     </label>
-                    <select
+                    <input
+                      type="text"
                       name="state"
+                      readOnly
                       value={formData.state}
-                      onChange={handleInputChange}
-                      className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 bg-[#FAF8F5] focus:outline-none focus:border-[#16382B]"
-                    >
-                      <option value="Tamil Nadu">Tamil Nadu (தமிழ்நாடு)</option>
-                      <option value="Kerala">Kerala</option>
-                      <option value="Karnataka">Karnataka</option>
-                      <option value="Andhra Pradesh">Andhra Pradesh</option>
-                      <option value="Puducherry">Puducherry</option>
-                      <option value="Other">Other State</option>
-                    </select>
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm bg-gray-100 text-gray-700 cursor-not-allowed"
+                    />
                   </div>
                 </div>
 
-                {/* Quick District Pickers (1-Tap Entry) */}
-                <div className="pt-0.5">
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="text-[10px] text-[#8A9B93] font-medium">{t('1-Tap District:', 'விரைவு மாவட்டம்:')}</span>
-                    {['Tirunelveli', 'Chennai', 'Coimbatore', 'Madurai', 'Trichy', 'Salem', 'Kanyakumari'].map(c => (
-                      <button
-                        key={c}
-                        type="button"
-                        onClick={() => {
-                          const updated = { ...formData, city: c, state: 'Tamil Nadu' };
-                          setFormData(updated);
-                          try { localStorage.setItem('ruthra_guest_profile', JSON.stringify(updated)); } catch {}
-                        }}
-                        className={`text-[10px] px-2 py-0.5 rounded-md border transition-colors cursor-pointer ${
-                          formData.city.toLowerCase() === c.toLowerCase()
-                            ? 'bg-[#16382B] text-white border-[#16382B] font-semibold'
-                            : 'bg-[#FAF8F5] text-[#16382B] border-[#16382B]/15 hover:bg-[#E8F1EB]'
-                        }`}
-                      >
-                        {c}
-                      </button>
-                    ))}
-                  </div>
+                <div>
+                  <label className="block text-xs font-semibold text-[#16382B] mb-1">
+                    {t('Nearby Landmark (Optional)', 'அடையாளம் (விருப்பத்தேர்வு)')}
+                  </label>
+                  <input
+                    type="text"
+                    name="landmark"
+                    value={formData.landmark}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Opposite State Bank, Near Bus Stop"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#16382B]/20 text-xs sm:text-sm focus:outline-none focus:border-[#16382B] bg-[#FAF8F5]"
+                  />
                 </div>
               </div>
             </div>
@@ -595,10 +604,35 @@ export default function CheckoutPage() {
           {/* Right Column: Order Summary & Assistance (Sticky on Desktop) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
             <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-4">
-              <h3 className="font-serif-brand text-lg font-bold text-[#16382B] pb-3 border-b border-[#16382B]/10">
-                {t('Cart Formulations', 'தேர்ந்தெடுத்த மருந்துகள்')} ({items.length})
-              </h3>
+              <div className="flex items-center justify-between pb-3 border-b border-[#16382B]/10">
+                <h3 className="font-serif-brand text-lg font-bold text-[#16382B]">
+                  {t('Order Summary', 'ஆர்டர் விபரம்')}
+                </h3>
+                <span className="text-xs text-[#8A9B93]">
+                  {paidItemCount} {t('Paid', 'வாங்கியவை')} {totalFreeGiftsSelected > 0 && `+ ${totalFreeGiftsSelected} ${t('Free', 'இலவசம்')}`}
+                </span>
+              </div>
 
+              {/* Free Gift Notification / Claim Prompt if remaining */}
+              {freeSlotsRemaining > 0 && (
+                <div className="p-3 bg-[#FFF9F0] border border-[#C29043]/40 rounded-2xl flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <Gift className="w-4 h-4 text-[#C29043] flex-shrink-0" />
+                    <span className="text-xs font-semibold text-[#8B5E14] truncate">
+                      {t(`${freeSlotsRemaining} Free Gift Slot(s) Available!`, `${freeSlotsRemaining} இலவச மருந்து தேர்வு செய்யலாம்!`)}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={openGiftModal}
+                    className="px-2.5 py-1 rounded-lg bg-[#16382B] text-white text-[11px] font-bold hover:bg-[#204C3B] transition-colors flex-shrink-0"
+                  >
+                    {t('Select Gift', 'தேர்வு செய்க')}
+                  </button>
+                </div>
+              )}
+
+              {/* Purchased items list */}
               <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
                 {items.map(({ product, quantity }) => (
                   <div key={product.id} className="flex items-center gap-3 text-xs">
@@ -624,6 +658,32 @@ export default function CheckoutPage() {
                     </span>
                   </div>
                 ))}
+
+                {/* Selected Free Gifts */}
+                {freeGiftItems.map(({ product, quantity }) => (
+                  <div key={`gift-checkout-${product.id}`} className="flex items-center gap-3 text-xs p-2 rounded-xl bg-emerald-50/80 border border-emerald-200">
+                    <div className="w-10 h-10 rounded-lg bg-white p-1 border border-emerald-200 flex items-center justify-center flex-shrink-0">
+                      <Image
+                        src={product.image || '/images/ruthra-icon.png'}
+                        alt={product.name}
+                        width={32}
+                        height={32}
+                        className="object-contain max-h-8"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-[9px] uppercase font-bold tracking-wider px-1 py-0.2 rounded bg-emerald-700 text-white inline-block">
+                        {t('5+1 Free Gift', 'இலவச பரிசு')}
+                      </span>
+                      <p className="font-semibold text-[#16382B] truncate mt-0.5">
+                        {language === 'ta' ? product.tamilName : product.name}
+                      </p>
+                    </div>
+                    <span className="font-bold text-emerald-800">
+                      ₹0.00 {quantity > 1 && `(×${quantity})`}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               <div className="pt-4 border-t border-[#16382B]/10 space-y-2 text-xs text-[#3D5A68]">
@@ -632,19 +692,13 @@ export default function CheckoutPage() {
                   <span className="line-through text-[#8A9B93]">₹{mrpSubtotal}</span>
                 </div>
                 <div className="flex justify-between text-green-700">
-                  <span>{t('Direct Siddha Discount', 'சித்த நேரடி தள்ளுபடி')}</span>
+                  <span>{t('Direct Catalog Savings', 'நேரடி தயாரிப்பு தள்ளுபடி')}</span>
                   <span className="font-semibold">-₹{mrpSavings}</span>
                 </div>
-                {multiPackSavings > 0 && (
-                  <div className="flex justify-between text-green-700">
-                    <span>{t('Multi-Pack Volume Savings', 'இரட்டை பொட்டல சலுகை')}</span>
-                    <span className="font-semibold">-₹{multiPackSavings}</span>
-                  </div>
-                )}
-                {couponDiscount > 0 && (
-                  <div className="flex justify-between text-green-700">
-                    <span>{t('Coupon Discount', 'கூப்பன் கழிவு')} ({couponCode})</span>
-                    <span className="font-semibold">-₹{couponDiscount}</span>
+                {freeGiftSavings > 0 && (
+                  <div className="flex justify-between text-emerald-800 font-semibold bg-emerald-50 px-2 py-1 rounded-md">
+                    <span>{t('5+1 Free Formulation Value', '5+1 இலவச மருந்து மதிப்பு')}</span>
+                    <span>-₹{freeGiftSavings} (FREE)</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center">

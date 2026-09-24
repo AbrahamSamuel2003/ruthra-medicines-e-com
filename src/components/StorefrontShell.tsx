@@ -9,6 +9,7 @@ import CartDrawer from '@/components/CartDrawer';
 import SearchModal from '@/components/SearchModal';
 import CartToast from '@/components/CartToast';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import FreeGiftSelectorModal from '@/components/FreeGiftSelectorModal';
 import Footer from '@/components/Footer';
 
 export default function StorefrontShell({
@@ -39,6 +40,7 @@ export default function StorefrontShell({
 
       {/* Global Modals, Toast & Drawers */}
       <CartDrawer />
+      <FreeGiftSelectorModal />
       <SearchModal />
       <CartToast />
 
