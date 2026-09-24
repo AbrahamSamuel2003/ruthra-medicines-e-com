@@ -148,46 +148,40 @@ export default function CartPage() {
           </div>
         </div>
 
-        {/* 5+1 / 10+2 Volume Scheme Milestone Showcase */}
-        <div className="p-4 sm:p-5 bg-white rounded-2xl border border-[#C29043]/30 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-xl bg-[#FFF9F0] border border-[#C29043]/40 flex items-center justify-center text-[#C29043] flex-shrink-0">
-              <Gift className="w-5 h-5" />
+        {/* FREE FORMULATION CLAIM BANNER (Only when unclaimed slots exist) */}
+        {freeSlotsRemaining > 0 && (
+          <div className="p-4 bg-emerald-50/90 rounded-2xl border border-emerald-300 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+                <Gift className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-serif-brand font-bold text-sm text-[#16382B]">
+                  {t('5+1 Free Formulation Unlocked', '5+1 இலவச மருந்து தகுதி')}
+                </h3>
+                <p className="text-xs text-emerald-800 mt-0.5">
+                  {t(
+                    `You have ${freeSlotsRemaining} unclaimed Free Medicine slot(s)! Choose any formulation from the catalog for ₹0.00.`,
+                    `உங்களுக்கு ${freeSlotsRemaining} இலவச மருந்து தேர்வு செய்ய வாய்ப்புள்ளது! விருப்பமான மருந்தை ₹0.00-க்கு தேர்வு செய்யலாம்.`
+                  )}
+                </p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-serif-brand font-bold text-sm text-[#16382B]">
-                {t('Classical 5+1 & 10+2 Volume Reward Scheme', '5+1 & 10+2 இலவச மருந்து திட்டம்')}
-              </h3>
-              <p className="text-xs text-[#8A9B93] mt-0.5">
-                {paidItemCount < 5 ? (
-                  t(
-                    `Add ${itemsNeededForNextMilestone} more formulation(s) to unlock 1 FREE Formulation of your choice.`,
-                    `இன்னும் ${itemsNeededForNextMilestone} மருந்து சேர்த்தால் 1 இலவச மருந்து பெறலாம்.`
-                  )
-                ) : (
-                  t(
-                    `You unlocked ${freeSlotsEarned} FREE formulation slot(s)! Add ${itemsNeededForNextMilestone} more to unlock next tier.`,
-                    `${freeSlotsEarned} இலவச மருந்துகள் தகுதி பெற்றுள்ளன! அடுத்த நிலைக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்.`
-                  )
-                )}
-              </p>
-            </div>
-          </div>
 
-          {freeSlotsRemaining > 0 ? (
             <button
               onClick={openGiftModal}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#16382B] text-white text-xs font-bold hover:bg-[#204C3B] transition-colors shadow-xs flex items-center justify-center gap-2 flex-shrink-0"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-bold transition-colors shadow-xs flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer"
             >
               <Gift className="w-4 h-4 text-[#DFB36C]" />
-              <span>{t(`Select Your Free Formulation (${freeSlotsRemaining} Available)`, `இலவச மருந்தைத் தேர்வு செய்க (${freeSlotsRemaining} உள்ளது)`)}</span>
+              <span>
+                {t(
+                  `Select Your Free Formulation (${freeSlotsRemaining} Available)`,
+                  `இலவச மருந்தைத் தேர்வு செய்க (${freeSlotsRemaining} உள்ளது)`
+                )}
+              </span>
             </button>
-          ) : freeSlotsEarned > 0 ? (
-            <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold flex-shrink-0">
-              {t('All Free Formulations Claimed', 'இலவச மருந்துகள் தேர்வு செய்யப்பட்டன')}
-            </span>
-          ) : null}
-        </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Items List */}

@@ -168,65 +168,36 @@ export default function CartDrawer() {
             </div>
           ) : (
             <>
-              {/* 5+1 / 10+2 VOLUME SCHEME MILESTONE CARD */}
-              <div className="p-3 bg-white rounded-xl border border-[#C29043]/30 shadow-2xs space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-[#FFF9F0] border border-[#C29043]/40 flex items-center justify-center text-[#C29043]">
-                      <Gift className="w-4 h-4" />
+              {/* FREE GIFT CLAIM BANNER (When slots unlocked & available) */}
+              {freeSlotsRemaining > 0 && (
+                <div className="p-3 bg-emerald-50/85 rounded-xl border border-emerald-300 space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-emerald-700 text-white flex items-center justify-center flex-shrink-0">
+                        <Gift className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="font-serif-brand font-bold text-xs text-[#16382B]">
+                          {t('5+1 Free Formulation Unlocked', '5+1 இலவச மருந்து தகுதி')}
+                        </h4>
+                        <p className="text-[10.5px] text-emerald-800">
+                          {t(
+                            `You have ${freeSlotsRemaining} unclaimed Free Medicine slot!`,
+                            `உங்களுக்கு ${freeSlotsRemaining} இலவச மருந்து தேர்வு செய்ய வாய்ப்புள்ளது!`
+                          )}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="font-serif-brand font-bold text-xs text-[#16382B]">
-                        {t('5+1 & 10+2 Classical Scheme', '5+1 & 10+2 இலவச மருந்து திட்டம்')}
-                      </h4>
-                      <p className="text-[10px] text-[#8A9B93]">
-                        {paidItemCount < 5 ? (
-                          t(
-                            `Add ${itemsNeededForNextMilestone} more product(s) to unlock 1 FREE Formulation`,
-                            `இன்னும் ${itemsNeededForNextMilestone} மருந்து சேர்த்தால் 1 இலவச மருந்து பெறலாம்`
-                          )
-                        ) : (
-                          t(
-                            `${freeSlotsEarned} Free Formulation slot(s) unlocked!`,
-                            `${freeSlotsEarned} இலவச மருந்துகள் தகுதி பெற்றுள்ளன!`
-                          )
-                        )}
-                      </p>
-                    </div>
-                  </div>
 
-                  {freeSlotsEarned > 0 && (
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
-                      {freeSlotsEarned} {t('Free', 'இலவசம்')}
-                    </span>
-                  )}
-                </div>
-
-                {/* Progress bar to next milestone */}
-                <div className="space-y-1 pt-1">
-                  <div className="flex justify-between text-[10px] text-[#3D5A68]">
-                    <span>{paidItemCount} {t('Items in cart', 'மருந்துகள்')}</span>
-                    <span>
-                      {paidItemCount < 5 
-                        ? t(`Goal: 5 Items (Get 1 Free)`, `இலக்கு: 5 (1 இலவசம்)`)
-                        : t(`Next: ${nextMilestoneCount} Items (Get ${nextMilestoneCount / 5} Free)`, `அடுத்த இலக்கு: ${nextMilestoneCount}`)
-                      }
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-700 text-white text-[10px] font-bold flex-shrink-0">
+                      {freeSlotsRemaining} {t('Available', 'உள்ளது')}
                     </span>
                   </div>
-                  <div className="w-full h-1.5 rounded-full bg-[#FAF8F5] border border-[#16382B]/10 overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-[#C29043] transition-all duration-300"
-                      style={{ width: `${paidItemCount < 5 ? (paidItemCount / 5) * 100 : progressPercent}%` }}
-                    />
-                  </div>
-                </div>
 
-                {/* Claim Free Gift Button if slots available */}
-                {freeSlotsRemaining > 0 && (
                   <button
                     type="button"
                     onClick={openGiftModal}
-                    className="w-full py-2 px-3 rounded-lg bg-[#16382B] text-white text-xs font-bold flex items-center justify-center gap-2 hover:bg-[#204C3B] transition-colors cursor-pointer shadow-2xs mt-1"
+                    className="w-full py-2 px-3 rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-2xs"
                   >
                     <Gift className="w-3.5 h-3.5 text-[#DFB36C]" />
                     <span>
@@ -236,8 +207,8 @@ export default function CartDrawer() {
                       )}
                     </span>
                   </button>
-                )}
-              </div>
+                </div>
+              )}
 
               {/* SELECTED FREE GIFTS SECTION */}
               {freeGiftItems.length > 0 && (
