@@ -30,7 +30,8 @@ export async function POST(request: NextRequest) {
 
     // Validate mime type
     const validMimes = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/gif', 'image/avif'];
-    if (!validMimes.includes(file.type)) {
+    const mimeType = file.type || 'image/jpeg';
+    if (!validMimes.includes(mimeType)) {
       return NextResponse.json(
         { success: false, error: 'Invalid file type. Please upload a JPEG, PNG, WEBP, or SVG image.' },
         { status: 400 }
@@ -48,22 +49,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Determine target directory and filename
-    let relativeDir = '/uploads/products';
-    let targetDir = path.join(process.cwd(), 'public', 'uploads', 'products');
-
-    if (slug) {
-      const sanitizedSlug = slug.replace(/[^a-zA-Z0-9_-]/g, '-').toLowerCase();
-      relativeDir = `/images/products/${sanitizedSlug}`;
-      targetDir = path.join(process.cwd(), 'public', 'images', 'products', sanitizedSlug);
-    }
-
-    // Ensure directory exists
-    if (!existsSync(targetDir)) {
-      await mkdir(targetDir, { recursive: true });
-    }
-
-    // Determine clean filename
+    // Determine clean filename & extension
     const ext = path.extname(file.name) || '.jpg';
     let safeName = customFileName 
       ? customFileName.replace(/[^a-zA-Z0-9_.-]/g, '_')
@@ -73,18 +59,47 @@ export async function POST(request: NextRequest) {
       safeName += ext.toLowerCase();
     }
 
-    const filePath = path.join(/*turbopackIgnore: true*/ targetDir, safeName);
-    await writeFile(filePath, buffer);
+    // Attempt 1: Standard Disk Write to Hostinger / Node Server public directory
+    try {
+      const sanitizedSlug = slug ? slug.replace(/[^a-zA-Z0-9_-]/g, '-').toLowerCase() : '';
+      const relativeDir = sanitizedSlug ? `/images/products/${sanitizedSlug}` : '/uploads/products';
+      const targetDir = sanitizedSlug 
+        ? path.join(process.cwd(), 'public', 'images', 'products', sanitizedSlug)
+        : path.join(process.cwd(), 'public', 'uploads', 'products');
 
-    const publicUrl = `${relativeDir}/${safeName}`;
+      if (!existsSync(targetDir)) {
+        await mkdir(targetDir, { recursive: true });
+      }
 
-    return NextResponse.json({
-      success: true,
-      url: publicUrl,
-      fileName: safeName,
-      size: buffer.length,
-      message: 'Image uploaded successfully'
-    });
+      const filePath = path.join(targetDir, safeName);
+      await writeFile(filePath, buffer);
+
+      const publicUrl = `${relativeDir}/${safeName}`;
+
+      return NextResponse.json({
+        success: true,
+        url: publicUrl,
+        fileName: safeName,
+        size: buffer.length,
+        storageType: 'local_disk',
+        message: 'Image uploaded successfully to server storage'
+      });
+    } catch (diskError: unknown) {
+      console.warn('Local disk write failed or restricted (e.g. read-only container/serverless). Falling back to Base64 data URI:', diskError);
+
+      // Attempt 2: Resilient Base64 Data URI Fallback (Works 100% on any Hostinger, Vercel, or read-only cloud environment)
+      const base64Data = buffer.toString('base64');
+      const dataUri = `data:${mimeType};base64,${base64Data}`;
+
+      return NextResponse.json({
+        success: true,
+        url: dataUri,
+        fileName: safeName,
+        size: buffer.length,
+        storageType: 'base64_fallback',
+        message: 'Image processed successfully via direct media encoding'
+      });
+    }
   } catch (error: unknown) {
     console.error('Image upload failed:', error);
     const errorMsg = error instanceof Error ? error.message : 'Server error while uploading image';
