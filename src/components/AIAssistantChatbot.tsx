@@ -9,7 +9,6 @@ import {
   X,
   Send,
   RotateCcw,
-  Sparkles,
   ArrowRight,
   MessageCircle,
   Loader2
@@ -41,7 +40,7 @@ export default function AIAssistantChatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Scoped translation helper for the chatbot UI only
   const ct = (en: string, ta: string) => (chatLanguage === 'ta' ? ta || en : en);
@@ -52,6 +51,20 @@ export default function AIAssistantChatbot() {
       setChatLanguage(globalLanguage);
     }
   }, []);
+
+  // Body scroll lock on mobile when chat is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      // On mobile viewports lock body scroll
+      if (typeof window !== 'undefined' && window.innerWidth < 640) {
+        document.body.style.overflow = 'hidden';
+      }
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   // Initialize initial greeting whenever chatLanguage is switched inside chatbot
   useEffect(() => {
@@ -79,15 +92,9 @@ export default function AIAssistantChatbot() {
     }
   }, [messages, isOpen, loading]);
 
-  // Close on outside click or Escape key
+  // Close on Escape key
   useEffect(() => {
     if (!isOpen) return;
-
-    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -95,15 +102,8 @@ export default function AIAssistantChatbot() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside, { passive: true });
     document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
   // Hide on checkout, search, or cart drawer
@@ -188,20 +188,15 @@ export default function AIAssistantChatbot() {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className={`fixed z-50 transition-all duration-300 ${
-        isBottomNavHidden
-          ? 'bottom-4 right-4 sm:bottom-6 sm:right-6'
-          : 'bottom-[68px] sm:bottom-6 right-3.5 sm:right-6'
-      }`}
-      aria-label="Ruthra AI Assistant"
-    >
-      {/* CHAT WINDOW MODAL */}
+    <>
+      {/* MOBILE NATIVE FULLSCREEN & DESKTOP FLOATING MODAL */}
       {isOpen && (
-        <div className="absolute bottom-14 sm:bottom-16 right-0 w-[calc(100vw-28px)] sm:w-[390px] max-w-[400px] h-[520px] max-h-[80vh] bg-[#FAF8F5] rounded-3xl shadow-2xl border border-[#16382B]/15 overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-3 duration-200">
-          {/* HEADER */}
-          <div className="bg-[#16382B] text-white p-3.5 sm:p-4 flex items-center justify-between border-b border-[#C29043]/20 flex-shrink-0">
+        <div
+          className="fixed inset-0 z-[60] h-[100dvh] w-full bg-[#FAF8F5] flex flex-col sm:inset-auto sm:bottom-6 sm:right-6 sm:w-[390px] sm:max-w-[400px] sm:h-[560px] sm:max-h-[82vh] sm:rounded-3xl sm:shadow-2xl sm:border sm:border-[#16382B]/15 overflow-hidden animate-in fade-in slide-in-from-bottom-2 sm:slide-in-from-bottom-3 duration-200"
+          aria-label="Ruthra AI Assistant Chatbot"
+        >
+          {/* NATIVE HEADER */}
+          <div className="bg-[#16382B] text-white px-3.5 py-3 sm:p-4 flex items-center justify-between border-b border-[#C29043]/20 flex-shrink-0 pt-[max(env(safe-area-inset-top,0px),12px)] sm:pt-4">
             <div className="flex items-center gap-2.5">
               {/* Logo container strictly kept at existing w-8 h-8 size */}
               <div className="w-8 h-8 rounded-xl bg-white border border-[#C29043]/40 flex items-center justify-center p-0.5 flex-shrink-0 shadow-2xs">
@@ -230,7 +225,7 @@ export default function AIAssistantChatbot() {
               <button
                 type="button"
                 onClick={() => setChatLanguage(prev => (prev === 'en' ? 'ta' : 'en'))}
-                className="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-[11px] font-semibold text-white/90 hover:text-white transition-colors cursor-pointer border border-white/10"
+                className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-[11px] font-semibold text-white/90 hover:text-white transition-colors cursor-pointer border border-white/10 active:scale-95"
                 title={ct('Switch Chat Language', 'அரட்டை மொழி மாற்றம்')}
               >
                 {chatLanguage === 'en' ? 'தமிழ்' : 'EN'}
@@ -240,7 +235,7 @@ export default function AIAssistantChatbot() {
               <button
                 type="button"
                 onClick={handleReset}
-                className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer"
+                className="w-7.5 h-7.5 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer active:scale-95"
                 title={ct('Clear Chat', 'அரட்டையை அழிக்க')}
                 aria-label="Reset chat"
               >
@@ -251,7 +246,7 @@ export default function AIAssistantChatbot() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer"
+                className="w-7.5 h-7.5 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer active:scale-95"
                 aria-label="Close Assistant"
               >
                 <X className="w-4 h-4" />
@@ -259,8 +254,8 @@ export default function AIAssistantChatbot() {
             </div>
           </div>
 
-          {/* MESSAGE STREAM */}
-          <div className="flex-1 p-3.5 overflow-y-auto space-y-3.5 text-xs text-[#264653]">
+          {/* MESSAGE STREAM (Native Overscroll & Smooth Scrolling) */}
+          <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto overscroll-contain space-y-3.5 text-xs text-[#264653]">
             {messages.map(msg => {
               const isUser = msg.sender === 'user';
               return (
@@ -270,7 +265,7 @@ export default function AIAssistantChatbot() {
                 >
                   {/* Bubble Container */}
                   <div
-                    className={`p-3 rounded-2xl max-w-[92%] leading-relaxed ${
+                    className={`p-3 sm:p-3.5 rounded-2xl max-w-[92%] leading-relaxed ${
                       isUser
                         ? 'bg-[#16382B] text-white rounded-br-xs shadow-xs'
                         : 'bg-white text-[#16382B] border border-[#16382B]/10 rounded-bl-xs shadow-xs'
@@ -306,7 +301,7 @@ export default function AIAssistantChatbot() {
                           key={idx}
                           type="button"
                           onClick={() => handleSendMessage(qr.query)}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white hover:bg-[#E8F1EB] border border-[#16382B]/15 hover:border-[#16382B]/35 text-[11px] text-[#16382B] font-medium transition-all shadow-2xs cursor-pointer hover:scale-102 active:scale-98"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-white hover:bg-[#E8F1EB] border border-[#16382B]/15 hover:border-[#16382B]/35 text-[11px] text-[#16382B] font-medium transition-all shadow-2xs cursor-pointer active:scale-95 touch-manipulation"
                         >
                           <span>{chatLanguage === 'ta' ? qr.labelTa : qr.labelEn}</span>
                           <ArrowRight className="w-2.5 h-2.5 text-[#C29043]" />
@@ -325,7 +320,7 @@ export default function AIAssistantChatbot() {
 
             {/* Clean Loading State without blinking dots */}
             {loading && (
-              <div className="flex items-center gap-2 p-2 bg-white rounded-2xl border border-[#16382B]/10 text-xs text-[#8A9B93] w-fit shadow-xs">
+              <div className="flex items-center gap-2 p-2.5 bg-white rounded-2xl border border-[#16382B]/10 text-xs text-[#8A9B93] w-fit shadow-xs">
                 <Loader2 className="w-3.5 h-3.5 animate-spin text-[#C29043]" />
                 <span>
                   {ct('Analyzing...', 'பதிலை தயார் செய்கிறது...')}
@@ -336,8 +331,8 @@ export default function AIAssistantChatbot() {
             <div ref={chatEndRef} />
           </div>
 
-          {/* INPUT BAR */}
-          <div className="p-3 bg-white border-t border-[#16382B]/10 flex-shrink-0 space-y-2">
+          {/* NATIVE INPUT BAR & SAFE AREA BOTTOM PADDING */}
+          <div className="p-3 bg-white border-t border-[#16382B]/10 flex-shrink-0 space-y-2 pb-[max(env(safe-area-inset-bottom,0px),12px)] sm:pb-3 shadow-lg">
             <form
               onSubmit={e => {
                 e.preventDefault();
@@ -346,6 +341,7 @@ export default function AIAssistantChatbot() {
               className="relative flex items-center"
             >
               <input
+                ref={inputRef}
                 type="text"
                 value={inputMsg}
                 onChange={e => setInputMsg(e.target.value)}
@@ -353,12 +349,12 @@ export default function AIAssistantChatbot() {
                   'Type your question here...',
                   'உங்கள் கேள்வியை இங்கே தட்டச்சு செய்யவும்...'
                 )}
-                className="w-full text-xs pl-3.5 pr-11 py-2.5 rounded-2xl border-2 border-[#16382B]/20 bg-[#FAF8F5] text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:border-[#16382B] focus:bg-white shadow-2xs transition-all"
+                className="w-full text-xs pl-3.5 pr-11 py-2.5 sm:py-3 rounded-2xl border-2 border-[#16382B]/20 bg-[#FAF8F5] text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:border-[#16382B] focus:bg-white shadow-2xs transition-all"
               />
               <button
                 type="submit"
                 disabled={!inputMsg.trim() || loading}
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7.5 h-7.5 rounded-xl bg-[#16382B] hover:bg-[#0E241C] disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-xs cursor-pointer disabled:cursor-not-allowed"
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-xl bg-[#16382B] hover:bg-[#0E241C] disabled:opacity-40 text-white flex items-center justify-center transition-all shadow-xs cursor-pointer disabled:cursor-not-allowed active:scale-95"
                 aria-label="Send message"
               >
                 <Send className="w-3.5 h-3.5" />
@@ -382,27 +378,37 @@ export default function AIAssistantChatbot() {
         </div>
       )}
 
-      {/* FLOATING LAUNCHER BUTTON */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(prev => !prev)}
-        className="group relative flex items-center gap-2.5 bg-[#16382B] hover:bg-[#0E241C] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-[#C29043]/50 cursor-pointer"
-        aria-label="Open Ruthra AI Assistant"
-      >
-        <div className="relative flex items-center justify-center">
-          <MessageSquare className="w-5 h-5 text-[#DFB36C]" />
-        </div>
+      {/* FLOATING LAUNCHER BUTTON (Only visible when chat is closed) */}
+      {!isOpen && (
+        <div
+          className={`fixed z-40 transition-all duration-300 ${
+            isBottomNavHidden
+              ? 'bottom-4 right-4 sm:bottom-6 sm:right-6'
+              : 'bottom-[68px] sm:bottom-6 right-3.5 sm:right-6'
+          }`}
+        >
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="group relative flex items-center gap-2.5 bg-[#16382B] hover:bg-[#0E241C] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-[#C29043]/50 cursor-pointer"
+            aria-label="Open Ruthra AI Assistant"
+          >
+            <div className="relative flex items-center justify-center">
+              <MessageSquare className="w-5 h-5 text-[#DFB36C]" />
+            </div>
 
-        {/* Desktop pill label */}
-        <div className="hidden sm:flex flex-col text-left">
-          <span className="text-[11px] font-bold leading-tight tracking-wide text-white">
-            {globalT('Ruthra AI Assistant', 'ரூத்ரா AI உதவியாளர்')}
-          </span>
-          <span className="text-[9.5px] text-[#DFB36C] leading-tight">
-            {globalT('Instant Siddha Guidance', 'உடனடி மருத்துவ ஆலோசனை')}
-          </span>
+            {/* Desktop pill label */}
+            <div className="hidden sm:flex flex-col text-left">
+              <span className="text-[11px] font-bold leading-tight tracking-wide text-white">
+                {globalT('Ruthra AI Assistant', 'ரூத்ரா AI உதவியாளர்')}
+              </span>
+              <span className="text-[9.5px] text-[#DFB36C] leading-tight">
+                {globalT('Instant Siddha Guidance', 'உடனடி மருத்துவ ஆலோசனை')}
+              </span>
+            </div>
+          </button>
         </div>
-      </button>
-    </div>
+      )}
+    </>
   );
 }
