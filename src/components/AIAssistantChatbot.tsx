@@ -431,13 +431,23 @@ export default function AIAssistantChatbot() {
               );
             })}
 
-            {/* Clean Loading State without blinking dots */}
+            {/* Professional Production-Grade Typing Animation Indicator */}
             {loading && (
-              <div className="flex items-center gap-2 p-2.5 bg-white rounded-2xl border border-[#16382B]/10 text-xs text-[#8A9B93] w-fit shadow-xs">
-                <Loader2 className="w-3.5 h-3.5 animate-spin text-[#C29043]" />
-                <span>
-                  {ct('Analyzing...', 'பதிலை தயார் செய்கிறது...')}
-                </span>
+              <div className="flex items-start animate-in fade-in duration-200">
+                <div className="bg-white border border-[#16382B]/10 rounded-2xl rounded-tl-xs px-3.5 py-2.5 shadow-xs flex items-center gap-1.5">
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-[#16382B] animate-bounce"
+                    style={{ animationDelay: '0ms' }}
+                  />
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-[#16382B] animate-bounce"
+                    style={{ animationDelay: '150ms' }}
+                  />
+                  <span
+                    className="w-1.5 h-1.5 rounded-full bg-[#16382B] animate-bounce"
+                    style={{ animationDelay: '300ms' }}
+                  />
+                </div>
               </div>
             )}
 
