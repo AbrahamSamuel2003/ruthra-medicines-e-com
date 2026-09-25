@@ -63,12 +63,14 @@ export default function AIAssistantChatbot() {
     }
   }, []);
 
-  // Visual Viewport tracking for mobile virtual keyboards (iOS Safari & Android Chrome)
+  // Visual Viewport tracking with requestAnimationFrame for butter-smooth mobile keyboard resizing
   useEffect(() => {
     if (!isOpen) {
       setViewportStyle({});
       return;
     }
+
+    let rAFId: number | null = null;
 
     const updateViewport = () => {
       if (typeof window === 'undefined') return;
@@ -78,8 +80,9 @@ export default function AIAssistantChatbot() {
         const vh = vv.height;
         const vTop = vv.offsetTop;
 
-        const safeHeight = Math.max(260, vh - 20);
-        const safeTop = Math.max(10, vTop + 10);
+        // Keep top firmly pinned with safe margin, and smoothly shrink height to match keyboard
+        const safeTop = Math.max(8, vTop + 8);
+        const safeHeight = Math.max(240, vh - 16);
 
         setViewportStyle({
           top: safeTop,
@@ -91,37 +94,61 @@ export default function AIAssistantChatbot() {
       }
     };
 
+    const handleViewportChange = () => {
+      if (rAFId) cancelAnimationFrame(rAFId);
+      rAFId = requestAnimationFrame(updateViewport);
+    };
+
     if (typeof window !== 'undefined' && window.visualViewport) {
-      window.visualViewport.addEventListener('resize', updateViewport);
-      window.visualViewport.addEventListener('scroll', updateViewport);
+      window.visualViewport.addEventListener('resize', handleViewportChange);
+      window.visualViewport.addEventListener('scroll', handleViewportChange);
       updateViewport();
     }
 
     return () => {
+      if (rAFId) cancelAnimationFrame(rAFId);
       if (typeof window !== 'undefined' && window.visualViewport) {
-        window.visualViewport.removeEventListener('resize', updateViewport);
-        window.visualViewport.removeEventListener('scroll', updateViewport);
+        window.visualViewport.removeEventListener('resize', handleViewportChange);
+        window.visualViewport.removeEventListener('scroll', handleViewportChange);
       }
     };
   }, [isOpen]);
 
-  // Hide mobile bottom nav & lock background scroll on mobile viewports while chat is open
+  // Hide mobile bottom nav & strictly lock background scroll to prevent document bounce/shuffle
   useEffect(() => {
     if (typeof document !== 'undefined') {
       if (isOpen) {
         document.body.setAttribute('data-chat-open', 'true');
         if (window.innerWidth < 640) {
+          const scrollY = window.scrollY;
+          document.body.style.position = 'fixed';
+          document.body.style.top = `-${scrollY}px`;
+          document.body.style.width = '100%';
           document.body.style.overflow = 'hidden';
         }
       } else {
         document.body.removeAttribute('data-chat-open');
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         document.body.style.overflow = '';
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
       }
     }
     return () => {
       if (typeof document !== 'undefined') {
         document.body.removeAttribute('data-chat-open');
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
         document.body.style.overflow = '';
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
       }
     };
   }, [isOpen]);
@@ -297,7 +324,7 @@ export default function AIAssistantChatbot() {
                 }
               : undefined
           }
-          className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 lg:right-8 sm:bottom-24 z-[60] flex flex-col w-auto sm:w-[390px] md:w-[410px] h-[510px] sm:h-[550px] max-h-[calc(100dvh-95px)] sm:max-h-[calc(100vh-120px)] bg-[#FAF8F5] rounded-2xl sm:rounded-3xl shadow-[0_20px_60px_rgba(22,56,43,0.25)] border border-[#16382B]/20 overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+          className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 lg:right-8 sm:bottom-24 z-[60] flex flex-col w-auto sm:w-[390px] md:w-[410px] h-[510px] sm:h-[550px] max-h-[calc(100dvh-95px)] sm:max-h-[calc(100vh-120px)] bg-[#FAF8F5] rounded-2xl sm:rounded-3xl shadow-[0_20px_60px_rgba(22,56,43,0.25)] border border-[#16382B]/20 overflow-hidden transition-[height,top] duration-150 ease-out will-change-[height,top]"
           aria-label="Ruthra AI Assistant Chatbot"
           onClick={e => e.stopPropagation()}
         >
@@ -361,7 +388,7 @@ export default function AIAssistantChatbot() {
           </div>
 
           {/* MESSAGE STREAM */}
-          <div className="flex-1 p-3.5 sm:p-4 overflow-y-auto overscroll-contain space-y-3.5 text-xs text-[#264653]">
+          <div className="flex-1 min-h-0 p-3.5 sm:p-4 overflow-y-auto overscroll-contain space-y-3.5 text-xs text-[#264653]">
             {messages.map(msg => {
               const isUser = msg.sender === 'user';
               return (
@@ -461,11 +488,6 @@ export default function AIAssistantChatbot() {
                 type="text"
                 value={inputMsg}
                 onChange={e => setInputMsg(e.target.value)}
-                onFocus={() => {
-                  setTimeout(() => {
-                    scrollToBottom();
-                  }, 180);
-                }}
                 placeholder={ct(
                   'Ask a question or select a topic...',
                   'உங்கள் கேள்வியை இங்கே தட்டச்சு செய்யவும்...'
