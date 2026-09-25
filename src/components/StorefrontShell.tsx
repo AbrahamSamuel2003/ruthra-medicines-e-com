@@ -8,7 +8,7 @@ import MobileBottomNav from '@/components/MobileBottomNav';
 import CartDrawer from '@/components/CartDrawer';
 import SearchModal from '@/components/SearchModal';
 import CartToast from '@/components/CartToast';
-import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import AIAssistantChatbot from '@/components/AIAssistantChatbot';
 import FreeGiftSelectorModal from '@/components/FreeGiftSelectorModal';
 import Footer from '@/components/Footer';
 
@@ -47,8 +47,8 @@ export default function StorefrontShell({
       {/* Mobile Bottom Thumb Navigation */}
       <MobileBottomNav />
 
-      {/* Global Floating WhatsApp Assistant */}
-      <FloatingWhatsApp />
+      {/* Global AI Assistant Chatbot */}
+      <AIAssistantChatbot />
 
       {/* Comprehensive Footer */}
       <Footer />
