@@ -10,12 +10,11 @@ import {
   Send,
   RotateCcw,
   ArrowRight,
-  MessageCircle,
-  Loader2
+  MessageCircle
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
-import { AIQuickReply, AILink } from '@/lib/aiKnowledgeEngine';
+import { queryDomainKnowledge, AIQuickReply, AILink } from '@/lib/aiKnowledgeEngine';
 
 interface Message {
   id: string;
@@ -205,60 +204,54 @@ export default function AIAssistantChatbot() {
 
   const isBottomNavHidden = pathname.startsWith('/product/');
 
-  const handleSendMessage = async (queryText?: string) => {
-    const textToSend = queryText || inputMsg;
-    if (!textToSend.trim() || loading) return;
+  // 0-Latency Instant Evaluator with smooth natural typing cadence
+  const handleSendMessage = useCallback(
+    (queryText?: string) => {
+      const textToSend = queryText || inputMsg;
+      if (!textToSend.trim() || loading) return;
 
-    const userMessage: Message = {
-      id: `user-${Date.now()}`,
-      sender: 'user',
-      text: textToSend.trim(),
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-
-    setMessages(prev => [...prev, userMessage]);
-    if (!queryText) setInputMsg('');
-    setLoading(true);
-
-    try {
-      const res = await fetch('/api/ai/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: textToSend.trim(),
-          language: chatLanguage
-        })
-      });
-
-      if (!res.ok) throw new Error('Network error');
-
-      const data = await res.json();
-
-      const assistantMessage: Message = {
-        id: `assistant-${Date.now()}`,
-        sender: 'assistant',
-        text: data.reply || 'Thank you for reaching out. Please connect directly with our Tirunelveli desk for specialized care.',
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        links: data.links,
-        quickReplies: data.quickReplies
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
-    } catch {
-      const isTa = chatLanguage === 'ta';
-      const fallbackMessage: Message = {
-        id: `assistant-fallback-${Date.now()}`,
-        sender: 'assistant',
-        text: isTa
-          ? 'மன்னிக்கவும், தகவலைப் பெறுவதில் தாமதம் ஏற்பட்டுள்ளது. எங்கள் திருநெல்வேலி உதவி மையத்தை நேரடியாக +91 91715 08042 என்ற எண்ணில் அழைக்கலாம்.'
-          : 'I encountered an issue fetching this data. You can directly reach our Tirunelveli care desk at +91 91715 08042 for instant assistance.',
+      const userMessage: Message = {
+        id: `user-${Date.now()}`,
+        sender: 'user',
+        text: textToSend.trim(),
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      setMessages(prev => [...prev, fallbackMessage]);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      setMessages(prev => [...prev, userMessage]);
+      if (!queryText) setInputMsg('');
+      setLoading(true);
+
+      // Instant domain evaluation with a natural 200ms typing cadence
+      setTimeout(() => {
+        try {
+          const data = queryDomainKnowledge(textToSend.trim(), chatLanguage);
+          const assistantMessage: Message = {
+            id: `assistant-${Date.now()}`,
+            sender: 'assistant',
+            text: data.reply,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            links: data.links,
+            quickReplies: data.quickReplies
+          };
+          setMessages(prev => [...prev, assistantMessage]);
+        } catch {
+          const isTa = chatLanguage === 'ta';
+          const fallbackMessage: Message = {
+            id: `assistant-fallback-${Date.now()}`,
+            sender: 'assistant',
+            text: isTa
+              ? 'மன்னிக்கவும், தகவலைப் பெறுவதில் தாமதம் ஏற்பட்டுள்ளது. எங்கள் திருநெல்வேலி உதவி மையத்தை நேரடியாக +91 91715 08042 என்ற எண்ணில் அழைக்கலாம்.'
+              : 'I encountered an issue fetching this data. You can directly reach our Tirunelveli care desk at +91 91715 08042 for instant assistance.',
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          };
+          setMessages(prev => [...prev, fallbackMessage]);
+        } finally {
+          setLoading(false);
+        }
+      }, 220);
+    },
+    [inputMsg, loading, chatLanguage]
+  );
 
   const handleReset = () => {
     const isTa = chatLanguage === 'ta';
@@ -506,7 +499,7 @@ export default function AIAssistantChatbot() {
         </div>
       )}
 
-      {/* FLOATING LAUNCHER BUTTON (Visible when chat is closed) */}
+      {/* FLOATING LAUNCHER BUTTON */}
       {!isOpen && (
         <div
           ref={launcherRef}
