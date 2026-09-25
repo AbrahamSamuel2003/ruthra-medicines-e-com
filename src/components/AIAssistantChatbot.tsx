@@ -14,7 +14,12 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
-import { queryDomainKnowledge, AIQuickReply, AILink } from '@/lib/aiKnowledgeEngine';
+import {
+  queryDomainKnowledge,
+  getInitialWelcome,
+  AIQuickReply,
+  AILink
+} from '@/lib/aiKnowledgeEngine';
 
 interface Message {
   id: string;
@@ -155,19 +160,13 @@ export default function AIAssistantChatbot() {
 
   // Initialize initial greeting whenever chatLanguage is switched inside chatbot
   useEffect(() => {
-    const isTa = chatLanguage === 'ta';
+    const welcome = getInitialWelcome(chatLanguage);
     const welcomeMessage: Message = {
       id: 'init-1',
       sender: 'assistant',
-      text: isTa
-        ? 'வணக்கம்! நான் ரூத்ரா மெடிசின்ஸ் AI மருத்துவ உதவியாளர்.\n\nநான் உங்களுக்கு உதவக்கூடியவை:\n1. உங்கள் உடல்நலனுக்கான மருந்து ஆலோசனை\n2. 5+1 திட்டம் & தள்ளுபடி சலுகைகள்\n3. தமிழ்நாடு முழுவதும் இலவச டெலிவரி\n4. மருந்து உண்ணும் முறை & அளவு\n5. திருநெல்வேலி உதவி மையம்\n\nஉங்கள் கேள்வியை தட்டச்சு செய்யவும் அல்லது கீழே உள்ள விருப்பங்களில் ஒன்றைத் தேர்வு செய்யவும்.'
-        : 'Vanakkam! I am the Ruthra Medicines AI Assistant.\n\nI can directly assist you with:\n1. Medicine guidance for your symptoms\n2. 5+1 scheme & volume discounts\n3. Free shipping inside TN\n4. Dosage & how to take\n5. Tirunelveli support desk\n\nPlease type your question below or select a suggested topic.',
+      text: welcome.text,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      quickReplies: [
-        { labelEn: 'Joint Pain Remedies', labelTa: 'மூட்டு வலி நிவாரணம்', query: 'Joint pain medicines' },
-        { labelEn: 'Cough & Cold Care', labelTa: 'சளி & இருமல் மருந்துகள்', query: 'Remedies for cold and cough' },
-        { labelEn: '5+1 Scheme & Offers', labelTa: '5+1 சலுகை திட்டம்', query: 'What are the current offers?' }
-      ]
+      quickReplies: welcome.quickReplies
     };
     setMessages([welcomeMessage]);
   }, [chatLanguage]);
@@ -281,20 +280,14 @@ export default function AIAssistantChatbot() {
   );
 
   const handleReset = () => {
-    const isTa = chatLanguage === 'ta';
+    const welcome = getInitialWelcome(chatLanguage);
     setMessages([
       {
         id: `init-${Date.now()}`,
         sender: 'assistant',
-        text: isTa
-          ? 'வணக்கம்! நான் ரூத்ரா மெடிசின்ஸ் AI மருத்துவ உதவியாளர்.\n\nநான் உங்களுக்கு உதவக்கூடியவை:\n1. உங்கள் உடல்நலனுக்கான மருந்து ஆலோசனை\n2. 5+1 திட்டம் & தள்ளுபடி சலுகைகள்\n3. தமிழ்நாடு முழுவதும் இலவச டெலிவரி\n4. மருந்து உண்ணும் முறை & அளவு\n5. திருநெல்வேலி உதவி மையம்\n\nஉங்கள் கேள்வியை தட்டச்சு செய்யவும் அல்லது கீழே உள்ள விருப்பங்களில் ஒன்றைத் தேர்வு செய்யவும்.'
-          : 'Vanakkam! I am the Ruthra Medicines AI Assistant.\n\nI can directly assist you with:\n1. Medicine guidance for your symptoms\n2. 5+1 scheme & volume discounts\n3. Free shipping inside TN\n4. Dosage & how to take\n5. Tirunelveli support desk\n\nPlease type your question below or select a suggested topic.',
+        text: welcome.text,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        quickReplies: [
-          { labelEn: 'Joint Pain Remedies', labelTa: 'மூட்டு வலி நிவாரணம்', query: 'Joint pain medicines' },
-          { labelEn: 'Cough & Cold Care', labelTa: 'சளி & இருமல் மருந்துகள்', query: 'Remedies for cold and cough' },
-          { labelEn: '5+1 Scheme & Offers', labelTa: '5+1 சலுகை திட்டம்', query: 'What are the current offers?' }
-        ]
+        quickReplies: welcome.quickReplies
       }
     ]);
   };
@@ -411,30 +404,53 @@ export default function AIAssistantChatbot() {
                     {/* DIRECT NAVIGATION LINKS */}
                     {msg.links && msg.links.length > 0 && (
                       <div className="mt-2.5 pt-2 border-t border-[#16382B]/10 space-y-1.5">
-                        {msg.links.map((link, idx) => (
-                          <Link
-                            key={idx}
-                            href={link.url}
-                            onClick={() => setIsOpen(false)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E8F1EB] hover:bg-[#16382B] text-[#16382B] hover:text-white font-semibold text-[11px] transition-colors"
-                          >
-                            <span>{chatLanguage === 'ta' ? link.labelTa : link.labelEn}</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </Link>
-                        ))}
+                        {msg.links.map((link, idx) => {
+                          const isExternal = link.url.startsWith('http');
+                          const linkContent = (
+                            <>
+                              <span>{chatLanguage === 'ta' ? link.labelTa : link.labelEn}</span>
+                              <ArrowRight className="w-3 h-3 text-[#DFB36C]" />
+                            </>
+                          );
+
+                          if (isExternal) {
+                            return (
+                              <a
+                                key={idx}
+                                href={link.url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E8F1EB] hover:bg-[#16382B] text-[#16382B] hover:text-white font-semibold text-[11px] transition-colors shadow-2xs cursor-pointer touch-manipulation"
+                              >
+                                {linkContent}
+                              </a>
+                            );
+                          }
+
+                          return (
+                            <Link
+                              key={idx}
+                              href={link.url}
+                              onClick={() => setIsOpen(false)}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E8F1EB] hover:bg-[#16382B] text-[#16382B] hover:text-white font-semibold text-[11px] transition-colors shadow-2xs"
+                            >
+                              {linkContent}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
 
-                  {/* QUICK REPLY PILLS */}
+                  {/* QUICK REPLY PILLS (Full Option-Driven Selection) */}
                   {msg.quickReplies && msg.quickReplies.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-1 max-w-[95%]">
-                      {msg.quickReplies.slice(0, 3).map((qr, idx) => (
+                      {msg.quickReplies.map((qr, idx) => (
                         <button
                           key={idx}
                           type="button"
                           onClick={() => handleSendMessage(qr.query)}
-                          className="text-[11px] sm:text-xs font-semibold text-[#16382B] bg-white hover:bg-[#E8F1EB] active:bg-[#D5E6DC] border border-[#16382B]/20 shadow-2xs hover:shadow-xs px-3 py-1.5 rounded-full transition-all hover:scale-105 active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1"
+                          className="text-[11px] sm:text-xs font-semibold text-[#16382B] bg-white hover:bg-[#E8F1EB] active:bg-[#D5E6DC] border border-[#16382B]/20 shadow-2xs hover:shadow-xs px-3 py-1.5 rounded-full transition-all hover:scale-105 active:scale-95 cursor-pointer touch-manipulation flex items-center gap-1.5"
                         >
                           <span>{chatLanguage === 'ta' ? qr.labelTa : qr.labelEn}</span>
                           <ArrowRight className="w-2.5 h-2.5 text-[#C29043]" />
