@@ -58,6 +58,11 @@
     font-family: var(--font-tamil), 'Noto Sans Tamil', system-ui, sans-serif;
   }
 
+  /* Automatically hide mobile bottom navigation when AI Chatbot is active */
+  body[data-chat-open="true"] nav[aria-label="Mobile Bottom Navigation"] {
+    display: none !important;
+  }
+
   /* Tamil Typography Alignment & Sizing Calibration to Prevent Layout Disruption */
   html[lang="ta"], [data-lang="ta"] {
     font-family: var(--font-tamil), 'Noto Sans Tamil', system-ui, sans-serif;
