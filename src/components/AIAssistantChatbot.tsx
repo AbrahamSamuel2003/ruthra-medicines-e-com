@@ -223,11 +223,6 @@ export default function AIAssistantChatbot() {
     };
   }, [isOpen]);
 
-  // Hide on checkout, search, or cart drawer
-  if (isDrawerOpen || isSearchOpen || pathname === '/checkout') {
-    return null;
-  }
-
   const isBottomNavHidden = pathname.startsWith('/product/');
 
   // 0-Latency Instant Evaluator with smooth natural typing cadence
@@ -291,6 +286,11 @@ export default function AIAssistantChatbot() {
       }
     ]);
   };
+
+  // Hide on checkout, search modal, or cart drawer (evaluated strictly after all React hooks)
+  if (isDrawerOpen || isSearchOpen || pathname === '/checkout') {
+    return null;
+  }
 
   return (
     <>

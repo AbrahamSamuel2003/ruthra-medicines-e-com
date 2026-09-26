@@ -73,59 +73,48 @@ export default function CheckoutPage() {
   } = useCart();
   const { language, t } = useLanguage();
 
-  // Initialize form states with lazy initializer from localStorage
-  const [formData, setFormData] = useState(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const saved = localStorage.getItem('ruthra_guest_profile');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          return {
-            fullName: parsed.fullName || '',
-            phone: parsed.phone || '',
-            email: parsed.email || '',
-            address: parsed.address || '',
-            landmark: parsed.landmark || '',
-            city: parsed.city || '',
-            state: parsed.state || 'Tamil Nadu',
-            pincode: parsed.pincode || '',
-            paymentMethod: 'upi',
-            deliveryMethod: 'standard'
-          };
-        }
-      } catch {
-        // ignore
-      }
-    }
-    return {
-      fullName: '',
-      phone: '',
-      email: '',
-      address: '',
-      landmark: '',
-      city: '',
-      state: 'Tamil Nadu',
-      pincode: '',
-      paymentMethod: 'upi',
-      deliveryMethod: 'standard'
-    };
+  // Initialize form states cleanly
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    address: '',
+    landmark: '',
+    city: '',
+    state: 'Tamil Nadu',
+    pincode: '',
+    paymentMethod: 'upi',
+    deliveryMethod: 'standard'
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
-  const [hasSavedProfile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        const saved = localStorage.getItem('ruthra_guest_profile');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          return Boolean(parsed.fullName || parsed.phone);
+  const [hasSavedProfile, setHasSavedProfile] = useState(false);
+
+  // Load saved guest profile from localStorage strictly on client mount
+  React.useEffect(() => {
+    try {
+      const saved = localStorage.getItem('ruthra_guest_profile');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setFormData(prev => ({
+          ...prev,
+          fullName: parsed.fullName || '',
+          phone: parsed.phone || '',
+          email: parsed.email || '',
+          address: parsed.address || '',
+          landmark: parsed.landmark || '',
+          city: parsed.city || '',
+          state: parsed.state || 'Tamil Nadu',
+          pincode: parsed.pincode || '',
+        }));
+        if (parsed.fullName || parsed.phone) {
+          setHasSavedProfile(true);
         }
-      } catch {
-        // ignore
       }
+    } catch {
+      // ignore
     }
-    return false;
-  });
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
