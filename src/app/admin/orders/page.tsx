@@ -15,7 +15,8 @@ import {
   AlertCircle,
   Send,
   ExternalLink,
-  Link2
+  Link2,
+  MessageSquare
 } from 'lucide-react';
 import { Order, OrderStatus, PaymentStatus } from '@/types/admin';
 import { generateOrderInvoicePdf } from '@/lib/invoiceGenerator';
@@ -639,9 +640,23 @@ export default function AdminOrdersPage() {
                       <Send className="w-3.5 h-3.5 text-[#DFB36C]" />
                       <span>{isSendingTracking ? 'Sending...' : 'Send Tracking'}</span>
                     </button>
+                    {activeOrder.customer.phone && (
+                      <a
+                        href={`https://wa.me/91${activeOrder.customer.phone.replace(/\D/g, '')}?text=${encodeURIComponent(
+                          `Vanakkam ${activeOrder.customer.fullName},\n\nYour Ruthra Medicines order (${activeOrder.orderNumber}) has been dispatched via Express Courier!\n\nTrack your shipment live:\n${trackingInput.trim() || activeOrder.trackingUrl || 'https://ruthramedicos.com'}\n\nThank you for choosing Ruthra Medicines Tirunelveli.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-2 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer flex-shrink-0 shadow-xs"
+                        title="Share tracking link directly to customer WhatsApp"
+                      >
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">WhatsApp</span>
+                      </a>
+                    )}
                   </div>
                   <p className="text-[10.5px] text-[#8A9B93]">
-                    Pasting and clicking Send will email the tracking link to {activeOrder.shippingSnapshot?.email || activeOrder.customer.email || 'the customer'} and automatically change status to DISPATCHED.
+                    Clicking Send will email the tracking link to {activeOrder.shippingSnapshot?.email || activeOrder.customer.email || 'the customer'} and automatically change status to DISPATCHED.
                   </p>
                 </div>
 
