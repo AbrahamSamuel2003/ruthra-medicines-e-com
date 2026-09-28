@@ -2,9 +2,9 @@ import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
 export const ADMIN_CREDENTIALS = {
-  email: 'admin1234@gmail.com',
-  password: 'admin1234',
-  name: 'Ruthra Master Admin'
+  email: process.env.ADMIN_EMAIL || 'admin1234@gmail.com',
+  password: process.env.ADMIN_PASSWORD || 'admin1234',
+  name: process.env.ADMIN_NAME || 'Ruthra Master Admin'
 };
 
 const JWT_SECRET = new TextEncoder().encode(

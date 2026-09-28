@@ -6,6 +6,8 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.ADMIN_JWT_SECRET || 'ruthra-siddha-secret-admin-key-tirunelveli-2026-authenticated'
 );
 
+const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'admin1234@gmail.com').toLowerCase();
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -22,7 +24,7 @@ export async function middleware(request: NextRequest) {
     if (token) {
       try {
         const { payload } = await jwtVerify(token, JWT_SECRET);
-        if (payload.role === 'ADMIN' && payload.email === 'admin1234@gmail.com') {
+        if (payload.role === 'ADMIN' && typeof payload.email === 'string' && payload.email.toLowerCase() === ADMIN_EMAIL) {
           isAuthenticated = true;
         }
       } catch {
@@ -47,7 +49,7 @@ export async function middleware(request: NextRequest) {
     if (token) {
       try {
         const { payload } = await jwtVerify(token, JWT_SECRET);
-        if (payload.role === 'ADMIN' && payload.email === 'admin1234@gmail.com') {
+        if (payload.role === 'ADMIN' && typeof payload.email === 'string' && payload.email.toLowerCase() === ADMIN_EMAIL) {
           isAuthenticated = true;
         }
       } catch {
