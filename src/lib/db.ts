@@ -1,7 +1,6 @@
 import { prisma } from './prisma';
 import { PRODUCTS } from '@/data/products';
 import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES } from '@/data/categories';
-import { INITIAL_CUSTOMERS, INITIAL_ORDERS } from '@/data/mockOrders';
 import { 
   Order, 
   Customer, 
@@ -18,7 +17,7 @@ import {
 } from '@/types/admin';
 import { Product, MedicalSystem } from '@/types/product';
 
-// Persistent In-Memory Fallback Store (Ensures seamless orders and admin views on Vercel/Cloud)
+// Persistent In-Memory Fallback Store (Starts clean with 0 orders/customers)
 const globalForApp = globalThis as unknown as {
   __inMemoryOrders?: Order[];
   __inMemoryCustomers?: Customer[];
@@ -26,10 +25,10 @@ const globalForApp = globalThis as unknown as {
 };
 
 if (!globalForApp.__inMemoryOrders) {
-  globalForApp.__inMemoryOrders = [...INITIAL_ORDERS];
+  globalForApp.__inMemoryOrders = [];
 }
 if (!globalForApp.__inMemoryCustomers) {
-  globalForApp.__inMemoryCustomers = [...INITIAL_CUSTOMERS];
+  globalForApp.__inMemoryCustomers = [];
 }
 if (!globalForApp.__inMemoryProducts) {
   globalForApp.__inMemoryProducts = [...PRODUCTS];
@@ -662,25 +661,23 @@ export async function getOrders(filter?: {
       orderBy: { createdAt: 'desc' }
     });
 
-    if (prismaOrders && prismaOrders.length > 0) {
-      let list = prismaOrders.map(mapPrismaOrderToApp);
+    let list = prismaOrders.map(mapPrismaOrderToApp);
 
-      if (filter?.paymentStatus && filter.paymentStatus !== 'ALL') {
-        list = list.filter(o => o.payment.status === filter.paymentStatus);
-      }
-
-      if (filter?.search) {
-        const q = filter.search.toLowerCase().trim();
-        list = list.filter(o => 
-          o.orderNumber.toLowerCase().includes(q) ||
-          o.customer.fullName.toLowerCase().includes(q) ||
-          o.customer.phone.includes(q) ||
-          (o.shippingSnapshot as any)?.city?.toLowerCase().includes(q)
-        );
-      }
-
-      return list;
+    if (filter?.paymentStatus && filter.paymentStatus !== 'ALL') {
+      list = list.filter(o => o.payment.status === filter.paymentStatus);
     }
+
+    if (filter?.search) {
+      const q = filter.search.toLowerCase().trim();
+      list = list.filter(o => 
+        o.orderNumber.toLowerCase().includes(q) ||
+        o.customer.fullName.toLowerCase().includes(q) ||
+        o.customer.phone.includes(q) ||
+        (o.shippingSnapshot as any)?.city?.toLowerCase().includes(q)
+      );
+    }
+
+    return list;
   } catch (err) {
     console.warn('PostgreSQL getOrders fallback to in-memory store:', err);
   }
@@ -1254,34 +1251,32 @@ export async function getCustomers(search?: string): Promise<Customer[]> {
       orderBy: { totalSpend: 'desc' }
     });
 
-    if (list && list.length > 0) {
-      return list.map(c => ({
-        id: c.id,
-        fullName: c.fullName,
-        phone: c.phone,
-        email: c.email || undefined,
-        address: c.addresses[0]?.fullAddress || '',
-        city: c.addresses[0]?.city || '',
-        state: c.addresses[0]?.state || 'Tamil Nadu',
-        pincode: c.addresses[0]?.pincode || '',
-        addresses: c.addresses.map(a => ({
-          id: a.id,
-          customerId: a.customerId,
-          fullAddress: a.fullAddress,
-          landmark: a.landmark || undefined,
-          city: a.city,
-          state: a.state,
-          pincode: a.pincode,
-          addressType: a.addressType as AddressType,
-          createdAt: a.createdAt.toISOString(),
-          updatedAt: a.updatedAt.toISOString()
-        })),
-        totalOrders: c.totalOrders,
-        totalSpend: Number(c.totalSpend),
-        createdAt: c.createdAt.toISOString(),
-        updatedAt: c.updatedAt.toISOString()
-      }));
-    }
+    return list.map(c => ({
+      id: c.id,
+      fullName: c.fullName,
+      phone: c.phone,
+      email: c.email || undefined,
+      address: c.addresses[0]?.fullAddress || '',
+      city: c.addresses[0]?.city || '',
+      state: c.addresses[0]?.state || 'Tamil Nadu',
+      pincode: c.addresses[0]?.pincode || '',
+      addresses: c.addresses.map(a => ({
+        id: a.id,
+        customerId: a.customerId,
+        fullAddress: a.fullAddress,
+        landmark: a.landmark || undefined,
+        city: a.city,
+        state: a.state,
+        pincode: a.pincode,
+        addressType: a.addressType as AddressType,
+        createdAt: a.createdAt.toISOString(),
+        updatedAt: a.updatedAt.toISOString()
+      })),
+      totalOrders: c.totalOrders,
+      totalSpend: Number(c.totalSpend),
+      createdAt: c.createdAt.toISOString(),
+      updatedAt: c.updatedAt.toISOString()
+    }));
   } catch (err) {
     console.warn('PostgreSQL getCustomers fallback:', err);
   }
@@ -1386,42 +1381,40 @@ export async function getDashboardMetrics(): Promise<DashboardMetrics> {
     const totalOrdersCount = await prisma.order.count();
     const totalCustomersCount = await prisma.customer.count();
 
-    if (totalOrdersCount > 0) {
-      const todayOrders = await prisma.order.findMany({
-        where: { createdAt: { gte: startOfToday } }
-      });
+    const todayOrders = await prisma.order.findMany({
+      where: { createdAt: { gte: startOfToday } }
+    });
 
-      const pendingOrdersCount = await prisma.order.count({
-        where: {
-          OR: [
-            { status: 'PENDING' },
-            { payment: { status: 'PENDING' } }
-          ]
-        }
-      });
+    const pendingOrdersCount = await prisma.order.count({
+      where: {
+        OR: [
+          { status: 'PENDING' },
+          { payment: { status: 'PENDING' } }
+        ]
+      }
+    });
 
-      const paidOrdersCount = await prisma.payment.count({
-        where: { status: 'PAID' }
-      });
+    const paidOrdersCount = await prisma.payment.count({
+      where: { status: 'PAID' }
+    });
 
-      const todaySalesVolume = todayOrders.reduce((sum, o) => sum + Number(o.finalTotal), 0);
+    const todaySalesVolume = todayOrders.reduce((sum, o) => sum + Number(o.finalTotal), 0);
 
-      const recentPrismaOrders = await prisma.order.findMany({
-        take: 8,
-        orderBy: { createdAt: 'desc' },
-        include: { customer: true, address: true, items: true, payment: true, invoice: true }
-      });
+    const recentPrismaOrders = await prisma.order.findMany({
+      take: 8,
+      orderBy: { createdAt: 'desc' },
+      include: { customer: true, address: true, items: true, payment: true, invoice: true }
+    });
 
-      return {
-        todayOrdersCount: todayOrders.length,
-        todaySalesVolume,
-        pendingOrdersCount,
-        paidOrdersCount,
-        totalCustomersCount,
-        totalOrdersCount,
-        recentOrders: recentPrismaOrders.map(mapPrismaOrderToApp)
-      };
-    }
+    return {
+      todayOrdersCount: todayOrders.length,
+      todaySalesVolume,
+      pendingOrdersCount,
+      paidOrdersCount,
+      totalCustomersCount,
+      totalOrdersCount,
+      recentOrders: recentPrismaOrders.map(mapPrismaOrderToApp)
+    };
   } catch (err) {
     console.warn('PostgreSQL getDashboardMetrics fallback:', err);
   }
