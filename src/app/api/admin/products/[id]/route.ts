@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProductById, updateProduct, deleteProduct } from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,6 +32,15 @@ export async function PATCH(
     if (!updated) {
       return NextResponse.json({ success: false, error: 'Product update failed or not found' }, { status: 400 });
     }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/shop');
+      if (updated.slug) revalidatePath(`/product/${updated.slug}`);
+    } catch {
+      // ignore
+    }
+
     return NextResponse.json({ success: true, product: updated });
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : 'Failed to update product';
@@ -48,6 +58,14 @@ export async function DELETE(
     if (!success) {
       return NextResponse.json({ success: false, error: 'Product delete failed or not found' }, { status: 400 });
     }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/shop');
+    } catch {
+      // ignore
+    }
+
     return NextResponse.json({ success: true, message: 'Product deleted successfully' });
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : 'Failed to delete product';

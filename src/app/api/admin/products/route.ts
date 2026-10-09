@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getProducts, createProduct, syncProductCatalog } from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,6 +30,16 @@ export async function POST(request: NextRequest) {
 
     if (body && body.action === 'create' && body.product) {
       const created = await createProduct(body.product);
+      
+      // Instant cache revalidation across entire storefront (0 latency)
+      try {
+        revalidatePath('/', 'layout');
+        revalidatePath('/shop');
+        revalidatePath(`/product/${created.slug}`);
+      } catch (revErr) {
+        console.warn('Cache revalidation notice:', revErr);
+      }
+
       return NextResponse.json({
         success: true,
         message: 'Product created successfully',
@@ -37,6 +48,11 @@ export async function POST(request: NextRequest) {
     }
 
     const result = await syncProductCatalog();
+    try {
+      revalidatePath('/', 'layout');
+    } catch {
+      // ignore
+    }
     return NextResponse.json({
       success: true,
       message: 'Product catalog synchronized with PostgreSQL database successfully',
