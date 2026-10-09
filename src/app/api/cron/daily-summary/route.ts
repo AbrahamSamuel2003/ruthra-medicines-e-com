@@ -3,16 +3,26 @@ import { getDailySummary } from '@/lib/db';
 import { getAdminSession } from '@/lib/auth';
 import { sendDailySummaryEmail } from '@/lib/mailer';
 import { STORE_CONFIG } from '@/lib/config';
+import { requireEnv } from '@/lib/env';
 
 export async function GET(request: Request) {
   // Allow authorized admin session or automated cron header / secret token
   const authHeader = request.headers.get('authorization');
-  const cronSecret = process.env.CRON_SECRET || 'ruthra-daily-cron-tirunelveli-secret';
-  
-  const isCronAuthorized = authHeader === `Bearer ${cronSecret}`;
+  let isCronAuthorized = false;
+
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    try {
+      const expectedSecret = requireEnv('CRON_SECRET', 32);
+      const providedToken = authHeader.replace(/^Bearer\s+/i, '').trim();
+      isCronAuthorized = Boolean(providedToken && providedToken === expectedSecret);
+    } catch {
+      isCronAuthorized = false;
+    }
+  }
+
   const session = await getAdminSession();
 
-  // Allow either admin session, valid bearer secret, or local test requests
+  // Allow either admin session, valid bearer secret, or local development
   if (!isCronAuthorized && !session && process.env.NODE_ENV === 'production') {
     return NextResponse.json({ error: 'Unauthorized cron access' }, { status: 401 });
   }

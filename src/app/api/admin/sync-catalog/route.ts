@@ -1,10 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { syncProductCatalog } from '@/lib/db';
+import { getAdminSession } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: NextRequest) {
+export async function POST() {
   try {
+    const session = await getAdminSession();
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     const result = await syncProductCatalog();
     return NextResponse.json({
       success: true,
@@ -12,11 +21,10 @@ export async function GET(request: NextRequest) {
       result
     });
   } catch (error: unknown) {
-    const errorMsg = error instanceof Error ? error.message : 'Failed to sync product catalog';
-    return NextResponse.json({ success: false, error: errorMsg }, { status: 500 });
+    console.error('Catalog sync error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to sync catalog' },
+      { status: 500 }
+    );
   }
-}
-
-export async function POST(request: NextRequest) {
-  return GET(request);
 }

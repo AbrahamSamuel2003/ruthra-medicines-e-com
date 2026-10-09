@@ -1,20 +1,15 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.ADMIN_JWT_SECRET || 'ruthra-siddha-secret-admin-key-tirunelveli-2026-authenticated'
-);
-
-const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'admin1234@gmail.com').toLowerCase();
+import { requireEnv } from '@/lib/env';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Protect Admin API endpoints (/api/admin/*)
   if (pathname.startsWith('/api/admin')) {
-    // Whitelist login and sync-catalog endpoints
-    if (pathname === '/api/admin/auth/login' || pathname === '/api/admin/sync-catalog') {
+    // Whitelist login endpoint ONLY
+    if (pathname === '/api/admin/auth/login') {
       return NextResponse.next();
     }
 
@@ -23,8 +18,10 @@ export async function middleware(request: NextRequest) {
 
     if (token) {
       try {
-        const { payload } = await jwtVerify(token, JWT_SECRET);
-        if (payload.role === 'ADMIN' && typeof payload.email === 'string' && payload.email.toLowerCase() === ADMIN_EMAIL) {
+        const jwtSecret = new TextEncoder().encode(requireEnv('ADMIN_JWT_SECRET', 32));
+        const adminEmail = requireEnv('ADMIN_EMAIL', 5).toLowerCase();
+        const { payload } = await jwtVerify(token, jwtSecret);
+        if (payload.role === 'ADMIN' && typeof payload.email === 'string' && payload.email.toLowerCase() === adminEmail) {
           isAuthenticated = true;
         }
       } catch {
@@ -48,8 +45,10 @@ export async function middleware(request: NextRequest) {
     let isAuthenticated = false;
     if (token) {
       try {
-        const { payload } = await jwtVerify(token, JWT_SECRET);
-        if (payload.role === 'ADMIN' && typeof payload.email === 'string' && payload.email.toLowerCase() === ADMIN_EMAIL) {
+        const jwtSecret = new TextEncoder().encode(requireEnv('ADMIN_JWT_SECRET', 32));
+        const adminEmail = requireEnv('ADMIN_EMAIL', 5).toLowerCase();
+        const { payload } = await jwtVerify(token, jwtSecret);
+        if (payload.role === 'ADMIN' && typeof payload.email === 'string' && payload.email.toLowerCase() === adminEmail) {
           isAuthenticated = true;
         }
       } catch {

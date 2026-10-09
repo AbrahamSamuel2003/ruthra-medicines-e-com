@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { ADMIN_CREDENTIALS, signAdminToken, ADMIN_COOKIE_NAME } from '@/lib/auth';
+import { getAdminEmail, verifyAdminPassword, getAdminName, signAdminToken, ADMIN_COOKIE_NAME } from '@/lib/auth';
 
 export async function POST(request: Request) {
   try {
@@ -13,24 +13,24 @@ export async function POST(request: Request) {
       );
     }
 
-    const trimmedEmail = email.trim().toLowerCase();
-    
-    // Strict authentication against configured master admin credentials
-    if (
-      trimmedEmail === ADMIN_CREDENTIALS.email.toLowerCase() &&
-      password === ADMIN_CREDENTIALS.password
-    ) {
+    const trimmedEmail = String(email).trim().toLowerCase();
+    const adminEmail = getAdminEmail();
+    const isPasswordValid = await verifyAdminPassword(String(password));
+
+    // Strict authentication against configured admin credentials (bcrypt or raw env)
+    if (trimmedEmail === adminEmail && isPasswordValid) {
+      const adminName = getAdminName();
       const token = await signAdminToken({
-        email: ADMIN_CREDENTIALS.email,
-        name: ADMIN_CREDENTIALS.name,
+        email: adminEmail,
+        name: adminName,
         role: 'ADMIN'
       });
 
       const response = NextResponse.json({
         success: true,
         user: {
-          email: ADMIN_CREDENTIALS.email,
-          name: ADMIN_CREDENTIALS.name,
+          email: adminEmail,
+          name: adminName,
           role: 'ADMIN'
         }
       });
