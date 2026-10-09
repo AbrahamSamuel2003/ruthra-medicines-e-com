@@ -170,7 +170,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Sidebar Brand Header */}
         <div className="p-4.5 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-auto px-2 py-1 rounded-xl bg-white border border-[#C29043]/30 shadow-md flex items-center justify-center flex-shrink-0">
+            <Link href="/admin" className="h-10 w-auto px-2 py-1 rounded-xl bg-white border border-[#C29043]/30 shadow-md flex items-center justify-center flex-shrink-0 hover:scale-105 transition-transform" title="Admin Dashboard">
               <Image
                 src="/images/ruthra-logo.png"
                 alt="Ruthra Logo"
@@ -178,19 +178,27 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 height={38}
                 className="h-7.5 w-auto object-contain"
                 priority
-                unoptimized
+                sizes="65px"
               />
-            </div>
+            </Link>
             <div className="min-w-0">
-              <h1 className="font-serif-brand font-bold text-base tracking-tight text-white truncate">
-                Ruthra Medicines
-              </h1>
+              <Link href="/admin">
+                <h1 className="font-serif-brand font-bold text-base tracking-tight text-white hover:text-[#DFB36C] transition-colors truncate">
+                  Ruthra Medicines
+                </h1>
+              </Link>
               <p className="text-[10px] uppercase font-semibold tracking-wider text-[#DFB36C]">
                 Admin Operations
               </p>
-              <p className="text-[8px] text-white/50 font-medium tracking-tight whitespace-nowrap">
+              <a
+                href="https://ss40network.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[8px] text-white/50 hover:text-[#DFB36C] hover:underline font-medium tracking-tight whitespace-nowrap transition-colors block"
+                title="Developed by SS40 NETWORK PRIVATE LIMITED"
+              >
                 Developed by SS40 NETWORK
-              </p>
+              </a>
             </div>
           </div>
         </div>

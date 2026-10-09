@@ -161,30 +161,39 @@ export default function Header() {
         
         {/* 1. Left: Brand Logo & Lineage */}
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <Link href="/" onClick={handleNavClick} className="flex items-center gap-1.5 group flex-shrink-0">
-            <div className="h-8.5 xl:h-9.5 w-auto px-1.5 py-0.5 rounded-xl bg-white border border-[#16382B]/10 shadow-xs group-hover:scale-105 transition-transform flex items-center justify-center">
-              <Image
-                src="/images/ruthra-logo.png"
-                alt="Ruthra Logo"
-                width={60}
-                height={35}
-                className="h-6 xl:h-7 w-auto object-contain"
-                priority
-                sizes="60px"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <span className="font-serif-brand text-base xl:text-lg font-bold text-[#16382B] tracking-wider leading-none">
-                RUTHRA
-              </span>
-              <span className={`text-[7.5px] xl:text-[8.5px] text-[#8C5D14] font-semibold mt-0.5 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
-                {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
-              </span>
-              <span className="text-[6.5px] xl:text-[7.5px] text-[#2D5A46] font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
-                Developed by SS40 NETWORK
-              </span>
-            </div>
+          <Link 
+            href="/" 
+            onClick={handleNavClick} 
+            className="h-8.5 xl:h-9.5 w-auto px-1.5 py-0.5 rounded-xl bg-white border border-[#16382B]/10 shadow-xs hover:scale-105 transition-transform flex items-center justify-center flex-shrink-0"
+            title="Ruthra Medicines Home"
+          >
+            <Image
+              src="/images/ruthra-logo.png"
+              alt="Ruthra Logo"
+              width={60}
+              height={35}
+              className="h-6 xl:h-7 w-auto object-contain"
+              priority
+              sizes="60px"
+            />
           </Link>
+          <a
+            href="https://ss40network.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col justify-center group cursor-pointer"
+            title="Developed by SS40 NETWORK PRIVATE LIMITED"
+          >
+            <span className="font-serif-brand text-base xl:text-lg font-bold text-[#16382B] group-hover:text-[#8C5D14] transition-colors tracking-wider leading-none block">
+              RUTHRA
+            </span>
+            <span className={`text-[7.5px] xl:text-[8.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold mt-0.5 whitespace-nowrap block transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
+              {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
+            </span>
+            <span className="text-[6.5px] xl:text-[7.5px] text-[#2D5A46] group-hover:text-[#8C5D14] group-hover:underline font-medium tracking-tight whitespace-nowrap leading-none mt-0.5 transition-colors">
+              Developed by SS40 NETWORK
+            </span>
+          </a>
         </div>
 
         {/* 2. Center: Primary Navigation Links */}
