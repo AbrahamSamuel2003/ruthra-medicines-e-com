@@ -188,7 +188,7 @@ export default function Header() {
         </div>
 
         {/* 2. Center: Primary Navigation Links */}
-        <nav className="flex items-center justify-center gap-0.5 xl:gap-1 2xl:gap-1.5 font-medium flex-1 min-w-0">
+        <nav className="flex items-center justify-center gap-0.5 lg:gap-1 xl:gap-1.5 2xl:gap-2 font-medium flex-1 min-w-0 px-1">
           
           {/* Siddha Mega-Dropdown */}
           <div
@@ -199,15 +199,14 @@ export default function Header() {
             <Link
               href="/siddha"
               onClick={handleNavClick}
-              className={`h-8.5 flex items-center gap-1 px-1.5 2xl:px-2.5 rounded-xl text-xs 2xl:text-[13px] font-bold transition-all whitespace-nowrap ${
+              className={`h-8.5 flex items-center gap-1 px-1.5 xl:px-2 2xl:px-2.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all whitespace-nowrap ${
                 isSiddhaActive
                   ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                   : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
               }`}
             >
               <Leaf className="w-3.5 h-3.5 text-[#16382B] flex-shrink-0" />
-              <span className="hidden 2xl:inline">{t('Siddha Medicines', 'சித்த மருந்துகள்')}</span>
-              <span className="2xl:hidden">{t('Siddha', 'சித்தம்')}</span>
+              <span>{t('Siddha', 'சித்தம்')}</span>
               <ChevronDown
                 className={`w-3 h-3 text-[#8C9E96] transition-transform duration-200 ${
                   siddhaDropdownOpen ? 'rotate-180 text-[#C29043]' : ''
@@ -288,15 +287,14 @@ export default function Header() {
             <Link
               href="/ayurveda"
               onClick={handleNavClick}
-              className={`h-8.5 flex items-center gap-1 px-1.5 2xl:px-2.5 rounded-xl text-xs 2xl:text-[13px] font-bold transition-all whitespace-nowrap ${
+              className={`h-8.5 flex items-center gap-1 px-1.5 xl:px-2 2xl:px-2.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all whitespace-nowrap ${
                 isAyurvedaActive
                   ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                   : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
               }`}
             >
               <Droplets className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-              <span className="hidden 2xl:inline">{t('Ayurveda Medicines', 'ஆயுர்வேத மருந்துகள்')}</span>
-              <span className="2xl:hidden">{t('Ayurveda', 'ஆயுர்வேதம்')}</span>
+              <span>{t('Ayurveda', 'ஆயுர்வேதம்')}</span>
               <ChevronDown
                 className={`w-3 h-3 text-[#8C9E96] transition-transform duration-200 ${
                   ayurvedaDropdownOpen ? 'rotate-180 text-[#C29043]' : ''
@@ -377,15 +375,14 @@ export default function Header() {
             <Link
               href="/shop/concerns"
               onClick={handleNavClick}
-              className={`h-8.5 flex items-center gap-1 px-1.5 2xl:px-2.5 rounded-xl text-xs 2xl:text-[13px] font-bold transition-all whitespace-nowrap ${
+              className={`h-8.5 flex items-center gap-1 px-1.5 xl:px-2 2xl:px-2.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all whitespace-nowrap ${
                 isHealthActive
                   ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                   : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
               }`}
             >
               <Heart className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-              <span className="hidden 2xl:inline">{t('Health Indication', 'உடல் நலம்')}</span>
-              <span className="2xl:hidden">{t('Health', 'நலம்')}</span>
+              <span>{t('Health', 'உடல் நலம்')}</span>
               <ChevronDown
                 className={`w-3 h-3 text-[#8C9E96] transition-transform duration-200 ${
                   healthDropdownOpen ? 'rotate-180 text-[#C29043]' : ''
@@ -451,22 +448,21 @@ export default function Header() {
           <Link
             href="/proprietary"
             onClick={handleNavClick}
-            className={`h-8.5 flex items-center gap-1 px-1.5 2xl:px-2.5 rounded-xl text-xs 2xl:text-[13px] font-bold transition-all whitespace-nowrap flex-shrink-0 ${
+            className={`h-8.5 flex items-center gap-1 px-1.5 xl:px-2 2xl:px-2.5 rounded-xl text-xs xl:text-[13px] font-bold transition-all whitespace-nowrap flex-shrink-0 ${
               isProprietaryActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                 : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
             }`}
           >
             <FlaskConical className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-            <span className="hidden 2xl:inline">{t('Proprietary Range', 'பிரத்தியேக மருந்துகள்')}</span>
-            <span className="2xl:hidden">{t('Proprietary', 'பிரத்தியேகம்')}</span>
+            <span>{t('Proprietary', 'பிரத்தியேகம்')}</span>
           </Link>
 
           {/* Offers */}
           <Link
             href="/offers"
             onClick={handleNavClick}
-            className={`h-8.5 flex items-center gap-1 px-1.5 2xl:px-2 rounded-xl text-xs 2xl:text-[13px] font-semibold transition-all whitespace-nowrap flex-shrink-0 ${
+            className={`h-8.5 flex items-center gap-1 px-1.5 xl:px-2 rounded-xl text-xs xl:text-[13px] font-semibold transition-all whitespace-nowrap flex-shrink-0 ${
               isOffersActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                 : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
@@ -476,11 +472,11 @@ export default function Header() {
             <span>{t('Offers', 'சலுகைகள்')}</span>
           </Link>
 
-          {/* Heritage */}
+          {/* Heritage (Shows on xl+ screens) */}
           <Link
             href="/about"
             onClick={handleNavClick}
-            className={`h-8.5 flex items-center gap-1 px-1.5 2xl:px-2 rounded-xl text-xs 2xl:text-[13px] font-semibold transition-all whitespace-nowrap flex-shrink-0 ${
+            className={`h-8.5 hidden xl:flex items-center gap-1 px-1.5 xl:px-2 rounded-xl text-xs xl:text-[13px] font-semibold transition-all whitespace-nowrap flex-shrink-0 ${
               isAboutActive
                 ? 'text-[#16382B] font-bold bg-[#E8F1EB]'
                 : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
@@ -493,7 +489,7 @@ export default function Header() {
           <Link
             href="/contact"
             onClick={handleNavClick}
-            className={`h-8 px-2 2xl:px-2.5 rounded-full border border-[#16382B]/15 flex items-center gap-1 whitespace-nowrap transition-all text-xs font-semibold flex-shrink-0 ${
+            className={`h-8 px-2 xl:px-2.5 rounded-full border border-[#16382B]/15 flex items-center gap-1 whitespace-nowrap transition-all text-xs font-semibold flex-shrink-0 ${
               isContactActive
                 ? 'bg-[#16382B] text-white shadow-xs'
                 : 'bg-[#E8F1EB] hover:bg-[#16382B] hover:text-white text-[#16382B]'
@@ -505,16 +501,16 @@ export default function Header() {
         </nav>
 
         {/* 3. Right Action Controls: Search, Language Switcher, Cart */}
-        <div className="flex items-center justify-end gap-1.5 xl:gap-2 flex-shrink-0">
+        <div className="flex items-center justify-end gap-1.5 xl:gap-2 flex-shrink-0 z-10">
           
           {/* Predictive Search Button */}
           <button
             onClick={openSearch}
-            className="h-8.5 px-2 2xl:px-2.5 rounded-xl bg-[#E8F1EB] hover:bg-white border border-[#16382B]/15 text-xs text-[#264653] transition-all hover:border-[#C29043] cursor-pointer flex items-center gap-1.5 flex-shrink-0"
+            className="h-8.5 px-2 xl:px-2.5 rounded-xl bg-[#E8F1EB] hover:bg-white border border-[#16382B]/15 text-xs text-[#264653] transition-all hover:border-[#C29043] cursor-pointer flex items-center gap-1.5 flex-shrink-0"
             title="Search formulations (Press / or Cmd+K)"
           >
             <Search className="w-3.5 h-3.5 text-[#16382B]" />
-            <span className="text-[#8C9E96] hidden 2xl:inline text-xs">
+            <span className="text-[#8C9E96] hidden xl:inline text-xs">
               {language === 'ta' ? 'தேடல்' : 'Search'}
             </span>
             <kbd className="hidden 2xl:inline-block px-1.5 py-0.2 text-[9px] bg-white rounded border border-[#16382B]/20 text-[#8C9E96]">
