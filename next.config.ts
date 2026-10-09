@@ -15,6 +15,15 @@ const nextConfig: NextConfig = {
   ],
   // Disable Next.js dev draggable badge overlay to prevent mobile pointerCapture crashes
   devIndicators: false,
+  // Enable production gzip/brotli compression
+  compress: true,
+  // Strip X-Powered-By header for enhanced security
+  poweredByHeader: false,
+  // Next.js High-Performance Image Optimization
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
+  },
   async redirects() {
     return [
       {
