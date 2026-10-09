@@ -170,17 +170,17 @@ export default function Header() {
                 height={35}
                 className="h-6 xl:h-7 w-auto object-contain"
                 priority
-                unoptimized
+                sizes="60px"
               />
             </div>
             <div className="flex flex-col justify-center">
               <span className="font-serif-brand text-base xl:text-lg font-bold text-[#16382B] tracking-wider leading-none">
                 RUTHRA
               </span>
-              <span className={`text-[7.5px] xl:text-[8.5px] text-[#C29043] font-semibold mt-0.5 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
+              <span className={`text-[7.5px] xl:text-[8.5px] text-[#8C5D14] font-semibold mt-0.5 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
               </span>
-              <span className="text-[6.5px] xl:text-[7.5px] text-[#16382B]/60 font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
+              <span className="text-[6.5px] xl:text-[7.5px] text-[#2D5A46] font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
                 Developed by SS40 NETWORK
               </span>
             </div>

@@ -21,11 +21,18 @@ export async function GET(request: NextRequest) {
       featured
     });
 
-    return NextResponse.json({
-      success: true,
-      total: products.length,
-      products
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        total: products.length,
+        products
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400',
+        },
+      }
+    );
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : 'Failed to fetch products';
     return NextResponse.json({ success: false, error: errorMsg }, { status: 500 });

@@ -46,10 +46,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
     if (imgError || !product.image || !product.image.trim()) {
       return '/images/ruthra-icon.png';
     }
-    if (product.image.startsWith('data:') || product.image.startsWith('blob:') || product.image.startsWith('http')) {
-      return product.image;
-    }
-    return product.image.includes('?') ? `${product.image}&v=ruthra-20260916-2` : `${product.image}?v=ruthra-20260916-2`;
+    return product.image;
   }, [product.image, imgError]);
 
   const whatsappMessage = encodeURIComponent(
@@ -98,28 +95,28 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
               alt={product.name}
               width={80}
               height={80}
-              unoptimized
               className="object-contain max-h-16 w-auto transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
+              sizes="80px"
               onError={() => setImgError(true)}
             />
-            <span className="absolute bottom-1 left-1 text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-white/95 border border-[#C29043]/30 text-[#16382B]">
+            <span className="absolute bottom-1 left-1 text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm bg-white/95 border border-[#16382B]/15 text-[#16382B]">
               {formulationText}
             </span>
           </Link>
 
           {/* Center Info */}
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] text-[#8A9B93] mb-0.5">
+            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] text-[#4A6357] mb-0.5">
               <span>{packSizeText}</span>
               <span>•</span>
-              <span className="text-[#C29043] font-medium">
+              <span className="text-[#8C5D14] font-semibold">
                 {medicalSystemLabel}
               </span>
             </div>
 
             <Link href={`/product/${product.slug}`}>
-              <h3 className="font-serif-brand font-bold text-sm sm:text-base text-[#16382B] group-hover:text-[#C29043] transition-colors truncate">
+              <h3 className="font-serif-brand font-bold text-sm sm:text-base text-[#16382B] group-hover:text-[#8C5D14] transition-colors truncate">
                 {titleText}
               </h3>
             </Link>
@@ -140,7 +137,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                   </span>
                 ))}
                 {product.ingredients.length > 3 && (
-                  <span className="text-[9px] text-[#8A9B93]">
+                  <span className="text-[9px] text-[#4A6357]">
                     +{product.ingredients.length - 3} more
                   </span>
                 )}
@@ -154,7 +151,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           {isComingSoon || isOutOfStock ? (
             <>
               <div className="text-left sm:text-right">
-                <span className="text-[10px] uppercase text-[#8A9B93] font-medium block leading-none">
+                <span className="text-[10px] uppercase text-[#4A6357] font-medium block leading-none">
                   {t('Status', 'நிலை')}
                 </span>
                 <span className="font-serif-brand text-xs sm:text-sm font-bold text-[#16382B]">
@@ -176,7 +173,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           ) : (
             <>
               <div className="text-left sm:text-right">
-                <span className="text-[10px] uppercase text-[#8A9B93] font-medium block leading-none">
+                <span className="text-[10px] uppercase text-[#4A6357] font-medium block leading-none">
                   {t('Price', 'விலை')}
                 </span>
                 <div className="flex items-baseline gap-1.5">
@@ -184,13 +181,13 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                     ₹{product.price}
                   </span>
                   {mrp > product.price && (
-                    <span className="text-[10px] sm:text-xs text-[#8A9B93] line-through">
+                    <span className="text-[10px] sm:text-xs text-[#526D61] line-through">
                       ₹{mrp}
                     </span>
                   )}
                 </div>
                 {mrp > product.price && (
-                  <span className="text-[9px] font-semibold text-emerald-700">
+                  <span className="text-[9px] font-semibold text-emerald-800">
                     {t(`Save ₹${mrp - product.price}`, `₹${mrp - product.price} சேமிப்பு`)}
                   </span>
                 )}
@@ -202,7 +199,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                 className="py-2 px-3.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] active:scale-95 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs"
                 aria-label={`Add ${product.name} to cart`}
               >
-                <ShoppingBag className="w-3.5 h-3.5 text-[#C29043]" />
+                <ShoppingBag className="w-3.5 h-3.5 text-[#DFB36C]" />
                 <span>{t('Add to Cart', 'சேர்')}</span>
               </button>
             </>
@@ -216,7 +213,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
   // GRID VIEW LAYOUT (DEFAULT)
   // ==========================================
   return (
-    <div className="group bg-white rounded-xl sm:rounded-2xl border border-[#16382B]/10 hover:border-[#C29043]/50 transition-all duration-300 hover:shadow-md flex flex-col overflow-hidden h-full">
+    <div className="group bg-white rounded-xl sm:rounded-2xl border border-[#16382B]/10 hover:border-[#8C5D14]/50 transition-all duration-300 hover:shadow-md flex flex-col overflow-hidden h-full">
       {/* Product Image Area — Balanced mobile square / desktop 4:3 */}
       <Link
         href={`/product/${product.slug}`}
@@ -248,15 +245,15 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           {formulationText}
         </span>
 
-        {/* Product Image — Direct clean render */}
+        {/* Product Image — Next.js responsive optimized image */}
         <div className="relative w-full h-full overflow-hidden">
           <Image
             src={imageUrl}
             alt={product.name}
             fill
-            unoptimized
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 250px"
             onError={() => setImgError(true)}
           />
         </div>
@@ -266,16 +263,16 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
       <div className="p-2.5 sm:p-4 flex-1 flex flex-col justify-between">
         <div>
           {/* Pack size & Medical System meta */}
-          <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#8A9B93] mb-1">
+          <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-[#4A6357] mb-1">
             <span className="truncate font-medium">{packSizeText}</span>
-            <span className="text-[#C29043] font-medium text-[9px] sm:text-[10.5px] flex-shrink-0 ml-1">
+            <span className="text-[#8C5D14] font-semibold text-[9px] sm:text-[10.5px] flex-shrink-0 ml-1">
               {medicalSystemLabel}
             </span>
           </div>
 
           {/* Product Name — Fixed 2.8rem height so 1-line and 2-line titles align perfectly across all columns */}
           <Link href={`/product/${product.slug}`} className="block">
-            <h3 className="font-serif-brand font-bold text-[13.5px] sm:text-base text-[#16382B] group-hover:text-[#C29043] transition-colors leading-[1.3] line-clamp-2 h-[2.7rem] sm:h-[2.85rem] flex items-center">
+            <h3 className="font-serif-brand font-bold text-[13.5px] sm:text-base text-[#16382B] group-hover:text-[#8C5D14] transition-colors leading-[1.3] line-clamp-2 h-[2.7rem] sm:h-[2.85rem] flex items-center">
               {titleText}
             </h3>
           </Link>
@@ -291,7 +288,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                     ? (product.price > 0 ? `Est. ₹${product.price}` : t('Price on Request', 'விலை விபரம் கோரலாம்'))
                     : t('Out of Stock', 'கையிருப்பு இல்லை')}
                 </span>
-                <span className="text-[8.5px] sm:text-[9.5px] text-[#8A9B93]">
+                <span className="text-[8.5px] sm:text-[9.5px] text-[#4A6357]">
                   {isComingSoon ? t('Artisanal Preparation', 'பாரம்பரிய தயாரிப்பில்') : t('Enquire for restock', 'இருப்பு அறிய')}
                 </span>
               </div>
@@ -315,12 +312,12 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                     ₹{product.price}
                   </span>
                   {mrp > product.price && (
-                    <span className="text-[9px] sm:text-[11px] text-[#8A9B93] line-through">
+                    <span className="text-[9px] sm:text-[11px] text-[#526D61] line-through">
                       ₹{mrp}
                     </span>
                   )}
                 </div>
-                <span className="text-[8.5px] sm:text-[10px] font-semibold text-emerald-700 truncate">
+                <span className="text-[8.5px] sm:text-[10px] font-semibold text-emerald-800 truncate">
                   {t(`Save ₹${mrp - product.price}`, `₹${mrp - product.price} சேமிப்பு`)}
                 </span>
               </div>
@@ -332,7 +329,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                 className="px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-[#16382B] hover:bg-[#204C3B] active:scale-95 text-white text-[10.5px] sm:text-xs font-semibold flex items-center gap-1 shadow-2xs transition-all cursor-pointer flex-shrink-0"
                 aria-label={`Add ${product.name} to cart`}
               >
-                <ShoppingBag className="w-3.5 h-3.5 text-[#C29043]" />
+                <ShoppingBag className="w-3.5 h-3.5 text-[#DFB36C]" />
                 <span>{t('Add', 'சேர்க்க')}</span>
               </button>
             </>

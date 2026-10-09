@@ -101,9 +101,8 @@ export default function StoreHeroCarousel() {
                 alt={slide.altText}
                 fill
                 priority={idx === 0}
-                unoptimized
                 className="object-contain sm:object-cover object-center w-full h-full transform transition-transform duration-700 group-hover:scale-[1.006]"
-                sizes="100vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1400px"
               />
             </Link>
           );
@@ -118,7 +117,7 @@ export default function StoreHeroCarousel() {
         {/* Compact Navigation Arrows */}
         <button
           onClick={goToPrev}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/35 hover:bg-black/75 text-white backdrop-blur-xs flex items-center justify-center border border-white/20 transition-all z-20 cursor-pointer shadow-md opacity-80 hover:opacity-100"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/35 hover:bg-black/75 text-white backdrop-blur-xs flex items-center justify-center border border-white/20 transition-all z-20 cursor-pointer shadow-md opacity-80 hover:opacity-100"
           aria-label="Previous banner"
         >
           <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
@@ -126,14 +125,14 @@ export default function StoreHeroCarousel() {
 
         <button
           onClick={goToNext}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/35 hover:bg-black/75 text-white backdrop-blur-xs flex items-center justify-center border border-white/20 transition-all z-20 cursor-pointer shadow-md opacity-80 hover:opacity-100"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black/35 hover:bg-black/75 text-white backdrop-blur-xs flex items-center justify-center border border-white/20 transition-all z-20 cursor-pointer shadow-md opacity-80 hover:opacity-100"
           aria-label="Next banner"
         >
           <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" />
         </button>
 
-        {/* Minimalist Pagination Indicator Dots (Positioned cleanly above the bottom fade) */}
-        <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
+        {/* Minimalist Pagination Indicator Dots (With 36px+ accessible touch target) */}
+        <div className="absolute bottom-1 sm:bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1 z-20">
           {BANNER_SLIDES.map((_, idx) => (
             <button
               key={idx}
@@ -142,11 +141,17 @@ export default function StoreHeroCarousel() {
                 e.stopPropagation();
                 setCurrentSlide(idx);
               }}
-              className={`transition-all duration-300 rounded-full cursor-pointer shadow-xs ${
-                idx === currentSlide ? 'w-5 sm:w-7 h-1.5 bg-[#16382B] border border-white/60' : 'w-1.5 h-1.5 bg-black/40 hover:bg-black/70'
-              }`}
+              className="p-2 sm:p-2.5 flex items-center justify-center cursor-pointer touch-manipulation group"
               aria-label={`Go to slide ${idx + 1}`}
-            />
+            >
+              <span
+                className={`transition-all duration-300 rounded-full shadow-xs block ${
+                  idx === currentSlide
+                    ? 'w-6 sm:w-7 h-1.5 bg-[#16382B] border border-white/60'
+                    : 'w-2 h-1.5 bg-black/40 group-hover:bg-black/70'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

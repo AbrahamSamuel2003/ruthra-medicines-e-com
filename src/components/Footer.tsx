@@ -25,7 +25,7 @@ export default function Footer() {
                   width={75}
                   height={40}
                   className="h-9 w-auto object-contain"
-                  unoptimized
+                  sizes="75px"
                 />
               </div>
               <div className="flex flex-col items-center md:items-start">
@@ -52,9 +52,9 @@ export default function Footer() {
 
           {/* Column 2: Quick Shop & Concerns */}
           <div className="space-y-3 text-center md:text-left flex flex-col items-center md:items-start">
-            <h4 className="font-serif-brand text-sm font-bold uppercase tracking-wider text-[#DFB36C]">
+            <h3 className="font-serif-brand text-sm font-bold uppercase tracking-wider text-[#DFB36C]">
               {t('Explore Shop', 'மருந்துகள்')}
-            </h4>
+            </h3>
             <ul className="space-y-2 text-xs text-white/80 flex flex-col items-center md:items-start">
               <li>
                 <Link href="/shop" className="hover:text-white transition-colors">
@@ -96,9 +96,9 @@ export default function Footer() {
 
           {/* Column 3: Formulations & Practice */}
           <div className="space-y-3 text-center md:text-left flex flex-col items-center md:items-start">
-            <h4 className="font-serif-brand text-sm font-bold uppercase tracking-wider text-[#DFB36C]">
+            <h3 className="font-serif-brand text-sm font-bold uppercase tracking-wider text-[#DFB36C]">
               {t('Traditional Forms', 'மருந்து வகைகள்')}
-            </h4>
+            </h3>
             <ul className="space-y-2 text-xs text-white/80 flex flex-col items-center md:items-start">
               <li>
                 <Link href="/shop/formulations/chooranam" className="hover:text-white transition-colors">
@@ -135,9 +135,9 @@ export default function Footer() {
 
           {/* Column 4: Customer Care & Order Support */}
           <div className="space-y-3 text-center md:text-left flex flex-col items-center md:items-start">
-            <h4 className="font-serif-brand text-sm font-bold uppercase tracking-wider text-[#DFB36C]">
+            <h3 className="font-serif-brand text-sm font-bold uppercase tracking-wider text-[#DFB36C]">
               {t('Customer Care & Dispatch', 'வாடிக்கையாளர் சேவை')}
-            </h4>
+            </h3>
             <div className="space-y-3 text-xs text-white/80 flex flex-col items-center md:items-start">
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">
                 <MapPin className="w-4 h-4 text-[#C29043] flex-shrink-0 mt-0.5" />
@@ -188,45 +188,45 @@ export default function Footer() {
         </div>
 
         {/* Bottom Sub-footer: Single Centralized Line with Proper Spacing */}
-        <div className="pt-6 pb-2 flex flex-wrap items-center justify-center gap-x-2 lg:gap-x-2.5 gap-y-1.5 text-center text-[10.5px] sm:text-[11px] lg:text-[11.5px] text-white/70">
-          <span className="whitespace-nowrap">
+        <div className="pt-6 pb-2 flex flex-wrap items-center justify-center gap-x-2.5 lg:gap-x-3 gap-y-2 text-center text-[10.5px] sm:text-[11px] lg:text-[11.5px] text-white/70">
+          <span className="whitespace-nowrap py-1 inline-block">
             © {new Date().getFullYear()} Ruthra Medicines, Tirunelveli.
           </span>
-          <span className="text-[#C29043]/60">•</span>
-          <span className="text-[#DFB36C] whitespace-nowrap">
+          <span className="text-[#DFB36C]/60">•</span>
+          <span className="text-[#DFB36C] whitespace-nowrap py-1 inline-block">
             {t('Developed by', 'உருவாக்கம்:')}{' '}
             <a
               href="https://ss40network.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#DFB36C] hover:text-white transition-colors underline decoration-[#DFB36C]/40 hover:decoration-white underline-offset-2"
+              className="font-semibold text-[#DFB36C] hover:text-white transition-colors underline decoration-[#DFB36C]/40 hover:decoration-white underline-offset-2 py-1 px-1 inline-block"
               title="SS40 NETWORK PRIVATE LIMITED"
             >
               SS40 NETWORK PRIVATE LIMITED
             </a>
           </span>
           <span className="text-white/25">•</span>
-          <Link href="/shipping" className="hover:text-white transition-colors whitespace-nowrap">
+          <Link href="/shipping" className="hover:text-white transition-colors whitespace-nowrap py-1 px-1 inline-block">
             {t('Shipping Policy', 'அஞ்சல் விபரம்')}
           </Link>
           <span className="text-white/25">•</span>
-          <Link href="/returns" className="hover:text-white transition-colors whitespace-nowrap">
+          <Link href="/returns" className="hover:text-white transition-colors whitespace-nowrap py-1 px-1 inline-block">
             {t('Returns & Refunds', 'ரீஃபண்ட் கொள்கை')}
           </Link>
           <span className="text-white/25">•</span>
-          <Link href="/privacy" className="hover:text-white transition-colors whitespace-nowrap">
+          <Link href="/privacy" className="hover:text-white transition-colors whitespace-nowrap py-1 px-1 inline-block">
             {t('Privacy Policy', 'தனியுரிமை')}
           </Link>
           <span className="text-white/25">•</span>
-          <Link href="/terms" className="hover:text-white transition-colors whitespace-nowrap">
+          <Link href="/terms" className="hover:text-white transition-colors whitespace-nowrap py-1 px-1 inline-block">
             {t('Terms of Service', 'விதிமுறைகள்')}
           </Link>
           <span className="text-white/25">•</span>
-          <Link href="/faq" className="hover:text-white transition-colors whitespace-nowrap">
+          <Link href="/faq" className="hover:text-white transition-colors whitespace-nowrap py-1 px-1 inline-block">
             {t('FAQ', 'கேள்வி பதில்')}
           </Link>
           <span className="text-white/25">•</span>
-          <Link href="/contact" className="hover:text-white transition-colors whitespace-nowrap">
+          <Link href="/contact" className="hover:text-white transition-colors whitespace-nowrap py-1 px-1 inline-block">
             {t('Contact Us', 'தொடர்பு')}
           </Link>
         </div>

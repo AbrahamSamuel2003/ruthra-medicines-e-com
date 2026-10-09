@@ -57,17 +57,17 @@ export default function MobileHeader() {
                 height={30}
                 className="h-7 w-auto object-contain"
                 priority
-                unoptimized
+                sizes="52px"
               />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="font-serif-brand text-sm sm:text-base font-bold text-[#16382B] tracking-wider leading-none">
                 RUTHRA
               </span>
-              <span className={`text-[7.5px] text-[#C29043] font-semibold leading-tight ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.16em]'}`}>
+              <span className={`text-[7.5px] text-[#8C5D14] font-semibold leading-tight ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.16em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
               </span>
-              <span className="text-[6.5px] text-[#16382B]/60 font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
+              <span className="text-[6.5px] text-[#2D5A46] font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
                 Developed by SS40 NETWORK
               </span>
             </div>
@@ -262,7 +262,7 @@ export default function MobileHeader() {
                   <p className="text-[10px] uppercase font-bold tracking-wider text-[#16382B]">
                     {t('Siddha Forms (14)', 'சித்த மருந்து வடிவங்கள் (14)')}
                   </p>
-                  <Link href="/siddha" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#C29043]">
+                  <Link href="/siddha" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#8C5D14]">
                     {t('View All', 'அனைத்தும்')}
                   </Link>
                 </div>
@@ -284,7 +284,7 @@ export default function MobileHeader() {
               {/* Ayurveda Dosage Forms Quick Links */}
               <div className="border-t border-[#16382B]/10 pt-3">
                 <div className="flex items-center justify-between px-2 mb-2">
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-[#C29043]">
+                  <p className="text-[10px] uppercase font-bold tracking-wider text-[#8C5D14]">
                     {t('Ayurveda Forms (7)', 'ஆயுர்வேத மருந்து வடிவங்கள் (7)')}
                   </p>
                   <Link href="/ayurveda" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#16382B]">

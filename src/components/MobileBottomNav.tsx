@@ -40,7 +40,7 @@ export default function MobileBottomNav() {
           className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 touch-manipulation ${
             isHome
               ? 'text-[#16382B] font-bold bg-[#E8F1EB]/90'
-              : 'text-[#8A9B93] hover:text-[#16382B]'
+              : 'text-[#4D655A] hover:text-[#16382B]'
           }`}
         >
           <div className="relative">
@@ -58,7 +58,7 @@ export default function MobileBottomNav() {
           className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 touch-manipulation ${
             isShop
               ? 'text-[#16382B] font-bold bg-[#E8F1EB]/90'
-              : 'text-[#8A9B93] hover:text-[#16382B]'
+              : 'text-[#4D655A] hover:text-[#16382B]'
           }`}
         >
           <div className="relative">
@@ -76,7 +76,7 @@ export default function MobileBottomNav() {
             if (isDrawerOpen) closeDrawer();
             openSearch();
           }}
-          className="flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#8A9B93] hover:text-[#16382B] transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation"
+          className="flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#4D655A] hover:text-[#16382B] transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation"
           aria-label="Search formulations"
         >
           <Search className="w-5 h-5 stroke-[1.8]" />
@@ -92,7 +92,7 @@ export default function MobileBottomNav() {
           className={`flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-150 active:scale-95 touch-manipulation ${
             isOffers
               ? 'text-[#16382B] font-bold bg-[#E8F1EB]/90'
-              : 'text-[#8A9B93] hover:text-[#16382B]'
+              : 'text-[#4D655A] hover:text-[#16382B]'
           }`}
         >
           <div className="relative">
@@ -110,7 +110,7 @@ export default function MobileBottomNav() {
             if (isSearchOpen) closeSearch();
             openDrawer();
           }}
-          className="relative flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#8A9B93] hover:text-[#16382B] transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation"
+          className="relative flex flex-col items-center justify-center py-1 px-1 rounded-xl text-[#4D655A] hover:text-[#16382B] transition-all duration-150 active:scale-95 cursor-pointer touch-manipulation"
           aria-label="Open cart"
         >
           <div className="relative">

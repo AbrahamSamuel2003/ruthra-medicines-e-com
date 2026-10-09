@@ -62,12 +62,9 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const maxQuantity = Math.max(1, Math.min(stockCount > 0 ? stockCount : 1, 10));
 
   const fallbackImg = '/images/ruthra-icon.png';
-  // Cache-busting version so new AI packaging graphics are never superseded by stale Next.js cache
-  const CACHE_VERSION = 'v=ruthra-20260916-2';
   const getBustedUrl = (url?: string | null) => {
     if (!url || !url.trim()) return fallbackImg;
-    if (url.startsWith('data:') || url.startsWith('blob:') || url.startsWith('http')) return url;
-    return url.includes('?') ? `${url}&${CACHE_VERSION}` : `${url}?${CACHE_VERSION}`;
+    return url;
   };
   const rawList = (product.images && product.images.length > 0
     ? product.images
