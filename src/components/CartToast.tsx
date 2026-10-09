@@ -1,10 +1,9 @@
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { CheckCircle2, ShoppingBag, X, Gift, Check, ArrowRight } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { CheckCircle2, ShoppingBag, X, Gift, Check, Sparkles } from 'lucide-react';
+import { useCart, calculateItemDiscountPercent, calculateItemFreeGifts } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function CartToast() {
@@ -14,16 +13,12 @@ export default function CartToast() {
     dismissToast,
     openDrawer,
     openGiftModal,
-    itemCount,
     paidItemCount,
     totalItemCount,
     discountPercent,
     freeSlotsEarned,
     totalFreeGiftsSelected,
     freeSlotsRemaining,
-    nextMilestoneCount,
-    itemsNeededForNextMilestone,
-    progressPercent,
     freeGiftSavings
   } = useCart();
 
@@ -65,6 +60,10 @@ export default function CartToast() {
     dismissToast();
     openGiftModal();
   };
+
+  const itemQty = toastNotification?.quantity || 1;
+  const itemDiscountPercent = calculateItemDiscountPercent(itemQty);
+  const itemFreeGifts = calculateItemFreeGifts(itemQty);
 
   return (
     <aside
@@ -127,45 +126,35 @@ export default function CartToast() {
 
         {/* 3. Integrated Volume Scheme Offer Card */}
         <div className="bg-white p-3 rounded-xl border border-[#C29043]/30 space-y-2">
-          {/* Milestone Header */}
+          {/* Item / Cart Status */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-1.5 font-bold text-[#16382B]">
               <Gift className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-              <span>{paidItemCount} {t('Items in cart', 'கூடையில்')}</span>
+              <span>{paidItemCount} {t('Total in cart', 'கூடையில்')}</span>
               {discountPercent > 0 && (
                 <span className="px-1.5 py-0.2 rounded bg-emerald-700 text-white text-[9.5px] font-bold">
                   {discountPercent}% OFF
                 </span>
               )}
             </div>
-            <span className="text-xs font-bold text-[#C29043]">
-              {paidItemCount < 5 && t('Next: 5 Items (10% + 1 Free)', 'இலக்கு: 5 (10% + 1 இலவசம்)')}
-              {paidItemCount >= 5 && paidItemCount < 30 && t('Next: 30 Items (20% OFF)', 'இலக்கு: 30 (20% தள்ளுபடி)')}
-              {paidItemCount >= 30 && paidItemCount < 50 && t('Next: 50 Items (15 Free Gifts!)', 'இலக்கு: 50 (15 இலவசம்!)')}
-              {paidItemCount >= 50 && t(`Next: ${nextMilestoneCount} Items`, `அடுத்த இலக்கு: ${nextMilestoneCount}`)}
-            </span>
+            {freeSlotsEarned > 0 ? (
+              <span className="text-xs font-bold text-emerald-800 flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-[#C29043]" />
+                <span>{freeSlotsEarned} Free Gifts!</span>
+              </span>
+            ) : (
+              <span className="text-[10px] font-bold text-[#C29043]">
+                {itemQty >= 5 ? `${itemDiscountPercent}% OFF Active` : 'Buy 5+ for 10% + 1 Free'}
+              </span>
+            )}
           </div>
 
-          {/* Progress Bar & Subtitle */}
-          <div className="space-y-1">
-            <div className="w-full h-2 rounded-full bg-[#16382B]/10 overflow-hidden">
-              <div
-                className="h-full bg-[#16382B] rounded-full transition-all duration-300"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
-            <div className="flex justify-between text-[10px] text-[#3D5A68]">
-              <span>
-                {paidItemCount < 5 && t(`Add ${itemsNeededForNextMilestone} more for 10% OFF & 1 Free bonus`, `10% தள்ளுபடிக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
-                {paidItemCount >= 5 && paidItemCount < 30 && t(`Add ${itemsNeededForNextMilestone} more for 20% bulk discount`, `20% தள்ளுபடிக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
-                {paidItemCount >= 30 && paidItemCount < 50 && t(`Add ${itemsNeededForNextMilestone} more for 15 Free bonus medicines!`, `15 இலவச மருந்துகளுக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்!`)}
-                {paidItemCount >= 50 && t(`Add ${itemsNeededForNextMilestone} more for next free formulation`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} சேர்க்கவும்`)}
-              </span>
-              <span className="font-bold text-[#16382B]">
-                {progressPercent}%
-              </span>
-            </div>
-          </div>
+          <p className="text-[10px] text-[#4A6357] leading-tight">
+            {t(
+              'Order 5+ of any formulation for 10% OFF & 1 Free Bonus Medicine',
+              '5 அல்லது அதற்கு மேல் வாங்கினால் 10% தள்ளுபடி & 1 இலவச மருந்து பெறலாம்'
+            )}
+          </p>
 
           {/* Free Gift Claim Trigger */}
           {freeSlotsEarned > 0 && (

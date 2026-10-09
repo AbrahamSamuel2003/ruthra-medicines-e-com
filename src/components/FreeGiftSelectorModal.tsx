@@ -12,9 +12,11 @@ import {
   Sparkles,
   ShieldCheck,
   Tag,
-  PackageCheck
+  PackageCheck,
+  AlertCircle,
+  ShoppingBag
 } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
+import { useCart, calculateItemFreeGifts, getItemNextMilestone } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function FreeGiftSelectorModal() {
@@ -33,19 +35,29 @@ export default function FreeGiftSelectorModal() {
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Only products currently in the customer's cart are eligible for free bonus selection
-  const eligibleProducts = useMemo(() => {
-    const cartProducts = items.map(it => it.product);
-    if (!searchQuery.trim()) return cartProducts;
+  // Products in cart that qualify for free gifts (quantity >= 5)
+  const qualifyingItems = useMemo(() => {
+    return items.filter(it => it.quantity >= 5);
+  }, [items]);
+
+  // Non-qualifying products in cart (quantity < 5) to show as guidance if needed
+  const pendingItems = useMemo(() => {
+    return items.filter(it => it.quantity < 5);
+  }, [items]);
+
+  // Filtered by search query if user searches
+  const filteredQualifyingItems = useMemo(() => {
+    if (!searchQuery.trim()) return qualifyingItems;
 
     const q = searchQuery.toLowerCase().trim();
-    return cartProducts.filter(p => {
+    return qualifyingItems.filter(it => {
+      const p = it.product;
       const matchName = p.name.toLowerCase().includes(q);
       const matchTa = p.tamilName?.toLowerCase().includes(q) || false;
       const matchForm = p.formulation?.toLowerCase().includes(q) || false;
       return matchName || matchTa || matchForm;
     });
-  }, [items, searchQuery]);
+  }, [qualifyingItems, searchQuery]);
 
   if (!isGiftModalOpen) return null;
 
@@ -70,7 +82,7 @@ export default function FreeGiftSelectorModal() {
         </div>
 
         {/* Modal Header */}
-        <div className="bg-[#16382B] text-white px-4 sm:px-5 py-3 sm:py-4 flex items-center justify-between border-b border-[#C29043]/30 flex-shrink-0">
+        <div className="bg-[#16382B] text-white px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between border-b border-[#C29043]/30 flex-shrink-0">
           <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#C29043]/25 border border-[#C29043]/40 flex items-center justify-center text-[#DFB36C] flex-shrink-0">
               <Gift className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -80,7 +92,7 @@ export default function FreeGiftSelectorModal() {
                 {t('Select Free Formulation Bonus', 'இலவச மருந்தைத் தேர்வு செய்க')}
               </h3>
               <p className="text-[10.5px] sm:text-xs text-[#DFB36C] truncate">
-                {t('Choose bonus units from your ordered medicines', 'வாங்கிய மருந்துகளிலிருந்தே கூடுதல் இலவச தேர்வு')}
+                {t('Claim free bonus units for your qualifying 5+ ordered formulations', '5+ எண்ணிக்கை வாங்கிய மருந்துகளுக்கு கூடுதல் இலவச தேர்வு')}
               </p>
             </div>
           </div>
@@ -127,14 +139,14 @@ export default function FreeGiftSelectorModal() {
           <PackageCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C29043] flex-shrink-0" />
           <span className="leading-tight">
             {t(
-              'Free bonus medicines are selected directly from your cart items.',
-              'உங்கள் கூடையில் உள்ள மருந்துகளிலிருந்தே கூடுதல் இலவச தேர்வு செய்யப்படுகிறது.'
+              'Free bonus medicines are claimed strictly for individual products ordered in quantities of 5 or more.',
+              '5 அல்லது அதற்கு மேல் வாங்கிய குறிப்பிட்ட மருந்துக்கு மட்டுமே இலவச மருந்து தேர்வு செய்ய முடியும்.'
             )}
           </span>
         </div>
 
-        {/* Search Bar (if more than 2 items in cart) */}
-        {items.length > 2 && (
+        {/* Search Bar (if more than 2 qualifying items in cart) */}
+        {qualifyingItems.length > 2 && (
           <div className="p-2.5 sm:p-3 bg-white border-b border-[#16382B]/10 flex-shrink-0">
             <div className="relative">
               <Search className="w-3.5 h-3.5 text-[#8A9B93] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -142,7 +154,7 @@ export default function FreeGiftSelectorModal() {
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder={t('Search from your ordered medicines...', 'கூடையில் உள்ள மருந்துகளில் தேடுக...')}
+                placeholder={t('Search from your eligible medicines...', 'தகுதியான மருந்துகளில் தேடுக...')}
                 className="w-full pl-8.5 pr-4 py-1.5 sm:py-2 text-xs bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-[#264653] placeholder-[#8A9B93] focus:outline-none focus:border-[#16382B]"
               />
               {searchQuery && (
@@ -157,22 +169,63 @@ export default function FreeGiftSelectorModal() {
           </div>
         )}
 
-        {/* Scrollable Product Card List (Mobile-Optimized Clean Rows) */}
+        {/* Scrollable Product Card List */}
         <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-2.5 scrollbar-thin">
           {items.length === 0 ? (
             <div className="text-center py-10 px-4 text-[#8A9B93] text-xs space-y-2">
+              <ShoppingBag className="w-8 h-8 mx-auto opacity-40 text-[#16382B]" />
               <p>{t('Your cart is currently empty. Add products to earn free bonus formulations.', 'கூடையில் மருந்துகள் இல்லை. மருந்துகளை சேர்த்து இலவச பலனை பெறுங்கள்.')}</p>
             </div>
-          ) : eligibleProducts.length === 0 ? (
+          ) : qualifyingItems.length === 0 ? (
+            <div className="p-4 sm:p-5 bg-white rounded-2xl border border-[#16382B]/10 text-center space-y-3">
+              <div className="w-10 h-10 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto">
+                <AlertCircle className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-serif-brand font-bold text-sm text-[#16382B]">
+                  {t('No Qualifying Formulations Yet', 'இன்னும் தகுதி பெறவில்லை')}
+                </h4>
+                <p className="text-xs text-[#3D5A68] mt-1 max-w-sm mx-auto leading-relaxed">
+                  {t(
+                    'Free bonus formulation slots are earned when you buy 5 or more units of an individual medicine.',
+                    'ஏதேனும் ஒரு மருந்தை 5 அல்லது அதற்கு மேல் கூடை எண்ணிக்கையில் சேர்க்கும்போது அந்த மருந்திற்கான இலவச போனஸ் கிடைக்கும்.'
+                  )}
+                </p>
+              </div>
+
+              {pendingItems.length > 0 && (
+                <div className="pt-2 text-left border-t border-[#16382B]/10 space-y-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#8A9B93]">
+                    {t('Current Cart Items:', 'கூடையில் உள்ளவை:')}
+                  </span>
+                  {pendingItems.map(it => {
+                    const milestone = getItemNextMilestone(it.quantity);
+                    return (
+                      <div key={it.product.id} className="flex items-center justify-between text-xs p-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10">
+                        <span className="font-medium text-[#16382B] truncate pr-2">
+                          {language === 'ta' ? it.product.tamilName : it.product.name} (×{it.quantity})
+                        </span>
+                        <span className="text-[10.5px] font-bold text-amber-700 whitespace-nowrap">
+                          {t(`Add ${milestone.needed} more for 1 Free`, `இன்னும் ${milestone.needed} சேர்த்தால் 1 இலவசம்`)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          ) : filteredQualifyingItems.length === 0 ? (
             <div className="text-center py-10 px-4 text-[#8A9B93] text-xs">
-              {t('No matching formulations found in your cart.', 'கூடையில் பொருந்தும் மருந்துகள் இல்லை.')}
+              {t('No matching eligible formulations found.', 'பொருந்தும் தகுதியான மருந்துகள் இல்லை.')}
             </div>
           ) : (
-            eligibleProducts.map(product => {
-              const cartItem = items.find(it => it.product.id === product.id);
-              const purchasedQty = cartItem ? cartItem.quantity : 0;
+            filteredQualifyingItems.map(cartItem => {
+              const product = cartItem.product;
+              const purchasedQty = cartItem.quantity;
+              const maxAllowedFree = calculateItemFreeGifts(purchasedQty);
               const selectedGift = freeGiftItems.find(g => g.product.id === product.id);
               const selectedCount = selectedGift ? selectedGift.quantity : 0;
+              const canAddMoreOfThis = selectedCount < maxAllowedFree;
 
               return (
                 <div 
@@ -209,6 +262,9 @@ export default function FreeGiftSelectorModal() {
                         <span className="text-[9.5px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-200 px-1.5 py-0.2 rounded-md">
                           {t(`In Cart: ×${purchasedQty}`, `கூடையில்: ×${purchasedQty}`)}
                         </span>
+                        <span className="text-[9.5px] font-bold text-amber-800 bg-amber-100/90 border border-amber-200 px-1.5 py-0.2 rounded-md">
+                          {t(`Earned: ${maxAllowedFree} Free`, `தகுதி: ${maxAllowedFree} இலவசம்`)}
+                        </span>
                       </div>
 
                       <h4 className="font-serif-brand font-bold text-xs sm:text-sm text-[#16382B] leading-snug line-clamp-1">
@@ -229,6 +285,9 @@ export default function FreeGiftSelectorModal() {
                       <span className="text-xs font-bold text-emerald-700">
                         {t('FREE (₹0.00)', 'இலவசம் (₹0.00)')}
                       </span>
+                      <span className="text-[10px] text-[#3D5A68] ml-1">
+                        ({selectedCount}/{maxAllowedFree} {t('claimed', 'தேர்வு')})
+                      </span>
                     </div>
 
                     <div>
@@ -246,13 +305,14 @@ export default function FreeGiftSelectorModal() {
                           <button
                             type="button"
                             onClick={() => addFreeGift(product)}
-                            disabled={freeSlotsRemaining <= 0}
+                            disabled={!canAddMoreOfThis}
                             className={`p-1 rounded-lg transition-colors ${
-                              freeSlotsRemaining > 0 
+                              canAddMoreOfThis
                                 ? 'hover:bg-white/20 active:bg-white/30 cursor-pointer' 
                                 : 'opacity-40 cursor-not-allowed'
                             }`}
                             aria-label="Increase quantity"
+                            title={canAddMoreOfThis ? 'Add another free bonus' : `Max ${maxAllowedFree} reached for this product`}
                           >
                             <Plus className="w-3.5 h-3.5" />
                           </button>
@@ -261,9 +321,9 @@ export default function FreeGiftSelectorModal() {
                         <button
                           type="button"
                           onClick={() => addFreeGift(product)}
-                          disabled={freeSlotsRemaining <= 0}
+                          disabled={!canAddMoreOfThis}
                           className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
-                            freeSlotsRemaining > 0
+                            canAddMoreOfThis
                               ? 'bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white shadow-2xs'
                               : 'bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed'
                           }`}

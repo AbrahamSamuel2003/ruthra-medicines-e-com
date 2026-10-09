@@ -14,11 +14,17 @@ import {
   ShieldCheck,
   Tag,
   Gift,
-  Sparkles,
   PackageCheck,
-  Percent
+  Percent,
+  Sparkles
 } from 'lucide-react';
-import { useCart, getProductMRP } from '@/context/CartContext';
+import { 
+  useCart, 
+  getProductMRP, 
+  calculateItemDiscountPercent, 
+  calculateItemFreeGifts,
+  getItemNextMilestone 
+} from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function CartDrawer() {
@@ -30,12 +36,8 @@ export default function CartDrawer() {
     freeSlotsEarned,
     totalFreeGiftsSelected,
     freeSlotsRemaining,
-    itemsNeededForNextMilestone,
-    nextMilestoneCount,
-    progressPercent,
     discountPercent,
     discountAmount,
-    freeGiftSavings,
     openGiftModal,
     isDrawerOpen,
     closeDrawer,
@@ -44,10 +46,7 @@ export default function CartDrawer() {
     itemCount,
     paidItemCount,
     subtotal,
-    mrpSubtotal,
-    mrpSavings,
     totalSavings,
-    shippingFee,
     total
   } = useCart();
 
@@ -109,51 +108,40 @@ export default function CartDrawer() {
           </button>
         </div>
 
-        {/* 2. DYNAMIC SCHEME & DISCOUNT PROGRESS BAR */}
+        {/* 2. DYNAMIC PER-PRODUCT SCHEME SUMMARY STRIP */}
         {items.length > 0 && (
-          <div className="px-3.5 py-2.5 bg-[#E8F1EB]/90 border-b border-[#16382B]/10 flex-shrink-0 space-y-1.5">
+          <div className="px-3.5 py-2.5 bg-[#E8F1EB]/95 border-b border-[#16382B]/10 flex-shrink-0 space-y-1">
             <div className="flex items-center justify-between text-xs font-semibold text-[#16382B]">
               <span className="flex items-center gap-1.5 text-[11.5px] truncate">
-                {discountPercent > 0 ? (
+                {discountAmount > 0 ? (
                   <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded bg-emerald-700 text-white text-[10px] font-bold">
                     <Percent className="w-2.5 h-2.5" />
-                    {discountPercent}% OFF
+                    {discountPercent}% {t('Volume Savings', 'மொத்த தள்ளுபடி')}
                   </span>
                 ) : (
                   <Gift className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
                 )}
                 <span>
                   {freeSlotsEarned > 0
-                    ? t(`${freeSlotsEarned} FREE Bonus Medicine(s) Unlocked`, `${freeSlotsEarned} இலவச மருந்துகள் தகுதி!`)
-                    : t(`${paidItemCount} Items in cart`, `${paidItemCount} மருந்துகள் கூடையில்`)}
+                    ? t(`${freeSlotsEarned} FREE Bonus Medicine(s) Unlocked!`, `${freeSlotsEarned} இலவச மருந்துகள் தகுதி!`)
+                    : t('Buy 5+ of any formulation for 10% OFF + 1 FREE Bonus', '5 அல்லது அதற்கு மேல் வாங்கினால் 10% + 1 இலவசம்')}
                 </span>
               </span>
 
-              <span className="font-bold text-[11px] text-[#16382B] flex-shrink-0">
-                {paidItemCount < 5 && t(`Next: 5 Items (10% OFF + 1 Free)`, `இலக்கு: 5 (10% + 1 இலவசம்)`)}
-                {paidItemCount >= 5 && paidItemCount < 30 && t(`Next: 30 Items (20% OFF)`, `இலக்கு: 30 (20% தள்ளுபடி)`)}
-                {paidItemCount >= 30 && paidItemCount < 50 && t(`Next: 50 Items (15 Free Gifts!)`, `இலக்கு: 50 (15 இலவசம்!)`)}
-                {paidItemCount >= 50 && t(`Next Milestone: ${nextMilestoneCount} Items`, `அடுத்த இலக்கு: ${nextMilestoneCount}`)}
-              </span>
+              {freeSlotsEarned > 0 && (
+                <span className="text-[10.5px] font-bold text-emerald-800 flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-[#C29043]" />
+                  <span>{t('Offer Applied', 'சலுகை உண்டு')}</span>
+                </span>
+              )}
             </div>
 
-            {/* Visual Progress Track */}
-            <div className="w-full h-1.5 rounded-full bg-white overflow-hidden">
-              <div
-                className="h-full rounded-full bg-[#16382B] transition-all duration-300"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
-
-            <div className="flex justify-between items-center text-[10px] text-[#3D5A68]">
-              <span>
-                {paidItemCount < 5 && t(`Add ${itemsNeededForNextMilestone} more item(s) for 10% OFF & 1 Free formulation`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 10% தள்ளுபடி & 1 இலவசம்`)}
-                {paidItemCount >= 5 && paidItemCount < 30 && t(`Add ${itemsNeededForNextMilestone} more for 20% bulk discount`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 20% தள்ளுபடி`)}
-                {paidItemCount >= 30 && paidItemCount < 50 && t(`Add ${itemsNeededForNextMilestone} more to unlock 15 Free items!`, `இன்னும் ${itemsNeededForNextMilestone} சேர்த்தால் 15 இலவச மருந்துகள்!`)}
-                {paidItemCount >= 50 && t(`Add ${itemsNeededForNextMilestone} more for next free formulation bonus`, `அடுத்த இலவச மருந்துக்கு இன்னும் ${itemsNeededForNextMilestone} தேவை`)}
-              </span>
-              <span className="font-bold text-[#16382B]">{progressPercent}%</span>
-            </div>
+            <p className="text-[10px] text-[#4A6357] leading-tight">
+              {t(
+                'Volume scheme: 5-29 units = 10% OFF + Free Gifts | 30+ units = 20% OFF + 6+ Free Gifts',
+                'சலுகை: 5-29 மருந்துகள் = 10% தள்ளுபடி + இலவசம் | 30+ = 20% தள்ளுபடி + 6+ இலவசம்'
+              )}
+            </p>
           </div>
         )}
 
@@ -169,8 +157,8 @@ export default function CartDrawer() {
               </h3>
               <p className="text-xs text-[#3D5A68] mt-1 max-w-xs mx-auto leading-relaxed">
                 {t(
-                  'Explore Ruthra’s 176 authentic classical formulations across Siddha, Ayurveda, and Proprietary healthcare.',
-                  'திருநெல்வேலியில் பாரம்பரிய முறைப்படி தயாரிக்கப்படும் 176 ருத்ரா மருந்துகளை ஆராயுங்கள்.'
+                  'Explore Ruthra’s authentic classical formulations across Siddha, Ayurveda, and Proprietary healthcare.',
+                  'திருநெல்வேலியில் பாரம்பரிய முறைப்படி தயாரிக்கப்படும் ருத்ரா மருந்துகளை ஆராயுங்கள்.'
                 )}
               </p>
               <div className="mt-5">
@@ -303,9 +291,13 @@ export default function CartDrawer() {
 
                 {items.map(({ product, quantity }) => {
                   const mrp = getProductMRP(product);
-                  const unitSavings = mrp - product.price;
-                  const totalItemSavings = unitSavings * quantity;
-                  const discountPerUnit = Math.round((unitSavings / mrp) * 100);
+                  const itemDiscountPercent = calculateItemDiscountPercent(quantity);
+                  const itemFreeGifts = calculateItemFreeGifts(quantity);
+                  const itemMilestone = getItemNextMilestone(quantity);
+                  
+                  const lineTotalBeforeDiscount = product.price * quantity;
+                  const itemDiscountAmt = Math.round((lineTotalBeforeDiscount * itemDiscountPercent) / 100);
+                  const finalLineTotal = lineTotalBeforeDiscount - itemDiscountAmt;
 
                   return (
                     <div
@@ -355,17 +347,35 @@ export default function CartDrawer() {
                             {language === 'ta' ? product.packSizeTa : product.packSize}
                           </p>
 
-                          {/* Price Row */}
+                          {/* Price Row with Active Discounts */}
                           <div className="flex flex-wrap items-baseline gap-1.5 mt-0.5">
                             <span className="font-bold text-xs sm:text-sm text-[#16382B]">
-                              ₹{product.price * quantity}
+                              ₹{finalLineTotal}
                             </span>
-                            <span className="text-[10px] text-[#8A9B93] line-through">
-                              ₹{mrp * quantity}
-                            </span>
-                            <span className="text-[9px] font-bold text-green-700 bg-green-50 border border-green-200 px-1 py-0.2 rounded">
-                              {discountPerUnit}% OFF • Save ₹{totalItemSavings}
-                            </span>
+                            {itemDiscountAmt > 0 && (
+                              <span className="text-[10px] text-[#8A9B93] line-through">
+                                ₹{lineTotalBeforeDiscount}
+                              </span>
+                            )}
+                            {itemDiscountPercent > 0 && (
+                              <span className="text-[9px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-1 py-0.2 rounded">
+                                {itemDiscountPercent}% OFF • Save ₹{itemDiscountAmt}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Item Volume Offer Status Pill */}
+                          <div className="mt-1">
+                            {quantity >= 5 ? (
+                              <span className="text-[9.5px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded flex items-center gap-1 w-fit">
+                                <Sparkles className="w-2.5 h-2.5 text-[#C29043]" />
+                                <span>{itemDiscountPercent}% OFF + {itemFreeGifts} FREE Bonus Medicine</span>
+                              </span>
+                            ) : (
+                              <span className="text-[9.5px] text-[#4A6357] bg-[#F4EFEA] px-1.5 py-0.5 rounded flex items-center gap-1 w-fit">
+                                <span>{language === 'ta' ? `இன்னும் ${itemMilestone.needed} சேர்த்தால் 10% + 1 இலவசம்` : `Add ${itemMilestone.needed} more for 10% OFF & 1 Free Bonus`}</span>
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -421,7 +431,7 @@ export default function CartDrawer() {
                   <div className="flex justify-between items-center text-emerald-800 font-bold bg-emerald-50 px-2 py-1 rounded-md border border-emerald-200">
                     <span className="flex items-center gap-1">
                       <Percent className="w-3 h-3 text-emerald-700" />
-                      <span>{t(`${discountPercent}% Volume Discount`, `${discountPercent}% சிறப்பு தள்ளுபடி`)}</span>
+                      <span>{t('Volume Scheme Discount', 'சிறப்பு தள்ளுபடி')}</span>
                     </span>
                     <span>-₹{discountAmount}</span>
                   </div>

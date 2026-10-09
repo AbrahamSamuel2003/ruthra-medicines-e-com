@@ -31,7 +31,7 @@ import {
   Gift
 } from 'lucide-react';
 import { Product } from '@/types/product';
-import { useCart, getProductMRP, calculateDiscountPercent, calculateFreeGiftsEarned } from '@/context/CartContext';
+import { useCart, getProductMRP, calculateItemDiscountPercent, calculateItemFreeGifts } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import WhatsAppAssistance from '@/components/WhatsAppAssistance';
 import PincodeDeliveryEstimator from '@/components/PincodeDeliveryEstimator';
@@ -158,8 +158,8 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
   const mrp = getProductMRP(product);
   const unitSavings = Math.max(0, mrp - product.price);
   const discountPercent = Math.round((unitSavings / mrp) * 100);
-  const volumeDiscountPercent = calculateDiscountPercent(quantity);
-  const potentialFreeGifts = calculateFreeGiftsEarned(quantity);
+  const volumeDiscountPercent = calculateItemDiscountPercent(quantity);
+  const potentialFreeGifts = calculateItemFreeGifts(quantity);
 
   const tabs = [
     { id: 'overview' as const, labelEn: 'Overview', labelTa: 'கண்ணோட்டம்', icon: Leaf },
@@ -1015,7 +1015,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     </div>
 
                     {/* Quick Quantity Milestone Selector Pills */}
-                    <div className="grid grid-cols-4 gap-1.5 pt-0.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pt-0.5">
                       <button
                         type="button"
                         onClick={() => setQuantity(1)}
@@ -1075,6 +1075,23 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                           <span>30 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
                           <span className={`text-[8px] font-bold ${quantity === 30 ? 'text-[#DFB36C]' : 'text-emerald-700'}`}>
                             20% + 6 Free
+                          </span>
+                        </button>
+                      )}
+
+                      {stockCount >= 50 && (
+                        <button
+                          type="button"
+                          onClick={() => setQuantity(50)}
+                          className={`py-1.5 px-1 rounded-lg text-[10.5px] font-bold border transition-all cursor-pointer text-center flex flex-col items-center justify-center col-span-2 sm:col-span-1 ${
+                            quantity === 50
+                              ? 'bg-[#16382B] text-white border-[#16382B] shadow-2xs'
+                              : 'bg-amber-50/90 text-amber-900 border-amber-300 hover:border-amber-400'
+                          }`}
+                        >
+                          <span>50 {language === 'ta' ? 'அலகுகள்' : 'Units'}</span>
+                          <span className={`text-[8px] font-bold ${quantity === 50 ? 'text-[#DFB36C]' : 'text-amber-800'}`}>
+                            20% + 15 Free 🔥
                           </span>
                         </button>
                       )}

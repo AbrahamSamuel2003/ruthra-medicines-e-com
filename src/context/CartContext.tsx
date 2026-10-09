@@ -22,31 +22,85 @@ export const getProductMRP = (product: Product): number => {
 };
 
 /**
- * Calculates volume discount percentage on total ordered quantity:
+ * Calculates volume discount percentage on a SINGLE product's quantity:
  * - 1 to 4: 0%
  * - 5 to 29: 10% OFF
- * - 30+: 20% OFF (10% base + 10% extra)
+ * - 30+: 20% OFF
  */
-export const calculateDiscountPercent = (paidCount: number): number => {
-  if (paidCount >= 30) return 20;
-  if (paidCount >= 5) return 10;
+export const calculateItemDiscountPercent = (quantity: number): number => {
+  if (quantity >= 30) return 20;
+  if (quantity >= 5) return 10;
   return 0;
 };
 
 /**
- * Calculates free formulation bonus slots earned:
+ * Calculates free formulation bonus slots earned on a SINGLE product's quantity:
  * - 1 to 4: 0
- * - 5 to 49: 1 free for every 5 items (floor(Q / 5))
- * - 50+: 15 free at 50, +1 per 5 items (15 at 50-54, 16 at 55-59, 18 at 60-64, etc.)
+ * - 5 to 49: 1 free for every 5 units (floor(Q / 5))
+ *   5-9: 1, 10-14: 2, 15-19: 3, 20-24: 4, 25-29: 5, 30-34: 6, 35-39: 7, 40-44: 8, 45-49: 9
+ * - 50+: Exact client approved matrix
+ *   50-54: 15 (Mega Bulk Jump), 55-59: 16, 60-64: 18, 65-69: 19, 70-74: 21,
+ *   75-79: 22, 80-84: 24, 85-89: 25, 90-94: 27, 95-99: 28, 100+: 30 (+1 per 5)
  */
-export const calculateFreeGiftsEarned = (paidCount: number): number => {
-  if (paidCount < 5) return 0;
-  if (paidCount < 50) {
-    return Math.floor(paidCount / 5);
+export const calculateItemFreeGifts = (quantity: number): number => {
+  if (quantity < 5) return 0;
+  if (quantity < 50) {
+    return Math.floor(quantity / 5);
   }
-  const baseTens = Math.floor(paidCount / 10) * 3; // 50->15, 60->18, 70->21, 80->24...
-  const remainderFive = (paidCount % 10) >= 5 ? 1 : 0; // +1 for 55-59, 65-69...
-  return baseTens + remainderFive;
+  if (quantity < 55) return 15; // 50-54
+  if (quantity < 60) return 16; // 55-59
+  if (quantity < 65) return 18; // 60-64
+  if (quantity < 70) return 19; // 65-69
+  if (quantity < 75) return 21; // 70-74
+  if (quantity < 80) return 22; // 75-79
+  if (quantity < 85) return 24; // 80-84
+  if (quantity < 90) return 25; // 85-89
+  if (quantity < 95) return 27; // 90-94
+  if (quantity < 100) return 28; // 95-99
+  return 30 + Math.floor((quantity - 100) / 5);
+};
+
+/**
+ * Returns the next milestone info for a single product quantity
+ */
+export const getItemNextMilestone = (quantity: number) => {
+  if (quantity < 5) {
+    return {
+      nextCount: 5,
+      needed: 5 - quantity,
+      rewardText: '10% OFF + 1 FREE Bonus Medicine',
+      rewardTextTa: '10% தள்ளுபடி + 1 இலவச மருந்து',
+      progressPercent: Math.round((quantity / 5) * 100)
+    };
+  }
+  if (quantity < 30) {
+    const nextTier = Math.floor(quantity / 5) * 5 + 5;
+    return {
+      nextCount: nextTier,
+      needed: nextTier - quantity,
+      rewardText: nextTier === 30 ? '20% Bulk Discount + 6 FREE Gifts' : `+1 More FREE Gift (${calculateItemFreeGifts(nextTier)} Total)`,
+      rewardTextTa: nextTier === 30 ? '20% மொத்த தள்ளுபடி + 6 இலவசம்' : `+1 இலவச மருந்து (மொத்தம் ${calculateItemFreeGifts(nextTier)})`,
+      progressPercent: Math.round(((quantity % 5) / 5) * 100)
+    };
+  }
+  if (quantity < 50) {
+    const nextTier = Math.floor(quantity / 5) * 5 + 5;
+    return {
+      nextCount: nextTier,
+      needed: nextTier - quantity,
+      rewardText: nextTier === 50 ? 'Mega Bulk Jump: 15 FREE Medicines!' : `+1 More FREE Gift (${calculateItemFreeGifts(nextTier)} Total)`,
+      rewardTextTa: nextTier === 50 ? 'மெகா ஜம்ப்: 15 இலவச மருந்துகள்!' : `+1 இலவச மருந்து (மொத்தம் ${calculateItemFreeGifts(nextTier)})`,
+      progressPercent: Math.round(((quantity % 5) / 5) * 100)
+    };
+  }
+  const nextTier = Math.floor(quantity / 5) * 5 + 5;
+  return {
+    nextCount: nextTier,
+    needed: nextTier - quantity,
+    rewardText: `Next Bonus: ${calculateItemFreeGifts(nextTier)} FREE Medicines`,
+    rewardTextTa: `அடுத்த இலக்கு: ${calculateItemFreeGifts(nextTier)} இலவச மருந்துகள்`,
+    progressPercent: Math.round(((quantity % 5) / 5) * 100)
+  };
 };
 
 export interface CartToastData {
@@ -71,16 +125,13 @@ interface CartContextType {
   mrpSubtotal: number;
   mrpSavings: number;
   
-  // Free Gift System (Selected strictly from purchased cart items)
+  // Free Gift System (Selected strictly from purchased cart items with qty >= 5)
   freeGiftItems: FreeGiftItem[];
   addFreeGift: (product: Product) => { success: boolean; message: string };
   removeFreeGift: (productId: string) => void;
   freeSlotsEarned: number;
   totalFreeGiftsSelected: number;
   freeSlotsRemaining: number;
-  nextMilestoneCount: number;
-  itemsNeededForNextMilestone: number;
-  progressPercent: number;
   freeGiftSavings: number;
   isGiftModalOpen: boolean;
   openGiftModal: () => void;
@@ -146,75 +197,44 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, freeGiftItems, isLoaded]);
 
-  // Calculations for Paid Items
+  // Calculations for Paid Items (Item-level volume discounts)
   const paidItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
-  // Volume Discounts
-  const discountPercent = calculateDiscountPercent(paidItemCount);
-  const discountAmount = Math.round((subtotal * discountPercent) / 100);
-  const discountedSubtotal = subtotal - discountAmount;
+  // Sum of item-level volume discounts (applied per individual product count)
+  const discountAmount = items.reduce((sum, item) => {
+    const itemPercent = calculateItemDiscountPercent(item.quantity);
+    const itemTotal = item.product.price * item.quantity;
+    return sum + Math.round((itemTotal * itemPercent) / 100);
+  }, 0);
 
-  // Free Gift Calculations
-  const freeSlotsEarned = calculateFreeGiftsEarned(paidItemCount);
+  const discountedSubtotal = subtotal - discountAmount;
+  const discountPercent = subtotal > 0 ? Math.round((discountAmount / subtotal) * 100) : 0;
+
+  // Free Gift Calculations (Strictly earned per individual product count >= 5)
+  const freeSlotsEarned = items.reduce((sum, item) => {
+    return sum + calculateItemFreeGifts(item.quantity);
+  }, 0);
+
   const totalFreeGiftsSelected = freeGiftItems.reduce((sum, item) => sum + item.quantity, 0);
   const freeSlotsRemaining = Math.max(0, freeSlotsEarned - totalFreeGiftsSelected);
-  
-  // Milestone & Progression Logic
-  let nextMilestoneCount = 5;
-  let currentTierBase = 0;
-  let stepSize = 5;
-
-  if (paidItemCount < 5) {
-    nextMilestoneCount = 5;
-    currentTierBase = 0;
-    stepSize = 5;
-  } else if (paidItemCount < 50) {
-    currentTierBase = Math.floor(paidItemCount / 5) * 5;
-    nextMilestoneCount = currentTierBase + 5;
-    stepSize = 5;
-  } else {
-    if ((paidItemCount % 10) < 5) {
-      currentTierBase = Math.floor(paidItemCount / 10) * 10;
-      nextMilestoneCount = currentTierBase + 5;
-      stepSize = 5;
-    } else {
-      currentTierBase = Math.floor(paidItemCount / 10) * 10 + 5;
-      nextMilestoneCount = currentTierBase + 5;
-      stepSize = 5;
-    }
-  }
-
-  const itemsNeededForNextMilestone = Math.max(1, nextMilestoneCount - paidItemCount);
-  const progressPercent = Math.min(
-    100,
-    Math.round(((paidItemCount - currentTierBase) / stepSize) * 100)
-  );
 
   // Automatically validate and trim free gifts:
-  // 1. Remove free gifts for products no longer in the cart
-  // 2. Trim excess free gift units if paidItemCount was reduced
+  // Each free gift must strictly belong to a product with quantity >= 5 in the cart,
+  // and cannot exceed calculateItemFreeGifts(item.quantity) for that specific product
   useEffect(() => {
     if (!isLoaded) return;
-    const cartProductIds = new Set(items.map(i => i.product.id));
+    const cartProductMap = new Map(items.map(i => [i.product.id, i.quantity]));
     
-    // Filter out free gifts for products not in the cart
-    let validGifts = freeGiftItems.filter(g => cartProductIds.has(g.product.id));
-    
-    const currentSelected = validGifts.reduce((sum, g) => sum + g.quantity, 0);
-    if (currentSelected > freeSlotsEarned) {
-      if (freeSlotsEarned === 0) {
-        validGifts = [];
-      } else {
-        let allowed = freeSlotsEarned;
-        const trimmed: FreeGiftItem[] = [];
-        for (const gift of validGifts) {
-          if (allowed <= 0) break;
-          const take = Math.min(gift.quantity, allowed);
-          trimmed.push({ product: gift.product, quantity: take });
-          allowed -= take;
+    let validGifts: FreeGiftItem[] = [];
+    for (const gift of freeGiftItems) {
+      const cartQty = cartProductMap.get(gift.product.id);
+      if (cartQty && cartQty >= 5) {
+        const maxAllowed = calculateItemFreeGifts(cartQty);
+        const take = Math.min(gift.quantity, maxAllowed);
+        if (take > 0) {
+          validGifts.push({ product: gift.product, quantity: take });
         }
-        validGifts = trimmed;
       }
     }
 
@@ -248,7 +268,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [...prev, { product, quantity }];
     });
 
-    // Trigger instant top-right toast notification
     setToastNotification({
       product,
       quantity,
@@ -258,6 +277,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const removeItem = (productId: string) => {
     setItems(prev => prev.filter(item => item.product.id !== productId));
+    setFreeGiftItems(prev => prev.filter(item => item.product.id !== productId));
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -277,21 +297,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setFreeGiftItems([]);
   };
 
-  // Add Free Gift item (Restricted to products currently in the customer's cart)
+  // Add Free Gift (Strictly allowed only for products in cart with quantity >= 5, up to earned quota)
   const addFreeGift = (product: Product): { success: boolean; message: string } => {
-    const isProductInCart = items.some(i => i.product.id === product.id);
-    if (!isProductInCart) {
-      return {
-        success: false,
-        message: 'Free formulation bonus can only be chosen from products currently in your cart.'
-      };
+    const cartItem = items.find(item => item.product.id === product.id);
+    if (!cartItem) {
+      return { success: false, message: 'Free bonus units can only be chosen from formulations currently in your cart.' };
     }
 
-    if (freeSlotsRemaining <= 0) {
-      return {
-        success: false,
-        message: 'All free gift slots are already claimed. Add more products to unlock additional free bonus medicines.'
-      };
+    if (cartItem.quantity < 5) {
+      return { success: false, message: 'This formulation requires a purchase of 5 or more units to earn free bonus units.' };
+    }
+
+    const itemMaxFree = calculateItemFreeGifts(cartItem.quantity);
+    const currentSelectedForThisProduct = freeGiftItems.find(g => g.product.id === product.id)?.quantity || 0;
+
+    if (currentSelectedForThisProduct >= itemMaxFree) {
+      return { success: false, message: `You have claimed all ${itemMaxFree} free bonus units earned for ${product.name}.` };
     }
 
     setFreeGiftItems(prev => {
@@ -304,11 +325,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [...prev, { product, quantity: 1 }];
     });
 
-    showToast(`Added free bonus unit of ${product.name}!`);
-    return {
-      success: true,
-      message: `${product.name} added as free bonus.`
-    };
+    return { success: true, message: `Added 1 Free ${product.name} to your order!` };
   };
 
   const removeFreeGift = (productId: string) => {
@@ -324,29 +341,35 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  // Total Item Counts
-  const totalItemCount = paidItemCount + totalFreeGiftsSelected;
+  const openDrawer = () => setIsDrawerOpen(true);
+  const closeDrawer = () => setIsDrawerOpen(false);
 
-  // MRP Subtotal & Direct MRP Savings
-  const mrpSubtotal = items.reduce((sum, item) => {
-    const mrp = getProductMRP(item.product);
-    return sum + mrp * item.quantity;
-  }, 0);
+  const openSearch = () => setIsSearchOpen(true);
+  const closeSearch = () => setIsSearchOpen(false);
+
+  const openGiftModal = () => setIsGiftModalOpen(true);
+  const closeGiftModal = () => setIsGiftModalOpen(false);
+
+  const mrpSubtotal = items.reduce(
+    (sum, item) => sum + getProductMRP(item.product) * item.quantity,
+    0
+  );
   const mrpSavings = Math.max(0, mrpSubtotal - subtotal);
 
-  // Free Gift Financial Value Savings
-  const freeGiftSavings = freeGiftItems.reduce((sum, item) => {
-    return sum + item.product.price * item.quantity;
-  }, 0);
+  const freeGiftSavings = freeGiftItems.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0
+  );
 
-  // Shipping Calculation (Standard Tamil Nadu Express Courier)
-  const shippingFee = subtotal === 0 ? 0 : STANDARD_SHIPPING_FEE;
-
-  // Total payable amount (Discounted subtotal + shipping)
-  const total = Math.max(0, discountedSubtotal + shippingFee);
-
-  // Total savings customer receives on this order (Catalog MRP savings + Volume discount + Free Gift Value)
   const totalSavings = mrpSavings + discountAmount + freeGiftSavings;
+  const shippingFee = STANDARD_SHIPPING_FEE;
+  const total = discountedSubtotal + shippingFee;
+
+  const totalItemCount = paidItemCount + totalFreeGiftsSelected;
+  const itemCount = totalItemCount;
+
+  const freeShippingThreshold = 0;
+  const amountNeededForFreeShipping = 0;
 
   return (
     <CartContext.Provider
@@ -356,7 +379,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         removeItem,
         updateQuantity,
         clearCart,
-        itemCount: totalItemCount,
+        itemCount,
         paidItemCount,
         totalItemCount,
         subtotal,
@@ -365,36 +388,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         discountedSubtotal,
         mrpSubtotal,
         mrpSavings,
-
-        // Free gift system
         freeGiftItems,
         addFreeGift,
         removeFreeGift,
         freeSlotsEarned,
         totalFreeGiftsSelected,
         freeSlotsRemaining,
-        nextMilestoneCount,
-        itemsNeededForNextMilestone,
-        progressPercent,
         freeGiftSavings,
         isGiftModalOpen,
-        openGiftModal: () => {
-          setIsDrawerOpen(false);
-          setIsGiftModalOpen(true);
-        },
-        closeGiftModal: () => setIsGiftModalOpen(false),
-
+        openGiftModal,
+        closeGiftModal,
         totalSavings,
         shippingFee,
         total,
-        freeShippingThreshold: 0,
-        amountNeededForFreeShipping: 0,
+        freeShippingThreshold,
+        amountNeededForFreeShipping,
         isDrawerOpen,
-        openDrawer: () => setIsDrawerOpen(true),
-        closeDrawer: () => setIsDrawerOpen(false),
+        openDrawer,
+        closeDrawer,
         isSearchOpen,
-        openSearch: () => setIsSearchOpen(true),
-        closeSearch: () => setIsSearchOpen(false),
+        openSearch,
+        closeSearch,
         toastNotification,
         dismissToast,
         toastMessage,
