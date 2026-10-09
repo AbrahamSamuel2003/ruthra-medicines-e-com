@@ -610,7 +610,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-2xl text-center md:text-left">
             <span className="text-xs uppercase tracking-wider font-extrabold text-[#DFB36C] flex items-center justify-center md:justify-start gap-1 mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
+              <Leaf className="w-3.5 h-3.5 text-[#DFB36C]" />
               <span>{t('Free Vaidya Consultation', 'இலவச சித்த மருத்துவ ஆலோசனை')}</span>
             </span>
             <h2 className="font-serif-brand text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
@@ -632,14 +632,14 @@ export default function HomePage() {
               href="https://wa.me/919043434226?text=Vanakkam%20Ruthra%20Medicines,%20I%20need%20a%20doctor%20consultation%20regarding%20my%20health."
               target="_blank"
               rel="noreferrer"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 fill-white" />
+              <MessageCircle className="w-4 h-4 text-[#DFB36C]" />
               <span>{t('WhatsApp Doctor Desk', 'வாட்ஸ்அப் ஆலோசனை')}</span>
             </a>
             <a
               href="tel:+919043434226"
-              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all"
+              className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
             >
               <PhoneCall className="w-4 h-4 text-[#DFB36C]" />
               <span>+91 9043434226</span>
