@@ -156,7 +156,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                 </span>
                 <span className="font-serif-brand text-xs sm:text-sm font-bold text-[#16382B]">
                   {isComingSoon 
-                    ? (product.price > 0 ? `Est. ₹${product.price}` : t('Price on Request', 'விலை விபரம் கோரலாம்'))
+                    ? t('Coming Soon', 'விரைவில் கிடைக்கும்')
                     : t('Out of Stock', 'கையிருப்பு இல்லை')}
                 </span>
               </div>
@@ -285,7 +285,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
               <div className="flex flex-col min-w-0 flex-1">
                 <span className="font-serif-brand font-bold text-xs sm:text-sm text-[#16382B]">
                   {isComingSoon
-                    ? (product.price > 0 ? `Est. ₹${product.price}` : t('Price on Request', 'விலை விபரம் கோரலாம்'))
+                    ? t('Coming Soon', 'விரைவில் கிடைக்கும்')
                     : t('Out of Stock', 'கையிருப்பு இல்லை')}
                 </span>
                 <span className="text-[8.5px] sm:text-[9.5px] text-[#4A6357]">

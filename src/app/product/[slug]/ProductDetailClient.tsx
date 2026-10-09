@@ -526,13 +526,25 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
 
             <div className="flex items-center gap-3 flex-shrink-0">
               <div className="text-right">
-                <span className="font-serif-brand font-bold text-sm sm:text-base text-[#16382B]">
-                  {product.price > 0 ? `₹${product.price * quantity}` : t('Price on Request', 'விலை விபரம் கோரலாம்')}
-                </span>
-                {mrp > product.price && (
-                  <span className="text-[10px] text-[#8A9B93] line-through ml-1.5">
-                    ₹{mrp * quantity}
+                {isComingSoon ? (
+                  <span className="font-serif-brand font-bold text-xs sm:text-sm text-[#16382B]">
+                    {t('Coming Soon', 'விரைவில் கிடைக்கும்')}
                   </span>
+                ) : isOutOfStock ? (
+                  <span className="font-serif-brand font-bold text-xs sm:text-sm text-[#16382B]">
+                    {t('Out of Stock', 'கையிருப்பு இல்லை')}
+                  </span>
+                ) : (
+                  <>
+                    <span className="font-serif-brand font-bold text-sm sm:text-base text-[#16382B]">
+                      ₹{product.price * quantity}
+                    </span>
+                    {mrp > product.price && (
+                      <span className="text-[10px] text-[#8A9B93] line-through ml-1.5">
+                        ₹{mrp * quantity}
+                      </span>
+                    )}
+                  </>
                 )}
               </div>
 
@@ -899,7 +911,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                     </span>
                     <div className="mt-2">
                       <span className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B]">
-                        {product.price > 0 ? `Est. ₹${product.price}` : t('Price on Request', 'விலை விபரம் கோரலாம்')}
+                        {t('Coming Soon', 'விரைவில் கிடைக்கும்')}
                       </span>
                       <p className="text-xs text-[#8A9B93] mt-0.5">
                         {t('Classical formulation crafted in seasonal artisanal batches per Shodhana.', 'சுத்தி முறைப்படி குறிப்பிட்ட பருவத்தில் தயாரிக்கப்படும் உன்னத மருந்து.')}

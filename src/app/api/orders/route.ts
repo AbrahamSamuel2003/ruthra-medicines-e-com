@@ -46,12 +46,10 @@ export async function POST(request: Request) {
       notes: notes?.trim()
     });
 
-    // Asynchronously dispatch invoice email with PDF attachment
-    if (order.customer.email || order.shippingSnapshot?.email) {
-      sendInvoiceEmail({ order }).catch((err) => {
-        console.error(`[OrderCreation:EmailError] Failed to send email for ${order.orderNumber}:`, err);
-      });
-    }
+    // Asynchronously dispatch invoice email with PDF attachment to customer and admin
+    sendInvoiceEmail({ order }).catch((err) => {
+      console.error(`[OrderCreation:EmailError] Failed to send email for ${order.orderNumber}:`, err);
+    });
 
     return NextResponse.json({
       success: true,

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { CheckCircle2, ShoppingBag, X, Gift, Check, Sparkles } from 'lucide-react';
+import { CheckCircle2, ShoppingBag, X, Gift, Check } from 'lucide-react';
 import { useCart, calculateItemDiscountPercent, calculateItemFreeGifts } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -138,8 +138,7 @@ export default function CartToast() {
               )}
             </div>
             {freeSlotsEarned > 0 ? (
-              <span className="text-xs font-bold text-emerald-800 flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#C29043]" />
+              <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded">
                 <span>{freeSlotsEarned} Free Gifts!</span>
               </span>
             ) : (

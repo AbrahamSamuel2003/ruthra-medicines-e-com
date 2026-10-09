@@ -451,9 +451,10 @@ export async function sendInvoiceEmail({
     // 1. Check SMTP Transporter (e.g. Gmail / SendGrid / SES)
     const smtp = getSmtpTransporter();
     if (smtp) {
-      const fromAddress = process.env.EMAIL_FROM || process.env.SMTP_USER || 'orders@ruthramedicos.com';
+      const rawFrom = process.env.EMAIL_FROM || process.env.SMTP_USER || 'orders@ruthramedicines.com';
+      const fromAddress = rawFrom.includes('<') ? rawFrom : `"Ruthra Medicines" <${rawFrom}>`;
       const info = await smtp.sendMail({
-        from: `"Ruthra Medicines" <${fromAddress}>`,
+        from: fromAddress,
         to: targetEmail,
         subject,
         html: htmlContent,
@@ -561,9 +562,10 @@ export async function sendDailySummaryEmail({
     // 1. Check SMTP Transporter (e.g. Gmail / SendGrid / SES)
     const smtp = getSmtpTransporter();
     if (smtp) {
-      const fromAddress = process.env.EMAIL_FROM || process.env.SMTP_USER || 'reports@ruthramedicos.com';
+      const rawFrom = process.env.EMAIL_FROM || process.env.SMTP_USER || 'reports@ruthramedicines.com';
+      const fromAddress = rawFrom.includes('<') ? rawFrom : `"Ruthra Medicines Reporting" <${rawFrom}>`;
       const info = await smtp.sendMail({
-        from: `"Ruthra Medicines Reporting" <${fromAddress}>`,
+        from: fromAddress,
         to: targetEmail,
         subject,
         html: htmlContent
@@ -832,9 +834,10 @@ export async function sendOrderDispatchedEmail({
     // 1. SMTP (e.g. Gmail)
     const smtp = getSmtpTransporter();
     if (smtp) {
-      const fromAddress = process.env.EMAIL_FROM || process.env.SMTP_USER || 'orders@ruthramedicos.com';
+      const rawFrom = process.env.EMAIL_FROM || process.env.SMTP_USER || 'orders@ruthramedicines.com';
+      const fromAddress = rawFrom.includes('<') ? rawFrom : `"Ruthra Medicines Dispatch" <${rawFrom}>`;
       const info = await smtp.sendMail({
-        from: `"Ruthra Medicines Dispatch" <${fromAddress}>`,
+        from: fromAddress,
         to: targetEmail,
         subject,
         html: htmlContent

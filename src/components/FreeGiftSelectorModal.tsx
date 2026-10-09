@@ -9,7 +9,6 @@ import {
   Check, 
   Plus, 
   Minus,
-  Sparkles,
   ShieldCheck,
   Tag,
   PackageCheck,

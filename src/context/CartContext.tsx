@@ -124,7 +124,7 @@ interface CartContextType {
   discountedSubtotal: number;
   mrpSubtotal: number;
   mrpSavings: number;
-  
+
   // Free Gift System (Selected strictly from purchased cart items with qty >= 5)
   freeGiftItems: FreeGiftItem[];
   addFreeGift: (product: Product) => { success: boolean; message: string };
@@ -225,7 +225,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!isLoaded) return;
     const cartProductMap = new Map(items.map(i => [i.product.id, i.quantity]));
-    
+
     let validGifts: FreeGiftItem[] = [];
     for (const gift of freeGiftItems) {
       const cartQty = cartProductMap.get(gift.product.id);

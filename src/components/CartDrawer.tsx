@@ -15,8 +15,7 @@ import {
   Tag,
   Gift,
   PackageCheck,
-  Percent,
-  Sparkles
+  Percent
 } from 'lucide-react';
 import { 
   useCart, 
@@ -129,8 +128,7 @@ export default function CartDrawer() {
               </span>
 
               {freeSlotsEarned > 0 && (
-                <span className="text-[10.5px] font-bold text-emerald-800 flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-[#C29043]" />
+                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded border border-emerald-200">
                   <span>{t('Offer Applied', 'சலுகை உண்டு')}</span>
                 </span>
               )}
@@ -363,20 +361,68 @@ export default function CartDrawer() {
                               </span>
                             )}
                           </div>
+                        </div>
+                      </div>
 
-                          {/* Item Volume Offer Status Pill */}
-                          <div className="mt-1">
-                            {quantity >= 5 ? (
-                              <span className="text-[9.5px] font-bold text-emerald-800 bg-emerald-100/90 px-1.5 py-0.5 rounded flex items-center gap-1 w-fit">
-                                <Sparkles className="w-2.5 h-2.5 text-[#C29043]" />
-                                <span>{itemDiscountPercent}% OFF + {itemFreeGifts} FREE Bonus Medicine</span>
+                      {/* Full-Width Buying Progress Structure (Spanning 100% of card) */}
+                      <div className="p-2.5 rounded-xl bg-[#E8F1EB]/80 border border-[#16382B]/10 space-y-1.5 w-full">
+                        {/* Top Status Row */}
+                        <div className="flex items-center justify-between gap-1.5 text-[10.5px] leading-tight">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            {itemDiscountPercent > 0 ? (
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-sm bg-emerald-800 text-white font-bold text-[9px] flex-shrink-0">
+                                <Percent className="w-2.5 h-2.5" />
+                                <span>{itemDiscountPercent}% OFF</span>
                               </span>
                             ) : (
-                              <span className="text-[9.5px] text-[#4A6357] bg-[#F4EFEA] px-1.5 py-0.5 rounded flex items-center gap-1 w-fit">
-                                <span>{language === 'ta' ? `இன்னும் ${itemMilestone.needed} சேர்த்தால் 10% + 1 இலவசம்` : `Add ${itemMilestone.needed} more for 10% OFF & 1 Free Bonus`}</span>
+                              <span className="inline-flex items-center px-1.5 py-0.5 rounded-sm bg-gray-200 text-gray-700 font-bold text-[9px] flex-shrink-0">
+                                <span>0% OFF</span>
                               </span>
                             )}
+                            <span className="font-bold text-[#16382B] truncate">
+                              {itemFreeGifts > 0 
+                                ? t(`${itemFreeGifts} FREE Bonus Medicine(s) Unlocked`, `${itemFreeGifts} இலவச மருந்து தகுதி`)
+                                : t('1 FREE Bonus Medicine Unlocked at 5+', '5+ இல் 1 இலவச மருந்து')}
+                            </span>
                           </div>
+
+                          <span className="text-[#3D5A68] text-[10px] font-medium whitespace-nowrap flex-shrink-0">
+                            {quantity < 30 ? 'Next: 30 Items (20% OFF)' : quantity < 50 ? 'Next: 50 Items (15 FREE)' : 'Mega Bulk Active'}
+                          </span>
+                        </div>
+
+                        {/* Progress Bar Track */}
+                        <div className="h-1.5 w-full bg-white rounded-full overflow-hidden border border-[#16382B]/10">
+                          <div 
+                            className="h-full bg-[#16382B] rounded-full transition-all duration-300"
+                            style={{
+                              width: `${
+                                quantity < 5 
+                                  ? Math.round((quantity / 5) * 100) 
+                                  : quantity < 30 
+                                    ? Math.min(100, Math.round((quantity / 30) * 100))
+                                    : quantity < 50
+                                      ? Math.min(100, Math.round((quantity / 50) * 100))
+                                      : 100
+                              }%`
+                            }}
+                          />
+                        </div>
+
+                        {/* Bottom Context Row */}
+                        <div className="flex items-center justify-between text-[10px] text-[#3D5A68]">
+                          <span className="truncate">
+                            {quantity < 5 
+                              ? t(`Add ${5 - quantity} more for 10% bulk discount`, `இன்னும் ${5 - quantity} சேர்த்தால் 10% தள்ளுபடி`)
+                              : quantity < 30
+                                ? t(`Add ${30 - quantity} more for 20% bulk discount`, `இன்னும் ${30 - quantity} சேர்த்தால் 20% தள்ளுபடி`)
+                                : quantity < 50
+                                  ? t(`Add ${50 - quantity} more for Mega Bulk (15 FREE)`, `இன்னும் ${50 - quantity} சேர்த்தால் 15 இலவசம்`)
+                                  : t('Mega Bulk Tier Active • +1 Free / 5 Units', 'மெகா பல்க் தகுதி')}
+                          </span>
+                          <span className="font-bold text-[#16382B] ml-1 flex-shrink-0">
+                            {quantity < 5 ? '10%' : quantity < 30 ? '20%' : quantity < 50 ? '20%' : 'MAX'}
+                          </span>
                         </div>
                       </div>
 

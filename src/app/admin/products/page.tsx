@@ -1899,79 +1899,98 @@ function ProductTableRow({
 
       {/* PRICE */}
       <td className="py-3.5 px-4">
-        <div className="font-bold text-sm text-[#16382B]">₹{p.price}</div>
-        {p.originalPrice && (
-          <div className="text-[10px] text-[#8A9B93] line-through">₹{p.originalPrice}</div>
+        {p.isComingSoon ? (
+          <div>
+            <span className="text-[9.5px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded block w-fit">
+              Hidden on Store
+            </span>
+            <div className="text-[11px] text-[#8A9B93] mt-0.5 font-mono">Ref: ₹{p.price}</div>
+          </div>
+        ) : (
+          <div>
+            <div className="font-bold text-sm text-[#16382B]">₹{p.price}</div>
+            {p.originalPrice && (
+              <div className="text-[10px] text-[#8A9B93] line-through">MRP: ₹{p.originalPrice}</div>
+            )}
+          </div>
         )}
       </td>
 
       {/* STOCK & COMING SOON STATUS */}
       <td className="py-3.5 px-4">
         <div className="flex flex-col items-center gap-1.5">
-          <div className="flex items-center gap-1.5">
-            {/* COMING SOON TOGGLE BADGE */}
-            <button
-              type="button"
-              onClick={() => onToggleComingSoon(p)}
-              disabled={isUpdating === p.id}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
-                p.isComingSoon
-                  ? 'bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200'
-                  : 'bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200'
-              }`}
-              title="Click to toggle Coming Soon status"
-            >
-              {p.isComingSoon ? (
-                <>
-                  <Clock className="w-2.5 h-2.5 text-amber-700" />
-                  Coming Soon
-                </>
-              ) : (
-                <>
-                  <Tag className="w-2.5 h-2.5 text-slate-500" />
+          {p.isComingSoon ? (
+            <div className="flex flex-col items-center gap-1">
+              <button
+                type="button"
+                onClick={() => onToggleComingSoon(p)}
+                disabled={isUpdating === p.id}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 transition-all cursor-pointer shadow-2xs"
+                title="Click to toggle to Live status"
+              >
+                {isUpdating === p.id ? (
+                  <Loader2 className="w-2.5 h-2.5 animate-spin" />
+                ) : (
+                  <>
+                    <Clock className="w-2.5 h-2.5 text-amber-700" />
+                    <span>Coming Soon</span>
+                  </>
+                )}
+              </button>
+              <span className="text-[9.5px] text-[#8A9B93] font-medium">Unreleased / Storefront Hidden</span>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-1">
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => onToggleComingSoon(p)}
+                  disabled={isUpdating === p.id}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition-all cursor-pointer"
+                  title="Click to set to Coming Soon"
+                >
+                  <Tag className="w-2.5 h-2.5 text-emerald-700" />
                   Live
-                </>
-              )}
-            </button>
+                </button>
 
-            {/* IN STOCK BUTTON */}
-            <button
-              onClick={() => onToggleStock(p)}
-              disabled={isUpdating === p.id}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
-                p.inStock && stockCount > 0
-                  ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
-                  : 'bg-red-100 text-red-800 hover:bg-red-200'
-              }`}
-            >
-              {isUpdating === p.id ? (
-                <Loader2 className="w-2.5 h-2.5 animate-spin" />
-              ) : p.inStock && stockCount > 0 ? (
-                <>
-                  <Check className="w-2.5 h-2.5 text-emerald-700 stroke-[2.5]" />
-                  In Stock
-                </>
-              ) : (
-                <>
-                  <X className="w-2.5 h-2.5 text-red-600" />
-                  Out of Stock
-                </>
-              )}
-            </button>
-          </div>
+                <button
+                  onClick={() => onToggleStock(p)}
+                  disabled={isUpdating === p.id}
+                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
+                    p.inStock && stockCount > 0
+                      ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
+                      : 'bg-red-100 text-red-800 hover:bg-red-200'
+                  }`}
+                >
+                  {isUpdating === p.id ? (
+                    <Loader2 className="w-2.5 h-2.5 animate-spin" />
+                  ) : p.inStock && stockCount > 0 ? (
+                    <>
+                      <Check className="w-2.5 h-2.5 text-emerald-700 stroke-[2.5]" />
+                      In Stock
+                    </>
+                  ) : (
+                    <>
+                      <X className="w-2.5 h-2.5 text-red-600" />
+                      Out of Stock
+                    </>
+                  )}
+                </button>
+              </div>
 
-          {/* STOCK COUNT PILL */}
-          <div className="text-[10px] font-mono font-semibold">
-            {stockCount <= 0 || !p.inStock ? (
-              <span className="text-red-600">0 units</span>
-            ) : stockCount <= 5 ? (
-              <span className="text-amber-700 flex items-center gap-0.5">
-                <AlertCircle className="w-2.5 h-2.5 text-amber-600" /> {stockCount} units (low)
-              </span>
-            ) : (
-              <span className="text-[#5C7368]">{stockCount} units</span>
-            )}
-          </div>
+              <div className="text-[10px] font-mono font-semibold">
+                {stockCount <= 0 || !p.inStock ? (
+                  <span className="text-red-600">0 units</span>
+                ) : stockCount <= 5 ? (
+                  <span className="text-amber-700 flex items-center gap-0.5">
+                    <AlertCircle className="w-2.5 h-2.5 text-amber-600" /> {stockCount} units (low)
+                  </span>
+                ) : (
+                  <span className="text-[#5C7368]">{stockCount} units</span>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </td>
 
@@ -2075,23 +2094,29 @@ function ProductMobileCard({
         </div>
         <div>
           <span className="text-[9px] uppercase font-bold text-[#8A9B93] block">Price</span>
-          <div className="flex items-baseline justify-center gap-1 mt-0.5">
-            <span className="font-bold text-[#16382B] text-[11px]">₹{p.price}</span>
-            {p.originalPrice && (
-              <span className="text-[9px] text-[#8A9B93] line-through">₹{p.originalPrice}</span>
-            )}
-          </div>
+          {p.isComingSoon ? (
+            <span className="text-[9.5px] font-bold text-amber-800 bg-amber-50 px-1 py-0.2 rounded mt-0.5 inline-block">
+              Hidden
+            </span>
+          ) : (
+            <div className="flex items-baseline justify-center gap-1 mt-0.5">
+              <span className="font-bold text-[#16382B] text-[11px]">₹{p.price}</span>
+              {p.originalPrice && (
+                <span className="text-[9px] text-[#8A9B93] line-through">₹{p.originalPrice}</span>
+              )}
+            </div>
+          )}
         </div>
         <div>
-          <span className="text-[9px] uppercase font-bold text-[#8A9B93] block">Stock</span>
-          <span className={`font-bold font-mono text-[11px] block mt-0.5 ${
-            stockCount <= 0 || !p.inStock 
+          <span className="text-[9px] uppercase font-bold text-[#8A9B93] block">Status</span>
+          <span className={`font-bold font-mono text-[10.5px] block mt-0.5 ${
+            p.isComingSoon
+              ? 'text-amber-700'
+              : stockCount <= 0 || !p.inStock 
               ? 'text-red-600' 
-              : stockCount <= 5 
-              ? 'text-amber-700' 
               : 'text-emerald-700'
           }`}>
-            {stockCount} units
+            {p.isComingSoon ? 'Coming Soon' : `${stockCount} units`}
           </span>
         </div>
       </div>
@@ -2107,7 +2132,7 @@ function ProductMobileCard({
             className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
               p.isComingSoon
                 ? 'bg-amber-100 text-amber-900 border border-amber-300'
-                : 'bg-slate-100 text-slate-700 border border-slate-200'
+                : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
             }`}
           >
             {p.isComingSoon ? (
@@ -2117,37 +2142,39 @@ function ProductMobileCard({
               </>
             ) : (
               <>
-                <Tag className="w-2.5 h-2.5 text-slate-500" />
+                <Tag className="w-2.5 h-2.5 text-emerald-700" />
                 Live
               </>
             )}
           </button>
 
-          {/* In Stock Toggle */}
-          <button
-            type="button"
-            onClick={() => onToggleStock(p)}
-            disabled={isUpdating === p.id}
-            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
-              p.inStock && stockCount > 0
-                ? 'bg-emerald-100 text-emerald-800'
-                : 'bg-red-100 text-red-800'
-            }`}
-          >
-            {isUpdating === p.id ? (
-              <Loader2 className="w-2.5 h-2.5 animate-spin" />
-            ) : p.inStock && stockCount > 0 ? (
-              <>
-                <Check className="w-2.5 h-2.5 text-emerald-700 stroke-[2.5]" />
-                In Stock
-              </>
-            ) : (
-              <>
-                <X className="w-2.5 h-2.5 text-red-600" />
-                Out of Stock
-              </>
-            )}
-          </button>
+          {/* In Stock Toggle (Only shown when product is Live) */}
+          {!p.isComingSoon && (
+            <button
+              type="button"
+              onClick={() => onToggleStock(p)}
+              disabled={isUpdating === p.id}
+              className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
+                p.inStock && stockCount > 0
+                  ? 'bg-emerald-100 text-emerald-800'
+                  : 'bg-red-100 text-red-800'
+              }`}
+            >
+              {isUpdating === p.id ? (
+                <Loader2 className="w-2.5 h-2.5 animate-spin" />
+              ) : p.inStock && stockCount > 0 ? (
+                <>
+                  <Check className="w-2.5 h-2.5 text-emerald-700 stroke-[2.5]" />
+                  In Stock
+                </>
+              ) : (
+                <>
+                  <X className="w-2.5 h-2.5 text-red-600" />
+                  Out of Stock
+                </>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Action Buttons */}
