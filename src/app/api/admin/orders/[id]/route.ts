@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getOrderById, updateOrderStatus, updatePaymentStatus } from '@/lib/db';
+import { getOrderById, updateOrderStatus, updatePaymentStatus, deleteOrder } from '@/lib/db';
 import { getAdminSession } from '@/lib/auth';
 import { OrderStatus, PaymentStatus } from '@/types/admin';
 
@@ -48,4 +48,22 @@ export async function PATCH(
   }
 
   return NextResponse.json({ success: true, order });
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await getAdminSession();
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { id } = await params;
+  const success = await deleteOrder(id);
+  if (!success) {
+    return NextResponse.json({ success: false, error: 'Order deletion failed or not found' }, { status: 400 });
+  }
+
+  return NextResponse.json({ success: true, message: 'Order deleted successfully' });
 }

@@ -28,3 +28,25 @@ export async function GET(request: Request) {
     orders
   });
 }
+
+export async function DELETE(request: Request) {
+  const session = await getAdminSession();
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get('id');
+
+  if (!id) {
+    return NextResponse.json({ error: 'Invoice ID is required' }, { status: 400 });
+  }
+
+  const { deleteInvoice } = await import('@/lib/db');
+  const success = await deleteInvoice(id);
+  if (!success) {
+    return NextResponse.json({ success: false, error: 'Failed to delete invoice' }, { status: 400 });
+  }
+
+  return NextResponse.json({ success: true, message: 'Invoice deleted successfully' });
+}

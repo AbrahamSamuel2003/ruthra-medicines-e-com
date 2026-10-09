@@ -46,20 +46,24 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ruthra Medicines' }],
   creator: 'Ruthra Medicines',
   publisher: 'Ruthra Medicines, Tirunelveli',
-  metadataBase: new URL('https://ruthramedicos.com'),
+  metadataBase: new URL('https://ruthramedicines.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Ruthra Medicines | Ancient Siddha Wisdom for Modern Living',
     description: 'Authentic Siddha formulations, classical decoctions, and botanical oils dispatched across Tamil Nadu from Tirunelveli.',
-    url: 'https://ruthramedicos.com',
+    url: 'https://ruthramedicines.com',
     siteName: 'Ruthra Medicines',
     locale: 'en_IN',
     type: 'website',
   },
   icons: {
-    icon: '/images/ruthra-logo.png',
+    icon: [
+      { url: '/images/ruthra-logo.png', sizes: 'any' },
+      { url: '/images/ruthra-logo.png', type: 'image/png' },
+    ],
+    shortcut: '/images/ruthra-logo.png',
     apple: '/images/ruthra-logo.png',
   },
 };

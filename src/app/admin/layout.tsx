@@ -188,6 +188,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <p className="text-[10px] uppercase font-semibold tracking-wider text-[#DFB36C]">
                 Admin Operations
               </p>
+              <p className="text-[8px] text-white/50 font-medium tracking-tight whitespace-nowrap">
+                Developed by SS40 NETWORK
+              </p>
             </div>
           </div>
         </div>

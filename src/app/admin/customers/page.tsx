@@ -12,7 +12,8 @@ import {
   Mail,
   Calendar,
   Eye,
-  FileText
+  FileText,
+  Trash2
 } from 'lucide-react';
 import { Customer, Order } from '@/types/admin';
 import { generateOrderInvoicePdf } from '@/lib/invoiceGenerator';
@@ -23,6 +24,29 @@ export default function AdminCustomersPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCustomerData, setSelectedCustomerData] = useState<{ customer: Customer; orders: Order[] } | null>(null);
   const [isFetchingDetail, setIsFetchingDetail] = useState(false);
+
+  const handleDeleteCustomer = async (customerId: string, customerName: string) => {
+    if (!window.confirm(`Are you sure you want to permanently delete customer "${customerName}"? This will remove their customer profile, saved addresses, and linked orders.`)) return;
+
+    try {
+      setIsLoading(true);
+      const res = await fetch(`/api/admin/customers/${customerId}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setCustomers(prev => prev.filter(c => c.id !== customerId));
+        if (selectedCustomerData?.customer.id === customerId) {
+          setSelectedCustomerData(null);
+        }
+      } else {
+        alert(data.error || 'Failed to delete customer');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network error deleting customer');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const fetchCustomers = useCallback(async () => {
     setIsLoading(true);
@@ -161,15 +185,25 @@ export default function AdminCustomersPage() {
                           {cust.id}
                         </span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => handleViewCustomer(cust.id)}
-                        disabled={isFetchingDetail}
-                        className="p-1.5 rounded-lg bg-[#16382B] hover:bg-[#204C3B] text-[#DFB36C] transition-colors cursor-pointer shadow-2xs flex-shrink-0"
-                        title="View Order History"
-                      >
-                        <Eye className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="flex items-center gap-1.5 flex-shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleViewCustomer(cust.id)}
+                          disabled={isFetchingDetail}
+                          className="p-1.5 rounded-lg bg-[#16382B] hover:bg-[#204C3B] text-[#DFB36C] transition-colors cursor-pointer shadow-2xs"
+                          title="View Order History"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteCustomer(cust.id, cust.fullName)}
+                          className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                          title="Delete Customer"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Middle: Contact & Location */}
@@ -268,14 +302,24 @@ export default function AdminCustomersPage() {
                         {joinedDate}
                       </td>
                       <td className="py-3.5 px-4 text-right">
-                        <button
-                          type="button"
-                          onClick={() => handleViewCustomer(cust.id)}
-                          className="px-3 py-1 rounded-lg bg-[#16382B] hover:bg-[#204C3B] text-white text-[11px] font-semibold flex items-center gap-1 ml-auto cursor-pointer shadow-2xs"
-                        >
-                          <Eye className="w-3 h-3 text-[#DFB36C]" />
-                          <span>History</span>
-                        </button>
+                        <div className="inline-flex items-center gap-1.5 justify-end">
+                          <button
+                            type="button"
+                            onClick={() => handleViewCustomer(cust.id)}
+                            className="px-3 py-1 rounded-lg bg-[#16382B] hover:bg-[#204C3B] text-white text-[11px] font-semibold flex items-center gap-1 cursor-pointer shadow-2xs"
+                          >
+                            <Eye className="w-3 h-3 text-[#DFB36C]" />
+                            <span>History</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteCustomer(cust.id, cust.fullName)}
+                            className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                            title="Delete Customer"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );
@@ -402,7 +446,16 @@ export default function AdminCustomersPage() {
             </div>
 
             {/* Fixed Action Footer */}
-            <div className="p-4 sm:px-6 border-t border-[#16382B]/10 bg-[#FAF8F5]/90 text-right flex-shrink-0">
+            <div className="p-4 sm:px-6 border-t border-[#16382B]/10 bg-[#FAF8F5]/90 flex items-center justify-between gap-2 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => handleDeleteCustomer(selectedCustomerData.customer.id, selectedCustomerData.customer.fullName)}
+                className="px-3.5 py-2.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                title="Permanently Delete Customer"
+              >
+                <Trash2 className="w-4 h-4" />
+                <span>Delete Customer</span>
+              </button>
               <button
                 type="button"
                 onClick={() => setSelectedCustomerData(null)}

@@ -64,12 +64,16 @@ export default function MobileHeader() {
               <span className="font-serif-brand text-sm sm:text-base font-bold text-[#16382B] tracking-wider leading-none">
                 RUTHRA
               </span>
-              <span className={`text-[8px] text-[#C29043] font-semibold leading-tight ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.16em]'}`}>
-                {t('Siddha Medicine', 'சித்த மருத்துவம்')}
+              <span className={`text-[7.5px] text-[#C29043] font-semibold leading-tight ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.16em]'}`}>
+                {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
+              </span>
+              <span className="text-[6.5px] text-[#16382B]/60 font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
+                Developed by SS40 NETWORK
               </span>
             </div>
           </Link>
         </div>
+      
 
         {/* Right: Language Switch + Search + Cart */}
         <div className="flex items-center gap-1.5 flex-shrink-0">

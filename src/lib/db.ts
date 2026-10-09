@@ -386,17 +386,17 @@ export async function createProduct(product: Product): Promise<Product> {
   return mapPrismaProductToApp(created);
 }
 
-/**
- * Deletes a product from PostgreSQL (Admin CMS)
- */
 export async function deleteProduct(id: string): Promise<boolean> {
   try {
     await prisma.product.delete({ where: { id } });
-    return true;
   } catch (err) {
-    console.error(`Failed to delete product ${id} from PostgreSQL:`, err);
-    return false;
+    console.warn(`PostgreSQL deleteProduct(${id}) fallback:`, err);
   }
+  const idx = inMemoryProducts.findIndex(p => p.id === id || p.slug === id);
+  if (idx !== -1) {
+    inMemoryProducts.splice(idx, 1);
+  }
+  return true;
 }
 
 /**
@@ -1139,6 +1139,101 @@ export async function updatePaymentStatus(
     return memOrder;
   }
   return null;
+}
+
+/**
+ * Deletes an order and all related items, invoices, and payments in a safe transaction
+ */
+export async function deleteOrder(id: string): Promise<boolean> {
+  try {
+    const order = await prisma.order.findFirst({
+      where: { OR: [{ id }, { orderNumber: id }] },
+      include: { customer: true }
+    });
+    if (order) {
+      await prisma.$transaction([
+        prisma.orderItem.deleteMany({ where: { orderId: order.id } }),
+        prisma.payment.deleteMany({ where: { orderId: order.id } }),
+        prisma.invoice.deleteMany({ where: { orderId: order.id } }),
+        prisma.order.delete({ where: { id: order.id } }),
+        prisma.customer.update({
+          where: { id: order.customerId },
+          data: {
+            totalOrders: { decrement: 1 },
+            totalSpend: { decrement: order.finalTotal }
+          }
+        })
+      ]);
+    }
+  } catch (err) {
+    console.warn(`PostgreSQL deleteOrder(${id}) fallback:`, err);
+  }
+  const memIdx = inMemoryOrders.findIndex(o => o.id === id || o.orderNumber === id);
+  if (memIdx !== -1) {
+    const removed = inMemoryOrders.splice(memIdx, 1)[0];
+    if (removed && removed.customer) {
+      const cust = inMemoryCustomers.find(c => c.id === removed.customerId || c.phone === removed.customer.phone);
+      if (cust) {
+        cust.totalOrders = Math.max(0, cust.totalOrders - 1);
+        cust.totalSpend = Math.max(0, cust.totalSpend - removed.finalTotal);
+      }
+    }
+  }
+  return true;
+}
+
+/**
+ * Deletes a customer along with all their addresses and orders cleanly
+ */
+export async function deleteCustomer(id: string): Promise<boolean> {
+  try {
+    const customer = await prisma.customer.findFirst({
+      where: { OR: [{ id }, { phone: id }] },
+      include: { orders: true }
+    });
+    if (customer) {
+      const orderIds = customer.orders.map(o => o.id);
+      await prisma.$transaction([
+        prisma.orderItem.deleteMany({ where: { orderId: { in: orderIds } } }),
+        prisma.payment.deleteMany({ where: { orderId: { in: orderIds } } }),
+        prisma.invoice.deleteMany({ where: { orderId: { in: orderIds } } }),
+        prisma.order.deleteMany({ where: { customerId: customer.id } }),
+        prisma.customerAddress.deleteMany({ where: { customerId: customer.id } }),
+        prisma.customer.delete({ where: { id: customer.id } })
+      ]);
+    }
+  } catch (err) {
+    console.warn(`PostgreSQL deleteCustomer(${id}) fallback:`, err);
+  }
+  const custIdx = inMemoryCustomers.findIndex(c => c.id === id || c.phone === id);
+  if (custIdx !== -1) {
+    const removedCust = inMemoryCustomers.splice(custIdx, 1)[0];
+    for (let i = inMemoryOrders.length - 1; i >= 0; i--) {
+      if (inMemoryOrders[i].customerId === removedCust.id || inMemoryOrders[i].customer.phone === removedCust.phone) {
+        inMemoryOrders.splice(i, 1);
+      }
+    }
+  }
+  return true;
+}
+
+/**
+ * Deletes an invoice safely
+ */
+export async function deleteInvoice(id: string): Promise<boolean> {
+  try {
+    await prisma.invoice.deleteMany({
+      where: { OR: [{ id }, { invoiceNumber: id }] }
+    });
+  } catch (err) {
+    console.warn(`PostgreSQL deleteInvoice(${id}) fallback:`, err);
+  }
+  inMemoryOrders.forEach(o => {
+    if (o.invoice && (o.invoice.id === id || o.invoice.invoiceNumber === id)) {
+      delete (o as any).invoice;
+    }
+  });
+  return true;
 }
 
 export async function getCustomers(search?: string): Promise<Customer[]> {

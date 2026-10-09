@@ -14,7 +14,8 @@ import {
   ArrowRight,
   CreditCard,
   Banknote,
-  Receipt
+  Receipt,
+  Trash2
 } from 'lucide-react';
 import { Order } from '@/types/admin';
 import { generateOrderInvoicePdf, generateInvoicesZip } from '@/lib/invoiceGenerator';
@@ -31,6 +32,26 @@ export default function AdminInvoicesPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingZip, setIsGeneratingZip] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+
+  const handleDeleteInvoice = async (invoiceId: string, invoiceNumber: string) => {
+    if (!window.confirm(`Are you sure you want to permanently delete Invoice #${invoiceNumber}? This will remove the invoice record.`)) return;
+
+    try {
+      setIsLoading(true);
+      const res = await fetch(`/api/admin/invoices?id=${encodeURIComponent(invoiceId)}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setOrders(prev => prev.filter(o => o.invoice?.id !== invoiceId && o.invoice?.invoiceNumber !== invoiceNumber && o.id !== invoiceId));
+      } else {
+        alert(data.error || 'Failed to delete invoice');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network error deleting invoice');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const fetchInvoices = async (from: string, to: string) => {
     setIsLoading(true);
@@ -357,15 +378,25 @@ export default function AdminInvoicesPage() {
                           {order.orderNumber}
                         </span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => handleSingleInvoiceDownload(order)}
-                        className="px-2.5 py-1.5 rounded-lg bg-[#16382B] hover:bg-[#204C3B] text-white text-[11px] font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors shadow-2xs flex-shrink-0"
-                        title="Download Tax Invoice PDF"
-                      >
-                        <Download className="w-3.5 h-3.5 text-[#DFB36C]" />
-                        <span>PDF</span>
-                      </button>
+                      <div className="flex items-center gap-1.5 flex-shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => handleSingleInvoiceDownload(order)}
+                          className="px-2.5 py-1.5 rounded-lg bg-[#16382B] hover:bg-[#204C3B] text-white text-[11px] font-semibold inline-flex items-center gap-1 cursor-pointer transition-colors shadow-2xs"
+                          title="Download Tax Invoice PDF"
+                        >
+                          <Download className="w-3.5 h-3.5 text-[#DFB36C]" />
+                          <span>PDF</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteInvoice(order.invoice?.id || order.id, invNum)}
+                          className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                          title="Delete Invoice"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
 
                     {/* Middle: Customer Details & Date */}
@@ -494,15 +525,25 @@ export default function AdminInvoicesPage() {
                         </div>
                       </td>
                       <td className="py-3.5 px-4 text-right">
-                        <button
-                          type="button"
-                          onClick={() => handleSingleInvoiceDownload(order)}
-                          className="px-2.5 py-1 rounded-lg bg-[#FAF8F5] hover:bg-[#E8F1EB] text-[#16382B] text-[11px] font-semibold border border-[#16382B]/10 inline-flex items-center gap-1 cursor-pointer transition-colors"
-                          title="Download individual PDF Tax Invoice"
-                        >
-                          <Download className="w-3 h-3 text-[#C29043]" />
-                          <span>PDF</span>
-                        </button>
+                        <div className="inline-flex items-center gap-1.5 justify-end">
+                          <button
+                            type="button"
+                            onClick={() => handleSingleInvoiceDownload(order)}
+                            className="px-2.5 py-1 rounded-lg bg-[#FAF8F5] hover:bg-[#E8F1EB] text-[#16382B] text-[11px] font-semibold border border-[#16382B]/10 inline-flex items-center gap-1 cursor-pointer transition-colors"
+                            title="Download individual PDF Tax Invoice"
+                          >
+                            <Download className="w-3 h-3 text-[#C29043]" />
+                            <span>PDF</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteInvoice(order.invoice?.id || order.id, invNum)}
+                            className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                            title="Delete Invoice"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );

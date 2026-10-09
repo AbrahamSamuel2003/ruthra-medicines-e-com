@@ -16,7 +16,8 @@ import {
   Send,
   ExternalLink,
   Link2,
-  MessageSquare
+  MessageSquare,
+  Trash2
 } from 'lucide-react';
 import { Order, OrderStatus, PaymentStatus } from '@/types/admin';
 import { generateOrderInvoicePdf } from '@/lib/invoiceGenerator';
@@ -32,6 +33,29 @@ export default function AdminOrdersPage() {
   const [trackingInput, setTrackingInput] = useState('');
   const [isSendingTracking, setIsSendingTracking] = useState(false);
   const [trackingFeedback, setTrackingFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const handleDeleteOrder = async (orderId: string, orderNumber: string) => {
+    if (!window.confirm(`Are you sure you want to permanently delete Order #${orderNumber}? This will remove line items, payment status, and generated invoices.`)) return;
+
+    try {
+      setIsUpdating(true);
+      const res = await fetch(`/api/admin/orders/${orderId}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setOrders(prev => prev.filter(o => o.id !== orderId && o.orderNumber !== orderNumber));
+        if (activeOrder?.id === orderId || activeOrder?.orderNumber === orderNumber) {
+          setActiveOrder(null);
+        }
+      } else {
+        alert(data.error || 'Failed to delete order');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network error deleting order');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
 
   useEffect(() => {
     if (activeOrder) {
@@ -298,6 +322,14 @@ export default function AdminOrdersPage() {
                         >
                           <FileText className="w-3.5 h-3.5" />
                         </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteOrder(order.id, order.orderNumber)}
+                          className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                          title="Delete Order"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     </div>
 
@@ -456,6 +488,14 @@ export default function AdminOrdersPage() {
                             title="Download Tax Invoice"
                           >
                             <FileText className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteOrder(order.id, order.orderNumber)}
+                            className="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer"
+                            title="Delete Order"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </td>
@@ -718,22 +758,33 @@ export default function AdminOrdersPage() {
             </div>
 
             {/* Fixed Action Footer */}
-            <div className="p-4 sm:px-6 border-t border-[#16382B]/10 bg-[#FAF8F5]/90 flex items-center gap-2 flex-shrink-0">
+            <div className="p-4 sm:px-6 border-t border-[#16382B]/10 bg-[#FAF8F5]/90 flex items-center justify-between gap-2 flex-shrink-0">
               <button
                 type="button"
-                onClick={() => handleDownloadInvoice(activeOrder)}
-                className="flex-1 py-2.5 sm:py-3 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-colors"
+                onClick={() => handleDeleteOrder(activeOrder.id, activeOrder.orderNumber)}
+                className="px-3.5 py-2.5 sm:py-3 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                title="Permanently Delete Order"
               >
-                <FileText className="w-4 h-4 text-[#DFB36C]" />
-                <span>Download Official Tax Invoice PDF</span>
+                <Trash2 className="w-4 h-4" />
+                <span className="hidden sm:inline">Delete Order</span>
               </button>
-              <button
-                type="button"
-                onClick={() => setActiveOrder(null)}
-                className="px-5 py-2.5 sm:py-3 rounded-xl bg-white hover:bg-[#FAF3EB] text-[#16382B] text-xs font-semibold border border-[#16382B]/10 cursor-pointer transition-colors"
-              >
-                Close
-              </button>
+              <div className="flex items-center gap-2 flex-1 justify-end">
+                <button
+                  type="button"
+                  onClick={() => handleDownloadInvoice(activeOrder)}
+                  className="flex-1 max-w-xs py-2.5 sm:py-3 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-colors"
+                >
+                  <FileText className="w-4 h-4 text-[#DFB36C]" />
+                  <span>Download Invoice</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveOrder(null)}
+                  className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-white hover:bg-[#FAF3EB] text-[#16382B] text-xs font-semibold border border-[#16382B]/10 cursor-pointer transition-colors"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

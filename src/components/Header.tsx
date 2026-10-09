@@ -180,6 +180,9 @@ export default function Header() {
               <span className={`text-[7.5px] xl:text-[8.5px] text-[#C29043] font-semibold mt-0.5 whitespace-nowrap ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
               </span>
+              <span className="text-[6.5px] xl:text-[7.5px] text-[#16382B]/60 font-medium tracking-tight whitespace-nowrap leading-none mt-0.5">
+                Developed by SS40 NETWORK
+              </span>
             </div>
           </Link>
         </div>
