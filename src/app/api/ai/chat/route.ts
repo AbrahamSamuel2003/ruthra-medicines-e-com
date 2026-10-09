@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     console.error('AI Chatbot Route Error:', error);
     return NextResponse.json(
       {
-        reply: 'An error occurred while processing your query. Please contact our Tirunelveli desk directly via phone (+91 91715 08042) or try again.',
+        reply: 'An error occurred while processing your query. Please contact our care desk directly via phone (+91 9043434226) or try again.',
         cards: {},
         quickReplies: []
       },

@@ -109,7 +109,7 @@ export default function FaqPage() {
           </p>
           <div className="pt-2">
             <a
-              href="https://wa.me/919171508042?text=Vanakkam,%20I%20have%20a%20question%20about%20Ruthra%20formulations."
+              href="https://wa.me/919043434226?text=Vanakkam,%20I%20have%20a%20question%20about%20Ruthra%20formulations."
               target="_blank"
               rel="noreferrer"
               className="inline-block px-5 py-2.5 rounded-xl bg-[#16382B] text-white text-xs font-semibold hover:bg-[#204C3B] transition-colors"

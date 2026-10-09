@@ -80,7 +80,7 @@ export default function RootLayout({
     alternateName: 'ருத்ரா பாரம்பரிய சித்த மருந்தகம்',
     description: 'Authentic classical Tamil Siddha formulations and herbal remedies dispatched directly across Tamil Nadu.',
     url: 'https://ruthramedicos.com',
-    telephone: '+919171508042',
+    telephone: '+919043434226',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '7/213, MGR Nagar, North Ariyanayagipuram, Vadakku Ariyanayagipuram Petta',

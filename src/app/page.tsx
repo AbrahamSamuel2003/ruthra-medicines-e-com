@@ -124,20 +124,20 @@ export default function HomePage() {
 
           {/* Trust 2: WhatsApp Desk */}
           <a
-            href="https://wa.me/919171508042?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20to%20place%20an%20order."
+            href="https://wa.me/919043434226?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20to%20place%20an%20order."
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2.5 p-2 rounded-xl bg-white/5 sm:bg-transparent hover:bg-white/10 transition-colors cursor-pointer group"
           >
-            <div className="w-9 h-9 rounded-xl bg-[#25D366] text-white flex items-center justify-center flex-shrink-0 font-bold shadow-xs group-hover:scale-105 transition-transform">
-              <MessageCircle className="w-4 h-4 fill-white" />
+            <div className="w-9 h-9 rounded-xl bg-[#DFB36C] text-[#16382B] flex items-center justify-center flex-shrink-0 font-bold shadow-xs group-hover:scale-105 transition-transform">
+              <MessageCircle className="w-4 h-4 fill-[#16382B]" />
             </div>
             <div className="min-w-0 text-left">
               <p className="text-xs font-bold text-white leading-tight group-hover:text-[#DFB36C] transition-colors">
                 {t('WhatsApp Order Desk', 'வாட்ஸ்அப் ஆர்டர் உதவி')}
               </p>
-              <p className="text-[10.5px] text-[#25D366] font-semibold leading-tight truncate">
-                +91 91715 08042 / 9043434226
+              <p className="text-[10.5px] text-white/80 font-semibold leading-tight truncate">
+                +91 9043434226
               </p>
             </div>
           </a>
@@ -152,7 +152,7 @@ export default function HomePage() {
                 {t('All 38 TN Districts', '38 தமிழக மாவட்டங்கள்')}
               </p>
               <p className="text-[10.5px] text-white/70 leading-tight truncate">
-                {t('Free Delivery on ₹500+', '₹500க்கு மேல் இலவச அஞ்சல்')}
+                {t('Direct Express Dispatch', 'நேரடி விரைவு அஞ்சல்')}
               </p>
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function HomePage() {
                 {t('Authentic Shodhana Purity', 'பாரம்பரிய சுத்தி தரம்')}
               </p>
               <p className="text-[10.5px] text-white/70 leading-tight truncate">
-                {t('Tirunelveli Pharmacopeia', 'திருநெல்வேலி தயாரிப்பு')}
+                {t('Standardized Pharmacopeia', 'முறைப்படியான தயாரிப்பு')}
               </p>
             </div>
           </div>

@@ -142,15 +142,15 @@ export default function Header() {
           <div className="flex items-center gap-3 text-[11px] text-[#DFB36C] whitespace-nowrap">
             <span className="flex items-center gap-1">
               <Award className="w-3 h-3" />
-              {t('Tirunelveli Heritage Since 1994', 'திருநெல்வேலி பாரம்பரியம்')}
+              {t('Authentic Formulations', 'பாரம்பரிய தயாரிப்பு')}
             </span>
             <span className="text-white/30">|</span>
             <a
-              href="tel:+919171508042"
+              href="tel:+919043434226"
               className="hover:text-white transition-colors flex items-center gap-1 font-semibold"
             >
               <PhoneCall className="w-3 h-3" />
-              <span>+91 91715 08042</span>
+              <span>+91 9043434226</span>
             </a>
           </div>
         </div>
@@ -184,8 +184,8 @@ export default function Header() {
             className="flex flex-col justify-center group cursor-pointer"
             title="Developed by SS40 NETWORK PRIVATE LIMITED"
           >
-            <span className="font-serif-brand text-base xl:text-lg font-bold text-[#16382B] group-hover:text-[#8C5D14] transition-colors tracking-wider leading-none block">
-              RUTHRA
+            <span className="font-serif-brand text-sm xl:text-base font-bold text-[#16382B] group-hover:text-[#8C5D14] transition-colors tracking-wide leading-tight block whitespace-nowrap">
+              RUTHRA MEDICINES
             </span>
             <span className={`text-[7.5px] xl:text-[8.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold mt-0.5 whitespace-nowrap block transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
               {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}

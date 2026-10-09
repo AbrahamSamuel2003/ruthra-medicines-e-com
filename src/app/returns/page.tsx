@@ -47,7 +47,7 @@ export default function ReturnsPage() {
               4. Support Contact
             </h3>
             <p>
-              For return requests, message our care desk at <a href="mailto:care@ruthramedicos.com" className="text-[#16382B] underline">care@ruthramedicos.com</a> or WhatsApp <a href="https://wa.me/919171508042" className="text-[#16382B] underline font-bold">+91 91715 08042</a>.
+              For return requests, message our care desk at <a href="mailto:ruthramedicines@gmail.com" className="text-[#16382B] underline">ruthramedicines@gmail.com</a> or WhatsApp <a href="https://wa.me/919043434226" className="text-[#16382B] underline font-bold">+91 9043434226</a>.
             </p>
           </div>
         </div>

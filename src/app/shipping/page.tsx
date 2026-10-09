@@ -55,7 +55,7 @@ export default function ShippingPage() {
               Orders placed before 2:00 PM are handed over to couriers the very same business day. Once your package is scanned, you will receive a tracking link via SMS / WhatsApp.
             </p>
             <p>
-              For urgent delivery requirements or bulk wellness orders, please contact our Tirunelveli desk at <a href="tel:+919171508042" className="text-[#16382B] font-bold underline">+91 91715 08042</a> or <a href="tel:+918220190029" className="text-[#16382B] font-bold underline">+91 82201 90029</a>.
+              For urgent delivery requirements or bulk wellness orders, please contact our support desk at <a href="tel:+919043434226" className="text-[#16382B] font-bold underline">+91 9043434226</a>.
             </p>
           </div>
         </div>

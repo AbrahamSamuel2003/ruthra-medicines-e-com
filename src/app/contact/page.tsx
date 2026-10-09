@@ -34,7 +34,7 @@ export default function ContactPage() {
           {/* Contact Details Card */}
           <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/10 shadow-xs space-y-6">
             <h2 className="font-serif-brand text-xl font-bold text-[#16382B]">
-              {t('Tirunelveli Dispatch & Support Center', 'திருநெல்வேலி விநியோகம் & வாடிக்கையாளர் மையம்')}
+              {t('Customer Support & Dispatch Center', 'விநியோகம் & வாடிக்கையாளர் மையம்')}
             </h2>
 
             <div className="space-y-4 text-xs sm:text-sm text-[#264653]">
@@ -43,7 +43,7 @@ export default function ContactPage() {
                 <div>
                   <span className="font-bold block text-[#16382B]">Dispatch Facility:</span>
                   <p className="text-[#3D5A68] mt-0.5 leading-relaxed">
-                    Ruthra Siddha Herbals & Dispatch Facility,
+                    Ruthra Medicines Dispatch Facility,
                     <br />
                     7/213, MGR Nagar, North Ariyanayagipuram,
                     <br />
@@ -57,11 +57,8 @@ export default function ContactPage() {
                 <div>
                   <span className="font-bold block text-[#16382B]">Customer Support & Order Desk:</span>
                   <div className="flex flex-col gap-0.5 mt-0.5">
-                    <a href="tel:+919171508042" className="text-[#3D5A68] hover:text-[#16382B] font-medium">
-                      +91 91715 08042
-                    </a>
-                    <a href="tel:+918220190029" className="text-[#3D5A68] hover:text-[#16382B] font-medium">
-                      +91 82201 90029
+                    <a href="tel:+919043434226" className="text-[#3D5A68] hover:text-[#16382B] font-medium">
+                      +91 9043434226
                     </a>
                   </div>
                 </div>
@@ -71,8 +68,8 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 text-[#C29043] flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="font-bold block text-[#16382B]">Email Inquiries:</span>
-                  <a href="mailto:care@ruthramedicos.com" className="text-[#3D5A68] hover:text-[#16382B] block mt-0.5">
-                    care@ruthramedicos.com
+                  <a href="mailto:ruthramedicines@gmail.com" className="text-[#3D5A68] hover:text-[#16382B] block mt-0.5">
+                    ruthramedicines@gmail.com
                   </a>
                 </div>
               </div>
@@ -92,13 +89,13 @@ export default function ContactPage() {
 
             <div className="pt-4 border-t border-[#16382B]/10">
               <a
-                href="https://wa.me/919171508042"
+                href="https://wa.me/919043434226"
                 target="_blank"
                 rel="noreferrer"
                 className="w-full py-3 px-4 rounded-xl bg-[#E8F1EB] hover:bg-[#16382B] text-[#16382B] hover:text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>{t('Chat with Tirunelveli Desk on WhatsApp', 'வாட்ஸ்அப்பில் உரையாட')}</span>
+                <span>{t('Chat with Support Desk on WhatsApp', 'வாட்ஸ்அப்பில் உரையாட')}</span>
               </a>
             </div>
           </div>

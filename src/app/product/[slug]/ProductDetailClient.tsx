@@ -550,7 +550,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
 
               {isComingSoon || isOutOfStock ? (
                 <a
-                  href={`https://wa.me/919171508042?text=${encodeURIComponent(
+                  href={`https://wa.me/919043434226?text=${encodeURIComponent(
                     isComingSoon
                       ? `Hello Ruthra Siddha Medicines, I want to enquire about when ${product.name} (${product.tamilName}) will be available.`
                       : `Hello Ruthra Siddha Medicines, please notify me when ${product.name} (${product.tamilName}) is back in stock.`
@@ -933,7 +933,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 </div>
 
                 <a
-                  href={`https://wa.me/919171508042?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, I want to enquire/reserve: ${product.name} (${product.tamilName}).`)}`}
+                  href={`https://wa.me/919043434226?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, I want to enquire/reserve: ${product.name} (${product.tamilName}).`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full h-12 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
@@ -1144,7 +1144,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </p>
                 </div>
                 <a
-                  href={`https://wa.me/919171508042?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, please notify me when ${product.name} (${product.tamilName}) is back in stock.`)}`}
+                  href={`https://wa.me/919043434226?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, please notify me when ${product.name} (${product.tamilName}) is back in stock.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full h-12 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
@@ -1355,7 +1355,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
 
         {product.isComingSoon ? (
           <a
-            href={`https://wa.me/919171508042?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, I want to enquire about: ${product.name} (${product.tamilName}).`)}`}
+            href={`https://wa.me/919043434226?text=${encodeURIComponent(`Hello Ruthra Siddha Medicines, I want to enquire about: ${product.name} (${product.tamilName}).`)}`}
             target="_blank"
             rel="noreferrer"
             className="h-10 px-4 rounded-xl bg-[#25D366] text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all shadow-xs"

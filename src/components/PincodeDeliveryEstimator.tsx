@@ -172,7 +172,7 @@ export default function PincodeDeliveryEstimator({ className = '' }: { className
                   {language === 'ta' ? estimate.courierPartnerTa : estimate.courierPartnerEn}
                 </span>
                 <span className="text-[10px] text-[#8A9B93] block mt-0.5">
-                  {t('Direct Tirunelveli Dispatch Hub', 'திருநெல்வேலி நேரடி அஞ்சல் மையம்')}
+                  {t('Direct Express Dispatch Hub', 'நேரடி அஞ்சல் மையம்')}
                 </span>
               </div>
             </div>

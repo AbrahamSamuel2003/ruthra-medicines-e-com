@@ -33,8 +33,8 @@ export default function TrustBar() {
       icon: Lock,
       titleEn: 'Secure Ordering & Dispatch',
       titleTa: 'பாதுகாப்பான அஞ்சல் விநியோகம்',
-      descEn: 'Carefully sealed packages dispatched directly from Tirunelveli',
-      descTa: 'திருநெல்வேலியிலிருந்து தமிழ்நாடு முழுவதும் நேரடி அஞ்சல் சேவை'
+      descEn: 'Carefully sealed packages dispatched securely across India',
+      descTa: 'தமிழ்நாடு மற்றும் இந்தியா முழுவதும் நேரடி விரைவு அஞ்சல் சேவை'
     }
   ];
 

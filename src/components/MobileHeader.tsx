@@ -32,7 +32,7 @@ export default function MobileHeader() {
           {t('10%–20% OFF & Free Formulation Bonuses', '10%–20% தள்ளுபடி & இலவச மருந்துகள்')}
         </span>
         <span className="text-[#DFB36C] font-semibold flex-shrink-0 text-[10px]">
-          {t('Tirunelveli', 'திருநெல்வேலி')}
+          {t('Direct Dispatch', 'நேரடி அஞ்சல்')}
         </span>
       </div>
 
@@ -72,8 +72,8 @@ export default function MobileHeader() {
               className="flex flex-col min-w-0 group cursor-pointer"
               title="Developed by SS40 NETWORK PRIVATE LIMITED"
             >
-              <span className="font-serif-brand text-sm sm:text-base font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-wider leading-none transition-colors">
-                RUTHRA
+              <span className="font-serif-brand text-xs sm:text-sm font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-wide leading-tight transition-colors whitespace-nowrap">
+                RUTHRA MEDICINES
               </span>
               <span className={`text-[7.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.16em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
@@ -321,13 +321,13 @@ export default function MobileHeader() {
             {/* Drawer Bottom Support Link */}
             <div className="p-3 bg-white border-t border-[#16382B]/10 text-xs">
               <a
-                href="https://wa.me/919171508042"
+                href="https://wa.me/919043434226"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-[#E8F1EB] text-[#16382B] font-semibold"
               >
                 <MessageCircle className="w-4 h-4 text-[#16382B]" />
-                <span>{t('Need Help Ordering? WhatsApp', 'வாட்ஸ்அப் உதவி')}</span>
+                <span>{t('Need Help Ordering? WhatsApp (+91 9043434226)', 'வாட்ஸ்அப் உதவி (+91 9043434226)')}</span>
               </a>
             </div>
           </div>

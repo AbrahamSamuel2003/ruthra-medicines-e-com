@@ -297,7 +297,7 @@ export default function CheckoutPage() {
           </div>
 
           <a
-            href={`https://wa.me/919171508042?text=${encodeURIComponent(whatsappOrderText)}`}
+            href={`https://wa.me/919043434226?text=${encodeURIComponent(whatsappOrderText)}`}
             target="_blank"
             rel="noreferrer"
             className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all flex-shrink-0"
@@ -701,7 +701,7 @@ export default function CheckoutPage() {
                 )}
               </p>
               <a
-                href={`https://wa.me/919171508042?text=${encodeURIComponent(whatsappOrderText)}`}
+                href={`https://wa.me/919043434226?text=${encodeURIComponent(whatsappOrderText)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#16382B] text-xs font-semibold flex items-center justify-center gap-2 border border-[#16382B]/20 transition-colors"

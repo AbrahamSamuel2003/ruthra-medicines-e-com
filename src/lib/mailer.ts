@@ -191,9 +191,9 @@ function buildInvoiceEmailHtml(order: Order, recipientName: string): string {
         <p style="margin: 0 0 10px 0; font-size: 13px; font-weight: bold; color: #16382B;">
           Need doctor dosage guidance or courier tracking?
         </p>
-        <a href="https://wa.me/919171508042?text=Vanakkam%20Ruthra,%20I%20have%20an%20inquiry%20regarding%20my%20order%20${order.orderNumber}"
+        <a href="https://wa.me/919043434226?text=Vanakkam%20Ruthra,%20I%20have%20an%20inquiry%20regarding%20my%20order%20${order.orderNumber}"
            style="display: inline-block; background-color: #16382B; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-size: 12px; font-weight: bold;">
-          Chat with Ruthra on WhatsApp (+91 91715 08042)
+          Chat with Ruthra on WhatsApp (+91 9043434226)
         </a>
       </div>
 
@@ -776,7 +776,7 @@ export function buildDispatchedEmailHtml(order: Order, trackingUrl: string): str
       <div style="border-top: 1px solid #E8F1EB; padding-top: 16px; text-align: center; font-size: 12px; color: #64748B;">
         <p style="margin: 0 0 4px 0;">Need help with your delivery or have medical questions?</p>
         <p style="margin: 0; color: #16382B; font-weight: bold;">
-          Phone &amp; WhatsApp: +91 91715 08042 • Email: orders@ruthramedicos.com
+          Phone &amp; WhatsApp: +91 9043434226 • Email: ruthramedicines@gmail.com
         </p>
       </div>
 

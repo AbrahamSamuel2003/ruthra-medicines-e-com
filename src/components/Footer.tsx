@@ -142,7 +142,7 @@ export default function Footer() {
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">
                 <MapPin className="w-4 h-4 text-[#C29043] flex-shrink-0 mt-0.5" />
                 <span>
-                  Ruthra Siddha Medicines Dispatch Center,
+                  Ruthra Medicines Dispatch Facility,
                   <br />
                   North Ariyanayagipuram, Petta,
                   <br />
@@ -152,23 +152,23 @@ export default function Footer() {
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">
                 <Phone className="w-4 h-4 text-[#C29043] flex-shrink-0 mt-0.5" />
                 <div className="flex flex-col items-center md:items-start">
-                  <a href="tel:+919171508042" className="hover:text-white font-medium">
-                    +91 91715 08042
+                  <a href="tel:+919043434226" className="hover:text-white font-medium">
+                    +91 9043434226
                   </a>
-                  <span className="text-white/60 text-[11px]">
-                    {t('WhatsApp Order & Tracking Help', 'வாட்ஸ்அப் ஆர்டர் & உதவி')}
-                  </span>
+                  <a href="https://wa.me/919043434226" target="_blank" rel="noreferrer" className="text-[#DFB36C] hover:text-white text-[11px]">
+                    {t('WhatsApp Order & Support Desk', 'வாட்ஸ்அப் ஆர்டர் உதவி')}
+                  </a>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">
                 <Mail className="w-4 h-4 text-[#C29043] flex-shrink-0" />
-                <a href="mailto:care@ruthramedicos.com" className="hover:text-white">
-                  care@ruthramedicos.com
+                <a href="mailto:ruthramedicines@gmail.com" className="hover:text-white">
+                  ruthramedicines@gmail.com
                 </a>
               </div>
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left text-white/60">
                 <Clock className="w-4 h-4 text-[#C29043] flex-shrink-0" />
-                <span>{t('Support: Mon - Sat 9 AM - 7:30 PM', 'சேவை நேரம்: காலை 9 - இரவு 7:30')}</span>
+                <span>{t('Support: Mon - Sat 9:00 AM - 8:00 PM', 'சேவை நேரம்: காலை 9:00 - இரவு 8:00')}</span>
               </div>
             </div>
           </div>

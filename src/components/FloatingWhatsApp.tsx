@@ -48,8 +48,8 @@ export default function FloatingWhatsApp() {
     return null;
   }
 
-  // Direct Tirunelveli hotline
-  const supportPhone = '919171508042';
+  // Direct Support hotline
+  const supportPhone = '919043434226';
 
   // Automatically adjust bottom offset so it doesn't overlap bottom navigation
   const isBottomNavHidden = pathname.startsWith('/product/');
@@ -194,11 +194,11 @@ export default function FloatingWhatsApp() {
 
             <div className="pt-1 text-center">
               <a
-                href="tel:+919171508042"
+                href="tel:+919043434226"
                 className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#16382B] hover:text-[#C29043] transition-colors"
               >
                 <PhoneCall className="w-3 h-3 text-[#25D366]" />
-                <span>+91 91715 08042</span>
+                <span>+91 9043434226</span>
               </a>
             </div>
           </div>

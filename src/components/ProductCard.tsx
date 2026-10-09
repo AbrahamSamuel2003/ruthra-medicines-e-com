@@ -56,7 +56,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
       ? `Hello Ruthra Siddha Medicines, I would like to know when ${product.name} (${product.tamilName}) will be back in stock.`
       : `Hello Ruthra Siddha Medicines, I would like to enquire about the order for: ${product.name} (${product.tamilName}).`
   );
-  const whatsappUrl = `https://wa.me/919171508042?text=${whatsappMessage}`;
+  const whatsappUrl = `https://wa.me/919043434226?text=${whatsappMessage}`;
 
   // ==========================================
   // LIST VIEW LAYOUT

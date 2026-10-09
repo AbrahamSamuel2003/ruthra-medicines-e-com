@@ -44,7 +44,7 @@ export default function PrivacyPage() {
               Questions & Data Requests
             </h3>
             <p>
-              You may request modification or erasure of your customer records by contacting us at care@ruthramedicos.com.
+              You may request modification or erasure of your customer records by contacting us at ruthramedicines@gmail.com.
             </p>
           </div>
         </div>

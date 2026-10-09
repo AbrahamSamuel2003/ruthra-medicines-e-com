@@ -364,8 +364,8 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
   if (isContactCat) {
     return {
       reply: isTa
-        ? 'ரூத்ரா சித்த மருத்துவ உதவி மையம் (திருநெல்வேலி):\n\n- முகவரி: 7/213, எம்.ஜி.ஆர் நகர், வடக்கு அரியநாயகிபுரம் பேட்டை, திருநெல்வேலி, தமிழ்நாடு - 627010.\n- தொலைபேசி எண்கள்: +91 91715 08042 / +91 82201 90029\n- மின்னஞ்சல்: care@ruthramedicos.com\n- சேவை நேரம்: திங்கள் முதல் சனி வரை காலை 9:00 - இரவு 8:00 மணி வரை.\n- வாட்ஸ்அப் உதவி: மருத்துவர் ஆலோசனை மற்றும் ஆர்டர் விபரங்களுக்கு நேரடி வாட்ஸ்அப்பில் தொடர்பு கொள்ளலாம்.'
-        : 'Ruthra Siddha Support Desk (Tirunelveli):\n\n- Address: 7/213, MGR Nagar, North Ariyanayagipuram, Petta, Tirunelveli, Tamil Nadu - 627010.\n- Phone Hotlines: +91 91715 08042 / +91 82201 90029\n- Email: care@ruthramedicos.com\n- Operating Hours: Monday to Saturday, 9:00 AM to 8:00 PM IST.\n- WhatsApp Support: Direct consultation and order assistance available.',
+        ? 'ரூத்ரா வாடிக்கையாளர் உதவி மையம்:\n\n- முகவரி: 7/213, எம்.ஜி.ஆர் நகர், வடக்கு அரியநாயகிபுரம் பேட்டை, திருநெல்வேலி, தமிழ்நாடு - 627010.\n- தொலைபேசி / வாட்ஸ்அப்: +91 9043434226\n- மின்னஞ்சல்: ruthramedicines@gmail.com\n- சேவை நேரம்: திங்கள் முதல் சனி வரை காலை 9:00 - இரவு 8:00 மணி வரை.\n- வாட்ஸ்அப் உதவி: மருத்துவர் ஆலோசனை மற்றும் ஆர்டர் விபரங்களுக்கு நேரடி வாட்ஸ்அப்பில் தொடர்பு கொள்ளலாம்.'
+        : 'Ruthra Support Desk:\n\n- Address: 7/213, MGR Nagar, North Ariyanayagipuram, Petta, Tirunelveli, Tamil Nadu - 627010.\n- Phone / WhatsApp: +91 9043434226\n- Email: ruthramedicines@gmail.com\n- Operating Hours: Monday to Saturday, 9:00 AM to 8:00 PM IST.\n- WhatsApp Support: Direct consultation and order assistance available.',
       links: [
         { labelEn: 'Go to Contact Page', labelTa: 'தொடர்பு பக்கத்திற்கு செல்ல', url: '/contact' }
       ],

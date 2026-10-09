@@ -17,8 +17,8 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
   const [place, setPlace] = useState('');
   const [customMsg, setCustomMsg] = useState('');
 
-  // Ruthra Medicines Tirunelveli support phone
-  const supportPhone = '919171508042'; // Direct Tirunelveli helpline
+  // Ruthra Medicines support phone
+  const supportPhone = '919043434226'; // Direct support helpline
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,11 +152,11 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
 
               <div className="text-center pt-1">
                 <a
-                  href="tel:+919171508042"
+                  href="tel:+919043434226"
                   className="inline-flex items-center gap-1.5 text-[11px] text-[#3D5A68] hover:text-[#16382B]"
                 >
                   <PhoneCall className="w-3 h-3 text-[#C29043]" />
-                  <span>{t('Direct Support Line: +91 91715 08042 (10 AM - 7 PM)', 'நேரடி அழைப்பு: +91 91715 08042')}</span>
+                  <span>{t('Direct Support Line: +91 9043434226 (9 AM - 8 PM)', 'நேரடி அழைப்பு: +91 9043434226')}</span>
                 </a>
               </div>
             </form>

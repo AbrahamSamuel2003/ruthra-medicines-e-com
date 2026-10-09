@@ -313,7 +313,7 @@ export default function OffersPage() {
           </div>
 
           <a
-            href="https://api.whatsapp.com/send?phone=919171508042&text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20inquiry%20regarding%20custom%20Siddha%20bundles%20and%20offers."
+            href="https://api.whatsapp.com/send?phone=919043434226&text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20inquiry%20regarding%20custom%20Siddha%20bundles%20and%20offers."
             target="_blank"
             rel="noreferrer"
             className="px-5 py-3 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 shadow-sm transition-colors flex-shrink-0 cursor-pointer w-full sm:w-auto"

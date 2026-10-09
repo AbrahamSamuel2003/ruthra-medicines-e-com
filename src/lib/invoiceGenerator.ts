@@ -61,7 +61,7 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
 
   doc.setFontSize(7);
   doc.setTextColor(220, 235, 228);
-  doc.text('Support & WhatsApp: +91 91715 08042 | Email: orders@ruthramedicos.com', margin + 6, y + 20);
+  doc.text('Support & WhatsApp: +91 9043434226 | Email: ruthramedicines@gmail.com', margin + 6, y + 20);
 
   // Right Header Metadata (Tax Invoice Title, Invoice #, Date)
   doc.setFont('helvetica', 'bold');
@@ -367,7 +367,7 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
   doc.setTextColor(71, 85, 105);
   doc.text('All formulations are compounded in Tirunelveli adhering strictly to', margin, y + 12);
   doc.text('classical Siddha Shodhana purification methods and GMP safety standards.', margin, y + 16);
-  doc.text('For clinical consultation or dosage advice: WhatsApp +91 91715 08042', margin, y + 20);
+  doc.text('For clinical consultation or dosage advice: WhatsApp +91 9043434226', margin, y + 20);
 
   // ---------------------------------------------------------------------------
   // 7. FOOTER & AUTHORIZED SIGNATORY (Bottom of A4)

@@ -229,7 +229,7 @@ function OrderSuccessContent() {
             </Link>
 
             <a
-              href={`https://wa.me/919171508042?text=Vanakkam%20Ruthra,%20I%20have%20placed%20order%20${orderId}.%20Please%20confirm%20tracking.`}
+              href={`https://wa.me/919043434226?text=Vanakkam%20Ruthra,%20I%20have%20placed%20order%20${orderId}.%20Please%20confirm%20tracking.`}
               target="_blank"
               rel="noreferrer"
               className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#E8F1EB] hover:bg-white border border-[#16382B]/20 text-[#16382B] text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-colors"

@@ -261,8 +261,8 @@ export default function AIAssistantChatbot() {
             id: `assistant-fallback-${Date.now()}`,
             sender: 'assistant',
             text: isTa
-              ? 'மன்னிக்கவும், தகவலைப் பெறுவதில் தாமதம் ஏற்பட்டுள்ளது. எங்கள் திருநெல்வேலி உதவி மையத்தை நேரடியாக +91 91715 08042 என்ற எண்ணில் அழைக்கலாம்.'
-              : 'I encountered an issue fetching this data. You can directly reach our Tirunelveli care desk at +91 91715 08042 for instant assistance.',
+              ? 'மன்னிக்கவும், தகவலைப் பெறுவதில் தாமதம் ஏற்பட்டுள்ளது. எங்கள் வாடிக்கையாளர் உதவி மையத்தை நேரடியாக +91 9043434226 என்ற எண்ணில் அழைக்கலாம்.'
+              : 'I encountered an issue fetching this data. You can directly reach our care desk at +91 9043434226 for instant assistance.',
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           };
           setMessages(prev => [...prev, fallbackMessage]);
@@ -340,7 +340,7 @@ export default function AIAssistantChatbot() {
                   {ct('Ruthra AI Assistant', 'ரூத்ரா AI உதவியாளர்')}
                 </h3>
                 <p className="text-[10.5px] text-[#DFB36C] mt-1 leading-none truncate font-medium">
-                  {ct('Tirunelveli Support Desk', 'திருநெல்வேலி உதவி மையம்')}
+                  {ct('Instant Ayush Guidance', 'உடனடி ஆயுஷ் வழிகாட்டி')}
                 </p>
               </div>
             </div>
@@ -524,7 +524,7 @@ export default function AIAssistantChatbot() {
             <div className="flex items-center justify-between text-[10px] text-[#8A9B93] px-2 font-medium">
               <span>{ct('Need doctor consultation?', 'மருத்துவரிடம் பேச?')}</span>
               <a
-                href="https://wa.me/919171508042?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20direct%20consultation."
+                href="https://wa.me/919043434226?text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20direct%20consultation."
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1 font-semibold text-[#16382B] hover:text-[#C29043] transition-colors"
@@ -566,7 +566,7 @@ export default function AIAssistantChatbot() {
                 {globalT('Ruthra AI Assistant', 'ரூத்ரா AI உதவியாளர்')}
               </span>
               <span className="text-[9.5px] text-[#DFB36C] leading-tight">
-                {globalT('Instant Siddha Guidance', 'உடனடி மருத்துவ ஆலோசனை')}
+                {globalT('Instant Ayush Guidance', 'உடனடி ஆயுஷ் வழிகாட்டல்')}
               </span>
             </div>
           </button>
