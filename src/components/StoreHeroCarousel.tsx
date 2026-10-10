@@ -15,9 +15,9 @@ interface BannerSlide {
 
 const BANNER_SLIDES: BannerSlide[] = [
   {
-    id: 'banner-family-health-hair-v4',
-    imageSrc: '/images/banners/ruthra_hero_family_wellness_v4.jpg',
-    altText: 'Daily Family Health & Hair Care - Pure Tirunelveli Formulations',
+    id: 'banner-family-health-hair-v3',
+    imageSrc: '/images/banners/ruthra_hero_narshika_clean.jpg',
+    altText: 'Daily Family Health & Narshika Hair Care - Siddha & Ayurveda Tirunelveli Formulations',
     link: '/shop'
   },
   {
@@ -101,7 +101,7 @@ export default function StoreHeroCarousel() {
                 alt={slide.altText}
                 fill
                 priority={idx === 0}
-                className="object-contain sm:object-cover object-center w-full h-full transform transition-transform duration-700 group-hover:scale-[1.006]"
+                className="object-contain object-center w-full h-full transform transition-transform duration-700 group-hover:scale-[1.006]"
                 sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1400px"
               />
             </Link>
