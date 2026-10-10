@@ -15,8 +15,8 @@ interface BannerSlide {
 
 const BANNER_SLIDES: BannerSlide[] = [
   {
-    id: 'banner-family-health-hair-v3',
-    imageSrc: '/images/banners/ruthra_hero_family_wellness_v3.jpg',
+    id: 'banner-family-health-hair-v4',
+    imageSrc: '/images/banners/ruthra_hero_family_wellness_v4.jpg',
     altText: 'Daily Family Health & Hair Care - Pure Tirunelveli Formulations',
     link: '/shop'
   },
