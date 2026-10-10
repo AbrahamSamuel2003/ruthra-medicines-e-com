@@ -48,41 +48,30 @@ export default function MobileHeader() {
             <Menu className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center gap-1.5 min-w-0">
-            <Link 
-              href="/" 
-              onClick={handleMobileNavClick}
-              className="flex-shrink-0 flex items-center justify-center"
-              title="Ruthra Medicines Home"
-            >
-              <Image
-                src="/images/ruthra-logo.png"
-                alt="Ruthra Logo"
-                width={50}
-                height={30}
-                className="h-7 w-auto object-contain"
-                priority
-                sizes="50px"
-              />
-            </Link>
-            <a
-              href="https://ss40network.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col min-w-0 group cursor-pointer justify-center"
-              title="Developed by SS40 NETWORK PRIVATE LIMITED"
-            >
-              <span className="font-serif-brand text-[11px] sm:text-xs font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-tight leading-tight transition-colors whitespace-nowrap">
+          <Link 
+            href="/" 
+            onClick={handleMobileNavClick}
+            className="flex items-center gap-1.5 min-w-0 group cursor-pointer"
+            title="Ruthra Medicines Home"
+          >
+            <Image
+              src="/images/ruthra-logo.png"
+              alt="Ruthra Logo"
+              width={50}
+              height={30}
+              className="h-7 w-auto object-contain flex-shrink-0"
+              priority
+              sizes="50px"
+            />
+            <div className="flex flex-col min-w-0 justify-center">
+              <span className="font-serif-brand text-[12px] sm:text-xs font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-tight leading-tight transition-colors whitespace-nowrap">
                 RUTHRA MEDICINES
               </span>
-              <span className={`text-[7px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.08em]'}`}>
+              <span className={`text-[7.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.08em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
               </span>
-              <span className="text-[6px] text-[#2D5A46] group-hover:text-[#8C5D14] group-hover:underline font-medium tracking-tight whitespace-nowrap leading-none mt-0.5 transition-colors">
-                Developed by SS40 NETWORK
-              </span>
-            </a>
-          </div>
+            </div>
+          </Link>
         </div>
 
         {/* Right: Language Switch + Search + Cart */}

@@ -159,42 +159,31 @@ export default function Header() {
       {/* Main Desktop Header — Ultra-Responsive Zero-Wrap Layout */}
       <div className="max-w-[1440px] mx-auto px-2 sm:px-3 lg:px-4 xl:px-6 h-17 flex items-center justify-between gap-1.5 lg:gap-2 xl:gap-3 w-full">
         
-        {/* 1. Left: Brand Logo & Lineage */}
-        <div className="flex items-center gap-1.5 flex-shrink-0">
-          <Link 
-            href="/" 
-            onClick={handleNavClick} 
-            className="flex items-center justify-center flex-shrink-0"
-            title="Ruthra Medicines Home"
-          >
-            <Image
-              src="/images/ruthra-logo.png"
-              alt="Ruthra Logo"
-              width={70}
-              height={40}
-              className="h-8 xl:h-9 w-auto object-contain"
-              priority
-              sizes="70px"
-            />
-          </Link>
-          <a
-            href="https://ss40network.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col justify-center group cursor-pointer"
-            title="Developed by SS40 NETWORK PRIVATE LIMITED"
-          >
+        {/* 1. Left: Brand Logo & Lineage (Direct Home Link) */}
+        <Link 
+          href="/" 
+          onClick={handleNavClick} 
+          className="flex items-center gap-2 flex-shrink-0 group cursor-pointer"
+          title="Ruthra Medicines Home"
+        >
+          <Image
+            src="/images/ruthra-logo.png"
+            alt="Ruthra Logo"
+            width={70}
+            height={40}
+            className="h-8 xl:h-9 w-auto object-contain"
+            priority
+            sizes="70px"
+          />
+          <div className="flex flex-col justify-center">
             <span className="font-serif-brand text-sm xl:text-base font-bold text-[#16382B] group-hover:text-[#8C5D14] transition-colors tracking-wide leading-tight block whitespace-nowrap">
               RUTHRA MEDICINES
             </span>
             <span className={`text-[7.5px] xl:text-[8.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold mt-0.5 whitespace-nowrap block transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
               {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
             </span>
-            <span className="text-[6.5px] xl:text-[7.5px] text-[#2D5A46] group-hover:text-[#8C5D14] group-hover:underline font-medium tracking-tight whitespace-nowrap leading-none mt-0.5 transition-colors">
-              Developed by SS40 NETWORK
-            </span>
-          </a>
-        </div>
+          </div>
+        </Link>
 
         {/* 2. Center: Primary Navigation Links */}
         <nav className="flex items-center justify-center gap-0.5 lg:gap-1 xl:gap-1.5 2xl:gap-2 font-medium flex-1 min-w-0 px-1">
