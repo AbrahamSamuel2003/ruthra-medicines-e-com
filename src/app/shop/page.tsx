@@ -280,13 +280,13 @@ function ShopContent() {
             </div>
 
             <h1 className="font-serif-brand text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#16382B] tracking-tight leading-tight">
-              {t('Siddha Formulation Catalog', 'சித்த மருந்துகள் களஞ்சியம்')}
+              {t('Siddha & Ayurveda Formulation Catalog', 'சித்த & ஆயுர்வேத மருந்துகள் களஞ்சியம்')}
             </h1>
 
             <p className="text-xs sm:text-sm text-[#3D5A68] mt-1.5 leading-relaxed">
               {t(
-                'Direct from Tirunelveli, southern Tamil Nadu. Classical Siddha preparations crafted with Shodhana-purified botanicals, authentic anupanam vehicles, and dispatch across all 38 districts.',
-                'தென் தமிழகத்தின் திருநெல்வேலியிலிருந்து பாரம்பரிய முறைப்படி சுத்தி செய்யப்பட்ட மூலிகைகள், துணைப்பொருட்களுடன் கூடிய சித்த மருந்துகள்.'
+                'Direct from Tirunelveli, southern Tamil Nadu. Classical Siddha & Ayurveda preparations crafted with Shodhana-purified botanicals, authentic anupanam vehicles, and dispatch across all 38 districts.',
+                'தென் தமிழகத்தின் திருநெல்வேலியிலிருந்து பாரம்பரிய முறைப்படி சுத்தி செய்யப்பட்ட மூலிகைகள், துணைப்பொருட்களுடன் கூடிய சித்த & ஆயுர்வேத மருந்துகள்.'
               )}
             </p>
 
@@ -298,7 +298,7 @@ function ShopContent() {
               </div>
               <div className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg bg-white/80 border border-[#16382B]/10 font-medium text-[10.5px] sm:text-xs">
                 <Award className="w-3.5 h-3.5 text-[#C29043]" />
-                <span>{t('Classical Siddha Ratios', 'பாரம்பரிய அளவுமுறை')}</span>
+                <span>{t('Classical Ayush Standards', 'பாரம்பரிய ஆயுஷ் தரம்')}</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg bg-white/80 border border-[#16382B]/10 font-medium text-[10.5px] sm:text-xs">
                 <Truck className="w-3.5 h-3.5 text-[#16382B]" />
@@ -1266,7 +1266,7 @@ function ShopContent() {
         <div className="bg-white rounded-3xl border border-[#16382B]/10 p-6 sm:p-8 shadow-xs">
           <div className="text-center max-w-xl mx-auto mb-6">
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#C29043]">
-              {t('Siddha Pharmacopeia Assurance', 'சித்த மருந்தக உத்தரவாதம்')}
+              {t('Siddha & Ayurveda Pharmacopeia Assurance', 'சித்த & ஆயுர்வேத மருந்தக உத்தரவாதம்')}
             </span>
             <h3 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B] mt-1">
               {t('Standardized Preparation & Direct Dispatch', 'தரமான தயாரிப்பு & நேரடி அஞ்சல்')}

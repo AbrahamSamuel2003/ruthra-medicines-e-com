@@ -26,7 +26,7 @@ export default function ReturnsPage() {
               1. Damaged or Tampered in Transit
             </h3>
             <p>
-              Due to the medicinal and hygienic nature of Siddha classical products, open consumables cannot be returned for resale. However, if your order arrives damaged, leaking, or with a broken seal, please notify us within 48 hours of delivery with a photograph. We will immediately dispatch a free replacement.
+              Due to the medicinal and hygienic nature of Siddha & Ayurveda classical products, open consumables cannot be returned for resale. However, if your order arrives damaged, leaking, or with a broken seal, please notify us within 48 hours of delivery with a photograph. We will immediately dispatch a free replacement.
             </p>
 
             <h3 className="font-serif-brand font-bold text-base text-[#16382B]">

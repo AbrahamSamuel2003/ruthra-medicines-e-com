@@ -29,7 +29,7 @@ const BANNER_SLIDES: BannerSlide[] = [
   {
     id: 'banner-classical-siddha-v3',
     imageSrc: '/images/banners/ruthra_hero_siddha_v3.jpg',
-    altText: 'Classical Siddha Pharmacopeia - Natural Care, Healthy Life',
+    altText: 'Classical Siddha & Ayurveda Pharmacopeia - Natural Care, Healthy Life',
     link: '/shop'
   }
 ];

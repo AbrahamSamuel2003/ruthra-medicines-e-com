@@ -38,8 +38,8 @@ export default function ConcernsHubPage() {
           </h1>
           <p className="text-sm text-[#3D5A68] mt-2">
             {t(
-              'Targeted classical Siddha formulations selected to restore balance across specific body systems and doshas.',
-              'முக்குற்ற சமநிலையின்மையால் ஏற்படும் உபாதைகளுக்கான பாரம்பரிய சித்த மருத்துவ தீர்வுகள்.'
+              'Targeted classical Siddha & Ayurveda formulations selected to restore balance across specific body systems and doshas.',
+              'முக்குற்ற சமநிலையின்மையால் ஏற்படும் உபாதைகளுக்கான பாரம்பரிய சித்த & ஆயுர்வேத மருத்துவ தீர்வுகள்.'
             )}
           </p>
         </div>

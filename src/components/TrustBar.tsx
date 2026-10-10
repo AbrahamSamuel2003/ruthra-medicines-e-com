@@ -12,8 +12,8 @@ export default function TrustBar() {
       icon: Shield,
       titleEn: 'Authentic Formulations',
       titleTa: 'பாரம்பரிய முறைப்படி தயாரிப்பு',
-      descEn: 'Prepared strictly per classical Siddha pharmacopeia standards',
-      descTa: 'பழமையான சித்த மருத்துவ விதிகளின்படி தூய்மையாக தயாரிக்கப்படுகிறது'
+      descEn: 'Prepared strictly per classical Siddha & Ayurveda pharmacopeia standards',
+      descTa: 'பழமையான சித்த & ஆயுர்வேத மருத்துவ விதிகளின்படி தூய்மையாக தயாரிக்கப்படுகிறது'
     },
     {
       icon: Leaf,

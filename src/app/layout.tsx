@@ -26,12 +26,14 @@ const notoSansTamil = Noto_Sans_Tamil({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Ruthra Medicines | Authentic Siddha Formulations & Traditional Wellness',
+    default: 'Ruthra Medicines | Authentic Siddha & Ayurveda Formulations',
     template: '%s | Ruthra Medicines'
   },
-  description: 'Ancient Siddha wisdom presented for modern living. Explore classical Chooranam sachets, Kudineer decoctions, and Thailam oils formulated in Tirunelveli, Tamil Nadu.',
+  description: 'Ancient Siddha & Ayurveda wisdom presented for modern living. Explore classical Chooranam sachets, Kudineer decoctions, and Thailam oils formulated in Tirunelveli, Tamil Nadu.',
   keywords: [
     'Siddha medicine',
+    'Ayurveda medicine',
+    'Ayush formulations',
     'Ruthra Medicines',
     'Tirunelveli Siddha',
     'Pirandai Chooranam',
@@ -39,6 +41,7 @@ export const metadata: Metadata = {
     'Rej-Viyan Pain Oil',
     'Tamil traditional medicine',
     'சித்த மருத்துவம்',
+    'ஆயுர்வேதம்',
     'சூரணம்',
     'குடிநீர்',
     'தைலம்'
@@ -51,8 +54,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Ruthra Medicines | Ancient Siddha Wisdom for Modern Living',
-    description: 'Authentic Siddha formulations, classical decoctions, and botanical oils dispatched across Tamil Nadu from Tirunelveli.',
+    title: 'Ruthra Medicines | Ancient Siddha & Ayurveda Wisdom for Modern Living',
+    description: 'Authentic Siddha & Ayurveda formulations, classical decoctions, and botanical oils dispatched across Tamil Nadu from Tirunelveli.',
     url: 'https://ruthramedicines.com',
     siteName: 'Ruthra Medicines',
     locale: 'en_IN',

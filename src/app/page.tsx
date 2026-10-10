@@ -410,7 +410,7 @@ export default function HomePage() {
                 {t('Women’s Wellness & Hormonal Care', 'பெண்கள் நலம் & கர்ப்பப்பை பராமரிப்பு')}
               </h2>
               <p className="text-xs text-[#3D5A68] mt-0.5">
-                {t('Specialized Siddha remedies for PCOS/PCOD, irregular periods, fertility, and postpartum rejuvenation.', 'சூதகத்தை உடைக்கும் குடிநீர், மலட்டு கர்ப்ப குடிநீர், சந்திரகாந்தி மற்றும் தன்வந்தரம் 101.')}
+                {t('Specialized Siddha & Ayurvedic remedies for PCOS/PCOD, irregular periods, fertility, and postpartum rejuvenation.', 'சூதகத்தை உடைக்கும் குடிநீர், மலட்டு கர்ப்ப குடிநீர், சந்திரகாந்தி மற்றும் தன்வந்தரம் 101.')}
               </p>
             </div>
             <Link

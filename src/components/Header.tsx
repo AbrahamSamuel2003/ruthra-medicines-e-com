@@ -164,17 +164,17 @@ export default function Header() {
           <Link 
             href="/" 
             onClick={handleNavClick} 
-            className="h-8.5 xl:h-9.5 w-auto px-1.5 py-0.5 rounded-xl bg-white border border-[#16382B]/10 shadow-xs hover:scale-105 transition-transform flex items-center justify-center flex-shrink-0"
+            className="flex items-center justify-center flex-shrink-0"
             title="Ruthra Medicines Home"
           >
             <Image
               src="/images/ruthra-logo.png"
               alt="Ruthra Logo"
-              width={60}
-              height={35}
-              className="h-6 xl:h-7 w-auto object-contain"
+              width={70}
+              height={40}
+              className="h-8 xl:h-9 w-auto object-contain"
               priority
-              sizes="60px"
+              sizes="70px"
             />
           </Link>
           <a

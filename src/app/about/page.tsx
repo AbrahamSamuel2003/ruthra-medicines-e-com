@@ -22,18 +22,18 @@ export default function AboutPage() {
         <div className="bg-[#16382B] text-white rounded-3xl p-8 sm:p-14 border border-[#C29043]/30 relative overflow-hidden">
           <div className="max-w-3xl space-y-4">
             <span className="text-xs uppercase tracking-widest font-bold text-[#DFB36C]">
-              {t('Siddha Heritage • Tirunelveli, Tamil Nadu', 'திருநெல்வேலி சித்த மருத்துவ பாரம்பரியம்')}
+              {t('Siddha & Ayurveda Heritage • Tirunelveli, Tamil Nadu', 'திருநெல்வேலி சித்த & ஆயுர்வேத மருத்துவ பாரம்பரியம்')}
             </span>
             <h1 className="font-serif-brand text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
               {t(
-                'Ancient Siddha Wisdom, Presented for Modern Living.',
-                'பழமையான சித்த அறிவு, நவீன வாழ்வியலுக்காக.'
+                'Ancient Siddha & Ayurveda Wisdom, Presented for Modern Living.',
+                'பழமையான சித்த & ஆயுர்வேத அறிவு, நவீன வாழ்வியலுக்காக.'
               )}
             </h1>
             <p className="text-sm sm:text-base text-white/80 leading-relaxed pt-2">
               {t(
-                'Ruthra Medicines was founded with a singular conviction: to preserve the classical heritage discipline and botanical authenticity of southern Tamil traditional medicine while delivering the purity, measured packaging, and clarity demanded by today’s discerning households.',
-                'பாரம்பரிய சித்த மருத்துவத்தின் தூய்மையும், மூலிகை நம்பகத்தன்மையும் மாறாமல் இன்றைய நவீன குடும்பங்களுக்கு எளிய முறையில் கொண்டு சேர்க்கும் உயரிய நோக்குடன் ருத்ரா செயல்படுகிறது.'
+                'Ruthra Medicines was founded with a singular conviction: to preserve the classical heritage discipline and botanical authenticity of southern Tamil traditional Siddha & Ayurveda medicine while delivering the purity, measured packaging, and clarity demanded by today’s discerning households.',
+                'பாரம்பரிய சித்த & ஆயுர்வேத மருத்துவத்தின் தூய்மையும், மூலிகை நம்பகத்தன்மையும் மாறாமல் இன்றைய நவீன குடும்பங்களுக்கு எளிய முறையில் கொண்டு சேர்க்கும் உயரிய நோக்குடன் ருத்ரா செயல்படுகிறது.'
               )}
             </p>
           </div>
@@ -80,8 +80,8 @@ export default function AboutPage() {
             </h3>
             <p className="text-xs sm:text-sm text-[#3D5A68] leading-relaxed">
               {t(
-                'Rooted in Tirunelveli — historically celebrated as the cradle of Tamil Siddha pharmacology near the Podhigai hills, ensuring pristine botanical sourcing and pure small-batch processing.',
-                'சித்த மருத்துவத்தின் தொட்டில் எனப்படும் பொதிகை மலைச் சாரல் திருநெல்வேலியில் இருந்து தூய மூலிகைகளைக் கொண்டு பாரம்பரிய முறைப்படி மருந்துகள் தயாரிக்கப்படுகின்றன.'
+                'Rooted in Tirunelveli — historically celebrated as the cradle of southern Tamil Siddha & Ayurveda pharmacology near the Podhigai hills, ensuring pristine botanical sourcing and pure small-batch processing.',
+                'சித்த & ஆயுர்வேத மருத்துவத்தின் தொட்டில் எனப்படும் பொதிகை மலைச் சாரல் திருநெல்வேலியில் இருந்து தூய மூலிகைகளைக் கொண்டு பாரம்பரிய முறைப்படி மருந்துகள் தயாரிக்கப்படுகின்றன.'
               )}
             </p>
           </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
               Traditional Indian medicine often suffers from two extremes: either hyper-commercialized mass brands that dilute herb concentration with synthetic binders, or obscure local cottage makers with unstandardized hygiene.
             </p>
             <p>
-              Ruthra sits intentionally in the middle: an authentic classical Siddha store where every single pouch, sachet, and amber oil bottle is prepared with pharmaceutical discipline, precise food-grade packaging, transparent ingredient labels, and respectful adherence to classical texts.
+              Ruthra sits intentionally in the middle: an authentic classical Siddha & Ayurveda store where every single pouch, sachet, and amber oil bottle is prepared with pharmaceutical discipline, precise food-grade packaging, transparent ingredient labels, and respectful adherence to classical texts.
             </p>
           </div>
 

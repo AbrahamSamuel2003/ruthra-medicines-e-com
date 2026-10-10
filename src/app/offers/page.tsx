@@ -236,7 +236,7 @@ export default function OffersPage() {
                   {t('Comprehensive Benefits & Savings Table', 'முழுமையான சலுகை விபர அட்டவணை')}
                 </h3>
                 <p className="text-[11px] sm:text-xs text-[#3D5A68] mt-0.5">
-                  {t('Free formulation bonus is selected directly from the authentic Siddha medicines in your order.', 'இலவச மருந்துகள் உங்கள் கூடையில் உள்ள மருந்துகளிலிருந்தே நேரடியாக தேர்வு செய்யப்படுகிறது.')}
+                  {t('Free formulation bonus is selected directly from the authentic Siddha & Ayurveda medicines in your order.', 'இலவச மருந்துகள் உங்கள் கூடையில் உள்ள சித்த & ஆயுர்வேத மருந்துகளிலிருந்தே நேரடியாக தேர்வு செய்யப்படுகிறது.')}
                 </p>
               </div>
             </div>
@@ -302,7 +302,7 @@ export default function OffersPage() {
         <section className="p-6 sm:p-8 rounded-3xl bg-[#E8F1EB] border border-[#16382B]/15 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center sm:text-left">
             <h3 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B]">
-              {t('Need Custom Siddha Prescription or Bulk Quantities?', 'தனிப்பயன் மருந்து அல்லது மொத்த ஆர்டர் தேவையா?')}
+              {t('Need Custom Siddha & Ayurvedic Formulations or Bulk Quantities?', 'தனிப்பயன் சித்த & ஆயுர்வேத மருந்து அல்லது மொத்த ஆர்டர் தேவையா?')}
             </h3>
             <p className="text-xs sm:text-sm text-[#3D5A68] max-w-xl leading-relaxed">
               {t(
@@ -313,7 +313,7 @@ export default function OffersPage() {
           </div>
 
           <a
-            href="https://api.whatsapp.com/send?phone=919043434226&text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20inquiry%20regarding%20custom%20Siddha%20bundles%20and%20offers."
+            href="https://api.whatsapp.com/send?phone=919043434226&text=Vanakkam%20Ruthra%20Medicines,%20I%20would%20like%20inquiry%20regarding%20custom%20Siddha%20and%20Ayurveda%20bundles%20and%20offers."
             target="_blank"
             rel="noreferrer"
             className="px-5 py-3 rounded-xl bg-[#16382B] hover:bg-[#204C3B] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 shadow-sm transition-colors flex-shrink-0 cursor-pointer w-full sm:w-auto"

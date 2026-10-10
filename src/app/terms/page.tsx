@@ -26,7 +26,7 @@ export default function TermsPage() {
               1. Nature of Information
             </h3>
             <p>
-              The product information, traditional uses, and herbal descriptions provided on this website are drawn from classical Tamil Siddha literature and pharmacopeia standards of Ruthra Siddha Herbals. They are intended for educational and wellness support.
+              The product information, traditional uses, and herbal descriptions provided on this website are drawn from classical Tamil Siddha and Ayurvedic literature and pharmacopeia standards of Ruthra Herbals. They are intended for educational and wellness support.
             </p>
 
             <h3 className="font-serif-brand font-bold text-base text-[#16382B]">

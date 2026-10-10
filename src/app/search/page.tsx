@@ -57,7 +57,7 @@ export default function SearchPage() {
 
         <div className="max-w-3xl mb-8">
           <h1 className="font-serif-brand text-3xl sm:text-4xl font-bold text-[#16382B]">
-            {t('Predictive Siddha Search', 'சித்த மருந்துகள் தேடுதல்')}
+            {t('Siddha & Ayurveda Medicine Search', 'சித்த & ஆயுர்வேத மருந்துகள் தேடுதல்')}
           </h1>
           <p className="text-sm text-[#3D5A68] mt-1.5">
             {t(

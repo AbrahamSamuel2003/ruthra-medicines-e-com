@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Column 1: Brand & Tirunelveli Roots (Col span 2) */}
           <div className="lg:col-span-2 space-y-4 text-center md:text-left flex flex-col items-center md:items-start">
             <Link href="/" className="flex flex-col sm:flex-row items-center gap-3 text-center md:text-left">
-              <div className="h-12 w-auto px-2.5 py-1 rounded-xl bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+              <div className="h-12 w-auto px-2.5 py-1 rounded-xl bg-white flex items-center justify-center flex-shrink-0">
                 <Image
                   src="/images/ruthra-logo.png"
                   alt="Ruthra Siddha Medicines"
@@ -33,15 +33,15 @@ export default function Footer() {
                   RUTHRA MEDICINES
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-[#DFB36C]">
-                  {t('Siddha House • Tirunelveli', 'சித்த மருத்துவ இல்லம் • திருநெல்வேலி')}
+                  {t('Siddha & Ayurveda House • Tirunelveli', 'சித்த & ஆயுர்வேத மருத்துவ இல்லம் • திருநெல்வேலி')}
                 </span>
               </div>
             </Link>
 
             <p className="text-xs sm:text-sm text-[#DFB36C]/90 leading-relaxed max-w-md mx-auto md:mx-0 text-center md:text-left">
               {t(
-                'Rooted in the ancient medical heritage of southern Tamil Nadu, Ruthra Medicines brings authentic classical Siddha formulations to modern households with clinical care, ethical botanical sourcing, and transparent guidance.',
-                'தென் தமிழகத்தின் பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய்மையான முறையில் மருந்துகளை தயாரித்து தமிழகம் முழுவதும் வழங்கும் நம்பகமான சித்த மருத்துவ இல்லம்.'
+                'Rooted in the ancient medical heritage of southern Tamil Nadu, Ruthra Medicines brings authentic classical Siddha & Ayurveda formulations to modern households with clinical care, ethical botanical sourcing, and transparent guidance.',
+                'தென் தமிழகத்தின் பாரம்பரிய சித்த & ஆயுர்வேத மருத்துவ நெறிமுறைகளின்படி தூய்மையான முறையில் மருந்துகளை தயாரித்து தமிழகம் முழுவதும் வழங்கும் நம்பகமான மருத்துவ இல்லம்.'
               )}
             </p>
 
@@ -180,8 +180,8 @@ export default function Footer() {
             <ShieldCheck className="w-5 h-5 text-[#C29043] flex-shrink-0" />
             <p className="max-w-4xl">
               {t(
-                'Disclaimer: The product descriptions on this website represent classical Siddha medicine literature and traditional uses. They are not intended as standalone substitutes for acute emergency clinical care. Consult qualified practitioners for severe chronic ailments.',
-                'அறிவிப்பு: இப்பக்கத்தில் உள்ள விபரங்கள் பாரம்பரிய சித்த மருத்துவ நூல்கள் மற்றும் அனுபவ முறைகளின் அடிப்படையில் அமைந்தவை. தீவிர அவசர சிகிச்சைகளுக்கு உரிய மருத்துவரை அணுகவும்.'
+                'Disclaimer: The product descriptions on this website represent classical Siddha & Ayurveda (Ayush) medicine literature and traditional uses. They are not intended as standalone substitutes for acute emergency clinical care. Consult qualified practitioners for severe chronic ailments.',
+                'அறிவிப்பு: இப்பக்கத்தில் உள்ள விபரங்கள் பாரம்பரிய சித்த & ஆயுர்வேத (ஆயுஷ்) மருத்துவ நூல்கள் மற்றும் அனுபவ முறைகளின் அடிப்படையில் அமைந்தவை. தீவிர அவசர சிகிச்சைகளுக்கு உரிய மருத்துவரை அணுகவும்.'
               )}
             </p>
           </div>

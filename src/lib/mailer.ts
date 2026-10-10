@@ -105,7 +105,7 @@ function buildInvoiceEmailHtml(order: Order, recipientName: string): string {
       </p>
       
       <p style="font-size: 14px; color: #3D5A68; margin-bottom: 20px;">
-        Thank you for ordering your classical Siddha formulations with Ruthra Medicines. Your official tax invoice (<strong>${order.invoice?.invoiceNumber || `INV-${order.orderNumber}`}</strong>) is attached to this email as a PDF.
+        Thank you for ordering your classical Siddha &amp; Ayurveda formulations with Ruthra Medicines. Your official tax invoice (<strong>${order.invoice?.invoiceNumber || `INV-${order.orderNumber}`}</strong>) is attached to this email as a PDF.
       </p>
 
       <!-- PAYMENT STATUS CARD -->
@@ -202,7 +202,7 @@ function buildInvoiceEmailHtml(order: Order, recipientName: string): string {
     <!-- FOOTER -->
     <div style="background-color: #FAF8F5; border-top: 1px solid rgba(22, 56, 43, 0.08); padding: 16px 24px; text-align: center; font-size: 11px; color: #8A9B93;">
       <p style="margin: 0 0 4px 0;">Ruthra Medicines &amp; Polyclinic, Tirunelveli, Tamil Nadu</p>
-      <p style="margin: 0;">GMP Certified • Traditional Classical Siddha Shodhana Protocols</p>
+      <p style="margin: 0;">GMP Certified • Traditional Classical Siddha &amp; Ayurveda Shodhana Protocols</p>
     </div>
 
   </div>
@@ -785,7 +785,7 @@ export function buildDispatchedEmailHtml(order: Order, trackingUrl: string): str
     <!-- FOOTER -->
     <div style="background-color: #FAF8F5; border-top: 1px solid rgba(22, 56, 43, 0.08); padding: 16px 24px; text-align: center; font-size: 11px; color: #8A9B93;">
       <p style="margin: 0 0 4px 0;">Ruthra Medicines &amp; Polyclinic, Tirunelveli, Tamil Nadu</p>
-      <p style="margin: 0;">GMP Certified • Traditional Classical Siddha Shodhana Protocols</p>
+      <p style="margin: 0;">GMP Certified • Traditional Classical Siddha &amp; Ayurveda Shodhana Protocols</p>
     </div>
 
   </div>

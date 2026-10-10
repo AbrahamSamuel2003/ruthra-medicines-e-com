@@ -52,17 +52,17 @@ export default function MobileHeader() {
             <Link 
               href="/" 
               onClick={handleMobileNavClick}
-              className="h-8 w-auto px-1 py-0.5 rounded-lg bg-white border border-[#16382B]/10 shadow-2xs flex-shrink-0 flex items-center justify-center"
+              className="flex-shrink-0 flex items-center justify-center"
               title="Ruthra Medicines Home"
             >
               <Image
                 src="/images/ruthra-logo.png"
                 alt="Ruthra Logo"
-                width={44}
-                height={26}
-                className="h-6 w-auto object-contain"
+                width={50}
+                height={30}
+                className="h-7 w-auto object-contain"
                 priority
-                sizes="44px"
+                sizes="50px"
               />
             </Link>
             <a
@@ -130,7 +130,7 @@ export default function MobileHeader() {
             {/* Drawer Header */}
             <div className="p-4 bg-[#16382B] text-white flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="h-10 w-auto px-2 py-1 rounded-xl bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+                <div className="h-10 w-auto px-2 py-1 rounded-xl bg-white flex items-center justify-center flex-shrink-0">
                   <Image
                     src="/images/ruthra-logo.png"
                     alt="Ruthra Logo"

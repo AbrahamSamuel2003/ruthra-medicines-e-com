@@ -56,9 +56,9 @@ export default function FloatingWhatsApp() {
 
   const quickTopics = [
     {
-      en: 'Need help selecting the right Siddha medicine',
-      ta: 'எனக்கு ஏற்ற சித்த மருந்தை தேர்வு செய்ய உதவி தேவை',
-      msg: 'Vanakkam Ruthra Medicines, I need guidance selecting the right Siddha medicine for my condition.'
+      en: 'Need help selecting the right Siddha & Ayurveda medicine',
+      ta: 'எனக்கு ஏற்ற சித்த & ஆயுர்வேத மருந்தை தேர்வு செய்ய உதவி தேவை',
+      msg: 'Vanakkam Ruthra Medicines, I need guidance selecting the right Siddha & Ayurveda medicine for my condition.'
     },
     {
       en: 'Track my order & courier status',
