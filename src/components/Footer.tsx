@@ -142,11 +142,13 @@ export default function Footer() {
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">
                 <MapPin className="w-4 h-4 text-[#C29043] flex-shrink-0 mt-0.5" />
                 <span>
-                  Ruthra Medicines Dispatch Facility,
+                  Ruthra Medicines,
                   <br />
-                  North Ariyanayagipuram, Petta,
+                  7/211 MGR Nagar,
                   <br />
-                  Tirunelveli, Tamil Nadu 627010
+                  North Ariyanayagipuram, Cheranmahadevi Taluk,
+                  <br />
+                  Tirunelveli, Tamil Nadu 627603
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">

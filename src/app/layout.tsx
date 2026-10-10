@@ -86,10 +86,10 @@ export default function RootLayout({
     telephone: '+919043434226',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '7/213, MGR Nagar, North Ariyanayagipuram, Vadakku Ariyanayagipuram Petta',
+      streetAddress: '7/211, MGR Nagar, North Ariyanayagipuram, Cheranmahadevi Taluk',
       addressLocality: 'Tirunelveli',
       addressRegion: 'Tamil Nadu',
-      postalCode: '627010',
+      postalCode: '627603',
       addressCountry: 'IN'
     },
     geo: {

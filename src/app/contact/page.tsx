@@ -43,11 +43,11 @@ export default function ContactPage() {
                 <div>
                   <span className="font-bold block text-[#16382B]">Dispatch Facility:</span>
                   <p className="text-[#3D5A68] mt-0.5 leading-relaxed">
-                    Ruthra Medicines Dispatch Facility,
+                    Ruthra Medicines,
                     <br />
-                    7/213, MGR Nagar, North Ariyanayagipuram,
+                    7/211, MGR Nagar, North Ariyanayagipuram,
                     <br />
-                    Vadakku Ariyanayagipuram Petta, Tirunelveli, Tamil Nadu 627010
+                    Cheranmahadevi Taluk, Tirunelveli, Tamil Nadu 627603
                   </p>
                 </div>
               </div>

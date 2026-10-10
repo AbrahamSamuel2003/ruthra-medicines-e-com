@@ -22,7 +22,7 @@ export default function ShippingPage() {
             Shipping & Dispatch Guidelines
           </h1>
           <p className="text-xs sm:text-sm text-[#3D5A68] leading-relaxed">
-            Ruthra Medicines takes exceptional care in packaging authentic botanical preparations. Every parcel is packed in moisture-barrier and tamper-evident materials directly at our fulfillment center in North Ariyanayagipuram, Petta, Tirunelveli.
+            Ruthra Medicines takes exceptional care in packaging authentic botanical preparations. Every parcel is packed in moisture-barrier and tamper-evident materials directly at our fulfillment center in North Ariyanayagipuram, Cheranmahadevi Taluk, Tirunelveli - 627603.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

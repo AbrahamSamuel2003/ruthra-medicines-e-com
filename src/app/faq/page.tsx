@@ -37,8 +37,8 @@ export default function FaqPage() {
     {
       qEn: 'Where are Ruthra products dispatched from?',
       qTa: 'மருந்துகள் எங்கிருந்து அஞ்சல் செய்யப்படுகின்றன?',
-      aEn: 'Every parcel is dispatched directly from our herbal laboratory and fulfillment facility in North Ariyanayagipuram, Petta, Tirunelveli, Tamil Nadu, reaching most Tamil Nadu addresses within 48 to 72 hours.',
-      aTa: 'அனைத்து மருந்துகளும் திருநெல்வேலி பேட்டையில் உள்ள எங்கள் மையத்தில் இருந்து நேரடியாக தமிழ்நாடு முழுவதும் 2-3 நாட்களில் அனுப்பி வைக்கப்படுகின்றன.'
+      aEn: 'Every parcel is dispatched directly from our herbal laboratory and fulfillment facility in North Ariyanayagipuram, Cheranmahadevi Taluk, Tirunelveli, Tamil Nadu (627603), reaching most Tamil Nadu addresses within 48 to 72 hours.',
+      aTa: 'அனைத்து மருந்துகளும் வடக்கு அரியநாயகிபுரம், சேரன்மகாதேவி தாலுகா, திருநெல்வேலியில் (627603) உள்ள எங்கள் மையத்தில் இருந்து நேரடியாக தமிழ்நாடு முழுவதும் 2-3 நாட்களில் அனுப்பி வைக்கப்படுகின்றன.'
     },
     {
       qEn: 'Do Ruthra products contain synthetic preservatives or artificial food colors?',

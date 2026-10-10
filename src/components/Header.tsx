@@ -157,13 +157,13 @@ export default function Header() {
       </div>
 
       {/* Main Desktop Header — Ultra-Responsive Zero-Wrap Layout */}
-      <div className="max-w-[1440px] mx-auto px-2 sm:px-3 lg:px-4 xl:px-6 min-h-[68px] py-1.5 flex items-center justify-between gap-1.5 lg:gap-2 xl:gap-3 w-full">
+      <div className="max-w-[1440px] mx-auto px-2 sm:px-3 lg:px-4 xl:px-6 h-17 flex items-center justify-between gap-1.5 lg:gap-2 xl:gap-3 w-full">
         
         {/* 1. Left: Brand Logo & Lineage (Direct Home Link) */}
         <Link 
           href="/" 
           onClick={handleNavClick} 
-          className="flex items-center gap-2 flex-shrink-0 group cursor-pointer py-1"
+          className="flex items-center gap-2 flex-shrink-0 group cursor-pointer"
           title="Ruthra Medicines Home"
         >
           <Image
@@ -179,7 +179,7 @@ export default function Header() {
             <span className="font-serif-brand text-sm xl:text-base font-bold text-[#16382B] group-hover:text-[#8C5D14] transition-colors tracking-wide leading-tight block whitespace-nowrap">
               RUTHRA MEDICINES
             </span>
-            <span className={`text-[8px] xl:text-[9px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold mt-0.5 whitespace-nowrap block transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
+            <span className={`text-[7.5px] xl:text-[8.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold mt-0.5 whitespace-nowrap block transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.12em]'}`}>
               {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
             </span>
           </div>

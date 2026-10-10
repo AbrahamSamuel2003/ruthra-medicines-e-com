@@ -15,9 +15,9 @@ interface BannerSlide {
 
 const BANNER_SLIDES: BannerSlide[] = [
   {
-    id: 'banner-family-health-hair-v3',
-    imageSrc: '/images/banners/ruthra_hero_narshika_clean.jpg',
-    altText: 'Daily Family Health & Narshika Hair Care - Siddha & Ayurveda Tirunelveli Formulations',
+    id: 'banner-classical-siddha-v3',
+    imageSrc: '/images/banners/ruthra_hero_siddha_v3.jpg',
+    altText: 'Classical Siddha & Ayurveda Pharmacopeia - Natural Care, Healthy Life',
     link: '/shop'
   },
   {
@@ -27,9 +27,9 @@ const BANNER_SLIDES: BannerSlide[] = [
     link: '/shop/concerns/joint-mobility'
   },
   {
-    id: 'banner-classical-siddha-v3',
-    imageSrc: '/images/banners/ruthra_hero_siddha_v3.jpg',
-    altText: 'Classical Siddha & Ayurveda Pharmacopeia - Natural Care, Healthy Life',
+    id: 'banner-family-health-hair-v3',
+    imageSrc: '/images/banners/ruthra_hero_narshika_clean.jpg',
+    altText: 'Daily Family Health & Narshika Hair Care - Siddha & Ayurveda Tirunelveli Formulations',
     link: '/shop'
   }
 ];
@@ -63,20 +63,20 @@ export default function StoreHeroCarousel() {
       className="relative w-full overflow-hidden bg-[#FAF8F5]"
       aria-label="Promotional Hero Banners"
     >
-      {/* Sleek Top Notice Strip */}
-      <div className="w-full bg-gradient-to-r from-[#C29043] via-[#DFB36C] to-[#C29043] text-[#16382B] py-1 px-3 text-center font-bold text-[10px] sm:text-[11.5px] flex items-center justify-center gap-2 sm:gap-3.5 shadow-inner z-20 relative">
-        <span className="flex items-center gap-1">
-          <Truck className="w-3 h-3 flex-shrink-0" />
-          <span>{t('FREE Delivery Across Tamil Nadu on ₹500+', 'தமிழகம் முழுவதும் ₹500க்கு மேல் இலவச டெலிவரி')}</span>
+      {/* Sleek Top Notice Strip — Guaranteed Single Line with Zero Wrapping */}
+      <div className="w-full bg-gradient-to-r from-[#C29043] via-[#DFB36C] to-[#C29043] text-[#16382B] py-1 px-2 sm:px-3 text-center font-bold text-[9px] min-[360px]:text-[9.5px] sm:text-[11.5px] flex items-center justify-center gap-1.5 sm:gap-3 shadow-inner z-20 relative whitespace-nowrap overflow-hidden">
+        <span className="flex items-center gap-1 whitespace-nowrap flex-shrink-0">
+          <Truck className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
+          <span>{t('FREE Delivery on ₹500+', '₹500க்கு மேல் இலவச டெலிவரி')}</span>
         </span>
-        <span className="hidden md:inline text-[#16382B]/40">•</span>
-        <span className="hidden md:flex items-center gap-1">
+        <span className="text-[#16382B]/40">•</span>
+        <span className="hidden lg:flex items-center gap-1 whitespace-nowrap">
           <CreditCard className="w-3 h-3 flex-shrink-0" />
-          <span>{t('Instant UPI, Cards & COD Available', 'UPI, கார்டுகள் & COD வசதி உண்டு')}</span>
+          <span>{t('Instant UPI, Cards & COD', 'UPI, கார்டுகள் & COD')}</span>
         </span>
-        <span className="hidden sm:inline text-[#16382B]/40">•</span>
-        <span className="flex items-center gap-1 font-extrabold text-[#0D261C]">
-          <Percent className="w-3 h-3 flex-shrink-0" />
+        <span className="hidden lg:inline text-[#16382B]/40">•</span>
+        <span className="flex items-center gap-1 font-extrabold text-[#0D261C] whitespace-nowrap flex-shrink-0">
+          <Percent className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
           <span>{t('Use Code RUTHRA10 for 10% Off', 'RUTHRA10 குறியீட்டில் 10% தள்ளுபடி')}</span>
         </span>
       </div>

@@ -36,10 +36,10 @@ export default function MobileHeader() {
         </span>
       </div>
 
-      {/* Compact 56px Header */}
-      <div className="min-h-[58px] py-1 px-2 sm:px-3 flex items-center justify-between gap-1 sm:gap-2 w-full max-w-full overflow-hidden">
+      {/* Compact 54px Header */}
+      <div className="h-14 px-2 sm:px-3 flex items-center justify-between gap-1 sm:gap-2 w-full max-w-full overflow-hidden">
         {/* Left: Menu Hamburger + Logo + Brand Text */}
-        <div className="flex items-center gap-1.5 min-w-0 flex-1">
+        <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 flex-1">
           <button
             onClick={() => setIsMenuOpen(true)}
             className="p-1.5 rounded-lg text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex-shrink-0"
@@ -51,7 +51,7 @@ export default function MobileHeader() {
           <Link 
             href="/" 
             onClick={handleMobileNavClick}
-            className="flex items-center gap-1.5 min-w-0 group cursor-pointer py-0.5"
+            className="flex items-center gap-1.5 min-w-0 group cursor-pointer"
             title="Ruthra Medicines Home"
           >
             <Image
@@ -67,7 +67,7 @@ export default function MobileHeader() {
               <span className="font-serif-brand text-[12px] sm:text-xs font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-tight leading-tight transition-colors whitespace-nowrap">
                 RUTHRA MEDICINES
               </span>
-              <span className={`text-[8px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.08em]'}`}>
+              <span className={`text-[7.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.08em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
               </span>
             </div>
