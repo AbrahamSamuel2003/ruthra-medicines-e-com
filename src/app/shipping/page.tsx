@@ -26,23 +26,23 @@ export default function ShippingPage() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 space-y-1">
+            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 space-y-1.5">
               <span className="font-bold text-sm text-[#16382B] flex items-center gap-1.5">
                 <Truck className="w-4 h-4 text-[#C29043]" />
                 Tamil Nadu Delivery
               </span>
               <p className="text-xs text-[#3D5A68]">
-                2 to 3 Business Days. Dispatched via ST Courier, Professional Couriers, or India Post Speed Post.
+                <strong>FREE Delivery on orders ₹500 and above.</strong> Orders below ₹500 are charged a standard ₹75 delivery fee. Delivered within 24 to 48 hours via Express Courier.
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 space-y-1">
+            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 space-y-1.5">
               <span className="font-bold text-sm text-[#16382B] flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#16382B]" />
-                Free Shipping Threshold
+                Rest of India (Outside TN)
               </span>
               <p className="text-xs text-[#3D5A68]">
-                Free delivery across all Tamil Nadu districts on orders above ₹500. Standard ₹40 fee on smaller orders.
+                <strong>FREE Delivery on orders ₹1,000 and above.</strong> Orders below ₹1,000 are charged a standard ₹120 delivery fee. Delivered within 2 to 4 business days via India Post Speed Air / Express Courier.
               </p>
             </div>
           </div>

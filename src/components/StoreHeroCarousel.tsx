@@ -29,7 +29,7 @@ const BANNER_SLIDES: BannerSlide[] = [
   {
     id: 'banner-family-health-hair-v3',
     imageSrc: '/images/banners/ruthra_hero_narshika_clean.jpg',
-    altText: 'Daily Family Health & Narshika Hair Care - Siddha & Ayurveda Tirunelveli Formulations',
+    altText: 'Daily Family Health & Narshika Hair Care - Siddha & Ayurveda Formulations',
     link: '/shop'
   }
 ];

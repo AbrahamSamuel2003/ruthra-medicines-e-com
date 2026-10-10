@@ -94,7 +94,7 @@ function buildInvoiceEmailHtml(order: Order, recipientName: string): string {
       </div>
       <h1 style="margin: 0; font-size: 20px; font-weight: bold; letter-spacing: 0.5px; color: #ffffff;">RUTHRA MEDICINES</h1>
       <p style="margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #DFB36C;">
-        Siddha &amp; Ayurveda Dispensary • Tirunelveli
+        Siddha &amp; Ayurveda Dispensary
       </p>
     </div>
 
@@ -686,7 +686,7 @@ export function buildDispatchedEmailHtml(order: Order, trackingUrl: string): str
       </div>
       <h1 style="margin: 0; font-size: 20px; font-weight: bold; letter-spacing: 0.5px; color: #ffffff;">RUTHRA MEDICINES</h1>
       <p style="margin: 4px 0 0 0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #DFB36C;">
-        Siddha &amp; Ayurveda Dispensary • Tirunelveli
+        Siddha &amp; Ayurveda Dispensary
       </p>
     </div>
 

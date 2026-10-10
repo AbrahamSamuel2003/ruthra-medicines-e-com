@@ -3,7 +3,7 @@
  */
 export const STORE_CONFIG = {
   storeName: 'Ruthra Medicines',
-  tagline: 'Siddha & Ayurveda Pharmacopeia • Tirunelveli',
+  tagline: 'Siddha & Ayurveda Pharmacopeia',
   location: 'Tirunelveli, Tamil Nadu',
   supportPhone: '+91 9043434226',
   supportEmail: 'ruthramedicines@gmail.com',

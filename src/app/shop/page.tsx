@@ -269,44 +269,39 @@ function ShopContent() {
             <span className="text-[#16382B] font-semibold">{t('Formulation Catalog', 'மருந்துகள் களஞ்சியம்')}</span>
           </nav>
 
-          <div className="max-w-3xl">
-            {/* Pharmacopeia Gold Badge */}
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/90 border border-[#C29043]/40 shadow-2xs mb-2">
-              <Award className="w-3.5 h-3.5 text-[#C29043] flex-shrink-0" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-[#16382B] tracking-wide uppercase">
-                {t('Tirunelveli Classical Pharmacopeia', 'திருநெல்வேலி பாரம்பரிய சித்த மருந்தகம்')}
-              </span>
-              <span className="text-[9.5px] sm:text-[10px] text-[#C29043] font-semibold">• {PRODUCTS.length} Formulations</span>
-            </div>
+          <div className="max-w-5xl">
+            <span className="text-[11px] sm:text-xs uppercase tracking-[0.16em] font-bold text-[#8C5D14] block mb-1.5">
+              {t('Tradition in Every Formulation. Quality in Every Step.', 'ஒவ்வொரு தயாரிப்பிலும் பாரம்பரியம். ஒவ்வொரு படியிலும் தரம்.')}
+            </span>
 
             <h1 className="font-serif-brand text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#16382B] tracking-tight leading-tight">
-              {t('Siddha & Ayurveda Formulation Catalog', 'சித்த & ஆயுர்வேத மருந்துகள் களஞ்சியம்')}
+              {t("Ruthra's Classical Siddha and Ayurveda Formulations Catalog", 'ருத்ராவின் பாரம்பரிய சித்த மற்றும் ஆயுர்வேத மருந்துகள் களஞ்சியம்')}
             </h1>
 
-            <p className="text-xs sm:text-sm text-[#3D5A68] mt-1.5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#3D5A68] mt-2.5 leading-relaxed max-w-4xl">
               {t(
-                'Direct from Tirunelveli, southern Tamil Nadu. Classical Siddha & Ayurveda preparations crafted with Shodhana-purified botanicals, authentic anupanam vehicles, and dispatch across all 38 districts.',
-                'தென் தமிழகத்தின் திருநெல்வேலியிலிருந்து பாரம்பரிய முறைப்படி சுத்தி செய்யப்பட்ட மூலிகைகள், துணைப்பொருட்களுடன் கூடிய சித்த & ஆயுர்வேத மருந்துகள்.'
+                'From Tirunelveli, Tamil Nadu, Ruthra Medicines is dedicated to the preparation and supply of classical Siddha and Ayurveda formulations, guided by traditional pharmaceutical principles, authentic ingredients, and systematic quality practices. Our formulations reflect a commitment to traditional knowledge, carefully processed raw materials, and reliable pharmaceutical preparation, serving healthcare professionals and institutional requirements across Tamil Nadu and beyond.',
+                'திருநெல்வேலி, தமிழ்நாட்டை தலைமையிடமாகக் கொண்ட ரூத்ரா மெடிசின்ஸ், பாரம்பரிய மருத்துவ நெறிமுறைகள், தூய மூலிகைகள் மற்றும் தரமான உற்பத்தி முறைகளுடன் பாரம்பரிய சித்த மற்றும் ஆயுர்வேத மருந்துகளை தயாரித்து வழங்கி வருகிறது. எங்களின் தயாரிப்புகள் மருத்துவ நிபுணர்கள் மற்றும் தமிழகம் உள்ளிட்ட அனைத்து பகுதிகளின் தேவைகளையும் பூர்த்தி செய்கின்றன.'
               )}
             </p>
 
-            {/* Pharmacopeia Trust Highlights */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 mt-3 pt-2.5 border-t border-[#16382B]/10 text-xs text-[#16382B]">
-              <div className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg bg-white/80 border border-[#16382B]/10 font-medium text-[10.5px] sm:text-xs">
+            {/* Pharmacopeia Trust Highlights — Single Line */}
+            <div className="flex items-center gap-2 sm:gap-3 mt-3 pt-2.5 border-t border-[#16382B]/10 text-xs text-[#16382B] overflow-x-auto whitespace-nowrap scrollbar-none py-0.5">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/90 border border-[#16382B]/10 font-semibold text-[10px] sm:text-[11.5px] flex-shrink-0 shadow-2xs">
                 <Leaf className="w-3.5 h-3.5 text-[#16382B]" />
-                <span>{t('100% Herbal Botanicals', '100% இயற்கை மூலிகைகள்')}</span>
+                <span>{t('TRADITIONAL FORMULATIONS', 'பாரம்பரிய தயாரிப்புகள்')}</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg bg-white/80 border border-[#16382B]/10 font-medium text-[10.5px] sm:text-xs">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/90 border border-[#16382B]/10 font-semibold text-[10px] sm:text-[11.5px] flex-shrink-0 shadow-2xs">
                 <Award className="w-3.5 h-3.5 text-[#C29043]" />
-                <span>{t('Classical Ayush Standards', 'பாரம்பரிய ஆயுஷ் தரம்')}</span>
+                <span>{t('MODERN AYUSH STANDARDS', 'நவீன ஆயுஷ் தரம்')}</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg bg-white/80 border border-[#16382B]/10 font-medium text-[10.5px] sm:text-xs">
-                <Truck className="w-3.5 h-3.5 text-[#16382B]" />
-                <span>{t('Free TN Delivery on ₹500+', '₹500க்கு மேல் இலவச விநியோகம்')}</span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/90 border border-[#16382B]/10 font-semibold text-[10px] sm:text-[11.5px] flex-shrink-0 shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#16382B]" />
+                <span>{t('SAFE AND PURE', 'பாதுகாப்பானது & தூய்மையானது')}</span>
               </div>
-              <div className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-lg bg-white/80 border border-[#16382B]/10 font-medium text-[10.5px] sm:text-xs">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#C29043]" />
-                <span>{t('Lab Purity Tested', 'தூய்மை பரிசோதிக்கப்பட்டது')}</span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/90 border border-[#16382B]/10 font-semibold text-[10px] sm:text-[11.5px] flex-shrink-0 shadow-2xs">
+                <Truck className="w-3.5 h-3.5 text-[#C29043]" />
+                <span>{t('FREE TN DELIVERY ON Rs. 500+', '₹500க்கு மேல் இலவச தமிழ்நாடு டெலிவரி')}</span>
               </div>
             </div>
           </div>
@@ -1261,73 +1256,6 @@ function ShopContent() {
         </div>
       )}
 
-      {/* 5. BOTTOM PHARMACOPEIA TRUST & DISPATCH STRIP */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-20">
-        <div className="bg-white rounded-3xl border border-[#16382B]/10 p-6 sm:p-8 shadow-xs">
-          <div className="text-center max-w-xl mx-auto mb-6">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#C29043]">
-              {t('Siddha & Ayurveda Pharmacopeia Assurance', 'சித்த & ஆயுர்வேத மருந்தக உத்தரவாதம்')}
-            </span>
-            <h3 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B] mt-1">
-              {t('Standardized Preparation & Direct Dispatch', 'தரமான தயாரிப்பு & நேரடி அஞ்சல்')}
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-xs text-[#3D5A68]">
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/5 space-y-1.5">
-              <div className="w-8 h-8 rounded-lg bg-[#E8F1EB] text-[#16382B] flex items-center justify-center font-bold">
-                <Leaf className="w-4 h-4 text-[#16382B]" />
-              </div>
-              <h4 className="font-bold text-[#16382B] text-sm">{t('Shodhana Purification', 'சுத்தி செய்யப்பட்ட மூலிகைகள்')}</h4>
-              <p className="text-[11px] leading-relaxed">
-                {t(
-                  'Every botanical undergoes classical cleansing with goat milk, tender coconut water, or lime water.',
-                  'பாரம்பரிய சுத்தி முறைகளின்படி பக்குவப்படுத்தப்பட்ட மூலிகைகள் மட்டுமே பயன்படுத்தப்படுகின்றன.'
-                )}
-              </p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/5 space-y-1.5">
-              <div className="w-8 h-8 rounded-lg bg-[#E8F1EB] text-[#16382B] flex items-center justify-center font-bold">
-                <Truck className="w-4 h-4 text-[#16382B]" />
-              </div>
-              <h4 className="font-bold text-[#16382B] text-sm">{t('All 38 TN Districts', '38 மாவட்டங்களுக்கும் அஞ்சல்')}</h4>
-              <p className="text-[11px] leading-relaxed">
-                {t(
-                  'Dispatched within 24-48 hours via Tamil Nadu Express Courier with live SMS tracking.',
-                  '24-48 மணிநேரத்தில் தமிழ்நாடு விரைவு அஞ்சல் மூலம் அனுப்பி வைக்கப்படுகிறது.'
-                )}
-              </p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/5 space-y-1.5">
-              <div className="w-8 h-8 rounded-lg bg-[#E8F1EB] text-[#16382B] flex items-center justify-center font-bold">
-                <PackageCheck className="w-4 h-4 text-[#16382B]" />
-              </div>
-              <h4 className="font-bold text-[#16382B] text-sm">{t('Tamper-Evident Pack', 'பாதுகாப்பான பொட்டலம்')}</h4>
-              <p className="text-[11px] leading-relaxed">
-                {t(
-                  'Moisture-shielded sachets and medical amber bottles to preserve essential volatile oils.',
-                  'மூலிகை வீரியம் குறையாமல் இருக்க ஈரப்பதம் புகாத சிறப்பு பொட்டலங்கள்.'
-                )}
-              </p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#16382B]/5 space-y-1.5">
-              <div className="w-8 h-8 rounded-lg bg-[#E8F1EB] text-[#16382B] flex items-center justify-center font-bold">
-                <Truck className="w-4 h-4 text-[#16382B]" />
-              </div>
-              <h4 className="font-bold text-[#16382B] text-sm">{t('All 38 TN Districts', '38 மாவட்டங்களுக்கும் டெலிவரி')}</h4>
-              <p className="text-[11px] leading-relaxed">
-                {t(
-                  'Orders packed within 24 hours with reliable courier dispatch and tracking.',
-                  '24 மணி நேரத்தில் அனுப்பப்பட்டு தமிழகம் முழுவதும் விரைவான விநியோகம்.'
-                )}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

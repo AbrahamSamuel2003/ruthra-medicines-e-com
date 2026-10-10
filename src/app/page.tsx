@@ -538,7 +538,7 @@ export default function HomePage() {
               </h2>
               <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
                 {t(
-                  'Order any 5 or more classical formulations and choose any authentic medicine from our 176-item catalog for ₹0.00. Compounded directly in Tirunelveli.',
+                  'Order any 5 or more classical formulations and choose any authentic medicine from our 176-item catalog for ₹0.00. Compounded under authentic classical standards.',
                   'எந்தவொரு 5 அல்லது அதற்கு மேற்பட்ட மருந்துகளை வாங்கும் போதும், 176 மருந்துகளிலிருந்து உங்கள் விருப்ப மருந்தை முற்றிலும் இலவசமாக தேர்வு செய்யுங்கள்.'
                 )}
               </p>

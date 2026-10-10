@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Classical Siddha Formulations | 111 Master Preparations | Ruthra Medicines',
-  description: 'Explore authentic classical Siddha preparations across 14 traditional dosage forms including Chooranam, Kudineer, Legiyam, Thailam, Nei, and Parpam from Tirunelveli.'
+  description: 'Explore authentic classical Siddha preparations across 14 traditional dosage forms including Chooranam, Kudineer, Legiyam, Thailam, Nei, and Parpam.'
 };
 
 export default async function SiddhaPage() {

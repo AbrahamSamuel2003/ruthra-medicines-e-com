@@ -29,7 +29,7 @@ export default function MobileHeader() {
       {/* Mobile Top Announcement Strip */}
       <div className="bg-[#16382B] text-white text-[10.5px] px-3 py-1 flex items-center justify-between w-full overflow-hidden gap-2">
         <span className="truncate min-w-0 flex-1">
-          {t('10%–20% OFF & Free Formulation Bonuses', '10%–20% தள்ளுபடி & இலவச மருந்துகள்')}
+          {t('FREE TN Delivery on ₹500+ • 10%–20% Volume OFF', 'தமிழகத்தில் ₹500+ இலவச டெலிவரி • 10%–20% தள்ளுபடி')}
         </span>
         <span className="text-[#DFB36C] font-semibold flex-shrink-0 text-[10px]">
           {t('Direct Dispatch', 'நேரடி அஞ்சல்')}
@@ -134,7 +134,7 @@ export default function MobileHeader() {
                     RUTHRA MEDICINES
                   </span>
                   <span className="text-[10px] text-[#DFB36C] block mt-0.5">
-                    {t('Tirunelveli, Tamil Nadu', 'திருநெல்வேலி, தமிழ்நாடு')}
+                    {t('Siddha & Ayurveda House', 'சித்த & ஆயுர்வேத இல்லம்')}
                   </span>
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function MobileHeader() {
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
-                {/* Heritage */}
+                {/* Blogs */}
                 <Link
                   href="/about"
                   onClick={handleMobileNavClick}
@@ -236,7 +236,7 @@ export default function MobileHeader() {
                       : 'font-medium text-[#264653] hover:bg-[#E8F1EB]'
                   }`}
                 >
-                  <span>{t('About Ruthra Heritage', 'ருத்ரா பாரம்பரியம்')}</span>
+                  <span>{t('Blogs', 'வலைப்பதிவுகள்')}</span>
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 

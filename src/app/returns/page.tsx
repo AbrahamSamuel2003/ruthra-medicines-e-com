@@ -33,7 +33,7 @@ export default function ReturnsPage() {
               2. Wrong Item Delivered
             </h3>
             <p>
-              In the unlikely event that you receive an incorrect product, our Tirunelveli center will arrange a complimentary pickup and immediately dispatch the correct product at zero additional charge.
+              In the unlikely event that you receive an incorrect product, our fulfillment team will arrange a complimentary pickup and immediately dispatch the correct product at zero additional charge.
             </p>
 
             <h3 className="font-serif-brand font-bold text-base text-[#16382B]">

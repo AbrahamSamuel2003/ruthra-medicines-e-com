@@ -127,7 +127,7 @@ export default function FloatingWhatsApp() {
                     Ruthra Siddha Helpdesk
                   </h4>
                   <p className="text-[11px] text-[#DFB36C]">
-                    {t('Tirunelveli, Tamil Nadu • 9 AM - 7:30 PM', 'திருநெல்வேலி • காலை 9 - இரவு 7:30')}
+                    {t('Direct Support Desk • 9 AM - 7:30 PM', 'வாடிக்கையாளர் சேவை • காலை 9 - இரவு 7:30')}
                   </p>
                 </div>
               </div>

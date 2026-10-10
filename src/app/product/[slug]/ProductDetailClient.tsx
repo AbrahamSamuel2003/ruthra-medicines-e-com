@@ -831,7 +831,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
             {/* Compact Horizontal Trust Micro-Strip */}
             <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center text-[9.5px] sm:text-[10px] text-[#3D5A68]">
               <div className="p-2 bg-[#FAF8F5] rounded-xl border border-[#16382B]/5">
-                <span className="font-bold block text-[#16382B] truncate">{t('Tirunelveli House', 'திருநெல்வேலி')}</span>
+                <span className="font-bold block text-[#16382B] truncate">{t('Direct Dispatch', 'நேரடி அஞ்சல்')}</span>
                 <span className="text-[#8A9B93] block truncate text-[9px]">{t('Authentic Sourcing', 'பாரம்பரிய மூலம்')}</span>
               </div>
               <div className="p-2 bg-[#FAF8F5] rounded-xl border border-[#16382B]/5">

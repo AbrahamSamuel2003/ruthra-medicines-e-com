@@ -21,6 +21,34 @@ import {
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
+import { calculateShippingFee, getDeliveryEstimate } from '@/utils/deliveryEstimator';
+
+const INDIAN_STATES = [
+  'Tamil Nadu',
+  'Puducherry',
+  'Karnataka',
+  'Kerala',
+  'Andhra Pradesh',
+  'Telangana',
+  'Maharashtra',
+  'Delhi',
+  'Gujarat',
+  'Goa',
+  'West Bengal',
+  'Rajasthan',
+  'Uttar Pradesh',
+  'Madhya Pradesh',
+  'Punjab',
+  'Haryana',
+  'Odisha',
+  'Bihar',
+  'Assam',
+  'Jharkhand',
+  'Chhattisgarh',
+  'Uttarakhand',
+  'Himachal Pradesh',
+  'Other State in India'
+];
 
 // Tamil Nadu Pincode to District Auto-Detection
 const detectCityFromPincode = (pin: string): string => {
@@ -63,12 +91,11 @@ export default function CheckoutPage() {
     subtotal,
     discountPercent,
     discountAmount,
+    discountedSubtotal,
     mrpSubtotal,
     mrpSavings,
     freeGiftSavings,
     totalSavings,
-    shippingFee,
-    total,
     clearCart
   } = useCart();
   const { language, t } = useLanguage();
@@ -120,11 +147,22 @@ export default function CheckoutPage() {
     const { name, value } = e.target;
     const updated = { ...formData, [name]: value };
 
-    // If pincode entered is 6 digits, auto-fill city
+    // If pincode entered is 6 digits, auto-fill city and state
     if (name === 'pincode' && value.trim().length === 6) {
-      const autoCity = detectCityFromPincode(value.trim());
-      if (autoCity) {
-        updated.city = autoCity;
+      const estimate = getDeliveryEstimate(value.trim());
+      if (estimate) {
+        if (estimate.district && estimate.district !== 'All-India Speed Dispatch') {
+          updated.city = estimate.district;
+        }
+        if (estimate.state === 'Tamil Nadu') {
+          updated.state = 'Tamil Nadu';
+        }
+      } else {
+        const autoCity = detectCityFromPincode(value.trim());
+        if (autoCity) {
+          updated.city = autoCity;
+          updated.state = 'Tamil Nadu';
+        }
       }
     }
 
@@ -173,6 +211,15 @@ export default function CheckoutPage() {
         }))
       ];
 
+      // Calculate exact shipping for order payload
+      const currentShipping = calculateShippingFee(
+        discountedSubtotal,
+        formData.state,
+        formData.pincode
+      );
+      const checkoutShippingFee = items.length > 0 ? currentShipping.fee : 0;
+      const checkoutTotal = discountedSubtotal + checkoutShippingFee;
+
       const payload = {
         customer: {
           fullName: formData.fullName,
@@ -188,9 +235,9 @@ export default function CheckoutPage() {
         subtotal,
         mrpTotal: mrpSubtotal,
         discountTotal: discountAmount,
-        shippingFee,
-        totalAmount: total,
-        deliveryMethod: formData.deliveryMethod === 'standard' ? 'Tamil Nadu Express Courier' : 'Speed Post',
+        shippingFee: checkoutShippingFee,
+        totalAmount: checkoutTotal,
+        deliveryMethod: formData.deliveryMethod === 'standard' ? 'Express Courier' : 'Speed Post',
         paymentMethod: formData.paymentMethod,
         notes: discountPercent > 0 ? `${discountPercent}% Volume Discount Applied` : undefined
       };
@@ -216,8 +263,8 @@ export default function CheckoutPage() {
             subtotal,
             discountPercent,
             discountAmount,
-            shippingFee,
-            total,
+            shippingFee: checkoutShippingFee,
+            total: checkoutTotal,
             paymentMethod: formData.paymentMethod,
             createdAt: new Date().toISOString()
           })
@@ -239,6 +286,15 @@ export default function CheckoutPage() {
     }
   };
 
+  // Dynamic shipping calculation for checkout view
+  const checkoutShipping = calculateShippingFee(
+    discountedSubtotal,
+    formData.state,
+    formData.pincode
+  );
+  const checkoutShippingFee = items.length > 0 ? checkoutShipping.fee : 0;
+  const checkoutTotal = discountedSubtotal + checkoutShippingFee;
+
   const whatsappPurchasedSummary = items
     .map(i => `• ${i.product.name} (${i.product.packSize}) × ${i.quantity} = ₹${i.product.price * i.quantity}`)
     .join('\n');
@@ -248,8 +304,11 @@ export default function CheckoutPage() {
   const whatsappGiftSummary = freeGiftItems.length > 0
     ? '\n\nFree Formulation Bonus (Cart Items Selection):\n' + freeGiftItems.map(g => `• [FREE] ${g.product.name} (${g.product.packSize}) × ${g.quantity}`).join('\n')
     : '';
+  const whatsappShippingSummary = checkoutShippingFee === 0
+    ? `\n\n• Delivery Charges (${checkoutShipping.regionLabelEn}): FREE (₹0)`
+    : `\n\n• Delivery Charges (${checkoutShipping.regionLabelEn}): ₹${checkoutShippingFee}`;
 
-  const whatsappOrderText = `Vanakkam Ruthra Medicines,\nI would like to place an order directly:\n\n${whatsappPurchasedSummary}${whatsappDiscountSummary}${whatsappGiftSummary}\n\nTotal Payable: ₹${total} (Free Tamil Nadu Delivery)\nCustomer Name: ${formData.fullName || '(Direct Guest)'}\nPhone: ${formData.phone || '(This contact)'}\nAddress: ${formData.address ? `${formData.address}, ${formData.city} - ${formData.pincode}` : '(Will share on chat)'}\n\nPlease confirm dispatch from Tirunelveli.`;
+  const whatsappOrderText = `Vanakkam Ruthra Medicines,\nI would like to place an order directly:\n\n${whatsappPurchasedSummary}${whatsappDiscountSummary}${whatsappGiftSummary}${whatsappShippingSummary}\n\nTotal Payable: ₹${checkoutTotal}\nCustomer Name: ${formData.fullName || '(Direct Guest)'}\nPhone: ${formData.phone || '(This contact)'}\nAddress: ${formData.address ? `${formData.address}, ${formData.city}, ${formData.state} - ${formData.pincode}` : '(Will share on chat)'}\n\nPlease confirm dispatch and tracking details.`;
 
   if (items.length === 0) {
     return (
@@ -291,7 +350,7 @@ export default function CheckoutPage() {
                 {t('Prefer zero typing? 1-Tap Order via WhatsApp', 'படிவம் நிரப்பாமல் வாட்ஸ்அப்பில் 1-டாப்பில் ஆர்டர் செய்ய')}
               </h3>
               <p className="text-[11px] text-[#3D5A68] mt-0.5">
-                {t('Send your cart items directly. Our Tirunelveli dispatch desk will confirm order details and tracking immediately.', 'உங்கள் கூடை விபரங்களை நேரடியாக அனுப்பி வாட்ஸ்அப்பில் முடிக்கலாம்.')}
+                {t('Send your cart items directly. Our dispatch desk will confirm order details and tracking immediately.', 'உங்கள் கூடை விபரங்களை நேரடியாக அனுப்பி வாட்ஸ்அப்பில் முடிக்கலாம்.')}
               </p>
             </div>
           </div>
@@ -433,15 +492,21 @@ export default function CheckoutPage() {
 
                 <div className="space-y-1">
                   <label className="font-bold text-[#16382B] block">
-                    {t('State', 'மாநிலம்')}
+                    {t('State', 'மாநிலம்')} *
                   </label>
-                  <input
-                    type="text"
+                  <select
                     name="state"
-                    disabled
+                    required
                     value={formData.state}
-                    className="w-full px-4 py-3 bg-gray-100 border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-gray-500 font-semibold cursor-not-allowed"
-                  />
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] font-medium focus:outline-none focus:border-[#16382B]"
+                  >
+                    {INDIAN_STATES.map(st => (
+                      <option key={st} value={st}>
+                        {st}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
@@ -454,7 +519,7 @@ export default function CheckoutPage() {
                   <span>{t('2. Select Payment Method', '2. பணம் செலுத்தும் முறை')}</span>
                 </h2>
                 <p className="text-xs text-[#8A9B93] mt-0.5">
-                  Official Tirunelveli Direct Merchant Settlement
+                  Official Direct Merchant Settlement
                 </p>
               </div>
 
@@ -546,7 +611,7 @@ export default function CheckoutPage() {
                 <span>{t('Processing Your Order...', 'ஆர்டர் பதிவு செய்யப்படுகிறது...')}</span>
               ) : (
                 <>
-                  <span>{t(`Confirm & Place Order — ₹${total}`, `ஆர்டரை உறுதிசெய் — ₹${total}`)}</span>
+                  <span>{t(`Confirm & Place Order — ₹${checkoutTotal}`, `ஆர்டரை உறுதிசெய் — ₹${checkoutTotal}`)}</span>
                   <ArrowRight className="w-5 h-5" />
                 </>
               )}
@@ -655,15 +720,23 @@ export default function CheckoutPage() {
                 )}
 
                 <div className="flex justify-between items-center">
-                  <span>{t('Express Delivery (Tamil Nadu)', 'அஞ்சல் கட்டணம்')}</span>
-                  <span className="font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md text-xs">
-                    {t('FREE (₹0)', 'இலவசம் (₹0)')}
+                  <span>
+                    {t(`Delivery Charges (${checkoutShipping.regionLabelEn})`, `அஞ்சல் கட்டணம் (${checkoutShipping.regionLabelTa})`)}
                   </span>
+                  {checkoutShippingFee === 0 ? (
+                    <span className="font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md text-xs">
+                      {t('FREE (₹0)', 'இலவசம் (₹0)')}
+                    </span>
+                  ) : (
+                    <span className="font-bold text-[#16382B] text-xs sm:text-sm">
+                      ₹{checkoutShippingFee}
+                    </span>
+                  )}
                 </div>
 
                 <div className="pt-2.5 border-t border-[#16382B]/10 flex justify-between items-center text-base font-bold text-[#16382B]">
                   <span>{t('Total Payable', 'செலுத்த வேண்டிய தொகை')}</span>
-                  <span className="font-serif-brand text-xl text-[#16382B]">₹{total}</span>
+                  <span className="font-serif-brand text-xl text-[#16382B]">₹{checkoutTotal}</span>
                 </div>
 
                 {totalSavings > 0 && (
@@ -696,8 +769,8 @@ export default function CheckoutPage() {
               </h4>
               <p className="text-xs text-[#3D5A68] leading-relaxed">
                 {t(
-                  'Our Tirunelveli team can process your order directly. Simply message us your delivery address.',
-                  'எங்கள் திருநெல்வேலி இல்லத்திற்கு நேரடியாக வாட்ஸ்அப்பில் முகவரியை அனுப்பி ஆர்டர் செய்யலாம்.'
+                  'Our support team can process your order directly. Simply message us your delivery address.',
+                  'எங்கள் மருத்துவ இல்லத்திற்கு நேரடியாக வாட்ஸ்அப்பில் முகவரியை அனுப்பி ஆர்டர் செய்யலாம்.'
                 )}
               </p>
               <a

@@ -133,8 +133,8 @@ export default function Header() {
             <Gift className="w-3.5 h-3.5 text-[#DFB36C] flex-shrink-0" />
             <span className="font-medium whitespace-nowrap">
               {t(
-                'Volume Offers: 10% OFF (5+ items) • 20% Bulk OFF (30+ items) + Free Formulation Bonuses | Express Delivery Across Tamil Nadu',
-                'சிறப்பு சலுகை: 5+ மருந்துகளுக்கு 10% தள்ளுபடி • 30+க்கு 20% தள்ளுபடி + இலவச மருந்துகள் | தமிழ்நாடு விரைவு அஞ்சல்'
+                'Volume Offers: 10% OFF (5+) • 20% OFF (30+) + Free Gifts | FREE TN Delivery on ₹500+ • FREE All-India on ₹1,000+',
+                'சிறப்பு சலுகை: 5+க்கு 10% தள்ளுபடி • 30+க்கு 20% + இலவச மருந்துகள் | தமிழகத்தில் ₹500+ / மற்ற மாநிலங்களில் ₹1,000+ இலவச டெலிவரி'
               )}
             </span>
           </div>
@@ -470,7 +470,7 @@ export default function Header() {
             <span>{t('Offers', 'சலுகைகள்')}</span>
           </Link>
 
-          {/* Heritage (Shows on xl+ screens) */}
+          {/* Blogs (Shows on xl+ screens) */}
           <Link
             href="/about"
             onClick={handleNavClick}
@@ -480,7 +480,7 @@ export default function Header() {
                 : 'text-[#264653] hover:text-[#16382B] hover:bg-white/80'
             }`}
           >
-            <span>{t('Heritage', 'பாரம்பரியம்')}</span>
+            <span>{t('Blogs', 'வலைப்பதிவுகள்')}</span>
           </Link>
 
           {/* Support */}

@@ -196,8 +196,8 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
   if (isProductsCat) {
     return {
       reply: isTa
-        ? 'ரூத்ரா மெடிசின்ஸ் தயாரிப்பு பிரிவுகள்:\n\nஎங்கள் திருநெல்வேலி மையத்தில் தயாரிக்கப்படும் தூய சித்த மற்றும் ஆயுர்வேத மருந்துகள்:\n- குடிநீர் சூரணங்கள் (கபசூர, நிலவேம்பு)\n- மூலிகை சூரணங்கள் (திரிபலா, அமுக்கரா, அஷ்ட சூரணம்)\n- வலி நிவாரண தைலங்கள் (ரெஜ்-வியான், பிண்ட தைலம்)\n- சர்க்கரை மற்றும் உடல் பலம் மருந்துகள்\n- நலங்கு மாவு மற்றும் குளியல் பொடிகள்'
-        : 'Ruthra Medicines Product Categories:\n\nAuthentic Siddha and Ayurveda formulations crafted in Tirunelveli:\n- Kudineer Decoctions (Kabasura, Nilavembu)\n- Herbal Chooranams (Triphala, Amukkara, Ashta)\n- Medicated Pain Oils & Thailams (Rej-Viyan, Pinda)\n- Sugar & Vitality Formulations (Madhura, Ashwagandha)\n- Natural Bath & Care Powders (Nalangu Maavu, Shikakai)',
+        ? 'ரூத்ரா மெடிசின்ஸ் தயாரிப்பு பிரிவுகள்:\n\nபாரம்பரிய சித்த மற்றும் ஆயுர்வேத மருந்துகள்:\n- குடிநீர் சூரணங்கள் (கபசூர, நிலவேம்பு)\n- மூலிகை சூரணங்கள் (திரிபலா, அமுக்கரா, அஷ்ட சூரணம்)\n- வலி நிவாரண தைலங்கள் (ரெஜ்-வியான், பிண்ட தைலம்)\n- சர்க்கரை மற்றும் உடல் பலம் மருந்துகள்\n- நலங்கு மாவு மற்றும் குளியல் பொடிகள்'
+        : 'Ruthra Medicines Product Categories:\n\nAuthentic Siddha and Ayurveda formulations:\n- Kudineer Decoctions (Kabasura, Nilavembu)\n- Herbal Chooranams (Triphala, Amukkara, Ashta)\n- Medicated Pain Oils & Thailams (Rej-Viyan, Pinda)\n- Sugar & Vitality Formulations (Madhura, Ashwagandha)\n- Natural Bath & Care Powders (Nalangu Maavu, Shikakai)',
       links: [
         { labelEn: 'Browse All Products', labelTa: 'அனைத்து தயாரிப்புகள்', url: '/shop' },
         { labelEn: 'Pain & Joint Care', labelTa: 'மூட்டு வலி மருந்துகள்', url: '/shop?concern=joint-mobility' },
@@ -294,8 +294,8 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
 
     return {
       reply: isTa
-        ? 'ரூத்ரா மெடிசின்ஸ் விநியோகம் & கட்டண விபரங்கள்:\n\n- தமிழ்நாடு முழுவதும் அனைத்து ஆர்டர்களுக்கும் 100% இலவச டெலிவரி உண்டு.\n- தென் மாவட்டங்கள் (திருநெல்வேலி, தென்காசி, மதுரை, தூத்துக்குடி): 24 மணி நேர டெலிவரி.\n- சென்னை, கோவை, திருச்சி உள்ளிட்ட இதர தமிழக மாவட்டங்கள்: 24 முதல் 48 மணி நேரம்.\n- பிற மாநிலங்கள்: 3 முதல் 5 வேலை நாட்கள்.\n- கட்டண முறைகள்: UPI, GPay, PhonePe, Debit/Credit Cards & கேஷ் ஆன் டெலிவரி (COD).\n\nதுல்லியமான நேரத்தை அறிய உங்கள் 6 இலக்க பின்கோடை தட்டச்சு செய்யவும்.'
-        : 'Ruthra Medicines Delivery & Payment Details:\n\n- Free Shipping inside Tamil Nadu on all orders.\n- South TN Hub (Tirunelveli, Tenkasi, Madurai, Tuticorin): Next-day 24 Hours Delivery.\n- Central & North TN (Chennai, Coimbatore, Trichy, Salem): 24 to 48 Hours.\n- Rest of India: 3 to 5 Business Days.\n- Payment Options: UPI, GPay, PhonePe, Debit/Credit Cards, Net Banking & Cash on Delivery (COD).\n\nEnter your 6-digit PIN code for local delivery details.',
+        ? 'ரூத்ரா மெடிசின்ஸ் விநியோகம் & கட்டண விபரங்கள்:\n\n- தமிழ்நாடு முழுவதும்: ₹500 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு 100% இலவச டெலிவரி (₹500க்கு கீழ் ₹75 கட்டணம்).\n- பிற இந்திய மாநிலங்கள்: ₹1,000 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு இலவச டெலிவரி (₹1,000க்கு கீழ் ₹120 கட்டணம்).\n- டெலிவரி நேரம்: தமிழகத்திற்குள் 24 முதல் 48 மணி நேரம்; பிற மாநிலங்களுக்கு 2 முதல் 4 நாட்கள்.\n- கட்டண முறைகள்: UPI, GPay, PhonePe, Debit/Credit Cards & கேஷ் ஆன் டெலிவரி (COD).\n\nதுல்லியமான நேரத்தை அறிய உங்கள் 6 இலக்க பின்கோடை தட்டச்சு செய்யவும்.'
+        : 'Ruthra Medicines Delivery & Payment Details:\n\n- Inside Tamil Nadu: 100% FREE Delivery on orders ₹500+ (Standard ₹75 fee for orders under ₹500).\n- Outside Tamil Nadu: 100% FREE Delivery on orders ₹1,000+ (Standard ₹120 fee for orders under ₹1,000).\n- Delivery SLA: 24 to 48 Hours across TN; 2 to 4 Business Days for Rest of India.\n- Payment Options: UPI, GPay, PhonePe, Debit/Credit Cards, Net Banking & Cash on Delivery (COD).\n\nEnter your 6-digit PIN code for instant pin-specific estimate.',
       links: [
         { labelEn: 'Shipping Policy Page', labelTa: 'டெலிவரி விபர பக்கம்', url: '/shipping' },
         { labelEn: 'Contact Support', labelTa: 'உதவி மையம்', url: '/contact' }
@@ -326,7 +326,7 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
     return {
       reply: isTa
         ? 'ரூத்ரா ஆன்லைன் ஆர்டர் விபரங்கள்:\n\n1. ஆர்டர் செய்யும் முறை: உங்களுக்கு தேவையான மருந்துகளை கார்ட்டில் (Cart) சேர்த்து, உங்கள் முகவரியை உள்ளிட்டு பணம் செலுத்தி ஆர்டரை முடிக்கலாம்.\n2. உறுதிப்படுத்தல்: ஆர்டர் செய்யப்பட்டவுடன் WhatsApp மற்றும் SMS மூலம் உறுதிப்படுத்தல் தகவல் வரும்.\n3. ஆர்டர் உதவி: ஆர்டர் நிலை அறிய அல்லது மாற்றங்கள் செய்ய உங்கள் Order ID உடன் எங்கள் உதவி மையத்தை தொடர்பு கொள்ளலாம்.'
-        : 'Ruthra Online Ordering & Assistance:\n\n1. How to Order: Browse our store, add items to cart, and proceed to checkout with your delivery address and payment choice.\n2. Confirmation: Instant confirmation details are sent via SMS and WhatsApp after checkout.\n3. Order Inquiries: For dispatch updates, address changes, or invoice copies, contact our Tirunelveli support desk with your Order ID.',
+        : 'Ruthra Online Ordering & Assistance:\n\n1. How to Order: Browse our store, add items to cart, and proceed to checkout with your delivery address and payment choice.\n2. Confirmation: Instant confirmation details are sent via SMS and WhatsApp after checkout.\n3. Order Inquiries: For dispatch updates, address changes, or invoice copies, contact our support desk with your Order ID.',
       links: [
         { labelEn: 'Go to Cart', labelTa: 'கார்ட்டுக்கு செல்ல', url: '/cart' },
         { labelEn: 'Browse Products', labelTa: 'மருந்துகளை பார்க்க', url: '/shop' },
@@ -395,8 +395,8 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
 
     return {
       reply: isTa
-        ? `${title} பற்றிய விபரம்:\n\n- வகை: ${form} (${pack})\n- விலை: ₹${productMatch.price}\n- பயன்கள்: ${role || desc}\n- விநியோகம்: திருநெல்வேலியிலிருந்து நேரடி விநியோகம் (தமிழ்நாடு முழுவதும் இலவச டெலிவரி).`
-        : `Details for ${title}:\n\n- Formulation: ${form} (${pack})\n- Price: ₹${productMatch.price}\n- Traditional Benefits: ${role || desc}\n- Shipping: Direct dispatch from Tirunelveli with Free shipping inside TN.`,
+        ? `${title} பற்றிய விபரம்:\n\n- வகை: ${form} (${pack})\n- விலை: ₹${productMatch.price}\n- பயன்கள்: ${role || desc}\n- விநியோகம்: நேரடி விநியோகம் (தமிழ்நாடு முழுவதும் இலவச டெலிவரி).`
+        : `Details for ${title}:\n\n- Formulation: ${form} (${pack})\n- Price: ₹${productMatch.price}\n- Traditional Benefits: ${role || desc}\n- Shipping: Direct dispatch with Free shipping inside TN.`,
       links: [
         {
           labelEn: `View ${productMatch.name} Page`,

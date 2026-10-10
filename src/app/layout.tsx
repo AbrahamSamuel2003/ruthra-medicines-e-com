@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     default: 'Ruthra Medicines | Authentic Siddha & Ayurveda Formulations',
     template: '%s | Ruthra Medicines'
   },
-  description: 'Ancient Siddha & Ayurveda wisdom presented for modern living. Explore classical Chooranam sachets, Kudineer decoctions, and Thailam oils formulated in Tirunelveli, Tamil Nadu.',
+  description: 'Ancient Siddha & Ayurveda wisdom presented for modern living. Explore classical Chooranam sachets, Kudineer decoctions, and Thailam oils formulated in Tamil Nadu.',
   keywords: [
     'Siddha medicine',
     'Ayurveda medicine',
     'Ayush formulations',
     'Ruthra Medicines',
-    'Tirunelveli Siddha',
+    'Classical Siddha',
     'Pirandai Chooranam',
     'Nochi Kudineer',
     'Rej-Viyan Pain Oil',
@@ -48,14 +48,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Ruthra Medicines' }],
   creator: 'Ruthra Medicines',
-  publisher: 'Ruthra Medicines, Tirunelveli',
+  publisher: 'Ruthra Medicines',
   metadataBase: new URL('https://ruthramedicines.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Ruthra Medicines | Ancient Siddha & Ayurveda Wisdom for Modern Living',
-    description: 'Authentic Siddha & Ayurveda formulations, classical decoctions, and botanical oils dispatched across Tamil Nadu from Tirunelveli.',
+    description: 'Authentic Siddha & Ayurveda formulations, classical decoctions, and botanical oils dispatched across Tamil Nadu.',
     url: 'https://ruthramedicines.com',
     siteName: 'Ruthra Medicines',
     locale: 'en_IN',

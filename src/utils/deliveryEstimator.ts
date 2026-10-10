@@ -14,7 +14,75 @@ export interface DeliveryEstimate {
   courierPartnerTa: string;
   isCodAvailable: boolean;
   isFreeShippingEligible: boolean;
+  standardFee: number;
+  freeShippingThreshold: number;
 }
+
+export const TN_FREE_SHIPPING_THRESHOLD = 500;
+export const TN_STANDARD_SHIPPING_FEE = 75;
+
+export const OUTSIDE_TN_FREE_SHIPPING_THRESHOLD = 1000;
+export const OUTSIDE_TN_STANDARD_SHIPPING_FEE = 120;
+
+export interface ShippingCalculation {
+  fee: number;
+  isFree: boolean;
+  threshold: number;
+  amountNeeded: number;
+  isTN: boolean;
+  regionLabelEn: string;
+  regionLabelTa: string;
+}
+
+export const isTamilNaduLocation = (state?: string, pincode?: string): boolean => {
+  if (state && (state.toLowerCase().includes('tamil') || state.toLowerCase().trim() === 'tn')) {
+    return true;
+  }
+  if (pincode) {
+    const pin = pincode.trim().replace(/\D/g, '');
+    if (pin.length >= 2) {
+      const prefix2 = pin.substring(0, 2);
+      if (['60', '61', '62', '63', '64'].includes(prefix2)) {
+        return true;
+      }
+    }
+  }
+  // Default to Tamil Nadu if neither is specified
+  if (!state && !pincode) return true;
+  return false;
+};
+
+export const calculateShippingFee = (
+  subtotal: number,
+  state: string = 'Tamil Nadu',
+  pincode?: string
+): ShippingCalculation => {
+  const isTN = isTamilNaduLocation(state, pincode);
+  const threshold = isTN ? TN_FREE_SHIPPING_THRESHOLD : OUTSIDE_TN_FREE_SHIPPING_THRESHOLD;
+  const standardFee = isTN ? TN_STANDARD_SHIPPING_FEE : OUTSIDE_TN_STANDARD_SHIPPING_FEE;
+
+  if (subtotal >= threshold) {
+    return {
+      fee: 0,
+      isFree: true,
+      threshold,
+      amountNeeded: 0,
+      isTN,
+      regionLabelEn: isTN ? 'Tamil Nadu' : 'Outside Tamil Nadu',
+      regionLabelTa: isTN ? 'தமிழ்நாடு' : 'வெளி மாநிலங்கள்'
+    };
+  }
+
+  return {
+    fee: standardFee,
+    isFree: false,
+    threshold,
+    amountNeeded: Math.max(0, threshold - subtotal),
+    isTN,
+    regionLabelEn: isTN ? 'Tamil Nadu' : 'Outside Tamil Nadu',
+    regionLabelTa: isTN ? 'தமிழ்நாடு' : 'வெளி மாநிலங்கள்'
+  };
+};
 
 // Complete 38-District Tamil Nadu Mapping with Postal Prefixes & Zone SLAs
 interface DistrictData {
@@ -115,10 +183,12 @@ export const getDeliveryEstimate = (pincodeRaw: string): DeliveryEstimate | null
       deliveryTimeEn: isHubNextDay ? 'Next-Day Delivery (within 24 hours)' : 'Express Delivery (24–48 hours)',
       deliveryTimeTa: isHubNextDay ? 'அடுத்த நாளே டெலிவரி (24 மணி நேரத்திற்குள்)' : 'விரைவு அஞ்சல் டெலிவரி (24–48 மணி நேரம்)',
       targetDays: tnMatch.deliveryDays,
-      courierPartnerEn: isHubNextDay ? 'Tirunelveli Direct Express / ST Courier' : 'Tamil Nadu Speed Post / ST Courier',
-      courierPartnerTa: isHubNextDay ? 'திருநெல்வேலி நேரடி அஞ்சல் / ST கொரியர்' : 'தமிழக விரைவு அஞ்சல் / ST கொரியர்',
+      courierPartnerEn: isHubNextDay ? 'Direct Regional Express / ST Courier' : 'Tamil Nadu Speed Post / ST Courier',
+      courierPartnerTa: isHubNextDay ? 'நேரடி விரைவு அஞ்சல் / ST கொரியர்' : 'தமிழக விரைவு அஞ்சல் / ST கொரியர்',
       isCodAvailable: true,
-      isFreeShippingEligible: true
+      isFreeShippingEligible: true,
+      standardFee: TN_STANDARD_SHIPPING_FEE,
+      freeShippingThreshold: TN_FREE_SHIPPING_THRESHOLD
     };
   }
 
@@ -166,6 +236,8 @@ export const getDeliveryEstimate = (pincodeRaw: string): DeliveryEstimate | null
     courierPartnerEn: 'India Post Speed Air / Blue Dart',
     courierPartnerTa: 'இந்திய அஞ்சல் துறை விரைவு சேவை',
     isCodAvailable: true,
-    isFreeShippingEligible: true
+    isFreeShippingEligible: true,
+    standardFee: OUTSIDE_TN_STANDARD_SHIPPING_FEE,
+    freeShippingThreshold: OUTSIDE_TN_FREE_SHIPPING_THRESHOLD
   };
 };

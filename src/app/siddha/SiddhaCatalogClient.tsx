@@ -440,10 +440,6 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
               </h1>
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-[#DFB36C]">
-              <ShieldCheck className="w-4 h-4" />
-              <span>{t('SPI Standards • Tirunelveli Manuscript Lineage', 'சித்த பார்மகோபியா நெறிமுறைகள்')}</span>
-            </div>
           </div>
         </div>
       </section>

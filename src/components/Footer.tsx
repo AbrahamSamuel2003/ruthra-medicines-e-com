@@ -33,7 +33,7 @@ export default function Footer() {
                   RUTHRA MEDICINES
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-[#DFB36C]">
-                  {t('Siddha & Ayurveda House • Tirunelveli', 'சித்த & ஆயுர்வேத மருத்துவ இல்லம் • திருநெல்வேலி')}
+                  {t('Siddha & Ayurveda House', 'சித்த & ஆயுர்வேத மருத்துவ இல்லம்')}
                 </span>
               </div>
             </Link>
@@ -192,7 +192,7 @@ export default function Footer() {
         {/* Bottom Sub-footer: Single Centralized Line with Proper Spacing */}
         <div className="pt-6 pb-2 flex flex-wrap items-center justify-center gap-x-2.5 lg:gap-x-3 gap-y-2 text-center text-[10.5px] sm:text-[11px] lg:text-[11.5px] text-white/70">
           <span className="whitespace-nowrap py-1 inline-block">
-            © {new Date().getFullYear()} Ruthra Medicines, Tirunelveli.
+            © {new Date().getFullYear()} Ruthra Medicines.
           </span>
           <span className="text-[#DFB36C]/60">•</span>
           <span className="text-[#DFB36C] whitespace-nowrap py-1 inline-block">

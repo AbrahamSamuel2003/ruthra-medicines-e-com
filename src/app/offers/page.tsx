@@ -87,7 +87,7 @@ export default function OffersPage() {
         <div className="max-w-6xl mx-auto text-center relative z-10 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#C29043]/40 text-[#DFB36C] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#C29043]" />
-            <span>{t('Universal Customer Benefits • Tirunelveli Pharmacopeia', 'பாரம்பரிய சித்த மருந்து சலுகை திட்டம்')}</span>
+            <span>{t('Universal Customer Benefits • Classical Pharmacopeia', 'பாரம்பரிய சித்த மருந்து சலுகை திட்டம்')}</span>
           </div>
 
           <h1 className="font-serif-brand text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
@@ -306,8 +306,8 @@ export default function OffersPage() {
             </h3>
             <p className="text-xs sm:text-sm text-[#3D5A68] max-w-xl leading-relaxed">
               {t(
-                'Connect directly with our Tirunelveli dispatch desk for customized formulation packages, physician advice, and specialized volume pricing.',
-                'மருத்துவ ஆலோசனை மற்றும் தனிப்பயன் மருந்து தொகுப்புகளுக்கு திருநெல்வேலி நேரடி உதவி எண்ணை தொடர்பு கொள்ளவும்.'
+                'Connect directly with our dispatch desk for customized formulation packages, physician advice, and specialized volume pricing.',
+                'மருத்துவ ஆலோசனை மற்றும் தனிப்பயன் மருந்து தொகுப்புகளுக்கு எங்கள் நேரடி உதவி எண்ணை தொடர்பு கொள்ளவும்.'
               )}
             </p>
           </div>

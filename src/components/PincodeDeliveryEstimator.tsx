@@ -182,7 +182,11 @@ export default function PincodeDeliveryEstimator({ className = '' }: { className
           <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#16382B]/5 text-[10.5px] text-[#3D5A68]">
             <span className="flex items-center gap-1 font-bold text-emerald-800">
               <Truck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{t('100% Free Delivery (₹0 Shipping)', '100% இலவச டெலிவரி (₹0 அஞ்சல் கட்டணம்)')}</span>
+              <span>
+                {estimate.state === 'Tamil Nadu'
+                  ? t('FREE TN Delivery on ₹500+ (else ₹75)', 'தமிழகத்தில் ₹500+ இலவச டெலிவரி (கட்டணம் ₹75)')
+                  : t('FREE Delivery on ₹1,000+ (else ₹120)', '₹1,000+ இலவச டெலிவரி (கட்டணம் ₹120)')}
+              </span>
             </span>
             <span className="flex items-center gap-1 font-semibold text-green-800">
               <Banknote className="w-3.5 h-3.5 text-green-600" />

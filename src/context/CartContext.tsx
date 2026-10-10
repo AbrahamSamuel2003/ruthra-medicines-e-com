@@ -2,6 +2,14 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product } from '@/types/product';
+import {
+  calculateShippingFee,
+  ShippingCalculation,
+  TN_FREE_SHIPPING_THRESHOLD,
+  TN_STANDARD_SHIPPING_FEE,
+  OUTSIDE_TN_FREE_SHIPPING_THRESHOLD,
+  OUTSIDE_TN_STANDARD_SHIPPING_FEE
+} from '@/utils/deliveryEstimator';
 
 export interface CartItem {
   product: Product;
@@ -142,6 +150,10 @@ interface CartContextType {
   total: number;
   freeShippingThreshold: number;
   amountNeededForFreeShipping: number;
+  isFreeShipping: boolean;
+  shippingDestination: { state: string; pincode: string };
+  setShippingDestination: (dest: { state: string; pincode: string }) => void;
+  shippingCalculation: ShippingCalculation;
   isDrawerOpen: boolean;
   openDrawer: () => void;
   closeDrawer: () => void;
@@ -350,6 +362,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const openGiftModal = () => setIsGiftModalOpen(true);
   const closeGiftModal = () => setIsGiftModalOpen(false);
 
+  const [shippingDestination, setShippingDestination] = useState<{ state: string; pincode: string }>({
+    state: 'Tamil Nadu',
+    pincode: '627001'
+  });
+
   const mrpSubtotal = items.reduce(
     (sum, item) => sum + getProductMRP(item.product) * item.quantity,
     0
@@ -362,14 +379,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 
   const totalSavings = mrpSavings + discountAmount + freeGiftSavings;
-  const shippingFee = STANDARD_SHIPPING_FEE;
+
+  // Calculate dynamic delivery fee based on destination state/pincode & discounted bill subtotal
+  const shippingCalculation = calculateShippingFee(
+    discountedSubtotal,
+    shippingDestination.state,
+    shippingDestination.pincode
+  );
+
+  const shippingFee = items.length > 0 ? shippingCalculation.fee : 0;
+  const isFreeShipping = items.length > 0 ? shippingCalculation.isFree : false;
+  const freeShippingThreshold = shippingCalculation.threshold;
+  const amountNeededForFreeShipping = items.length > 0 ? shippingCalculation.amountNeeded : shippingCalculation.threshold;
   const total = discountedSubtotal + shippingFee;
 
   const totalItemCount = paidItemCount + totalFreeGiftsSelected;
   const itemCount = totalItemCount;
-
-  const freeShippingThreshold = 0;
-  const amountNeededForFreeShipping = 0;
 
   return (
     <CartContext.Provider
@@ -403,6 +428,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         total,
         freeShippingThreshold,
         amountNeededForFreeShipping,
+        isFreeShipping,
+        shippingDestination,
+        setShippingDestination,
+        shippingCalculation,
         isDrawerOpen,
         openDrawer,
         closeDrawer,

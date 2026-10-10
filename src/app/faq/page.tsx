@@ -41,6 +41,12 @@ export default function FaqPage() {
       aTa: 'அனைத்து மருந்துகளும் வடக்கு அரியநாயகிபுரம், சேரன்மகாதேவி தாலுகா, திருநெல்வேலியில் (627603) உள்ள எங்கள் மையத்தில் இருந்து நேரடியாக தமிழ்நாடு முழுவதும் 2-3 நாட்களில் அனுப்பி வைக்கப்படுகின்றன.'
     },
     {
+      qEn: 'What are the delivery charges and free shipping eligibility?',
+      qTa: 'அஞ்சல் கட்டணம் மற்றும் இலவச டெலிவரி விபரங்கள் என்ன?',
+      aEn: 'Inside Tamil Nadu, delivery is 100% FREE on all orders of ₹500 and above (orders under ₹500 have a standard delivery fee of ₹75). Outside Tamil Nadu (all other Indian States), delivery is 100% FREE on orders of ₹1,000 and above (orders under ₹1,000 have a standard fee of ₹120).',
+      aTa: 'தமிழ்நாடு முழுவதும் ₹500 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு டெலிவரி முற்றிலும் இலவசம் (₹500க்கு கீழ் ₹75 கட்டணம்). மற்ற இந்திய மாநிலங்களுக்கு ₹1,000 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு டெலிவரி இலவசம் (₹1,000க்கு கீழ் ₹120 கட்டணம்).'
+    },
+    {
       qEn: 'Do Ruthra products contain synthetic preservatives or artificial food colors?',
       qTa: 'இதில் செயற்கை நிறமூட்டிகள் அல்லது ரசாயனங்கள் உள்ளதா?',
       aEn: 'No. All our Chooranams, Kudineers, and Thailams are 100% free of artificial coloring agents, parabens, synthetic fragrances, and artificial binders.',
@@ -105,7 +111,7 @@ export default function FaqPage() {
             {t('Have a specific order or product question?', 'ஆர்டர் குறித்த கேள்விகள் உள்ளதா?')}
           </h3>
           <p className="text-xs text-[#3D5A68]">
-            {t('Our Tirunelveli support desk is happy to assist you directly.', 'எங்கள் வாடிக்கையாளர் உதவி மையத்தை தொடர்பு கொள்ளலாம்.')}
+            {t('Our support desk is happy to assist you directly.', 'எங்கள் வாடிக்கையாளர் உதவி மையத்தை தொடர்பு கொள்ளலாம்.')}
           </p>
           <div className="pt-2">
             <a

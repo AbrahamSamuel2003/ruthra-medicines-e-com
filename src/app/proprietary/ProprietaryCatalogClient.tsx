@@ -45,7 +45,7 @@ export default function ProprietaryCatalogClient({ products }: ProprietaryCatalo
               </h1>
               <p className="text-xs sm:text-sm text-white/80 max-w-2xl mt-1.5 leading-relaxed">
                 {t(
-                  'Signature high-potency healthcare solutions formulated through 30+ years of empirical clinical practice in Tirunelveli — Sinocof, Rej-Viyan, Narshika, Esy-Swas, and Ulcera.',
+                  'Signature high-potency healthcare solutions formulated through 30+ years of empirical clinical practice — Sinocof, Rej-Viyan, Narshika, Esy-Swas, and Ulcera.',
                   '30 ஆண்டுகால மருத்துவ அனுபவத்தில் உருவான ருத்ராவின் தனித்துவமான பிரத்தியேக தயாரிப்புகள்.'
                 )}
               </p>
@@ -92,7 +92,7 @@ export default function ProprietaryCatalogClient({ products }: ProprietaryCatalo
               <ShieldCheck className="w-5 h-5 text-[#16382B]" />
             </div>
             <div>
-              <h4 className="font-serif-brand font-bold text-sm text-[#16382B]">{t('Tirunelveli Heritage Lab', 'திருநெல்வேலி தயாரிப்பு மையம்')}</h4>
+              <h4 className="font-serif-brand font-bold text-sm text-[#16382B]">{t('Authentic Heritage Lab', 'பாரம்பரிய தயாரிப்பு மையம்')}</h4>
               <p className="text-[11px] text-[#8A9B93]">{t('Quality audited and sealed for safety', 'பாரம்பரிய முறையில் தயாரிக்கப்பட்டது')}</p>
             </div>
           </div>

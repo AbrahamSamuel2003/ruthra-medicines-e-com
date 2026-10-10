@@ -22,7 +22,7 @@ export default function AboutPage() {
         <div className="bg-[#16382B] text-white rounded-3xl p-8 sm:p-14 border border-[#C29043]/30 relative overflow-hidden">
           <div className="max-w-3xl space-y-4">
             <span className="text-xs uppercase tracking-widest font-bold text-[#DFB36C]">
-              {t('Siddha & Ayurveda Heritage • Tirunelveli, Tamil Nadu', 'திருநெல்வேலி சித்த & ஆயுர்வேத மருத்துவ பாரம்பரியம்')}
+              {t('Siddha & Ayurveda Heritage • Pure Tamil Tradition', 'பாரம்பரிய சித்த & ஆயுர்வேத மருத்துவ பாரம்பரியம்')}
             </span>
             <h1 className="font-serif-brand text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
               {t(
@@ -50,7 +50,7 @@ export default function AboutPage() {
             </h3>
             <p className="text-xs sm:text-sm text-[#3D5A68] leading-relaxed">
               {t(
-                'Our formulations adhere strictly to classical Tamil palm-leaf literature and pharmacopeias documented in the southern Tirunelveli and Pothigai hills traditions.',
+                'Our formulations adhere strictly to classical Tamil palm-leaf literature and pharmacopeias documented in ancient Siddha & Ayurveda traditions.',
                 'பொதிகை மலையை மையமாகக் கொண்ட அகத்தியர் சித்த மருத்துவ மரபின்படி எங்கள் தயாரிப்புகள் நேர்த்தியாக செய்யப்படுகின்றன.'
               )}
             </p>
@@ -76,12 +76,12 @@ export default function AboutPage() {
               <MapPin className="w-6 h-6 text-[#C29043]" />
             </div>
             <h3 className="font-serif-brand text-xl font-bold text-[#16382B]">
-              {t('Tirunelveli Roots', 'திருநெல்வேலி வேர்கள்')}
+              {t('Classical Heritage Roots', 'பாரம்பரிய மூலிகை வேர்கள்')}
             </h3>
             <p className="text-xs sm:text-sm text-[#3D5A68] leading-relaxed">
               {t(
-                'Rooted in Tirunelveli — historically celebrated as the cradle of southern Tamil Siddha & Ayurveda pharmacology near the Podhigai hills, ensuring pristine botanical sourcing and pure small-batch processing.',
-                'சித்த & ஆயுர்வேத மருத்துவத்தின் தொட்டில் எனப்படும் பொதிகை மலைச் சாரல் திருநெல்வேலியில் இருந்து தூய மூலிகைகளைக் கொண்டு பாரம்பரிய முறைப்படி மருந்துகள் தயாரிக்கப்படுகின்றன.'
+                'Rooted in southern Tamil Siddha & Ayurveda pharmacology near the Podhigai hills, ensuring pristine botanical sourcing, time-tested potency, and pure small-batch processing.',
+                'சித்த & ஆயுர்வேத மருத்துவத்தின் தொட்டில் எனப்படும் பொதிகை மலைச் சாரலின் தூய மூலிகைகளைக் கொண்டு பாரம்பரிய முறைப்படி மருந்துகள் தயாரிக்கப்படுகின்றன.'
               )}
             </p>
           </div>

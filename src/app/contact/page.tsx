@@ -24,7 +24,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-sm text-[#3D5A68] mt-2">
             {t(
-              'Reach out for product inquiries, bulk orders, dispatch updates, or direct consultations in Tirunelveli.',
+              'Reach out for product inquiries, bulk orders, dispatch updates, or direct consultations.',
               'மருந்துகள், ஆர்டர் நிலவரம் மற்றும் ஆலோசனைகளுக்கு எங்களை தொடர்பு கொள்ளலாம்.'
             )}
           </p>

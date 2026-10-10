@@ -57,7 +57,7 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(223, 179, 108); // #DFB36C Accent Gold
-  doc.text('SIDDHA & AYURVEDA PHARMACOPEIA • TIRUNELVELI', margin + 6, y + 14);
+  doc.text('SIDDHA & AYURVEDA PHARMACOPEIA', margin + 6, y + 14);
 
   doc.setFontSize(7);
   doc.setTextColor(220, 235, 228);
@@ -365,7 +365,7 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7);
   doc.setTextColor(71, 85, 105);
-  doc.text('All formulations are compounded in Tirunelveli adhering strictly to', margin, y + 12);
+  doc.text('All formulations are compounded adhering strictly to', margin, y + 12);
   doc.text('classical Siddha & Ayurveda Shodhana purification methods and GMP safety standards.', margin, y + 16);
   doc.text('For clinical consultation or dosage advice: WhatsApp +91 9043434226', margin, y + 20);
 

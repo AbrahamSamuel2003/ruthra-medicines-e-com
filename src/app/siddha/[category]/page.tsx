@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = catObj ? `${catObj.title} (${catObj.titleTa}) - Classical Siddha | Ruthra Medicines` : 'Siddha Formulations | Ruthra Medicines';
   return {
     title,
-    description: catObj ? `Explore authentic classical Siddha ${catObj.title} formulations prepared in Tirunelveli per ancient Agathiyar manuscripts.` : 'Authentic Siddha preparations.'
+    description: catObj ? `Explore authentic classical Siddha ${catObj.title} formulations prepared per ancient Agathiyar manuscripts.` : 'Authentic Siddha preparations.'
   };
 }
 

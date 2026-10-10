@@ -72,7 +72,7 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
                     {t('Talk to Ruthra Medicines', 'ருத்ரா மருத்துவ இல்லம் தொடர்பு')}
                   </h3>
                   <p className="text-[11px] text-[#DFB36C]">
-                    {t('Tirunelveli Order Assistance & Support', 'திருநெல்வேலி நேரடி உதவி')}
+                    {t('Direct Order Assistance & Support', 'நேரடி உதவி & ஆதரவு')}
                   </p>
                 </div>
               </div>

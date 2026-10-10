@@ -175,7 +175,7 @@ function OrderSuccessContent() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
               <div className="p-3 bg-white rounded-xl border border-[#16382B]/10">
                 <span className="font-bold text-[#16382B] block">1. Preparation & Sealing</span>
-                <span className="text-[#8A9B93]">Tamper-evident herb pack in Tirunelveli</span>
+                <span className="text-[#8A9B93]">Tamper-evident botanical packaging</span>
               </div>
               <div className="p-3 bg-white rounded-xl border border-[#16382B]/10">
                 <span className="font-bold text-[#16382B] block">2. Express Courier</span>

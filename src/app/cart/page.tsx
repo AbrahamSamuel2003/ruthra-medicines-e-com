@@ -42,6 +42,11 @@ export default function CartPage() {
     removeItem,
     clearCart,
     subtotal,
+    discountedSubtotal,
+    shippingFee,
+    isFreeShipping,
+    amountNeededForFreeShipping,
+    freeShippingThreshold,
     mrpSubtotal,
     mrpSavings,
     totalSavings,
@@ -62,8 +67,8 @@ export default function CartPage() {
           </h1>
           <p className="text-xs sm:text-sm text-[#3D5A68] leading-relaxed max-w-xs mx-auto">
             {t(
-              'Explore our authentic classical formulations prepared in Tirunelveli for everyday health and vital longevity.',
-              'திருநெல்வேலி பாரம்பரிய முறைப்படி தயாரிக்கப்பட்ட ருத்ரா மருந்துகளை பார்வையிடுங்கள்.'
+              'Explore our authentic classical formulations for everyday health and vital longevity.',
+              'பாரம்பரிய முறைப்படி தயாரிக்கப்பட்ட ருத்ரா மருந்துகளை பார்வையிடுங்கள்.'
             )}
           </p>
           <div className="pt-2">
@@ -424,11 +429,53 @@ export default function CartPage() {
                   </div>
                 )}
 
+                {/* FREE DELIVERY THRESHOLD PROGRESS BAR */}
+                <div className="p-3.5 bg-[#FAF8F5] rounded-xl border border-[#16382B]/10 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-semibold">
+                    <span className="flex items-center gap-1.5 text-[#16382B]">
+                      <Truck className="w-4 h-4 text-[#C29043]" />
+                      <span>
+                        {isFreeShipping
+                          ? t('🎉 FREE Delivery Unlocked!', '🎉 இலவச டெலிவரி தகுதி!')
+                          : t(`Add ₹${amountNeededForFreeShipping} more for FREE Delivery`, `இலவச டெலிவரிக்கு இன்னும் ₹${amountNeededForFreeShipping} சேர்க்கவும்`)}
+                      </span>
+                    </span>
+                    {isFreeShipping ? (
+                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200">
+                        {t('FREE', 'இலவசம்')}
+                      </span>
+                    ) : (
+                      <span className="text-[11px] text-[#8A9B93]">
+                        ₹{discountedSubtotal} / ₹{freeShippingThreshold}
+                      </span>
+                    )}
+                  </div>
+                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full transition-all duration-500 rounded-full ${
+                        isFreeShipping ? 'bg-emerald-600' : 'bg-[#C29043]'
+                      }`}
+                      style={{
+                        width: `${Math.min(100, Math.round(((freeShippingThreshold - amountNeededForFreeShipping) / freeShippingThreshold) * 100))}%`
+                      }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-[#8A9B93] text-right">
+                    {t('Free TN on ₹500+ (else ₹75) • Free Outside TN on ₹1,000+ (else ₹120)', 'தமிழகத்தில் ₹500+ (கட்டணம் ₹75) • மற்ற மாநிலங்களில் ₹1,000+ (கட்டணம் ₹120)')}
+                  </p>
+                </div>
+
                 <div className="flex justify-between items-center">
-                  <span>{t('Express Courier (Tamil Nadu)', 'விரைவு அஞ்சல் கட்டணம்')}</span>
-                  <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-xs border border-emerald-200">
-                    {t('FREE (₹0)', 'இலவசம் (₹0)')}
-                  </span>
+                  <span>{t('Delivery Charges', 'அஞ்சல் கட்டணம்')}</span>
+                  {shippingFee === 0 ? (
+                    <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-xs border border-emerald-200">
+                      {t('FREE (₹0)', 'இலவசம் (₹0)')}
+                    </span>
+                  ) : (
+                    <span className="font-bold text-[#16382B] text-xs sm:text-sm">
+                      ₹{shippingFee}
+                    </span>
+                  )}
                 </div>
 
                 <div className="border-t border-[#16382B]/10 pt-3 flex justify-between items-center text-base sm:text-lg font-bold text-[#16382B]">
@@ -460,7 +507,7 @@ export default function CartPage() {
               <div className="pt-2 text-center">
                 <p className="text-[11px] text-[#8A9B93] flex items-center justify-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#C29043]" />
-                  <span>{t('100% Authentic Classical Formulations • Tirunelveli', 'திருநெல்வேலி நேரடி அஞ்சல்')}</span>
+                  <span>{t('100% Authentic Classical Formulations', '100% பாரம்பரிய மருந்துகள்')}</span>
                 </p>
               </div>
             </div>
