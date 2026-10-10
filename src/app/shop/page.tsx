@@ -320,8 +320,8 @@ function ShopContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
-          {/* LEFT SIDEBAR FILTER PANEL (Sticky, Locks in View Beside Products at top-[128px]) */}
-          <aside className="hidden lg:block lg:col-span-3 lg:sticky lg:top-[128px] lg:self-start lg:max-h-[calc(100vh-148px)] lg:overflow-y-auto pr-1">
+          {/* LEFT SIDEBAR FILTER PANEL (Sticky, Locks in View Beside Products at top-[112px]) */}
+          <aside className="hidden lg:block lg:col-span-3 lg:sticky lg:top-[112px] lg:self-start lg:max-h-[calc(100vh-130px)] lg:overflow-y-auto pr-1">
             <div className="bg-white rounded-2xl border border-[#16382B]/10 p-3.5 xl:p-4 shadow-xs space-y-3 select-none">
               {/* Filter Card Header */}
               <div className="flex items-center justify-between pb-2.5 border-b border-[#16382B]/10">
@@ -545,8 +545,8 @@ function ShopContent() {
 
           {/* RIGHT PRODUCT CATALOG WORKSPACE */}
           <div className="lg:col-span-9 space-y-4 sm:space-y-5">
-            {/* STICKY TOP INTERACTIVE CONTROL BAR (Locks in View at top-[86px] mobile / top-[128px] desktop) */}
-            <div className="sticky top-[86px] md:top-[128px] z-20 bg-[#FAF8F5]/95 backdrop-blur-md pb-2 -mt-1 pt-1">
+            {/* STICKY TOP INTERACTIVE CONTROL BAR (Locks in View at top-[86px] mobile / top-[112px] desktop) */}
+            <div className="sticky top-[86px] md:top-[112px] z-20 bg-[#FAF8F5]/95 backdrop-blur-md pb-2 -mt-1 pt-1">
               <div className="bg-white p-3 sm:p-3.5 rounded-2xl border border-[#16382B]/10 shadow-xs space-y-2.5">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3">
                   {/* In-Page Live Search Box */}

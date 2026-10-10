@@ -199,12 +199,212 @@ export default function AyurvedaCatalogClient({ products, initialCategory }: Ayu
     }).filter(cat => cat.items.length > 0);
   }, [isGroupedView, sortedProducts]);
 
+  const [showMobileFilter, setShowMobileFilter] = useState<boolean>(false);
+
+  // Lock body scroll when mobile filter is open
+  useEffect(() => {
+    if (showMobileFilter) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showMobileFilter]);
+
   const activeCategoryMeta = AYURVEDA_NAV_CATEGORIES.find(c => c.slug === selectedCategory);
+
+  // Render Filter Content Body (shared across Desktop Sticky Sidebar and Mobile Modal)
+  const renderFilterBody = (isMobile = false) => (
+    <div className="flex flex-col gap-5">
+      {/* Filter Catalog Header */}
+      <div className="flex items-center justify-between pb-3 border-b border-[#16382B]/10">
+        <div className="flex items-center gap-2">
+          <SlidersHorizontal className="w-4 h-4 text-[#16382B]" />
+          <span className="font-serif-brand font-bold text-base text-[#16382B]">
+            {t('Filter Catalog', 'வடிகட்டுதல்')}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          {hasActiveFilters && (
+            <button
+              onClick={resetFilters}
+              className="text-[11px] text-[#C29043] hover:text-[#16382B] font-semibold flex items-center gap-1 cursor-pointer transition-colors"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>{t('Reset', 'மீட்டமை')}</span>
+            </button>
+          )}
+          {isMobile && (
+            <button
+              onClick={() => setShowMobileFilter(false)}
+              className="p-1 rounded-lg text-[#8A9B93] hover:text-[#16382B] cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Section: FORMULATION TYPE */}
+      <div>
+        <span className="text-[11px] font-bold text-[#8A9B93] uppercase tracking-wider block mb-2.5">
+          {t('Formulation Type', 'மருந்து வடிவம்')}
+        </span>
+        <div className="flex flex-wrap gap-1.5">
+          <button
+            onClick={() => { setSelectedCategory('all'); if (isMobile) setShowMobileFilter(false); }}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              selectedCategory === 'all'
+                ? 'bg-[#16382B] text-white shadow-xs'
+                : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
+            }`}
+          >
+            <span>{t('All Forms', 'அனைத்து வடிவங்கள்')}</span>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+              selectedCategory === 'all' ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
+            }`}>
+              {categoryCounts['all'] || products.length}
+            </span>
+          </button>
+
+          {AYURVEDA_NAV_CATEGORIES.map(cat => {
+            const count = categoryCounts[cat.slug] || 0;
+            if (count === 0) return null;
+            const isActive = selectedCategory === cat.slug;
+            return (
+              <button
+                key={cat.slug}
+                onClick={() => { setSelectedCategory(cat.slug); if (isMobile) setShowMobileFilter(false); }}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between gap-1.5 transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-[#16382B] text-white shadow-xs'
+                    : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
+                }`}
+              >
+                <span className="truncate max-w-[120px]">
+                  {language === 'ta' ? cat.titleTa : cat.title}
+                </span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                  isActive ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Section: HEALTH INDICATION */}
+      <div className="pt-3 border-t border-[#16382B]/10">
+        <span className="text-[11px] font-bold text-[#8A9B93] uppercase tracking-wider block mb-2.5">
+          {t('Health Indication', 'உடல் நலம்')}
+        </span>
+        <div className="flex flex-col gap-1">
+          {CONCERN_FILTERS.map(cf => {
+            const count = concernCounts[cf.slug] || 0;
+            const isActive = selectedConcern === cf.slug;
+            const Icon = cf.icon;
+            return (
+              <button
+                key={cf.slug}
+                onClick={() => { setSelectedConcern(cf.slug); if (isMobile) setShowMobileFilter(false); }}
+                className={`w-full px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-[#16382B] text-white shadow-xs'
+                    : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#C29043]' : 'text-[#16382B]'}`} />
+                  <span className="truncate">{language === 'ta' ? cf.nameTa : cf.name}</span>
+                </div>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                  isActive ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Section: PRICE RANGE */}
+      <div className="pt-3 border-t border-[#16382B]/10">
+        <span className="text-[11px] font-bold text-[#8A9B93] uppercase tracking-wider block mb-2.5">
+          {t('Price Range', 'விலை வரம்பு')}
+        </span>
+        <div className="grid grid-cols-2 gap-1.5">
+          {PRICE_FILTERS.map(pf => {
+            const isActive = selectedPrice === pf.id;
+            const count = (priceCounts as any)[pf.id];
+            return (
+              <button
+                key={pf.id}
+                onClick={() => { setSelectedPrice(pf.id); if (isMobile) setShowMobileFilter(false); }}
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-center transition-all cursor-pointer flex items-center justify-between ${
+                  isActive
+                    ? 'bg-[#16382B] text-white shadow-xs'
+                    : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
+                }`}
+              >
+                <span>{language === 'ta' ? pf.labelTa : pf.label}</span>
+                {count !== undefined && (
+                  <span className={`text-[9.5px] px-1 py-0.2 rounded-full font-bold ${
+                    isActive ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
+                  }`}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Section: IN-STOCK ONLY TOGGLE */}
+      <div className="pt-3 border-t border-[#16382B]/10 flex items-center justify-between">
+        <span className="text-xs font-bold text-[#16382B]">
+          {t('In-Stock Only', 'இருப்பில் உள்ளவை')}
+        </span>
+        <button
+          type="button"
+          onClick={() => setInStockOnly(!inStockOnly)}
+          className={`w-11 h-6 rounded-full transition-colors relative cursor-pointer ${
+            inStockOnly ? 'bg-[#16382B]' : 'bg-[#8A9B93]/30'
+          }`}
+          aria-label="Toggle in stock filter"
+        >
+          <span
+            className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-transform shadow-xs ${
+              inStockOnly ? 'left-6 bg-[#C29043]' : 'left-1'
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Free TN Shipping Promo Card */}
+      <div className="pt-3 border-t border-[#16382B]/10">
+        <div className="p-2.5 rounded-xl bg-[#E8F1EB] border border-[#16382B]/10 flex items-center justify-between text-xs text-[#16382B]">
+          <div className="flex items-center gap-1.5 font-bold">
+            <Truck className="w-4 h-4 text-[#C29043]" />
+            <span>{t('Free TN Shipping on ₹500+', '₹500+ இலவச அஞ்சல் விநியோகம்')}</span>
+          </div>
+          <span className="text-[10px] font-bold px-1.5 py-0.5 bg-[#16382B] text-white rounded-md">
+            TN
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] pb-20">
       {/* Header Banner */}
-      <section className="bg-[#16382B] text-white pt-7 pb-8 px-4 sm:px-6 lg:px-8 border-b border-[#C29043]/30">
+      <section className="bg-[#16382B] text-white pt-6 pb-7 px-4 sm:px-6 lg:px-8 border-b border-[#C29043]/30">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-1.5 text-xs text-[#DFB36C] mb-2.5">
             <Link href="/" className="hover:underline opacity-80">{t('Home', 'முகப்பு')}</Link>
@@ -242,292 +442,167 @@ export default function AyurvedaCatalogClient({ products, initialCategory }: Ayu
       </section>
 
       {/* Main Two-Column Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
           
           {/* ========================================= */}
-          {/* 1. LEFT STICKY FILTER SIDEBAR */}
+          {/* 1. LEFT STICKY FILTER SIDEBAR (DESKTOP) */}
           {/* ========================================= */}
-          <aside className="w-full lg:w-68 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 self-start max-h-[calc(100vh-7rem)] lg:overflow-y-auto pr-0 lg:pr-2 custom-scrollbar">
-            <div className="bg-white rounded-2xl border border-[#16382B]/10 p-4 sm:p-5 shadow-xs flex flex-col gap-5">
-              
-              {/* Filter Catalog Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#16382B]/10">
-                <div className="flex items-center gap-2">
-                  <SlidersHorizontal className="w-4 h-4 text-[#16382B]" />
-                  <span className="font-serif-brand font-bold text-base text-[#16382B]">
-                    {t('Filter Catalog', 'வடிகட்டுதல்')}
-                  </span>
-                </div>
-                {hasActiveFilters && (
-                  <button
-                    onClick={resetFilters}
-                    className="text-[11px] text-[#C29043] hover:text-[#16382B] font-semibold flex items-center gap-1 cursor-pointer transition-colors"
-                  >
-                    <RotateCcw className="w-3 h-3" />
-                    <span>{t('Reset', 'மீட்டமை')}</span>
-                  </button>
-                )}
-              </div>
-
-              {/* Section: FORMULATION TYPE */}
-              <div>
-                <span className="text-[11px] font-bold text-[#8A9B93] uppercase tracking-wider block mb-2.5">
-                  {t('Formulation Type', 'மருந்து வடிவம்')}
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  <button
-                    onClick={() => setSelectedCategory('all')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between gap-2 transition-all cursor-pointer ${
-                      selectedCategory === 'all'
-                        ? 'bg-[#16382B] text-white shadow-xs'
-                        : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
-                    }`}
-                  >
-                    <span>{t('All Forms', 'அனைத்து வடிவங்கள்')}</span>
-                    <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                      selectedCategory === 'all' ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
-                    }`}>
-                      {categoryCounts['all'] || products.length}
-                    </span>
-                  </button>
-
-                  {AYURVEDA_NAV_CATEGORIES.map(cat => {
-                    const count = categoryCounts[cat.slug] || 0;
-                    if (count === 0) return null;
-                    const isActive = selectedCategory === cat.slug;
-                    return (
-                      <button
-                        key={cat.slug}
-                        onClick={() => setSelectedCategory(cat.slug)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between gap-1.5 transition-all cursor-pointer ${
-                          isActive
-                            ? 'bg-[#16382B] text-white shadow-xs'
-                            : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
-                        }`}
-                      >
-                        <span className="truncate max-w-[120px]">
-                          {language === 'ta' ? cat.titleTa : cat.title}
-                        </span>
-                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                          isActive ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
-                        }`}>
-                          {count}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Section: HEALTH INDICATION */}
-              <div className="pt-3 border-t border-[#16382B]/10">
-                <span className="text-[11px] font-bold text-[#8A9B93] uppercase tracking-wider block mb-2.5">
-                  {t('Health Indication', 'உடல் நலம்')}
-                </span>
-                <div className="flex flex-col gap-1">
-                  {CONCERN_FILTERS.map(cf => {
-                    const count = concernCounts[cf.slug] || 0;
-                    const isActive = selectedConcern === cf.slug;
-                    const Icon = cf.icon;
-                    return (
-                      <button
-                        key={cf.slug}
-                        onClick={() => setSelectedConcern(cf.slug)}
-                        className={`w-full px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-all cursor-pointer ${
-                          isActive
-                            ? 'bg-[#16382B] text-white shadow-xs'
-                            : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#C29043]' : 'text-[#16382B]'}`} />
-                          <span className="truncate">{language === 'ta' ? cf.nameTa : cf.name}</span>
-                        </div>
-                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                          isActive ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
-                        }`}>
-                          {count}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Section: PRICE RANGE */}
-              <div className="pt-3 border-t border-[#16382B]/10">
-                <span className="text-[11px] font-bold text-[#8A9B93] uppercase tracking-wider block mb-2.5">
-                  {t('Price Range', 'விலை வரம்பு')}
-                </span>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {PRICE_FILTERS.map(pf => {
-                    const isActive = selectedPrice === pf.id;
-                    const count = (priceCounts as any)[pf.id];
-                    return (
-                      <button
-                        key={pf.id}
-                        onClick={() => setSelectedPrice(pf.id)}
-                        className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-center transition-all cursor-pointer flex items-center justify-between ${
-                          isActive
-                            ? 'bg-[#16382B] text-white shadow-xs'
-                            : 'bg-[#FAF8F5] text-[#264653] hover:bg-[#E8F1EB] border border-[#16382B]/5'
-                        }`}
-                      >
-                        <span>{language === 'ta' ? pf.labelTa : pf.label}</span>
-                        {count !== undefined && (
-                          <span className={`text-[9.5px] px-1 py-0.2 rounded-full font-bold ${
-                            isActive ? 'bg-[#C29043] text-white' : 'bg-[#E8F1EB] text-[#16382B]'
-                          }`}>
-                            {count}
-                          </span>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Section: IN-STOCK ONLY TOGGLE */}
-              <div className="pt-3 border-t border-[#16382B]/10 flex items-center justify-between">
-                <span className="text-xs font-bold text-[#16382B]">
-                  {t('In-Stock Only', 'இருப்பில் உள்ளவை')}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setInStockOnly(!inStockOnly)}
-                  className={`w-11 h-6 rounded-full transition-colors relative cursor-pointer ${
-                    inStockOnly ? 'bg-[#16382B]' : 'bg-[#8A9B93]/30'
-                  }`}
-                  aria-label="Toggle in stock filter"
-                >
-                  <span
-                    className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-transform shadow-xs ${
-                      inStockOnly ? 'left-6 bg-[#C29043]' : 'left-1'
-                    }`}
-                  />
-                </button>
-              </div>
-
-              {/* Free TN Shipping Promo Card */}
-              <div className="pt-3 border-t border-[#16382B]/10">
-                <div className="p-2.5 rounded-xl bg-[#E8F1EB] border border-[#16382B]/10 flex items-center justify-between text-xs text-[#16382B]">
-                  <div className="flex items-center gap-1.5 font-bold">
-                    <Truck className="w-4 h-4 text-[#C29043]" />
-                    <span>{t('Free TN Shipping on ₹500+', '₹500+ இலவச அஞ்சல் விநியோகம்')}</span>
-                  </div>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 bg-[#16382B] text-white rounded-md">
-                    TN
-                  </span>
-                </div>
-              </div>
-
+          <aside className="hidden lg:block w-72 xl:w-76 flex-shrink-0 sticky top-[100px] self-start h-[calc(100vh-120px)] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="bg-white rounded-2xl border border-[#16382B]/10 p-4 sm:p-5 shadow-xs">
+              {renderFilterBody(false)}
             </div>
           </aside>
 
           {/* ========================================= */}
-          {/* 2. RIGHT MAIN CONTENT AREA */}
+          {/* MOBILE FILTER MODAL DRAWER */}
           {/* ========================================= */}
-          <main className="flex-1 min-w-0">
-            
-            {/* Top Sticky Search & Controls Bar */}
-            <div className="bg-white rounded-2xl border border-[#16382B]/10 p-3 sm:p-4 mb-5 shadow-xs sticky top-20 z-20">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                
-                {/* Search Input */}
-                <div className="relative flex-1">
-                  <Search className="w-4 h-4 text-[#8A9B93] absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={language === 'ta' 
-                      ? `தேடுங்கள் (${filteredProducts.length} ஆயுர்வேத தயாரிப்புகள்)...` 
-                      : `Search ${filteredProducts.length} formulations by name, Tamil name, or herbs...`}
-                    className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs sm:text-sm text-[#16382B] placeholder-[#8A9B93] focus:outline-none focus:border-[#C29043] focus:bg-white transition-all"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery('')}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8A9B93] hover:text-[#16382B]"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  )}
+          {showMobileFilter && (
+            <div className="fixed inset-0 z-50 lg:hidden flex">
+              <div 
+                className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity"
+                onClick={() => setShowMobileFilter(false)}
+              />
+              <div className="relative w-[85%] max-w-sm bg-white h-full shadow-2xl p-5 overflow-y-auto z-10 flex flex-col justify-between custom-scrollbar">
+                <div>
+                  {renderFilterBody(true)}
                 </div>
-
-                {/* Controls: Sort By & Per Page & Layout */}
-                <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-                  {/* Sort Dropdown */}
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value as any)}
-                    aria-label="Sort formulations"
-                    className="px-3 py-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs font-semibold text-[#16382B] focus:outline-none cursor-pointer"
+                <div className="pt-4 mt-6 border-t border-[#16382B]/10">
+                  <button
+                    onClick={() => setShowMobileFilter(false)}
+                    className="w-full py-2.5 rounded-xl bg-[#16382B] text-white text-xs font-bold shadow-xs hover:bg-[#204C3B] transition-colors"
                   >
-                    <option value="featured">{t('Featured Formulations', 'முக்கிய மருந்துகள்')}</option>
-                    <option value="price-low">{t('Price: Low to High', 'விலை: குறைவு முதல் அதிகம்')}</option>
-                    <option value="price-high">{t('Price: High to Low', 'விலை: அதிகம் முதல் குறைவு')}</option>
-                    <option value="name">{t('Name: A to Z', 'பெயர்: அகரவரிசை')}</option>
-                  </select>
-
-                  {/* Per Page Selector */}
-                  <select
-                    value={perPage}
-                    onChange={(e) => setPerPage(Number(e.target.value))}
-                    aria-label="Items per page"
-                    className="px-2.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs font-semibold text-[#16382B] focus:outline-none cursor-pointer hidden sm:block"
-                  >
-                    <option value={12}>12 / page</option>
-                    <option value={24}>24 / page</option>
-                    <option value={48}>48 / page</option>
-                    <option value={totalItems || 100}>All ({totalItems})</option>
-                  </select>
-
-                  {/* View Mode Toggle */}
-                  <div className="flex items-center rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 p-0.5">
-                    <button
-                      onClick={() => setViewMode('grid')}
-                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                        viewMode === 'grid' ? 'bg-[#16382B] text-white shadow-2xs' : 'text-[#8A9B93] hover:text-[#16382B]'
-                      }`}
-                      aria-label="Grid View"
-                      title="Grid View"
-                    >
-                      <LayoutGrid className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => setViewMode('list')}
-                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                        viewMode === 'list' ? 'bg-[#16382B] text-white shadow-2xs' : 'text-[#8A9B93] hover:text-[#16382B]'
-                      }`}
-                      aria-label="List View"
-                      title="List View"
-                    >
-                      <LayoutList className="w-4 h-4" />
-                    </button>
-                  </div>
-
+                    {t(`View ${filteredProducts.length} Products`, `${filteredProducts.length} மருந்துகளைக் காண்க`)}
+                  </button>
                 </div>
               </div>
+            </div>
+          )}
 
-              {/* Status & Active Chips */}
-              <div className="flex items-center justify-between mt-2.5 pt-2.5 border-t border-[#16382B]/5 text-xs text-[#8A9B93]">
-                <span>
-                  {totalItems > 0 ? (
-                    t(
-                      `Showing ${startIndex + 1}–${endIndex} of ${totalItems} formulations`,
-                      `${totalItems} தயாரிப்புகளில் ${startIndex + 1}–${endIndex} காட்டப்படுகிறது`
-                    )
-                  ) : (
-                    t('0 formulations found', '0 மருந்துகள் கண்டறியப்பட்டன')
-                  )}
-                </span>
-                {hasActiveFilters && (
-                  <span className="text-[11px] text-[#C29043] font-bold">
-                    {t('Filters applied', 'வடிகட்டிகள் பயன்படுத்தப்பட்டுள்ளன')}
+          {/* ========================================= */}
+          {/* 2. RIGHT MAIN CONTENT AREA */}
+          {/* ========================================= */}
+          <main className="flex-1 min-w-0 w-full">
+            
+            {/* Top Sticky Search & Controls Bar */}
+            <div className="sticky top-[78px] md:top-[98px] z-30 bg-[#FAF8F5]/98 backdrop-blur-md pb-3 pt-1 -mt-1">
+              <div className="bg-white rounded-2xl border border-[#16382B]/10 p-3 sm:p-3.5 shadow-xs">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
+                  
+                  {/* Search Input */}
+                  <div className="relative flex-1">
+                    <Search className="w-4 h-4 text-[#8A9B93] absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder={language === 'ta' 
+                        ? `தேடுங்கள் (${filteredProducts.length} ஆயுர்வேத தயாரிப்புகள்)...` 
+                        : `Search ${filteredProducts.length} formulations by name, Tamil name, or herbs...`}
+                      className="w-full pl-9 pr-8 py-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs sm:text-sm text-[#16382B] placeholder-[#8A9B93] focus:outline-none focus:border-[#C29043] focus:bg-white transition-all"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#8A9B93] hover:text-[#16382B]"
+                        aria-label="Clear search"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Controls: Mobile Filter Button, Sort, Per-Page, and View Mode */}
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap sm:flex-nowrap justify-between sm:justify-start">
+                    
+                    {/* Mobile Filter Button */}
+                    <button
+                      onClick={() => setShowMobileFilter(true)}
+                      className="lg:hidden px-3 py-2 rounded-xl bg-[#FAF8F5] hover:bg-[#E8F1EB] border border-[#16382B]/10 text-xs font-bold text-[#16382B] flex items-center gap-1.5 cursor-pointer transition-colors"
+                      aria-label="Open filter menu"
+                    >
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-[#C29043]" />
+                      <span>{t('Filter', 'வடிகட்டு')}</span>
+                      {hasActiveFilters && (
+                        <span className="w-2 h-2 rounded-full bg-[#C29043]" />
+                      )}
+                    </button>
+
+                    {/* Sort Dropdown */}
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as any)}
+                      aria-label="Sort formulations"
+                      className="px-2.5 sm:px-3 py-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs font-semibold text-[#16382B] focus:outline-none cursor-pointer"
+                    >
+                      <option value="featured">{t('Featured', 'முக்கிய மருந்துகள்')}</option>
+                      <option value="price-low">{t('Price: Low to High', 'விலை: குறைவு முதல் அதிகம்')}</option>
+                      <option value="price-high">{t('Price: High to Low', 'விலை: அதிகம் முதல் குறைவு')}</option>
+                      <option value="name">{t('Name: A to Z', 'பெயர்: அகரவரிசை')}</option>
+                    </select>
+
+                    {/* Per Page Selector */}
+                    <select
+                      value={perPage}
+                      onChange={(e) => setPerPage(Number(e.target.value))}
+                      aria-label="Items per page"
+                      className="px-2.5 py-2 rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 text-xs font-semibold text-[#16382B] focus:outline-none cursor-pointer hidden md:block"
+                    >
+                      <option value={12}>12 / page</option>
+                      <option value={24}>24 / page</option>
+                      <option value={48}>48 / page</option>
+                      <option value={totalItems || 100}>All ({totalItems})</option>
+                    </select>
+
+                    {/* View Mode Toggle */}
+                    <div className="flex items-center rounded-xl bg-[#FAF8F5] border border-[#16382B]/10 p-0.5">
+                      <button
+                        onClick={() => setViewMode('grid')}
+                        className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                          viewMode === 'grid' ? 'bg-[#16382B] text-white shadow-2xs' : 'text-[#8A9B93] hover:text-[#16382B]'
+                        }`}
+                        aria-label="Grid View"
+                        title="Grid View"
+                      >
+                        <LayoutGrid className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      </button>
+                      <button
+                        onClick={() => setViewMode('list')}
+                        className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                          viewMode === 'list' ? 'bg-[#16382B] text-white shadow-2xs' : 'text-[#8A9B93] hover:text-[#16382B]'
+                        }`}
+                        aria-label="List View"
+                        title="List View"
+                      >
+                        <LayoutList className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Status & Active Chips */}
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-[#16382B]/5 text-xs text-[#8A9B93]">
+                  <span>
+                    {totalItems > 0 ? (
+                      t(
+                        `Showing ${startIndex + 1}–${endIndex} of ${totalItems} formulations`,
+                        `${totalItems} தயாரிப்புகளில் ${startIndex + 1}–${endIndex} காட்டப்படுகிறது`
+                      )
+                    ) : (
+                      t('0 formulations found', '0 மருந்துகள் கண்டறியப்பட்டன')
+                    )}
                   </span>
-                )}
+                  {hasActiveFilters && (
+                    <button
+                      onClick={resetFilters}
+                      className="text-[11px] text-[#C29043] hover:text-[#16382B] font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <RotateCcw className="w-2.5 h-2.5" />
+                      <span>{t('Clear Filters', 'வடிகட்டிகளை நீக்கு')}</span>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 

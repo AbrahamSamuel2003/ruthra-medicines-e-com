@@ -27,7 +27,9 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
     ? Math.round(((mrp - product.price) / mrp) * 100) 
     : 0;
 
-  const formulationText = language === 'ta' ? product.formulationTa : product.formulation;
+  const formulationText = language === 'ta' 
+    ? product.formulationTa 
+    : (product.formulation === 'Kudineer Chooranam' ? 'Kudineer' : product.formulation);
   const packSizeText = language === 'ta' ? product.packSizeTa : product.packSize;
   const titleText = language === 'ta' ? product.tamilName : product.name;
   const roleText = language === 'ta' 
@@ -214,10 +216,10 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
   // ==========================================
   return (
     <div className="group bg-white rounded-xl sm:rounded-2xl border border-[#16382B]/10 hover:border-[#8C5D14]/50 transition-all duration-300 hover:shadow-md flex flex-col overflow-hidden h-full">
-      {/* Product Image Area — Balanced mobile square / desktop 4:3 */}
+      {/* Product Image Area — Clean aspect-square with full packaging visibility */}
       <Link
         href={`/product/${product.slug}`}
-        className="relative block w-full aspect-square sm:aspect-[4/3] bg-[#FAF8F5] overflow-hidden border-b border-[#16382B]/5 group-hover:bg-[#F4EFEA] transition-colors"
+        className="relative block w-full aspect-square bg-[#FAF8F5] overflow-hidden border-b border-[#16382B]/5 group-hover:bg-[#F4EFEA] transition-colors p-2 sm:p-2.5"
       >
         {/* Top-Left: Discount Badge, Low Stock, Out of Stock, or Coming Soon Pill */}
         {isComingSoon ? (
@@ -241,17 +243,17 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
         ) : null}
 
         {/* Top-Right: Formulation Pill */}
-        <span className={`absolute top-2 right-2 z-10 text-[8.5px] sm:text-[9.5px] font-semibold px-1.5 sm:px-2 py-0.5 rounded-md bg-white/95 text-[#16382B] border border-[#16382B]/10 shadow-2xs max-w-[95px] truncate ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-wider'}`}>
+        <span className={`absolute top-2 right-2 z-10 text-[8.5px] sm:text-[9.5px] font-semibold px-2 py-0.5 rounded-md bg-white/95 text-[#16382B] border border-[#16382B]/10 shadow-2xs ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-wider'}`}>
           {formulationText}
         </span>
 
-        {/* Product Image — Next.js responsive optimized image */}
-        <div className="relative w-full h-full overflow-hidden">
+        {/* Product Image — Full uncropped centered presentation */}
+        <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-4">
           <Image
             src={imageUrl}
             alt={product.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain p-1 transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 250px"
             onError={() => setImgError(true)}
