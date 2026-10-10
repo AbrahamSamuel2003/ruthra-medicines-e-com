@@ -225,52 +225,52 @@ export default function OffersPage() {
         </section>
 
         {/* Section 2: Transparent Benefit Breakdown Matrix Table */}
-        <section className="bg-white p-6 sm:p-8 rounded-3xl border border-[#16382B]/15 shadow-xs space-y-5">
+        <section className="bg-white p-3.5 sm:p-8 rounded-2xl sm:rounded-3xl border border-[#16382B]/15 shadow-xs space-y-4 sm:space-y-5">
           <div className="flex items-center justify-between border-b border-[#16382B]/10 pb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center flex-shrink-0">
                 <PackageCheck className="w-5 h-5 text-[#C29043]" />
               </div>
               <div>
-                <h3 className="font-serif-brand text-lg sm:text-xl font-bold text-[#16382B]">
+                <h3 className="font-serif-brand text-base sm:text-xl font-bold text-[#16382B]">
                   {t('Comprehensive Benefits & Savings Table', 'முழுமையான சலுகை விபர அட்டவணை')}
                 </h3>
-                <p className="text-xs text-[#3D5A68] mt-0.5">
+                <p className="text-[11px] sm:text-xs text-[#3D5A68] mt-0.5">
                   {t('Free formulation bonus is selected directly from the authentic Siddha medicines in your order.', 'இலவச மருந்துகள் உங்கள் கூடையில் உள்ள மருந்துகளிலிருந்தே நேரடியாக தேர்வு செய்யப்படுகிறது.')}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse">
+          <div className="overflow-x-auto -mx-1 sm:mx-0 px-1 sm:px-0 scrollbar-thin">
+            <table className="w-full text-left text-[11px] sm:text-xs border-collapse min-w-[380px] sm:min-w-full">
               <thead>
                 <tr className="border-b border-[#16382B]/15 bg-[#FAF8F5] text-[#16382B]">
-                  <th className="py-3 px-4 font-bold">{t('Order Quantity', 'வாங்கும் அளவு')}</th>
-                  <th className="py-3 px-4 font-bold">{t('Bill Discount', 'தள்ளுபடி')}</th>
-                  <th className="py-3 px-4 font-bold text-emerald-800">{t('Free Bonus Medicines', 'இலவச மருந்துகள்')}</th>
-                  <th className="py-3 px-4 font-bold">{t('Delivery Charge', 'அஞ்சல் கட்டணம்')}</th>
-                  <th className="py-3 px-4 font-bold text-[#8A9B93] hidden md:table-cell">{t('Scheme Notes', 'குறிப்பு')}</th>
+                  <th className="py-2.5 px-2 sm:px-4 font-bold whitespace-nowrap">{t('Order Quantity', 'வாங்கும் அளவு')}</th>
+                  <th className="py-2.5 px-2 sm:px-4 font-bold whitespace-nowrap">{t('Bill Discount', 'தள்ளுபடி')}</th>
+                  <th className="py-2.5 px-2 sm:px-4 font-bold text-emerald-800 whitespace-nowrap">{t('Free Bonus Medicines', 'இலவச மருந்துகள்')}</th>
+                  <th className="py-2.5 px-2 sm:px-4 font-bold whitespace-nowrap">{t('Delivery Charge', 'அஞ்சல் கட்டணம்')}</th>
+                  <th className="py-2.5 px-2 sm:px-4 font-bold text-[#8A9B93] hidden md:table-cell">{t('Scheme Notes', 'குறிப்பு')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#16382B]/10 text-[#3D5A68]">
                 {policyTable.map((row, idx) => (
                   <tr key={idx} className="hover:bg-[#FAF8F5]/80 transition-colors">
-                    <td className="py-3 px-4 font-semibold text-[#16382B]">
+                    <td className="py-2.5 px-2 sm:px-4 font-semibold text-[#16382B]">
                       {language === 'ta' ? row.qtyTa : row.qty}
                     </td>
-                    <td className="py-3 px-4 font-bold text-emerald-700">
+                    <td className="py-2.5 px-2 sm:px-4 font-bold text-emerald-700">
                       {row.discount}
                     </td>
-                    <td className="py-3 px-4 font-bold text-emerald-900">
+                    <td className="py-2.5 px-2 sm:px-4 font-bold text-emerald-900">
                       {row.free}
                     </td>
-                    <td className="py-3 px-4">
-                      <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    <td className="py-2.5 px-2 sm:px-4">
+                      <span className="font-bold text-emerald-700 bg-emerald-50 px-1.5 sm:px-2 py-0.5 rounded border border-emerald-200 text-[10.5px] sm:text-xs whitespace-nowrap">
                         {row.shipping}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-[#8A9B93] hidden md:table-cell">
+                    <td className="py-2.5 px-2 sm:px-4 text-[#8A9B93] hidden md:table-cell">
                       {language === 'ta' ? row.noteTa : row.note}
                     </td>
                   </tr>

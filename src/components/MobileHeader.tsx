@@ -37,61 +37,60 @@ export default function MobileHeader() {
       </div>
 
       {/* Compact 54px Header */}
-      <div className="h-14 px-3 flex items-center justify-between gap-2 w-full max-w-full overflow-hidden">
-        {/* Left: Menu Hamburger + Logo */}
-        <div className="flex items-center gap-1.5 min-w-0">
+      <div className="h-14 px-2 sm:px-3 flex items-center justify-between gap-1 sm:gap-2 w-full max-w-full overflow-hidden">
+        {/* Left: Menu Hamburger + Logo + Brand Text */}
+        <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 flex-1">
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="p-2 rounded-lg text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer flex-shrink-0"
             aria-label="Open mobile menu"
           >
             <Menu className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center gap-2 min-w-0">
+          <div className="flex items-center gap-1.5 min-w-0">
             <Link 
               href="/" 
               onClick={handleMobileNavClick}
-              className="h-8.5 w-auto px-1.5 py-0.5 rounded-lg bg-white border border-[#16382B]/10 shadow-2xs flex-shrink-0 flex items-center justify-center"
+              className="h-8 w-auto px-1 py-0.5 rounded-lg bg-white border border-[#16382B]/10 shadow-2xs flex-shrink-0 flex items-center justify-center"
               title="Ruthra Medicines Home"
             >
               <Image
                 src="/images/ruthra-logo.png"
                 alt="Ruthra Logo"
-                width={52}
-                height={30}
-                className="h-7 w-auto object-contain"
+                width={44}
+                height={26}
+                className="h-6 w-auto object-contain"
                 priority
-                sizes="52px"
+                sizes="44px"
               />
             </Link>
             <a
               href="https://ss40network.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col min-w-0 group cursor-pointer"
+              className="flex flex-col min-w-0 group cursor-pointer justify-center"
               title="Developed by SS40 NETWORK PRIVATE LIMITED"
             >
-              <span className="font-serif-brand text-xs sm:text-sm font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-wide leading-tight transition-colors whitespace-nowrap">
+              <span className="font-serif-brand text-[11px] sm:text-xs font-bold text-[#16382B] group-hover:text-[#8C5D14] tracking-tight leading-tight transition-colors whitespace-nowrap">
                 RUTHRA MEDICINES
               </span>
-              <span className={`text-[7.5px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.16em]'}`}>
+              <span className={`text-[7px] text-[#8C5D14] group-hover:text-[#C29043] font-semibold leading-tight transition-colors ${language === 'ta' ? 'tracking-normal' : 'uppercase tracking-[0.08em]'}`}>
                 {t('Siddha & Ayurveda', 'சித்த & ஆயுர்வேதம்')}
               </span>
-              <span className="text-[6.5px] text-[#2D5A46] group-hover:text-[#8C5D14] group-hover:underline font-medium tracking-tight whitespace-nowrap leading-none mt-0.5 transition-colors">
+              <span className="text-[6px] text-[#2D5A46] group-hover:text-[#8C5D14] group-hover:underline font-medium tracking-tight whitespace-nowrap leading-none mt-0.5 transition-colors">
                 Developed by SS40 NETWORK
               </span>
             </a>
           </div>
         </div>
-      
 
         {/* Right: Language Switch + Search + Cart */}
-        <div className="flex items-center gap-1.5 flex-shrink-0">
+        <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
           <button
             type="button"
             onClick={() => setLanguage(language === 'en' ? 'ta' : 'en')}
-            className="px-2 py-1 rounded-md text-[11px] font-bold border border-[#C29043]/30 bg-white text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+            className="px-1.5 py-1 rounded-md text-[10.5px] font-bold border border-[#C29043]/30 bg-white text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
             aria-label="Toggle language"
           >
             {language === 'en' ? 'தமிழ்' : 'Eng'}
@@ -99,20 +98,20 @@ export default function MobileHeader() {
 
           <button
             onClick={openSearch}
-            className="p-2 rounded-lg text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#16382B] hover:bg-[#E8F1EB] transition-colors cursor-pointer"
             aria-label="Search products"
           >
-            <Search className="w-4.5 h-4.5" />
+            <Search className="w-4 h-4" />
           </button>
 
           <button
             onClick={openDrawer}
-            className="relative p-2 rounded-lg bg-[#16382B] text-white hover:bg-[#204C3B] transition-colors cursor-pointer flex-shrink-0"
+            className="relative p-1.5 rounded-lg bg-[#16382B] text-white hover:bg-[#204C3B] transition-colors cursor-pointer flex-shrink-0"
             aria-label="Open cart"
           >
-            <ShoppingBag className="w-4.5 h-4.5 text-[#FAF8F5]" />
+            <ShoppingBag className="w-4 h-4 text-[#FAF8F5]" />
             {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#C29043] text-white text-[9px] font-bold flex items-center justify-center shadow-xs border border-white">
+              <span className="absolute -top-1 -right-1 min-w-3.5 h-3.5 px-0.5 rounded-full bg-[#C29043] text-white text-[8.5px] font-bold flex items-center justify-center shadow-xs border border-white">
                 {itemCount}
               </span>
             )}
