@@ -13,7 +13,8 @@ import {
   ArrowRight, 
   Tag, 
   CheckCircle2, 
-  Zap, 
+  Landmark, 
+  Zap,
   Gift, 
   PackageCheck,
   ShieldCheck,
@@ -667,17 +668,9 @@ export default function CheckoutPage() {
                       <span>Cards (RuPay, Visa, MC)</span>
                     </div>
                     <div className="p-2 rounded-xl bg-white border border-emerald-100 flex flex-col items-center gap-1 shadow-2xs">
-                      <Zap className="w-4 h-4 text-emerald-700" />
+                      <Landmark className="w-4 h-4 text-emerald-700" />
                       <span>50+ Net Banking</span>
                     </div>
-                  </div>
-
-                  {/* COD Removed Notice */}
-                  <div className="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60 flex items-center gap-2 text-[11px] text-amber-900">
-                    <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                    <span>
-                      {t('Cash on Delivery (COD) is disabled. All orders are processed with 100% secure direct payment.', 'பொருளை பெற்று பணம் செலுத்தும் முறை (COD) நிறுத்தப்பட்டுள்ளது. நேரடி கட்டணம் மட்டுமே ஏற்கப்படும்.')}
-                    </span>
                   </div>
                 </div>
               </div>
