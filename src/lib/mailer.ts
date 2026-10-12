@@ -418,6 +418,197 @@ function buildDailySummaryEmailHtml(summary: DailySummaryReport): string {
 }
 
 /**
+ * Builds the dispatch & packing checklist HTML email for the store owner / client
+ */
+function buildAdminOrderAlertHtml(order: Order): string {
+  const isPaid = order.payment.status === 'PAID';
+  const orderDate = new Date(order.createdAt).toLocaleString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+
+  const customerName = order.shippingSnapshot?.fullName || order.customer?.fullName || 'Customer';
+  const customerPhone = order.shippingSnapshot?.phone || order.customer?.phone || '';
+  const customerEmail = order.shippingSnapshot?.email || order.customer?.email || 'N/A';
+  const address = order.shippingSnapshot?.address || order.customer?.address || '';
+  const landmark = order.shippingSnapshot?.landmark || order.customer?.landmark || '';
+  const city = order.shippingSnapshot?.city || order.customer?.city || '';
+  const state = order.shippingSnapshot?.state || order.customer?.state || 'Tamil Nadu';
+  const pincode = order.shippingSnapshot?.pincode || order.customer?.pincode || '';
+
+  const cleanPhone = customerPhone.replace(/\D/g, '');
+  const waPhone = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone;
+
+  const itemsRows = order.items
+    .map(
+      (item, idx) => `
+      <tr style="border-bottom: 1px solid #E8F1EB; background-color: ${idx % 2 === 0 ? '#FFFFFF' : '#FAF8F5'};">
+        <td style="padding: 12px 10px; font-size: 13px; color: #16382B;">
+          <strong>${item.productName}</strong>
+          ${item.tamilName ? `<div style="font-size: 11px; color: #5C7368;">${item.tamilName}</div>` : ''}
+          <div style="font-size: 11px; color: #8A9B93;">Pack: <strong>${item.packSize}</strong> • ${item.formulation}</div>
+        </td>
+        <td style="padding: 12px 10px; font-size: 14px; text-align: center; color: #16382B; font-weight: bold;">
+          <span style="display: inline-block; padding: 4px 10px; background-color: #E8F1EB; border-radius: 6px; color: #16382B;">
+            ${item.quantity}
+          </span>
+        </td>
+        <td style="padding: 12px 10px; font-size: 13px; text-align: right; color: #3D5A68;">₹${item.unitPrice}</td>
+        <td style="padding: 12px 10px; font-size: 13px; text-align: right; font-weight: bold; color: #16382B;">₹${item.lineTotal}</td>
+      </tr>
+    `
+    )
+    .join('');
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Order Alert: ${order.orderNumber}</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #FAF8F5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #264653; line-height: 1.5;">
+  <div style="max-width: 650px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(22, 56, 43, 0.12); box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+    
+    <!-- HEADER -->
+    <div style="background-color: #16382B; padding: 24px; text-align: center; color: #ffffff;">
+      <div style="display: inline-block; padding: 4px 12px; background-color: #DFB36C; color: #16382B; border-radius: 20px; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+        ${isPaid ? 'PAYMENT RECEIVED' : 'ORDER PLACED'}
+      </div>
+      <h1 style="margin: 0; font-size: 22px; font-weight: bold; color: #ffffff;">NEW ORDER NOTIFICATION</h1>
+      <p style="margin: 4px 0 0 0; font-size: 13px; color: #E8F1EB;">
+        Order #${order.orderNumber} &bull; ${orderDate}
+      </p>
+    </div>
+
+    <!-- AMOUNT BANNER -->
+    <table style="width: 100%; background-color: #E8F1EB; border-bottom: 1px solid rgba(22, 56, 43, 0.1); padding: 16px 24px;">
+      <tr>
+        <td style="vertical-align: middle;">
+          <div style="font-size: 11px; color: #5C7368; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px;">Total Order Amount</div>
+          <div style="font-size: 24px; font-weight: bold; color: #16382B;">Rs. ${order.finalTotal}</div>
+        </td>
+        <td style="text-align: right; vertical-align: middle;">
+          <div style="font-size: 11px; color: #5C7368; text-transform: uppercase; font-weight: bold;">Payment Method</div>
+          <div style="font-size: 13px; font-weight: bold; color: #16382B;">
+            ${(order.payment?.method as string) === 'razorpay' ? 'Razorpay Online (Prepaid)' : (order.payment?.method || 'Online Payment')}
+          </div>
+          ${order.payment?.transactionRef ? `<div style="font-size: 10px; color: #5C7368; font-family: monospace;">Ref: ${order.payment.transactionRef}</div>` : ''}
+        </td>
+      </tr>
+    </table>
+
+    <!-- CONTENT -->
+    <div style="padding: 24px;">
+
+      <!-- CUSTOMER & DELIVERY DETAILS -->
+      <div style="background-color: #FAF8F5; border: 1px solid rgba(22, 56, 43, 0.1); border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+        <h3 style="margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: #16382B; border-bottom: 1px solid #E8F1EB; padding-bottom: 6px;">
+          Customer &amp; Delivery Details
+        </h3>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <tr>
+            <td style="padding: 5px 0; color: #5C7368; width: 130px;"><strong>Customer Name:</strong></td>
+            <td style="padding: 5px 0; color: #16382B; font-weight: bold;">${customerName}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0; color: #5C7368;"><strong>Mobile Phone:</strong></td>
+            <td style="padding: 5px 0; color: #16382B;">
+              <a href="tel:${customerPhone}" style="color: #16382B; font-weight: bold; text-decoration: none;">${customerPhone}</a>
+              ${cleanPhone ? `
+                <a href="https://wa.me/${waPhone}?text=Hello%20${encodeURIComponent(customerName)},%20we%20have%20received%20your%20Ruthra%20Medicines%20order%20%23${order.orderNumber}!" 
+                   style="display: inline-block; margin-left: 10px; padding: 3px 10px; background-color: #25D366; color: #ffffff; text-decoration: none; border-radius: 4px; font-size: 11px; font-weight: bold;">
+                  WhatsApp Customer
+                </a>
+              ` : ''}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0; color: #5C7368;"><strong>Customer Email:</strong></td>
+            <td style="padding: 5px 0; color: #16382B;">${customerEmail}</td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0; color: #5C7368; vertical-align: top;"><strong>Shipping Address:</strong></td>
+            <td style="padding: 5px 0; color: #16382B; line-height: 1.4;">
+              ${address}${landmark ? `, ${landmark}` : ''}<br>
+              ${city}, ${state} - <strong>${pincode}</strong>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 5px 0; color: #5C7368;"><strong>Delivery Method:</strong></td>
+            <td style="padding: 5px 0; color: #16382B;">${order.deliveryMethod || 'Tamil Nadu Express Courier'}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- PACKING CHECKLIST -->
+      <h3 style="margin: 0 0 10px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: #16382B;">
+        Medicine Packing List (${order.items.length} items)
+      </h3>
+      
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+          <tr style="background-color: #16382B; color: #ffffff; font-size: 12px; text-transform: uppercase;">
+            <th style="padding: 10px 8px; text-align: left;">Product</th>
+            <th style="padding: 10px 8px; text-align: center;">Qty to Pack</th>
+            <th style="padding: 10px 8px; text-align: right;">Unit Price</th>
+            <th style="padding: 10px 8px; text-align: right;">Line Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${itemsRows}
+        </tbody>
+      </table>
+
+      <!-- FINANCIAL TOTALS -->
+      <div style="background-color: #FAF8F5; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;">
+        <table style="width: 100%; font-size: 13px;">
+          <tr>
+            <td style="color: #5C7368; padding: 3px 0;">Subtotal:</td>
+            <td style="text-align: right; color: #16382B;">Rs. ${order.subtotal}</td>
+          </tr>
+          ${order.discount > 0 ? `
+            <tr>
+              <td style="color: #D97706; padding: 3px 0;">Volume / Tier Discount:</td>
+              <td style="text-align: right; color: #D97706; font-weight: bold;">-Rs. ${order.discount}</td>
+            </tr>
+          ` : ''}
+          <tr>
+            <td style="color: #5C7368; padding: 3px 0;">Shipping &amp; Delivery:</td>
+            <td style="text-align: right; color: #16382B;">${order.deliveryCharge === 0 ? 'FREE' : `Rs. ${order.deliveryCharge}`}</td>
+          </tr>
+          <tr style="border-top: 1px solid #E8F1EB;">
+            <td style="color: #16382B; font-weight: bold; padding: 8px 0 0 0; font-size: 15px;">Final Amount Paid:</td>
+            <td style="text-align: right; color: #16382B; font-weight: bold; padding: 8px 0 0 0; font-size: 16px;">Rs. ${order.finalTotal}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- INVOICE ATTACHMENT NOTICE -->
+      <div style="background-color: #E8F1EB; border-left: 4px solid #16382B; padding: 12px 16px; border-radius: 4px; font-size: 12px; color: #16382B;">
+        <strong>Official Tax Invoice Attached:</strong> The GST-compliant PDF invoice (<code>Invoice_${order.orderNumber}.pdf</code>) is attached to this email. You can directly print it to enclose in the courier parcel.
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div style="background-color: #16382B; padding: 16px; text-align: center; color: #E8F1EB; font-size: 11px;">
+      Ruthra Medicines Dispensary Management System &bull; Tirunelveli, Tamil Nadu
+    </div>
+
+  </div>
+</body>
+</html>
+  `.trim();
+}
+
+/**
  * Dispatches the official Invoice PDF via Email to the customer
  */
 export async function sendInvoiceEmail({
@@ -428,8 +619,13 @@ export async function sendInvoiceEmail({
   const targetEmail = recipientEmail || order.shippingSnapshot?.email || order.customer.email;
   const targetName = recipientName || order.shippingSnapshot?.fullName || order.customer.fullName || 'Customer';
 
+  // Automatically dispatch store owner order alert to ruthramedicines@gmail.com
+  sendAdminOrderAlertEmail({ order }).catch(err => {
+    console.error(`[Mailer:AdminAlert:Error] Background dispatch error for ${order.orderNumber}:`, err);
+  });
+
   if (!targetEmail) {
-    console.warn(`[Mailer] No email address associated with Order ${order.orderNumber}. Skipping email dispatch.`);
+    console.warn(`[Mailer] No email address associated with Order ${order.orderNumber}. Skipping customer email dispatch.`);
     return {
       success: false,
       recipient: '',
@@ -451,7 +647,7 @@ export async function sendInvoiceEmail({
     // 1. Check SMTP Transporter (e.g. Gmail / SendGrid / SES)
     const smtp = getSmtpTransporter();
     if (smtp) {
-      const rawFrom = process.env.EMAIL_FROM || process.env.SMTP_USER || 'orders@ruthramedicines.com';
+      const rawFrom = process.env.EMAIL_FROM || process.env.SMTP_USER || 'ruthramedicines@gmail.com';
       const fromAddress = rawFrom.includes('<') ? rawFrom : `"Ruthra Medicines" <${rawFrom}>`;
       const info = await smtp.sendMail({
         from: fromAddress,
@@ -531,6 +727,108 @@ export async function sendInvoiceEmail({
     return {
       success: false,
       recipient: targetEmail,
+      mode: 'simulated',
+      error: errorMsg
+    };
+  }
+}
+
+/**
+ * Dispatches an instant New Order Alert with complete packing checklist and invoice PDF
+ * directly to the store owner / client email (ruthramedicines@gmail.com).
+ */
+export async function sendAdminOrderAlertEmail({
+  order
+}: {
+  order: Order;
+}): Promise<EmailResult> {
+  const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || STORE_CONFIG.adminNotificationEmail || 'ruthramedicines@gmail.com';
+
+  try {
+    const pdfBuffer = generateOrderInvoicePdfBuffer(order);
+    const invoiceFilename = `Invoice_${order.orderNumber}.pdf`;
+    const isPaid = order.payment.status === 'PAID';
+    const subject = `New Order Received: ${order.orderNumber} - Rs. ${order.finalTotal} (${isPaid ? 'Razorpay Paid' : 'Pending'})`;
+    const htmlContent = buildAdminOrderAlertHtml(order);
+
+    const smtp = getSmtpTransporter();
+    if (smtp) {
+      const rawFrom = process.env.EMAIL_FROM || process.env.SMTP_USER || 'ruthramedicines@gmail.com';
+      const fromAddress = rawFrom.includes('<') ? rawFrom : `"Ruthra Medicines Orders" <${rawFrom}>`;
+      const info = await smtp.sendMail({
+        from: fromAddress,
+        to: adminEmail,
+        subject,
+        html: htmlContent,
+        attachments: [
+          {
+            filename: invoiceFilename,
+            content: pdfBuffer,
+            contentType: 'application/pdf'
+          }
+        ]
+      });
+
+      console.log(`[Mailer:AdminAlert:SMTP] Dispatched order alert for ${order.orderNumber} to client ${adminEmail} (ID: ${info.messageId})`);
+      return {
+        success: true,
+        recipient: adminEmail,
+        messageId: info.messageId,
+        mode: 'smtp'
+      };
+    }
+
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (resendApiKey) {
+      const fromAddress = process.env.EMAIL_FROM || 'Ruthra Medicines <orders@ruthramedicos.com>';
+      const pdfBase64 = pdfBuffer.toString('base64');
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${resendApiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: fromAddress,
+          to: [adminEmail],
+          subject,
+          html: htmlContent,
+          attachments: [
+            {
+              filename: invoiceFilename,
+              content: pdfBase64
+            }
+          ]
+        })
+      });
+
+      const resData = await res.json();
+      if (!res.ok) {
+        throw new Error(resData.message || 'Resend API error');
+      }
+
+      console.log(`[Mailer:AdminAlert:Resend] Dispatched order alert for ${order.orderNumber} to ${adminEmail}`);
+      return {
+        success: true,
+        recipient: adminEmail,
+        messageId: resData.id,
+        mode: 'resend'
+      };
+    }
+
+    console.log(`[Mailer:AdminAlert:Simulated] Order alert for ${order.orderNumber} prepared for ${adminEmail}`);
+    return {
+      success: true,
+      recipient: adminEmail,
+      messageId: `sim_alert_${Date.now()}`,
+      mode: 'simulated'
+    };
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : 'Unknown admin alert mailer error';
+    console.error(`[Mailer:AdminAlert:Error] Failed to send order alert for ${order.orderNumber}:`, errorMsg);
+    return {
+      success: false,
+      recipient: adminEmail,
       mode: 'simulated',
       error: errorMsg
     };
