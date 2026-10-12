@@ -470,19 +470,10 @@ export default function AIAssistantChatbot() {
             {/* Professional Production-Grade Typing Animation Indicator */}
             {loading && (
               <div className="flex items-start animate-in fade-in duration-200">
-                <div className="bg-white border border-[#16382B]/10 rounded-2xl rounded-tl-xs px-3.5 py-2.5 shadow-xs flex items-center gap-1.5">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#16382B] animate-bounce"
-                    style={{ animationDelay: '0ms' }}
-                  />
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#16382B] animate-bounce"
-                    style={{ animationDelay: '150ms' }}
-                  />
-                  <span
-                    className="w-1.5 h-1.5 rounded-full bg-[#16382B] animate-bounce"
-                    style={{ animationDelay: '300ms' }}
-                  />
+                <div className="bg-white border border-[#16382B]/10 rounded-2xl rounded-tl-xs px-3.5 py-2 shadow-xs flex items-center">
+                  <span className="text-xs text-[#16382B] font-medium animate-pulse">
+                    Typing...
+                  </span>
                 </div>
               </div>
             )}

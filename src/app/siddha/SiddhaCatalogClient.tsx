@@ -526,9 +526,6 @@ export default function SiddhaCatalogClient({ products, initialCategory }: Siddh
                     >
                       <SlidersHorizontal className="w-3.5 h-3.5 text-[#C29043]" />
                       <span>{t('Filter', 'வடிகட்டு')}</span>
-                      {hasActiveFilters && (
-                        <span className="w-2 h-2 rounded-full bg-[#C29043]" />
-                      )}
                     </button>
 
                     {/* Sort Dropdown */}

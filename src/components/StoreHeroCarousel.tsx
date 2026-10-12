@@ -130,30 +130,6 @@ export default function StoreHeroCarousel() {
         >
           <ChevronRight className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" />
         </button>
-
-        {/* Minimalist Pagination Indicator Dots (With 36px+ accessible touch target) */}
-        <div className="absolute bottom-1 sm:bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1 z-20">
-          {BANNER_SLIDES.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setCurrentSlide(idx);
-              }}
-              className="p-2 sm:p-2.5 flex items-center justify-center cursor-pointer touch-manipulation group"
-              aria-label={`Go to slide ${idx + 1}`}
-            >
-              <span
-                className={`transition-all duration-300 rounded-full shadow-xs block ${
-                  idx === currentSlide
-                    ? 'w-6 sm:w-7 h-1.5 bg-[#16382B] border border-white/60'
-                    : 'w-2 h-1.5 bg-black/40 group-hover:bg-black/70'
-                }`}
-              />
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );

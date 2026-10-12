@@ -523,9 +523,6 @@ export default function AyurvedaCatalogClient({ products, initialCategory }: Ayu
                     >
                       <SlidersHorizontal className="w-3.5 h-3.5 text-[#C29043]" />
                       <span>{t('Filter', 'வடிகட்டு')}</span>
-                      {hasActiveFilters && (
-                        <span className="w-2 h-2 rounded-full bg-[#C29043]" />
-                      )}
                     </button>
 
                     {/* Sort Dropdown */}
@@ -633,7 +630,6 @@ export default function AyurvedaCatalogClient({ products, initialCategory }: Ayu
                     {/* Category Section Header */}
                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#16382B]/15">
                       <div className="flex items-center gap-2.5">
-                        <span className="w-3 h-3 rounded-full bg-[#C29043]" />
                         <div>
                           <h2 className="font-serif-brand text-xl sm:text-2xl font-bold text-[#16382B]">
                             {language === 'ta' ? cat.titleTa : cat.title}

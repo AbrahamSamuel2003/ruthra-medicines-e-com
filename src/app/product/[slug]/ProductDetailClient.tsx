@@ -696,25 +696,6 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                 </>
               )}
 
-              {/* Pagination Dots (Bottom Left) */}
-              {galleryImages.length > 1 && (
-                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 z-10 bg-white/80 backdrop-blur-xs px-2 py-1 rounded-full border border-[#16382B]/10">
-                  {galleryImages.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => setSelectedImageIndex(idx)}
-                      className={`transition-all rounded-full cursor-pointer ${
-                        idx === selectedImageIndex
-                          ? 'w-4 h-1.5 bg-[#C29043]'
-                          : 'w-1.5 h-1.5 bg-[#16382B]/30 hover:bg-[#16382B]/60'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
-                </div>
-              )}
-
               {/* Share button (Bottom Right) */}
               <button
                 type="button"

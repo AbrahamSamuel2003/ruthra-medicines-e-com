@@ -13,7 +13,6 @@ export default function FloatingWhatsApp() {
   const pathname = rawPathname || '';
   const [isOpen, setIsOpen] = useState(false);
   const [customMsg, setCustomMsg] = useState('');
-  const [showNotificationBadge, setShowNotificationBadge] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Close popup when clicking/tapping outside or pressing Escape
@@ -209,7 +208,6 @@ export default function FloatingWhatsApp() {
       <button
         onClick={() => {
           setIsOpen(prev => !prev);
-          setShowNotificationBadge(false);
         }}
         className="group relative flex items-center gap-2.5 bg-[#25D366] hover:bg-[#20ba59] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-white/80 cursor-pointer"
         aria-label="Chat on WhatsApp"
@@ -217,11 +215,6 @@ export default function FloatingWhatsApp() {
         {/* WhatsApp Icon */}
         <div className="relative">
           <MessageCircle className="w-6 h-6 text-white fill-white stroke-[#25D366]" />
-          {showNotificationBadge && !isOpen && (
-            <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full bg-[#D9534F] border-2 border-white flex items-center justify-center text-[8px] font-bold text-white">
-              1
-            </span>
-          )}
         </div>
 
         {/* Desktop pill label */}
