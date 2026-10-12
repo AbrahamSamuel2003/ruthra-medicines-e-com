@@ -95,7 +95,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
 
             <Image
               src={imageUrl}
-              alt={product.name}
+              alt={titleText || product.name}
               width={80}
               height={80}
               className="object-contain max-h-16 w-auto transition-transform duration-300 group-hover:scale-105"
@@ -252,7 +252,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
         <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-4">
           <Image
             src={imageUrl}
-            alt={product.name}
+            alt={titleText || product.name}
             fill
             className="object-contain p-1 transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
