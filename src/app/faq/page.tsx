@@ -11,12 +11,6 @@ export default function FaqPage() {
 
   const faqs = [
     {
-      qEn: 'What makes Ruthra Siddha formulations distinct from generic Ayurveda?',
-      qTa: 'ஆயுர்வேதத்திலிருந்து சித்த மருத்துவ தயாரிப்புகள் எவ்வாறு வேறுபடுகின்றன?',
-      aEn: 'Siddha medicine is indigenous to Tamilakam and is codified in the classical Tamil language by Siddhars such as Agathiyar. While both traditions share the Pancha Bootha framework, Siddha places greater emphasis on native Tamil flora (Pirandai, Karanthai, Mudakkathan, Nochi) and specialized Shodhana purification techniques.',
-      aTa: 'சித்த மருத்துவம் தமிழகத்தின் தொன்மையான மருத்துவ மரபு. அகத்தியர் உள்ளிட்ட சித்தர்களால் தமிழில் இயற்றப்பட்டது. பிரண்டை, முடக்கத்தான், நொச்சி போன்ற தென் தமிழக மூலிகைகளும் தனித்துவமான சுத்தி முறைகளும் இதன் சிறப்பு.'
-    },
-    {
       qEn: 'Why are Ruthra Chooranams supplied in measured sachets rather than loose powder jars?',
       qTa: 'ருத்ரா சூரணம் பாக்கெட்டுகளாக வழங்கப்படுவது ஏன்?',
       aEn: 'Tamil Nadu’s coastal humidity quickly degrades the potency of volatile aromatic compounds in loose powder jars when opened daily. Our single-dose 2g to 3g sachets ensure zero moisture contamination, exact dosing, and effortless portability.',
@@ -31,8 +25,8 @@ export default function FaqPage() {
     {
       qEn: 'Can I take Siddha medicines alongside my conventional allopathic prescriptions?',
       qTa: 'பிற அலோபதி மருந்துகளுடன் சேர்த்து சாப்பிடலாமா?',
-      aEn: 'Yes, in most cases, but you should maintain a minimum interval of 45 to 60 minutes between medications. Always inform your treating doctor and monitor biological markers responsibly.',
-      aTa: 'ஆம், ஆனால் இரு மருந்துகளுக்கும் இடையே குறைந்தது 45 முதல் 60 நிமிடங்கள் இடைவெளி விட்டு உட்கொள்ள வேண்டும்.'
+      aEn: 'Yes, but only after consulting with Qualified Siddha or Ayurveda Physicians with your entire health and medication records.',
+      aTa: 'ஆம், ஆனால் உங்கள் முழுமையான உடல்நல மற்றும் மருந்து விபரங்களுடன் தகுதிவாய்ந்த சித்த அல்லது ஆயுர்வேத மருத்துவரை கலந்தாலோசித்த பின்னரே எடுத்துக்கொள்ள வேண்டும்.'
     },
     {
       qEn: 'Where are Ruthra products dispatched from?',

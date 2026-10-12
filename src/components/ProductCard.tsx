@@ -31,7 +31,8 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
     ? product.formulationTa 
     : (product.formulation === 'Kudineer Chooranam' ? 'Kudineer' : product.formulation);
   const packSizeText = language === 'ta' ? product.packSizeTa : product.packSize;
-  const titleText = language === 'ta' ? product.tamilName : product.name;
+  const rawTitle = language === 'ta' ? product.tamilName : product.name;
+  const titleText = rawTitle ? rawTitle.replace(/^Ruthra('s)?\s+/i, '').replace(/^ருத்ரா(?:வின்)?\s+/, '').trim() : '';
   const roleText = language === 'ta' 
     ? (product.traditionalRoleTa || product.shortDescriptionTa || product.traditionalRole) 
     : (product.traditionalRole || product.shortDescription);

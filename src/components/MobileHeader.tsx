@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Search, ShoppingBag, Menu, X, ChevronRight, MessageCircle, Tag, Grid, Layers, Sparkles, Leaf, Droplets } from 'lucide-react';
+import { Search, ShoppingBag, Menu, X, ChevronRight, MessageCircle, Tag, Grid, Layers, Sparkles, Leaf, Droplets, Heart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import { CONCERN_CATEGORIES, FORMULATION_CATEGORIES } from '@/data/products';
-import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES } from '@/data/categories';
+import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES, CONCERN_NAV_ITEMS } from '@/data/categories';
 
 export default function MobileHeader() {
   const rawPathname = usePathname();
@@ -192,6 +192,23 @@ export default function MobileHeader() {
                   <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
                 </Link>
 
+                {/* Health Concerns Section */}
+                <Link
+                  href="/shop/concerns"
+                  onClick={handleMobileNavClick}
+                  className={`flex items-center justify-between p-2.5 rounded-xl text-sm transition-colors ${
+                    pathname.startsWith('/shop/concerns')
+                      ? 'font-bold text-[#16382B] bg-[#E8F1EB]'
+                      : 'font-semibold text-[#16382B] hover:bg-[#E8F1EB]'
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <Heart className="w-4 h-4 text-[#C29043]" />
+                    <span>{t('Health Concerns (6)', 'உடல் நலம் (6)')}</span>
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-[#8C9E96]" />
+                </Link>
+
                 {/* Proprietary Range */}
                 <Link
                   href="/proprietary"
@@ -300,6 +317,31 @@ export default function MobileHeader() {
                     >
                       <span className="truncate">{language === 'ta' ? form.titleTa : form.title}</span>
                       <span className="text-[10px] text-[#8C9E96] font-medium ml-1">({form.count})</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Health Indications Quick Links */}
+              <div className="border-t border-[#16382B]/10 pt-3">
+                <div className="flex items-center justify-between px-2 mb-2">
+                  <p className="text-[10px] uppercase font-bold tracking-wider text-[#C29043]">
+                    {t('Health Indications (6)', 'உடல் நலம் - 6 தீர்வுகள்')}
+                  </p>
+                  <Link href="/shop/concerns" onClick={handleMobileNavClick} className="text-[10px] font-bold text-[#16382B]">
+                    {t('View All', 'அனைத்தும்')}
+                  </Link>
+                </div>
+                <div className="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto pr-1">
+                  {CONCERN_NAV_ITEMS.map(con => (
+                    <Link
+                      key={con.slug}
+                      href={`/shop/concerns/${con.slug}`}
+                      onClick={handleMobileNavClick}
+                      className="px-2 py-1.5 rounded-lg text-xs text-[#264653] hover:text-[#16382B] hover:bg-[#E8F1EB] transition-colors truncate flex items-center justify-between"
+                    >
+                      <span className="truncate">{language === 'ta' ? con.titleTa : con.title}</span>
+                      <span className="text-[10px] text-[#8A9B93] font-medium ml-1">({con.count})</span>
                     </Link>
                   ))}
                 </div>

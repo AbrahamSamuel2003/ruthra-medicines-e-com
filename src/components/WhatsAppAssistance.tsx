@@ -109,7 +109,7 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
                   onChange={e => setCustomerName(e.target.value)}
                   placeholder={t('e.g. Sundararajan / Priya', 'எ.கா: சுந்தரராஜன்')}
                   required
-                  className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#16382B]/20 bg-white focus:outline-none focus:border-[#16382B]"
+                  className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#16382B]/20 bg-white text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:border-[#16382B] focus:ring-1 focus:ring-[#16382B]/20 transition-all"
                 />
               </div>
 
@@ -123,7 +123,7 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
                   onChange={e => setPlace(e.target.value)}
                   placeholder={t('e.g. Tirunelveli, Madurai, Chennai', 'எ.கா: திருநெல்வேலி, சென்னை')}
                   required
-                  className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#16382B]/20 bg-white focus:outline-none focus:border-[#16382B]"
+                  className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#16382B]/20 bg-white text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:border-[#16382B] focus:ring-1 focus:ring-[#16382B]/20 transition-all"
                 />
               </div>
 
@@ -136,7 +136,7 @@ export default function WhatsAppAssistance({ productName, packSize, price }: Wha
                   onChange={e => setCustomMsg(e.target.value)}
                   rows={2}
                   placeholder={t('Enter quantity or delivery queries...', 'எண்ணிக்கை அல்லது அஞ்சல் விபரம்...')}
-                  className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#16382B]/20 bg-white focus:outline-none focus:border-[#16382B]"
+                  className="w-full text-xs sm:text-sm px-3 py-2 rounded-lg border border-[#16382B]/20 bg-white text-[#16382B] placeholder:text-[#8A9B93] focus:outline-none focus:border-[#16382B] focus:ring-1 focus:ring-[#16382B]/20 transition-all"
                 />
               </div>
 

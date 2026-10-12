@@ -7,8 +7,8 @@ export const PRODUCTS: Product[] = [
   // ==========================================
   {
     id: 'prod-prop-01',
-    name: 'Ruthra Madhura Powder',
-    tamilName: 'ருத்ரா மதுரா பவுடர்',
+    name: 'Madhura Powder',
+    tamilName: 'மதுரா பவுடர்',
     slug: 'ruthra-madhura-powder',
     medicalSystem: 'proprietary',
     formulation: 'Chooranam',
@@ -71,8 +71,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-prop-02',
-    name: 'Ruthra Navara Tablet',
-    tamilName: 'ருத்ரா நவரா மாத்திரை',
+    name: 'Navara Tablet',
+    tamilName: 'நவரா மாத்திரை',
     slug: 'ruthra-navara-tablet',
     medicalSystem: 'proprietary',
     formulation: 'Tablet',
@@ -135,8 +135,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-30',
-    name: 'Ruthra Sinocof Syrup',
-    tamilName: 'ருத்ரா சினோகாஃப் இருமல் சிரப்',
+    name: 'Sinocof Syrup',
+    tamilName: 'சினோகாஃப் இருமல் சிரப்',
     slug: 'ruthra-sinocof-syrup',
     medicalSystem: 'proprietary',
     formulation: 'Syrups',
@@ -218,8 +218,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-32',
-    name: 'Ruthra Esyswas Drops',
-    tamilName: 'ருத்ரா ஈஸி-ஸ்வாஸ் சொட்டு மருந்து',
+    name: 'Esyswas Drops',
+    tamilName: 'ஈஸி-ஸ்வாஸ் சொட்டு மருந்து',
     slug: 'ruthra-esyswas-drops',
     medicalSystem: 'proprietary',
     formulation: 'Drops',
@@ -301,8 +301,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-27',
-    name: 'Ruthra Ulcera Oil',
-    tamilName: 'ருத்ரா அல்சரா புண் ஆற்று தைலம்',
+    name: 'Ulcera Oil',
+    tamilName: 'அல்சரா புண் ஆற்று தைலம்',
     slug: 'ruthra-ulcera-oil',
     medicalSystem: 'proprietary',
     formulation: 'Thailam',
@@ -384,8 +384,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-26',
-    name: 'Ruthra Rejviyan Oil',
-    tamilName: 'ருத்ரா ரெஜ்-வியான் வலி நிவாரண தைலம்',
+    name: 'Rejviyan Oil',
+    tamilName: 'ரெஜ்-வியான் வலி நிவாரண தைலம்',
     slug: 'ruthra-rejviyan-oil',
     medicalSystem: 'proprietary',
     formulation: 'Thailam',
@@ -468,8 +468,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-28',
-    name: 'Ruthra Narshika Oil',
-    tamilName: 'ருத்ரா நார்ஷிகா மூலிகை கூந்தல் தைலம்',
+    name: 'Narshika Oil',
+    tamilName: 'நார்ஷிகா மூலிகை கூந்தல் தைலம்',
     slug: 'ruthra-narshika-oil',
     medicalSystem: 'proprietary',
     formulation: 'Thailam',
@@ -552,8 +552,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-31',
-    name: 'Ruthra Ramabaana Kasayam',
-    tamilName: 'ருத்ரா ராமபாண திரவ கஷாயம்',
+    name: 'Ramabaana Kasayam',
+    tamilName: 'ராமபாண திரவ கஷாயம்',
     slug: 'ruthra-ramabaana-kasayam',
     medicalSystem: 'proprietary',
     formulation: 'Syrup & Kashayam',
@@ -635,8 +635,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-prop-09',
-    name: "Ruthra's Nalanguma Powder",
-    tamilName: "ருத்ராவின் நலங்கு மாவு பொடி",
+    name: "Nalanguma Powder",
+    tamilName: "நலங்கு மாவு பொடி",
     slug: 'ruthras-nalanguma-powder',
     medicalSystem: 'proprietary',
     formulation: 'Powder',
@@ -697,8 +697,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-prop-10',
-    name: "Ruthra's Shigakai Powder",
-    tamilName: "ருத்ராவின் சிகைக்காய் பொடி",
+    name: "Shigakai Powder",
+    tamilName: "சிகைக்காய் பொடி",
     slug: 'ruthras-shigakai-powder',
     medicalSystem: 'proprietary',
     formulation: 'Powder',
@@ -762,8 +762,8 @@ export const PRODUCTS: Product[] = [
   // ==========================================
 {
     id: 'prod-siddha-001',
-    name: 'Ruthra Amirtha Sanjeevi Chooranam',
-    tamilName: 'ருத்ரா அமிர்த சஞ்சீவி சூரணம்',
+    name: 'Amirtha Sanjeevi Chooranam',
+    tamilName: 'அமிர்த சஞ்சீவி சூரணம்',
     slug: 'ruthra-amirtha-sanjeevi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -842,8 +842,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-002',
-    name: 'Ruthra Amukkara Chooranam',
-    tamilName: 'ருத்ரா அமுக்கரா சூரணம்',
+    name: 'Amukkara Chooranam',
+    tamilName: 'அமுக்கரா சூரணம்',
     slug: 'ruthra-amukkara-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -922,8 +922,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-003',
-    name: 'Ruthra Amukkara Kizhangu Chooranam',
-    tamilName: 'ருத்ரா அமுக்கரா கிழங்கு சூரணம்',
+    name: 'Amukkara Kizhangu Chooranam',
+    tamilName: 'அமுக்கரா கிழங்கு சூரணம்',
     slug: 'ruthra-amukkara-kizhangu-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1002,8 +1002,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-004',
-    name: 'Ruthra Athimathura Chooranam',
-    tamilName: 'ருத்ரா அதிமதுர சூரணம்',
+    name: 'Athimathura Chooranam',
+    tamilName: 'அதிமதுர சூரணம்',
     slug: 'ruthra-athimathura-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1082,8 +1082,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-005',
-    name: 'Ruthra Attathi Chooranam',
-    tamilName: 'ருத்ரா அட்டாதி சூரணம்',
+    name: 'Attathi Chooranam',
+    tamilName: 'அட்டாதி சூரணம்',
     slug: 'ruthra-attathi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1162,8 +1162,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-006',
-    name: 'Ruthra Bhavanakadukkai Chooranam',
-    tamilName: 'ருத்ரா பாவனக்கடுக்காய் சூரணம்',
+    name: 'Bhavanakadukkai Chooranam',
+    tamilName: 'பாவனக்கடுக்காய் சூரணம்',
     slug: 'ruthra-bhavanakadukkai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1242,8 +1242,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-007',
-    name: 'Ruthra Chandragandhi Chooranam',
-    tamilName: 'ருத்ரா சந்திரகாந்தி சூரணம்',
+    name: 'Chandragandhi Chooranam',
+    tamilName: 'சந்திரகாந்தி சூரணம்',
     slug: 'ruthra-chandragandhi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1322,8 +1322,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-008',
-    name: 'Ruthra Chundaivatral Chooranam',
-    tamilName: 'ருத்ரா சுண்டைவற்றல் சூரணம்',
+    name: 'Chundaivatral Chooranam',
+    tamilName: 'சுண்டைவற்றல் சூரணம்',
     slug: 'ruthra-chundaivatral-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1402,8 +1402,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-009',
-    name: 'Ruthra Drakshadhi Chooranam',
-    tamilName: 'ருத்ரா திராட்சாதி சூரணம்',
+    name: 'Drakshadhi Chooranam',
+    tamilName: 'திராட்சாதி சூரணம்',
     slug: 'ruthra-drakshadhi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1482,8 +1482,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-010',
-    name: 'Ruthra Elathi Chooranam',
-    tamilName: 'ருத்ரா ஏலாதி சூரணம்',
+    name: 'Elathi Chooranam',
+    tamilName: 'ஏலாதி சூரணம்',
     slug: 'ruthra-elathi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1562,8 +1562,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-011',
-    name: 'Ruthra Gunma Uppu Chooranam',
-    tamilName: 'ருத்ரா குன்ம உப்பு சூரணம்',
+    name: 'Gunma Uppu Chooranam',
+    tamilName: 'குன்ம உப்பு சூரணம்',
     slug: 'ruthra-gunma-uppu-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1642,8 +1642,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-012',
-    name: 'Ruthra Jeeraga Chooranam',
-    tamilName: 'ருத்ரா சீரக சூரணம்',
+    name: 'Jeeraga Chooranam',
+    tamilName: 'சீரக சூரணம்',
     slug: 'ruthra-jeeraga-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1722,8 +1722,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-013',
-    name: 'Ruthra Kaatukarunai Chooranam',
-    tamilName: 'ருத்ரா காட்டுக்கருணை சூரணம்',
+    name: 'Kaatukarunai Chooranam',
+    tamilName: 'காட்டுக்கருணை சூரணம்',
     slug: 'ruthra-kaatukarunai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1802,8 +1802,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-014',
-    name: 'Ruthra Kabangusa Chooranam',
-    tamilName: 'ருத்ரா கபாங்குச சூரணம்',
+    name: 'Kabangusa Chooranam',
+    tamilName: 'கபாங்குச சூரணம்',
     slug: 'ruthra-kabangusa-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1882,8 +1882,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-015',
-    name: 'Ruthra Karanthai Chooranam',
-    tamilName: 'ருத்ரா கரந்தை சூரணம்',
+    name: 'Karanthai Chooranam',
+    tamilName: 'கரந்தை சூரணம்',
     slug: 'ruthra-karanthai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -1962,8 +1962,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-016',
-    name: 'Ruthra Kazharchi Chooranam',
-    tamilName: 'ருத்ரா கழற்சி சூரணம்',
+    name: 'Kazharchi Chooranam',
+    tamilName: 'கழற்சி சூரணம்',
     slug: 'ruthra-kazharchi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2042,8 +2042,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-017',
-    name: 'Ruthra Kumatti Chooranam',
-    tamilName: 'ருத்ரா குமட்டி சூரணம்',
+    name: 'Kumatti Chooranam',
+    tamilName: 'குமட்டி சூரணம்',
     slug: 'ruthra-kumatti-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2122,8 +2122,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-018',
-    name: 'Ruthra Lavangathi Chooranam',
-    tamilName: 'ருத்ரா லவங்காதி சூரணம்',
+    name: 'Lavangathi Chooranam',
+    tamilName: 'லவங்காதி சூரணம்',
     slug: 'ruthra-lavangathi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2202,8 +2202,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-019',
-    name: 'Ruthra Madhuradhi Chooranam',
-    tamilName: 'ருத்ரா மதுராதி சூரணம்',
+    name: 'Madhuradhi Chooranam',
+    tamilName: 'மதுராதி சூரணம்',
     slug: 'ruthra-madhuradhi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2282,8 +2282,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-020',
-    name: 'Ruthra Maruthampattai Chooranam',
-    tamilName: 'ருத்ரா மருதம்பட்டை சூரணம்',
+    name: 'Maruthampattai Chooranam',
+    tamilName: 'மருதம்பட்டை சூரணம்',
     slug: 'ruthra-maruthampattai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2362,8 +2362,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-021',
-    name: 'Ruthra Mayiliragathi Chooranam',
-    tamilName: 'ருத்ரா மயிலிறகாதி சூரணம்',
+    name: 'Mayiliragathi Chooranam',
+    tamilName: 'மயிலிறகாதி சூரணம்',
     slug: 'ruthra-mayiliragathi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2442,8 +2442,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-022',
-    name: 'Ruthra Megasanthi Chooranam',
-    tamilName: 'ருத்ரா மேகசாந்தி சூரணம்',
+    name: 'Megasanthi Chooranam',
+    tamilName: 'மேகசாந்தி சூரணம்',
     slug: 'ruthra-megasanthi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2522,8 +2522,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-023',
-    name: 'Ruthra Nelli Chooranam',
-    tamilName: 'ருத்ரா நெல்லி சூரணம்',
+    name: 'Nelli Chooranam',
+    tamilName: 'நெல்லி சூரணம்',
     slug: 'ruthra-nelli-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2602,8 +2602,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-024',
-    name: 'Ruthra Nilavarai Chooranam',
-    tamilName: 'ருத்ரா நிலாவரை சூரணம்',
+    name: 'Nilavarai Chooranam',
+    tamilName: 'நிலாவரை சூரணம்',
     slug: 'ruthra-nilavarai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2682,8 +2682,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-025',
-    name: 'Ruthra Panchadeepakini Chooranam',
-    tamilName: 'ருத்ரா பஞ்சதீபாகினி சூரணம்',
+    name: 'Panchadeepakini Chooranam',
+    tamilName: 'பஞ்சதீபாகினி சூரணம்',
     slug: 'ruthra-panchadeepakini-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2762,8 +2762,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-026',
-    name: 'Ruthra Parangichakkai Chooranam',
-    tamilName: 'ருத்ரா பறங்கிச்சக்கை சூரணம்',
+    name: 'Parangichakkai Chooranam',
+    tamilName: 'பறங்கிச்சக்கை சூரணம்',
     slug: 'ruthra-parangichakkai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2842,8 +2842,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-027',
-    name: 'Ruthra Parangipattai Chooranam',
-    tamilName: 'ருத்ரா பறங்கிப்பட்டை சூரணம்',
+    name: 'Parangipattai Chooranam',
+    tamilName: 'பறங்கிப்பட்டை சூரணம்',
     slug: 'ruthra-parangipattai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -2922,8 +2922,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-028',
-    name: 'Ruthra Peisori Chooranam',
-    tamilName: 'ருத்ரா பேய்சொறி சூரணம்',
+    name: 'Peisori Chooranam',
+    tamilName: 'பேய்சொறி சூரணம்',
     slug: 'ruthra-peisori-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3002,8 +3002,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-029',
-    name: 'Ruthra Pirandai Chooranam',
-    tamilName: 'ருத்ரா பிரண்டை சூரணம்',
+    name: 'Pirandai Chooranam',
+    tamilName: 'பிரண்டை சூரணம்',
     slug: 'ruthra-pirandai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3082,8 +3082,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-030',
-    name: 'Ruthra Ponnavarai Chooranam',
-    tamilName: 'ருத்ரா பொன்னாவரை சூரணம்',
+    name: 'Ponnavarai Chooranam',
+    tamilName: 'பொன்னாவரை சூரணம்',
     slug: 'ruthra-ponnavarai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3162,8 +3162,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-031',
-    name: 'Ruthra Poonaikali Vidhai Chooranam',
-    tamilName: 'ருத்ரா பூனைக்காலி விதை சூரணம்',
+    name: 'Poonaikali Vidhai Chooranam',
+    tamilName: 'பூனைக்காலி விதை சூரணம்',
     slug: 'ruthra-poonaikali-vidhai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3242,8 +3242,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-032',
-    name: 'Ruthra Pungampoo Chooranam',
-    tamilName: 'ருத்ரா புங்கம்பூ சூரணம்',
+    name: 'Pungampoo Chooranam',
+    tamilName: 'புங்கம்பூ சூரணம்',
     slug: 'ruthra-pungampoo-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3322,8 +3322,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-033',
-    name: 'Ruthra Sagalanoi Chooranam',
-    tamilName: 'ருத்ரா சகலநோய் சூரணம்',
+    name: 'Sagalanoi Chooranam',
+    tamilName: 'சகலநோய் சூரணம்',
     slug: 'ruthra-sagalanoi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3402,8 +3402,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-034',
-    name: 'Ruthra Sarvangavatha Chooranam',
-    tamilName: 'ருத்ரா சர்வாங்கவாத சூரணம்',
+    name: 'Sarvangavatha Chooranam',
+    tamilName: 'சர்வாங்கவாத சூரணம்',
     slug: 'ruthra-sarvangavatha-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3482,8 +3482,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-035',
-    name: 'Ruthra Sirupeelai Chooranam',
-    tamilName: 'ருத்ரா சிறுபீளை சூரணம்',
+    name: 'Sirupeelai Chooranam',
+    tamilName: 'சிறுபீளை சூரணம்',
     slug: 'ruthra-sirupeelai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3562,8 +3562,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-036',
-    name: 'Ruthra Sivathai Chooranam',
-    tamilName: 'ருத்ரா சிவத்தை சூரணம்',
+    name: 'Sivathai Chooranam',
+    tamilName: 'சிவத்தை சூரணம்',
     slug: 'ruthra-sivathai-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3642,8 +3642,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-037',
-    name: 'Ruthra Sugabethi Chooranam',
-    tamilName: 'ருத்ரா சுகபேதி சூரணம்',
+    name: 'Sugabethi Chooranam',
+    tamilName: 'சுகபேதி சூரணம்',
     slug: 'ruthra-sugabethi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3722,8 +3722,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-038',
-    name: 'Ruthra Thaleesathi Chooranam',
-    tamilName: 'ருத்ரா தாளீசாதி சூரணம்',
+    name: 'Thaleesathi Chooranam',
+    tamilName: 'தாளீசாதி சூரணம்',
     slug: 'ruthra-thaleesathi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3802,8 +3802,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-039',
-    name: 'Ruthra Thayirchundi Chooranam',
-    tamilName: 'ருத்ரா தயிர்ச்சுண்டி சூரணம்',
+    name: 'Thayirchundi Chooranam',
+    tamilName: 'தயிர்ச்சுண்டி சூரணம்',
     slug: 'ruthra-thayirchundi-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3882,8 +3882,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-040',
-    name: 'Ruthra Thirikadugu Chooranam',
-    tamilName: 'ருத்ரா திரிகடுக சூரணம்',
+    name: 'Thirikadugu Chooranam',
+    tamilName: 'திரிகடுக சூரணம்',
     slug: 'ruthra-thirikadugu-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -3962,8 +3962,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-041',
-    name: 'Ruthra Thiripala Chooranam',
-    tamilName: 'ருத்ரா திரிபலா சூரணம்',
+    name: 'Thiripala Chooranam',
+    tamilName: 'திரிபலா சூரணம்',
     slug: 'ruthra-thiripala-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Chooranam',
@@ -4042,8 +4042,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-042',
-    name: 'Ruthra Adathodai Kudineer Chooranam',
-    tamilName: 'ருத்ரா ஆடாதோடை குடிநீர் சூரணம்',
+    name: 'Adathodai Kudineer Chooranam',
+    tamilName: 'ஆடாதோடை குடிநீர் சூரணம்',
     slug: 'ruthra-adathodai-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4122,8 +4122,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-043',
-    name: 'Ruthra Kabasura Kudineer Chooranam',
-    tamilName: 'ருத்ரா கபசூர குடிநீர் சூரணம்',
+    name: 'Kabasura Kudineer Chooranam',
+    tamilName: 'கபசூர குடிநீர் சூரணம்',
     slug: 'ruthra-kabasura-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4202,8 +4202,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-044',
-    name: 'Ruthra Kalladaippu Kudineer Chooranam',
-    tamilName: 'ருத்ரா கல்லடைப்பு குடிநீர் சூரணம்',
+    name: 'Kalladaippu Kudineer Chooranam',
+    tamilName: 'கல்லடைப்பு குடிநீர் சூரணம்',
     slug: 'ruthra-kalladaippu-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4282,8 +4282,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-045',
-    name: 'Ruthra Malattukarpa Kudineer Chooranam',
-    tamilName: 'ருத்ரா மலட்டுக்கற்ப குடிநீர் சூரணம்',
+    name: 'Malattukarpa Kudineer Chooranam',
+    tamilName: 'மலட்டுக்கற்ப குடிநீர் சூரணம்',
     slug: 'ruthra-malattukarpa-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4362,8 +4362,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-046',
-    name: 'Ruthra Mandurathi Kudineer Chooranam',
-    tamilName: 'ருத்ரா மண்டூராதி குடிநீர் சூரணம்',
+    name: 'Mandurathi Kudineer Chooranam',
+    tamilName: 'மண்டூராதி குடிநீர் சூரணம்',
     slug: 'ruthra-mandurathi-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4442,8 +4442,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-047',
-    name: 'Ruthra Manjal Noi Kudineer Chooranam',
-    tamilName: 'ருத்ரா மஞ்சள் நோய் குடிநீர் சூரணம்',
+    name: 'Manjal Noi Kudineer Chooranam',
+    tamilName: 'மஞ்சள் நோய் குடிநீர் சூரணம்',
     slug: 'ruthra-manjal-noi-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4522,8 +4522,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-048',
-    name: 'Ruthra Naakupoochi Kudineer Chooranam',
-    tamilName: 'ருத்ரா நாக்குப்பூச்சி குடிநீர் சூரணம்',
+    name: 'Naakupoochi Kudineer Chooranam',
+    tamilName: 'நாக்குப்பூச்சி குடிநீர் சூரணம்',
     slug: 'ruthra-naakupoochi-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4602,8 +4602,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-049',
-    name: 'Ruthra Nannari Kudineer Chooranam',
-    tamilName: 'ருத்ரா நன்னாரி குடிநீர் சூரணம்',
+    name: 'Nannari Kudineer Chooranam',
+    tamilName: 'நன்னாரி குடிநீர் சூரணம்',
     slug: 'ruthra-nannari-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4682,8 +4682,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-050',
-    name: 'Ruthra Neermulli Kudineer Chooranam',
-    tamilName: 'ருத்ரா நீர்முள்ளி குடிநீர் சூரணம்',
+    name: 'Neermulli Kudineer Chooranam',
+    tamilName: 'நீர்முள்ளி குடிநீர் சூரணம்',
     slug: 'ruthra-neermulli-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4762,8 +4762,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-051',
-    name: 'Ruthra Nilavembu Kudineer Chooranam',
-    tamilName: 'ருத்ரா நிலவேம்பு குடிநீர் சூரணம்',
+    name: 'Nilavembu Kudineer Chooranam',
+    tamilName: 'நிலவேம்பு குடிநீர் சூரணம்',
     slug: 'ruthra-nilavembu-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4842,8 +4842,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-052',
-    name: 'Ruthra Nochi Kudineer Chooranam',
-    tamilName: 'ருத்ரா நொச்சி குடிநீர் சூரணம்',
+    name: 'Nochi Kudineer Chooranam',
+    tamilName: 'நொச்சி குடிநீர் சூரணம்',
     slug: 'ruthra-nochi-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -4922,8 +4922,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-053',
-    name: 'Ruthra Pidangunari Kudineer Chooranam',
-    tamilName: 'ருத்ரா பிடங்குநாரி குடிநீர் சூரணம்',
+    name: 'Pidangunari Kudineer Chooranam',
+    tamilName: 'பிடங்குநாரி குடிநீர் சூரணம்',
     slug: 'ruthra-pidangunari-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -5002,8 +5002,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-054',
-    name: 'Ruthra Pithasura Kudineer Chooranam',
-    tamilName: 'ருத்ரா பித்தசுர குடிநீர் சூரணம்',
+    name: 'Pithasura Kudineer Chooranam',
+    tamilName: 'பித்தசுர குடிநீர் சூரணம்',
     slug: 'ruthra-pithasura-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -5082,8 +5082,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-055',
-    name: 'Ruthra Sarvasura Kudineer Chooranam',
-    tamilName: 'ருத்ரா சர்வசுர குடிநீர் சூரணம்',
+    name: 'Sarvasura Kudineer Chooranam',
+    tamilName: 'சர்வசுர குடிநீர் சூரணம்',
     slug: 'ruthra-sarvasura-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -5162,8 +5162,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-056',
-    name: 'Ruthra Soodhagathai Udaikum Kudineer Chooranam',
-    tamilName: 'ருத்ரா சூதகத்தை உடைக்கும் குடிநீர் சூரணம்',
+    name: 'Soodhagathai Udaikum Kudineer Chooranam',
+    tamilName: 'சூதகத்தை உடைக்கும் குடிநீர் சூரணம்',
     slug: 'ruthra-soodhagathai-udaikum-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -5242,8 +5242,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-057',
-    name: 'Ruthra Vatha Sura Kudineer Chooranam',
-    tamilName: 'ருத்ரா வாத சுர குடிநீர் சூரணம்',
+    name: 'Vatha Sura Kudineer Chooranam',
+    tamilName: 'வாத சுர குடிநீர் சூரணம்',
     slug: 'ruthra-vatha-sura-kudineer-chooranam',
     medicalSystem: 'siddha',
     formulation: 'Kudineer Chooranam',
@@ -5322,8 +5322,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-058',
-    name: 'Ruthra Oma Kudineer',
-    tamilName: 'ருத்ரா ஓம குடிநீர்',
+    name: 'Oma Kudineer',
+    tamilName: 'ஓம குடிநீர்',
     slug: 'ruthra-oma-kudineer',
     medicalSystem: 'siddha',
     formulation: 'Kudineer',
@@ -5402,8 +5402,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-059',
-    name: 'Ruthra Nannar Manapagu',
-    tamilName: 'ருத்ரா நன்னாரி மணப்பாகு',
+    name: 'Nannar Manapagu',
+    tamilName: 'நன்னாரி மணப்பாகு',
     slug: 'ruthra-nannar-manapagu',
     medicalSystem: 'siddha',
     formulation: 'Manapagu',
@@ -5482,8 +5482,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-060',
-    name: 'Ruthra Thurinj Manapagu',
-    tamilName: 'ருத்ரா துரிஞ்சி மணப்பாகு',
+    name: 'Thurinj Manapagu',
+    tamilName: 'துரிஞ்சி மணப்பாகு',
     slug: 'ruthra-thurinj-manapagu',
     medicalSystem: 'siddha',
     formulation: 'Manapagu',
@@ -5562,8 +5562,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-061',
-    name: 'Ruthra Aswagandhi Legiyam',
-    tamilName: 'ருத்ரா அஸ்வகந்தி லேகியம்',
+    name: 'Aswagandhi Legiyam',
+    tamilName: 'அஸ்வகந்தி லேகியம்',
     slug: 'ruthra-aswagandhi-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -5642,8 +5642,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-062',
-    name: 'Ruthra Inji Legiyam',
-    tamilName: 'ருத்ரா இஞ்சி லேகியம்',
+    name: 'Inji Legiyam',
+    tamilName: 'இஞ்சி லேகியம்',
     slug: 'ruthra-inji-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -5722,8 +5722,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-063',
-    name: 'Ruthra Kandathri Legiyam',
-    tamilName: 'ருத்ரா கண்டங்கத்திரி லேகியம்',
+    name: 'Kandathri Legiyam',
+    tamilName: 'கண்டங்கத்திரி லேகியம்',
     slug: 'ruthra-kandathri-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -5802,8 +5802,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-064',
-    name: 'Ruthra Karisalai Legiyam',
-    tamilName: 'ருத்ரா கரிசலாங்கண்ணி லேகியம்',
+    name: 'Karisalai Legiyam',
+    tamilName: 'கரிசலாங்கண்ணி லேகியம்',
     slug: 'ruthra-karisalai-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -5882,8 +5882,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-065',
-    name: 'Ruthra Karunai Legiyam',
-    tamilName: 'ருத்ரா கருணை லேகியம்',
+    name: 'Karunai Legiyam',
+    tamilName: 'கருணை லேகியம்',
     slug: 'ruthra-karunai-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -5962,8 +5962,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-066',
-    name: 'Ruthra Madhanasanjeevi Legiyam',
-    tamilName: 'ருத்ரா மதனசஞ்சீவி லேகியம்',
+    name: 'Madhanasanjeevi Legiyam',
+    tamilName: 'மதனசஞ்சீவி லேகியம்',
     slug: 'ruthra-madhanasanjeevi-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -6042,8 +6042,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-067',
-    name: 'Ruthra Mudakathan Legiyam',
-    tamilName: 'ருத்ரா முடக்கத்தான் லேகியம்',
+    name: 'Mudakathan Legiyam',
+    tamilName: 'முடக்கத்தான் லேகியம்',
     slug: 'ruthra-mudakathan-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -6122,8 +6122,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-068',
-    name: 'Ruthra Narasimma Legiyam',
-    tamilName: 'ருத்ரா நரசிம்ம லேகியம்',
+    name: 'Narasimma Legiyam',
+    tamilName: 'நரசிம்ம லேகியம்',
     slug: 'ruthra-narasimma-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -6202,8 +6202,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-069',
-    name: 'Ruthra Panchadeepakini Legiyam',
-    tamilName: 'ருத்ரா பஞ்சதீபாகினி லேகியம்',
+    name: 'Panchadeepakini Legiyam',
+    tamilName: 'பஞ்சதீபாகினி லேகியம்',
     slug: 'ruthra-panchadeepakini-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -6282,8 +6282,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-070',
-    name: 'Ruthra Perumbadu Legiyam',
-    tamilName: 'ருத்ரா பெரும்பாடு லேகியம்',
+    name: 'Perumbadu Legiyam',
+    tamilName: 'பெரும்பாடு லேகியம்',
     slug: 'ruthra-perumbadu-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -6362,8 +6362,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-071',
-    name: 'Ruthra Vilvathi Legiyam',
-    tamilName: 'ருத்ரா வில்வாதி லேகியம்',
+    name: 'Vilvathi Legiyam',
+    tamilName: 'வில்வாதி லேகியம்',
     slug: 'ruthra-vilvathi-legiyam',
     medicalSystem: 'siddha',
     formulation: 'Legiyam',
@@ -6442,8 +6442,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-072',
-    name: 'Ruthra Chithiramoolathi Kuligai',
-    tamilName: 'ருத்ரா சித்திரமூலாதி குளிகை',
+    name: 'Chithiramoolathi Kuligai',
+    tamilName: 'சித்திரமூலாதி குளிகை',
     slug: 'ruthra-chithiramoolathi-kuligai',
     medicalSystem: 'siddha',
     formulation: 'Maathirai',
@@ -6522,8 +6522,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-073',
-    name: 'Ruthra Kalludaikudori Mathirai',
-    tamilName: 'ருத்ரா கல்லுடைக்குடி மாத்திரை',
+    name: 'Kalludaikudori Mathirai',
+    tamilName: 'கல்லுடைக்குடி மாத்திரை',
     slug: 'ruthra-kalludaikudri-mathirai',
     medicalSystem: 'siddha',
     formulation: 'Maathirai',
@@ -6602,8 +6602,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-074',
-    name: 'Ruthra Neerkovai Mathirai',
-    tamilName: 'ருத்ரா நீர்க்கோவை மாத்திரை',
+    name: 'Neerkovai Mathirai',
+    tamilName: 'நீர்க்கோவை மாத்திரை',
     slug: 'ruthra-neerkovai-mathirai',
     medicalSystem: 'siddha',
     formulation: 'Maathirai',
@@ -6682,8 +6682,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-075',
-    name: 'Ruthra Swasakudori Mathirai',
-    tamilName: 'ருத்ரா சுவாசகுடோரி மாத்திரை',
+    name: 'Swasakudori Mathirai',
+    tamilName: 'சுவாசகுடோரி மாத்திரை',
     slug: 'ruthra-swasakudori-mathirai',
     medicalSystem: 'siddha',
     formulation: 'Maathirai',
@@ -6762,8 +6762,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-076',
-    name: 'Ruthra Gandhaga Rasayanam',
-    tamilName: 'ருத்ரா கந்தக ரசாயனம்',
+    name: 'Gandhaga Rasayanam',
+    tamilName: 'கந்தக ரசாயனம்',
     slug: 'ruthra-gandhaga-rasayanam',
     medicalSystem: 'siddha',
     formulation: 'Rasayanam',
@@ -6842,8 +6842,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-077',
-    name: 'Ruthra Kadhali Rasayanam',
-    tamilName: 'ருத்ரா கதலி ரசாயனம்',
+    name: 'Kadhali Rasayanam',
+    tamilName: 'கதலி ரசாயனம்',
     slug: 'ruthra-kadhali-rasayanam',
     medicalSystem: 'siddha',
     formulation: 'Rasayanam',
@@ -6922,8 +6922,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-078',
-    name: 'Ruthra Parangi Rasayanam',
-    tamilName: 'ருத்ரா பறங்கி ரசாயனம்',
+    name: 'Parangi Rasayanam',
+    tamilName: 'பறங்கி ரசாயனம்',
     slug: 'ruthra-parangi-rasayanam',
     medicalSystem: 'siddha',
     formulation: 'Rasayanam',
@@ -7002,8 +7002,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-079',
-    name: 'Ruthra Thippili Rasayanam',
-    tamilName: 'ருத்ரா திப்பிலி ரசாயனம்',
+    name: 'Thippili Rasayanam',
+    tamilName: 'திப்பிலி ரசாயனம்',
     slug: 'ruthra-thippili-rasayanam',
     medicalSystem: 'siddha',
     formulation: 'Rasayanam',
@@ -7082,8 +7082,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-080',
-    name: 'Ruthra Imbooral Vadagam',
-    tamilName: 'ருத்ரா இம்பூரல் வடகம்',
+    name: 'Imbooral Vadagam',
+    tamilName: 'இம்பூரல் வடகம்',
     slug: 'ruthra-imbooral-vadagam',
     medicalSystem: 'siddha',
     formulation: 'Vadagam',
@@ -7162,8 +7162,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-081',
-    name: 'Ruthra Kadukkai Vadagam',
-    tamilName: 'ருத்ரா கடுக்காய் வடகம்',
+    name: 'Kadukkai Vadagam',
+    tamilName: 'கடுக்காய் வடகம்',
     slug: 'ruthra-kadukkai-vadagam',
     medicalSystem: 'siddha',
     formulation: 'Vadagam',
@@ -7242,8 +7242,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-082',
-    name: 'Ruthra Karuvepilai Vadagam',
-    tamilName: 'ருத்ரா கறிவேப்பிலை வடகம்',
+    name: 'Karuvepilai Vadagam',
+    tamilName: 'கறிவேப்பிலை வடகம்',
     slug: 'ruthra-karuvepilai-vadagam',
     medicalSystem: 'siddha',
     formulation: 'Vadagam',
@@ -7322,8 +7322,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-083',
-    name: 'Ruthra Thalisathy Vadagam',
-    tamilName: 'ருத்ரா தாளீசாதி வடகம்',
+    name: 'Thalisathy Vadagam',
+    tamilName: 'தாளீசாதி வடகம்',
     slug: 'ruthra-thalisathy-vadagam',
     medicalSystem: 'siddha',
     formulation: 'Vadagam',
@@ -7402,8 +7402,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-084',
-    name: 'Ruthra Aavarai Nei',
-    tamilName: 'ருத்ரா ஆவாரை நெய்',
+    name: 'Aavarai Nei',
+    tamilName: 'ஆவாரை நெய்',
     slug: 'ruthra-aavarai-nei',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7482,8 +7482,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-085',
-    name: 'Ruthra Kalyanaghritham',
-    tamilName: 'ருத்ரா கல்யாண கிருதம்',
+    name: 'Kalyanaghritham',
+    tamilName: 'கல்யாண கிருதம்',
     slug: 'ruthra-kalyanagritham',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7562,8 +7562,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-086',
-    name: 'Ruthra Keezhanelli Ghritham',
-    tamilName: 'ருத்ரா கீழாநெல்லி கிருதம்',
+    name: 'Keezhanelli Ghritham',
+    tamilName: 'கீழாநெல்லி கிருதம்',
     slug: 'ruthra-keezhanelli-ghritham',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7642,8 +7642,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-087',
-    name: 'Ruthra Naaval Nei',
-    tamilName: 'ருத்ரா நாவல் நெய்',
+    name: 'Naaval Nei',
+    tamilName: 'நாவல் நெய்',
     slug: 'ruthra-naaval-nei',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7722,8 +7722,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-088',
-    name: 'Ruthra Nilapanai Nei',
-    tamilName: 'ருத்ரா நிலப்பனை நெய்',
+    name: 'Nilapanai Nei',
+    tamilName: 'நிலப்பனை நெய்',
     slug: 'ruthra-nilapanai-nei',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7802,8 +7802,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-089',
-    name: 'Ruthra Serankottai Nei',
-    tamilName: 'ருத்ரா சேராங்கொட்டை நெய்',
+    name: 'Serankottai Nei',
+    tamilName: 'சேராங்கொட்டை நெய்',
     slug: 'ruthra-serankottai-nei',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7882,8 +7882,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-090',
-    name: 'Ruthra Soodhaga Sanni Nei',
-    tamilName: 'ருத்ரா சூதக சன்னி நெய்',
+    name: 'Soodhaga Sanni Nei',
+    tamilName: 'சூதக சன்னி நெய்',
     slug: 'ruthra-soodhaga-sanni-nei',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -7962,8 +7962,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-091',
-    name: 'Ruthra Venpoosani Nei',
-    tamilName: 'ருத்ரா வெண்பூசணி நெய்',
+    name: 'Venpoosani Nei',
+    tamilName: 'வெண்பூசணி நெய்',
     slug: 'ruthra-venpoosani-nei',
     medicalSystem: 'siddha',
     formulation: 'Nei',
@@ -8042,8 +8042,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-092',
-    name: 'Ruthra Ganthi Mezhugu',
-    tamilName: 'ருத்ரா காந்தி மெழுகு',
+    name: 'Ganthi Mezhugu',
+    tamilName: 'காந்தி மெழுகு',
     slug: 'ruthra-ganthi-mezhugu',
     medicalSystem: 'siddha',
     formulation: 'Mezhugu',
@@ -8122,8 +8122,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-093',
-    name: 'Ruthra Gunmakudori Mezhugu',
-    tamilName: 'ருத்ரா குன்மக்குடோரி மெழுகு',
+    name: 'Gunmakudori Mezhugu',
+    tamilName: 'குன்மக்குடோரி மெழுகு',
     slug: 'ruthra-gunmakudori-mezhugu',
     medicalSystem: 'siddha',
     formulation: 'Mezhugu',
@@ -8202,8 +8202,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-094',
-    name: 'Ruthra Malakkutara Mezhugu',
-    tamilName: 'ருத்ரா மலக்குடார மெழுகு',
+    name: 'Malakkutara Mezhugu',
+    tamilName: 'மலக்குடார மெழுகு',
     slug: 'ruthra-malakkutara-mezhugu',
     medicalSystem: 'siddha',
     formulation: 'Mezhugu',
@@ -8282,8 +8282,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-095',
-    name: 'Ruthra Rasagandhi Mezhugu',
-    tamilName: 'ருத்ரா ரசகந்தி மெழுகு',
+    name: 'Rasagandhi Mezhugu',
+    tamilName: 'ரசகந்தி மெழுகு',
     slug: 'ruthra-rasagandhi-mezhugu',
     medicalSystem: 'siddha',
     formulation: 'Mezhugu',
@@ -8362,8 +8362,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-096',
-    name: 'Ruthra Karasooda Sathu Parpam',
-    tamilName: 'ருத்ரா காரசூட சத்து பற்பம்',
+    name: 'Karasooda Sathu Parpam',
+    tamilName: 'காரசூட சத்து பற்பம்',
     slug: 'ruthra-karasooda-sathu-parpam',
     medicalSystem: 'siddha',
     formulation: 'Parpam',
@@ -8442,8 +8442,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-097',
-    name: 'Ruthra Karuvanga Parpam',
-    tamilName: 'ருத்ரா கருவங்க பற்பம்',
+    name: 'Karuvanga Parpam',
+    tamilName: 'கருவங்க பற்பம்',
     slug: 'ruthra-karuvanga-parpam',
     medicalSystem: 'siddha',
     formulation: 'Parpam',
@@ -8522,8 +8522,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-098',
-    name: 'Ruthra Naga Parpam',
-    tamilName: 'ருத்ரா நாக பற்பம்',
+    name: 'Naga Parpam',
+    tamilName: 'நாக பற்பம்',
     slug: 'ruthra-naga-parpam',
     medicalSystem: 'siddha',
     formulation: 'Parpam',
@@ -8602,8 +8602,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-099',
-    name: 'Ruthra Panchalavana Parpam',
-    tamilName: 'ருத்ரா பஞ்சலவண பற்பம்',
+    name: 'Panchalavana Parpam',
+    tamilName: 'பஞ்சலவண பற்பம்',
     slug: 'ruthra-panchalavana-parpam',
     medicalSystem: 'siddha',
     formulation: 'Parpam',
@@ -8682,8 +8682,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-100',
-    name: 'Ruthra Sangu Parpam',
-    tamilName: 'ருத்ரா சங்கு பற்பம்',
+    name: 'Sangu Parpam',
+    tamilName: 'சங்கு பற்பம்',
     slug: 'ruthra-sangu-parpam',
     medicalSystem: 'siddha',
     formulation: 'Parpam',
@@ -8762,8 +8762,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-101',
-    name: 'Ruthra Oma Theeneer',
-    tamilName: 'ருத்ரா ஓம தீநீர்',
+    name: 'Oma Theeneer',
+    tamilName: 'ஓம தீநீர்',
     slug: 'ruthra-oma-theeneer',
     medicalSystem: 'siddha',
     formulation: 'Theeneer',
@@ -8842,8 +8842,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-102',
-    name: 'Ruthra Amirthakumari Thailam',
-    tamilName: 'ருத்ரா அமிர்தகுமாரி தைலம்',
+    name: 'Amirthakumari Thailam',
+    tamilName: 'அமிர்தகுமாரி தைலம்',
     slug: 'ruthra-amirthakumari-thailam',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -8922,8 +8922,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-103',
-    name: 'Ruthra Citramutti Madakku Tailam',
-    tamilName: 'ருத்ரா சிற்றாமுட்டி மடக்கு தைலம்',
+    name: 'Citramutti Madakku Tailam',
+    tamilName: 'சிற்றாமுட்டி மடக்கு தைலம்',
     slug: 'ruthra-citramutti-madakku-tailam',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9002,8 +9002,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-104',
-    name: 'Ruthra Garudankizhangu Ennai',
-    tamilName: 'ருத்ரா கருடன்கிழங்கு எண்ணெய்',
+    name: 'Garudankizhangu Ennai',
+    tamilName: 'கருடன்கிழங்கு எண்ணெய்',
     slug: 'ruthra-garudankizhangu-ennai',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9082,8 +9082,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-105',
-    name: 'Ruthra Kulirthamarai Thailam',
-    tamilName: 'ருத்ரா குளிர்தாமரை தைலம்',
+    name: 'Kulirthamarai Thailam',
+    tamilName: 'குளிர்தாமரை தைலம்',
     slug: 'ruthra-kulirthamarai-thailam',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9162,8 +9162,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-106',
-    name: 'Ruthra Kumari Thailam',
-    tamilName: 'ருத்ரா குமரி தைலம்',
+    name: 'Kumari Thailam',
+    tamilName: 'குமரி தைலம்',
     slug: 'ruthra-kumari-thailam',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9242,8 +9242,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-107',
-    name: 'Ruthra Meni Thilam',
-    tamilName: 'ருத்ரா மேனி தைலம்',
+    name: 'Meni Thilam',
+    tamilName: 'மேனி தைலம்',
     slug: 'ruthra-meni-thilam',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9322,8 +9322,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-108',
-    name: 'Ruthra Merugulli Thailam',
-    tamilName: 'ருத்ரா மெழுகுள்ளி தைலம்',
+    name: 'Merugulli Thailam',
+    tamilName: 'மெழுகுள்ளி தைலம்',
     slug: 'ruthra-merugulli-thailam',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9402,8 +9402,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-109',
-    name: 'Ruthra Veezhi Ennai',
-    tamilName: 'ருத்ரா வீழி எண்ணெய்',
+    name: 'Veezhi Ennai',
+    tamilName: 'வீழி எண்ணெய்',
     slug: 'ruthra-veezhi-ennai',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9482,8 +9482,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-110',
-    name: 'Ruthra Vizhuthi Ennai',
-    tamilName: 'ருத்ரா விழுதி எண்ணெய்',
+    name: 'Vizhuthi Ennai',
+    tamilName: 'விழுதி எண்ணெய்',
     slug: 'ruthra-vizhuthi-ennai',
     medicalSystem: 'siddha',
     formulation: 'Thailam',
@@ -9562,8 +9562,8 @@ export const PRODUCTS: Product[] = [
 
 {
     id: 'prod-siddha-111',
-    name: 'Ruthra Vanga Vennai',
-    tamilName: 'ருத்ரா வங்க வெண்ணெய்',
+    name: 'Vanga Vennai',
+    tamilName: 'வங்க வெண்ணெய்',
     slug: 'ruthra-vanga-vennai',
     medicalSystem: 'siddha',
     formulation: 'Vennai',
@@ -9645,8 +9645,8 @@ export const PRODUCTS: Product[] = [
   // ==========================================
   {
     id: 'prod-ayurveda-001',
-    name: 'Ruthra Amalaki Churna',
-    tamilName: 'ருத்ரா நெல்லி சூர்ணம்',
+    name: 'Amalaki Churna',
+    tamilName: 'நெல்லி சூர்ணம்',
     slug: 'ruthra-amalaki-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -9707,8 +9707,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-002',
-    name: 'Ruthra Arjuna Churna',
-    tamilName: 'ருத்ரா அர்ஜுன சூர்ணம் (மருதம்பட்டை)',
+    name: 'Arjuna Churna',
+    tamilName: 'அர்ஜுன சூர்ணம் (மருதம்பட்டை)',
     slug: 'ruthra-arjuna-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -9769,8 +9769,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-003',
-    name: 'Ruthra Asvagandha Churna',
-    tamilName: 'ருத்ரா அஸ்வகந்தா சூர்ணம் (அமுக்கரா)',
+    name: 'Asvagandha Churna',
+    tamilName: 'அஸ்வகந்தா சூர்ணம் (அமுக்கரா)',
     slug: 'ruthra-asvagandha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -9831,8 +9831,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-004',
-    name: 'Ruthra Atmagupta Churna',
-    tamilName: 'ருத்ரா ஆத்மகுப்தா சூர்ணம் (பூனைக்காலி)',
+    name: 'Atmagupta Churna',
+    tamilName: 'ஆத்மகுப்தா சூர்ணம் (பூனைக்காலி)',
     slug: 'ruthra-atmagupta-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -9893,8 +9893,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-005',
-    name: 'Ruthra Avipattikara Churna',
-    tamilName: 'ருத்ரா அவிபத்திகர சூர்ணம்',
+    name: 'Avipattikara Churna',
+    tamilName: 'அவிபத்திகர சூர்ணம்',
     slug: 'ruthra-avipattikara-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -9957,8 +9957,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-006',
-    name: 'Ruthra Baskara Lavana Churna',
-    tamilName: 'ருத்ரா பாஸ்கர லவண சூர்ணம்',
+    name: 'Baskara Lavana Churna',
+    tamilName: 'பாஸ்கர லவண சூர்ணம்',
     slug: 'ruthra-baskara-lavana-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10020,8 +10020,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-007',
-    name: 'Ruthra Dadimastaka Churna',
-    tamilName: 'ருத்ரா தாடிமாஷ்டக சூர்ணம் (மாதுளை கூட்டு)',
+    name: 'Dadimastaka Churna',
+    tamilName: 'தாடிமாஷ்டக சூர்ணம் (மாதுளை கூட்டு)',
     slug: 'ruthra-dadimastaka-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10082,8 +10082,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-008',
-    name: 'Ruthra Jatamayadi Churna',
-    tamilName: 'ருத்ரா ஜடாமயாதி சூர்ணம்',
+    name: 'Jatamayadi Churna',
+    tamilName: 'ஜடாமயாதி சூர்ணம்',
     slug: 'ruthra-jatamayadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10144,8 +10144,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-009',
-    name: 'Ruthra Jatiphaladya Churna',
-    tamilName: 'ருத்ரா ஜாதிபலாத்யா சூர்ணம் (ஜாதிக்காய் கூட்டு)',
+    name: 'Jatiphaladya Churna',
+    tamilName: 'ஜாதிபலாத்யா சூர்ணம் (ஜாதிக்காய் கூட்டு)',
     slug: 'ruthra-jatiphaladya-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10206,8 +10206,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-010',
-    name: 'Ruthra Kolakulathadi Churna',
-    tamilName: 'ருத்ரா கோலகுலத்தாதி சூர்ணம்',
+    name: 'Kolakulathadi Churna',
+    tamilName: 'கோலகுலத்தாதி சூர்ணம்',
     slug: 'ruthra-kolakulathadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10268,8 +10268,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-011',
-    name: 'Ruthra Kottamcukkadi Churna',
-    tamilName: 'ருத்ரா கோட்டஞ்சுக்காதி சூர்ணம்',
+    name: 'Kottamcukkadi Churna',
+    tamilName: 'கோட்டஞ்சுக்காதி சூர்ணம்',
     slug: 'ruthra-kottamcukkadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10330,8 +10330,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-012',
-    name: 'Ruthra Madhusnuhi Churna',
-    tamilName: 'ருத்ரா மதுஸ்னுஹி சூர்ணம் (பறங்கிப்பட்டை)',
+    name: 'Madhusnuhi Churna',
+    tamilName: 'மதுஸ்னுஹி சூர்ணம் (பறங்கிப்பட்டை)',
     slug: 'ruthra-madhusnuhi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10392,8 +10392,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-013',
-    name: 'Ruthra Mandukaparni Churna',
-    tamilName: 'ருத்ரா மண்டூகபர்ணி சூர்ணம் (வல்லாரை)',
+    name: 'Mandukaparni Churna',
+    tamilName: 'மண்டூகபர்ணி சூர்ணம் (வல்லாரை)',
     slug: 'ruthra-mandukaparni-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10454,8 +10454,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-014',
-    name: 'Ruthra Mesasrngi Churna',
-    tamilName: 'ருத்ரா மேஷசிருங்கி சூர்ணம் (சிறுகுறிஞ்சான்)',
+    name: 'Mesasrngi Churna',
+    tamilName: 'மேஷசிருங்கி சூர்ணம் (சிறுகுறிஞ்சான்)',
     slug: 'ruthra-mesasrngi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10516,8 +10516,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-015',
-    name: 'Ruthra Navayasa Churna',
-    tamilName: 'ருத்ரா நவயாஸ சூர்ணம்',
+    name: 'Navayasa Churna',
+    tamilName: 'நவயாஸ சூர்ணம்',
     slug: 'ruthra-navayasa-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10578,8 +10578,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-016',
-    name: 'Ruthra Nimbadi Churna',
-    tamilName: 'ருத்ரா நிம்பாதி சூர்ணம்',
+    name: 'Nimbadi Churna',
+    tamilName: 'நிம்பாதி சூர்ணம்',
     slug: 'ruthra-nimbadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10640,8 +10640,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-017',
-    name: 'Ruthra Nimbapatra Churna',
-    tamilName: 'ருத்ரா நிம்பபத்ர சூர்ணம் (வேப்பிலை)',
+    name: 'Nimbapatra Churna',
+    tamilName: 'நிம்பபத்ர சூர்ணம் (வேப்பிலை)',
     slug: 'ruthra-nimbapatra-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10702,8 +10702,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-018',
-    name: 'Ruthra Pusyanuga Churna',
-    tamilName: 'ருத்ரா புஷ்யானுக சூர்ணம்',
+    name: 'Pusyanuga Churna',
+    tamilName: 'புஷ்யானுக சூர்ணம்',
     slug: 'ruthra-pusyanuga-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10764,8 +10764,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-019',
-    name: 'Ruthra Rakta Punarnava Churna',
-    tamilName: 'ருத்ரா ரக்த புனர்நவா சூர்ணம் (சாரணை)',
+    name: 'Rakta Punarnava Churna',
+    tamilName: 'ரக்த புனர்நவா சூர்ணம் (சாரணை)',
     slug: 'ruthra-rakta-punarnava-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10826,8 +10826,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-020',
-    name: 'Ruthra Rasnadi Churna',
-    tamilName: 'ருத்ரா ராஸ்னாதி சூர்ணம்',
+    name: 'Rasnadi Churna',
+    tamilName: 'ராஸ்னாதி சூர்ணம்',
     slug: 'ruthra-rasnadi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10888,8 +10888,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-021',
-    name: 'Ruthra Sarasvata Churna',
-    tamilName: 'ருத்ரா சரஸ்வத சூர்ணம்',
+    name: 'Sarasvata Churna',
+    tamilName: 'சரஸ்வத சூர்ணம்',
     slug: 'ruthra-sarasvata-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -10950,8 +10950,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-022',
-    name: 'Ruthra Sarpagandha Churna',
-    tamilName: 'ருத்ரா சர்பகந்தா சூர்ணம் (சிவனமல்பொடி)',
+    name: 'Sarpagandha Churna',
+    tamilName: 'சர்பகந்தா சூர்ணம் (சிவனமல்பொடி)',
     slug: 'ruthra-sarpagandha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -11012,8 +11012,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-023',
-    name: 'Ruthra Sitopaladhi Churna',
-    tamilName: 'ருத்ரா சீதோபலாதி சூர்ணம்',
+    name: 'Sitopaladhi Churna',
+    tamilName: 'சீதோபலாதி சூர்ணம்',
     slug: 'ruthra-sitopaladhi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -11074,8 +11074,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-024',
-    name: 'Ruthra Tulasi Churna',
-    tamilName: 'ருத்ரா துளசி சூர்ணம்',
+    name: 'Tulasi Churna',
+    tamilName: 'துளசி சூர்ணம்',
     slug: 'ruthra-tulasi-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -11136,8 +11136,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-025',
-    name: 'Ruthra Yasti Churna',
-    tamilName: 'ருத்ரா யஷ்டி சூர்ணம் (அதிமதுரம்)',
+    name: 'Yasti Churna',
+    tamilName: 'யஷ்டி சூர்ணம் (அதிமதுரம்)',
     slug: 'ruthra-yasti-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Churna',
@@ -11198,8 +11198,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-026',
-    name: 'Ruthra Amruthotharam Kvatha Churna',
-    tamilName: 'ருத்ரா அம்ருதோத்தரம் க்வாத சூர்ணம்',
+    name: 'Amruthotharam Kvatha Churna',
+    tamilName: 'அம்ருதோத்தரம் க்வாத சூர்ணம்',
     slug: 'ruthra-amruthotharam-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11262,8 +11262,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-027',
-    name: 'Ruthra Astavarga Kvatha Churna',
-    tamilName: 'ருத்ரா அஷ்டவர்க்க க்வாத சூர்ணம்',
+    name: 'Astavarga Kvatha Churna',
+    tamilName: 'அஷ்டவர்க்க க்வாத சூர்ணம்',
     slug: 'ruthra-astavarga-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11324,8 +11324,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-028',
-    name: 'Ruthra Dasamula Kvatha Churna',
-    tamilName: 'ருத்ரா தசமூல க்வாத சூர்ணம்',
+    name: 'Dasamula Kvatha Churna',
+    tamilName: 'தசமூல க்வாத சூர்ணம்',
     slug: 'ruthra-dasamula-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11386,8 +11386,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-029',
-    name: 'Ruthra Dasamula Katutraya Kvatha Churna',
-    tamilName: 'ருத்ரா தசமூல கடுத்ரய க்வாத சூர்ணம்',
+    name: 'Dasamula Katutraya Kvatha Churna',
+    tamilName: 'தசமூல கடுத்ரய க்வாத சூர்ணம்',
     slug: 'ruthra-dasamula-katutraya-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11448,8 +11448,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-030',
-    name: 'Ruthra Draksadi Kvatha Churna',
-    tamilName: 'ருத்ரா திராக்ஷாதி க்வாத சூர்ணம்',
+    name: 'Draksadi Kvatha Churna',
+    tamilName: 'திராக்ஷாதி க்வாத சூர்ணம்',
     slug: 'ruthra-draksadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11510,8 +11510,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-031',
-    name: 'Ruthra Gandharvahasthadi Kvatha Churna',
-    tamilName: 'ருத்ரா கந்தர்வஹஸ்தாதி க்வாத சூர்ணம் (ஆமணக்கு வேர்)',
+    name: 'Gandharvahasthadi Kvatha Churna',
+    tamilName: 'கந்தர்வஹஸ்தாதி க்வாத சூர்ணம் (ஆமணக்கு வேர்)',
     slug: 'ruthra-gandharvahasthadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11572,8 +11572,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-032',
-    name: 'Ruthra Guduchyaadi Kvatha Churna',
-    tamilName: 'ருத்ரா குடூச்யாதி க்வாத சூர்ணம் (சீந்தில் கஷாயம்)',
+    name: 'Guduchyaadi Kvatha Churna',
+    tamilName: 'குடூச்யாதி க்வாத சூர்ணம் (சீந்தில் கஷாயம்)',
     slug: 'ruthra-guduchyaadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11634,8 +11634,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-033',
-    name: 'Ruthra Indukantham Kvathachurna',
-    tamilName: 'ருத்ரா இந்து காந்தம் க்வாத சூர்ணம்',
+    name: 'Indukantham Kvathachurna',
+    tamilName: 'இந்து காந்தம் க்வாத சூர்ணம்',
     slug: 'ruthra-indukantham-kvathachurna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11696,8 +11696,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-034',
-    name: 'Ruthra Maharasnadhi Kvathachurna',
-    tamilName: 'ருத்ரா மகாராஸ்னாதி க்வாத சூர்ணம்',
+    name: 'Maharasnadhi Kvathachurna',
+    tamilName: 'மகாராஸ்னாதி க்வாத சூர்ணம்',
     slug: 'ruthra-maharasnadhi-kvathachurna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11758,8 +11758,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-035',
-    name: 'Ruthra Manjstadhi Kvathachurna',
-    tamilName: 'ருத்ரா மஞ்சிஷ்டாதி க்வாத சூர்ணம்',
+    name: 'Manjstadhi Kvathachurna',
+    tamilName: 'மஞ்சிஷ்டாதி க்வாத சூர்ணம்',
     slug: 'ruthra-manjstadhi-kvathachurna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11820,8 +11820,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-036',
-    name: 'Ruthra Nayopayam Kvatha Churna',
-    tamilName: 'ருத்ரா நயோபாயம் க்வாத சூர்ணம்',
+    name: 'Nayopayam Kvatha Churna',
+    tamilName: 'நயோபாயம் க்வாத சூர்ணம்',
     slug: 'ruthra-nayopayam-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11882,8 +11882,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-037',
-    name: 'Ruthra Nimbadi Kvatha Churna',
-    tamilName: 'ருத்ரா நிம்பாதி க்வாத சூர்ணம் (வேம்பு கஷாயம்)',
+    name: 'Nimbadi Kvatha Churna',
+    tamilName: 'நிம்பாதி க்வாத சூர்ணம் (வேம்பு கஷாயம்)',
     slug: 'ruthra-nimbadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -11944,8 +11944,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-038',
-    name: 'Ruthra Nisakathakadi Kvatha Churna',
-    tamilName: 'ருத்ரா நிசாகதகாதி க்வாத சூர்ணம்',
+    name: 'Nisakathakadi Kvatha Churna',
+    tamilName: 'நிசாகதகாதி க்வாத சூர்ணம்',
     slug: 'ruthra-nisakathakadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12006,8 +12006,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-039',
-    name: 'Ruthra Panchatikta Kvatha Churna',
-    tamilName: 'ருத்ரா பஞ்சதிக்த க்வாத சூர்ணம்',
+    name: 'Panchatikta Kvatha Churna',
+    tamilName: 'பஞ்சதிக்த க்வாத சூர்ணம்',
     slug: 'ruthra-panchatikta-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12068,8 +12068,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-040',
-    name: 'Ruthra Prasaranyadi Kvatha Churna',
-    tamilName: 'ருத்ரா பிரசாரண்யாதி க்வாத சூர்ணம்',
+    name: 'Prasaranyadi Kvatha Churna',
+    tamilName: 'பிரசாரண்யாதி க்வாத சூர்ணம்',
     slug: 'ruthra-prasaranyadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12130,8 +12130,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-041',
-    name: 'Ruthra Punarnavadi Kvatha Churna',
-    tamilName: 'ருத்ரா புனர்நவாதி க்வாத சூர்ணம்',
+    name: 'Punarnavadi Kvatha Churna',
+    tamilName: 'புனர்நவாதி க்வாத சூர்ணம்',
     slug: 'ruthra-punarnavadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12192,8 +12192,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-042',
-    name: 'Ruthra Rasnadi Kvatha Churna',
-    tamilName: 'ருத்ரா ராஸ்னாதி க்வாத சூர்ணம்',
+    name: 'Rasnadi Kvatha Churna',
+    tamilName: 'ராஸ்னாதி க்வாத சூர்ணம்',
     slug: 'ruthra-rasnadi-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12254,8 +12254,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-043',
-    name: 'Ruthra Saptasara Kvatha Churna',
-    tamilName: 'ருத்ரா சப்தசார க்வாத சூர்ணம்',
+    name: 'Saptasara Kvatha Churna',
+    tamilName: 'சப்தசார க்வாத சூர்ணம்',
     slug: 'ruthra-saptasara-kvatha-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12316,8 +12316,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-044',
-    name: 'Ruthra Stanyasodhana Kasaya Churna',
-    tamilName: 'ருத்ரா ஸ்தன்யசோதன கஷாய சூர்ணம்',
+    name: 'Stanyasodhana Kasaya Churna',
+    tamilName: 'ஸ்தன்யசோதன கஷாய சூர்ணம்',
     slug: 'ruthra-stanyasodhana-kasaya-churna',
     medicalSystem: 'ayurveda',
     formulation: 'Kvatha Churna',
@@ -12378,8 +12378,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-045',
-    name: 'Ruthra Chyanaprasha Lehya',
-    tamilName: 'ருத்ரா சியவனபிராசம் லேகியம்',
+    name: 'Chyanaprasha Lehya',
+    tamilName: 'சியவனபிராசம் லேகியம்',
     slug: 'ruthra-chyanaprasha-lehya',
     medicalSystem: 'ayurveda',
     formulation: 'Lehya',
@@ -12440,8 +12440,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-046',
-    name: 'Ruthra Sukumara Rasayanam',
-    tamilName: 'ருத்ரா சுகுமார ரசாயனம்',
+    name: 'Sukumara Rasayanam',
+    tamilName: 'சுகுமார ரசாயனம்',
     slug: 'ruthra-sukumara-rasayanam',
     medicalSystem: 'ayurveda',
     formulation: 'Lehya',
@@ -12502,8 +12502,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-047',
-    name: 'Ruthra Panchatikta Ghrita',
-    tamilName: 'ருத்ரா பஞ்சதிக்த கிருதம் (நெய்)',
+    name: 'Panchatikta Ghrita',
+    tamilName: 'பஞ்சதிக்த கிருதம் (நெய்)',
     slug: 'ruthra-panchatikta-ghrita',
     medicalSystem: 'ayurveda',
     formulation: 'Ghrita',
@@ -12564,8 +12564,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-048',
-    name: 'Ruthra Arjunarishtam',
-    tamilName: 'ருத்ரா அர்ஜுனாரிஷ்டம் (பார்த்தாத்யாரிஷ்டம்)',
+    name: 'Arjunarishtam',
+    tamilName: 'அர்ஜுனாரிஷ்டம் (பார்த்தாத்யாரிஷ்டம்)',
     slug: 'ruthra-arjunarishtam',
     medicalSystem: 'ayurveda',
     formulation: 'Arishtam',
@@ -12627,8 +12627,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-049',
-    name: 'Ruthra Dasamoolarishtam',
-    tamilName: 'ருத்ரா தசமூலாரிஷ்டம்',
+    name: 'Dasamoolarishtam',
+    tamilName: 'தசமூலாரிஷ்டம்',
     slug: 'ruthra-dasamoolarishtam',
     medicalSystem: 'ayurveda',
     formulation: 'Arishtam',
@@ -12689,8 +12689,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-050',
-    name: 'Ruthra Khadirarishtam',
-    tamilName: 'ருத்ரா கதீராரிஷ்டம் (கருங்காலி அரிஷ்டம்)',
+    name: 'Khadirarishtam',
+    tamilName: 'கதீராரிஷ்டம் (கருங்காலி அரிஷ்டம்)',
     slug: 'ruthra-khadirarishtam',
     medicalSystem: 'ayurveda',
     formulation: 'Arishtam',
@@ -12751,8 +12751,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-051',
-    name: 'Ruthra Punarnavasam',
-    tamilName: 'ருத்ரா புனர்நவாஸம் (சாரணை ஆஸவம்)',
+    name: 'Punarnavasam',
+    tamilName: 'புனர்நவாஸம் (சாரணை ஆஸவம்)',
     slug: 'ruthra-punarnavasam',
     medicalSystem: 'ayurveda',
     formulation: 'Arishtam',
@@ -12813,8 +12813,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-052',
-    name: 'Ruthra Chandraprabavati',
-    tamilName: 'ருத்ரா சந்திரபிரபாவதி மாத்திரை',
+    name: 'Chandraprabavati',
+    tamilName: 'சந்திரபிரபாவதி மாத்திரை',
     slug: 'ruthra-chandraprabavati',
     medicalSystem: 'ayurveda',
     formulation: 'Guggulu',
@@ -12875,8 +12875,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-053',
-    name: 'Ruthra Kanchanara Guggulu',
-    tamilName: 'ருத்ரா காஞ்சனார குக்குலு',
+    name: 'Kanchanara Guggulu',
+    tamilName: 'காஞ்சனார குக்குலு',
     slug: 'ruthra-kanchanara-guggulu',
     medicalSystem: 'ayurveda',
     formulation: 'Guggulu',
@@ -12937,8 +12937,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-054',
-    name: 'Ruthra Mahayogaraja Guggulu',
-    tamilName: 'ருத்ரா மகாயோகராஜ குக்குலு',
+    name: 'Mahayogaraja Guggulu',
+    tamilName: 'மகாயோகராஜ குக்குலு',
     slug: 'ruthra-mahayogaraja-guggulu',
     medicalSystem: 'ayurveda',
     formulation: 'Guggulu',
@@ -12999,8 +12999,8 @@ export const PRODUCTS: Product[] = [
 
   {
     id: 'prod-ayurveda-055',
-    name: 'Ruthra Nalpamaradi Taila',
-    tamilName: 'ருத்ரா நால்பாமராதி தைலம்',
+    name: 'Nalpamaradi Taila',
+    tamilName: 'நால்பாமராதி தைலம்',
     slug: 'ruthra-nalpamaradi-taila',
     medicalSystem: 'ayurveda',
     formulation: 'Taila',

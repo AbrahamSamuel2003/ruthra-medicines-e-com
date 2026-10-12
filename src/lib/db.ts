@@ -39,10 +39,12 @@ const inMemoryCustomers = globalForApp.__inMemoryCustomers;
 const inMemoryProducts = globalForApp.__inMemoryProducts;
 
 function mapPrismaProductToApp(p: any): Product {
+  const cleanName = p.name ? p.name.replace(/^Ruthra('s)?\s+/i, '').trim() : '';
+  const cleanTamilName = p.tamilName ? p.tamilName.replace(/^ருத்ரா(?:வின்)?\s+/, '').trim() : '';
   return {
     id: p.id,
-    name: p.name,
-    tamilName: p.tamilName,
+    name: cleanName || p.name,
+    tamilName: cleanTamilName || p.tamilName,
     slug: p.slug,
     medicalSystem: (p.medicalSystem ? p.medicalSystem.toLowerCase() : 'siddha') as MedicalSystem,
     formulation: p.formulation,
