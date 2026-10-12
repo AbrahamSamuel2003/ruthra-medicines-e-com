@@ -57,7 +57,7 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(223, 179, 108); // #DFB36C Accent Gold
-  doc.text('SIDDHA & AYURVEDA PHARMACOPEIA', margin + 6, y + 14);
+  doc.text('Siddha and Ayurveda Medicines Manufacturer', margin + 6, y + 14);
 
   doc.setFontSize(7);
   doc.setTextColor(220, 235, 228);
