@@ -73,6 +73,7 @@ export default function AdminProductsPage() {
   const [search, setSearch] = useState('');
   const [medicalSystemFilter, setMedicalSystemFilter] = useState<'ALL' | 'SIDDHA' | 'AYURVEDA' | 'PROPRIETARY'>('ALL');
   const [selectedFormulation, setSelectedFormulation] = useState('ALL');
+  const [catalogStatusFilter, setCatalogStatusFilter] = useState<'ALL' | 'LIVE' | 'COMING_SOON'>('ALL');
   const [viewMode, setViewMode] = useState<'grouped' | 'table'>('table');
   const [isUpdating, setIsUpdating] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -435,17 +436,32 @@ export default function AdminProductsPage() {
     }
   };
 
-  // System Counts
+  // System & Catalog Status Counts
   const counts = useMemo(() => {
-    const siddha = products.filter(p => p.medicalSystem === 'siddha').length;
-    const ayurveda = products.filter(p => p.medicalSystem === 'ayurveda').length;
-    const prop = products.filter(p => p.medicalSystem === 'proprietary').length;
-    return { all: products.length, siddha, ayurveda, prop };
-  }, [products]);
+    const live = products.filter(p => !p.isComingSoon && p.inStock).length;
+    const comingSoon = products.filter(p => p.isComingSoon || !p.inStock).length;
+
+    let baseProducts = products;
+    if (catalogStatusFilter === 'LIVE') {
+      baseProducts = products.filter(p => !p.isComingSoon && p.inStock);
+    } else if (catalogStatusFilter === 'COMING_SOON') {
+      baseProducts = products.filter(p => p.isComingSoon || !p.inStock);
+    }
+
+    const siddha = baseProducts.filter(p => p.medicalSystem === 'siddha').length;
+    const ayurveda = baseProducts.filter(p => p.medicalSystem === 'ayurveda').length;
+    const prop = baseProducts.filter(p => p.medicalSystem === 'proprietary').length;
+    return { all: baseProducts.length, totalCatalog: products.length, siddha, ayurveda, prop, live, comingSoon };
+  }, [products, catalogStatusFilter]);
 
   // Formulations list with real counts
   const formulations = useMemo(() => {
     let list = products;
+    if (catalogStatusFilter === 'LIVE') {
+      list = list.filter(p => !p.isComingSoon && p.inStock);
+    } else if (catalogStatusFilter === 'COMING_SOON') {
+      list = list.filter(p => p.isComingSoon || !p.inStock);
+    }
     if (medicalSystemFilter !== 'ALL') {
       list = list.filter(p => (p.medicalSystem || 'siddha').toUpperCase() === medicalSystemFilter);
     }
@@ -456,22 +472,27 @@ export default function AdminProductsPage() {
 
     const arr = Array.from(map.entries()).map(([form, count]) => ({ form, count }));
     return [{ form: 'ALL', count: list.length }, ...arr];
-  }, [products, medicalSystemFilter]);
+  }, [products, medicalSystemFilter, catalogStatusFilter]);
 
   // Filtered products
   const filteredProducts = useMemo(() => {
     return products.filter(p => {
       const matchSys = medicalSystemFilter === 'ALL' || (p.medicalSystem || 'siddha').toUpperCase() === medicalSystemFilter;
       const matchForm = selectedFormulation === 'ALL' || p.formulation === selectedFormulation;
+      const isLive = !p.isComingSoon && p.inStock;
+      const matchStatus = 
+        catalogStatusFilter === 'ALL' ||
+        (catalogStatusFilter === 'LIVE' && isLive) ||
+        (catalogStatusFilter === 'COMING_SOON' && !isLive);
       const q = search.toLowerCase().trim();
       const matchQuery = !q || 
         p.name.toLowerCase().includes(q) ||
         p.tamilName.includes(q) ||
         p.id.toLowerCase().includes(q) ||
         p.slug.toLowerCase().includes(q);
-      return matchSys && matchForm && matchQuery;
+      return matchSys && matchForm && matchStatus && matchQuery;
     });
-  }, [products, medicalSystemFilter, selectedFormulation, search]);
+  }, [products, medicalSystemFilter, selectedFormulation, catalogStatusFilter, search]);
 
   // Grouped products by formulation
   const groupedProducts = useMemo(() => {
@@ -532,6 +553,64 @@ export default function AdminProductsPage() {
 
       {/* COMPACT ALL-IN-ONE CONTROL CENTER FOR MEDICAL SYSTEMS & FILTERS */}
       <div className="bg-white p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-[#16382B]/10 shadow-sm space-y-3">
+        {/* 0. LIVE PRODUCTS VS COMING SOON CATALOG FILTER BAR */}
+        <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[#16382B]/10 flex-wrap">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-[11px] font-bold text-[#5C7368] uppercase tracking-wider mr-1 hidden sm:inline-flex items-center gap-1">
+              <Layers className="w-3.5 h-3.5 text-[#C29043]" />
+              Store Status:
+            </span>
+            {[
+              { key: 'ALL', label: 'All Catalog', count: counts.totalCatalog },
+              { key: 'LIVE', label: 'Live Products', count: counts.live },
+              { key: 'COMING_SOON', label: 'Coming Soon', count: counts.comingSoon },
+            ].map(statusTab => (
+              <button
+                key={statusTab.key}
+                type="button"
+                onClick={() => {
+                  setCatalogStatusFilter(statusTab.key as any);
+                  setSelectedFormulation('ALL');
+                }}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  catalogStatusFilter === statusTab.key
+                    ? statusTab.key === 'LIVE'
+                      ? 'bg-emerald-800 text-white shadow-xs ring-1 ring-emerald-500'
+                      : statusTab.key === 'COMING_SOON'
+                      ? 'bg-amber-800 text-white shadow-xs ring-1 ring-amber-500'
+                      : 'bg-[#16382B] text-white shadow-xs'
+                    : 'bg-[#FAF8F5] text-[#5C7368] hover:text-[#16382B] hover:bg-white border border-[#16382B]/10'
+                }`}
+              >
+                <span>{statusTab.label}</span>
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
+                  catalogStatusFilter === statusTab.key
+                    ? 'bg-white/20 text-white font-bold'
+                    : 'bg-white text-[#16382B] border border-[#16382B]/10'
+                }`}>
+                  {statusTab.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Quick Info text */}
+          <div className="text-[11px] text-[#8A9B93] hidden md:flex items-center gap-1">
+            {catalogStatusFilter === 'LIVE' && (
+              <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                Showing {counts.live} live in-stock products active on storefront
+              </span>
+            )}
+            {catalogStatusFilter === 'COMING_SOON' && (
+              <span className="text-amber-700 font-semibold flex items-center gap-1">
+                <Clock className="w-3.5 h-3.5 text-amber-600" />
+                Showing {counts.comingSoon} unreleased products marked Coming Soon
+              </span>
+            )}
+          </div>
+        </div>
+
         {/* 1. MEDICAL SYSTEM SELECTOR: COMPACT 4-GRID ON MOBILE, PILLS ON DESKTOP */}
         <div>
           {/* Mobile 4-Column Segmented Control (Zero Scroll, 100% Selectable) */}
@@ -690,13 +769,14 @@ export default function AdminProductsPage() {
             <span>
               Showing <strong>{filteredProducts.length}</strong> of {counts.all} formulations
             </span>
-            {(selectedFormulation !== 'ALL' || search || medicalSystemFilter !== 'ALL') && (
+            {(selectedFormulation !== 'ALL' || search || medicalSystemFilter !== 'ALL' || catalogStatusFilter !== 'ALL') && (
               <button
                 type="button"
                 onClick={() => {
                   setSelectedFormulation('ALL');
                   setSearch('');
                   setMedicalSystemFilter('ALL');
+                  setCatalogStatusFilter('ALL');
                 }}
                 className="text-[#C29043] font-bold hover:underline cursor-pointer flex items-center gap-1"
               >

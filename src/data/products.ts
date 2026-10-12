@@ -14,10 +14,10 @@ export const PRODUCTS: Product[] = [
     formulation: 'Chooranam',
     formulationTa: 'சூரணம்',
     concerns: ['metabolic-wellness', 'digestive-wellness'],
-    price: 240,
-    originalPrice: 280,
-    packSize: '100g',
-    packSizeTa: '100 கிராம்',
+    price: 338,
+    originalPrice: 375,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Specially crafted proprietary botanical blend supporting natural glycemic balance, healthy digestion, and metabolic vitality.',
     shortDescriptionTa: 'இயற்கையான சர்க்கரை சமநிலை, செரிமான ஆற்றல் மற்றும் உடல் புத்துணர்ச்சியை ஆதரிக்கும் சிறப்பு மூலிகைப் பொடி.',
     description: 'Ruthra Madhura Powder is an authentic proprietary formulation combining Syzygium cumini (Jamun), Gymnema sylvestre (Meshashringi), Momordica charantia (Karela), and Vijaysar. It aids in optimizing healthy carbohydrate metabolism, maintaining healthy blood sugar levels, and revitalizing pancreatic functions.',
@@ -65,6 +65,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['madhura powder', 'glycemic care', 'diabetes support', 'sugar care'],
     tamilKeywords: ['மதுரா பவுடர்', 'சர்க்கரை நோய்', 'நாவல் விதை பொடி'],
+    isComingSoon: false,
     inStock: true,
     featured: false
   },
@@ -129,7 +130,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['navara tablet', 'stamina', 'vitality', 'nerve tonic', 'strength'],
     tamilKeywords: ['நவரா மாத்திரை', 'உடல் பலம்', 'நரம்பு தளர்ச்சி மாத்திரை'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -142,8 +144,8 @@ export const PRODUCTS: Product[] = [
     formulation: 'Syrups',
     formulationTa: 'சிரப்',
     concerns: ['respiratory'],
-    price: 96,
-    originalPrice: 110,
+    price: 86,
+    originalPrice: 96,
     packSize: '100ml',
     packSizeTa: '100 மி.லி',
     shortDescription: '100% Non-drowsy herbal cough elixir for common cold, dry, wet, and allergic cough, chest congestion, bronchitis, and throat irritation.',
@@ -212,6 +214,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['sinocof', 'cough syrup', 'cold', 'cough', 'asthma', 'bronchitis', 'non-drowsy', 'adathodai', 'thulasi'],
     tamilKeywords: ['சினோகாஃப்', 'இருமல் சிரப்', 'சளி', 'இருமல்', 'ஆஸ்துமா', 'ஆடாதோடை', 'துளசி'],
+    isComingSoon: false,
     inStock: true,
     featured: true
   },
@@ -225,8 +228,8 @@ export const PRODUCTS: Product[] = [
     formulation: 'Drops',
     formulationTa: 'சொட்டு மருந்து',
     concerns: ['respiratory'],
-    price: 198,
-    originalPrice: 220,
+    price: 178,
+    originalPrice: 198,
     packSize: '50ml',
     packSizeTa: '50 மி.லி',
     shortDescription: 'High-potency aromatic steam inhalation drops & chest rub for instant relief from blocked nose, sinus congestion, wheezing, and asthma.',
@@ -295,6 +298,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['esy-swas', 'drops', 'steam inhalation', 'asthma', 'wheezing', 'copd', 'blocked nose', 'sinusitis'],
     tamilKeywords: ['ஈஸி-ஸ்வாஸ்', 'சொட்டு மருந்து', 'ஆவி பிடித்தல்', 'ஆஸ்துமா', 'வீசிங்', 'மூக்கடைப்பு', 'சைனஸ்'],
+    isComingSoon: false,
     inStock: true,
     featured: true
   },
@@ -308,8 +312,8 @@ export const PRODUCTS: Product[] = [
     formulation: 'Thailam',
     formulationTa: 'தைலம்',
     concerns: ['skin-hair'],
-    price: 210,
-    originalPrice: 240,
+    price: 189,
+    originalPrice: 210,
     packSize: '100ml',
     packSizeTa: '100 மி.லி',
     shortDescription: 'Clinically esteemed topical wound healing oil for venous ulcers, diabetic non-healing ulcers, cuts, bedsores, bruises, trauma wounds, and lacerations.',
@@ -378,6 +382,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ulcera oil', 'wound healer', 'diabetic ulcer', 'venous ulcer', 'bedsores', 'cuts', 'healing oil'],
     tamilKeywords: ['அல்சரா', 'புண் ஆற்று தைலம்', 'சர்க்கரை புண்', 'படுக்கை புண்', 'காயம்', 'வெட்டுக்காயம்'],
+    isComingSoon: false,
     inStock: true,
     featured: true
   },
@@ -391,8 +396,8 @@ export const PRODUCTS: Product[] = [
     formulation: 'Thailam',
     formulationTa: 'தைலம்',
     concerns: ['joint-mobility'],
-    price: 200,
-    originalPrice: 230,
+    price: 180,
+    originalPrice: 200,
     packSize: '100ml',
     packSizeTa: '100 மி.லி',
     shortDescription: 'Fast-penetrating classical botanical massage oil for rapid relief from neck, shoulder, knee, heel, and lower back pain, muscle spasms, and sprains.',
@@ -462,6 +467,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['rej-viyan', 'pain oil', 'thailam', 'knee pain', 'back pain', 'joint pain', 'muscle spasm', 'sprain'],
     tamilKeywords: ['ரெஜ்-வியான்', 'வலி தைலம்', 'மூட்டு வலி', 'இடுப்பு வலி', 'சுளுக்கு', 'கழுத்து வலி'],
+    isComingSoon: false,
     inStock: true,
     featured: true
   },
@@ -475,8 +481,8 @@ export const PRODUCTS: Product[] = [
     formulation: 'Thailam',
     formulationTa: 'தைலம்',
     concerns: ['skin-hair'],
-    price: 240,
-    originalPrice: 280,
+    price: 216,
+    originalPrice: 240,
     packSize: '100ml',
     packSizeTa: '100 மி.லி',
     shortDescription: 'Nutrient-rich traditional botanical hair oil that eradicates stubborn dandruff, controls severe hair fall, strengthens roots, and stimulates dense hair growth.',
@@ -546,6 +552,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['narshika', 'hair oil', 'hair fall', 'dandruff', 'bringaraja', 'amla', 'hair growth'],
     tamilKeywords: ['நார்ஷிகா', 'கூந்தல் தைலம்', 'முடி உதிர்வு', 'பொடுகு', 'கரிசலாங்கண்ணி', 'கூந்தல் வளர்ச்சி'],
+    isComingSoon: false,
     inStock: true,
     featured: true
   },
@@ -559,8 +566,8 @@ export const PRODUCTS: Product[] = [
     formulation: 'Syrup & Kashayam',
     formulationTa: 'திரவ கஷாயம்',
     concerns: ['respiratory'],
-    price: 240,
-    originalPrice: 280,
+    price: 216,
+    originalPrice: 240,
     packSize: '200ml',
     packSizeTa: '200 மி.லி',
     shortDescription: 'Potent liquid kashayam for all acute and infectious fevers, reducing pyrexia symptoms, body ache, eye burning, elevated WBC, and restoring low platelet counts.',
@@ -629,6 +636,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ramabana kashayam', 'fever', 'platelets', 'dengue', 'nilavembu', 'papaya leaf', 'viral fever'],
     tamilKeywords: ['ராமபாண கஷாயம்', 'காய்ச்சல்', 'பிளேட்லெட்', 'டெங்கு', 'நிலவேம்பு', 'பப்பாளி இலை'],
+    isComingSoon: false,
     inStock: true,
     featured: true
   },
@@ -642,10 +650,10 @@ export const PRODUCTS: Product[] = [
     formulation: 'Powder',
     formulationTa: 'பொடி',
     concerns: ['skin-hair'],
-    price: 180,
-    originalPrice: 220,
-    packSize: '100g',
-    packSizeTa: '100 கிராம்',
+    price: 108,
+    originalPrice: 120,
+    packSize: '75g',
+    packSizeTa: '75 கிராம்',
     shortDescription: 'Traditional therapeutic herbal bath powder for luminous skin complexion, cooling body comfort, and blemish-free skin.',
     shortDescriptionTa: 'இயற்கையான சருமப் பொலிவு, உடல் குளிர்ச்சி மற்றும் கரும்புள்ளிகளை நீக்கும் பாரம்பரிய மூலிகை நலங்கு மாவு குளியல் பொடி.',
     description: "Ruthra's Nalanguma Powder is an artisanal herbal bath formulation prepared with fragrant wild turmeric (Kasturi Manjal), Rose petals, Poolankilangu, Vetiver, and Green gram. It gently exfoliates dead cells, clears skin blemishes, regulates excess sebum, and leaves skin refreshed and naturally aromatic without chemical sulfates.",
@@ -691,6 +699,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['nalanguma powder', 'bath powder', 'herbal soap alternative', 'skin glowing powder', 'kasturi manjal bath'],
     tamilKeywords: ['நலங்கு மாவு பொடி', 'குளியல் பொடி', 'கஸ்தூரி மஞ்சள் குளியல் பொடி'],
+    isComingSoon: false,
     inStock: true,
     featured: false
   },
@@ -704,10 +713,10 @@ export const PRODUCTS: Product[] = [
     formulation: 'Powder',
     formulationTa: 'பொடி',
     concerns: ['skin-hair'],
-    price: 190,
-    originalPrice: 230,
-    packSize: '100g',
-    packSizeTa: '100 கிராம்',
+    price: 108,
+    originalPrice: 120,
+    packSize: '75g',
+    packSizeTa: '75 கிராம்',
     shortDescription: 'Pure botanical hair wash powder that promotes voluminous hair growth, stops hair fall, and eliminates dandruff naturally.',
     shortDescriptionTa: 'முடி உதிர்வை தடுத்து, பொடுகை போக்கி அடர்த்தியான கூந்தல் வளர்ச்சி தரும் தூய மூலிகை சிகைக்காய் பொடி.',
     description: "Ruthra's Shigakai Powder is traditionally compounded with premium Senegalia rugata (Shikakai), Sapindus mukorossi (Soapnut / Reetha), Hibiscus flower, Amla, and Fenugreek. It conditions hair strands, deep cleans scalp sebum, prevents premature graying, and enhances natural lustrous hair bounce without stripping natural essential oils.",
@@ -753,6 +762,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['shigakai powder', 'hair wash powder', 'herbal shampoo', 'anti-dandruff shikakai', 'ruthras shigakai'],
     tamilKeywords: ['சிகைக்காய் பொடி', 'தலைக்குளியல் பொடி', 'பொடுகு நீக்கும் சீயக்காய்'],
+    isComingSoon: false,
     inStock: true,
     featured: false
   },
@@ -770,10 +780,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["metabolic-wellness","womens-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 211,
+    originalPrice: 234,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Pacifies Pitta, relieves genito-urinary inflammation, leucorrhea, and peripheral burning sensation. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'பித்த சமநிலை, சிறுநீரக பாதை நோய்கள், வெள்ளைப்படுதல் மற்றும் உடல் எரிச்சலுக்கு பாரம்பரிய பயன்பாடு. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Amirtha Sanjeevi Chooranam (அமிர்த சஞ்சீவி சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -837,6 +847,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["amirtha sanjeevi chooranam","ruthra amirtha sanjeevi chooranam","chooranam","amirtha","sanjeevi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அமிர்த சஞ்சீவி சூரணம்","ருத்ரா அமிர்த சஞ்சீவி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -917,7 +928,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["amukkara chooranam","ruthra amukkara chooranam","chooranam","amukkara","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அமுக்கரா சூரணம்","ருத்ரா அமுக்கரா சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -997,7 +1009,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["amukkara kizhangu chooranam","ruthra amukkara kizhangu chooranam","chooranam","amukkara","kizhangu","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அமுக்கரா கிழங்கு சூரணம்","ருத்ரா அமுக்கரா கிழங்கு சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1077,7 +1090,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["athimathura chooranam","ruthra athimathura chooranam","chooranam","athimathura","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அதிமதுர சூரணம்","ருத்ரா அதிமதுர சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1157,7 +1171,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["attathi chooranam","ruthra attathi chooranam","chooranam","attathi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அட்டாதி சூரணம்","ருத்ரா அட்டாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1170,10 +1185,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["digestive-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 324,
+    originalPrice: 360,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Processed Chebulic Myrobalan formulation for gentle bowel cleansing, liver stimulation, and digestion. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'குடல் கழிவுகளை நீக்கி, மலக்கட்டு மற்றும் பித்த மந்தத்தை போக்கும் பாவனக்கடுக்காய். பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Bhavanakadukkai Chooranam (பாவனக்கடுக்காய் சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -1237,6 +1252,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["bhavanakadukkai chooranam","ruthra bhavanakadukkai chooranam","chooranam","bhavanakadukkai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பாவனக்கடுக்காய் சூரணம்","ருத்ரா பாவனக்கடுக்காய் சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -1250,10 +1266,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["womens-wellness","skin-hair"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 270,
+    originalPrice: 300,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Cooling formulation for internal heat dissipation, menstrual burning sensations, and skin radiance. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'உடல் உஷ்ணம் தணித்து, மாதவிடாய் உபாதைகள் மற்றும் முக வசீகரத்திற்கு உதவும் குளிர்ச்சி சூரணம். பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Chandragandhi Chooranam (சந்திரகாந்தி சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -1317,6 +1333,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["chandragandhi chooranam","ruthra chandragandhi chooranam","chooranam","chandragandhi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சந்திரகாந்தி சூரணம்","ருத்ரா சந்திரகாந்தி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -1397,7 +1414,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["chundaivatral chooranam","ruthra chundaivatral chooranam","chooranam","chundaivatral","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சுண்டைவற்றல் சூரணம்","ருத்ரா சுண்டைவற்றல் சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1477,7 +1495,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["drakshadhi chooranam","ruthra drakshadhi chooranam","chooranam","drakshadhi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["திராட்சாதி சூரணம்","ருத்ரா திராட்சாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1557,7 +1576,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["elathi chooranam","ruthra elathi chooranam","chooranam","elathi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["ஏலாதி சூரணம்","ருத்ரா ஏலாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1637,7 +1657,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["gunma uppu chooranam","ruthra gunma uppu chooranam","chooranam","gunma","uppu","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["குன்ம உப்பு சூரணம்","ருத்ரா குன்ம உப்பு சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1717,7 +1738,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["jeeraga chooranam","ruthra jeeraga chooranam","chooranam","jeeraga","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சீரக சூரணம்","ருத்ரா சீரக சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1797,7 +1819,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kaatukarunai chooranam","ruthra kaatukarunai chooranam","chooranam","kaatukarunai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["காட்டுக்கருணை சூரணம்","ருத்ரா காட்டுக்கருணை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1877,7 +1900,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kabangusa chooranam","ruthra kabangusa chooranam","chooranam","kabangusa","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கபாங்குச சூரணம்","ருத்ரா கபாங்குச சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -1890,10 +1914,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["skin-hair","metabolic-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 257,
+    originalPrice: 285,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Karanthai-based rasayana for purifying blood, treating skin allergies, and enhancing longevity. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'ரத்த சுத்தி, தோல் வியாதிகள், படை மற்றும் உடல் காயகற்பத்திற்கு பயன்படும் கரந்தை. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Karanthai Chooranam (கரந்தை சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -1957,6 +1981,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["karanthai chooranam","ruthra karanthai chooranam","chooranam","karanthai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கரந்தை சூரணம்","ருத்ரா கரந்தை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -2037,7 +2062,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kazharchi chooranam","ruthra kazharchi chooranam","chooranam","kazharchi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கழற்சி சூரணம்","ருத்ரா கழற்சி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2117,7 +2143,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kumatti chooranam","ruthra kumatti chooranam","chooranam","kumatti","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["குமட்டி சூரணம்","ருத்ரா குமட்டி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2197,7 +2224,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["lavangathi chooranam","ruthra lavangathi chooranam","chooranam","lavangathi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["லவங்காதி சூரணம்","ருத்ரா லவங்காதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2210,10 +2238,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["digestive-wellness","metabolic-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 224,
+    originalPrice: 249,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Sweet demulcent digestive for hyperacidity, peptic distress, burning chest, and emaciation. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'நெஞ்செரிச்சல், குடல் புண், பித்த எரிச்சல் மற்றும் உடல் மெலிவு போக்கும் மதுராதி. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Madhuradhi Chooranam (மதுராதி சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -2277,6 +2305,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["madhuradhi chooranam","ruthra madhuradhi chooranam","chooranam","madhuradhi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மதுராதி சூரணம்","ருத்ரா மதுராதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -2357,7 +2386,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["maruthampattai chooranam","ruthra maruthampattai chooranam","chooranam","maruthampattai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மருதம்பட்டை சூரணம்","ருத்ரா மருதம்பட்டை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2437,7 +2467,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["mayiliragathi chooranam","ruthra mayiliragathi chooranam","chooranam","mayiliragathi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மயிலிறகாதி சூரணம்","ருத்ரா மயிலிறகாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2450,10 +2481,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["metabolic-wellness","womens-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 162,
+    originalPrice: 180,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Classical formula for pacifying mega diseases, burning micturition, diabetic heat, and genital discharge. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'மேக நோய்கள், பிரமேகம், சிறுநீர் எரிச்சல், வெள்ளை ஒழுக்கு மற்றும் மேக உஷ்ணம் தணிக்கும். பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Megasanthi Chooranam (மேகசாந்தி சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -2517,6 +2548,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["megasanthi chooranam","ruthra megasanthi chooranam","chooranam","megasanthi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மேகசாந்தி சூரணம்","ருத்ரா மேகசாந்தி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -2597,7 +2629,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nelli chooranam","ruthra nelli chooranam","chooranam","nelli","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நெல்லி சூரணம்","ருத்ரா நெல்லி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2677,7 +2710,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nilavarai chooranam","ruthra nilavarai chooranam","chooranam","nilavarai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நிலாவரை சூரணம்","ருத்ரா நிலாவரை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2757,7 +2791,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["panchadeepakini chooranam","ruthra panchadeepakini chooranam","chooranam","panchadeepakini","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பஞ்சதீபாகினி சூரணம்","ருத்ரா பஞ்சதீபாகினி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2837,7 +2872,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["parangichakkai chooranam","ruthra parangichakkai chooranam","chooranam","parangichakkai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பறங்கிச்சக்கை சூரணம்","ருத்ரா பறங்கிச்சக்கை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2917,7 +2953,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["parangipattai chooranam","ruthra parangipattai chooranam","chooranam","parangipattai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பறங்கிப்பட்டை சூரணம்","ருத்ரா பறங்கிப்பட்டை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -2997,7 +3034,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["peisori chooranam","ruthra peisori chooranam","chooranam","peisori","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பேய்சொறி சூரணம்","ருத்ரா பேய்சொறி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3010,10 +3048,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["joint-mobility","digestive-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 284,
+    originalPrice: 315,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Cissus quadrangularis powder for accelerating bone healing, joint lubrication, and piles. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'எலும்பு முறிவு குணமாக, மூட்டு தேய்மானம், பசியின்மை மற்றும் மூல நோய்க்கு சிறந்த பிரண்டை. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Pirandai Chooranam (பிரண்டை சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -3077,6 +3115,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["pirandai chooranam","ruthra pirandai chooranam","chooranam","pirandai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பிரண்டை சூரணம்","ருத்ரா பிரண்டை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -3157,7 +3196,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["ponnavarai chooranam","ruthra ponnavarai chooranam","chooranam","ponnavarai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பொன்னாவரை சூரணம்","ருத்ரா பொன்னாவரை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3237,7 +3277,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["poonaikali vidhai chooranam","ruthra poonaikali vidhai chooranam","chooranam","poonaikali","vidhai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பூனைக்காலி விதை சூரணம்","ருத்ரா பூனைக்காலி விதை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3317,7 +3358,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["pungampoo chooranam","ruthra pungampoo chooranam","chooranam","pungampoo","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["புங்கம்பூ சூரணம்","ருத்ரா புங்கம்பூ சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3330,10 +3372,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["metabolic-wellness","digestive-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 208,
+    originalPrice: 231,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Panacea compound formula for restoring digestive equilibrium, general debility, and fever convalescence. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'உடல் அசதி, பொது பலவீனம், அஜீரணம் மற்றும் அனைத்து வகையான உடல் சோர்வை போக்கும் கூட்டு. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Sagalanoi Chooranam (சகலநோய் சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -3397,6 +3439,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sagalanoi chooranam","ruthra sagalanoi chooranam","chooranam","sagalanoi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சகலநோய் சூரணம்","ருத்ரா சகலநோய் சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -3410,10 +3453,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["joint-mobility"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 208,
+    originalPrice: 231,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Comprehensive Vatha pacifier for generalized body aches, rheumatoid arthritis, and muscular stiffness. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'சர்வாங்க வாதம், மூட்டு வீக்கம், உடல் குடைச்சல் மற்றும் தசை பிடிப்புகளுக்கு அருமருந்து. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Sarvangavatha Chooranam (சர்வாங்கவாத சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -3477,6 +3520,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sarvangavatha chooranam","ruthra sarvangavatha chooranam","chooranam","sarvangavatha","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சர்வாங்கவாத சூரணம்","ருத்ரா சர்வாங்கவாத சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -3557,7 +3601,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sirupeelai chooranam","ruthra sirupeelai chooranam","chooranam","sirupeelai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சிறுபீளை சூரணம்","ருத்ரா சிறுபீளை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3637,7 +3682,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sivathai chooranam","ruthra sivathai chooranam","chooranam","sivathai","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சிவத்தை சூரணம்","ருத்ரா சிவத்தை சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3650,10 +3696,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூரணம்',
     categoryGroup: 'chooranam',
     concerns: ["digestive-wellness"],
-    price: 130,
-    originalPrice: 150,
-    packSize: '50g',
-    packSizeTa: '50 கிராம்',
+    price: 248,
+    originalPrice: 276,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Gentle, spasm-free laxative formulation for seasonal gut evacuation and cooling internal heat. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
     shortDescriptionTa: 'வயிற்று வலி இல்லாத சுகமான மலக்கழிவு மற்றும் பித்த உஷ்ணம் தணிக்கும் இயற்கை பேதி மருந்து. பாரம்பரிய சித்த மருத்துவ நெறிமுறைகளின்படி தூய முறையில் தயாரிக்கப்பட்டது.',
     description: 'Ruthra Sugabethi Chooranam (சுகபேதி சூரணம்) is a classical Siddha formulation crafted by Ruthra Medicines under certified GMP standards in Tamil Nadu. Prepared using authentically sourced, wildcrafted botanicals and minerals purified through traditional Shodhana procedures.',
@@ -3717,6 +3763,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sugabethi chooranam","ruthra sugabethi chooranam","chooranam","sugabethi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சுகபேதி சூரணம்","ருத்ரா சுகபேதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -3797,7 +3844,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thaleesathi chooranam","ruthra thaleesathi chooranam","chooranam","thaleesathi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["தாளீசாதி சூரணம்","ருத்ரா தாளீசாதி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3877,7 +3925,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thayirchundi chooranam","ruthra thayirchundi chooranam","chooranam","thayirchundi","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["தயிர்ச்சுண்டி சூரணம்","ருத்ரா தயிர்ச்சுண்டி சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -3957,7 +4006,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thirikadugu chooranam","ruthra thirikadugu chooranam","chooranam","thirikadugu","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["திரிகடுக சூரணம்","ருத்ரா திரிகடுக சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4037,7 +4087,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thiripala chooranam","ruthra thiripala chooranam","chooranam","thiripala","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["திரிபலா சூரணம்","ருத்ரா திரிபலா சூரணம்","சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4117,7 +4168,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["adathodai kudineer chooranam","ruthra adathodai kudineer chooranam","kudineer chooranam","adathodai","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["ஆடாதோடை குடிநீர் சூரணம்","ருத்ரா ஆடாதோடை குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4197,7 +4249,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kabasura kudineer chooranam","ruthra kabasura kudineer chooranam","kudineer chooranam","kabasura","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கபசூர குடிநீர் சூரணம்","ருத்ரா கபசூர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4210,8 +4263,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["metabolic-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 180,
+    originalPrice: 200,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Specialized renal diuretic decoction for disintegrating and expelling urinary and bladder stones. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4277,6 +4330,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kalladaippu kudineer chooranam","ruthra kalladaippu kudineer chooranam","kudineer chooranam","kalladaippu","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கல்லடைப்பு குடிநீர் சூரணம்","ருத்ரா கல்லடைப்பு குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -4290,8 +4344,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["womens-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 189,
+    originalPrice: 210,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Uterine restorative decoction supporting female fertility, ovulatory health, and menstrual rhythm. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4357,6 +4411,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["malattukarpa kudineer chooranam","ruthra malattukarpa kudineer chooranam","kudineer chooranam","malattukarpa","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மலட்டுக்கற்ப குடிநீர் சூரணம்","ருத்ரா மலட்டுக்கற்ப குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -4370,8 +4425,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["metabolic-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 162,
+    originalPrice: 180,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Iron-synergistic botanical decoction for severe anemia, edema, swelling, and liver enlargement. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4437,6 +4492,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["mandurathi kudineer chooranam","ruthra mandurathi kudineer chooranam","kudineer chooranam","mandurathi","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மண்டூராதி குடிநீர் சூரணம்","ருத்ரா மண்டூராதி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -4450,8 +4506,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["metabolic-wellness","digestive-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 180,
+    originalPrice: 200,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Hepatoprotective decoction for infectious jaundice, elevated bilirubin, and sluggish liver function. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4517,6 +4573,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["manjal noi kudineer chooranam","ruthra manjal noi kudineer chooranam","kudineer chooranam","manjal","noi","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மஞ்சள் நோய் குடிநீர் சூரணம்","ருத்ரா மஞ்சள் நோய் குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -4597,7 +4654,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["naakupoochi kudineer chooranam","ruthra naakupoochi kudineer chooranam","kudineer chooranam","naakupoochi","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நாக்குப்பூச்சி குடிநீர் சூரணம்","ருத்ரா நாக்குப்பூச்சி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4677,7 +4735,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nannari kudineer chooranam","ruthra nannari kudineer chooranam","kudineer chooranam","nannari","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நன்னாரி குடிநீர் சூரணம்","ருத்ரா நன்னாரி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4757,7 +4816,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["neermulli kudineer chooranam","ruthra neermulli kudineer chooranam","kudineer chooranam","neermulli","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நீர்முள்ளி குடிநீர் சூரணம்","ருத்ரா நீர்முள்ளி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -4770,8 +4830,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["respiratory","metabolic-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 135,
+    originalPrice: 150,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Classical antipyretic 9-herb blend for dengue, chikungunya, intermittent fevers, and viral fatigue. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4837,6 +4897,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nilavembu kudineer chooranam","ruthra nilavembu kudineer chooranam","kudineer chooranam","nilavembu","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நிலவேம்பு குடிநீர் சூரணம்","ருத்ரா நிலவேம்பு குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -4850,8 +4911,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["respiratory","joint-mobility"],
-    price: 160,
-    originalPrice: 185,
+    price: 216,
+    originalPrice: 240,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Vitex negundo decoction for heavy sinus congestion, vatha headaches, and muscular soreness. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4917,6 +4978,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nochi kudineer chooranam","ruthra nochi kudineer chooranam","kudineer chooranam","nochi","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நொச்சி குடிநீர் சூரணம்","ருத்ரா நொச்சி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -4930,8 +4992,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["respiratory","metabolic-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 216,
+    originalPrice: 240,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Classical formulation for childhood chronic fevers, deep respiratory rattles, and indigestion. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -4997,6 +5059,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["pidangunari kudineer chooranam","ruthra pidangunari kudineer chooranam","kudineer chooranam","pidangunari","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பிடங்குநாரி குடிநீர் சூரணம்","ருத்ரா பிடங்குநாரி குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -5010,8 +5073,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["metabolic-wellness","digestive-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 146,
+    originalPrice: 162,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Targeted cooling decoction for bilious fevers, intense thirst, bitter mouth taste, and dizziness. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -5077,6 +5140,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["pithasura kudineer chooranam","ruthra pithasura kudineer chooranam","kudineer chooranam","pithasura","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பித்தசுர குடிநீர் சூரணம்","ருத்ரா பித்தசுர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -5157,7 +5221,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sarvasura kudineer chooranam","ruthra sarvasura kudineer chooranam","kudineer chooranam","sarvasura","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சர்வசுர குடிநீர் சூரணம்","ருத்ரா சர்வசுர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5170,8 +5235,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["womens-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 180,
+    originalPrice: 200,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Emmenagogue decoction for delayed periods, secondary amenorrhea, and menstrual blockages. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -5237,6 +5302,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["soodhagathai udaikum kudineer chooranam","ruthra soodhagathai udaikum kudineer chooranam","kudineer chooranam","soodhagathai","udaikum","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சூதகத்தை உடைக்கும் குடிநீர் சூரணம்","ருத்ரா சூதகத்தை உடைக்கும் குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -5250,8 +5316,8 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'குடிநீர் சூரணம்',
     categoryGroup: 'kudineer-chooranam',
     concerns: ["joint-mobility","metabolic-wellness"],
-    price: 160,
-    originalPrice: 185,
+    price: 216,
+    originalPrice: 240,
     packSize: '100g',
     packSizeTa: '100 கிராம்',
     shortDescription: 'Specific decoction for fevers accompanied by intense joint agony, shivering, and body stiffness. Prepared in strict adherence to classical Siddha Pharmacopoeia.',
@@ -5317,6 +5383,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["vatha sura kudineer chooranam","ruthra vatha sura kudineer chooranam","kudineer chooranam","vatha","sura","kudineer","chooranam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["வாத சுர குடிநீர் சூரணம்","ருத்ரா வாத சுர குடிநீர் சூரணம்","குடிநீர் சூரணம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
+    isComingSoon: false,
     inStock: true
   },
 
@@ -5397,7 +5464,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["oma kudineer","ruthra oma kudineer","kudineer","oma","kudineer","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["ஓம குடிநீர்","ருத்ரா ஓம குடிநீர்","குடிநீர்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5477,7 +5545,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nannar manapagu","ruthra nannar manapagu","manapagu","nannar","manapagu","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நன்னாரி மணப்பாகு","ருத்ரா நன்னாரி மணப்பாகு","மணப்பாகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5557,7 +5626,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thurinj manapagu","ruthra thurinj manapagu","manapagu","thurinj","manapagu","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["துரிஞ்சி மணப்பாகு","ருத்ரா துரிஞ்சி மணப்பாகு","மணப்பாகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5637,7 +5707,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["aswagandhi legiyam","ruthra aswagandhi legiyam","legiyam","aswagandhi","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அஸ்வகந்தி லேகியம்","ருத்ரா அஸ்வகந்தி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5717,7 +5788,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["inji legiyam","ruthra inji legiyam","legiyam","inji","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["இஞ்சி லேகியம்","ருத்ரா இஞ்சி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5797,7 +5869,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kandathri legiyam","ruthra kandathri legiyam","legiyam","kandathri","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கண்டங்கத்திரி லேகியம்","ருத்ரா கண்டங்கத்திரி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5877,7 +5950,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["karisalai legiyam","ruthra karisalai legiyam","legiyam","karisalai","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கரிசலாங்கண்ணி லேகியம்","ருத்ரா கரிசலாங்கண்ணி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -5957,7 +6031,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["karunai legiyam","ruthra karunai legiyam","legiyam","karunai","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கருணை லேகியம்","ருத்ரா கருணை லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6037,7 +6112,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["madhanasanjeevi legiyam","ruthra madhanasanjeevi legiyam","legiyam","madhanasanjeevi","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மதனசஞ்சீவி லேகியம்","ருத்ரா மதனசஞ்சீவி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6117,7 +6193,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["mudakathan legiyam","ruthra mudakathan legiyam","legiyam","mudakathan","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["முடக்கத்தான் லேகியம்","ருத்ரா முடக்கத்தான் லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6197,7 +6274,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["narasimma legiyam","ruthra narasimma legiyam","legiyam","narasimma","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நரசிம்ம லேகியம்","ருத்ரா நரசிம்ம லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6277,7 +6355,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["panchadeepakini legiyam","ruthra panchadeepakini legiyam","legiyam","panchadeepakini","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பஞ்சதீபாகினி லேகியம்","ருத்ரா பஞ்சதீபாகினி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6357,7 +6436,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["perumbadu legiyam","ruthra perumbadu legiyam","legiyam","perumbadu","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பெரும்பாடு லேகியம்","ருத்ரா பெரும்பாடு லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6437,7 +6517,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["vilvathi legiyam","ruthra vilvathi legiyam","legiyam","vilvathi","legiyam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["வில்வாதி லேகியம்","ருத்ரா வில்வாதி லேகியம்","லேகியம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6517,7 +6598,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["chithiramoolathi kuligai","ruthra chithiramoolathi kuligai","maathirai","chithiramoolathi","kuligai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சித்திரமூலாதி குளிகை","ருத்ரா சித்திரமூலாதி குளிகை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6597,7 +6679,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kalludaikudri mathirai","ruthra kalludaikudri mathirai","maathirai","kalludaikudri","mathirai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கல்லுடைக்குடி மாத்திரை","ருத்ரா கல்லுடைக்குடி மாத்திரை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6677,7 +6760,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["neerkovai mathirai","ruthra neerkovai mathirai","maathirai","neerkovai","mathirai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நீர்க்கோவை மாத்திரை","ருத்ரா நீர்க்கோவை மாத்திரை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6757,7 +6841,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["swasakudori mathirai","ruthra swasakudori mathirai","maathirai","swasakudori","mathirai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சுவாசகுடோரி மாத்திரை","ருத்ரா சுவாசகுடோரி மாத்திரை","மாத்திரை","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6837,7 +6922,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["gandhaga rasayanam","ruthra gandhaga rasayanam","rasayanam","gandhaga","rasayanam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கந்தக ரசாயனம்","ருத்ரா கந்தக ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6917,7 +7003,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kadhali rasayanam","ruthra kadhali rasayanam","rasayanam","kadhali","rasayanam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கதலி ரசாயனம்","ருத்ரா கதலி ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -6997,7 +7084,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["parangi rasayanam","ruthra parangi rasayanam","rasayanam","parangi","rasayanam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பறங்கி ரசாயனம்","ருத்ரா பறங்கி ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7077,7 +7165,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thippili rasayanam","ruthra thippili rasayanam","rasayanam","thippili","rasayanam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["திப்பிலி ரசாயனம்","ருத்ரா திப்பிலி ரசாயனம்","ரசாயனம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7157,7 +7246,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["imbooral vadagam","ruthra imbooral vadagam","vadagam","imbooral","vadagam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["இம்பூரல் வடகம்","ருத்ரா இம்பூரல் வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7237,7 +7327,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kadukkai vadagam","ruthra kadukkai vadagam","vadagam","kadukkai","vadagam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கடுக்காய் வடகம்","ருத்ரா கடுக்காய் வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7317,7 +7408,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["karuvepilai vadagam","ruthra karuvepilai vadagam","vadagam","karuvepilai","vadagam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கறிவேப்பிலை வடகம்","ருத்ரா கறிவேப்பிலை வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7397,7 +7489,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["thalisathy vadagam","ruthra thalisathy vadagam","vadagam","thalisathy","vadagam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["தாளீசாதி வடகம்","ருத்ரா தாளீசாதி வடகம்","வடகம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7477,7 +7570,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["aavarai nei","ruthra aavarai nei","nei","aavarai","nei","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["ஆவாரை நெய்","ருத்ரா ஆவாரை நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7557,7 +7651,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kalyanagritham","ruthra kalyanagritham","nei","kalyanagritham","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கல்யாண கிருதம்","ருத்ரா கல்யாண கிருதம்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7637,7 +7732,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["keezhanelli ghritham","ruthra keezhanelli ghritham","nei","keezhanelli","ghritham","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கீழாநெல்லி கிருதம்","ருத்ரா கீழாநெல்லி கிருதம்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7717,7 +7813,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["naaval nei","ruthra naaval nei","nei","naaval","nei","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நாவல் நெய்","ருத்ரா நாவல் நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7797,7 +7894,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["nilapanai nei","ruthra nilapanai nei","nei","nilapanai","nei","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நிலப்பனை நெய்","ருத்ரா நிலப்பனை நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7877,7 +7975,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["serankottai nei","ruthra serankottai nei","nei","serankottai","nei","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சேராங்கொட்டை நெய்","ருத்ரா சேராங்கொட்டை நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -7957,7 +8056,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["soodhaga sanni nei","ruthra soodhaga sanni nei","nei","soodhaga","sanni","nei","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சூதக சன்னி நெய்","ருத்ரா சூதக சன்னி நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8037,7 +8137,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["venpoosani nei","ruthra venpoosani nei","nei","venpoosani","nei","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["வெண்பூசணி நெய்","ருத்ரா வெண்பூசணி நெய்","நெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8117,7 +8218,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["ganthi mezhugu","ruthra ganthi mezhugu","mezhugu","ganthi","mezhugu","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["காந்தி மெழுகு","ருத்ரா காந்தி மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8197,7 +8299,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["gunmakudori mezhugu","ruthra gunmakudori mezhugu","mezhugu","gunmakudori","mezhugu","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["குன்மக்குடோரி மெழுகு","ருத்ரா குன்மக்குடோரி மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8277,7 +8380,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["malakkutara mezhugu","ruthra malakkutara mezhugu","mezhugu","malakkutara","mezhugu","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மலக்குடார மெழுகு","ருத்ரா மலக்குடார மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8357,7 +8461,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["rasagandhi mezhugu","ruthra rasagandhi mezhugu","mezhugu","rasagandhi","mezhugu","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["ரசகந்தி மெழுகு","ருத்ரா ரசகந்தி மெழுகு","மெழுகு","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8437,7 +8542,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["karasooda sathu parpam","ruthra karasooda sathu parpam","parpam","karasooda","sathu","parpam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["காரசூட சத்து பற்பம்","ருத்ரா காரசூட சத்து பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8517,7 +8623,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["karuvanga parpam","ruthra karuvanga parpam","parpam","karuvanga","parpam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கருவங்க பற்பம்","ருத்ரா கருவங்க பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8597,7 +8704,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["naga parpam","ruthra naga parpam","parpam","naga","parpam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["நாக பற்பம்","ருத்ரா நாக பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8677,7 +8785,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["panchalavana parpam","ruthra panchalavana parpam","parpam","panchalavana","parpam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["பஞ்சலவண பற்பம்","ருத்ரா பஞ்சலவண பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8757,7 +8866,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["sangu parpam","ruthra sangu parpam","parpam","sangu","parpam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சங்கு பற்பம்","ருத்ரா சங்கு பற்பம்","பற்பம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8837,7 +8947,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["oma theeneer","ruthra oma theeneer","theeneer","oma","theeneer","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["ஓம தீநீர்","ருத்ரா ஓம தீநீர்","தீநீர்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8917,7 +9028,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["amirthakumari thailam","ruthra amirthakumari thailam","thailam","amirthakumari","thailam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["அமிர்தகுமாரி தைலம்","ருத்ரா அமிர்தகுமாரி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -8997,7 +9109,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["citramutti madakku tailam","ruthra citramutti madakku tailam","thailam","citramutti","madakku","tailam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["சிற்றாமுட்டி மடக்கு தைலம்","ருத்ரா சிற்றாமுட்டி மடக்கு தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9077,7 +9190,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["garudankizhangu ennai","ruthra garudankizhangu ennai","thailam","garudankizhangu","ennai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["கருடன்கிழங்கு எண்ணெய்","ருத்ரா கருடன்கிழங்கு எண்ணெய்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9157,7 +9271,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kulirthamarai thailam","ruthra kulirthamarai thailam","thailam","kulirthamarai","thailam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["குளிர்தாமரை தைலம்","ருத்ரா குளிர்தாமரை தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9237,7 +9352,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["kumari thailam","ruthra kumari thailam","thailam","kumari","thailam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["குமரி தைலம்","ருத்ரா குமரி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9317,7 +9433,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["meni thilam","ruthra meni thilam","thailam","meni","thilam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மேனி தைலம்","ருத்ரா மேனி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9397,7 +9514,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["merugulli thailam","ruthra merugulli thailam","thailam","merugulli","thailam","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["மெழுகுள்ளி தைலம்","ருத்ரா மெழுகுள்ளி தைலம்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9477,7 +9595,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["veezhi ennai","ruthra veezhi ennai","thailam","veezhi","ennai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["வீழி எண்ணெய்","ருத்ரா வீழி எண்ணெய்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9557,7 +9676,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["vizhuthi ennai","ruthra vizhuthi ennai","thailam","vizhuthi","ennai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["விழுதி எண்ணெய்","ருத்ரா விழுதி எண்ணெய்","தைலம்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
 {
@@ -9637,7 +9757,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ["vanga vennai","ruthra vanga vennai","vennai","vanga","vennai","siddha medicine","classical formulation","ruthra medicines"],
     tamilKeywords: ["வங்க வெண்ணெய்","ருத்ரா வங்க வெண்ணெய்","வெண்ணெய்","சித்த மருந்து","பாரம்பரிய தயாரிப்பு"],
-    inStock: true
+    isComingSoon: true,
+    inStock: false
   },
 
   // ==========================================
@@ -9701,7 +9822,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra amalaki churna', 'ruthra-amalaki-churna', 'ayurveda churna', 'amalaki churna'],
     tamilKeywords: ['ருத்ரா நெல்லி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -9763,7 +9885,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra arjuna churna', 'ruthra-arjuna-churna', 'ayurveda churna', 'arjuna churna'],
     tamilKeywords: ['ருத்ரா அர்ஜுன சூர்ணம் (மருதம்பட்டை)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -9825,7 +9948,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra asvagandha churna', 'ruthra-asvagandha-churna', 'ayurveda churna', 'asvagandha churna'],
     tamilKeywords: ['ருத்ரா அஸ்வகந்தா சூர்ணம் (அமுக்கரா)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -9887,7 +10011,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra atmagupta churna', 'ruthra-atmagupta-churna', 'ayurveda churna', 'atmagupta churna'],
     tamilKeywords: ['ருத்ரா ஆத்மகுப்தா சூர்ணம் (பூனைக்காலி)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -9951,7 +10076,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra avipattikara churna', 'ruthra-avipattikara-churna', 'ayurveda churna', 'avipattikara churna'],
     tamilKeywords: ['ருத்ரா அவிபத்திகர சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10014,7 +10140,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra baskara lavana churna', 'ruthra-baskara-lavana-churna', 'ayurveda churna', 'baskara lavana churna'],
     tamilKeywords: ['ருத்ரா பாஸ்கர லவண சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10076,7 +10203,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra dadimastaka churna', 'ruthra-dadimastaka-churna', 'ayurveda churna', 'dadimastaka churna'],
     tamilKeywords: ['ருத்ரா தாடிமாஷ்டக சூர்ணம் (மாதுளை கூட்டு)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10138,7 +10266,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra jatamayadi churna', 'ruthra-jatamayadi-churna', 'ayurveda churna', 'jatamayadi churna'],
     tamilKeywords: ['ருத்ரா ஜடாமயாதி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10200,7 +10329,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra jatiphaladya churna', 'ruthra-jatiphaladya-churna', 'ayurveda churna', 'jatiphaladya churna'],
     tamilKeywords: ['ருத்ரா ஜாதிபலாத்யா சூர்ணம் (ஜாதிக்காய் கூட்டு)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10262,7 +10392,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra kolakulathadi churna', 'ruthra-kolakulathadi-churna', 'ayurveda churna', 'kolakulathadi churna'],
     tamilKeywords: ['ருத்ரா கோலகுலத்தாதி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10324,7 +10455,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra kottamcukkadi churna', 'ruthra-kottamcukkadi-churna', 'ayurveda churna', 'kottamcukkadi churna'],
     tamilKeywords: ['ருத்ரா கோட்டஞ்சுக்காதி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10386,7 +10518,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra madhusnuhi churna', 'ruthra-madhusnuhi-churna', 'ayurveda churna', 'madhusnuhi churna'],
     tamilKeywords: ['ருத்ரா மதுஸ்னுஹி சூர்ணம் (பறங்கிப்பட்டை)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10448,7 +10581,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra mandukaparni churna', 'ruthra-mandukaparni-churna', 'ayurveda churna', 'mandukaparni churna'],
     tamilKeywords: ['ருத்ரா மண்டூகபர்ணி சூர்ணம் (வல்லாரை)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10510,7 +10644,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra mesasrngi churna', 'ruthra-mesasrngi-churna', 'ayurveda churna', 'mesasrngi churna'],
     tamilKeywords: ['ருத்ரா மேஷசிருங்கி சூர்ணம் (சிறுகுறிஞ்சான்)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10572,7 +10707,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra navayasa churna', 'ruthra-navayasa-churna', 'ayurveda churna', 'navayasa churna'],
     tamilKeywords: ['ருத்ரா நவயாஸ சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10634,7 +10770,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra nimbadi churna', 'ruthra-nimbadi-churna', 'ayurveda churna', 'nimbadi churna'],
     tamilKeywords: ['ருத்ரா நிம்பாதி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10696,7 +10833,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra nimbapatra churna', 'ruthra-nimbapatra-churna', 'ayurveda churna', 'nimbapatra churna'],
     tamilKeywords: ['ருத்ரா நிம்பபத்ர சூர்ணம் (வேப்பிலை)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10758,7 +10896,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra pusyanuga churna', 'ruthra-pusyanuga-churna', 'ayurveda churna', 'pusyanuga churna'],
     tamilKeywords: ['ருத்ரா புஷ்யானுக சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10820,7 +10959,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra rakta punarnava churna', 'ruthra-rakta-punarnava-churna', 'ayurveda churna', 'rakta punarnava churna'],
     tamilKeywords: ['ருத்ரா ரக்த புனர்நவா சூர்ணம் (சாரணை)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10882,7 +11022,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra rasnadi churna', 'ruthra-rasnadi-churna', 'ayurveda churna', 'rasnadi churna'],
     tamilKeywords: ['ருத்ரா ராஸ்னாதி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -10944,7 +11085,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra sarasvata churna', 'ruthra-sarasvata-churna', 'ayurveda churna', 'sarasvata churna'],
     tamilKeywords: ['ருத்ரா சரஸ்வத சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11006,7 +11148,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra sarpagandha churna', 'ruthra-sarpagandha-churna', 'ayurveda churna', 'sarpagandha churna'],
     tamilKeywords: ['ருத்ரா சர்பகந்தா சூர்ணம் (சிவனமல்பொடி)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11020,10 +11163,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'சூர்ணம்',
     categoryGroup: 'churna',
     concerns: ['respiratory'],
-    price: 160,
-    originalPrice: 190,
-    packSize: '100g',
-    packSizeTa: '100 கிராம்',
+    price: 178,
+    originalPrice: 198,
+    packSize: '30 Sachets',
+    packSizeTa: '30 பாக்கெட்டுகள்',
     shortDescription: 'Famous sweet botanical blend for dry/wet cough, bronchial irritation, chest congestion, and debility.',
     shortDescriptionTa: 'இருமல், சளி, தொண்டை கரகரப்பு, மூச்சுக்குழாய் அழற்சி மற்றும் காய்ச்சல் பிந்தைய சோர்வை போக்கும் சீதோபலாதி சூர்ணம்.',
     description: 'Ruthra Sitopaladhi Churna blends sugar candy (Mishri), Vamshalochana (Bamboo silica), Pippali, Ela, and Tvak. Taken with raw honey and ghee, it coats raw bronchial airways and promotes rapid recovery.',
@@ -11068,6 +11211,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra sitopaladhi churna', 'ruthra-sitopaladhi-churna', 'ayurveda churna', 'sitopaladhi churna'],
     tamilKeywords: ['ருத்ரா சீதோபலாதி சூர்ணம்', 'சூர்ணம்'],
+    isComingSoon: false,
     inStock: true,
     featured: false
   },
@@ -11130,7 +11274,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra tulasi churna', 'ruthra-tulasi-churna', 'ayurveda churna', 'tulasi churna'],
     tamilKeywords: ['ருத்ரா துளசி சூர்ணம்', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11192,7 +11337,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra yasti churna', 'ruthra-yasti-churna', 'ayurveda churna', 'yasti churna'],
     tamilKeywords: ['ருத்ரா யஷ்டி சூர்ணம் (அதிமதுரம்)', 'சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11256,7 +11402,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra amruthotharam kvatha churna', 'ruthra-amruthotharam-kvatha-churna', 'ayurveda kvatha-churna', 'amruthotharam kvatha churna'],
     tamilKeywords: ['ருத்ரா அம்ருதோத்தரம் க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11318,7 +11465,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra astavarga kvatha churna', 'ruthra-astavarga-kvatha-churna', 'ayurveda kvatha-churna', 'astavarga kvatha churna'],
     tamilKeywords: ['ருத்ரா அஷ்டவர்க்க க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11380,7 +11528,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra dasamula kvatha churna', 'ruthra-dasamula-kvatha-churna', 'ayurveda kvatha-churna', 'dasamula kvatha churna'],
     tamilKeywords: ['ருத்ரா தசமூல க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11442,7 +11591,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra dasamula katutraya kvatha churna', 'ruthra-dasamula-katutraya-kvatha-churna', 'ayurveda kvatha-churna', 'dasamula katutraya kvatha churna'],
     tamilKeywords: ['ருத்ரா தசமூல கடுத்ரய க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11504,7 +11654,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra draksadi kvatha churna', 'ruthra-draksadi-kvatha-churna', 'ayurveda kvatha-churna', 'draksadi kvatha churna'],
     tamilKeywords: ['ருத்ரா திராக்ஷாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11566,7 +11717,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra gandharvahasthadi kvatha churna', 'ruthra-gandharvahasthadi-kvatha-churna', 'ayurveda kvatha-churna', 'gandharvahasthadi kvatha churna'],
     tamilKeywords: ['ருத்ரா கந்தர்வஹஸ்தாதி க்வாத சூர்ணம் (ஆமணக்கு வேர்)', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11628,7 +11780,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra guduchyaadi kvatha churna', 'ruthra-guduchyaadi-kvatha-churna', 'ayurveda kvatha-churna', 'guduchyaadi kvatha churna'],
     tamilKeywords: ['ருத்ரா குடூச்யாதி க்வாத சூர்ணம் (சீந்தில் கஷாயம்)', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11690,7 +11843,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra indukantham kvathachurna', 'ruthra-indukantham-kvathachurna', 'ayurveda kvatha-churna', 'indukantham kvathachurna'],
     tamilKeywords: ['ருத்ரா இந்து காந்தம் க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11752,7 +11906,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra maharasnadhi kvathachurna', 'ruthra-maharasnadhi-kvathachurna', 'ayurveda kvatha-churna', 'maharasnadhi kvathachurna'],
     tamilKeywords: ['ருத்ரா மகாராஸ்னாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11814,7 +11969,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra manjstadhi kvathachurna', 'ruthra-manjstadhi-kvathachurna', 'ayurveda kvatha-churna', 'manjstadhi kvathachurna'],
     tamilKeywords: ['ருத்ரா மஞ்சிஷ்டாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11876,7 +12032,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra nayopayam kvatha churna', 'ruthra-nayopayam-kvatha-churna', 'ayurveda kvatha-churna', 'nayopayam kvatha churna'],
     tamilKeywords: ['ருத்ரா நயோபாயம் க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -11938,7 +12095,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra nimbadi kvatha churna', 'ruthra-nimbadi-kvatha-churna', 'ayurveda kvatha-churna', 'nimbadi kvatha churna'],
     tamilKeywords: ['ருத்ரா நிம்பாதி க்வாத சூர்ணம் (வேம்பு கஷாயம்)', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12000,7 +12158,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra nisakathakadi kvatha churna', 'ruthra-nisakathakadi-kvatha-churna', 'ayurveda kvatha-churna', 'nisakathakadi kvatha churna'],
     tamilKeywords: ['ருத்ரா நிசாகதகாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12062,7 +12221,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra panchatikta kvatha churna', 'ruthra-panchatikta-kvatha-churna', 'ayurveda kvatha-churna', 'panchatikta kvatha churna'],
     tamilKeywords: ['ருத்ரா பஞ்சதிக்த க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12124,7 +12284,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra prasaranyadi kvatha churna', 'ruthra-prasaranyadi-kvatha-churna', 'ayurveda kvatha-churna', 'prasaranyadi kvatha churna'],
     tamilKeywords: ['ருத்ரா பிரசாரண்யாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12186,7 +12347,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra punarnavadi kvatha churna', 'ruthra-punarnavadi-kvatha-churna', 'ayurveda kvatha-churna', 'punarnavadi kvatha churna'],
     tamilKeywords: ['ருத்ரா புனர்நவாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12248,7 +12410,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra rasnadi kvatha churna', 'ruthra-rasnadi-kvatha-churna', 'ayurveda kvatha-churna', 'rasnadi kvatha churna'],
     tamilKeywords: ['ருத்ரா ராஸ்னாதி க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12310,7 +12473,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra saptasara kvatha churna', 'ruthra-saptasara-kvatha-churna', 'ayurveda kvatha-churna', 'saptasara kvatha churna'],
     tamilKeywords: ['ருத்ரா சப்தசார க்வாத சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12372,7 +12536,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra stanyasodhana kasaya churna', 'ruthra-stanyasodhana-kasaya-churna', 'ayurveda kvatha-churna', 'stanyasodhana kasaya churna'],
     tamilKeywords: ['ருத்ரா ஸ்தன்யசோதன கஷாய சூர்ணம்', 'க்வாத சூர்ணம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12434,7 +12599,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra chyanaprasha lehya', 'ruthra-chyanaprasha-lehya', 'ayurveda lehya', 'chyanaprasha lehya'],
     tamilKeywords: ['ருத்ரா சியவனபிராசம் லேகியம்', 'லேஹ்யம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12496,7 +12662,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra sukumara rasayanam', 'ruthra-sukumara-rasayanam', 'ayurveda lehya', 'sukumara rasayanam'],
     tamilKeywords: ['ருத்ரா சுகுமார ரசாயனம்', 'லேஹ்யம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12558,7 +12725,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra panchatikta ghrita', 'ruthra-panchatikta-ghrita', 'ayurveda ghrita', 'panchatikta ghrita'],
     tamilKeywords: ['ருத்ரா பஞ்சதிக்த கிருதம் (நெய்)', 'கிருதம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12621,7 +12789,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra arjunarishtam', 'ruthra-arjunarishtam', 'ayurveda arishtam', 'arjunarishtam'],
     tamilKeywords: ['ருத்ரா அர்ஜுனாரிஷ்டம் (பார்த்தாத்யாரிஷ்டம்)', 'அரிஷ்டம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12683,7 +12852,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra dasamoolarishtam', 'ruthra-dasamoolarishtam', 'ayurveda arishtam', 'dasamoolarishtam'],
     tamilKeywords: ['ருத்ரா தசமூலாரிஷ்டம்', 'அரிஷ்டம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12745,7 +12915,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra khadirarishtam', 'ruthra-khadirarishtam', 'ayurveda arishtam', 'khadirarishtam'],
     tamilKeywords: ['ருத்ரா கதீராரிஷ்டம் (கருங்காலி அரிஷ்டம்)', 'அரிஷ்டம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12807,7 +12978,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra punarnavasam', 'ruthra-punarnavasam', 'ayurveda arishtam', 'punarnavasam'],
     tamilKeywords: ['ருத்ரா புனர்நவாஸம் (சாரணை ஆஸவம்)', 'ஆஸவம்'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12869,7 +13041,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra chandraprabavati', 'ruthra-chandraprabavati', 'ayurveda guggulu', 'chandraprabavati'],
     tamilKeywords: ['ருத்ரா சந்திரபிரபாவதி மாத்திரை', 'குக்குலு / வடி'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12931,7 +13104,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra kanchanara guggulu', 'ruthra-kanchanara-guggulu', 'ayurveda guggulu', 'kanchanara guggulu'],
     tamilKeywords: ['ருத்ரா காஞ்சனார குக்குலு', 'குக்குலு'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -12993,7 +13167,8 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra mahayogaraja guggulu', 'ruthra-mahayogaraja-guggulu', 'ayurveda guggulu', 'mahayogaraja guggulu'],
     tamilKeywords: ['ருத்ரா மகாயோகராஜ குக்குலு', 'குக்குலு'],
-    inStock: true,
+    isComingSoon: true,
+    inStock: false,
     featured: false
   },
 
@@ -13007,10 +13182,10 @@ export const PRODUCTS: Product[] = [
     formulationTa: 'தைலம்',
     categoryGroup: 'taila',
     concerns: ['skin-hair'],
-    price: 280,
-    originalPrice: 330,
-    packSize: '200ml',
-    packSizeTa: '200 மி.லி',
+    price: 162,
+    originalPrice: 180,
+    packSize: '100ml',
+    packSizeTa: '100 மி.லி',
     shortDescription: 'Fabled golden bridal turmeric & 4 ficus bark massage oil for tan removal, pigmentation, and radiant glowing skin.',
     shortDescriptionTa: 'நால்பாமரம் (4 ஆலமரப்பட்டைகள்) மற்றும் மஞ்சள் கலந்த சரும பொலிவு தைலம். கரும்புள்ளிகள், மங்கு மற்றும் தழும்புகளை நீக்கும்.',
     description: 'Ruthra Nalpamaradi Taila is slow-cooked with the bark of 4 sacred Ficus trees (Nalpamaram), pure Turmeric, Chandana, and unrefined sesame oil. It repairs sun damage, lightens dark patches, and imparts a luminous golden complexion.',
@@ -13057,6 +13232,7 @@ export const PRODUCTS: Product[] = [
     ],
     searchKeywords: ['ruthra nalpamaradi taila', 'ruthra-nalpamaradi-taila', 'ayurveda taila', 'nalpamaradi taila'],
     tamilKeywords: ['ருத்ரா நால்பாமராதி தைலம்', 'தைலம்'],
+    isComingSoon: false,
     inStock: true,
     featured: false
   }
