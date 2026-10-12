@@ -665,15 +665,15 @@ export default function AdminProductsPage() {
                   setMedicalSystemFilter(tab.key as any);
                   setSelectedFormulation('ALL');
                 }}
-                className={`py-2 px-1 rounded-lg text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-0.5 ${
+                className={`py-1.5 px-1 rounded-lg text-center transition-all cursor-pointer flex items-center justify-center gap-1 ${
                   medicalSystemFilter === tab.key
                     ? 'bg-[#16382B] text-white shadow-xs font-bold'
                     : 'text-[#5C7368] hover:text-[#16382B] hover:bg-white/60'
                 }`}
               >
-                <span className="text-[11px] leading-tight font-bold">{tab.shortLabel}</span>
-                <span className={`text-[9.5px] px-1.5 py-0.2 rounded-full font-mono ${
-                  medicalSystemFilter === tab.key ? 'bg-white/20 text-white font-bold' : 'text-[#8A9B93]'
+                <span className="text-[10.5px] leading-tight font-bold whitespace-nowrap">{tab.shortLabel}</span>
+                <span className={`text-[9px] px-1.5 py-0.2 rounded-full font-mono whitespace-nowrap ${
+                  medicalSystemFilter === tab.key ? 'bg-white/20 text-white font-bold' : 'text-[#8A9B93] bg-white border border-[#16382B]/10'
                 }`}>
                   {tab.count}
                 </span>
