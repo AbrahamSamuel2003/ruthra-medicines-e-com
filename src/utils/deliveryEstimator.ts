@@ -185,7 +185,7 @@ export const getDeliveryEstimate = (pincodeRaw: string): DeliveryEstimate | null
       targetDays: tnMatch.deliveryDays,
       courierPartnerEn: isHubNextDay ? 'Direct Regional Express / ST Courier' : 'Tamil Nadu Speed Post / ST Courier',
       courierPartnerTa: isHubNextDay ? 'நேரடி விரைவு அஞ்சல் / ST கொரியர்' : 'தமிழக விரைவு அஞ்சல் / ST கொரியர்',
-      isCodAvailable: true,
+      isCodAvailable: false,
       isFreeShippingEligible: true,
       standardFee: TN_STANDARD_SHIPPING_FEE,
       freeShippingThreshold: TN_FREE_SHIPPING_THRESHOLD
@@ -235,7 +235,7 @@ export const getDeliveryEstimate = (pincodeRaw: string): DeliveryEstimate | null
     targetDays: deliveryDays,
     courierPartnerEn: 'India Post Speed Air / Blue Dart',
     courierPartnerTa: 'இந்திய அஞ்சல் துறை விரைவு சேவை',
-    isCodAvailable: true,
+    isCodAvailable: false,
     isFreeShippingEligible: true,
     standardFee: OUTSIDE_TN_STANDARD_SHIPPING_FEE,
     freeShippingThreshold: OUTSIDE_TN_FREE_SHIPPING_THRESHOLD

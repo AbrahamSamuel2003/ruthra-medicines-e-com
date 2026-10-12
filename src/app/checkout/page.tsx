@@ -17,11 +17,28 @@ import {
   Gift, 
   PackageCheck,
   ShieldCheck,
-  Percent
+  Percent,
+  AlertCircle
 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { calculateShippingFee, getDeliveryEstimate } from '@/utils/deliveryEstimator';
+
+// Dynamically loads Razorpay checkout.js SDK
+const loadRazorpayScript = (): Promise<boolean> => {
+  return new Promise((resolve) => {
+    if (typeof window !== 'undefined' && (window as any).Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
 
 const INDIAN_STATES = [
   'Tamil Nadu',
@@ -110,7 +127,7 @@ export default function CheckoutPage() {
     city: '',
     state: 'Tamil Nadu',
     pincode: '',
-    paymentMethod: 'upi',
+    paymentMethod: 'razorpay',
     deliveryMethod: 'standard'
   });
 
@@ -185,9 +202,21 @@ export default function CheckoutPage() {
       return;
     }
 
+    if (!formData.fullName.trim() || !formData.phone.trim() || !formData.address.trim() || !formData.pincode.trim()) {
+      alert(language === 'ta' ? 'அனைத்து விவரங்களையும் பூர்த்தி செய்யவும்.' : 'Please fill in all shipping details (Name, Phone, Address, and Pincode).');
+      return;
+    }
+
     setIsProcessing(true);
 
     try {
+      const isLoaded = await loadRazorpayScript();
+      if (!isLoaded) {
+        alert(language === 'ta' ? 'கட்டண நுழைவாயிலை ஏற்றுவதில் பிழை. இணைய இணைப்பை சரிபார்க்கவும்.' : 'Unable to load Razorpay payment gateway. Please check your internet connection.');
+        setIsProcessing(false);
+        return;
+      }
+
       const orderItemsPayload = [
         ...items.map(it => ({
           productId: it.product.id,
@@ -238,50 +267,131 @@ export default function CheckoutPage() {
         shippingFee: checkoutShippingFee,
         totalAmount: checkoutTotal,
         deliveryMethod: formData.deliveryMethod === 'standard' ? 'Express Courier' : 'Speed Post',
-        paymentMethod: formData.paymentMethod,
+        paymentMethod: 'razorpay',
         notes: discountPercent > 0 ? `${discountPercent}% Volume Discount Applied` : undefined
       };
 
-      const res = await fetch('/api/orders', {
+      // 1. Initialize order on server (amount recalculated server-side from catalog)
+      const orderRes = await fetch('/api/razorpay/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          items: items.map(it => ({ productId: it.product.id, quantity: it.quantity })),
+          state: formData.state,
+          pincode: formData.pincode,
+          customerName: formData.fullName,
+          customerPhone: formData.phone
+        })
       });
 
-      const data = await res.json();
-      const confirmedOrderNumber = data.orderNumber || data.orderId || 'RM-2026-' + Math.floor(1000 + Math.random() * 9000);
-
-      try {
-        sessionStorage.setItem(
-          'ruthra_last_order',
-          JSON.stringify({
-            orderId: confirmedOrderNumber,
-            invoiceNumber: data.invoiceNumber || `INV-${confirmedOrderNumber}`,
-            formData,
-            items,
-            freeGiftItems,
-            subtotal,
-            discountPercent,
-            discountAmount,
-            shippingFee: checkoutShippingFee,
-            total: checkoutTotal,
-            paymentMethod: formData.paymentMethod,
-            createdAt: new Date().toISOString()
-          })
-        );
-      } catch {
-        // ignore
+      const orderData = await orderRes.json();
+      if (!orderData.success) {
+        alert(orderData.error || 'Failed to initialize payment gateway.');
+        setIsProcessing(false);
+        return;
       }
 
-      clearCart();
-      router.push(`/order-success?orderId=${confirmedOrderNumber}`);
-    } catch (err) {
+      // 2. Open official Razorpay modal
+      const options = {
+        key: orderData.keyId,
+        amount: orderData.amount,
+        currency: orderData.currency || 'INR',
+        name: 'Ruthra Medicines',
+        description: 'Authentic Siddha & Ayurveda Formulations',
+        image: '/images/ruthra-logo.png',
+        order_id: orderData.orderId,
+        prefill: {
+          name: formData.fullName,
+          email: formData.email,
+          contact: formData.phone
+        },
+        notes: {
+          city: formData.city,
+          pincode: formData.pincode
+        },
+        theme: {
+          color: '#16382B'
+        },
+        handler: async function (response: any) {
+          try {
+            // 3. Cryptographically verify signature and save paid order with server-recalculated catalog items
+            const verifyRes = await fetch('/api/razorpay/verify-payment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                customer: {
+                  fullName: formData.fullName,
+                  phone: formData.phone,
+                  email: formData.email,
+                  address: formData.address,
+                  landmark: formData.landmark,
+                  city: formData.city,
+                  state: formData.state,
+                  pincode: formData.pincode
+                },
+                items: items.map(it => ({ productId: it.product.id, quantity: it.quantity })),
+                freeGiftItems,
+                deliveryMethod: formData.deliveryMethod === 'standard' ? 'Express Courier' : 'Speed Post',
+                notes: discountPercent > 0 ? `${discountPercent}% Volume Discount Applied` : undefined
+              })
+            });
+
+            const verifyData = await verifyRes.json();
+            if (verifyData.success) {
+              const confirmedOrderNumber = verifyData.orderNumber || verifyData.orderId;
+              try {
+                sessionStorage.setItem(
+                  'ruthra_last_order',
+                  JSON.stringify({
+                    orderId: confirmedOrderNumber,
+                    invoiceNumber: verifyData.invoiceNumber || `INV-${confirmedOrderNumber}`,
+                    formData,
+                    items,
+                    freeGiftItems,
+                    subtotal,
+                    discountPercent,
+                    discountAmount,
+                    shippingFee: checkoutShippingFee,
+                    total: checkoutTotal,
+                    paymentMethod: 'razorpay',
+                    transactionRef: response.razorpay_payment_id,
+                    createdAt: new Date().toISOString()
+                  })
+                );
+              } catch {}
+
+              clearCart();
+              router.push(`/order-success?orderId=${confirmedOrderNumber}`);
+            } else {
+              alert(verifyData.error || 'Payment verification failed. Please contact customer care.');
+              setIsProcessing(false);
+            }
+          } catch (verifyErr) {
+            console.error('Payment verification error:', verifyErr);
+            alert('An error occurred confirming your order.');
+            setIsProcessing(false);
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            setIsProcessing(false);
+          }
+        }
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.on('payment.failed', function (resp: any) {
+        console.error('Razorpay payment failed:', resp);
+        alert(resp?.error?.description || 'Payment was unsuccessful. Please try again.');
+        setIsProcessing(false);
+      });
+      rzp.open();
+    } catch (err: any) {
       console.error('Order submission error:', err);
-      // Fallback
-      const fallbackId = 'RM-2026-' + Math.floor(1000 + Math.random() * 9000);
-      clearCart();
-      router.push(`/order-success?orderId=${fallbackId}`);
-    } finally {
+      alert(err?.message || 'Payment initiation failed.');
       setIsProcessing(false);
     }
   };
@@ -524,80 +634,52 @@ export default function CheckoutPage() {
               </div>
 
               <div className="space-y-3">
-                {/* Instant UPI / QR */}
-                <label className={`p-4 rounded-2xl border-2 flex items-start gap-3 cursor-pointer transition-all ${
-                  formData.paymentMethod === 'upi' ? 'border-[#16382B] bg-[#E8F1EB]/40' : 'border-[#16382B]/10 bg-white'
-                }`}>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="upi"
-                    checked={formData.paymentMethod === 'upi'}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-xs sm:text-sm text-[#16382B]">
-                        {t('Instant UPI / GPay / PhonePe / Paytm', 'உடனடி UPI / GPay / PhonePe')}
-                      </span>
-                      <QrCode className="w-4 h-4 text-[#16382B]" />
+                {/* Razorpay Unified Online Payment Banner */}
+                <div className="p-4 sm:p-5 rounded-2xl border-2 border-emerald-700/60 bg-emerald-50/50 space-y-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 rounded-xl bg-[#16382B] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                        ₹
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-sm sm:text-base text-[#16382B]">
+                          {t('Razorpay Secure Payment Gateway', 'ரேசர்பே பாதுகாப்பான கட்டண முறை')}
+                        </h3>
+                        <p className="text-[11px] text-[#5C7368]">
+                          {t('Instant UPI, Debit/Credit Cards & Net Banking', 'உடனடி UPI, கார்டுகள் மற்றும் வங்கி பரிவர்த்தனை')}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-[11px] text-[#3D5A68] mt-0.5">
-                      Zero transaction fees. Instant official tax invoice dispatched to email.
-                    </p>
+                    <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold tracking-wider uppercase flex items-center gap-1 shrink-0">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      100% Secure
+                    </span>
                   </div>
-                </label>
 
-                {/* Cards & NetBanking */}
-                <label className={`p-4 rounded-2xl border-2 flex items-start gap-3 cursor-pointer transition-all ${
-                  formData.paymentMethod === 'card' ? 'border-[#16382B] bg-[#E8F1EB]/40' : 'border-[#16382B]/10 bg-white'
-                }`}>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="card"
-                    checked={formData.paymentMethod === 'card'}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-xs sm:text-sm text-[#16382B]">
-                        {t('Debit / Credit Cards & Net Banking', 'டெபிட் / கிரெடிட் கார்டு & வங்கி பரிவர்த்தனை')}
-                      </span>
-                      <CreditCard className="w-4 h-4 text-[#16382B]" />
+                  {/* Badges of supported payment modes */}
+                  <div className="pt-2 border-t border-emerald-200/60 grid grid-cols-3 gap-2 text-center text-[10.5px] font-semibold text-[#16382B]">
+                    <div className="p-2 rounded-xl bg-white border border-emerald-100 flex flex-col items-center gap-1 shadow-2xs">
+                      <QrCode className="w-4 h-4 text-emerald-700" />
+                      <span>UPI / GPay / PhonePe</span>
                     </div>
-                    <p className="text-[11px] text-[#3D5A68] mt-0.5">
-                      All Indian banks, RuPay, Visa, MasterCard supported.
-                    </p>
+                    <div className="p-2 rounded-xl bg-white border border-emerald-100 flex flex-col items-center gap-1 shadow-2xs">
+                      <CreditCard className="w-4 h-4 text-emerald-700" />
+                      <span>Cards (RuPay, Visa, MC)</span>
+                    </div>
+                    <div className="p-2 rounded-xl bg-white border border-emerald-100 flex flex-col items-center gap-1 shadow-2xs">
+                      <Zap className="w-4 h-4 text-emerald-700" />
+                      <span>50+ Net Banking</span>
+                    </div>
                   </div>
-                </label>
 
-                {/* Cash on Delivery (COD) Option */}
-                <label className={`p-4 rounded-2xl border-2 flex items-start gap-3 cursor-pointer transition-all ${
-                  formData.paymentMethod === 'cod' ? 'border-[#16382B] bg-[#E8F1EB]/40' : 'border-[#16382B]/10 bg-white'
-                }`}>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cod"
-                    checked={formData.paymentMethod === 'cod'}
-                    onChange={handleInputChange}
-                    className="mt-1"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-xs sm:text-sm text-[#16382B]">
-                        {t('Cash on Delivery (Available across Tamil Nadu)', 'பொருளை பெற்றுக்கொண்டு பணம் செலுத்துதல்')}
-                      </span>
-                      <Banknote className="w-4 h-4 text-[#16382B]" />
-                    </div>
-                    <p className="text-[11px] text-[#3D5A68] mt-0.5">
-                      Pay cash upon doorstep package handover.
-                    </p>
+                  {/* COD Removed Notice */}
+                  <div className="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60 flex items-center gap-2 text-[11px] text-amber-900">
+                    <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                    <span>
+                      {t('Cash on Delivery (COD) is disabled. All orders are processed with 100% secure direct payment.', 'பொருளை பெற்று பணம் செலுத்தும் முறை (COD) நிறுத்தப்பட்டுள்ளது. நேரடி கட்டணம் மட்டுமே ஏற்கப்படும்.')}
+                    </span>
                   </div>
-                </label>
+                </div>
               </div>
             </div>
 
@@ -608,10 +690,11 @@ export default function CheckoutPage() {
               className="w-full py-4 px-6 rounded-2xl bg-[#16382B] hover:bg-[#204C3B] active:scale-98 text-white font-serif-brand font-bold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
             >
               {isProcessing ? (
-                <span>{t('Processing Your Order...', 'ஆர்டர் பதிவு செய்யப்படுகிறது...')}</span>
+                <span>{t('Opening Razorpay Gateway...', 'ரேசர்பே திறக்கப்படுகிறது...')}</span>
               ) : (
                 <>
-                  <span>{t(`Confirm & Place Order — ₹${checkoutTotal}`, `ஆர்டரை உறுதிசெய் — ₹${checkoutTotal}`)}</span>
+                  <ShieldCheck className="w-5 h-5 text-[#C29043]" />
+                  <span>{t(`Pay Securely via Razorpay — ₹${checkoutTotal}`, `பாதுகாப்பாக பணம் செலுத்துங்கள் — ₹${checkoutTotal}`)}</span>
                   <ArrowRight className="w-5 h-5" />
                 </>
               )}

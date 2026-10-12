@@ -35,7 +35,7 @@ export default function AdminReportsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSendingSummary, setIsSendingSummary] = useState(false);
   const [summaryStatus, setSummaryStatus] = useState<string | null>(null);
-  const [adminRecipientEmail, setAdminRecipientEmail] = useState('abrahamsamuel645@gmail.com');
+  const [adminRecipientEmail, setAdminRecipientEmail] = useState('ruthramedicines@gmail.com');
   const [summaryDeliveryTime, setSummaryDeliveryTime] = useState('20:00');
   const [isSaved, setIsSaved] = useState(false);
 
@@ -91,7 +91,7 @@ export default function AdminReportsPage() {
     setIsSendingSummary(true);
     setSummaryStatus(null);
     try {
-      const queryEmail = encodeURIComponent(adminRecipientEmail.trim() || 'abrahamsamuel645@gmail.com');
+      const queryEmail = encodeURIComponent(adminRecipientEmail.trim() || 'ruthramedicines@gmail.com');
       const res = await fetch(`/api/cron/daily-summary?email=${queryEmail}`);
       if (res.ok) {
         const result = await res.json();

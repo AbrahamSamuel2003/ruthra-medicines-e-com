@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+export { prisma };
 import { PRODUCTS } from '@/data/products';
 import { SIDDHA_NAV_CATEGORIES, AYURVEDA_NAV_CATEGORIES } from '@/data/categories';
 import { 
@@ -770,12 +771,13 @@ export async function createOrder(data: {
   deliveryCharge: number;
   finalTotal: number;
   deliveryMethod?: string;
-  paymentMethod: PaymentMethod;
+  paymentMethod: PaymentMethod | 'razorpay';
+  transactionRef?: string;
   notes?: string;
 }): Promise<Order> {
   const now = new Date();
   const cleanPhone = data.customer.phone.trim();
-  const isPaidOnline = data.paymentMethod === 'upi' || data.paymentMethod === 'cards';
+  const isPaidOnline = data.paymentMethod === 'upi' || data.paymentMethod === 'cards' || data.paymentMethod === 'razorpay';
 
   try {
     // 1. Find or create customer
@@ -861,10 +863,10 @@ export async function createOrder(data: {
         },
         payment: {
           create: {
-            method: data.paymentMethod.toUpperCase() as any,
+            method: (data.paymentMethod === 'cards' ? 'CARDS' : data.paymentMethod === 'cod' ? 'COD' : 'UPI') as any,
             amount: data.finalTotal,
             status: isPaidOnline ? 'PAID' : 'PENDING',
-            transactionRef: isPaidOnline ? `TXN-${Date.now()}` : null,
+            transactionRef: data.transactionRef || (isPaidOnline ? `TXN-${Date.now()}` : null),
             paidAt: isPaidOnline ? now : null
           }
         },

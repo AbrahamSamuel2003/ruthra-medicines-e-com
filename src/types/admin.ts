@@ -1,6 +1,6 @@
 export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'DISPATCHED' | 'DELIVERED' | 'CANCELLED';
 export type PaymentStatus = 'PENDING' | 'PAID' | 'FAILED';
-export type PaymentMethod = 'upi' | 'cards' | 'cod';
+export type PaymentMethod = 'upi' | 'cards' | 'cod' | 'razorpay';
 export type AddressType = 'HOME' | 'WORK' | 'OTHER';
 
 export interface CustomerAddress {

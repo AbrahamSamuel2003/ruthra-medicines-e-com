@@ -11,10 +11,10 @@ export const STORE_CONFIG = {
   /**
    * Client / Admin Recipient Email for Daily End-of-Day (8:00 PM IST) Sales & Dispatch Reports.
    * NOTE: admin1234@gmail.com is strictly the internal Admin Console username.
-   * Testing email configured as: abrahamsamuel645@gmail.com
-   * (Can be overridden via ADMIN_NOTIFICATION_EMAIL in .env or updated here when client provides final address).
+   * Configured for Ruthra Medicines official email: ruthramedicines@gmail.com
+   * (Can be overridden via ADMIN_NOTIFICATION_EMAIL in .env).
    */
-  adminNotificationEmail: process.env.ADMIN_NOTIFICATION_EMAIL || 'abrahamsamuel645@gmail.com',
+  adminNotificationEmail: process.env.ADMIN_NOTIFICATION_EMAIL || 'ruthramedicines@gmail.com',
 
   /**
    * Daily Summary Automated Run Time (8:00 PM IST)
