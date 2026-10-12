@@ -506,7 +506,7 @@ export default function CheckoutPage() {
                     required
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="e.g. Dr. S. Ramanathan / K. Meenakshi"
+                    placeholder={t('Enter the full name', 'முழுப் பெயரை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
@@ -521,7 +521,7 @@ export default function CheckoutPage() {
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="e.g. 9876543210"
+                    placeholder={t('Enter the 10-digit mobile number', '10 இலக்க மொபைல் எண்ணை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
@@ -536,7 +536,7 @@ export default function CheckoutPage() {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="e.g. yourname@gmail.com"
+                    placeholder={t('Enter the email address', 'மின்னஞ்சல் முகவரியை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
@@ -551,7 +551,7 @@ export default function CheckoutPage() {
                     required
                     value={formData.address}
                     onChange={handleInputChange}
-                    placeholder="e.g. 14/B, Sannathi Street, Near Swami Nellaiyappar Temple"
+                    placeholder={t('Enter the door no, street name & area', 'கதவு எண், தெரு மற்றும் பகுதியை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
@@ -565,7 +565,7 @@ export default function CheckoutPage() {
                     name="landmark"
                     value={formData.landmark}
                     onChange={handleInputChange}
-                    placeholder="e.g. Opposite Post Office"
+                    placeholder={t('Enter the landmark (optional)', 'அடையாளத்தை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
@@ -581,7 +581,7 @@ export default function CheckoutPage() {
                     maxLength={6}
                     value={formData.pincode}
                     onChange={handleInputChange}
-                    placeholder="e.g. 627001"
+                    placeholder={t('Enter the 6-digit pincode', '6 இலக்க அஞ்சல் குறியீட்டை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
@@ -596,7 +596,7 @@ export default function CheckoutPage() {
                     required
                     value={formData.city}
                     onChange={handleInputChange}
-                    placeholder="e.g. Tirunelveli"
+                    placeholder={t('Enter the city / district', 'மாவட்டம் அல்லது ஊரை உள்ளிடவும்')}
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-[#16382B]/15 rounded-xl text-xs sm:text-sm text-[#264653] focus:outline-none focus:border-[#16382B]"
                   />
                 </div>
