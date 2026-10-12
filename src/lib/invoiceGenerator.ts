@@ -354,22 +354,6 @@ export function generateOrderInvoicePdf(order: Order): jsPDF {
   doc.text(formatInr(order.finalTotal), summaryX + summaryWidth - 4, y + 29, { align: 'right' });
 
   // ---------------------------------------------------------------------------
-  // 6. CLINICAL ASSURANCE & SIDDHA PHARMACOPEIA NOTE (Left Side Box)
-  // ---------------------------------------------------------------------------
-  const leftNoteWidth = contentWidth - summaryWidth - 8;
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(8);
-  doc.setTextColor(22, 56, 43);
-  doc.text('Classical Siddha & Ayurveda Pharmacopeia Guarantee', margin, y + 7);
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(7);
-  doc.setTextColor(71, 85, 105);
-  doc.text('All formulations are compounded adhering strictly to', margin, y + 12);
-  doc.text('classical Siddha & Ayurveda Shodhana purification methods and GMP safety standards.', margin, y + 16);
-  doc.text('For clinical consultation or dosage advice: WhatsApp +91 9043434226', margin, y + 20);
-
-  // ---------------------------------------------------------------------------
   // 7. FOOTER & AUTHORIZED SIGNATORY (Bottom of A4)
   // ---------------------------------------------------------------------------
   const footerY = 280;
