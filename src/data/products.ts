@@ -13236,6 +13236,229 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     featured: false
   }
+,
+
+  {
+    id: 'prod-ayurveda-056',
+    name: 'Dhanwantharam 101',
+    tamilName: 'தன்வந்தரம் 101',
+    slug: 'ruthra-dhanwantharam-101-capsules',
+    medicalSystem: 'ayurveda',
+    formulation: 'Capsules',
+    formulationTa: 'சாஃப்ட்ஜெல் கேப்சூல்',
+    categoryGroup: 'softgel-capsules',
+    concerns: ['joint-mobility', 'metabolic-wellness'],
+    price: 405,
+    originalPrice: 450,
+    packSize: '600 mg (60 Caps)',
+    packSizeTa: '600 மிகி (60 காப்ஸ்யூல்கள்)',
+    shortDescription: '101-times potentiated classical Ayurvedic oil in softgel capsules for neurological vitality, spine health, and arthritis relief.',
+    shortDescriptionTa: '101 முறை செறிவூட்டப்பட்ட நரம்பு மண்டல பலம், முதுகுத்தண்டு நலம் மற்றும் மூட்டு வலி நிவாரணத்திற்கான மென் காப்ஸ்யூல்.',
+    description: 'Ruthra Dhanwantharam 101 is a classical Ayurvedic formulation processed 101 times with Balamoola (Sida cordifolia), cow milk, and authentic botanical extracts. Encapsulated in soft gelatin for maximum bioavailability without traditional oil taste.',
+    descriptionTa: '101 முறை செறிவூட்டப்பட்ட பாலமூலா, பசுவின் பால் மற்றும் அரிய மூலிகைகளின் கூட்டுக்கலவை. பக்கவாதம், மூட்டு தேய்மானம், முதுகு தண்டுவட பாதிப்பு மற்றும் நரம்பு தளர்ச்சியை போக்கும் சிறந்த மருந்து.',
+    traditionalRole: 'Aavarti formulation for neuromuscular disorders, hemiplegia, and osteoarthritis.',
+    traditionalRoleTa: 'நரம்பு மற்றும் தசை மண்டல வலிமைக்கான பாரம்பரிய ஆயுர்வேத சிகிச்சை.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-dhanwantharam-101-capsules/front.jpg',
+    images: [
+      '/images/products/ruthra-dhanwantharam-101-capsules/front.jpg',
+      '/images/products/ruthra-dhanwantharam-101-capsules/angle.jpg',
+      '/images/products/ruthra-dhanwantharam-101-capsules/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-dhanwantharam-101-capsules/front.jpg',
+      '/images/products/ruthra-dhanwantharam-101-capsules/angle.jpg',
+      '/images/products/ruthra-dhanwantharam-101-capsules/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Balamoola (Sida cordifolia)', tamilName: 'சிற்றாமுட்டி வேர்', botanicalName: 'Sida cordifolia', role: 'Neuro-protective and strengthens bone density', roleTa: 'நரம்பு மற்றும் எலும்பை பலப்படுத்தும்', amount: '40%' },
+      { name: 'Ksheera (Cow Milk)', tamilName: 'பசுவின் பால்', botanicalName: 'Bos taurus', role: 'Nourishes neuromuscular junctions', roleTa: 'தசை நார்களை புத்துணர்ச்சியூட்டும்', amount: '30%' },
+      { name: 'Dashamoola Complex', tamilName: 'தசமூலம்', botanicalName: 'Ten Roots Complex', role: 'Anti-inflammatory and vata pacifier', roleTa: 'வாத உபாதைகளை தணிக்கும்', amount: '30%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Warm Water', titleTa: 'வெந்நீரில் உட்கொள்ளவும்', instruction: 'Take 1-2 capsules twice daily after food with warm water or milk.', instructionTa: 'உணவுக்கு பின் 1-2 காப்ஸ்யூல்கள் வெந்நீர் அல்லது பாலுடன் உட்கொள்ளவும்.' }
+    ],
+    dosage: {
+      morning: '1-2 capsules after breakfast with warm water',
+      evening: '1-2 capsules after dinner with warm water',
+      timing: 'After meals',
+      with: 'Warm water or milk',
+      morningTa: 'காலை 1-2 காப்ஸ்யூல் உணவுக்கு பின்',
+      eveningTa: 'இரவு 1-2 காப்ஸ்யூல் உணவுக்கு பின்',
+      timingTa: 'உணவுக்கு பின்',
+      withTa: 'வெதுவெதுப்பான நீர் அல்லது பால்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy.',
+      precautions: 'Store away from moisture and direct sunlight.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'ஈரப்பதம் படாமல் குளிர்ந்த இடத்தில் வைக்கவும்.'
+    },
+    storage: {
+      temperature: 'Store below 25°C in a cool, dry place',
+      precautions: 'Keep container tightly closed',
+      temperatureTa: '25°Cக்கு குறைவான குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'மூடியை இறுக்கமாக மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'What does 101 Aavarti mean?', answer: 'It means the medicated oil has been processed and fortified 101 times with decoctions and herbs for maximum potency.', questionTa: '101 ஆவர்த்தி என்றால் என்ன?', answerTa: 'மருந்தின் வீரியத்தை அதிகரிக்க 101 முறை மூலிகைக் கஷாயத்தால் காய்ச்சி செறிவூட்டப்பட்டதாகும்.' }
+    ],
+    searchKeywords: ['dhanwantharam 101', 'ruthra-dhanwantharam-101-capsules', 'softgel capsule', 'neuro care', 'ayurvedic arthritis', 'paraplegia'],
+    tamilKeywords: ['தன்வந்தரம் 101', 'சாஃப்ட்ஜெல் கேப்சூல்', 'மூட்டு வலி', 'நரம்பு தளர்ச்சி'],
+    isComingSoon: false,
+    inStock: true,
+    stock: 25,
+    featured: true
+  },
+
+  {
+    id: 'prod-ayurveda-057',
+    name: 'Gandha Thylam',
+    tamilName: 'கந்த தைலம்',
+    slug: 'ruthra-gandha-thylam-capsules',
+    medicalSystem: 'ayurveda',
+    formulation: 'Capsules',
+    formulationTa: 'சாஃப்ட்ஜெல் கேப்சூல்',
+    categoryGroup: 'softgel-capsules',
+    concerns: ['joint-mobility', 'skin-hair'],
+    price: 454,
+    originalPrice: 504,
+    packSize: '600 mg (60 Caps)',
+    packSizeTa: '600 மிகி (60 காப்ஸ்யூல்கள்)',
+    shortDescription: 'Renowned Ayurvedic formula in softgel capsules specifically designed for bone fracture knitting, ligament healing, and joint mobility.',
+    shortDescriptionTa: 'எலும்பு முறிவு விரைவாக கூடவும், தசைநார் காயங்கள் குணமாகவும், மூட்டு உராய்வை போக்கவும் உதவும் சிறப்பு மூலிகை மென் காப்ஸ்யூல்.',
+    description: 'Ruthra Gandha Thylam Softgel Capsules contain the time-honored Ayurvedic recipe prepared with black sesame, licorice, sandalwood, and restorative barks. It accelerates osteoblast formation, boosts Bone Mineral Density (BMD), and relieves post-viral joint stiffness.',
+    descriptionTa: 'எலும்பு முறிவு, தசைநார் தளர்ச்சி, லிகமென்ட் காயம் மற்றும் ஆஸ்டியோபோரோசிஸ் எனப்படும் எலும்பு பலவீனத்தை குணப்படுத்த உதவும் உன்னத தயாரிப்பு.',
+    traditionalRole: 'Accelerates bone healing, increases BMD, and repairs ligament strain.',
+    traditionalRoleTa: 'எலும்பு மற்றும் தசைநார்களை விரைவாக சரிசெய்யும் பாரம்பரிய சிகிச்சை.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-gandha-thylam-capsules/front.jpg',
+    images: [
+      '/images/products/ruthra-gandha-thylam-capsules/front.jpg',
+      '/images/products/ruthra-gandha-thylam-capsules/angle.jpg',
+      '/images/products/ruthra-gandha-thylam-capsules/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-gandha-thylam-capsules/front.jpg',
+      '/images/products/ruthra-gandha-thylam-capsules/angle.jpg',
+      '/images/products/ruthra-gandha-thylam-capsules/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Tila (Sesame Seed Oil)', tamilName: 'நல்லெண்ணெய்', botanicalName: 'Sesamum indicum', role: 'Deep tissue penetrating osteo-nourisher', roleTa: 'எலும்பு மஜ்ஜையை பலப்படுத்தும்', amount: '50%' },
+      { name: 'Chandana (Sandalwood)', tamilName: 'சந்தனம்', botanicalName: 'Santalum album', role: 'Cools inflammation and soothes strain', roleTa: 'வீக்கத்தை குறைக்கும்', amount: '25%' },
+      { name: 'Yashtimadhu (Licorice)', tamilName: 'அதிமதுரம்', botanicalName: 'Glycyrrhiza glabra', role: 'Promotes rapid tissue healing', roleTa: 'திசுக்களை சீரமைக்கும்', amount: '25%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Warm Milk', titleTa: 'பாலுடன் உட்கொள்ளவும்', instruction: 'Take 1-2 capsules twice daily after food with warm milk or water.', instructionTa: 'உணவுக்கு பின் 1-2 காப்ஸ்யூல்கள் வெந்நீர் அல்லது பாலுடன் உட்கொள்ளவும்.' }
+    ],
+    dosage: {
+      morning: '1-2 capsules after food with warm water',
+      evening: '1-2 capsules after food with warm water',
+      timing: 'After meals',
+      with: 'Warm milk or water',
+      morningTa: 'காலை 1-2 காப்ஸ்யூல் உணவுக்கு பின்',
+      eveningTa: 'இரவு 1-2 காப்ஸ்யூல் உணவுக்கு பின்',
+      timingTa: 'உணவுக்கு பின்',
+      withTa: 'வெதுவெதுப்பான பால் அல்லது நீர்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy.',
+      precautions: 'Do not exceed recommended dosage.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'பரிந்துரைக்கப்பட்ட அளவில் உட்கொள்ளவும்.'
+    },
+    storage: {
+      temperature: 'Store below 25°C in a cool, dry place',
+      precautions: 'Keep container tightly closed',
+      temperatureTa: '25°Cக்கு குறைவான குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'மூடியை இறுக்கமாக மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Can Gandha Thylam be taken for osteoporosis?', answer: 'Yes, it is traditionally celebrated for nourishing bone mineral density and strengthening skeletal integrity.', questionTa: 'எலும்பு தேய்மானத்திற்கு சாப்பிடலாமா?', answerTa: 'ஆம், எலும்பு அடர்த்தியை அதிகரிக்கவும் தேய்மானத்தை குறைக்கவும் இது மிகவும் சிறந்தது.' }
+    ],
+    searchKeywords: ['gandha thylam', 'ruthra-gandha-thylam-capsules', 'fracture healing', 'ligament tear', 'bone density', 'bmd capsule'],
+    tamilKeywords: ['கந்த தைலம்', 'எலும்பு முறிவு மருந்து', 'லிகமென்ட்', 'மூட்டு வலி'],
+    isComingSoon: false,
+    inStock: true,
+    stock: 25,
+    featured: true
+  },
+
+  {
+    id: 'prod-ayurveda-058',
+    name: 'Sahacharadi 21 Aavarti',
+    tamilName: 'சகசராதி 21 ஆவர்த்தி',
+    slug: 'ruthra-sahacharadi-21-aavarti-capsules',
+    medicalSystem: 'ayurveda',
+    formulation: 'Capsules',
+    formulationTa: 'சாஃப்ட்ஜெல் கேப்சூல்',
+    categoryGroup: 'softgel-capsules',
+    concerns: ['joint-mobility'],
+    price: 405,
+    originalPrice: 450,
+    packSize: '600 mg (60 Caps)',
+    packSizeTa: '600 மிகி (60 காப்ஸ்யூல்கள்)',
+    shortDescription: '21-times potentiated Sahachara formulation for targeted relief from sciatica, varicose veins, lower back pain, and numbness.',
+    shortDescriptionTa: 'இடுப்பு வலி, சியாட்டிகா நரம்பு வலி, வெரிகோஸ் வெயின் மற்றும் கால் மரத்துப்போதலுக்கு 21 முறை செறிவூட்டப்பட்ட மென் காப்ஸ்யூல்.',
+    description: 'Ruthra Sahacharadi 21 Aavarti Softgel Capsules provide targeted neurological and vascular support. Formulated with Strobilanthes ciliatus (Sahachara), Devadaru (Cedarwood), and ginger, specially processed 21 times to relieve nerve compression and venous congestion in lower limbs.',
+    descriptionTa: 'சியாட்டிகா நரம்பு அழுத்தம், தண்டுவட கீழ் முதுகு வலி, கால் நரம்பு சுருள் (Varicose veins) மற்றும் நடுக்கத்தை போக்க உதவும் சிறந்த ஆயுர்வேத மருந்து.',
+    traditionalRole: 'Alleviates lumbago, sciatica, tremors, and lower limb vascular congestion.',
+    traditionalRoleTa: 'சியாட்டிகா மற்றும் நரம்பு வலிகளை தீர்க்கும் ஆவர்த்தி தயாரிப்பு.',
+    badge: 'Classical Ayurveda',
+    badgeTa: 'பாரம்பரிய ஆயுர்வேதம்',
+    image: '/images/products/ruthra-sahacharadi-21-aavarti-capsules/front.jpg',
+    images: [
+      '/images/products/ruthra-sahacharadi-21-aavarti-capsules/front.jpg',
+      '/images/products/ruthra-sahacharadi-21-aavarti-capsules/angle.jpg',
+      '/images/products/ruthra-sahacharadi-21-aavarti-capsules/back.jpg'
+    ],
+    gallery: [
+      '/images/products/ruthra-sahacharadi-21-aavarti-capsules/front.jpg',
+      '/images/products/ruthra-sahacharadi-21-aavarti-capsules/angle.jpg',
+      '/images/products/ruthra-sahacharadi-21-aavarti-capsules/back.jpg'
+    ],
+    ingredients: [
+      { name: 'Sahachara (Strobilanthes ciliatus)', tamilName: 'குறிஞ்சி / சகசரா', botanicalName: 'Strobilanthes ciliatus', role: 'Relieves lower extremity vata and nerve irritation', roleTa: 'நரம்பு அழுத்தத்தை தணிக்கும்', amount: '50%' },
+      { name: 'Devadaru (Himalayan Cedar)', tamilName: 'தேவதாரு', botanicalName: 'Cedrus deodara', role: 'Potent pain relief and reduces swelling', roleTa: 'வீக்கம் மற்றும் வலியை போக்கும்', amount: '25%' },
+      { name: 'Shunti (Dry Ginger)', tamilName: 'சுக்கு', botanicalName: 'Zingiber officinale', role: 'Improves vascular microcirculation', roleTa: 'ரத்த ஓட்டத்தை சீராக்கும்', amount: '25%' }
+    ],
+    howToUse: [
+      { step: '01', title: 'Take with Warm Water', titleTa: 'வெந்நீரில் உட்கொள்ளவும்', instruction: 'Take 1-2 capsules twice daily after food with warm water.', instructionTa: 'உணவுக்கு பின் 1-2 காப்ஸ்யூல்கள் வெந்நீருடன் உட்கொள்ளவும்.' }
+    ],
+    dosage: {
+      morning: '1-2 capsules after breakfast with warm water',
+      evening: '1-2 capsules after dinner with warm water',
+      timing: 'After meals',
+      with: 'Warm water',
+      morningTa: 'காலை 1-2 காப்ஸ்யூல் உணவுக்கு பின்',
+      eveningTa: 'இரவு 1-2 காப்ஸ்யூல் உணவுக்கு பின்',
+      timingTa: 'உணவுக்கு பின்',
+      withTa: 'வெதுவெதுப்பான நீர்'
+    },
+    safety: {
+      contraindications: 'Consult an Ayurvedic physician during pregnancy.',
+      precautions: 'Store away from direct heat and sunlight.',
+      contraindicationsTa: 'கர்ப்பிணிகள் மருத்துவர் ஆலோசனைப்படி உட்கொள்ளவும்.',
+      precautionsTa: 'நேரடி வெப்பம் படாமல் வைக்கவும்.'
+    },
+    storage: {
+      temperature: 'Store below 25°C in a cool, dry place',
+      precautions: 'Keep container tightly closed',
+      temperatureTa: '25°Cக்கு குறைவான குளிர்ந்த, உலர்ந்த இடத்தில் வைக்கவும்',
+      precautionsTa: 'மூடியை இறுக்கமாக மூடி வைக்கவும்'
+    },
+    faqs: [
+      { question: 'Is Sahacharadi 21 effective for sciatica?', answer: 'Yes, 21-times potentiated Sahacharadi is one of the most effective classical Ayurvedic remedies for radiating sciatica nerve discomfort.', questionTa: 'சியாட்டிகா நரம்பு வலிக்கு இது உகந்ததா?', answerTa: 'ஆம், 21 முறை செறிவூட்டப்பட்ட சகசராதி சியாட்டிகா நரம்பு வலி மற்றும் தசை இறுக்கத்தை நீக்குவதில் மிகவும் பயனுள்ளது.' }
+    ],
+    searchKeywords: ['sahacharadi 21', 'ruthra-sahacharadi-21-aavarti-capsules', 'sciatica capsule', 'varicose veins', 'lumbago relief', 'numbness'],
+    tamilKeywords: ['சகசராதி 21', 'சியாட்டிகா மருந்து', 'வெரிகோஸ் வெயின்', 'இடுப்பு வலி'],
+    isComingSoon: false,
+    inStock: true,
+    stock: 25,
+    featured: true
+  }
 ];
 
 export const CONCERN_CATEGORIES: ConcernCategory[] = [

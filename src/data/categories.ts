@@ -32,7 +32,7 @@ export const SIDDHA_NAV_CATEGORIES: NavCategory[] = [
   { slug: 'vennai', title: 'Vennai', titleTa: 'வெண்ணெய்', count: 1, desc: 'Herbal medicated butters' }
 ];
 
-// Ayurveda Master Categories from Manufacturing Poster (55 Formulations across 7 Categories)
+// Ayurveda Master Categories from Manufacturing Poster (58 Formulations across 8 Categories)
 export const AYURVEDA_NAV_CATEGORIES: NavCategory[] = [
   { slug: 'churna', title: 'Churna', titleTa: 'சூர்ணம்', count: 25, desc: 'Classical herbal powders' },
   { slug: 'kvatha-churna', title: 'Kvatha Churna', titleTa: 'க்வாத சூர்ணம்', count: 19, desc: 'Decoction powders' },
@@ -40,7 +40,8 @@ export const AYURVEDA_NAV_CATEGORIES: NavCategory[] = [
   { slug: 'ghrita', title: 'Ghrita', titleTa: 'கிருதம்', count: 1, desc: 'Medicated cow ghee' },
   { slug: 'arishtam', title: 'Arishtam / Asava', titleTa: 'ஆஸவம் / அரிஷ்டம்', count: 4, desc: 'Naturally fermented elixirs' },
   { slug: 'guggulu', title: 'Guggulu / Vati', titleTa: 'வடி / குக்குலு', count: 3, desc: 'Classical herbal tablets' },
-  { slug: 'taila', title: 'Taila', titleTa: 'தைலம்', count: 1, desc: 'Medicated oils & massage' }
+  { slug: 'taila', title: 'Taila', titleTa: 'தைலம்', count: 1, desc: 'Medicated oils & massage' },
+  { slug: 'softgel-capsules', title: 'Softgel Capsules', titleTa: 'சாஃப்ட்ஜெல் கேப்சூல்ஸ்', count: 3, desc: 'Potentiated lipid-based soft gelatin herbal oil capsules' }
 ];
 
 // Health Indication Categories

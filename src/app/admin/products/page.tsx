@@ -554,16 +554,13 @@ export default function AdminProductsPage() {
       {/* COMPACT ALL-IN-ONE CONTROL CENTER FOR MEDICAL SYSTEMS & FILTERS */}
       <div className="bg-white p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-[#16382B]/10 shadow-sm space-y-3">
         {/* 0. LIVE PRODUCTS VS COMING SOON CATALOG FILTER BAR */}
-        <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[#16382B]/10 flex-wrap">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[11px] font-bold text-[#5C7368] uppercase tracking-wider mr-1 hidden sm:inline-flex items-center gap-1">
-              <Layers className="w-3.5 h-3.5 text-[#C29043]" />
-              Store Status:
-            </span>
+        <div className="pb-2.5 border-b border-[#16382B]/10">
+          {/* Mobile 3-Column Segmented Control (Zero Wrap, 100% Single Row) */}
+          <div className="grid grid-cols-3 gap-1 p-1 bg-[#FAF8F5] rounded-xl sm:hidden border border-[#16382B]/10">
             {[
-              { key: 'ALL', label: 'All Catalog', count: counts.totalCatalog },
-              { key: 'LIVE', label: 'Live Products', count: counts.live },
-              { key: 'COMING_SOON', label: 'Coming Soon', count: counts.comingSoon },
+              { key: 'ALL', label: 'All', count: counts.totalCatalog },
+              { key: 'LIVE', label: 'Live', count: counts.live },
+              { key: 'COMING_SOON', label: 'Upcoming', count: counts.comingSoon },
             ].map(statusTab => (
               <button
                 key={statusTab.key}
@@ -572,21 +569,19 @@ export default function AdminProductsPage() {
                   setCatalogStatusFilter(statusTab.key as any);
                   setSelectedFormulation('ALL');
                 }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`py-1.5 px-1 rounded-lg text-center transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                   catalogStatusFilter === statusTab.key
                     ? statusTab.key === 'LIVE'
-                      ? 'bg-emerald-800 text-white shadow-xs ring-1 ring-emerald-500'
+                      ? 'bg-emerald-800 text-white shadow-xs font-bold'
                       : statusTab.key === 'COMING_SOON'
-                      ? 'bg-amber-800 text-white shadow-xs ring-1 ring-amber-500'
-                      : 'bg-[#16382B] text-white shadow-xs'
-                    : 'bg-[#FAF8F5] text-[#5C7368] hover:text-[#16382B] hover:bg-white border border-[#16382B]/10'
+                      ? 'bg-amber-800 text-white shadow-xs font-bold'
+                      : 'bg-[#16382B] text-white shadow-xs font-bold'
+                    : 'text-[#5C7368] hover:text-[#16382B]'
                 }`}
               >
-                <span>{statusTab.label}</span>
-                <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                  catalogStatusFilter === statusTab.key
-                    ? 'bg-white/20 text-white font-bold'
-                    : 'bg-white text-[#16382B] border border-[#16382B]/10'
+                <span className="text-[11px] leading-tight font-bold">{statusTab.label}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                  catalogStatusFilter === statusTab.key ? 'bg-white/20 text-white font-bold' : 'text-[#8A9B93] bg-white border border-[#16382B]/10'
                 }`}>
                   {statusTab.count}
                 </span>
@@ -594,20 +589,62 @@ export default function AdminProductsPage() {
             ))}
           </div>
 
-          {/* Quick Info text */}
-          <div className="text-[11px] text-[#8A9B93] hidden md:flex items-center gap-1">
-            {catalogStatusFilter === 'LIVE' && (
-              <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                Showing {counts.live} live in-stock products active on storefront
+          {/* Desktop Filter Pills */}
+          <div className="hidden sm:flex items-center justify-between gap-2 flex-wrap">
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-[11px] font-bold text-[#5C7368] uppercase tracking-wider mr-1 inline-flex items-center gap-1">
+                <Layers className="w-3.5 h-3.5 text-[#C29043]" />
+                Store Status:
               </span>
-            )}
-            {catalogStatusFilter === 'COMING_SOON' && (
-              <span className="text-amber-700 font-semibold flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-amber-600" />
-                Showing {counts.comingSoon} unreleased products marked Coming Soon
-              </span>
-            )}
+              {[
+                { key: 'ALL', label: 'All Catalog', count: counts.totalCatalog },
+                { key: 'LIVE', label: 'Live Products', count: counts.live },
+                { key: 'COMING_SOON', label: 'Coming Soon', count: counts.comingSoon },
+              ].map(statusTab => (
+                <button
+                  key={statusTab.key}
+                  type="button"
+                  onClick={() => {
+                    setCatalogStatusFilter(statusTab.key as any);
+                    setSelectedFormulation('ALL');
+                  }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    catalogStatusFilter === statusTab.key
+                      ? statusTab.key === 'LIVE'
+                        ? 'bg-emerald-800 text-white shadow-xs ring-1 ring-emerald-500'
+                        : statusTab.key === 'COMING_SOON'
+                        ? 'bg-amber-800 text-white shadow-xs ring-1 ring-amber-500'
+                        : 'bg-[#16382B] text-white shadow-xs'
+                      : 'bg-[#FAF8F5] text-[#5C7368] hover:text-[#16382B] hover:bg-white border border-[#16382B]/10'
+                  }`}
+                >
+                  <span>{statusTab.label}</span>
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
+                    catalogStatusFilter === statusTab.key
+                      ? 'bg-white/20 text-white font-bold'
+                      : 'bg-white text-[#16382B] border border-[#16382B]/10'
+                  }`}>
+                    {statusTab.count}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Quick Info text */}
+            <div className="text-[11px] text-[#8A9B93] hidden md:flex items-center gap-1">
+              {catalogStatusFilter === 'LIVE' && (
+                <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Showing {counts.live} live in-stock products active on storefront
+                </span>
+              )}
+              {catalogStatusFilter === 'COMING_SOON' && (
+                <span className="text-amber-700 font-semibold flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-amber-600" />
+                  Showing {counts.comingSoon} unreleased products marked Coming Soon
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -705,7 +742,7 @@ export default function AdminProductsPage() {
           <Search className="w-4 h-4 text-[#8A9B93] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search by English name, Tamil (தமிழ்), SKU, or ID..."
+            placeholder="Search by name, Tamil (தமிழ்), SKU, or ID..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-9 pr-9 py-2.5 text-xs rounded-xl sm:rounded-2xl bg-[#FAF8F5] border border-[#16382B]/10 focus:border-[#C29043] focus:outline-none text-[#16382B]"
@@ -767,7 +804,7 @@ export default function AdminProductsPage() {
           {/* Results Summary and Reset */}
           <div className="flex items-center justify-between text-[11px] text-[#5C7368] px-1 pt-0.5">
             <span>
-              Showing <strong>{filteredProducts.length}</strong> of {counts.all} formulations
+              Showing <strong>{filteredProducts.length}</strong> of {counts.all} products
             </span>
             {(selectedFormulation !== 'ALL' || search || medicalSystemFilter !== 'ALL' || catalogStatusFilter !== 'ALL') && (
               <button
