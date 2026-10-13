@@ -120,9 +120,9 @@ const PRODUCT_CONCERN_MAP: Record<
     enKeywords: ['skin', 'hair', 'hair fall', 'dandruff', 'eczema', 'itching', 'nalangu', 'shikakai', 'skin & hair care'],
     taKeywords: ['தோல்', 'கூந்தல்', 'முடி', 'பொடுகு', 'அரிப்பு', 'நலங்கு மாவு', 'சிகைக்காய்', 'தோல் & கூந்தல்'],
     enAnswer:
-      'Ruthra Skin & Hair Care Formulations:\n\n- Nalangu Maavu Herbal Bath Powder: 100% natural, soap-free cleansing powder.\n- Pure Herbal Shikakai Powder: Traditional hair wash blend for scalp health.\n- Parangipattai Chooranam: Classical formulation for internal skin wellness.',
+      'Ruthra Skin & Hair Care Formulations:\n\n- Nalangu Maavu Herbal Bath Powder: Pure natural, soap-free cleansing powder.\n- Pure Herbal Shikakai Powder: Traditional hair wash blend for scalp health.\n- Parangipattai Chooranam: Classical formulation for internal skin wellness.',
     taAnswer:
-      'ரூத்ரா தோல் & கூந்தல் பராமரிப்பு தயாரிப்புகள்:\n\n- மூலிகை நலங்கு மாவு: சோப் இல்லாத 100% இயற்கை குளியல் பொடி.\n- தூய சிகைக்காய் பொடி: கூந்தல் ஆரோக்கியம் மற்றும் பொடுகு நீக்கத்திற்கான மூலிகைக் கலவை.\n- பரங்கிப்பட்டை சூரணம்: தோல் ஆரோக்கியத்திற்கான பாரம்பரிய மருந்து.',
+      'ரூத்ரா தோல் & கூந்தல் பராமரிப்பு தயாரிப்புகள்:\n\n- மூலிகை நலங்கு மாவு: சோப் இல்லாத தூய இயற்கை குளியல் பொடி.\n- தூய சிகைக்காய் பொடி: கூந்தல் ஆரோக்கியம் மற்றும் பொடுகு நீக்கத்திற்கான மூலிகைக் கலவை.\n- பரங்கிப்பட்டை சூரணம்: தோல் ஆரோக்கியத்திற்கான பாரம்பரிய மருந்து.',
     linkUrl: '/shop?concern=skin-hair',
     linkTitleEn: 'Browse Skin & Hair Range',
     linkTitleTa: 'தோல் & கூந்தல் மருந்துகள்',
@@ -278,7 +278,7 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
 
         return {
           reply: isTa
-            ? `அஞ்சல் குறியீடு ${pin} (${districtStr}) டெலிவரி விபரம்:\n\n- மதிப்பிடப்பட்ட காலம்: ${timeStr}\n- கூரியர் சேவை: ${partnerStr}\n- கட்டணம்: தமிழ்நாடு முழுவதும் 100% இலவச டெலிவரி\n- பணம் செலுத்தும் முறை: ஆன்லைன் பேமெண்ட் (UPI, Cards) மற்றும் கேஷ் ஆன் டெலிவரி (COD) வசதி உண்டு.`
+            ? `அஞ்சல் குறியீடு ${pin} (${districtStr}) டெலிவரி விபரம்:\n\n- மதிப்பிடப்பட்ட காலம்: ${timeStr}\n- கூரியர் சேவை: ${partnerStr}\n- கட்டணம்: தமிழ்நாடு முழுவதும் இலவச டெலிவரி\n- பணம் செலுத்தும் முறை: ஆன்லைன் பேமெண்ட் (UPI, Cards) மற்றும் கேஷ் ஆன் டெலிவரி (COD) வசதி உண்டு.`
             : `Delivery Details for PIN ${pin} (${districtStr}):\n\n- Estimated Timeline: ${timeStr}\n- Courier Partner: ${partnerStr}\n- Shipping Fee: Free Shipping inside TN\n- Payment Options: Online Payment (UPI, Cards, Net Banking) and Cash on Delivery (COD).`,
           links: [
             { labelEn: 'View Shipping Information', labelTa: 'டெலிவரி விபர பக்கம்', url: '/shipping' }
@@ -294,8 +294,8 @@ export function queryDomainKnowledge(userQuery: string, language: 'en' | 'ta' = 
 
     return {
       reply: isTa
-        ? 'ரூத்ரா மெடிசின்ஸ் விநியோகம் & கட்டண விபரங்கள்:\n\n- தமிழ்நாடு முழுவதும்: ₹500 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு 100% இலவச டெலிவரி (₹500க்கு கீழ் ₹75 கட்டணம்).\n- பிற இந்திய மாநிலங்கள்: ₹1,000 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு இலவச டெலிவரி (₹1,000க்கு கீழ் ₹120 கட்டணம்).\n- டெலிவரி நேரம்: தமிழகத்திற்குள் 24 முதல் 48 மணி நேரம்; பிற மாநிலங்களுக்கு 2 முதல் 4 நாட்கள்.\n- கட்டண முறைகள்: UPI, GPay, PhonePe, Debit/Credit Cards & கேஷ் ஆன் டெலிவரி (COD).\n\nதுல்லியமான நேரத்தை அறிய உங்கள் 6 இலக்க பின்கோடை தட்டச்சு செய்யவும்.'
-        : 'Ruthra Medicines Delivery & Payment Details:\n\n- Inside Tamil Nadu: 100% FREE Delivery on orders ₹500+ (Standard ₹75 fee for orders under ₹500).\n- Outside Tamil Nadu: 100% FREE Delivery on orders ₹1,000+ (Standard ₹120 fee for orders under ₹1,000).\n- Delivery SLA: 24 to 48 Hours across TN; 2 to 4 Business Days for Rest of India.\n- Payment Options: UPI, GPay, PhonePe, Debit/Credit Cards, Net Banking & Cash on Delivery (COD).\n\nEnter your 6-digit PIN code for instant pin-specific estimate.',
+        ? 'ரூத்ரா மெடிசின்ஸ் விநியோகம் & கட்டண விபரங்கள்:\n\n- தமிழ்நாடு முழுவதும்: ₹500 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு இலவச டெலிவரி (₹500க்கு கீழ் ₹75 கட்டணம்).\n- பிற இந்திய மாநிலங்கள்: ₹1,000 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு இலவச டெலிவரி (₹1,000க்கு கீழ் ₹120 கட்டணம்).\n- டெலிவரி நேரம்: தமிழகத்திற்குள் 24 முதல் 48 மணி நேரம்; பிற மாநிலங்களுக்கு 2 முதல் 4 நாட்கள்.\n- கட்டண முறைகள்: UPI, GPay, PhonePe, Debit/Credit Cards & கேஷ் ஆன் டெலிவரி (COD).\n\nதுல்லியமான நேரத்தை அறிய உங்கள் 6 இலக்க பின்கோடை தட்டச்சு செய்யவும்.'
+        : 'Ruthra Medicines Delivery & Payment Details:\n\n- Inside Tamil Nadu: FREE Delivery on orders ₹500+ (Standard ₹75 fee for orders under ₹500).\n- Outside Tamil Nadu: FREE Delivery on orders ₹1,000+ (Standard ₹120 fee for orders under ₹1,000).\n- Delivery SLA: 24 to 48 Hours across TN; 2 to 4 Business Days for Rest of India.\n- Payment Options: UPI, GPay, PhonePe, Debit/Credit Cards, Net Banking & Cash on Delivery (COD).\n\nEnter your 6-digit PIN code for instant pin-specific estimate.',
       links: [
         { labelEn: 'Shipping Policy Page', labelTa: 'டெலிவரி விபர பக்கம்', url: '/shipping' },
         { labelEn: 'Contact Support', labelTa: 'உதவி மையம்', url: '/contact' }

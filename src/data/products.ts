@@ -148,7 +148,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 96,
     packSize: '100ml',
     packSizeTa: '100 மி.லி',
-    shortDescription: '100% Non-drowsy herbal cough elixir for common cold, dry, wet, and allergic cough, chest congestion, bronchitis, and throat irritation.',
+    shortDescription: 'Non-drowsy herbal cough elixir for common cold, dry, wet, and allergic cough, chest congestion, bronchitis, and throat irritation.',
     shortDescriptionTa: 'தூக்க கலக்கம் இல்லாத (Non-Drowsy) வறட்டு இருமல், சளி இருமல், தொண்டை கரகரப்பு, நெஞ்சு சளி மற்றும் ஆஸ்துமாவுக்கான இயற்கை இருமல் சிரப்.',
     description: 'Ruthra Sinocof Cough Syrup brings together Adathodai, Thulasi, Kantakari, Thippili, and Licorice in a soothing herbal syrup base. It quickly soothes tickling throat raw sensations, liquefies tough bronchial phlegm, relieves spasm-induced coughing bouts, and keeps airways completely open without causing daytime sleepiness.',
     descriptionTa: 'சினோகாஃப் இருமல் சிரப் ஆடாதோடை, துளசி, கண்டங்கத்திரி, திப்பிலி மற்றும் அதிமதுரம் சேர்ந்த உன்னத கலவை. இது தொண்டை கரகரப்பை போக்கி, நெஞ்சு சளியை இளக்கி வெளியேற்றும். தூக்க கலக்கம் ஏற்படுத்தாது.',
@@ -208,8 +208,8 @@ export const PRODUCTS: Product[] = [
       {
         question: 'Does Sinocof cause drowsiness or dizziness?',
         questionTa: 'சினோகாஃப் சிரப் குடித்தால் தூக்கம் வருமா?',
-        answer: 'No! It is 100% herbal, alcohol-free, and completely non-drowsy, making it safe for working adults and drivers.',
-        answerTa: 'இல்லை! இது 100% தூக்க கலக்கம் இல்லாத இயற்கை மூலிகை சிரப்.'
+        answer: 'No! It is a pure herbal formulation, alcohol-free, and non-drowsy, making it safe for working adults and drivers.',
+        answerTa: 'இல்லை! இது தூக்க கலக்கம் இல்லாத தூய இயற்கை மூலிகை சிரப்.'
       }
     ],
     searchKeywords: ['sinocof', 'cough syrup', 'cold', 'cough', 'asthma', 'bronchitis', 'non-drowsy', 'adathodai', 'thulasi'],
@@ -695,7 +695,7 @@ export const PRODUCTS: Product[] = [
       precautionsTa: 'ஈரப்பதம் படாமல் மூடி வைக்கவும்'
     },
     faqs: [
-      { question: 'Can babies and kids use this?', answer: 'Yes, it is 100% natural, herbal, and chemical-free.', questionTa: 'குழந்தைகளுக்கு பயன்படுத்தலாமா?', answerTa: 'ஆம், 100% இயற்கை மூலிகைகளால் ஆனது என்பதால் தாராளமாக பயன்படுத்தலாம்.' }
+      { question: 'Can babies and kids use this?', answer: 'Yes, it is formulated with pure botanical herbs and free from harsh chemicals.', questionTa: 'குழந்தைகளுக்கு பயன்படுத்தலாமா?', answerTa: 'ஆம், தூய இயற்கை மூலிகைகளால் பாதுகாப்பாக தயாரிக்கப்பட்டது என்பதால் தாராளமாக பயன்படுத்தலாம்.' }
     ],
     searchKeywords: ['nalanguma powder', 'bath powder', 'herbal soap alternative', 'skin glowing powder', 'kasturi manjal bath'],
     tamilKeywords: ['நலங்கு மாவு பொடி', 'குளியல் பொடி', 'கஸ்தூரி மஞ்சள் குளியல் பொடி'],
@@ -723,7 +723,7 @@ export const PRODUCTS: Product[] = [
     descriptionTa: 'சீயக்காய், பூவந்திக்கொட்டை, செம்பருத்தி, நெல்லி மற்றும் வெந்தயம் கலந்த உன்னத மூலிகை தலைக்குளியல் பொடி. வேர்க்கால்களை பலப்படுத்தி பொடுகு மற்றும் முடி கொட்டுதலை நிறுத்தும்.',
     traditionalRole: 'Scalp cleanser, anti-dandruff hair cleanser, and natural conditioner.',
     traditionalRoleTa: 'பொடுகு நீக்கி, கூந்தல் வேர்களை பலப்படுத்தும் இயற்கை சிகைக்காய்.',
-    badge: '100% Natural Hair Wash',
+    badge: 'Pure Botanical Hair Wash',
     badgeTa: 'தூய மூலிகை சிகைக்காய்',
     image: '/images/products/ruthra-rej-viyan-pain-oil/front.jpg',
     images: ['/images/products/ruthra-rej-viyan-pain-oil/front.jpg'],
@@ -758,7 +758,7 @@ export const PRODUCTS: Product[] = [
       precautionsTa: 'ஈரப்பதம் படாமல் காற்று புகாத டப்பாவில் வைக்கவும்'
     },
     faqs: [
-      { question: 'Does it replace shampoo?', answer: 'Yes, it provides a 100% natural, chemical-free alternative to chemical shampoos.', questionTa: 'ஷாம்பூவிற்கு மாற்றாக பயன்படுத்தலாமா?', answerTa: 'ஆம், ரசாயன ஷாம்பூவிற்கு பதிலாக முழுமையான இயற்கை தயாரிப்பு.' }
+      { question: 'Does it replace shampoo?', answer: 'Yes, it provides a gentle botanical alternative to chemical shampoos.', questionTa: 'ஷாம்பூவிற்கு மாற்றாக பயன்படுத்தலாமா?', answerTa: 'ஆம், ரசாயன ஷாம்பூவிற்கு பதிலாக முழுமையான இயற்கை தயாரிப்பு.' }
     ],
     searchKeywords: ['shigakai powder', 'hair wash powder', 'herbal shampoo', 'anti-dandruff shikakai', 'ruthras shigakai'],
     tamilKeywords: ['சிகைக்காய் பொடி', 'தலைக்குளியல் பொடி', 'பொடுகு நீக்கும் சீயக்காய்'],
@@ -10791,7 +10791,7 @@ export const PRODUCTS: Product[] = [
     packSizeTa: '100 கிராம்',
     shortDescription: 'Pure single-origin Azadirachta indica leaf powder for systemic blood cleansing, scalp care, and microbial balance.',
     shortDescriptionTa: 'தூய வேப்பிலை சூர்ணம். ரத்த சுத்தி, கிருமி நாசினி மற்றும் தோல்/கூந்தல் பராமரிப்பிற்கு உகந்தது.',
-    description: 'Ruthra Nimbapatra Churna contains 100% clean-milled neem leaves with potent bitter principles (Nimbidin, Nimbin) that cleanse toxins and pacify acute Pitta-Kapha disorders.',
+    description: 'Ruthra Nimbapatra Churna contains pure, clean-milled neem leaves with potent bitter principles (Nimbidin, Nimbin) that cleanse toxins and pacify acute Pitta-Kapha disorders.',
     descriptionTa: 'இயற்கையான முறையில் உலர்த்தப்பட்ட வேப்பிலைப் பொடி. கிருமி நாசினியாகவும், ரத்தத்தை சுத்திகரிக்கவும் பயன்படுகிறது.',
     traditionalRole: 'Single herb antibacterial and Pitta-Kapha pacifier.',
     traditionalRoleTa: 'இயற்கை கிருமி நாசினி மற்றும் ரத்த சுத்தி.',
@@ -13602,7 +13602,7 @@ export const FORMULATION_CATEGORIES: FormulationCategory[] = [
     formulation: 'Personal Care',
     title: 'Personal Care & Traditional Powders',
     titleTa: 'பாரம்பரிய பராமரிப்பு பொடிகள்',
-    tagline: '100% Soap-free herbal bath & scalp cleansing formulations',
+    tagline: 'Gentle soap-free herbal bath & scalp cleansing formulations',
     taglineTa: 'தூய மூலிகை குளியல் மற்றும் கூந்தல் பொடிகள்',
     description: 'Nalangu Maavu and Shigakai powder crafted with wild botanicals to protect the skin barrier and nourish hair roots naturally.',
     descriptionTa: 'ரசாயனம் இல்லாத தூய மூலிகை குளியல் மற்றும் கூந்தல் பராமரிப்பு பொடிகள்.',

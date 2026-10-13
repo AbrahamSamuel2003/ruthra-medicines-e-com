@@ -1005,7 +1005,7 @@ function ShopContent() {
                 </h4>
                 <p className="text-xs text-[#FAF8F5]/85 leading-relaxed">
                   {t(
-                    'Order any 5 or more products in your cart to select 100% FREE bonus formulations across all 176 items.',
+                    'Order any 5 or more products in your cart to select complimentary bonus formulations across all 176 items.',
                     'எந்தவொரு 5 மருந்துகளை வாங்கும் போதும் உங்களுக்கு விருப்பமான 1 மருந்து முற்றிலும் இலவசமாக தேர்வு செய்யலாம்.'
                   )}
                 </p>

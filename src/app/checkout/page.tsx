@@ -653,7 +653,7 @@ export default function CheckoutPage() {
                     </div>
                     <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold tracking-wider uppercase flex items-center gap-1 shrink-0">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                      100% Secure
+                      {t('Bank-Grade Encrypted', 'பாதுகாப்பானது')}
                     </span>
                   </div>
 
@@ -766,7 +766,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <span className="text-[9px] uppercase font-bold tracking-wider px-1 py-0.2 rounded bg-emerald-700 text-white inline-block">
-                        {t('100% Free Bonus', 'இலவச பரிசு')}
+                        {t('Free Bonus Gift', 'இலவச பரிசு')}
                       </span>
                       <p className="font-semibold text-[#16382B] truncate mt-0.5">
                         {language === 'ta' ? product.tamilName : product.name}

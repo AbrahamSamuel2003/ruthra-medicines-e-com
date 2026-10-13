@@ -225,7 +225,7 @@ export default function CartPage() {
                         </div>
                         <div className="min-w-0">
                           <span className="text-[9px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-700 text-white">
-                            {t('100% Free Bonus', 'இலவச பரிசு')}
+                            {t('Free Bonus Gift', 'இலவச பரிசு')}
                           </span>
                           <h4 className="font-serif-brand font-bold text-sm text-[#16382B] truncate mt-1">
                             {language === 'ta' ? product.tamilName : product.name}
@@ -507,7 +507,7 @@ export default function CartPage() {
               <div className="pt-2 text-center">
                 <p className="text-[11px] text-[#8A9B93] flex items-center justify-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#C29043]" />
-                  <span>{t('100% Authentic Classical Formulations', '100% பாரம்பரிய மருந்துகள்')}</span>
+                  <span>{t('Authentic Classical Formulations', 'பாரம்பரிய முறைப்படி தயாரிக்கப்பட்ட மருந்துகள்')}</span>
                 </p>
               </div>
             </div>

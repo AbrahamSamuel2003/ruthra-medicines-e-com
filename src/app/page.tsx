@@ -117,7 +117,7 @@ export default function HomePage() {
                 {t('Instant UPI, Cards & COD', 'UPI, கார்டு & COD வசதி')}
               </p>
               <p className="text-[10.5px] text-white/70 leading-tight truncate">
-                {t('100% Secure Checkout', 'பாதுகாப்பான கட்டணம்')}
+                {t('Encrypted & Secure Checkout', 'பாதுகாப்பான கட்டணம்')}
               </p>
             </div>
           </div>
@@ -452,7 +452,7 @@ export default function HomePage() {
               {t('Skin, Hair & Wound Care', 'சருமம், கூந்தல் & புண் ஆற்றுதல்')}
             </h2>
             <p className="text-xs text-[#3D5A68] mt-0.5">
-              {t('Pure herbal thailams, diabetic wound oils, anti-dandruff hair elixirs, and 100% soap-free bath scrubs.', 'நார்ஷிகா கூந்தல் தைலம், அல்சரா புண் தைலம், நால்பாமராதி மற்றும் நலங்கு மாவு.')}
+              {t('Pure herbal thailams, diabetic wound oils, anti-dandruff hair elixirs, and gentle soap-free bath scrubs.', 'நார்ஷிகா கூந்தல் தைலம், அல்சரா புண் தைலம், நால்பாமராதி மற்றும் நலங்கு மாவு.')}
             </p>
           </div>
           <Link

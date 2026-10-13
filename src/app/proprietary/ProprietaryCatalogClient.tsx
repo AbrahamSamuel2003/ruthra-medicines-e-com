@@ -72,8 +72,8 @@ export default function ProprietaryCatalogClient({ products }: ProprietaryCatalo
               <Leaf className="w-5 h-5 text-[#16382B]" />
             </div>
             <div>
-              <h4 className="font-serif-brand font-bold text-sm text-[#16382B]">{t('100% Herbal Actives', '100% மூலிகை மூலக்கூறுகள்')}</h4>
-              <p className="text-[11px] text-[#8A9B93]">{t('Zero corticosteroids or harmful chemicals', 'ஸ்டீராய்டு கலப்பற்றது')}</p>
+              <h4 className="font-serif-brand font-bold text-sm text-[#16382B]">{t('Safe & Pure Botanicals', 'பாதுகாப்பான தூய மூலிகைகள்')}</h4>
+              <p className="text-[11px] text-[#8A9B93]">{t('Free from corticosteroids or synthetic additives', 'ஸ்டீராய்டு மற்றும் செயற்கை ரசாயனங்கள் அற்றது')}</p>
             </div>
           </div>
 

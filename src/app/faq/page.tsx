@@ -37,13 +37,13 @@ export default function FaqPage() {
     {
       qEn: 'What are the delivery charges and free shipping eligibility?',
       qTa: 'அஞ்சல் கட்டணம் மற்றும் இலவச டெலிவரி விபரங்கள் என்ன?',
-      aEn: 'Inside Tamil Nadu, delivery is 100% FREE on all orders of ₹500 and above (orders under ₹500 have a standard delivery fee of ₹75). Outside Tamil Nadu (all other Indian States), delivery is 100% FREE on orders of ₹1,000 and above (orders under ₹1,000 have a standard fee of ₹120).',
+      aEn: 'Inside Tamil Nadu, delivery is FREE on all orders of ₹500 and above (orders under ₹500 have a standard delivery fee of ₹75). Outside Tamil Nadu (all other Indian States), delivery is FREE on orders of ₹1,000 and above (orders under ₹1,000 have a standard fee of ₹120).',
       aTa: 'தமிழ்நாடு முழுவதும் ₹500 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு டெலிவரி முற்றிலும் இலவசம் (₹500க்கு கீழ் ₹75 கட்டணம்). மற்ற இந்திய மாநிலங்களுக்கு ₹1,000 மற்றும் அதற்கு மேற்பட்ட ஆர்டர்களுக்கு டெலிவரி இலவசம் (₹1,000க்கு கீழ் ₹120 கட்டணம்).'
     },
     {
       qEn: 'Do Ruthra products contain synthetic preservatives or artificial food colors?',
       qTa: 'இதில் செயற்கை நிறமூட்டிகள் அல்லது ரசாயனங்கள் உள்ளதா?',
-      aEn: 'No. All our Chooranams, Kudineers, and Thailams are 100% free of artificial coloring agents, parabens, synthetic fragrances, and artificial binders.',
+      aEn: 'No. All our Chooranams, Kudineers, and Thailams are formulated completely free of artificial coloring agents, parabens, synthetic fragrances, and artificial binders.',
       aTa: 'இல்லை. எங்கள் தயாரிப்புகளில் எந்தவித செயற்கை நிறங்களோ, வாசனை திரவியங்களோ, ரசாயன பாதுகாப்பிகளோ சேர்க்கப்படவில்லை.'
     }
   ];

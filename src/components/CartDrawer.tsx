@@ -254,7 +254,7 @@ export default function CartDrawer() {
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5">
                             <span className="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded bg-emerald-700 text-white">
-                              {t('100% Free Bonus', 'இலவச பரிசு')}
+                              {t('Free Bonus Gift', 'இலவச பரிசு')}
                             </span>
                             <span className="text-[10px] text-[#8A9B93]">
                               {language === 'ta' ? product.packSizeTa : product.packSize}
@@ -566,7 +566,7 @@ export default function CartDrawer() {
               <div className="text-center pt-1 pb-2">
                 <p className="text-[10px] text-[#8A9B93] flex items-center justify-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#C29043]" />
-                  <span>{t('100% Authentic Classical Formulations', '100% பாரம்பரிய மருந்துகள்')}</span>
+                  <span>{t('Authentic Classical Formulations', 'பாரம்பரிய முறைப்படி தயாரிக்கப்பட்ட மருந்துகள்')}</span>
                 </p>
               </div>
             </>

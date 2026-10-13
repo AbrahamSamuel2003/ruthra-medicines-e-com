@@ -96,7 +96,7 @@ export default function OffersPage() {
 
           <p className="text-sm sm:text-base text-[#DFB36C]/90 max-w-2xl mx-auto leading-relaxed">
             {t(
-              'Enjoy 10% to 20% direct bill discounts and claim free bonus formulations directly from the medicines in your order with 100% free delivery across Tamil Nadu.',
+              'Enjoy 10% to 20% direct bill discounts and claim free bonus formulations directly from the medicines in your order with free delivery across Tamil Nadu.',
               '5 அல்லது அதற்கு மேற்பட்ட மருந்துகளை வாங்கும் போது 10% முதல் 20% தள்ளுபடியும், வாங்கிய மருந்துகளிலிருந்தே கூடுதல் இலவச மருந்துகளும், தமிழ்நாடு முழுவதும் இலவச அஞ்சல் சேவையும் பெறுங்கள்.'
             )}
           </p>
@@ -140,7 +140,7 @@ export default function OffersPage() {
             </div>
             <div>
               <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
-                {t('100% Free Tamil Nadu Delivery', 'தமிழ்நாடு முழுவதும் இலவச டெலிவரி')}
+                {t('Free Tamil Nadu Delivery', 'தமிழ்நாடு முழுவதும் இலவச டெலிவரி')}
               </h4>
               <p className="text-[11px] text-[#3D5A68]">
                 {t('₹0 transportation fee across all 38 districts of Tamil Nadu', 'அனைத்து மாவட்டங்களுக்கும் ₹0 கட்டணமில்லா அஞ்சல் சேவை')}

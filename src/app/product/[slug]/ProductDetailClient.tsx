@@ -817,7 +817,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
               </div>
               <div className="p-2 bg-[#FAF8F5] rounded-xl border border-[#16382B]/5">
                 <span className="font-bold block text-[#16382B] truncate">{t('Pure Shodhana', 'சுத்தி முறை')}</span>
-                <span className="text-[#8A9B93] block truncate text-[9px]">{t('100% Traditional', 'தூய மூலிகைகள்')}</span>
+                <span className="text-[#8A9B93] block truncate text-[9px]">{t('Authentic Classical', 'பாரம்பரிய மூலிகைகள்')}</span>
               </div>
               <div className="p-2 bg-[#FAF8F5] rounded-xl border border-[#16382B]/5">
                 <span className="font-bold block text-[#16382B] truncate">{t('38 Districts', '38 மாவட்டங்கள்')}</span>
@@ -1092,13 +1092,13 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   </div>
                 )}
 
-                {/* 100% Free Shipping Anywhere in Tamil Nadu */}
+                {/* Free Shipping Anywhere in Tamil Nadu */}
                 <div className="pt-2 border-t border-[#16382B]/10">
                   <div className="flex items-center justify-between bg-emerald-50/90 border border-emerald-200/90 px-3 py-2 rounded-xl text-[11px] sm:text-[11.5px]">
                     <span className="text-emerald-950 font-bold flex items-center gap-1.5 truncate">
                       <Truck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                       <span className="truncate">
-                        {t('100% Free Delivery Anywhere in Tamil Nadu', 'தமிழ்நாடு முழுவதும் 100% இலவச டெலிவரி')}
+                        {t('Free Delivery Anywhere in Tamil Nadu', 'தமிழ்நாடு முழுவதும் இலவச டெலிவரி')}
                       </span>
                     </span>
                     <span className="text-[10px] font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-md border border-emerald-300 shadow-2xs flex-shrink-0">
