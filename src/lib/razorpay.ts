@@ -3,8 +3,8 @@ import { PRODUCTS } from '@/data/products';
 import { calculateShippingFee } from '@/utils/deliveryEstimator';
 import { calculateItemDiscountPercent } from '@/utils/pricingPolicy';
 
-const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_test_Tmvd0qOLxg3HsW';
-const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || 'rN9nxh3gA6ydaLLy9zCxbLE2';
+const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || '';
+const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || '';
 
 export interface RazorpayOrderResponse {
   id: string;
@@ -45,6 +45,10 @@ export async function createRazorpayOrder({
   receipt: string;
   notes?: Record<string, string>;
 }): Promise<RazorpayOrderResponse> {
+  if (!RAZORPAY_KEY_ID || !RAZORPAY_KEY_SECRET) {
+    throw new Error('Razorpay credentials (NEXT_PUBLIC_RAZORPAY_KEY_ID / RAZORPAY_KEY_SECRET) are missing from environment variables (.env).');
+  }
+
   const amountInPaise = Math.round(amount * 100);
 
   const authHeader = 'Basic ' + Buffer.from(`${RAZORPAY_KEY_ID}:${RAZORPAY_KEY_SECRET}`).toString('base64');
@@ -77,6 +81,10 @@ export async function createRazorpayOrder({
  * Fetches verified payment details directly from Razorpay's API to confirm amount, currency, and capture status.
  */
 export async function fetchRazorpayPayment(paymentId: string): Promise<RazorpayPaymentDetails> {
+  if (!RAZORPAY_KEY_ID || !RAZORPAY_KEY_SECRET) {
+    throw new Error('Razorpay credentials are not configured in environment variables.');
+  }
+
   const authHeader = 'Basic ' + Buffer.from(`${RAZORPAY_KEY_ID}:${RAZORPAY_KEY_SECRET}`).toString('base64');
 
   const response = await fetch(`https://api.razorpay.com/v1/payments/${paymentId}`, {
@@ -108,6 +116,11 @@ export function verifyRazorpaySignature({
   paymentId: string;
   signature: string;
 }): boolean {
+  if (!RAZORPAY_KEY_SECRET) {
+    console.error('[Razorpay:VerifySignature] RAZORPAY_KEY_SECRET is missing from .env');
+    return false;
+  }
+
   try {
     const expectedSignature = crypto
       .createHmac('sha256', RAZORPAY_KEY_SECRET)

@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       amount: razorpayOrder.amount, // in paise
       amountInRupees: calculated.finalTotal,
       currency: razorpayOrder.currency,
-      keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_test_Tmvd0qOLxg3HsW'
+      keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || ''
     });
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : 'Failed to create Razorpay order';
