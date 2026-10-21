@@ -152,12 +152,22 @@ export default function Footer() {
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row items-center md:items-start gap-2 text-center md:text-left">
-                <Phone className="w-4 h-4 text-[#C29043] flex-shrink-0 mt-0.5" />
-                <div className="flex flex-col items-center md:items-start">
-                  <a href="tel:+919043434226" className="hover:text-white font-medium">
+                <Phone className="w-4 h-4 text-[#C29043] flex-shrink-0 mt-1" />
+                <div className="flex flex-col items-center md:items-start gap-1">
+                  <a 
+                    href="tel:+919043434226" 
+                    className="hover:text-white font-medium py-1 inline-block touch-manipulation min-h-[32px] flex items-center"
+                    aria-label="Call customer care at +91 9043434226"
+                  >
                     +91 9043434226
                   </a>
-                  <a href="https://wa.me/919043434226" target="_blank" rel="noreferrer" className="text-[#DFB36C] hover:text-white text-[11px]">
+                  <a 
+                    href="https://wa.me/919043434226" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="text-[#DFB36C] hover:text-white text-[11px] py-1 inline-block touch-manipulation min-h-[32px] flex items-center"
+                    aria-label="Contact WhatsApp Order and Support Desk"
+                  >
                     {t('WhatsApp Order & Support Desk', 'வாட்ஸ்அப் ஆர்டர் உதவி')}
                   </a>
                 </div>

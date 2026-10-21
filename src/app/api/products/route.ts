@@ -13,6 +13,9 @@ export async function GET(request: NextRequest) {
     const featuredParam = searchParams.get('featured');
     const featured = featuredParam !== null ? featuredParam === 'true' : undefined;
 
+    const summaryParam = searchParams.get('summary');
+    const isSummary = summaryParam === 'true';
+
     const products = await getProducts({
       search,
       formulation,
@@ -21,11 +24,40 @@ export async function GET(request: NextRequest) {
       featured
     });
 
+    const responseProducts = isSummary 
+      ? products.map(p => ({
+          id: p.id,
+          name: p.name,
+          tamilName: p.tamilName,
+          slug: p.slug,
+          medicalSystem: p.medicalSystem,
+          formulation: p.formulation,
+          formulationTa: p.formulationTa,
+          categoryGroup: p.categoryGroup,
+          concerns: p.concerns,
+          price: p.price,
+          originalPrice: p.originalPrice,
+          packSize: p.packSize,
+          packSizeTa: p.packSizeTa,
+          shortDescription: p.shortDescription,
+          shortDescriptionTa: p.shortDescriptionTa,
+          badge: p.badge,
+          badgeTa: p.badgeTa,
+          image: p.image,
+          isComingSoon: p.isComingSoon,
+          featured: p.featured,
+          inStock: (p as any).inStock ?? true,
+          stockCount: (p as any).stockCount ?? 100,
+          isLowStock: (p as any).isLowStock ?? false,
+          isOutOfStock: (p as any).isOutOfStock ?? false,
+        }))
+      : products;
+
     return NextResponse.json(
       {
         success: true,
-        total: products.length,
-        products
+        total: responseProducts.length,
+        products: responseProducts
       },
       {
         headers: {

@@ -101,6 +101,7 @@ export default function StoreHeroCarousel() {
                 alt={slide.altText}
                 fill
                 priority={idx === 0}
+                loading={idx === 0 ? 'eager' : 'lazy'}
                 className="object-contain object-center w-full h-full transform transition-transform duration-700 group-hover:scale-[1.006]"
                 sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1400px"
               />

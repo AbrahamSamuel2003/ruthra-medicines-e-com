@@ -167,6 +167,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={t(`Enquire about ${product.name} on WhatsApp`, `${titleText} பற்றி வாட்ஸ்அப்பில் விசாரிக்க`)}
                 className="py-1.5 px-3 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366] text-[#075E54] hover:text-white text-[11px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer border border-[#25D366]/30 shadow-2xs"
               >
                 <MessageCircle className="w-3.5 h-3.5" />
@@ -300,6 +301,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                aria-label={t(`Enquire about ${product.name} on WhatsApp`, `${titleText} பற்றி வாட்ஸ்அப்பில் விசாரிக்க`)}
                 className="px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-[#25D366]/15 hover:bg-[#25D366] text-[#075E54] hover:text-white text-[10px] sm:text-xs font-bold flex items-center gap-1 transition-all cursor-pointer flex-shrink-0 border border-[#25D366]/30 shadow-2xs"
                 title="Enquire on WhatsApp"
               >

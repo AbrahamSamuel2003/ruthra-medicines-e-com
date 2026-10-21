@@ -40,9 +40,9 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState<string>('all');
   const [productList, setProductList] = useState<Product[]>(PRODUCTS);
 
-  // Sync with PostgreSQL
+  // Sync with PostgreSQL - use lightweight summary payload for instant mobile load
   React.useEffect(() => {
-    fetch('/api/products')
+    fetch('/api/products?summary=true')
       .then(res => res.json())
       .then(data => {
         if (data.success && Array.isArray(data.products) && data.products.length > 0) {
@@ -222,7 +222,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
             <div>
-              <span className="text-xs uppercase tracking-wider font-extrabold text-[#C29043] flex items-center gap-1">
+              <span className="text-xs uppercase tracking-wider font-extrabold text-[#8C580C] flex items-center gap-1">
                 <Filter className="w-3.5 h-3.5" />
                 <span>{t('Category-Wise Storefront', 'பிரிவுகள் வாரியாக')}</span>
               </span>
@@ -289,7 +289,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/shop/concerns/joint-mobility"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C29043] hover:text-[#16382B] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8C580C] hover:text-[#16382B] transition-colors"
           >
             <span>{t(`View All Joint Care (${totalJointCare})`, `அனைத்து மூட்டு மருந்துகள் (${totalJointCare})`)}</span>
             <ArrowRight className="w-4 h-4" />
@@ -331,7 +331,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/shop/concerns/respiratory"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#2A9D8F] hover:text-[#16382B] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1D7066] hover:text-[#16382B] transition-colors"
             >
               <span>{t(`View All Respiratory (${totalRespiratory})`, `அனைத்து சுவாச மருந்துகள் (${totalRespiratory})`)}</span>
               <ArrowRight className="w-4 h-4" />
@@ -373,7 +373,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/shop/concerns/digestive-wellness"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E63946] hover:text-[#16382B] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#B71C1C] hover:text-[#16382B] transition-colors"
           >
             <span>{t(`View All Digestive Care (${totalDigestive})`, `அனைத்து செரிமான மருந்துகள் (${totalDigestive})`)}</span>
             <ArrowRight className="w-4 h-4" />
@@ -415,7 +415,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/shop/concerns/womens-wellness"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E76F51] hover:text-[#16382B] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#B84A31] hover:text-[#16382B] transition-colors"
             >
               <span>{t(`View All Women’s Health (${totalWomensCare})`, `அனைத்து பெண்கள் நல மருந்துகள் (${totalWomensCare})`)}</span>
               <ArrowRight className="w-4 h-4" />
@@ -457,7 +457,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/shop/concerns/skin-hair"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#457B9D] hover:text-[#16382B] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#205272] hover:text-[#16382B] transition-colors"
           >
             <span>{t(`View All Skin & Hair (${totalSkinHair})`, `அனைத்து சரும & கூந்தல் (${totalSkinHair})`)}</span>
             <ArrowRight className="w-4 h-4" />
@@ -567,7 +567,7 @@ export default function HomePage() {
       <section className="py-10 sm:py-14 bg-[#E8F1EB]/50 border-t border-[#16382B]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs uppercase tracking-wider font-extrabold text-[#C29043]">
+            <span className="text-xs uppercase tracking-wider font-extrabold text-[#8C580C]">
               {t('Classical Administration Forms', 'சித்த & ஆயுர்வேத மருந்து வடிவங்கள்')}
             </span>
             <h2 className="font-serif-brand text-2xl sm:text-3xl font-bold text-[#16382B] mt-1">
@@ -580,13 +580,13 @@ export default function HomePage() {
               <Link
                 key={form.slug}
                 href={`/shop/formulations/${form.slug}`}
-                className="group p-5 rounded-2xl bg-white border border-[#16382B]/10 hover:border-[#C29043] transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between text-center"
+                className="group p-5 rounded-2xl bg-white border border-[#16382B]/10 hover:border-[#8C580C] transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between text-center"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#E8F1EB] text-[#16382B] flex items-center justify-center mx-auto mb-3 group-hover:bg-[#16382B] group-hover:text-white transition-colors">
-                    <Layers className="w-6 h-6 text-[#C29043] group-hover:text-white transition-colors" />
+                    <Layers className="w-6 h-6 text-[#8C580C] group-hover:text-white transition-colors" />
                   </div>
-                  <h3 className="font-serif-brand font-bold text-sm text-[#16382B] group-hover:text-[#C29043] transition-colors">
+                  <h3 className="font-serif-brand font-bold text-sm text-[#16382B] group-hover:text-[#8C580C] transition-colors">
                     {language === 'ta' ? form.titleTa : form.title}
                   </h3>
                   <p className="text-[11px] text-[#3D5A68] mt-1 line-clamp-2">
@@ -594,7 +594,7 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-[#16382B]/5">
-                  <span className="text-[11px] font-bold text-[#C29043] group-hover:text-[#16382B] flex items-center justify-center gap-1">
+                  <span className="text-[11px] font-bold text-[#8C580C] group-hover:text-[#16382B] flex items-center justify-center gap-1">
                     <span>{t('Browse', 'பார்')}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
