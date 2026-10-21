@@ -114,7 +114,8 @@ export default function RootLayout({
         <link 
           rel="preload" 
           as="image" 
-          href="/images/banners/ruthra_hero_siddha_v3.jpg" 
+          type="image/webp"
+          href="/images/banners/ruthra_hero_siddha_v3.webp" 
           fetchPriority="high" 
         />
         <script

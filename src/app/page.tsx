@@ -38,19 +38,7 @@ export default function HomePage() {
   const { language, t } = useLanguage();
   const { addItem } = useCart();
   const [activeTab, setActiveTab] = useState<string>('all');
-  const [productList, setProductList] = useState<Product[]>(PRODUCTS);
-
-  // Sync with PostgreSQL - use lightweight summary payload for instant mobile load
-  React.useEffect(() => {
-    fetch('/api/products?summary=true')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success && Array.isArray(data.products) && data.products.length > 0) {
-          setProductList(data.products);
-        }
-      })
-      .catch(() => {});
-  }, []);
+  const productList = PRODUCTS;
 
   // Helper to get category icons with vibrant accents
   const getConcernIcon = (slug: string) => {

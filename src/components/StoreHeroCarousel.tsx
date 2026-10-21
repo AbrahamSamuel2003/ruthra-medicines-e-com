@@ -16,19 +16,19 @@ interface BannerSlide {
 const BANNER_SLIDES: BannerSlide[] = [
   {
     id: 'banner-classical-siddha-v3',
-    imageSrc: '/images/banners/ruthra_hero_siddha_v3.jpg',
+    imageSrc: '/images/banners/ruthra_hero_siddha_v3.webp',
     altText: 'Classical Siddha & Ayurveda Pharmacopeia - Natural Care, Healthy Life',
     link: '/shop'
   },
   {
     id: 'banner-rej-viyan-pain-oil-v3',
-    imageSrc: '/images/banners/ruthra_hero_pain_relief_v3.jpg',
+    imageSrc: '/images/banners/ruthra_hero_pain_relief_v3.webp',
     altText: 'Rej-Viyan Pain Relief Oil - Instant Knee, Back & Joint Care',
     link: '/shop/concerns/joint-mobility'
   },
   {
     id: 'banner-family-health-hair-v3',
-    imageSrc: '/images/banners/ruthra_hero_narshika_clean.jpg',
+    imageSrc: '/images/banners/ruthra_hero_narshika_clean.webp',
     altText: 'Daily Family Health & Narshika Hair Care - Siddha & Ayurveda Formulations',
     link: '/shop'
   }
