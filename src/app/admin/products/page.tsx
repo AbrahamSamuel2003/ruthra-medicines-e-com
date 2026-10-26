@@ -42,6 +42,33 @@ interface CategoryItem {
   itemCount: number;
 }
 
+const SHOWCASE_SLOTS = [
+  {
+    index: 0 as const,
+    viewName: 'View 1',
+    labelEn: 'Front View',
+    labelTa: 'முன்புற தோற்றம்',
+    badge: 'Primary Artwork',
+    desc: 'Main catalog & storefront showcase image (View 1)'
+  },
+  {
+    index: 1 as const,
+    viewName: 'View 2',
+    labelEn: 'Angle View',
+    labelTa: 'பக்கவாட்டு தோற்றம்',
+    badge: 'Perspective Shot',
+    desc: 'Angle or side perspective view of packaging (View 2)'
+  },
+  {
+    index: 2 as const,
+    viewName: 'View 3',
+    labelEn: 'Info & Back',
+    labelTa: 'தகவல் / பின்புறம்',
+    badge: 'Info & Back Panel',
+    desc: 'Back panel with printed botanical ingredients & MRP (View 3)'
+  }
+];
+
 const INITIAL_NEW_PRODUCT: Partial<Product> = {
   name: '',
   tamilName: '',
@@ -62,7 +89,8 @@ const INITIAL_NEW_PRODUCT: Partial<Product> = {
   description: '',
   descriptionTa: '',
   image: '',
-  images: [],
+  images: ['', '', ''],
+  gallery: ['', '', ''],
   concerns: []
 };
 
@@ -82,9 +110,10 @@ export default function AdminProductsPage() {
   // Drawer & Modal States
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [originalProductImage, setOriginalProductImage] = useState<string>('');
-  const [isUploadingImage, setIsUploadingImage] = useState(false);
-  const [imageTabMode, setImageTabMode] = useState<'upload' | 'url'>('upload');
-  const [newProdImageTabMode, setNewProdImageTabMode] = useState<'upload' | 'url'>('upload');
+  const [originalProductImages, setOriginalProductImages] = useState<string[]>(['', '', '']);
+  const [uploadingSlot, setUploadingSlot] = useState<{ isNew: boolean; slotIndex: number } | null>(null);
+  const [editSlotModes, setEditSlotModes] = useState<Record<number, 'upload' | 'url'>>({ 0: 'upload', 1: 'upload', 2: 'upload' });
+  const [newSlotModes, setNewSlotModes] = useState<Record<number, 'upload' | 'url'>>({ 0: 'upload', 1: 'upload', 2: 'upload' });
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const [isAddingCategory, setIsAddingCategory] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -201,30 +230,86 @@ export default function AdminProductsPage() {
 
   // Open Product Edit Drawer with initial image tracking
   const handleOpenEdit = (product: Product) => {
-    setEditingProduct({ ...product });
+    const normImages = [
+      product.images?.[0] || product.image || '',
+      product.images?.[1] || product.gallery?.[1] || '',
+      product.images?.[2] || product.gallery?.[2] || ''
+    ];
+    setEditingProduct({
+      ...product,
+      image: normImages[0] || product.image || '',
+      images: normImages,
+      gallery: normImages
+    });
     setOriginalProductImage(product.image || '');
-    setImageTabMode('upload');
+    setOriginalProductImages([...normImages]);
+    setEditSlotModes({ 0: 'upload', 1: 'upload', 2: 'upload' });
   };
 
   // Open Add Product Modal with clean fresh state
   const handleOpenAddProduct = () => {
-    setNewProduct({ ...INITIAL_NEW_PRODUCT });
-    setNewProdImageTabMode('upload');
+    setNewProduct({
+      ...INITIAL_NEW_PRODUCT,
+      image: '',
+      images: ['', '', ''],
+      gallery: ['', '', '']
+    });
+    setNewSlotModes({ 0: 'upload', 1: 'upload', 2: 'upload' });
     setIsAddingProduct(true);
   };
 
-  // Image Upload Handler
-  const handleImageUpload = async (file: File, isNew = false) => {
+  // Guaranteed Position-Locked Slot Update
+  const handleSlotImageUpdate = (slotIndex: 0 | 1 | 2, url: string, isNew = false) => {
+    if (isNew) {
+      setNewProduct(prev => {
+        const current = [
+          prev.images?.[0] || prev.image || '',
+          prev.images?.[1] || '',
+          prev.images?.[2] || ''
+        ];
+        current[slotIndex] = url;
+        return {
+          ...prev,
+          image: current[0] || '',
+          images: current,
+          gallery: current
+        };
+      });
+    } else if (editingProduct) {
+      setEditingProduct(prev => {
+        if (!prev) return null;
+        const current = [
+          prev.images?.[0] || prev.image || '',
+          prev.images?.[1] || '',
+          prev.images?.[2] || ''
+        ];
+        current[slotIndex] = url;
+        return {
+          ...prev,
+          image: current[0] || '',
+          images: current,
+          gallery: current
+        };
+      });
+    }
+  };
+
+  // Upload file for exact slot index
+  const handleSlotImageUpload = async (file: File, slotIndex: 0 | 1 | 2, isNew = false) => {
     try {
-      setIsUploadingImage(true);
+      setUploadingSlot({ isNew, slotIndex });
       const formData = new FormData();
       formData.append('file', file);
       
-      const slug = isNew 
-        ? (newProduct.slug || newProduct.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'new-sku')
-        : (editingProduct?.slug || 'sku');
+      const slotKeys = ['front', 'angle', 'back'];
+      const slotKey = slotKeys[slotIndex] || `view-${slotIndex + 1}`;
+      
+      const targetSlug = isNew 
+        ? (newProduct.slug || newProduct.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'new-product')
+        : (editingProduct?.slug || 'product');
         
-      formData.append('slug', slug);
+      formData.append('slug', targetSlug);
+      formData.append('fileName', `${targetSlug}-${slotKey}-${Date.now()}`);
 
       const res = await fetch('/api/admin/upload', {
         method: 'POST',
@@ -233,16 +318,9 @@ export default function AdminProductsPage() {
 
       const data = await res.json();
       if (data.success && data.url) {
-        if (isNew) {
-          setNewProduct(prev => ({ ...prev, image: data.url, images: [data.url] }));
-        } else if (editingProduct) {
-          setEditingProduct(prev => prev ? { 
-            ...prev, 
-            image: data.url,
-            images: prev.images && prev.images.length > 0 ? [data.url, ...prev.images.slice(1)] : [data.url]
-          } : null);
-        }
-        showToast('Image uploaded! Click Save to apply changes.');
+        handleSlotImageUpdate(slotIndex, data.url, isNew);
+        const slotLabels = ['View 1 (Front View)', 'View 2 (Angle View)', 'View 3 (Info & Back)'];
+        showToast(`${slotLabels[slotIndex]} uploaded! Click Save to apply.`);
       } else {
         alert(data.error || 'Failed to upload image');
       }
@@ -250,7 +328,7 @@ export default function AdminProductsPage() {
       console.error(err);
       alert('Error uploading image file');
     } finally {
-      setIsUploadingImage(false);
+      setUploadingSlot(null);
     }
   };
 
@@ -270,8 +348,17 @@ export default function AdminProductsPage() {
 
     try {
       setIsSaving(true);
+      const normImages = [
+        editingProduct.images?.[0] || editingProduct.image || '',
+        editingProduct.images?.[1] || '',
+        editingProduct.images?.[2] || ''
+      ];
+
       const productPayload = {
         ...editingProduct,
+        image: normImages[0] || editingProduct.image || '',
+        images: normImages,
+        gallery: normImages,
         stock: stockNum,
         inStock: stockNum > 0 ? Boolean(editingProduct.inStock) : false
       };
@@ -322,6 +409,12 @@ export default function AdminProductsPage() {
       const slug = newProduct.slug || newProduct.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       const newId = `prod-${Date.now().toString().slice(-6)}`;
       
+      const normImages = [
+        newProduct.images?.[0] || newProduct.image || '',
+        newProduct.images?.[1] || '',
+        newProduct.images?.[2] || ''
+      ];
+
       const payload: Product = {
         id: newId,
         name: newProduct.name,
@@ -340,9 +433,9 @@ export default function AdminProductsPage() {
         descriptionTa: newProduct.descriptionTa || newProduct.shortDescriptionTa || '',
         traditionalRole: '',
         traditionalRoleTa: '',
-        image: newProduct.image || '',
-        images: newProduct.image ? [newProduct.image] : [],
-        gallery: newProduct.image ? [newProduct.image] : [],
+        image: normImages[0] || newProduct.image || '',
+        images: normImages,
+        gallery: normImages,
         inStock: stockNum > 0 ? (newProduct.inStock ?? true) : false,
         stock: stockNum,
         isComingSoon: Boolean(newProduct.isComingSoon),
@@ -1017,132 +1110,187 @@ export default function AdminProductsPage() {
                   />
                 </div>
 
-                {/* PRODUCT IMAGERY STUDIO (LIVE PREVIEW & UPLOAD) */}
-                <div className="bg-[#FAF8F5] p-4 rounded-2xl border border-[#16382B]/10 space-y-3">
+                {/* 3-SLOT PRODUCT SHOWCASE STUDIO (FIXED-POSITION & NON-COLLAPSIBLE) */}
+                <div className="bg-[#FAF8F5] p-3.5 sm:p-4 rounded-2xl border border-[#16382B]/10 space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="font-bold text-[#16382B] flex items-center gap-1.5 text-xs">
-                      <ImageIcon className="w-4 h-4 text-[#C29043]" />
-                      Product Image
-                    </label>
-                    <div className="flex items-center gap-1 bg-white p-0.5 rounded-lg border border-[#16382B]/10 text-[10px]">
-                      <button
-                        type="button"
-                        onClick={() => setImageTabMode('upload')}
-                        className={`px-2 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                          imageTabMode === 'upload' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
-                        }`}
-                      >
-                        Upload File
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setImageTabMode('url')}
-                        className={`px-2 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                          imageTabMode === 'url' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
-                        }`}
-                      >
-                        Asset Path / URL
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* CURRENT DB IMAGE PREVIEW */}
-                  <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-[#16382B]/10">
-                    <div className="relative w-16 h-16 rounded-lg bg-[#FAF8F5] border border-[#16382B]/10 overflow-hidden shrink-0 flex items-center justify-center">
-                      {editingProduct.image ? (
-                        <Image
-                          src={editingProduct.image}
-                          alt={editingProduct.name || 'Product'}
-                          fill
-                          sizes="64px"
-                          className="object-contain p-1"
-                          onError={(e) => {
-                            (e.target as any).src = '/images/brand/icon.svg';
-                          }}
-                        />
-                      ) : (
-                        <ImageIcon className="w-6 h-6 text-[#8A9B93]" />
-                      )}
-                    </div>
-
-                    <div className="flex-1 min-w-0 space-y-1">
-                      <div className="flex items-center gap-2">
-                        {editingProduct.image !== originalProductImage ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold">
-                            <Sparkles className="w-3 h-3" /> Replaced (Pending Save)
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
-                            <Check className="w-3 h-3 text-emerald-600" /> Current Product Image
-                          </span>
-                        )}
-                      </div>
-
-                      <p className="text-[10px] font-mono text-[#5C7368] truncate" title={editingProduct.image}>
-                        {editingProduct.image || 'No image configured'}
-                      </p>
-
-                      {editingProduct.image !== originalProductImage && originalProductImage && (
-                        <button
-                          type="button"
-                          onClick={() => setEditingProduct({ ...editingProduct, image: originalProductImage })}
-                          className="text-[10px] text-red-600 hover:underline flex items-center gap-1 font-semibold pt-0.5 cursor-pointer"
-                        >
-                          <RefreshCw className="w-2.5 h-2.5" /> Revert to Original DB Image
-                        </button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* UPLOAD DROPZONE */}
-                  {imageTabMode === 'upload' ? (
                     <div>
-                      <label className={`border-2 border-dashed rounded-xl p-3 flex flex-col items-center justify-center gap-1 cursor-pointer transition-all ${
-                        isUploadingImage 
-                          ? 'border-[#C29043] bg-[#C29043]/5' 
-                          : 'border-[#16382B]/20 hover:border-[#16382B]/50 bg-white hover:bg-[#FAF8F5]'
-                      }`}>
-                        <input
-                          type="file"
-                          accept="image/jpeg,image/png,image/webp,image/svg+xml,image/avif"
-                          className="hidden"
-                          disabled={isUploadingImage}
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) handleImageUpload(file, false);
-                          }}
-                        />
-                        {isUploadingImage ? (
-                          <div className="flex items-center gap-2 text-[#C29043] py-1">
-                            <Loader2 className="w-4 h-4 animate-spin" />
-                            <span className="text-[11px] font-bold">Uploading & saving new photo to server...</span>
-                          </div>
-                        ) : (
-                          <>
-                            <div className="w-7 h-7 rounded-full bg-[#16382B]/5 flex items-center justify-center text-[#16382B]">
-                              <Upload className="w-3.5 h-3.5" />
-                            </div>
-                            <div className="text-center">
-                              <span className="font-bold text-[#16382B] text-[11px]">Choose replacement photo or drag & drop</span>
-                              <p className="text-[9px] text-[#8A9B93]">Uploads JPG, PNG, WEBP directly to public directory and syncs to DB</p>
-                            </div>
-                          </>
-                        )}
+                      <label className="font-bold text-[#16382B] flex items-center gap-1.5 text-xs">
+                        <ImageIcon className="w-4 h-4 text-[#C29043]" />
+                        <span>Product Imagery & 3-Angle Showcase Studio</span>
                       </label>
+                      <p className="text-[10px] text-[#8A9B93] mt-0.5">
+                        Fixed 3-view slots. Images are position-locked and will not swap or misplace.
+                      </p>
                     </div>
-                  ) : (
-                    /* MANUAL URL / PATH MODE */
-                    <div>
-                      <input
-                        type="text"
-                        value={editingProduct.image}
-                        onChange={(e) => setEditingProduct({ ...editingProduct, image: e.target.value })}
-                        placeholder="/images/products/slug/front.jpg or https://..."
-                        className="w-full px-3 py-2 rounded-xl border border-[#16382B]/15 bg-white text-[#16382B] font-mono text-[11px]"
-                      />
-                      <p className="text-[9px] text-[#8A9B93] mt-1">Direct public path or external image URL</p>
-                    </div>
-                  )}
+                    <span className="text-[9.5px] font-bold text-[#16382B] bg-white px-2 py-0.5 rounded-md border border-[#16382B]/10 shrink-0">
+                      3 Fixed Views
+                    </span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {SHOWCASE_SLOTS.map((slot) => {
+                      const currentUrl = (editingProduct.images?.[slot.index]) || (slot.index === 0 ? editingProduct.image : '') || '';
+                      const isUploadingThis = uploadingSlot?.isNew === false && uploadingSlot?.slotIndex === slot.index;
+                      const tabMode = editSlotModes[slot.index] || 'upload';
+                      const origUrl = originalProductImages[slot.index] || (slot.index === 0 ? originalProductImage : '');
+                      const isModified = Boolean(currentUrl && currentUrl !== origUrl);
+
+                      return (
+                        <div key={slot.index} className="p-3 bg-white rounded-xl border border-[#16382B]/10 space-y-2 shadow-2xs">
+                          {/* Slot Header */}
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span className="w-5 h-5 rounded-full bg-[#16382B] text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                                {slot.index + 1}
+                              </span>
+                              <div className="min-w-0">
+                                <span className="font-bold text-xs text-[#16382B] truncate">
+                                  {editingProduct.name ? `${editingProduct.name} ${slot.viewName}` : slot.viewName}
+                                </span>
+                                <span className="text-[10px] text-[#C29043] font-semibold ml-1.5">
+                                  {slot.labelEn}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              {currentUrl ? (
+                                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[9px] font-bold">
+                                  <Check className="w-2.5 h-2.5 text-emerald-600" /> Active
+                                </span>
+                              ) : (
+                                <span className="px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[9px]">
+                                  {slot.index === 0 ? 'Primary' : 'Not Uploaded'}
+                                </span>
+                              )}
+
+                              {/* Upload/URL Toggle */}
+                              <div className="flex items-center bg-[#FAF8F5] p-0.5 rounded-md border border-[#16382B]/10 text-[9px]">
+                                <button
+                                  type="button"
+                                  onClick={() => setEditSlotModes(prev => ({ ...prev, [slot.index]: 'upload' }))}
+                                  className={`px-1.5 py-0.5 rounded font-semibold transition-colors cursor-pointer ${
+                                    tabMode === 'upload' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
+                                  }`}
+                                >
+                                  Upload
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setEditSlotModes(prev => ({ ...prev, [slot.index]: 'url' }))}
+                                  className={`px-1.5 py-0.5 rounded font-semibold transition-colors cursor-pointer ${
+                                    tabMode === 'url' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
+                                  }`}
+                                >
+                                  URL
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Preview & Controls */}
+                          <div className="flex items-center gap-3">
+                            {/* Thumbnail Box */}
+                            <div className="relative w-14 h-14 rounded-lg bg-[#FAF8F5] border border-[#16382B]/10 overflow-hidden shrink-0 flex items-center justify-center">
+                              {currentUrl ? (
+                                <Image
+                                  src={currentUrl}
+                                  alt={`${editingProduct.name || 'Product'} ${slot.viewName} ${slot.labelEn}`}
+                                  fill
+                                  sizes="56px"
+                                  className="object-contain p-1"
+                                  onError={(e) => {
+                                    (e.target as any).src = '/images/brand/icon.svg';
+                                  }}
+                                />
+                              ) : (
+                                <div className="flex flex-col items-center justify-center text-[#8A9B93]">
+                                  <Camera className="w-4 h-4 mb-0.5 opacity-60" />
+                                  <span className="text-[7.5px] font-semibold">Empty</span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Dropzone or URL */}
+                            <div className="flex-1 min-w-0 space-y-1">
+                              {tabMode === 'upload' ? (
+                                <label className={`border border-dashed rounded-lg p-2 flex items-center justify-center gap-2 cursor-pointer transition-all ${
+                                  isUploadingThis 
+                                    ? 'border-[#C29043] bg-[#C29043]/5' 
+                                    : 'border-[#16382B]/20 hover:border-[#16382B]/50 bg-[#FAF8F5]/60 hover:bg-[#FAF8F5]'
+                                }`}>
+                                  <input
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/webp,image/svg+xml,image/avif"
+                                    className="hidden"
+                                    disabled={isUploadingThis}
+                                    onChange={(e) => {
+                                      const file = e.target.files?.[0];
+                                      if (file) handleSlotImageUpload(file, slot.index, false);
+                                    }}
+                                  />
+                                  {isUploadingThis ? (
+                                    <div className="flex items-center gap-1.5 text-[#C29043] text-[10.5px]">
+                                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                      <span className="font-semibold">Uploading {slot.viewName}...</span>
+                                    </div>
+                                  ) : (
+                                    <div className="flex items-center gap-1.5 text-[#16382B] text-[10.5px]">
+                                      <Upload className="w-3 h-3 text-[#C29043]" />
+                                      <span className="font-semibold">
+                                        {currentUrl ? `Replace ${slot.labelEn}` : `Choose file for ${slot.labelEn}`}
+                                      </span>
+                                    </div>
+                                  )}
+                                </label>
+                              ) : (
+                                <input
+                                  type="text"
+                                  value={currentUrl}
+                                  onChange={(e) => handleSlotImageUpdate(slot.index, e.target.value, false)}
+                                  placeholder={`/images/products/... or https://`}
+                                  className="w-full px-2.5 py-1.5 rounded-lg border border-[#16382B]/15 bg-[#FAF8F5] text-[#16382B] font-mono text-[10.5px]"
+                                />
+                              )}
+
+                              {/* URL & Action buttons */}
+                              <div className="flex items-center justify-between text-[9.5px]">
+                                {currentUrl ? (
+                                  <span className="font-mono text-[#5C7368] truncate max-w-[220px]" title={currentUrl}>
+                                    {currentUrl}
+                                  </span>
+                                ) : (
+                                  <span className="text-[#8A9B93] italic">No image uploaded</span>
+                                )}
+
+                                <div className="flex items-center gap-2">
+                                  {isModified && origUrl && (
+                                    <button
+                                      type="button"
+                                      onClick={() => handleSlotImageUpdate(slot.index, origUrl, false)}
+                                      className="text-amber-700 hover:underline flex items-center gap-0.5 font-semibold cursor-pointer"
+                                    >
+                                      <RefreshCw className="w-2.5 h-2.5" /> Revert
+                                    </button>
+                                  )}
+
+                                  {currentUrl && slot.index > 0 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => handleSlotImageUpdate(slot.index, '', false)}
+                                      className="text-red-600 hover:underline flex items-center gap-0.5 font-semibold cursor-pointer"
+                                    >
+                                      <Trash2 className="w-2.5 h-2.5" /> Remove
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
@@ -1470,122 +1618,173 @@ export default function AdminProductsPage() {
                 />
               </div>
 
-              {/* ADD PRODUCT IMAGERY STUDIO */}
-              <div className="bg-[#FAF8F5] p-4 rounded-2xl border border-[#16382B]/10 space-y-3">
+              {/* 3-SLOT PRODUCT SHOWCASE STUDIO (FIXED-POSITION & NON-COLLAPSIBLE) */}
+              <div className="bg-[#FAF8F5] p-3.5 sm:p-4 rounded-2xl border border-[#16382B]/10 space-y-3">
                 <div className="flex items-center justify-between">
-                  <label className="font-bold text-[#16382B] flex items-center gap-1.5 text-xs">
-                    <ImageIcon className="w-4 h-4 text-[#C29043]" />
-                    Product Image (Optional)
-                  </label>
-                  <div className="flex items-center gap-1 bg-white p-0.5 rounded-lg border border-[#16382B]/10 text-[10px]">
-                    <button
-                      type="button"
-                      onClick={() => setNewProdImageTabMode('upload')}
-                      className={`px-2 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                        newProdImageTabMode === 'upload' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
-                      }`}
-                    >
-                      Upload File
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setNewProdImageTabMode('url')}
-                      className={`px-2 py-0.5 rounded-md font-semibold transition-all cursor-pointer ${
-                        newProdImageTabMode === 'url' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
-                      }`}
-                    >
-                      Asset Path / URL
-                    </button>
+                  <div>
+                    <label className="font-bold text-[#16382B] flex items-center gap-1.5 text-xs">
+                      <ImageIcon className="w-4 h-4 text-[#C29043]" />
+                      <span>Product Imagery & 3-Angle Showcase Studio</span>
+                    </label>
+                    <p className="text-[10px] text-[#8A9B93] mt-0.5">
+                      Fixed 3-view slots. Images are position-locked and will not swap or misplace.
+                    </p>
                   </div>
+                  <span className="text-[9.5px] font-bold text-[#16382B] bg-white px-2 py-0.5 rounded-md border border-[#16382B]/10 shrink-0">
+                    3 Fixed Views
+                  </span>
                 </div>
 
-                {/* IF IMAGE IS UPLOADED OR PROVIDED: SHOW PREVIEW */}
-                {newProduct.image ? (
-                  <div className="flex items-center gap-3 bg-white p-3 rounded-xl border border-[#16382B]/10">
-                    <div className="relative w-16 h-16 rounded-lg bg-[#FAF8F5] border border-[#16382B]/10 overflow-hidden shrink-0 flex items-center justify-center">
-                      <Image
-                        src={newProduct.image}
-                        alt={newProduct.name || 'New Product'}
-                        fill
-                        sizes="64px"
-                        className="object-contain p-1"
-                        onError={(e) => {
-                          (e.target as any).src = '/images/brand/icon.svg';
-                        }}
-                      />
-                    </div>
+                <div className="space-y-3">
+                  {SHOWCASE_SLOTS.map((slot) => {
+                    const currentUrl = (newProduct.images?.[slot.index]) || (slot.index === 0 ? (newProduct.image || '') : '') || '';
+                    const isUploadingThis = uploadingSlot?.isNew === true && uploadingSlot?.slotIndex === slot.index;
+                    const tabMode = newSlotModes[slot.index] || 'upload';
 
-                    <div className="flex-1 min-w-0 space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
-                          <Check className="w-3 h-3 text-emerald-600" /> Image Attached
-                        </span>
-                      </div>
-                      <p className="text-[10px] font-mono text-[#5C7368] truncate" title={newProduct.image}>
-                        {newProduct.image}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setNewProduct(prev => ({ ...prev, image: '', images: [] }))}
-                        className="text-[10px] text-red-600 hover:underline flex items-center gap-1 font-semibold pt-0.5 cursor-pointer"
-                      >
-                        <Trash2 className="w-3 h-3" /> Remove image
-                      </button>
-                    </div>
-                  </div>
-                ) : null}
-
-                {/* UPLOAD DROPZONE (SHOWN WHEN IN UPLOAD MODE OR CHANGING) */}
-                {newProdImageTabMode === 'upload' ? (
-                  <div>
-                    <label className={`border-2 border-dashed rounded-xl p-4 flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-all ${
-                      isUploadingImage 
-                        ? 'border-[#C29043] bg-[#C29043]/5' 
-                        : 'border-[#16382B]/20 hover:border-[#16382B]/50 bg-white hover:bg-[#FAF8F5]'
-                    }`}>
-                      <input
-                        type="file"
-                        accept="image/jpeg,image/png,image/webp,image/svg+xml,image/avif"
-                        className="hidden"
-                        disabled={isUploadingImage}
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) handleImageUpload(file, true);
-                        }}
-                      />
-                      {isUploadingImage ? (
-                        <div className="flex items-center gap-2 text-[#C29043] py-1">
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span className="text-[11px] font-bold">Uploading new image...</span>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="w-8 h-8 rounded-full bg-[#16382B]/5 flex items-center justify-center text-[#16382B]">
-                            <Upload className="w-4 h-4" />
-                          </div>
-                          <div className="text-center">
-                            <span className="font-bold text-[#16382B] text-[11px]">
-                              {newProduct.image ? 'Replace product image' : 'Upload product image or drag & drop'}
+                    return (
+                      <div key={slot.index} className="p-3 bg-white rounded-xl border border-[#16382B]/10 space-y-2 shadow-2xs">
+                        {/* Slot Header */}
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="w-5 h-5 rounded-full bg-[#16382B] text-white text-[10px] font-bold flex items-center justify-center shrink-0">
+                              {slot.index + 1}
                             </span>
-                            <p className="text-[9px] text-[#8A9B93]">JPG, PNG, WEBP (saved to catalog & linked)</p>
+                            <div className="min-w-0">
+                              <span className="font-bold text-xs text-[#16382B] truncate">
+                                {newProduct.name ? `${newProduct.name} ${slot.viewName}` : slot.viewName}
+                              </span>
+                              <span className="text-[10px] text-[#C29043] font-semibold ml-1.5">
+                                {slot.labelEn}
+                              </span>
+                            </div>
                           </div>
-                        </>
-                      )}
-                    </label>
-                  </div>
-                ) : (
-                  /* MANUAL URL / PATH MODE */
-                  <div>
-                    <input
-                      type="text"
-                      value={newProduct.image || ''}
-                      onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                      placeholder="/images/products/slug/front.jpg or https://..."
-                      className="w-full px-3 py-2 rounded-xl border border-[#16382B]/15 bg-white text-[#16382B] font-mono text-[11px]"
-                    />
-                    <p className="text-[9px] text-[#8A9B93] mt-1">Direct public path or external image URL</p>
-                  </div>
-                )}
+
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            {currentUrl ? (
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[9px] font-bold">
+                                <Check className="w-2.5 h-2.5 text-emerald-600" /> Attached
+                              </span>
+                            ) : (
+                              <span className="px-1.5 py-0.5 rounded-full bg-gray-100 text-gray-500 text-[9px]">
+                                {slot.index === 0 ? 'Primary' : 'Optional'}
+                              </span>
+                            )}
+
+                            {/* Upload/URL Toggle */}
+                            <div className="flex items-center bg-[#FAF8F5] p-0.5 rounded-md border border-[#16382B]/10 text-[9px]">
+                              <button
+                                type="button"
+                                onClick={() => setNewSlotModes(prev => ({ ...prev, [slot.index]: 'upload' }))}
+                                className={`px-1.5 py-0.5 rounded font-semibold transition-colors cursor-pointer ${
+                                  tabMode === 'upload' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
+                                }`}
+                              >
+                                Upload
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setNewSlotModes(prev => ({ ...prev, [slot.index]: 'url' }))}
+                                className={`px-1.5 py-0.5 rounded font-semibold transition-colors cursor-pointer ${
+                                  tabMode === 'url' ? 'bg-[#16382B] text-white' : 'text-[#5C7368] hover:text-[#16382B]'
+                                }`}
+                              >
+                                URL
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Preview & Controls */}
+                        <div className="flex items-center gap-3">
+                          {/* Thumbnail Box */}
+                          <div className="relative w-14 h-14 rounded-lg bg-[#FAF8F5] border border-[#16382B]/10 overflow-hidden shrink-0 flex items-center justify-center">
+                            {currentUrl ? (
+                              <Image
+                                src={currentUrl}
+                                alt={`${newProduct.name || 'New Product'} ${slot.viewName} ${slot.labelEn}`}
+                                fill
+                                sizes="56px"
+                                className="object-contain p-1"
+                                onError={(e) => {
+                                  (e.target as any).src = '/images/brand/icon.svg';
+                                }}
+                              />
+                            ) : (
+                              <div className="flex flex-col items-center justify-center text-[#8A9B93]">
+                                <Camera className="w-4 h-4 mb-0.5 opacity-60" />
+                                <span className="text-[7.5px] font-semibold">Empty</span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Dropzone or URL */}
+                          <div className="flex-1 min-w-0 space-y-1">
+                            {tabMode === 'upload' ? (
+                              <label className={`border border-dashed rounded-lg p-2 flex items-center justify-center gap-2 cursor-pointer transition-all ${
+                                isUploadingThis 
+                                  ? 'border-[#C29043] bg-[#C29043]/5' 
+                                  : 'border-[#16382B]/20 hover:border-[#16382B]/50 bg-[#FAF8F5]/60 hover:bg-[#FAF8F5]'
+                              }`}>
+                                <input
+                                  type="file"
+                                  accept="image/jpeg,image/png,image/webp,image/svg+xml,image/avif"
+                                  className="hidden"
+                                  disabled={isUploadingThis}
+                                  onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) handleSlotImageUpload(file, slot.index, true);
+                                  }}
+                                />
+                                {isUploadingThis ? (
+                                  <div className="flex items-center gap-1.5 text-[#C29043] text-[10.5px]">
+                                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                    <span className="font-semibold">Uploading {slot.viewName}...</span>
+                                  </div>
+                                ) : (
+                                  <div className="flex items-center gap-1.5 text-[#16382B] text-[10.5px]">
+                                    <Upload className="w-3 h-3 text-[#C29043]" />
+                                    <span className="font-semibold">
+                                      {currentUrl ? `Replace ${slot.labelEn}` : `Choose file for ${slot.labelEn}`}
+                                    </span>
+                                  </div>
+                                )}
+                              </label>
+                            ) : (
+                              <input
+                                type="text"
+                                value={currentUrl}
+                                onChange={(e) => handleSlotImageUpdate(slot.index, e.target.value, true)}
+                                placeholder={`/images/products/... or https://`}
+                                className="w-full px-2.5 py-1.5 rounded-lg border border-[#16382B]/15 bg-[#FAF8F5] text-[#16382B] font-mono text-[10.5px]"
+                              />
+                            )}
+
+                            {/* URL & Remove */}
+                            <div className="flex items-center justify-between text-[9.5px]">
+                              {currentUrl ? (
+                                <span className="font-mono text-[#5C7368] truncate max-w-[220px]" title={currentUrl}>
+                                  {currentUrl}
+                                </span>
+                              ) : (
+                                <span className="text-[#8A9B93] italic">No image uploaded</span>
+                              )}
+
+                              {currentUrl && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleSlotImageUpdate(slot.index, '', true)}
+                                  className="text-red-600 hover:underline flex items-center gap-0.5 font-semibold cursor-pointer"
+                                >
+                                  <Trash2 className="w-2.5 h-2.5" /> Remove
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

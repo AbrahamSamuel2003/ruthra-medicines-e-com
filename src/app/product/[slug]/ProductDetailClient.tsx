@@ -66,18 +66,15 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
     if (!url || !url.trim()) return fallbackImg;
     return url;
   };
-  const rawList = (product.images && product.images.length > 0
-    ? product.images
-    : product.gallery && product.gallery.length > 0
-    ? product.gallery
-    : [product.image || fallbackImg])
-    .filter(Boolean)
-    .map(getBustedUrl);
+  // Guaranteed 3-Slot Showcase Position Lock
+  // Slot 0: View 1 (Front View)
+  // Slot 1: View 2 (Angle View)
+  // Slot 2: View 3 (Info & Back)
+  const view1 = getBustedUrl(product.images?.[0] || product.gallery?.[0] || product.image || fallbackImg);
+  const view2 = getBustedUrl(product.images?.[1] || product.gallery?.[1] || view1);
+  const view3 = getBustedUrl(product.images?.[2] || product.gallery?.[2] || view1);
 
-  const galleryImages = rawList.length >= 3
-    ? rawList.slice(0, 3)
-    : [rawList[0] || fallbackImg, rawList[1] || rawList[0] || fallbackImg, rawList[2] || rawList[0] || fallbackImg];
-
+  const galleryImages = [view1, view2, view3];
   const activeImage = galleryImages[selectedImageIndex] || galleryImages[0] || fallbackImg;
 
   useEffect(() => {
@@ -282,6 +279,39 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Quick link to View 3 (Info & Back View for Ingredients & MRP Inspection) */}
+            <div className="p-3 sm:p-4 rounded-xl bg-white border border-[#16382B]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-lg bg-[#FAF8F5] border border-[#16382B]/10 flex items-center justify-center shrink-0">
+                  <Maximize2 className="w-4 h-4 text-[#C29043]" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xs sm:text-sm text-[#16382B]">
+                    {product.name} {t('View 3 — Info & Back', 'பார்வை 3 — தகவல் / பின்புறம்')}
+                  </h4>
+                  <p className="text-[11px] text-[#8A9B93]">
+                    {t('Inspect printed packaging label with botanical ingredients list and MRP', 'அச்சிடப்பட்ட மூலிகை விவரங்கள் மற்றும் MRP தோற்றத்தை காண்க')}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedImageIndex(2);
+                  const el = document.getElementById('product-gallery-viewer');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  } else {
+                    window.scrollTo({ top: 120, behavior: 'smooth' });
+                  }
+                }}
+                className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#16382B] text-white text-xs font-semibold hover:bg-[#204C3B] active:scale-95 transition-all cursor-pointer self-start sm:self-center shrink-0"
+              >
+                <span>{t('View Info & Back in Gallery', 'புகைப்படத்தில் காண்க')}</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
         );
@@ -627,7 +657,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
         </nav>
 
         {/* PRIMARY SHOWCASE CARD (NATIVE MOBILE TOUCH FEEL) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-7 items-start bg-white p-3.5 sm:p-6 lg:p-7 rounded-2xl border border-[#16382B]/10 shadow-xs">
+        <div id="product-gallery-viewer" className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-7 items-start bg-white p-3.5 sm:p-6 lg:p-7 rounded-2xl border border-[#16382B]/10 shadow-xs">
           
           {/* Left Column: Image Showcase with Reference 3-Image Gallery */}
           <div className="lg:col-span-5 xl:col-span-5 space-y-3">

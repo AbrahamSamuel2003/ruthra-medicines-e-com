@@ -330,11 +330,16 @@ export async function updateProduct(id: string, data: Partial<Product>): Promise
         ...(data.description && { description: data.description }),
         ...(data.descriptionTa && { descriptionTa: data.descriptionTa }),
         ...(data.image && { image: data.image }),
-        ...(data.images && { images: data.images }),
-        ...(data.gallery && { gallery: data.gallery })
+        ...(data.images !== undefined && { images: data.images }),
+        ...(data.gallery !== undefined && { gallery: data.gallery })
       } as any
     });
-    return mapPrismaProductToApp(updated);
+    const mapped = mapPrismaProductToApp(updated);
+    const memIdx = inMemoryProducts.findIndex(p => p.id === id || p.slug === id);
+    if (memIdx !== -1) {
+      inMemoryProducts[memIdx] = { ...inMemoryProducts[memIdx], ...mapped };
+    }
+    return mapped;
   } catch (err) {
     console.error(`Failed to update product ${id} in PostgreSQL:`, err);
     return null;
