@@ -281,30 +281,56 @@ export async function getProducts(filter?: {
  * Retrieves a single product by its unique SKU/ID from PostgreSQL with static fallback
  */
 export async function getProductById(id: string): Promise<Product | null> {
+  const cleanId = String(id || '').trim();
+  if (!cleanId) return null;
+
   try {
-    const p = await prisma.product.findUnique({
-      where: { id }
+    let p = await prisma.product.findUnique({
+      where: { id: cleanId }
     });
+    if (!p) {
+      p = await prisma.product.findUnique({
+        where: { slug: cleanId }
+      });
+    }
     if (p) return mapPrismaProductToApp(p);
   } catch (err) {
-    console.warn(`PostgreSQL getProductById(${id}) fallback:`, err);
+    console.warn(`PostgreSQL getProductById(${cleanId}) fallback:`, err);
   }
-  return PRODUCTS.find(p => p.id === id) || null;
+
+  return (
+    inMemoryProducts.find(p => p.id === cleanId || p.slug === cleanId) ||
+    PRODUCTS.find(p => p.id === cleanId || p.slug === cleanId) ||
+    null
+  );
 }
 
 /**
  * Retrieves a single product by its URL-friendly slug from PostgreSQL with static fallback
  */
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  const cleanSlug = String(slug || '').trim();
+  if (!cleanSlug) return null;
+
   try {
-    const p = await prisma.product.findUnique({
-      where: { slug }
+    let p = await prisma.product.findUnique({
+      where: { slug: cleanSlug }
     });
+    if (!p) {
+      p = await prisma.product.findUnique({
+        where: { id: cleanSlug }
+      });
+    }
     if (p) return mapPrismaProductToApp(p);
   } catch (err) {
-    console.warn(`PostgreSQL getProductBySlug(${slug}) fallback:`, err);
+    console.warn(`PostgreSQL getProductBySlug(${cleanSlug}) fallback:`, err);
   }
-  return PRODUCTS.find(p => p.slug === slug) || null;
+
+  return (
+    inMemoryProducts.find(p => p.slug === cleanSlug || p.id === cleanSlug) ||
+    PRODUCTS.find(p => p.slug === cleanSlug || p.id === cleanSlug) ||
+    null
+  );
 }
 
 /**
@@ -390,7 +416,9 @@ export async function createProduct(product: Product): Promise<Product> {
       tamilKeywords: product.tamilKeywords || []
     } as any
   });
-  return mapPrismaProductToApp(created);
+  const mapped = mapPrismaProductToApp(created);
+  inMemoryProducts.unshift(mapped);
+  return mapped;
 }
 
 export async function deleteProduct(id: string): Promise<boolean> {

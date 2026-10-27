@@ -169,20 +169,27 @@ export async function calculateServerOrderTotal(
   }> = [];
 
   for (const item of items) {
-    let product = await getProductById(item.productId);
+    const rawId = String(item.productId || '').trim();
+    let product = await getProductById(rawId);
     if (!product) {
-      product = await getProductBySlug(item.productId);
+      product = await getProductBySlug(rawId);
     }
     if (!product) {
       throw new Error(`Invalid product in cart: ID ${item.productId} does not exist in master catalog`);
     }
 
-    if (product.isComingSoon || !product.inStock) {
-      throw new Error(`Product "${product.name}" is currently unavailable or out of stock`);
+    if (Boolean(product.isComingSoon)) {
+      throw new Error(`Product "${product.name}" is coming soon and cannot be purchased yet.`);
+    }
+
+    const hasStock = product.stock === undefined || Number(product.stock) > 0;
+    const isExplicitlyOut = product.inStock === false && (product.stock === undefined || Number(product.stock) <= 0);
+    if (isExplicitlyOut || !hasStock) {
+      throw new Error(`Product "${product.name}" is currently out of stock`);
     }
 
     const qty = Math.max(1, Math.floor(Number(item.quantity) || 1));
-    const linePrice = product.price;
+    const linePrice = Number(product.price) || 0;
     const itemSubtotal = linePrice * qty;
 
     const discountPercent = calculateItemDiscountPercent(qty);
@@ -195,11 +202,11 @@ export async function calculateServerOrderTotal(
       productId: product.id,
       productName: product.name,
       tamilName: product.tamilName,
-      formulation: product.formulation,
-      packSize: product.packSize,
+      formulation: product.formulation || 'General',
+      packSize: product.packSize || 'Standard',
       quantity: qty,
       price: linePrice,
-      originalPrice: product.originalPrice || linePrice
+      originalPrice: Number(product.originalPrice) || linePrice
     });
   }
 
