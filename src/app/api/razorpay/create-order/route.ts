@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 
     // 🛡️ SECURITY DEFENSE: Recalculate true order total on server using database catalog
     // Client-provided amount is intentionally NEVER trusted.
-    const calculated = calculateServerOrderTotal(items, state, pincode);
+    const calculated = await calculateServerOrderTotal(items, state, pincode);
 
     const razorpayOrder = await createRazorpayOrder({
       amount: calculated.finalTotal,

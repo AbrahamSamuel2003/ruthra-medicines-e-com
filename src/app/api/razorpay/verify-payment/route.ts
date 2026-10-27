@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
     // Calculate the authentic order total from the master database.
     // Compare against the EXACT amount charged by Razorpay in paise.
     // ------------------------------------------------------------------------
-    const serverCalculation = calculateServerOrderTotal(
+    const serverCalculation = await calculateServerOrderTotal(
       items,
       customer.state,
       customer.pincode

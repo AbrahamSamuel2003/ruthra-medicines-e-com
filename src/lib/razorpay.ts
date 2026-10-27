@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { PRODUCTS } from '@/data/products';
+import { getProductById, getProductBySlug } from '@/lib/db';
 import { calculateShippingFee } from '@/utils/deliveryEstimator';
 import { calculateItemDiscountPercent } from '@/utils/pricingPolicy';
 
@@ -145,7 +146,7 @@ export function verifyRazorpaySignature({
  * STRICT SERVER-SIDE CART VALIDATION & TOTAL RE-CALCULATION
  * Prevents client-side price modification, quantity tampering, or discount forging.
  */
-export function calculateServerOrderTotal(
+export async function calculateServerOrderTotal(
   items: Array<{ productId: string; quantity: number }>,
   state?: string,
   pincode?: string
@@ -168,7 +169,10 @@ export function calculateServerOrderTotal(
   }> = [];
 
   for (const item of items) {
-    const product = PRODUCTS.find(p => p.id === item.productId);
+    let product = await getProductById(item.productId);
+    if (!product) {
+      product = await getProductBySlug(item.productId);
+    }
     if (!product) {
       throw new Error(`Invalid product in cart: ID ${item.productId} does not exist in master catalog`);
     }
